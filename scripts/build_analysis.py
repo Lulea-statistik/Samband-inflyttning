@@ -905,16 +905,21 @@ def _turnout_rows_from_pivot_workbook(
     """
     Parse Valmyndigheten's 2022/2026 workbook layout.
 
-    The workbook contains a raw 'roster_KF' sheet with municipality/district
+    The workbook contains a raw roster sheet (roster_KF for municipal
+    elections or roster_RD for parliamentary elections) with municipality/district
     identifiers and a hierarchical 'Valdeltagande' pivot sheet. The pivot has
-    names only, so use roster_KF to map district names back to municipality
+    names only, so use the roster sheet to map district names back to municipality
     and district codes while walking the hierarchy.
     """
     xl = pd.ExcelFile(io.BytesIO(content))
-    if "roster_KF" not in xl.sheet_names or "Valdeltagande" not in xl.sheet_names:
+    roster_sheets = [name for name in xl.sheet_names if _norm_header(name).startswith("roster")]
+    if not roster_sheets or "Valdeltagande" not in xl.sheet_names:
         return [], []
 
-    roster = pd.read_excel(io.BytesIO(content), sheet_name="roster_KF", header=0)
+    # Kommunval files use roster_KF, riksdagsval files use roster_RD.
+    # Use whichever roster sheet is present rather than hard-coding one election type.
+    roster_sheet = roster_sheets[0]
+    roster = pd.read_excel(io.BytesIO(content), sheet_name=roster_sheet, header=0)
     cols = {c: _norm_header(c) for c in roster.columns}
     kommun_col = next((c for c,n in cols.items() if n=="kommun"), None)
     district_code_col = next((c for c,n in cols.items() if "valdistriktskod" in n), None)
@@ -1018,7 +1023,8 @@ def _turnout_rows_from_pivot_workbook(
         districts["valdistrikt_kod"]=districts["valdistrikt_kod"].astype("string")
 
     print(
-        f"Turnout pivot parser: municipalities={muni['kommun_kod'].nunique() if not muni.empty else 0}, "
+        f"Turnout pivot parser ({roster_sheet}): "
+        f"municipalities={muni['kommun_kod'].nunique() if not muni.empty else 0}, "
         f"district municipalities={districts['kommun_kod'].nunique() if not districts.empty else 0}, "
         f"district rows={len(districts)}"
     )
