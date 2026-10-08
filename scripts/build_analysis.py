@@ -123,7 +123,10 @@ def px_csv(url: str, selections: dict[str, list[str]]) -> pd.DataFrame:
     payload = {"query": query, "response": {"format": "csv"}}
     r = session.post(url, json=payload, timeout=180)
     if not r.ok:
-        raise RuntimeError(f"SCB query failed {r.status_code} for {url}: {r.text[:1000]}")
+        raise RuntimeError(
+            f"SCB query failed {r.status_code} for {url}: {r.text[:1000]} "
+            f"| selections={json.dumps(selections, ensure_ascii=False)}"
+        )
     return pd.read_csv(io.StringIO(r.text), sep=None, engine="python")
 
 
@@ -912,11 +915,12 @@ def fit_models(panel: pd.DataFrame) -> dict:
 
 
 def main():
+    # Fetch the smaller auxiliary table first so API/schema failures are fast to diagnose.
+    labor = get_labor_market()
     mig = get_migration()
     pop = get_population()
     income = get_income()
     housing = get_housing()
-    labor = get_labor_market()
     panel = build_panel(mig, pop, income, housing, labor)
     panel.to_csv(OUT / "panel.csv", index=False)
     result = fit_models(panel)
