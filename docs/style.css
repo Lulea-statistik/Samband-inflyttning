@@ -17,3 +17,15 @@ main{padding:24px 28px;max-width:1500px;margin:auto}.page{display:none}.page.act
 .matrix-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;flex-wrap:wrap}.matrix-head h3{margin-top:0}.matrix-head>div{max-width:850px}.matrix-head label{font-size:13px;font-weight:700}.matrix-head select{display:block;margin-top:5px;padding:8px;min-width:230px}.matrix-chart{height:680px}@media(max-width:900px){.matrix-chart{height:620px}}
 
 .table-wrap{overflow-x:auto}.metric-table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}.metric-table th,.metric-table td{padding:8px 10px;border-bottom:1px solid #e3e9ef;text-align:left;vertical-align:top}.metric-table th{font-size:12px;color:#5d6b7d;background:#f8fafc;position:sticky;top:0}.metric-table td:nth-child(n+3),.metric-table th:nth-child(n+3){text-align:right;white-space:nowrap}
+
+.equation-grid{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:18px;align-items:start}
+.equation-box{padding:16px;border:1px solid #e3e9ef;border-radius:10px;background:#fafcfe;line-height:1.45}
+.equation-target{font-weight:700;margin-bottom:8px}
+.eq-term{padding:3px 0}
+.eq-sign{display:inline-block;min-width:22px}
+.eq-coef{font-variant-numeric:tabular-nums;font-weight:650}
+.eq-var{color:#334155}
+.equation-years{margin-top:12px;line-height:1.5}
+.equation-stats{display:grid;gap:10px}
+.equation-stats .card{margin:0}
+@media (max-width:800px){.equation-grid{grid-template-columns:1fr}.equation-stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
