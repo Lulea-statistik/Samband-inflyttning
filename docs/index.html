@@ -93,6 +93,21 @@
   <section id="ages" class="page">
     <h2>Åldersspecifika modeller</h2>
     <p class="lead">Samma analysram används för fem livsfaser: 18–23, 24–34, 35–49, 63–68 och 70–79 år. Målvariabeln är inflyttade i åldersgruppen per 1 000 invånare i samma åldersgrupp, så att kommunernas olika åldersstruktur inte mekaniskt styr nivån.</p>
+    <div class="panel">
+      <div class="matrix-head">
+        <div>
+          <h3>Hur skiftar drivkrafterna genom livscykeln?</h3>
+          <p class="note">Varje ruta visar tappet i justerat R² när temat tas bort från just den åldersgruppens modell. Större positivt värde betyder större självständigt bidrag. Tom ruta betyder att temat inte valdes in i modellen. Färgskalan är kvadratrotskomprimerad för att små strukturella skillnader ska vara synliga; siffrorna i rutorna är de faktiska Δ justerat R²-värdena.</p>
+        </div>
+        <label>Visa
+          <select id="lifeStageMetric">
+            <option value="structural">Strukturella teman</option>
+            <option value="all">Alla teman inkl. historik</option>
+          </select>
+        </label>
+      </div>
+      <div id="lifeStageHeatmap" class="chart matrix-chart"></div>
+    </div>
     <div id="ageModels"></div>
   </section>
 
