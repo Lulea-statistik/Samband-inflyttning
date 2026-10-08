@@ -531,7 +531,7 @@ def get_education() -> pd.DataFrame:
 
     count_code = code_for_text(content, "Antal")
     rows = []
-    chunk_size = 20
+    chunk_size = 40
     for year in AUX_YEARS:
         year_parts = []
         for i in range(0, len(munis), chunk_size):
@@ -733,18 +733,24 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     )
     panel["andel_20_34"] = 100 * panel["bef_20_34"] / panel["folkmangd"]
     panel["inflyttning_per_1000"] = 1000 * panel["inflyttade"] / panel["folkmangd"]
+    panel["log_folkmangd"] = np.log(panel["folkmangd"].where(panel["folkmangd"] > 0))
 
     panel = panel.sort_values(["kommun_kod", "year"])
     g = panel.groupby("kommun_kod", group_keys=False)
+    panel["befolkningstillvaxt_pct"] = 100 * g["folkmangd"].pct_change(fill_method=None)
+
+    # All structural predictors are lagged one year so the explanatory value
+    # precedes the migration outcome temporally.
     panel["lag1_inflyttning_per_1000"] = g["inflyttning_per_1000"].shift(1)
+    panel["lag1_log_folkmangd"] = g["log_folkmangd"].shift(1)
+    panel["lag1_befolkningstillvaxt_pct"] = g["befolkningstillvaxt_pct"].shift(1)
+    panel["lag1_andel_20_34"] = g["andel_20_34"].shift(1)
     panel["lag1_inflyttare_medelalder"] = g["inflyttare_medelalder"].shift(1)
     panel["lag1_inkomst_tkr"] = g["inkomst_tkr"].shift(1)
     panel["lag1_andel_smahus"] = g["andel_smahus"].shift(1)
     panel["lag1_sysselsattningsgrad"] = g["sysselsattningsgrad"].shift(1)
     panel["lag1_arbetsloshet"] = g["arbetsloshet"].shift(1)
     panel["lag1_andel_eftergymnasial"] = g["andel_eftergymnasial"].shift(1)
-    panel["befolkningstillvaxt_pct"] = 100 * g["folkmangd"].pct_change(fill_method=None)
-    panel["log_folkmangd"] = np.log(panel["folkmangd"].where(panel["folkmangd"] > 0))
 
     return panel.reset_index(drop=True)
 
@@ -882,6 +888,77 @@ def _elastic_net_selection(
     }
 
 
+FEATURE_THEMES = {
+    "lag1_inflyttning_per_1000": "Historisk flyttdynamik",
+    "lag1_log_folkmangd": "Kommunstorlek",
+    "lag1_befolkningstillvaxt_pct": "Befolkningsdynamik",
+    "lag1_andel_20_34": "Åldersstruktur",
+    "lag1_inflyttare_medelalder": "Inflyttarprofil",
+    "lag1_inkomst_tkr": "Inkomstnivå",
+    "lag1_andel_smahus": "Bostadsstruktur",
+    "lag1_sysselsattningsgrad": "Arbetsmarknad",
+    "lag1_arbetsloshet": "Arbetsmarknad",
+    "lag1_andel_eftergymnasial": "Humankapital",
+}
+
+
+def _thematic_selection(
+    d: pd.DataFrame,
+    features: list[str],
+    target: str,
+) -> tuple[list[str], dict]:
+    """
+    Keep qualitatively distinct explanatory perspectives.
+    If several variables represent the same theme, keep the one with the
+    strongest incremental AIC contribution in the current model.
+    """
+    if not features:
+        return [], {"themes": {}, "incremental_aic": []}
+
+    def fit_aic(fs: list[str]) -> float:
+        X = _design_with_year_effects(d, fs)
+        y = d[target].astype(float).reset_index(drop=True)
+        return float(sm.OLS(y, X).fit().aic)
+
+    full_aic = fit_aic(features)
+    contributions = []
+    for feature in features:
+        trial = [f for f in features if f != feature]
+        if not trial:
+            delta = float("inf")
+        else:
+            delta = fit_aic(trial) - full_aic
+        contributions.append({
+            "feature": feature,
+            "theme": FEATURE_THEMES.get(feature, feature),
+            "delta_aic_when_removed": _finite_float(delta),
+        })
+
+    by_theme = {}
+    for row in contributions:
+        by_theme.setdefault(row["theme"], []).append(row)
+
+    selected = []
+    theme_choice = {}
+    for theme, rows in by_theme.items():
+        best = max(
+            rows,
+            key=lambda r: -1e18 if r["delta_aic_when_removed"] is None else r["delta_aic_when_removed"],
+        )
+        # Because backward-AIC has already screened the candidate set, unique
+        # themes remain eligible; duplicate themes compete for one slot.
+        selected.append(best["feature"])
+        theme_choice[theme] = best["feature"]
+
+    selected = [f for f in features if f in selected]
+    return selected, {
+        "themes": theme_choice,
+        "incremental_aic": contributions,
+        "n_themes": len(theme_choice),
+        "rule": "max one variable per qualitative theme; within-theme choice by incremental AIC",
+    }
+
+
 def _temporal_cv_rmse(
     d: pd.DataFrame,
     features: list[str],
@@ -926,9 +1003,9 @@ def _temporal_cv_selection(
     history = []
 
     current_scores = _temporal_cv_rmse(d, selected, target)
-    if len(current_scores) < 2:
+    if len(current_scores) < 3:
         return selected, {
-            "reason": "too_few_years_for_temporal_cv",
+            "reason": "fewer_than_3_temporal_folds",
             "folds": len(current_scores),
             "selected": selected,
             "history": history,
@@ -994,8 +1071,17 @@ def _select_features(
     if not consensus:
         consensus = [features[0]]
 
-    temporal, temporal_meta = _temporal_cv_selection(d, consensus, target)
-    selected = temporal if temporal else consensus
+    thematic, thematic_meta = _thematic_selection(d, consensus, target)
+    if not thematic:
+        thematic = consensus
+
+    temporal, temporal_meta = _temporal_cv_selection(d, thematic, target)
+    # CV is allowed to prune only when at least three genuine temporal folds
+    # exist. Otherwise keep the theme-balanced model rather than over-pruning.
+    if temporal_meta.get("folds", 0) >= 3:
+        selected = temporal
+    else:
+        selected = thematic
 
     excluded = [f for f in features if f not in selected]
     return {
@@ -1003,10 +1089,12 @@ def _select_features(
         "excluded": excluded,
         "elastic_net_selected": elastic,
         "backward_aic_selected": backward,
-        "pre_cv_consensus": consensus,
-        "temporal_cv_selected": selected,
+        "pre_theme_consensus": consensus,
+        "thematic_selected": thematic,
+        "temporal_cv_selected": temporal,
         "elastic_net": elastic_meta,
         "backward_aic_history": backward_history,
+        "thematic_selection": thematic_meta,
         "temporal_cv": temporal_meta,
     }
 
@@ -1102,9 +1190,9 @@ def fit_models(panel: pd.DataFrame) -> dict:
     target = "inflyttning_per_1000"
     features = [
         "lag1_inflyttning_per_1000",
-        "log_folkmangd",
-        "befolkningstillvaxt_pct",
-        "andel_20_34",
+        "lag1_log_folkmangd",
+        "lag1_befolkningstillvaxt_pct",
+        "lag1_andel_20_34",
         "lag1_inflyttare_medelalder",
         "lag1_inkomst_tkr",
         "lag1_andel_smahus",
@@ -1194,8 +1282,10 @@ def fit_models(panel: pd.DataFrame) -> dict:
             "Andel småhus avser bostadslägenheter i småhus som andel av bostadsbeståndet och används laggad ett år.",
             "Arbetsmarknadsvariablerna är sysselsättningsgrad och arbetslöshet bland 20–64-åringar från SCB BAS och används laggade ett år.",
             "Utbildningsvariabeln är andel 25–64-åringar med eftergymnasial utbildning och används laggad ett år.",
-            "Variabelurvalet kombinerar Elastic Net, backward-AIC och tidsbaserad rolling-origin-korsvalidering.",
-            "Efter Elastic Net och backward-AIC används en one-standard-error-regel på rolling-origin RMSE för att föredra enklare modeller som generaliserar lika bra.",
+            "Variabelurvalet kombinerar Elastic Net, backward-AIC, tematisk diversifiering och tidsbaserad rolling-origin-korsvalidering.",
+            "När flera variabler beskriver samma kvalitativa tema behålls högst en representant, vald efter inkrementellt AIC-bidrag.",
+            "Tidsbaserad CV får endast sålla variabler när minst tre giltiga rolling-origin-foldar finns; annars behålls den tematiskt balanserade modellen.",
+            "Alla strukturella förklaringsvariabler används laggade ett år för tydligare tidsordning mot inflyttningen.",
             "Om konsensusurvalet blir alltför litet används backward-AIC som reserv för att undvika instabila små modeller.",
             "Urvalet för prognosvalidering görs endast på träningsåren och får inte se teståret.",
             "Samband ska inte tolkas som säkra kausala effekter; endogenitet och utelämnade variabler kan finnas.",
