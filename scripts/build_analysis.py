@@ -116,6 +116,9 @@ def get_migration() -> pd.DataFrame:
     rows = []
 
     # One year at a time stays safely below PxWeb cell limits.
+    # SCB encodes the selected year in the value-column header
+    # (for example "Inflyttningar 2002"), so normalize each yearly
+    # response before concatenating.
     for year in YEARS:
         df = px_csv(MIGRATION_URL, {
             region["code"]: munis,
@@ -124,6 +127,12 @@ def get_migration() -> pd.DataFrame:
             content["code"]: [inflow_code],
             time["code"]: [str(year)],
         })
+        dims = standardize_columns(df)
+        value_candidates = [c for c in df.columns if c not in set(dims.values())]
+        if len(value_candidates) != 1:
+            raise ValueError(f"Expected one migration value column for {year}, got {value_candidates}")
+        df = df.rename(columns={value_candidates[0]: "value"})
+        df["year"] = year
         rows.append(df)
         print(f"Migration {year}: {len(df):,} rows")
     return pd.concat(rows, ignore_index=True)
@@ -156,6 +165,12 @@ def get_population() -> pd.DataFrame:
             content["code"]: [pop_code],
             time["code"]: [str(year)],
         })
+        dims = standardize_columns(df)
+        value_candidates = [c for c in df.columns if c not in set(dims.values())]
+        if len(value_candidates) != 1:
+            raise ValueError(f"Expected one population value column for {year}, got {value_candidates}")
+        df = df.rename(columns={value_candidates[0]: "value"})
+        df["year"] = year
         rows.append(df)
         print(f"Population {year}: {len(df):,} rows")
     return pd.concat(rows, ignore_index=True)
@@ -214,16 +229,10 @@ def split_region(value: str) -> tuple[str, str]:
 
 def build_panel(mig: pd.DataFrame, pop: pd.DataFrame) -> pd.DataFrame:
     md = standardize_columns(mig)
-    mv = value_column(mig, md)
     mig = mig.copy()
-    mig["value"] = normalize_number(mig[mv])
+    mig["value"] = normalize_number(mig["value"])
     mig["age_num"] = mig[md["age"]].map(age_numeric)
-    if "year" in md:
-        mig["year"] = pd.to_numeric(mig[md["year"]], errors="coerce")
-    elif "year_value_column" in md:
-        mig["year"] = int(str(md["year_value_column"]).strip())
-    else:
-        raise KeyError(f"Could not identify migration year column. Columns: {list(mig.columns)}")
+    mig["year"] = pd.to_numeric(mig["year"], errors="coerce")
     mig[["kommun_kod", "kommun"]] = mig[md["region"]].apply(lambda x: pd.Series(split_region(x)))
 
     # Aggregate both sexes. Total inflow from age-specific rows.
@@ -244,16 +253,10 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame) -> pd.DataFrame:
     )
 
     pdims = standardize_columns(pop)
-    pv = value_column(pop, pdims)
     pop = pop.copy()
-    pop["value"] = normalize_number(pop[pv])
+    pop["value"] = normalize_number(pop["value"])
     pop["age_num"] = pop[pdims["age"]].map(age_numeric)
-    if "year" in pdims:
-        pop["year"] = pd.to_numeric(pop[pdims["year"]], errors="coerce")
-    elif "year_value_column" in pdims:
-        pop["year"] = int(str(pdims["year_value_column"]).strip())
-    else:
-        raise KeyError(f"Could not identify population year column. Columns: {list(pop.columns)}")
+    pop["year"] = pd.to_numeric(pop["year"], errors="coerce")
     pop[["kommun_kod", "kommun"]] = pop[pdims["region"]].apply(lambda x: pd.Series(split_region(x)))
 
     # Sexes are separate rows, so sum across sex.
