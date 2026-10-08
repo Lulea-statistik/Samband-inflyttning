@@ -4,6 +4,7 @@ from __future__ import annotations
 import io
 import json
 import math
+import re
 from pathlib import Path
 
 import numpy as np
@@ -112,8 +113,34 @@ def require_total_code(var: dict) -> str:
 
 
 def municipality_codes(region_var: dict) -> list[str]:
-    # Four-digit municipal codes. This excludes the national and county totals.
-    return [str(v) for v in region_var["values"] if len(str(v)) == 4 and str(v).isdigit()]
+    """
+    Return the table's own municipality selector codes.
+    SCB uses several region-code conventions across tables: plain 0180,
+    prefixed variants such as K0180, or labels beginning with the four-digit
+    municipality code. Keep the original selector value that the table expects.
+    """
+    values = list(region_var["values"])
+    texts = list(region_var.get("valueTexts", values))
+    out = []
+    for value, text in zip(values, texts):
+        v = str(value).strip()
+        t = str(text).strip()
+
+        is_municipality = bool(re.fullmatch(r"\d{4}", v))
+        if not is_municipality:
+            is_municipality = bool(re.fullmatch(r"[^0-9]*\d{4}", v))
+        if not is_municipality:
+            is_municipality = bool(re.match(r"^\d{4}(?:\s|\b)", t))
+
+        if is_municipality:
+            out.append(v)
+
+    if not out:
+        raise ValueError(
+            f"No municipality region codes identified in {region_var.get('text')}. "
+            f"Sample values={values[:10]}, sample labels={texts[:10]}"
+        )
+    return out
 
 
 def px_csv(url: str, selections: dict[str, list[str]]) -> pd.DataFrame:
