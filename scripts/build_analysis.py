@@ -509,30 +509,36 @@ def get_education() -> pd.DataFrame:
 
     count_code = code_for_text(content, "Antal")
     rows = []
+    chunk_size = 40
     for year in AUX_YEARS:
-        df = px_csv(EDUCATION_URL, {
-            region["code"]: munis,
-            age["code"]: age_codes,
-            education["code"]: requested_edu_codes,
-            sex["code"]: sex_codes,
-            content["code"]: [count_code],
-            time["code"]: [str(year)],
-        })
-        dims = standardize_columns(df)
-        dim_cols = set(dims.values())
-        value_cols = [c for c in df.columns if c not in dim_cols]
-        if len(value_cols) != 1:
-            raise ValueError(
-                f"Expected one education value column for {year}, got {value_cols}; "
-                f"columns={list(df.columns)}"
+        year_parts = []
+        for i in range(0, len(munis), chunk_size):
+            muni_chunk = munis[i:i + chunk_size]
+            df = px_csv(EDUCATION_URL, {
+                region["code"]: muni_chunk,
+                age["code"]: age_codes,
+                education["code"]: requested_edu_codes,
+                sex["code"]: sex_codes,
+                content["code"]: [count_code],
+                time["code"]: [str(year)],
+            })
+            dims = standardize_columns(df)
+            dim_cols = set(dims.values())
+            value_cols = [c for c in df.columns if c not in dim_cols]
+            if len(value_cols) != 1:
+                raise ValueError(
+                    f"Expected one education value column for {year}, got {value_cols}; "
+                    f"columns={list(df.columns)}"
+                )
+
+            df["value"] = normalize_number(df[value_cols[0]])
+            df["year"] = year
+            df[["kommun_kod", "kommun"]] = df[dims["region"]].apply(
+                lambda x: pd.Series(split_region(x))
             )
+            year_parts.append(df)
 
-        df["value"] = normalize_number(df[value_cols[0]])
-        df["year"] = year
-        df[["kommun_kod", "kommun"]] = df[dims["region"]].apply(
-            lambda x: pd.Series(split_region(x))
-        )
-
+        df = pd.concat(year_parts, ignore_index=True)
         ecol = dims["education"]
         df["_postsecondary"] = df[ecol].astype(str).str.lower().apply(
             lambda x: ("eftergymnasial" in x) or ("forskarutbild" in x)
