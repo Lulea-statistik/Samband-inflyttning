@@ -22,7 +22,7 @@ from scipy.stats import norm
 MIGRATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101J/Flyttningar97"
 POPULATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101A/BefolkningNy"
 INCOME_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/HE/HE0110/HE0110A/SamForvInk2"
-HOUSING_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104D/BO0104T02"
+HOUSING_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104D/BO0104T04"
 LABOR_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210A/ArbStatusAr"
 EDUCATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/UF/UF0506/UF0506B/Utbildning"
 OUT = Path("docs/data")
@@ -336,14 +336,17 @@ def get_income() -> pd.DataFrame:
 
 
 def get_housing() -> pd.DataFrame:
-    """Share of dwelling stock located in small houses."""
+    """
+    Share of all dwelling units that are located in small houses.
+    SCB table BO0104T04: small houses / (small houses + apartment buildings
+    + other buildings + special dwellings), summed across tenure forms.
+    """
     meta = metadata(HOUSING_URL)
     region = find_var(meta, "region")
     house_type = find_var(meta, "hustyp")
-    period = find_var(meta, "byggnadsperiod", "byggnadsår", "byggnadsar")
+    tenure = find_var(meta, "upplåtelseform", "upplatelseform")
     time = find_var(meta, "år", "tid")
 
-    # Some PxWeb tables expose a separate content dimension, others only one measure.
     content = None
     try:
         content = find_var(meta, "tabellinnehåll", "contentscode")
@@ -352,15 +355,15 @@ def get_housing() -> pd.DataFrame:
 
     munis = municipality_codes(region)
     small_code = exact_or_contains_code(house_type, "småhus")
-    total_house_codes = aggregate_codes(house_type)
-    period_codes = aggregate_codes(period)
+    house_codes = list(house_type["values"])
+    tenure_codes = list(tenure["values"])
 
     rows = []
     for year in AUX_YEARS:
         selections = {
             region["code"]: munis,
-            house_type["code"]: list(dict.fromkeys(total_house_codes + [small_code])),
-            period["code"]: period_codes,
+            house_type["code"]: house_codes,
+            tenure["code"]: tenure_codes,
             time["code"]: [str(year)],
         }
         if content is not None:
@@ -368,45 +371,60 @@ def get_housing() -> pd.DataFrame:
 
         df = px_csv(HOUSING_URL, selections)
         dims = standardize_columns(df)
-        # Add table-specific dimensions if the generic recognizer does not know them.
+
         for c in df.columns:
             cl = str(c).lower()
             if "hustyp" in cl:
                 dims["house_type"] = c
-            elif "byggnadsperiod" in cl or "byggnadsår" in cl or "byggnadsar" in cl:
-                dims["period"] = c
+            elif "upplåtelseform" in cl or "upplatelseform" in cl:
+                dims["tenure"] = c
+
         dim_cols = set(dims.values())
         value_cols = [c for c in df.columns if c not in dim_cols]
         if len(value_cols) != 1:
-            raise ValueError(f"Expected one housing value column for {year}, got {value_cols}")
-        val_col = value_cols[0]
-        df["value"] = normalize_number(df[val_col])
+            raise ValueError(
+                f"Expected one housing value column for {year}, got {value_cols}; "
+                f"columns={list(df.columns)}"
+            )
+
+        df["value"] = normalize_number(df[value_cols[0]])
         df["year"] = year
-        df[["kommun_kod", "kommun"]] = df[dims["region"]].apply(lambda x: pd.Series(split_region(x)))
+        df[["kommun_kod", "kommun"]] = df[dims["region"]].apply(
+            lambda x: pd.Series(split_region(x))
+        )
 
         hcol = dims["house_type"]
-        df["_is_small"] = df[hcol].astype(str).str.lower().str.contains("småhus", regex=False)
-        # If the table has an explicit total category, use that for denominator;
-        # otherwise sum all component house types.
-        house_texts = [str(x).strip().lower() for x in df[hcol].dropna().unique()]
-        total_labels = [x for x in house_texts if x in {"totalt","total","samtliga","alla"} or "totalt" in x]
-        if total_labels:
-            totals = df[df[hcol].astype(str).str.lower().isin(total_labels)].groupby(
-                ["kommun_kod","kommun","year"], as_index=False
-            )["value"].sum().rename(columns={"value":"bostader_totalt"})
-        else:
-            totals = df.groupby(["kommun_kod","kommun","year"], as_index=False)["value"].sum().rename(
-                columns={"value":"bostader_totalt"}
-            )
-        small = df[df["_is_small"]].groupby(
-            ["kommun_kod","kommun","year"], as_index=False
-        )["value"].sum().rename(columns={"value":"bostader_smahus"})
-        agg = totals.merge(small, on=["kommun_kod","kommun","year"], how="left")
-        agg["andel_smahus"] = 100 * agg["bostader_smahus"] / agg["bostader_totalt"].replace(0, np.nan)
-        rows.append(agg[["kommun_kod","kommun","year","andel_smahus"]])
-        print(f"Housing {year}: {len(agg):,} municipalities")
-    return pd.concat(rows, ignore_index=True)
+        df["_is_small"] = df[hcol].astype(str).str.lower().str.contains(
+            "småhus", regex=False
+        )
 
+        totals = (
+            df.groupby(["kommun_kod", "kommun", "year"], as_index=False)["value"]
+            .sum()
+            .rename(columns={"value": "bostader_totalt"})
+        )
+        small = (
+            df[df["_is_small"]]
+            .groupby(["kommun_kod", "kommun", "year"], as_index=False)["value"]
+            .sum()
+            .rename(columns={"value": "bostader_smahus"})
+        )
+
+        agg = totals.merge(
+            small,
+            on=["kommun_kod", "kommun", "year"],
+            how="left",
+        )
+        agg["andel_smahus"] = (
+            100 * agg["bostader_smahus"] / agg["bostader_totalt"].replace(0, np.nan)
+        )
+        rows.append(agg[[
+            "kommun_kod", "kommun", "year",
+            "bostader_smahus", "bostader_totalt", "andel_smahus"
+        ]])
+        print(f"Housing {year}: {len(agg):,} municipalities")
+
+    return pd.concat(rows, ignore_index=True)
 
 def get_labor_market() -> pd.DataFrame:
     """
@@ -1341,7 +1359,7 @@ def fit_models(panel: pd.DataFrame) -> dict:
             "Standardfel i förklaringsmodellen är klustrade per kommun eftersom samma kommun förekommer flera år.",
             "Prognosvalideringen för teståret använder endast de föregående 1–5 åren beroende på valt analysfönster.",
             "Inkomst avser genomsnittlig sammanräknad förvärvsinkomst för 20–64-åringar och används laggad ett år.",
-            "Andel småhus avser bostadslägenheter i småhus som andel av bostadsbeståndet och används laggad ett år.",
+            "Andel småhus avser lägenheter i småhus dividerat med samtliga lägenheter i småhus, flerbostadshus, övriga hus och specialbostäder enligt SCB BO0104T04 och används laggad ett år.",
             "Arbetsmarknadsvariablerna är sysselsättningsgrad och arbetslöshet bland 20–64-åringar från SCB BAS och används laggade ett år.",
             "Utbildningsvariabeln är andel 25–64-åringar med eftergymnasial utbildning och används laggad ett år.",
             "Variabelurvalet kombinerar Elastic Net, backward-AIC, tematisk diversifiering och tidsbaserad rolling-origin-korsvalidering.",
