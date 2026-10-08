@@ -61,7 +61,10 @@
     <div class="panel">
       <div class="matrix-head">
         <div>
-          <h3>Variabelmatris</h3>
+          <h3>Tematiskt marginalbidrag</h3>
+      <p>För varje tema skattas modellen om efter att just det temat tagits bort. Rapporten visar förändringen i <strong>justerat R²</strong>, <strong>AIC</strong> och <strong>RMSE</strong> jämfört med fullmodellen på samma analysurval. Ett större positivt tapp i justerat R² eller en större positiv ökning av AIC/RMSE betyder att temat ger mer självständig information.</p>
+
+      <h3>Variabelmatris</h3>
           <p class="note">Jämför kandidater parvis. Hög korrelation visar överlappning, medan extra justerat R² visar om två variabler tillför självständig förklaringskraft tillsammans.</p>
         </div>
         <label>Visa
@@ -73,6 +76,12 @@
         </label>
       </div>
       <div id="variableMatrix" class="chart matrix-chart"></div>
+    </div>
+    <div class="panel">
+      <h3>Tematiskt marginalbidrag</h3>
+      <p class="note">Ett tema tas bort i taget från fullmodellen. Positiva värden innebär att modellen försämras när temat tas bort och att temat därför bidrar med självständig förklaringskraft.</p>
+      <div id="themeMarginalChart" class="chart"></div>
+      <div id="themeMarginalTable" class="table-wrap"></div>
     </div>
     <div class="panel"><h3>Standardiserade regressionskoefficienter</h3><div id="coefficients" class="chart"></div></div>
     <div class="panel"><h3>95 % konfidensintervall för koefficienter</h3><div id="coefficientCI" class="chart"></div></div>
