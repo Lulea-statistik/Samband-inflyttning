@@ -810,12 +810,9 @@ def get_turnout_series() -> pd.DataFrame:
         # Prefer a mathematically exact municipality turnout reconstructed from
         # physical districts when eligible-voter counts are available.
         if not districts.empty and districts["rostberattigade"].notna().any():
+            explicit_muni = muni.copy()
             tmp = districts.dropna(subset=["rostberattigade"]).copy()
             tmp["weighted"] = tmp["turnout"] * tmp["rostberattigade"]
-            muni = (
-                tmp.groupby("kommun_kod", as_index=False)
-                .agg(weighted=("weighted", "sum"), rostberattigade=("rostberattigade", "sum"))
-            )
             district_muni = (
                 tmp.groupby("kommun_kod", as_index=False)
                 .agg(weighted=("weighted", "sum"), rostberattigade=("rostberattigade", "sum"))
@@ -824,16 +821,23 @@ def get_turnout_series() -> pd.DataFrame:
                 district_muni["weighted"] / district_muni["rostberattigade"].replace(0, np.nan)
             )
             district_muni["kommun"] = np.nan
-            # Use district reconstruction when it covers the whole country;
-            # otherwise retain explicit municipality rows for any missing codes.
-            if muni.empty:
+
+            # Use district reconstruction where available, but retain the
+            # explicit municipality row as fallback for municipalities where
+            # the district workbook does not yield a complete aggregate.
+            if explicit_muni.empty:
                 muni = district_muni
             else:
-                explicit = muni[["kommun_kod", "kommun", "turnout", "rostberattigade"]].copy()
-                combined = pd.concat([district_muni, explicit], ignore_index=True)
-                combined["_priority"] = combined["weighted"].notna().astype(int) if "weighted" in combined.columns else 0
-                muni = combined.sort_values("_priority", ascending=False).drop_duplicates("kommun_kod")
-                muni = muni.drop(columns=["_priority"], errors="ignore")
+                explicit = explicit_muni[
+                    ["kommun_kod", "kommun", "turnout", "rostberattigade"]
+                ].copy()
+                combined = pd.concat([district_muni, explicit], ignore_index=True, sort=False)
+                combined["_priority"] = combined["weighted"].notna().astype(int)
+                muni = (
+                    combined.sort_values("_priority", ascending=False)
+                    .drop_duplicates("kommun_kod")
+                    .drop(columns=["_priority"], errors="ignore")
+                )
 
         if muni.empty or districts.empty:
             raise ValueError(
