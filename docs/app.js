@@ -9,7 +9,9 @@ const labels={
   log_folkmangd:'Log folkmängd',
   befolkningstillvaxt_pct:'Befolkningstillväxt (%)',
   andel_20_34:'Andel 20–34 år (%)',
-  lag1_inflyttare_medelalder:'Inflyttarnas medelålder föregående år'
+  lag1_inflyttare_medelalder:'Inflyttarnas medelålder föregående år',
+  lag1_inkomst_tkr:'Genomsnittlig förvärvsinkomst 20–64 år, föregående år (tkr)',
+  lag1_andel_smahus:'Andel småhus föregående år (%)'
 };
 
 async function load(){
