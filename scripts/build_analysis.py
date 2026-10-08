@@ -22,7 +22,7 @@ MIGRATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE010
 POPULATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101A/BefolkningNy"
 INCOME_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/HE/HE0110/HE0110A/SamForvInk2"
 HOUSING_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104D/BO0104T02"
-LABOR_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM9906/AM9906B/RegionInd19U1aN1"
+LABOR_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210A/ArbStatusAr"
 OUT = Path("docs/data")
 OUT.mkdir(parents=True, exist_ok=True)
 
@@ -387,31 +387,42 @@ def get_housing() -> pd.DataFrame:
 
 def get_labor_market() -> pd.DataFrame:
     """
-    Employment and registered unemployment shares for the resident population
-    aged 20-64. Uses BAS/RAMS table 2019-2024 and fetches one measure at a
-    time because this PxWeb table is sensitive to multi-content POST queries.
+    Annual municipal labor-market indicators from SCB BAS.
+    Uses the official annual table 2020-2025 and requests the total categories
+    for sex and birth region plus age 20-64 years.
     """
     meta = metadata(LABOR_URL)
     region = find_var(meta, "region")
-    education = find_var(meta, "utbildningsnivå", "utbildningsniva", "utbildning")
+    sex = find_var(meta, "kön", "kon")
+    age = find_var(meta, "ålder", "alder")
+    birth_region = find_var(meta, "födelseregion", "fodelseregion")
     content = find_var(meta, "tabellinnehåll", "contentscode")
     time = find_var(meta, "år", "tid")
 
     munis = municipality_codes(region)
-    edu_total = require_total_code(education)
+    sex_codes = aggregate_codes(sex)
+    birth_codes = aggregate_codes(birth_region)
+    age_code = code_for_all_text(age, "20", "64")
 
-    employed_code = code_for_all_text(content, "förvärvsarbetande", "(a)")
-    unemployed_code = code_for_all_text(content, "arbetslösa", "(b)")
-    total_code = code_for_all_text(content, "totalt", "(a+b+c)")
+    employment_rate_code = code_for_text(content, "sysselsättningsgrad")
+    unemployment_rate_code = code_for_text(content, "arbetslöshet")
 
     def fetch_measure(year: int, measure_code: str, out_name: str) -> pd.DataFrame:
         df = px_csv(LABOR_URL, {
             region["code"]: munis,
-            education["code"]: [edu_total],
+            sex["code"]: sex_codes,
+            age["code"]: [age_code],
+            birth_region["code"]: birth_codes,
             content["code"]: [measure_code],
             time["code"]: [str(year)],
         })
         dims = standardize_columns(df)
+        # Birth region is a dimension in this table.
+        for c in df.columns:
+            cl = str(c).lower()
+            if "födelseregion" in cl or "fodelseregion" in cl:
+                dims["birth_region"] = c
+
         dim_cols = set(dims.values())
         value_cols = [c for c in df.columns if c not in dim_cols]
         if len(value_cols) != 1:
@@ -419,42 +430,30 @@ def get_labor_market() -> pd.DataFrame:
                 f"Expected one labor value column for {year}/{out_name}, got {value_cols}; "
                 f"columns={list(df.columns)}"
             )
+
         df[out_name] = normalize_number(df[value_cols[0]])
         df["year"] = year
         df[["kommun_kod", "kommun"]] = df[dims["region"]].apply(
             lambda x: pd.Series(split_region(x))
         )
-        return df[["kommun_kod", "kommun", "year", out_name]]
+        # If the table lacks an explicit total for sex or birth region,
+        # aggregate components by mean only when the returned rate is identical
+        # across duplicated dimensions; normally aggregate_codes selects total.
+        out = df.groupby(["kommun_kod", "kommun", "year"], as_index=False)[out_name].mean()
+        return out
 
     rows = []
     for year in AUX_YEARS:
-        if year < 2019:
+        if year < 2020 or year > 2024:
             continue
-
-        employed = fetch_measure(year, employed_code, "employed")
-        unemployed = fetch_measure(year, unemployed_code, "unemployed")
-        total = fetch_measure(year, total_code, "labor_total")
-
+        employed = fetch_measure(year, employment_rate_code, "sysselsattningsgrad")
+        unemployed = fetch_measure(year, unemployment_rate_code, "arbetsloshet")
         agg = employed.merge(
             unemployed,
             on=["kommun_kod", "kommun", "year"],
             how="inner",
-        ).merge(
-            total,
-            on=["kommun_kod", "kommun", "year"],
-            how="inner",
         )
-
-        agg["andel_forvarvsarbetande"] = (
-            100 * agg["employed"] / agg["labor_total"].replace(0, np.nan)
-        )
-        agg["andel_arbetslosa"] = (
-            100 * agg["unemployed"] / agg["labor_total"].replace(0, np.nan)
-        )
-        rows.append(agg[[
-            "kommun_kod", "kommun", "year",
-            "andel_forvarvsarbetande", "andel_arbetslosa",
-        ]])
+        rows.append(agg)
         print(f"Labor market {year}: {len(agg):,} municipalities")
 
     return pd.concat(rows, ignore_index=True)
@@ -477,6 +476,8 @@ def standardize_columns(df: pd.DataFrame) -> dict[str, str]:
             out["period"] = c
         elif "utbildningsnivå" in cl or "utbildningsniva" in cl or "utbildning" in cl:
             out["education"] = c
+        elif "födelseregion" in cl or "fodelseregion" in cl:
+            out["birth_region"] = c
         elif (
             cl in {"år", "tid", "time"}
             or cl.endswith(" år")
@@ -573,7 +574,7 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
         on=["kommun_kod", "year"], how="left"
     )
     panel = panel.merge(
-        labor[["kommun_kod", "year", "andel_forvarvsarbetande", "andel_arbetslosa"]],
+        labor[["kommun_kod", "year", "sysselsattningsgrad", "arbetsloshet"]],
         on=["kommun_kod", "year"], how="left"
     )
     panel["andel_20_34"] = 100 * panel["bef_20_34"] / panel["folkmangd"]
@@ -585,8 +586,8 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel["lag1_inflyttare_medelalder"] = g["inflyttare_medelalder"].shift(1)
     panel["lag1_inkomst_tkr"] = g["inkomst_tkr"].shift(1)
     panel["lag1_andel_smahus"] = g["andel_smahus"].shift(1)
-    panel["lag1_andel_forvarvsarbetande"] = g["andel_forvarvsarbetande"].shift(1)
-    panel["lag1_andel_arbetslosa"] = g["andel_arbetslosa"].shift(1)
+    panel["lag1_sysselsattningsgrad"] = g["sysselsattningsgrad"].shift(1)
+    panel["lag1_arbetsloshet"] = g["arbetsloshet"].shift(1)
     panel["befolkningstillvaxt_pct"] = 100 * g["folkmangd"].pct_change(fill_method=None)
     panel["log_folkmangd"] = np.log(panel["folkmangd"].where(panel["folkmangd"] > 0))
 
@@ -849,8 +850,8 @@ def fit_models(panel: pd.DataFrame) -> dict:
         "lag1_inflyttare_medelalder",
         "lag1_inkomst_tkr",
         "lag1_andel_smahus",
-        "lag1_andel_forvarvsarbetande",
-        "lag1_andel_arbetslosa",
+        "lag1_sysselsattningsgrad",
+        "lag1_arbetsloshet",
     ]
     model_df = panel.dropna(subset=[target] + features).copy()
     test_year = int(model_df["year"].max())
@@ -932,7 +933,7 @@ def fit_models(panel: pd.DataFrame) -> dict:
             "Prognosvalideringen för teståret använder endast de föregående 1–5 åren beroende på valt analysfönster.",
             "Inkomst avser genomsnittlig sammanräknad förvärvsinkomst för 20–64-åringar och används laggad ett år.",
             "Andel småhus avser bostadslägenheter i småhus som andel av bostadsbeståndet och används laggad ett år.",
-            "Arbetsmarknadsvariablerna är andel förvärvsarbetande och andel inskrivna arbetslösa bland 20–64-åringar och används laggade ett år.",
+            "Arbetsmarknadsvariablerna är sysselsättningsgrad och arbetslöshet bland 20–64-åringar från SCB BAS och används laggade ett år.",
             "Variabelurvalet kombinerar Elastic Net och backward-AIC; variabler som väljs av båda behålls i första hand.",
             "Om konsensusurvalet blir alltför litet används backward-AIC som reserv för att undvika instabila små modeller.",
             "Urvalet för prognosvalidering görs endast på träningsåren och får inte se teståret.",
