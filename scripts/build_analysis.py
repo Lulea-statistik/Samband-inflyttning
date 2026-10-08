@@ -597,9 +597,19 @@ def _turnout_rows_from_workbook(
             (c for c, n in cols.items() if "rostberattig" in n and "antal" in n),
             None,
         )
+        if eligible_col is None:
+            eligible_col = next(
+                (c for c, n in cols.items() if "rostberattig" in n),
+                None,
+            )
 
         out = pd.DataFrame()
         out["turnout"] = _percent_number(df[turnout_col])
+        finite_turnout = out["turnout"].dropna()
+        # Excel percentage-formatted cells are often stored as 0.85 rather
+        # than 85. Detect that representation and normalize to percent.
+        if not finite_turnout.empty and finite_turnout.median() <= 1.5:
+            out["turnout"] = 100 * out["turnout"]
 
         if kommun_code_col is not None:
             out["kommun_kod"] = (
