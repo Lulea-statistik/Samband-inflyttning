@@ -150,6 +150,7 @@ function renderScatter(){
 
 function renderModel(){
   const e=wdata().explanation;
+  const sel=e.variable_selection||{};
   document.getElementById('regressionCards').innerHTML=[
     metricCard('R²',fmt2.format(e.r2)),
     metricCard('Justerat R²',fmt2.format(e.adjusted_r2)),
@@ -158,6 +159,16 @@ function renderModel(){
     metricCard('Observationer',fmt0.format(e.n_obs)),
     metricCard('Standardfel','Klustrade','per kommun')
   ].join('');
+
+  const selected=(sel.selected||[]).map(f=>labels[f]||f);
+  const excluded=(sel.excluded||[]).map(f=>labels[f]||f);
+  const elastic=(sel.elastic_net_selected||[]).map(f=>labels[f]||f);
+  const backward=(sel.backward_aic_selected||[]).map(f=>labels[f]||f);
+  document.getElementById('selectionSummary').innerHTML=
+    '<p><strong>Behållna variabler:</strong> '+(selected.length?selected.join(', '):'–')+'</p>'+
+    '<p><strong>Bortsållade variabler:</strong> '+(excluded.length?excluded.join(', '):'inga')+'</p>'+
+    '<p class="note"><strong>Elastic Net valde:</strong> '+(elastic.length?elastic.join(', '):'–')+
+    '<br><strong>Backward-AIC valde:</strong> '+(backward.length?backward.join(', '):'–')+'</p>';
 
   const c=e.coefficients;
   Plotly.react('coefficients',[{
