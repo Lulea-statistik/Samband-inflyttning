@@ -1574,6 +1574,58 @@ def _pairwise_variable_matrix(
     }
 
 
+def _theme_marginal_analysis(
+    d: pd.DataFrame,
+    selected_features: list[str],
+    target: str,
+) -> dict:
+    """
+    Leave-one-theme-out contribution analysis on the same explanation sample.
+    Positive deltas mean the full model performs better than the model without
+    that theme.
+    """
+    if not selected_features:
+        return {"rows": [], "full_model_rmse": None}
+
+    y = d[target].reset_index(drop=True).astype(float)
+    X_full = _design_with_year_effects(d, selected_features)
+    full_fit = sm.OLS(y, X_full).fit()
+    full_rmse = float(np.sqrt(np.mean(np.square(full_fit.resid))))
+
+    theme_to_features: dict[str, list[str]] = {}
+    for feature in selected_features:
+        theme = FEATURE_THEMES.get(feature, feature)
+        theme_to_features.setdefault(theme, []).append(feature)
+
+    rows = []
+    for theme, theme_features in theme_to_features.items():
+        reduced_features = [f for f in selected_features if f not in theme_features]
+        X_reduced = _design_with_year_effects(d, reduced_features)
+        reduced_fit = sm.OLS(y, X_reduced).fit()
+        reduced_rmse = float(np.sqrt(np.mean(np.square(reduced_fit.resid))))
+
+        rows.append({
+            "theme": theme,
+            "features": theme_features,
+            "full_adjusted_r2": _finite_float(full_fit.rsquared_adj),
+            "reduced_adjusted_r2": _finite_float(reduced_fit.rsquared_adj),
+            "delta_adjusted_r2": _finite_float(full_fit.rsquared_adj - reduced_fit.rsquared_adj),
+            "full_aic": _finite_float(full_fit.aic),
+            "reduced_aic": _finite_float(reduced_fit.aic),
+            "delta_aic": _finite_float(reduced_fit.aic - full_fit.aic),
+            "full_rmse": _finite_float(full_rmse),
+            "reduced_rmse": _finite_float(reduced_rmse),
+            "delta_rmse": _finite_float(reduced_rmse - full_rmse),
+        })
+
+    rows.sort(key=lambda r: (r["delta_adjusted_r2"] if r["delta_adjusted_r2"] is not None else -1e9), reverse=True)
+    return {
+        "rule": "remove one qualitative theme at a time from the selected full model",
+        "full_model_rmse": _finite_float(full_rmse),
+        "rows": rows,
+    }
+
+
 def _explanation_model(df: pd.DataFrame, features: list[str], target: str, window: int) -> tuple[dict, pd.DataFrame, pd.DataFrame]:
     latest_year = int(df["year"].max())
     start_year = latest_year - window + 1
@@ -1656,6 +1708,7 @@ def _explanation_model(df: pd.DataFrame, features: list[str], target: str, windo
         "selected_features": selected_features,
         "excluded_features": selection["excluded"],
         "pairwise_matrix": _pairwise_variable_matrix(d, features, target),
+        "theme_marginal_analysis": _theme_marginal_analysis(d, selected_features, target),
         "standard_errors": "Klustrade per kommun",
         "year_fixed_effects": True,
     }
@@ -1771,6 +1824,7 @@ def fit_models(panel: pd.DataFrame) -> dict:
             "Tidsbaserad CV får endast sålla variabler när minst tre giltiga rolling-origin-foldar finns; annars behålls den tematiskt balanserade modellen.",
             "Alla strukturella förklaringsvariabler används laggade ett år för tydligare tidsordning mot inflyttningen.",
             "Variabelmatrisen redovisar parvis korrelation, gemensamt justerat R² samt extra justerat R² jämfört med den starkaste variabeln ensam.",
+            "Tematisk marginalanalys tar bort ett valt tema i taget från fullmodellen och visar förändringen i justerat R², AIC och RMSE på samma analysurval.",
             "Om konsensusurvalet blir alltför litet används backward-AIC som reserv för att undvika instabila små modeller.",
             "Urvalet för prognosvalidering görs endast på träningsåren och får inte se teståret.",
             "Samband ska inte tolkas som säkra kausala effekter; endogenitet och utelämnade variabler kan finnas.",
