@@ -29,3 +29,8 @@ main{padding:24px 28px;max-width:1500px;margin:auto}.page{display:none}.page.act
 .equation-stats{display:grid;gap:10px}
 .equation-stats .card{margin:0}
 @media (max-width:800px){.equation-grid{grid-template-columns:1fr}.equation-stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+.winner-table{min-width:980px}
+.winner-table td{vertical-align:top;line-height:1.35}
+.winner-table th:not(:first-child),.winner-table td:not(:first-child){min-width:155px}
+.muted{opacity:.55}
