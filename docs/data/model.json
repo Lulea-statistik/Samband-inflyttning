@@ -1,0 +1,60 @@
+{
+  "generated_from_year": 2002,
+  "generated_to_year": 2024,
+  "test_year": 2024,
+  "n_train": 6089,
+  "n_test": 290,
+  "target": "inflyttning_per_1000",
+  "features": [
+    "lag1_inflyttning_per_1000",
+    "log_folkmangd",
+    "befolkningstillvaxt_pct",
+    "andel_20_34",
+    "lag1_inflyttare_medelalder"
+  ],
+  "models": {
+    "naive": {
+      "r2": 0.8815153162322329,
+      "rmse": 5.209907702840686,
+      "mae": 3.939854446341341
+    },
+    "ols": {
+      "r2": 0.8980417787909369,
+      "rmse": 4.832924912171784,
+      "mae": 3.614100604837719
+    },
+    "ridge": {
+      "r2": 0.8980346995210683,
+      "rmse": 4.8330926916084715,
+      "mae": 3.6138839418798336
+    }
+  },
+  "ols_intercept": 17.712398744609487,
+  "ols_coefficients": [
+    {
+      "feature": "lag1_inflyttning_per_1000",
+      "coefficient": 0.8166407377010357
+    },
+    {
+      "feature": "log_folkmangd",
+      "coefficient": -2.248088820923479
+    },
+    {
+      "feature": "befolkningstillvaxt_pct",
+      "coefficient": 4.093576685935027
+    },
+    {
+      "feature": "andel_20_34",
+      "coefficient": 0.38029069320853226
+    },
+    {
+      "feature": "lag1_inflyttare_medelalder",
+      "coefficient": 0.25273881166384754
+    }
+  ],
+  "notes": [
+    "Teståret hålls helt utanför träningen.",
+    "Inflyttarnas medelålder används endast laggad ett år i prognosmodellen.",
+    "Detta är en första basmodell; bostäder, arbetsmarknad och inkomster läggs till stegvis."
+  ]
+}
