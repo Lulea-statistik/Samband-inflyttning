@@ -93,6 +93,7 @@ function renderAll(){
   renderOverview();
   renderModel();
   renderVariableMatrix();
+  renderAgeModels();
   renderValidation();
   renderMunicipality();
 }
@@ -340,6 +341,37 @@ function renderModel(){
     shapes:[{type:'line',x0:lo,x1:hi,y0:lo,y1:hi,line:{dash:'dash'}}]
   },{responsive:true,displaylogo:false});
 }
+
+function renderAgeModels(){
+  const root=document.getElementById('ageModels');
+  if(!root) return;
+  const models=model.age_group_models||{};
+  const keys=['18_23','63_68'];
+  const html=keys.map(key=>{
+    const m=models[key];
+    if(!m) return '<div class="panel"><h3>'+key.replace('_','–')+' år</h3><p class="note">Data saknas.</p></div>';
+    if(m.error) return '<div class="panel"><h3>'+m.label+'</h3><p class="note">'+m.error+'</p></div>';
+    const e=m.explanation||{};
+    const marg=(e.theme_marginal_analysis&&e.theme_marginal_analysis.rows)||[];
+    const top=marg.slice(0,6);
+    const v=m.validation&&m.validation.models;
+    return '<div class="panel">'+
+      '<h3>'+m.label+' – '+m.interpretation+'</h3>'+
+      '<p class="note">'+m.rate_definition+'</p>'+
+      '<div class="cards">'+
+        metricCard('Justerat R²',fmt2.format(e.adjusted_r2))+
+        metricCard('Observationer',fmt0.format(e.n_obs))+
+        metricCard('Teman',fmt0.format((e.selected_features||[]).length))+
+        (v?metricCard('Ridge R²',fmt2.format(v.ridge.r2)):'')+
+      '</div>'+
+      '<table class="metric-table"><thead><tr><th>Tema</th><th>Δ just. R²</th><th>Δ AIC</th><th>Δ RMSE</th></tr></thead><tbody>'+
+      top.map(d=>'<tr><td>'+d.theme+'</td><td>'+fmt(d.delta_adjusted_r2,4)+'</td><td>'+fmt(d.delta_aic,1)+'</td><td>'+fmt(d.delta_rmse,3)+'</td></tr>').join('')+
+      '</tbody></table>'+
+      '</div>';
+  }).join('');
+  root.innerHTML=html;
+}
+
 
 function renderValidation(){
   const rows=predictions.filter(d=>d.window===selectedWindow);
