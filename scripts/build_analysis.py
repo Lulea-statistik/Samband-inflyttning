@@ -1761,6 +1761,15 @@ def _explanation_model(df: pd.DataFrame, features: list[str], target: str, windo
         "sample": sorted_resid,
     })
 
+    intercept = _finite_float(params[names.index("const")]) if "const" in names else None
+    year_effects = []
+    for name, value in zip(names, params):
+        if str(name).startswith("year_"):
+            year_effects.append({
+                "year": str(name).replace("year_", "", 1),
+                "coefficient": _finite_float(value),
+            })
+
     result = {
         "window": window,
         "start_year": start_year,
@@ -1772,6 +1781,9 @@ def _explanation_model(df: pd.DataFrame, features: list[str], target: str, windo
         "aic": _finite_float(base_fit.aic),
         "bic": _finite_float(base_fit.bic),
         "coefficients": coeffs,
+        "intercept": intercept,
+        "year_effect_coefficients": year_effects,
+        "equation_note": "Mål = intercept + summan av koefficient × variabel + årseffekter",
         "vif": vif_rows,
         "variable_selection": selection,
         "selected_features": selected_features,
