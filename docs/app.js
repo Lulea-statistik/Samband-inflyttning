@@ -346,7 +346,7 @@ function renderAgeModels(){
   const root=document.getElementById('ageModels');
   if(!root) return;
   const models=model.age_group_models||{};
-  const keys=['18_23','63_68'];
+  const keys=['18_23','24_34','35_49','63_68','70_79'];
   const html=keys.map(key=>{
     const m=models[key];
     if(!m) return '<div class="panel"><h3>'+key.replace('_','–')+' år</h3><p class="note">Data saknas.</p></div>';
