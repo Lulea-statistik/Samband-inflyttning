@@ -516,6 +516,37 @@ def _percent_number(series: pd.Series) -> pd.Series:
     )
 
 
+def _code_digits(value: object) -> str:
+    text = str(value or "").strip()
+    # Excel often turns codes such as 0114 into numeric 114.0.
+    if re.fullmatch(r"\d+(?:\.0+)?", text):
+        text = text.split(".", 1)[0]
+    return re.sub(r"\D", "", text)
+
+
+def _municipality_code(value: object, *, from_district: bool = False) -> object:
+    digits = _code_digits(value)
+    if not digits:
+        return np.nan
+    if from_district:
+        # Valdistriktskoder are normally 8 digits; a leading zero may be lost
+        # when Excel stores them numerically.
+        digits = digits.zfill(8)
+        return digits[:4]
+    if len(digits) <= 4:
+        return digits.zfill(4)
+    # Defensive fallback when a district-like code ends up in this column.
+    digits = digits.zfill(8)
+    return digits[:4]
+
+
+def _district_code(value: object) -> object:
+    digits = _code_digits(value)
+    if not digits:
+        return np.nan
+    return digits.zfill(8)
+
+
 def _excel_bytes(url: str) -> bytes:
     last_error = None
     for attempt in range(1, 4):
@@ -613,12 +644,10 @@ def _turnout_rows_from_workbook(
             out["turnout"] = 100 * out["turnout"]
 
         if kommun_code_col is not None:
-            out["kommun_kod"] = (
-                df[kommun_code_col].astype(str).str.extract(r"(\d{4})", expand=False)
-            )
+            out["kommun_kod"] = df[kommun_code_col].map(_municipality_code)
         elif district_code_col is not None:
-            out["kommun_kod"] = (
-                df[district_code_col].astype(str).str.extract(r"(\d{4})", expand=False)
+            out["kommun_kod"] = df[district_code_col].map(
+                lambda x: _municipality_code(x, from_district=True)
             )
         else:
             continue
@@ -629,9 +658,7 @@ def _turnout_rows_from_workbook(
             out["kommun"] = np.nan
 
         if district_code_col is not None:
-            out["valdistrikt_kod"] = (
-                df[district_code_col].astype(str).str.extract(r"(\d{4,})", expand=False)
-            )
+            out["valdistrikt_kod"] = df[district_code_col].map(_district_code)
         else:
             out["valdistrikt_kod"] = np.nan
 
@@ -734,9 +761,20 @@ def get_turnout_series() -> pd.DataFrame:
         )
         annual["election_year"] = election_year
 
-        if annual["kommun_kod"].nunique() < 280:
+        n_muni = int(muni_agg["kommun_kod"].nunique())
+        n_district_muni = int(gap["kommun_kod"].nunique())
+        n_merged = int(annual["kommun_kod"].nunique())
+        print(
+            f"Turnout {election_year} parse counts: municipality={n_muni}, "
+            f"district municipalities={n_district_muni}, merged={n_merged}"
+        )
+        if n_merged < 280:
+            missing_from_district = sorted(set(muni_agg["kommun_kod"]) - set(gap["kommun_kod"]))[:15]
+            missing_from_muni = sorted(set(gap["kommun_kod"]) - set(muni_agg["kommun_kod"]))[:15]
             raise ValueError(
-                f"Turnout {election_year}: parsed only {annual['kommun_kod'].nunique()} municipalities"
+                f"Turnout {election_year}: parsed only {n_merged} municipalities. "
+                f"Missing district examples={missing_from_district}; "
+                f"missing municipality examples={missing_from_muni}"
             )
 
         election_rows.append(annual)
