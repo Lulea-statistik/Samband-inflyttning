@@ -13,6 +13,9 @@ from sklearn.linear_model import LinearRegression, RidgeCV
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import make_pipeline
+import statsmodels.api as sm
+from statsmodels.stats.outliers_influence import variance_inflation_factor
+from scipy.stats import norm
 
 MIGRATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101J/Flyttningar97"
 POPULATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101A/BefolkningNy"
@@ -313,6 +316,106 @@ def metrics(y_true, y_pred) -> dict:
     }
 
 
+def _finite_float(value):
+    try:
+        value = float(value)
+    except Exception:
+        return None
+    return value if np.isfinite(value) else None
+
+
+def _metrics(y_true, y_pred) -> dict:
+    return {
+        "r2": _finite_float(r2_score(y_true, y_pred)),
+        "rmse": _finite_float(math.sqrt(mean_squared_error(y_true, y_pred))),
+        "mae": _finite_float(mean_absolute_error(y_true, y_pred)),
+    }
+
+
+def _explanation_model(df: pd.DataFrame, features: list[str], target: str, window: int) -> tuple[dict, pd.DataFrame, pd.DataFrame]:
+    latest_year = int(df["year"].max())
+    start_year = latest_year - window + 1
+    d = df[df["year"].between(start_year, latest_year)].copy()
+
+    # Year fixed effects absorb common national shocks/trends within the pooled window.
+    year_dummies = pd.get_dummies(d["year"].astype(int).astype(str), prefix="year", drop_first=True, dtype=float)
+    X = pd.concat([d[features].reset_index(drop=True), year_dummies.reset_index(drop=True)], axis=1)
+    X = sm.add_constant(X, has_constant="add").astype(float)
+    y = d[target].reset_index(drop=True).astype(float)
+    groups = d["kommun_kod"].reset_index(drop=True)
+
+    base_fit = sm.OLS(y, X).fit()
+    robust_fit = sm.OLS(y, X).fit(cov_type="cluster", cov_kwds={"groups": groups})
+
+    names = list(robust_fit.model.exog_names)
+    params = np.asarray(robust_fit.params)
+    pvals = np.asarray(robust_fit.pvalues)
+    conf = np.asarray(robust_fit.conf_int())
+
+    y_sd = float(np.nanstd(y, ddof=1))
+    coeffs = []
+    for feature in features:
+        i = names.index(feature)
+        x_sd = float(np.nanstd(d[feature], ddof=1))
+        beta_std = params[i] * x_sd / y_sd if y_sd > 0 and x_sd > 0 else np.nan
+        coeffs.append({
+            "feature": feature,
+            "coefficient": _finite_float(params[i]),
+            "standardized_coefficient": _finite_float(beta_std),
+            "p_value": _finite_float(pvals[i]),
+            "ci_low": _finite_float(conf[i, 0]),
+            "ci_high": _finite_float(conf[i, 1]),
+        })
+
+    vif_rows = []
+    vif_X = sm.add_constant(d[features].astype(float), has_constant="add")
+    for i, feature in enumerate(features, start=1):
+        try:
+            vif = variance_inflation_factor(vif_X.to_numpy(), i)
+        except Exception:
+            vif = np.nan
+        vif_rows.append({"feature": feature, "vif": _finite_float(vif)})
+
+    influence = base_fit.get_influence()
+    fitted = np.asarray(base_fit.fittedvalues)
+    resid = np.asarray(base_fit.resid)
+    std_resid = np.asarray(influence.resid_studentized_internal)
+    cooks = np.asarray(influence.cooks_distance[0])
+
+    diag = d[["kommun_kod", "kommun", "year"]].reset_index(drop=True).copy()
+    diag["window"] = window
+    diag["fitted"] = fitted
+    diag["residual"] = resid
+    diag["std_residual"] = std_resid
+    diag["cooks_distance"] = cooks
+
+    sorted_resid = np.sort(std_resid[np.isfinite(std_resid)])
+    n = len(sorted_resid)
+    probs = (np.arange(1, n + 1) - 0.5) / n if n else np.array([])
+    qq = pd.DataFrame({
+        "window": window,
+        "theoretical": norm.ppf(probs) if n else [],
+        "sample": sorted_resid,
+    })
+
+    result = {
+        "window": window,
+        "start_year": start_year,
+        "end_year": latest_year,
+        "n_obs": int(len(d)),
+        "n_municipalities": int(d["kommun_kod"].nunique()),
+        "r2": _finite_float(base_fit.rsquared),
+        "adjusted_r2": _finite_float(base_fit.rsquared_adj),
+        "aic": _finite_float(base_fit.aic),
+        "bic": _finite_float(base_fit.bic),
+        "coefficients": coeffs,
+        "vif": vif_rows,
+        "standard_errors": "Klustrade per kommun",
+        "year_fixed_effects": True,
+    }
+    return result, diag, qq
+
+
 def fit_models(panel: pd.DataFrame) -> dict:
     target = "inflyttning_per_1000"
     features = [
@@ -324,53 +427,77 @@ def fit_models(panel: pd.DataFrame) -> dict:
     ]
     model_df = panel.dropna(subset=[target] + features).copy()
     test_year = int(model_df["year"].max())
-    train = model_df[model_df["year"] < test_year]
-    test = model_df[model_df["year"] == test_year]
 
-    Xtr, ytr = train[features], train[target]
-    Xte, yte = test[features], test[target]
+    windows = {}
+    pred_frames = []
+    diag_frames = []
+    qq_frames = []
 
-    naive_pred = test["lag1_inflyttning_per_1000"].to_numpy()
-    naive = metrics(yte, naive_pred)
+    for window in range(1, 6):
+        explanation, diag, qq = _explanation_model(model_df, features, target, window)
+        diag_frames.append(diag)
+        qq_frames.append(qq)
 
-    ols = LinearRegression().fit(Xtr, ytr)
-    ols_pred = ols.predict(Xte)
-    ols_m = metrics(yte, ols_pred)
+        train_start = test_year - window
+        train = model_df[model_df["year"].between(train_start, test_year - 1)].copy()
+        test = model_df[model_df["year"] == test_year].copy()
 
-    ridge = make_pipeline(StandardScaler(), RidgeCV(alphas=np.logspace(-3, 3, 25))).fit(Xtr, ytr)
-    ridge_pred = ridge.predict(Xte)
-    ridge_m = metrics(yte, ridge_pred)
+        Xtr, ytr = train[features], train[target]
+        Xte, yte = test[features], test[target]
 
-    pred = test[["kommun_kod", "kommun", "year", target]].copy()
-    pred["pred_naiv"] = naive_pred
-    pred["pred_ols"] = ols_pred
-    pred["pred_ridge"] = ridge_pred
-    pred.to_csv(OUT / "predictions.csv", index=False)
+        naive_pred = test["lag1_inflyttning_per_1000"].to_numpy()
+        naive = _metrics(yte, naive_pred)
 
-    coeffs = [
-        {"feature": f, "coefficient": float(c)}
-        for f, c in zip(features, ols.coef_)
-    ]
+        ols = LinearRegression().fit(Xtr, ytr)
+        ols_pred = ols.predict(Xte)
+        ols_m = _metrics(yte, ols_pred)
+
+        ridge = make_pipeline(StandardScaler(), RidgeCV(alphas=np.logspace(-3, 3, 25))).fit(Xtr, ytr)
+        ridge_pred = ridge.predict(Xte)
+        ridge_m = _metrics(yte, ridge_pred)
+
+        pred = test[["kommun_kod", "kommun", "year", target]].copy()
+        pred["window"] = window
+        pred["pred_naiv"] = naive_pred
+        pred["pred_ols"] = ols_pred
+        pred["pred_ridge"] = ridge_pred
+        pred_frames.append(pred)
+
+        windows[str(window)] = {
+            "explanation": explanation,
+            "validation": {
+                "train_start_year": train_start,
+                "train_end_year": test_year - 1,
+                "test_year": test_year,
+                "n_train": int(len(train)),
+                "n_test": int(len(test)),
+                "models": {
+                    "naive": naive,
+                    "ols": ols_m,
+                    "ridge": ridge_m,
+                },
+            },
+        }
+
+    pd.concat(pred_frames, ignore_index=True).to_csv(OUT / "predictions.csv", index=False)
+    pd.concat(diag_frames, ignore_index=True).to_csv(OUT / "diagnostics.csv", index=False)
+    pd.concat(qq_frames, ignore_index=True).to_csv(OUT / "qq.csv", index=False)
 
     return {
         "generated_from_year": START_YEAR,
         "generated_to_year": END_YEAR,
         "test_year": test_year,
-        "n_train": int(len(train)),
-        "n_test": int(len(test)),
+        "default_window": 5,
+        "max_window": 5,
         "target": target,
         "features": features,
-        "models": {
-            "naive": naive,
-            "ols": ols_m,
-            "ridge": ridge_m,
-        },
-        "ols_intercept": float(ols.intercept_),
-        "ols_coefficients": coeffs,
+        "windows": windows,
         "notes": [
-            "Teståret hålls helt utanför träningen.",
-            "Inflyttarnas medelålder används endast laggad ett år i prognosmodellen.",
-            "Detta är en första basmodell; bostäder, arbetsmarknad och inkomster läggs till stegvis.",
+            "Förklaringsmodellen använder kommun-år och som standard de fem senaste observerade åren.",
+            "Årseffekter ingår i förklaringsmodellen för att fånga gemensamma nationella årsvariationer.",
+            "Standardfel i förklaringsmodellen är klustrade per kommun eftersom samma kommun förekommer flera år.",
+            "Prognosvalideringen för teståret använder endast de föregående 1–5 åren beroende på valt analysfönster.",
+            "Samband ska inte tolkas som säkra kausala effekter; endogenitet och utelämnade variabler kan finnas.",
         ],
     }
 
