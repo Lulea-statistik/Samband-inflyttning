@@ -882,6 +882,104 @@ def _elastic_net_selection(
     }
 
 
+def _temporal_cv_rmse(
+    d: pd.DataFrame,
+    features: list[str],
+    target: str,
+) -> list[float]:
+    """
+    Rolling-origin validation by year. Each validation year is predicted only
+    from earlier years, so the score measures temporal generalization.
+    """
+    work = d[["year", target] + features].dropna().copy()
+    years = sorted(int(y) for y in work["year"].unique())
+    if len(years) < 4:
+        return []
+
+    scores = []
+    for valid_year in years[2:]:
+        train = work[work["year"] < valid_year]
+        valid = work[work["year"] == valid_year]
+        if len(train) < max(30, len(features) * 5) or len(valid) == 0:
+            continue
+
+        model = make_pipeline(StandardScaler(), RidgeCV(alphas=np.logspace(-3, 3, 25)))
+        model.fit(train[features], train[target])
+        pred = model.predict(valid[features])
+        scores.append(float(np.sqrt(mean_squared_error(valid[target], pred))))
+
+    return scores
+
+
+def _temporal_cv_selection(
+    d: pd.DataFrame,
+    features: list[str],
+    target: str,
+) -> tuple[list[str], dict]:
+    """
+    Backward pruning using rolling-origin RMSE and the one-standard-error rule.
+    A variable is removed when the simpler model performs within one standard
+    error of the current model. This favors parsimony without requiring a
+    tiny in-sample improvement to justify extra predictors.
+    """
+    selected = list(features)
+    history = []
+
+    current_scores = _temporal_cv_rmse(d, selected, target)
+    if len(current_scores) < 2:
+        return selected, {
+            "reason": "too_few_years_for_temporal_cv",
+            "folds": len(current_scores),
+            "selected": selected,
+            "history": history,
+        }
+
+    while len(selected) > 2:
+        current_mean = float(np.mean(current_scores))
+        current_se = float(np.std(current_scores, ddof=1) / np.sqrt(len(current_scores)))
+
+        candidates = []
+        for feature in selected:
+            trial = [f for f in selected if f != feature]
+            scores = _temporal_cv_rmse(d, trial, target)
+            if len(scores) != len(current_scores) or not scores:
+                continue
+            candidates.append((
+                float(np.mean(scores)),
+                feature,
+                trial,
+                scores,
+            ))
+
+        if not candidates:
+            break
+
+        best_mean, removed, trial, best_scores = min(candidates, key=lambda x: x[0])
+
+        # One-standard-error rule: prefer the simpler model if its temporal
+        # RMSE is not materially worse than the current model.
+        if best_mean <= current_mean + current_se:
+            history.append({
+                "removed": removed,
+                "rmse_before": _finite_float(current_mean),
+                "rmse_after": _finite_float(best_mean),
+                "se_before": _finite_float(current_se),
+                "folds": len(current_scores),
+            })
+            selected = trial
+            current_scores = best_scores
+        else:
+            break
+
+    return selected, {
+        "folds": len(current_scores),
+        "mean_rmse": _finite_float(float(np.mean(current_scores))) if current_scores else None,
+        "selected": selected,
+        "history": history,
+        "rule": "rolling-origin RMSE, one-standard-error rule",
+    }
+
+
 def _select_features(
     d: pd.DataFrame,
     features: list[str],
@@ -891,20 +989,25 @@ def _select_features(
     backward, backward_history = _backward_aic_selection(d, features, target)
 
     consensus = [f for f in features if f in elastic and f in backward]
-    # Avoid an over-aggressive selector in small windows.
     if len(consensus) < 2:
         consensus = list(backward)
     if not consensus:
         consensus = [features[0]]
 
-    excluded = [f for f in features if f not in consensus]
+    temporal, temporal_meta = _temporal_cv_selection(d, consensus, target)
+    selected = temporal if temporal else consensus
+
+    excluded = [f for f in features if f not in selected]
     return {
-        "selected": consensus,
+        "selected": selected,
         "excluded": excluded,
         "elastic_net_selected": elastic,
         "backward_aic_selected": backward,
+        "pre_cv_consensus": consensus,
+        "temporal_cv_selected": selected,
         "elastic_net": elastic_meta,
         "backward_aic_history": backward_history,
+        "temporal_cv": temporal_meta,
     }
 
 
@@ -1091,7 +1194,8 @@ def fit_models(panel: pd.DataFrame) -> dict:
             "Andel småhus avser bostadslägenheter i småhus som andel av bostadsbeståndet och används laggad ett år.",
             "Arbetsmarknadsvariablerna är sysselsättningsgrad och arbetslöshet bland 20–64-åringar från SCB BAS och används laggade ett år.",
             "Utbildningsvariabeln är andel 25–64-åringar med eftergymnasial utbildning och används laggad ett år.",
-            "Variabelurvalet kombinerar Elastic Net och backward-AIC; variabler som väljs av båda behålls i första hand.",
+            "Variabelurvalet kombinerar Elastic Net, backward-AIC och tidsbaserad rolling-origin-korsvalidering.",
+            "Efter Elastic Net och backward-AIC används en one-standard-error-regel på rolling-origin RMSE för att föredra enklare modeller som generaliserar lika bra.",
             "Om konsensusurvalet blir alltför litet används backward-AIC som reserv för att undvika instabila små modeller.",
             "Urvalet för prognosvalidering görs endast på träningsåren och får inte se teståret.",
             "Samband ska inte tolkas som säkra kausala effekter; endogenitet och utelämnade variabler kan finnas.",
