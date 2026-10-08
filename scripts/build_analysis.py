@@ -792,6 +792,133 @@ def _turnout_rows_from_workbook(
     return municipality_frames, district_frames
 
 
+
+def _turnout_rows_from_pivot_workbook(
+    content: bytes,
+) -> tuple[list[pd.DataFrame], list[pd.DataFrame]]:
+    """
+    Parse Valmyndigheten's 2022/2026 workbook layout.
+
+    The workbook contains a raw 'roster_KF' sheet with municipality/district
+    identifiers and a hierarchical 'Valdeltagande' pivot sheet. The pivot has
+    names only, so use roster_KF to map district names back to municipality
+    and district codes while walking the hierarchy.
+    """
+    xl = pd.ExcelFile(io.BytesIO(content))
+    if "roster_KF" not in xl.sheet_names or "Valdeltagande" not in xl.sheet_names:
+        return [], []
+
+    roster = pd.read_excel(io.BytesIO(content), sheet_name="roster_KF", header=0)
+    cols = {c: _norm_header(c) for c in roster.columns}
+    kommun_col = next((c for c,n in cols.items() if n=="kommun"), None)
+    district_code_col = next((c for c,n in cols.items() if "valdistriktskod" in n), None)
+    district_name_col = next((c for c,n in cols.items() if "valdistriktsnamn" in n), None)
+    if kommun_col is None or district_code_col is None or district_name_col is None:
+        return [], []
+
+    base = roster[[kommun_col,district_code_col,district_name_col]].dropna().copy()
+    base["kommun"] = base[kommun_col].astype(str).str.strip()
+    base["valdistrikt_kod"] = base[district_code_col].map(_district_code).astype("string")
+    base["kommun_kod"] = base[district_code_col].map(
+        lambda x: _municipality_code(x, from_district=True)
+    ).astype("string")
+    base["valdistrikt_namn"] = base[district_name_col].astype(str).str.strip()
+    base = base[
+        base["kommun_kod"].str.fullmatch(r"\d{4}", na=False)
+        & base["valdistrikt_kod"].notna()
+    ].drop_duplicates(["kommun_kod","valdistrikt_kod"])
+
+    def key(x: object) -> str:
+        return _norm_header(x)
+
+    municipality_codes_by_name = {}
+    for kommun, g in base.groupby("kommun"):
+        codes = [x for x in g["kommun_kod"].dropna().astype(str).unique() if re.fullmatch(r"\d{4}", x)]
+        if len(codes)==1:
+            municipality_codes_by_name[key(kommun)] = codes[0]
+
+    district_lookup = {}
+    for row in base.itertuples(index=False):
+        district_lookup[(key(row.kommun), key(row.valdistrikt_namn))] = (
+            str(row.kommun_kod),
+            str(row.valdistrikt_kod),
+        )
+
+    raw = pd.read_excel(io.BytesIO(content), sheet_name="Valdeltagande", header=None)
+    header_row = None
+    for i in range(min(20, len(raw))):
+        vals=[_norm_header(x) for x in raw.iloc[i].tolist()]
+        if any("radetiketter" in v for v in vals) and any("rostberattig" in v for v in vals):
+            header_row=i
+            break
+    if header_row is None:
+        return [], []
+
+    body=raw.iloc[header_row+1:].copy()
+    municipality_rows=[]
+    district_rows=[]
+    current_muni_name=None
+    current_muni_code=None
+
+    for _,r in body.iterrows():
+        label=str(r.iloc[0]).strip() if len(r)>0 and pd.notna(r.iloc[0]) else ""
+        if not label or label.lower()=="nan":
+            continue
+
+        votes=pd.to_numeric(pd.Series([r.iloc[1] if len(r)>1 else np.nan]),errors="coerce").iloc[0]
+        eligible=pd.to_numeric(pd.Series([r.iloc[2] if len(r)>2 else np.nan]),errors="coerce").iloc[0]
+        label_key=key(label)
+
+        if label_key in municipality_codes_by_name:
+            current_muni_name=label
+            current_muni_code=municipality_codes_by_name[label_key]
+            if pd.notna(votes) and pd.notna(eligible) and eligible>0:
+                municipality_rows.append({
+                    "kommun_kod":current_muni_code,
+                    "kommun":current_muni_name,
+                    "turnout":100*float(votes)/float(eligible),
+                    "rostberattigade":float(eligible),
+                    "valdistrikt_kod":pd.NA,
+                })
+            continue
+
+        if current_muni_name is None or current_muni_code is None:
+            continue
+
+        found=district_lookup.get((key(current_muni_name),label_key))
+        if found is None:
+            continue
+        kommun_kod, district_code=found
+        if pd.isna(votes) or pd.isna(eligible) or float(eligible)<=0:
+            continue
+        turnout=100*float(votes)/float(eligible)
+        if not (0<=turnout<=100):
+            continue
+        district_rows.append({
+            "kommun_kod":kommun_kod,
+            "kommun":current_muni_name,
+            "turnout":turnout,
+            "rostberattigade":float(eligible),
+            "valdistrikt_kod":district_code,
+        })
+
+    muni=pd.DataFrame(municipality_rows)
+    districts=pd.DataFrame(district_rows)
+    if not muni.empty:
+        muni["kommun_kod"]=muni["kommun_kod"].astype("string")
+        muni["valdistrikt_kod"]=muni["valdistrikt_kod"].astype("string")
+    if not districts.empty:
+        districts["kommun_kod"]=districts["kommun_kod"].astype("string")
+        districts["valdistrikt_kod"]=districts["valdistrikt_kod"].astype("string")
+
+    print(
+        f"Turnout pivot parser: municipalities={muni['kommun_kod'].nunique() if not muni.empty else 0}, "
+        f"district municipalities={districts['kommun_kod'].nunique() if not districts.empty else 0}, "
+        f"district rows={len(districts)}"
+    )
+    return ([muni] if not muni.empty else []), ([districts] if not districts.empty else [])
+
+
 def get_turnout_series() -> pd.DataFrame:
     """
     Municipal turnout and within-municipality turnout gap in municipal elections.
@@ -830,6 +957,12 @@ def get_turnout_series() -> pd.DataFrame:
             content = _excel_bytes(sources["combined"])
             debug_content = content
             m, d = _turnout_rows_from_workbook(content, level_hint=None)
+            if not m or not d:
+                pm, pdist = _turnout_rows_from_pivot_workbook(content)
+                if pm:
+                    m = pm
+                if pdist:
+                    d = pdist
             muni_frames.extend(m)
             district_frames.extend(d)
 
@@ -929,7 +1062,10 @@ def get_turnout_series() -> pd.DataFrame:
             row = {"kommun_kod": kommun_kod, "year": year}
             for metric in ["valdeltagande_pct", "valdeltagande_gap_pp"]:
                 ys = g[metric].to_numpy(dtype=float)
-                row[metric] = float(np.interp(year, xs, ys))
+                if year < xs.min() or year > xs.max():
+                    row[metric] = np.nan
+                else:
+                    row[metric] = float(np.interp(year, xs, ys))
             row["valdeltagande_interpolerad"] = year not in set(g["election_year"].astype(int))
             out.append(row)
 
