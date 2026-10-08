@@ -6,9 +6,9 @@ let selectedWindow=5;
 
 const labels={
   lag1_inflyttning_per_1000:'Inflyttning föregående år per 1 000',
-  log_folkmangd:'Log folkmängd',
-  befolkningstillvaxt_pct:'Befolkningstillväxt (%)',
-  andel_20_34:'Andel 20–34 år (%)',
+  lag1_log_folkmangd:'Folkmängd (log), föregående år',
+  lag1_befolkningstillvaxt_pct:'Befolkningstillväxt, föregående år (%)',
+  lag1_andel_20_34:'Andel 20–34 år, föregående år (%)',
   lag1_inflyttare_medelalder:'Inflyttarnas medelålder föregående år',
   lag1_inkomst_tkr:'Genomsnittlig förvärvsinkomst 20–64 år, föregående år (tkr)',
   lag1_andel_smahus:'Andel småhus föregående år (%)',
@@ -38,6 +38,8 @@ async function load(){
     qq=d3.csvParse(qText,d3.autoType);
     selectedWindow=Number(model.default_window||5);
     initWindowSelector();
+    const mm=document.getElementById('matrixMetric');
+    if(mm) mm.addEventListener('change',renderVariableMatrix);
     initRelationships();
     initMunicipality();
     renderAll();
@@ -85,6 +87,7 @@ function renderAll(){
     ' · validering: '+v.train_start_year+'–'+v.train_end_year+' → test '+v.test_year;
   renderOverview();
   renderModel();
+  renderVariableMatrix();
   renderValidation();
   renderMunicipality();
 }
@@ -148,6 +151,58 @@ function renderScatter(){
     margin:{t:20},
     xaxis:{title:labels[key]},
     yaxis:{title:'Inflyttade per 1 000'}
+  },{responsive:true,displaylogo:false});
+}
+
+function renderVariableMatrix(){
+  const e=wdata().explanation;
+  const pm=e.pairwise_matrix;
+  if(!pm||!pm.rows||!pm.features) return;
+
+  const mode=document.getElementById('matrixMetric')?.value||'correlation';
+  const keys=pm.features;
+  const short=k=>(labels[k]||k)
+    .replace(', föregående år','')
+    .replace(' föregående år','')
+    .replace('Genomsnittlig ','')
+    .replace('20–64 år','')
+    .replace('25–64 år','')
+    .replace(/\s+/g,' ').trim();
+
+  const lookup=new Map(pm.rows.map(r=>[r.x+'|'+r.y,r]));
+  const z=keys.map(y=>keys.map(x=>{
+    const r=lookup.get(x+'|'+y)||lookup.get(y+'|'+x);
+    return r?Number(r[mode]):null;
+  }));
+  const text=z.map(row=>row.map(v=>Number.isFinite(v)?(mode==='correlation'?v.toFixed(2):v.toFixed(3)):''));
+
+  let title='Pearsons korrelation r';
+  let zmin=-1,zmax=1,colorscale='RdBu';
+  if(mode==='joint_adjusted_r2'){
+    title='Gemensamt justerat R²';
+    zmin=0; zmax=Math.max(.01,...z.flat().filter(Number.isFinite)); colorscale='Blues';
+  } else if(mode==='incremental_adjusted_r2'){
+    title='Extra justerat R² jämfört med starkaste ensam';
+    const vals=z.flat().filter(Number.isFinite);
+    const lim=Math.max(.005,...vals.map(v=>Math.abs(v)));
+    zmin=-lim; zmax=lim; colorscale='RdBu';
+  }
+
+  Plotly.react('variableMatrix',[{
+    z,
+    x:keys.map(short),
+    y:keys.map(short),
+    type:'heatmap',
+    zmin,zmax,colorscale,
+    reversescale:mode==='correlation',
+    text,
+    texttemplate:'%{text}',
+    hovertemplate:'%{y}<br>× %{x}<br>'+title+': %{z:.3f}<extra></extra>',
+    colorbar:{title:title}
+  }],{
+    margin:{t:25,l:190,b:150},
+    xaxis:{tickangle:-45,automargin:true},
+    yaxis:{automargin:true,autorange:'reversed'}
   },{responsive:true,displaylogo:false});
 }
 
