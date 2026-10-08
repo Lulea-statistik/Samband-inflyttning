@@ -1269,6 +1269,9 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
         1000 * panel["externa_fa_jobb"] / panel["folkmangd"].replace(0, np.nan)
     )
     panel["log_externa_fa_jobb_per_1000"] = np.log1p(panel["externa_fa_jobb_per_1000"])
+    panel["andel_fa_arbetsplatser_i_egen_kommun"] = (
+        100 * panel["sysselsatta_totalt"] / fa_jobs.replace(0, np.nan)
+    )
 
     panel["andel_20_34"] = 100 * panel["bef_20_34"] / panel["folkmangd"]
     panel["inflyttning_per_1000"] = 1000 * panel["inflyttade"] / panel["folkmangd"]
@@ -1317,6 +1320,7 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel["lag1_andel_hotell_restaurang_i"] = g["andel_hotell_restaurang_i"].shift(1)
     panel["lag1_andel_kultur_service_rstu"] = g["andel_kultur_service_rstu"].shift(1)
     panel["lag1_log_externa_fa_jobb_per_1000"] = g["log_externa_fa_jobb_per_1000"].shift(1)
+    panel["lag1_andel_fa_arbetsplatser_i_egen_kommun"] = g["andel_fa_arbetsplatser_i_egen_kommun"].shift(1)
 
     return panel.reset_index(drop=True)
 
@@ -1477,6 +1481,7 @@ FEATURE_THEMES = {
     "lag1_andel_hotell_restaurang_i": "Näringslivsprofil",
     "lag1_andel_kultur_service_rstu": "Näringslivsprofil",
     "lag1_log_externa_fa_jobb_per_1000": "Regional arbetsmarknadsaccess",
+    "lag1_andel_fa_arbetsplatser_i_egen_kommun": "Regional arbetsmotor",
 }
 
 
@@ -1911,6 +1916,7 @@ def fit_models(panel: pd.DataFrame) -> dict:
         "lag1_andel_hotell_restaurang_i",
         "lag1_andel_kultur_service_rstu",
         "lag1_log_externa_fa_jobb_per_1000",
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun",
     ]
     model_df = panel.dropna(subset=[target] + features).copy()
     test_year = int(model_df["year"].max())
@@ -2000,6 +2006,7 @@ def fit_models(panel: pd.DataFrame) -> dict:
             "Studentmiljö mäts som andel studerande bland 20–64-åringar enligt SCB IntGr8Kom1N och används laggad ett år.",
             "Näringslivsprofilen testas med andel sysselsatta efter arbetsställets belägenhet i B+C industri/gruvor, I hotell/restaurang samt R+S+T+U kultur/nöje/service enligt SCB ArRegUtb; högst en representant behålls från temat.",
             "Regional arbetsmarknadsaccess mäts som log(1 + jobb i övriga kommuner inom samma FA15-region per 1 000 invånare i den egna kommunen), laggad ett år.",
+            "Regional arbetsmotor mäts som den egna kommunens arbetsplatser dividerat med samtliga arbetsplatser inom samma FA15-region, uttryckt i procent och laggat ett år.",
             "Variabelurvalet kombinerar Elastic Net, backward-AIC, tematisk diversifiering och tidsbaserad rolling-origin-korsvalidering.",
             "När flera variabler beskriver samma kvalitativa tema behålls högst en representant, vald efter inkrementellt AIC-bidrag.",
             "Tidsbaserad CV får endast sålla variabler när minst tre giltiga rolling-origin-foldar finns; annars behålls den tematiskt balanserade modellen.",
@@ -2039,6 +2046,7 @@ def fit_age_group_models(panel: pd.DataFrame) -> dict:
         "lag1_andel_hotell_restaurang_i",
         "lag1_andel_kultur_service_rstu",
         "lag1_log_externa_fa_jobb_per_1000",
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun",
     ]
 
     specs = {
