@@ -54,18 +54,18 @@ def code_for_text(var: dict, wanted: str) -> str:
     raise KeyError(f"Value {wanted!r} not found in {var.get('text')}")
 
 
-def total_code(var: dict) -> str:
-    """Return the code representing all/total for a dimension."""
+def aggregate_codes(var: dict) -> list[str]:
+    """Use one total category when present; otherwise use all component categories."""
     pairs = list(zip(var["values"], var.get("valueTexts", var["values"])))
     preferred = {"totalt", "total", "samtliga", "alla", "båda könen", "bada konen"}
     for code, text in pairs:
         if str(text).strip().lower() in preferred:
-            return code
+            return [code]
     for code, text in pairs:
         t = str(text).strip().lower()
         if "totalt" in t or "samtliga" in t or "båda könen" in t or "bada konen" in t:
-            return code
-    raise KeyError(f"No total category found in {var.get('text')}: {[t for _, t in pairs[:20]]}")
+            return [code]
+    return [code for code, _ in pairs]
 
 
 def municipality_codes(region_var: dict) -> list[str]:
@@ -127,7 +127,7 @@ def get_migration() -> pd.DataFrame:
 
     munis = municipality_codes(region)
     inflow_code = code_for_text(content, "Inflyttningar")
-    sex_total = total_code(sex)
+    sex_codes = aggregate_codes(sex)
     rows = []
 
     # One year at a time stays safely below PxWeb cell limits.
@@ -138,7 +138,7 @@ def get_migration() -> pd.DataFrame:
         df = px_csv(MIGRATION_URL, {
             region["code"]: munis,
             age["code"]: list(age["values"]),
-            sex["code"]: [sex_total],
+            sex["code"]: sex_codes,
             content["code"]: [inflow_code],
             time["code"]: [str(year)],
         })
@@ -164,8 +164,8 @@ def get_population() -> pd.DataFrame:
 
     munis = municipality_codes(region)
     pop_code = code_for_text(content, "Folkmängd")
-    sex_total = total_code(sex)
-    civil_total = total_code(civil)
+    sex_codes = aggregate_codes(sex)
+    civil_codes = aggregate_codes(civil)
     age_codes = []
     for code, text in zip(age["values"], age.get("valueTexts", age["values"])):
         a = age_numeric(text)
@@ -177,8 +177,8 @@ def get_population() -> pd.DataFrame:
         df = px_csv(POPULATION_URL, {
             region["code"]: munis,
             age["code"]: age_codes,
-            sex["code"]: [sex_total],
-            civil["code"]: [civil_total],
+            sex["code"]: sex_codes,
+            civil["code"]: civil_codes,
             content["code"]: [pop_code],
             time["code"]: [str(year)],
         })
