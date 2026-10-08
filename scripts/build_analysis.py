@@ -25,6 +25,7 @@ INCOME_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/HE/HE0110/HE0110A/
 HOUSING_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104D/BO0104T04"
 LABOR_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210A/ArbStatusAr"
 EDUCATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/UF/UF0506/UF0506B/Utbildning"
+STUDENT_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AA/AA0003/AA0003H/IntGr8Kom1N"
 OUT = Path("docs/data")
 OUT.mkdir(parents=True, exist_ok=True)
 
@@ -625,6 +626,78 @@ def get_education() -> pd.DataFrame:
 
     return pd.concat(rows, ignore_index=True)
 
+
+def get_students() -> pd.DataFrame:
+    """
+    Share of the population aged 20-64 who are students.
+    SCB table IntGr8Kom1N already reports the measure as percent.
+    Only years actually available in the table are requested.
+    """
+    meta = metadata(STUDENT_URL)
+    region = find_var(meta, "region")
+    background = find_var(meta, "bakgrund")
+    time = find_var(meta, "år", "tid")
+
+    munis = municipality_codes(region)
+    background_code = code_for_all_text(background, "samtliga", "20", "64")
+    available_years = {str(v) for v in time["values"]}
+
+    rows = []
+    for year in AUX_YEARS:
+        if str(year) not in available_years:
+            continue
+
+        selections = {
+            region["code"]: munis,
+            background["code"]: [background_code],
+            time["code"]: [str(year)],
+        }
+
+        # Some PxWeb tables expose an explicit content dimension, others encode
+        # the single measure directly in the returned value-column heading.
+        try:
+            content = find_var(meta, "tabellinnehåll", "contentscode")
+            selections[content["code"]] = [content["values"][0]]
+        except KeyError:
+            pass
+
+        df = px_csv(STUDENT_URL, selections)
+
+        dims = standardize_columns(df)
+        for c in df.columns:
+            cl = str(c).lower()
+            if "bakgrund" in cl:
+                dims["background"] = c
+
+        dim_cols = set(dims.values())
+        value_cols = [c for c in df.columns if c not in dim_cols]
+        if len(value_cols) != 1:
+            raise ValueError(
+                f"Expected one student-share value column for {year}, got {value_cols}; "
+                f"columns={list(df.columns)}"
+            )
+
+        df["andel_studerande"] = normalize_number(df[value_cols[0]])
+        df["year"] = year
+        df[["kommun_kod", "kommun"]] = df[dims["region"]].apply(
+            lambda x: pd.Series(split_region(x))
+        )
+
+        agg = (
+            df.groupby(["kommun_kod", "kommun", "year"], as_index=False)["andel_studerande"]
+            .mean()
+        )
+        rows.append(agg)
+        print(f"Students {year}: {len(agg):,} municipalities")
+
+    if not rows:
+        raise ValueError(
+            f"No student-share years available for AUX_YEARS={AUX_YEARS}; "
+            f"table years={list(time['values'])[-10:]}"
+        )
+
+    return pd.concat(rows, ignore_index=True)
+
 def standardize_columns(df: pd.DataFrame) -> dict[str, str]:
     out = {}
     for c in df.columns:
@@ -687,7 +760,7 @@ def split_region(value: str) -> tuple[str, str]:
     return s[:4], s[5:] if len(s) > 5 else s
 
 
-def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, housing: pd.DataFrame, labor: pd.DataFrame, education: pd.DataFrame) -> pd.DataFrame:
+def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, housing: pd.DataFrame, labor: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame) -> pd.DataFrame:
     md = standardize_columns(mig)
     mig = mig.copy()
     mig["value"] = normalize_number(mig["value"])
@@ -749,6 +822,10 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
         education[["kommun_kod", "year", "andel_eftergymnasial"]],
         on=["kommun_kod", "year"], how="left"
     )
+    panel = panel.merge(
+        students[["kommun_kod", "year", "andel_studerande"]],
+        on=["kommun_kod", "year"], how="left"
+    )
     panel["andel_20_34"] = 100 * panel["bef_20_34"] / panel["folkmangd"]
     panel["inflyttning_per_1000"] = 1000 * panel["inflyttade"] / panel["folkmangd"]
     panel["log_folkmangd"] = np.log(panel["folkmangd"].where(panel["folkmangd"] > 0))
@@ -769,6 +846,7 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel["lag1_sysselsattningsgrad"] = g["sysselsattningsgrad"].shift(1)
     panel["lag1_arbetsloshet"] = g["arbetsloshet"].shift(1)
     panel["lag1_andel_eftergymnasial"] = g["andel_eftergymnasial"].shift(1)
+    panel["lag1_andel_studerande"] = g["andel_studerande"].shift(1)
 
     return panel.reset_index(drop=True)
 
@@ -917,6 +995,7 @@ FEATURE_THEMES = {
     "lag1_sysselsattningsgrad": "Arbetsmarknad",
     "lag1_arbetsloshet": "Arbetsmarknad",
     "lag1_andel_eftergymnasial": "Humankapital",
+    "lag1_andel_studerande": "Studentmiljö",
 }
 
 
@@ -1279,6 +1358,7 @@ def fit_models(panel: pd.DataFrame) -> dict:
         "lag1_sysselsattningsgrad",
         "lag1_arbetsloshet",
         "lag1_andel_eftergymnasial",
+        "lag1_andel_studerande",
     ]
     model_df = panel.dropna(subset=[target] + features).copy()
     test_year = int(model_df["year"].max())
@@ -1362,6 +1442,7 @@ def fit_models(panel: pd.DataFrame) -> dict:
             "Andel småhus avser lägenheter i småhus dividerat med samtliga lägenheter i småhus, flerbostadshus, övriga hus och specialbostäder enligt SCB BO0104T04 och används laggad ett år.",
             "Arbetsmarknadsvariablerna är sysselsättningsgrad och arbetslöshet bland 20–64-åringar från SCB BAS och används laggade ett år.",
             "Utbildningsvariabeln är andel 25–64-åringar med eftergymnasial utbildning och används laggad ett år.",
+            "Studentmiljö mäts som andel studerande bland 20–64-åringar enligt SCB IntGr8Kom1N och används laggad ett år.",
             "Variabelurvalet kombinerar Elastic Net, backward-AIC, tematisk diversifiering och tidsbaserad rolling-origin-korsvalidering.",
             "När flera variabler beskriver samma kvalitativa tema behålls högst en representant, vald efter inkrementellt AIC-bidrag.",
             "Tidsbaserad CV får endast sålla variabler när minst tre giltiga rolling-origin-foldar finns; annars behålls den tematiskt balanserade modellen.",
@@ -1378,11 +1459,12 @@ def main():
     # Fetch the smaller auxiliary table first so API/schema failures are fast to diagnose.
     labor = get_labor_market()
     education = get_education()
+    students = get_students()
     mig = get_migration()
     pop = get_population()
     income = get_income()
     housing = get_housing()
-    panel = build_panel(mig, pop, income, housing, labor, education)
+    panel = build_panel(mig, pop, income, housing, labor, education, students)
     panel.to_csv(OUT / "panel.csv", index=False)
     result = fit_models(panel)
     (OUT / "model.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
