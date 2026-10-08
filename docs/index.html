@@ -91,7 +91,7 @@
 
       <h3>Multipel linjär regression</h3>
       <p>OLS används som tolkningsbar grundmodell. När flera år ingår läggs årseffekter till för att fånga nationella skillnader mellan år. Eftersom samma kommun återkommer flera gånger används standardfel klustrade per kommun.</p>
-      <p>Förklaringsvariabler sållas automatiskt i två steg. Elastic Net används för att trycka ned svaga eller redundanta variabler mot noll, medan backward-AIC stegvis testar om modellen förbättras när en variabel tas bort. Variabler som väljs av båda metoderna behålls i första hand. Urvalet görs separat inom varje vald 1–5-årsperiod.</p>
+      <p>Förklaringsvariabler sållas automatiskt i tre steg. Elastic Net används för att trycka ned svaga eller redundanta variabler mot noll, medan backward-AIC stegvis testar om modellen förbättras när en variabel tas bort. Därefter används tidsbaserad rolling-origin-korsvalidering: tidigare år används för att prediktera ett senare år. Med one-standard-error-regeln föredras en enklare modell när dess RMSE ligger inom osäkerhetsmarginalen för den mer komplexa modellen. Urvalet görs separat inom varje vald 1–5-årsperiod och teståret används aldrig för att välja prognosvariabler.</p>
 
       <h3>Begrepp och diagnostik</h3>
       <dl class="terms">
