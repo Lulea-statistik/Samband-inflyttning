@@ -358,7 +358,8 @@ def get_housing() -> pd.DataFrame:
 def get_labor_market() -> pd.DataFrame:
     """
     Employment and registered unemployment shares for the resident population
-    aged 20-64. Uses BAS table 2019-2024 and the total education category.
+    aged 20-64. Uses BAS/RAMS table 2019-2024 and fetches one measure at a
+    time because this PxWeb table is sensitive to multi-content POST queries.
     """
     meta = metadata(LABOR_URL)
     region = find_var(meta, "region")
@@ -373,42 +374,56 @@ def get_labor_market() -> pd.DataFrame:
     unemployed_code = code_for_all_text(content, "arbetslösa", "(b)")
     total_code = code_for_all_text(content, "totalt", "(a+b+c)")
 
-    rows = []
-    for year in AUX_YEARS:
-        if year < 2019:
-            continue
+    def fetch_measure(year: int, measure_code: str, out_name: str) -> pd.DataFrame:
         df = px_csv(LABOR_URL, {
             region["code"]: munis,
             education["code"]: [edu_total],
-            content["code"]: [employed_code, unemployed_code, total_code],
+            content["code"]: [measure_code],
             time["code"]: [str(year)],
         })
         dims = standardize_columns(df)
         dim_cols = set(dims.values())
         value_cols = [c for c in df.columns if c not in dim_cols]
-
-        emp_col = next((c for c in value_cols if "förvärvsarbetande" in str(c).lower() and "(a)" in str(c).lower()), None)
-        unemp_col = next((c for c in value_cols if "arbetslösa" in str(c).lower() and "(b)" in str(c).lower()), None)
-        total_col = next((c for c in value_cols if "totalt" in str(c).lower() and "a+b+c" in str(c).lower()), None)
-        if not emp_col or not unemp_col or not total_col:
-            raise ValueError(f"Could not identify labor-market columns for {year}: {list(df.columns)}")
-
-        df["employed"] = normalize_number(df[emp_col])
-        df["unemployed"] = normalize_number(df[unemp_col])
-        df["labor_total"] = normalize_number(df[total_col])
+        if len(value_cols) != 1:
+            raise ValueError(
+                f"Expected one labor value column for {year}/{out_name}, got {value_cols}; "
+                f"columns={list(df.columns)}"
+            )
+        df[out_name] = normalize_number(df[value_cols[0]])
         df["year"] = year
-        df[["kommun_kod", "kommun"]] = df[dims["region"]].apply(lambda x: pd.Series(split_region(x)))
-
-        agg = df.groupby(["kommun_kod", "kommun", "year"], as_index=False).agg(
-            employed=("employed", "sum"),
-            unemployed=("unemployed", "sum"),
-            labor_total=("labor_total", "sum"),
+        df[["kommun_kod", "kommun"]] = df[dims["region"]].apply(
+            lambda x: pd.Series(split_region(x))
         )
-        agg["andel_forvarvsarbetande"] = 100 * agg["employed"] / agg["labor_total"].replace(0, np.nan)
-        agg["andel_arbetslosa"] = 100 * agg["unemployed"] / agg["labor_total"].replace(0, np.nan)
+        return df[["kommun_kod", "kommun", "year", out_name]]
+
+    rows = []
+    for year in AUX_YEARS:
+        if year < 2019:
+            continue
+
+        employed = fetch_measure(year, employed_code, "employed")
+        unemployed = fetch_measure(year, unemployed_code, "unemployed")
+        total = fetch_measure(year, total_code, "labor_total")
+
+        agg = employed.merge(
+            unemployed,
+            on=["kommun_kod", "kommun", "year"],
+            how="inner",
+        ).merge(
+            total,
+            on=["kommun_kod", "kommun", "year"],
+            how="inner",
+        )
+
+        agg["andel_forvarvsarbetande"] = (
+            100 * agg["employed"] / agg["labor_total"].replace(0, np.nan)
+        )
+        agg["andel_arbetslosa"] = (
+            100 * agg["unemployed"] / agg["labor_total"].replace(0, np.nan)
+        )
         rows.append(agg[[
             "kommun_kod", "kommun", "year",
-            "andel_forvarvsarbetande", "andel_arbetslosa"
+            "andel_forvarvsarbetande", "andel_arbetslosa",
         ]])
         print(f"Labor market {year}: {len(agg):,} municipalities")
 
