@@ -380,7 +380,7 @@ function renderLifeStageWinners(){
     .replace(', föregående år','')
     .replace(' föregående år','')
     .replace('Genomsnittlig ','')
-    .replace(/s+/g,' ')
+    .replace(/\s+/g,' ')
     .trim();
 
   root.innerHTML=
