@@ -27,6 +27,7 @@ LABOR_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210A/A
 EDUCATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/UF/UF0506/UF0506B/Utbildning"
 STUDENT_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AA/AA0003/AA0003H/IntGr8Kom1N"
 INDUSTRY_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210F/ArRegUtb"
+FA15_XLSX_URL = "https://tillvaxtverket.se/download/18.8fc3d8b1855c7f9043216/1672314363587/FA-regioner%202015%20%C3%A5r%20indelning%20%281%29.xlsx"
 OUT = Path("docs/data")
 OUT.mkdir(parents=True, exist_ok=True)
 
@@ -867,6 +868,7 @@ def get_industry_structure() -> pd.DataFrame:
 
         rows.append(agg[[
             "kommun_kod","kommun","year",
+            "sysselsatta_totalt",
             "andel_industri_bc",
             "andel_hotell_restaurang_i",
             "andel_kultur_service_rstu",
@@ -880,6 +882,104 @@ def get_industry_structure() -> pd.DataFrame:
         )
 
     return pd.concat(rows, ignore_index=True)
+
+
+def get_fa15_membership() -> pd.DataFrame:
+    """
+    Municipality-to-FA15 mapping from Tillvaxtverket.
+    FA15 is used because the model years 2020-2024 fall inside its 2015-2025 period.
+    The workbook layout is parsed defensively because presentation headers may change.
+    """
+    r = session.get(FA15_XLSX_URL, timeout=60)
+    if not r.ok:
+        raise RuntimeError(
+            f"FA15 workbook download failed {r.status_code}: {r.text[:300]}"
+        )
+
+    sheets = pd.read_excel(io.BytesIO(r.content), sheet_name=None, header=None, engine="openpyxl")
+    candidates = []
+
+    for sheet_name, raw in sheets.items():
+        raw = raw.copy()
+        for header_row in range(min(20, len(raw))):
+            headers = [str(x).strip() if pd.notna(x) else "" for x in raw.iloc[header_row]]
+            hl = [x.lower() for x in headers]
+            if not any("kommun" in x for x in hl):
+                continue
+            if not any(("fa" in x and ("region" in x or "15" in x)) for x in hl):
+                continue
+
+            data = raw.iloc[header_row + 1:].copy()
+            data.columns = headers
+
+            kommun_cols = [c for c in data.columns if "kommun" in str(c).lower()]
+            fa_cols = [
+                c for c in data.columns
+                if "fa" in str(c).lower()
+                and ("region" in str(c).lower() or "15" in str(c).lower())
+            ]
+            if not kommun_cols or not fa_cols:
+                continue
+
+            for _, row in data.iterrows():
+                kommun_code = None
+                kommun_name = None
+                for c in kommun_cols:
+                    val = str(row[c]).strip() if pd.notna(row[c]) else ""
+                    m = re.search(r"(?<!\d)(\d{4})(?!\d)", val)
+                    if m and kommun_code is None:
+                        kommun_code = m.group(1)
+                    elif val and not val.isdigit() and kommun_name is None:
+                        kommun_name = val
+
+                # Fallback: municipality code can live in a separate unnamed code column.
+                if kommun_code is None:
+                    for val in row.tolist():
+                        txt = str(val).strip() if pd.notna(val) else ""
+                        m = re.fullmatch(r"(\d{4})(?:\.0)?", txt)
+                        if m:
+                            kommun_code = m.group(1)
+                            break
+
+                fa_name = None
+                fa_code = None
+                for c in fa_cols:
+                    val = str(row[c]).strip() if pd.notna(row[c]) else ""
+                    if not val:
+                        continue
+                    if re.fullmatch(r"\d+(?:\.0)?", val):
+                        if fa_code is None:
+                            fa_code = str(int(float(val)))
+                    elif fa_name is None:
+                        fa_name = val
+
+                if kommun_code and (fa_name or fa_code):
+                    candidates.append({
+                        "kommun_kod": kommun_code,
+                        "fa15_kod": fa_code,
+                        "fa15_namn": fa_name,
+                        "_sheet": sheet_name,
+                    })
+
+    if not candidates:
+        raise ValueError(
+            "Could not parse any municipality-to-FA15 rows from Tillvaxtverket workbook"
+        )
+
+    fa = pd.DataFrame(candidates)
+    fa = fa.sort_values(["kommun_kod", "fa15_namn"], na_position="last")
+    fa = fa.drop_duplicates("kommun_kod", keep="first").drop(columns=["_sheet"])
+
+    if fa["kommun_kod"].nunique() < 280:
+        raise ValueError(
+            f"FA15 mapping parsed only {fa['kommun_kod'].nunique()} municipalities; "
+            f"expected close to 290. Sample={fa.head(10).to_dict('records')}"
+        )
+
+    # Ensure one stable region key even when one of code/name is absent.
+    fa["fa15_id"] = fa["fa15_kod"].fillna("") + "|" + fa["fa15_namn"].fillna("")
+    print(f"FA15 membership: {fa['kommun_kod'].nunique():,} municipalities")
+    return fa[["kommun_kod", "fa15_id", "fa15_kod", "fa15_namn"]]
 
 def standardize_columns(df: pd.DataFrame) -> dict[str, str]:
     out = {}
@@ -945,7 +1045,7 @@ def split_region(value: str) -> tuple[str, str]:
     return s[:4], s[5:] if len(s) > 5 else s
 
 
-def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, housing: pd.DataFrame, labor: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame, industry: pd.DataFrame) -> pd.DataFrame:
+def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, housing: pd.DataFrame, labor: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame, industry: pd.DataFrame, fa15: pd.DataFrame) -> pd.DataFrame:
     md = standardize_columns(mig)
     mig = mig.copy()
     mig["value"] = normalize_number(mig["value"])
@@ -1014,12 +1114,27 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel = panel.merge(
         industry[[
             "kommun_kod", "year",
+            "sysselsatta_totalt",
             "andel_industri_bc",
             "andel_hotell_restaurang_i",
             "andel_kultur_service_rstu",
         ]],
         on=["kommun_kod", "year"], how="left"
     )
+    panel = panel.merge(
+        fa15[["kommun_kod", "fa15_id", "fa15_kod", "fa15_namn"]],
+        on="kommun_kod", how="left"
+    )
+
+    # Functional labour-market access: jobs in the rest of the municipality's
+    # FA15 region relative to the municipality's own population.
+    fa_jobs = panel.groupby(["fa15_id", "year"])["sysselsatta_totalt"].transform("sum")
+    panel["externa_fa_jobb"] = (fa_jobs - panel["sysselsatta_totalt"]).clip(lower=0)
+    panel["externa_fa_jobb_per_1000"] = (
+        1000 * panel["externa_fa_jobb"] / panel["folkmangd"].replace(0, np.nan)
+    )
+    panel["log_externa_fa_jobb_per_1000"] = np.log1p(panel["externa_fa_jobb_per_1000"])
+
     panel["andel_20_34"] = 100 * panel["bef_20_34"] / panel["folkmangd"]
     panel["inflyttning_per_1000"] = 1000 * panel["inflyttade"] / panel["folkmangd"]
     panel["log_folkmangd"] = np.log(panel["folkmangd"].where(panel["folkmangd"] > 0))
@@ -1044,6 +1159,7 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel["lag1_andel_industri_bc"] = g["andel_industri_bc"].shift(1)
     panel["lag1_andel_hotell_restaurang_i"] = g["andel_hotell_restaurang_i"].shift(1)
     panel["lag1_andel_kultur_service_rstu"] = g["andel_kultur_service_rstu"].shift(1)
+    panel["lag1_log_externa_fa_jobb_per_1000"] = g["log_externa_fa_jobb_per_1000"].shift(1)
 
     return panel.reset_index(drop=True)
 
@@ -1196,6 +1312,7 @@ FEATURE_THEMES = {
     "lag1_andel_industri_bc": "Näringslivsprofil",
     "lag1_andel_hotell_restaurang_i": "Näringslivsprofil",
     "lag1_andel_kultur_service_rstu": "Näringslivsprofil",
+    "lag1_log_externa_fa_jobb_per_1000": "Regional arbetsmarknadsaccess",
 }
 
 
@@ -1562,6 +1679,7 @@ def fit_models(panel: pd.DataFrame) -> dict:
         "lag1_andel_industri_bc",
         "lag1_andel_hotell_restaurang_i",
         "lag1_andel_kultur_service_rstu",
+        "lag1_log_externa_fa_jobb_per_1000",
     ]
     model_df = panel.dropna(subset=[target] + features).copy()
     test_year = int(model_df["year"].max())
@@ -1647,6 +1765,7 @@ def fit_models(panel: pd.DataFrame) -> dict:
             "Utbildningsvariabeln är andel 25–64-åringar med eftergymnasial utbildning och används laggad ett år.",
             "Studentmiljö mäts som andel studerande bland 20–64-åringar enligt SCB IntGr8Kom1N och används laggad ett år.",
             "Näringslivsprofilen testas med andel sysselsatta efter arbetsställets belägenhet i B+C industri/gruvor, I hotell/restaurang samt R+S+T+U kultur/nöje/service enligt SCB ArRegUtb; högst en representant behålls från temat.",
+            "Regional arbetsmarknadsaccess mäts som log(1 + jobb i övriga kommuner inom samma FA15-region per 1 000 invånare i den egna kommunen), laggad ett år.",
             "Variabelurvalet kombinerar Elastic Net, backward-AIC, tematisk diversifiering och tidsbaserad rolling-origin-korsvalidering.",
             "När flera variabler beskriver samma kvalitativa tema behålls högst en representant, vald efter inkrementellt AIC-bidrag.",
             "Tidsbaserad CV får endast sålla variabler när minst tre giltiga rolling-origin-foldar finns; annars behålls den tematiskt balanserade modellen.",
@@ -1665,11 +1784,12 @@ def main():
     education = get_education()
     students = get_students()
     industry = get_industry_structure()
+    fa15 = get_fa15_membership()
     mig = get_migration()
     pop = get_population()
     income = get_income()
     housing = get_housing()
-    panel = build_panel(mig, pop, income, housing, labor, education, students, industry)
+    panel = build_panel(mig, pop, income, housing, labor, education, students, industry, fa15)
     panel.to_csv(OUT / "panel.csv", index=False)
     result = fit_models(panel)
     (OUT / "model.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
