@@ -59,10 +59,28 @@ session.headers.update({"User-Agent": "Samband-inflyttning/1.0"})
 
 
 def metadata(url: str) -> dict:
-    r = session.get(url, timeout=60)
-    if not r.ok:
-        raise RuntimeError(f"SCB metadata failed {r.status_code} for {url}: {r.text[:500]}")
-    return r.json()
+    last_error = None
+    for attempt in range(1, 5):
+        try:
+            r = session.get(url, timeout=60)
+            if r.ok:
+                return r.json()
+            if r.status_code not in {429, 500, 502, 503, 504}:
+                raise RuntimeError(
+                    f"SCB metadata failed {r.status_code} for {url}: {r.text[:500]}"
+                )
+            last_error = RuntimeError(
+                f"SCB metadata transient HTTP {r.status_code} for {url}: {r.text[:300]}"
+            )
+        except requests.RequestException as exc:
+            last_error = exc
+
+        if attempt < 4:
+            wait = 2 * attempt
+            print(f"Metadata retry {attempt}/4 for {url} after {last_error}; waiting {wait}s")
+            time.sleep(wait)
+
+    raise RuntimeError(f"SCB metadata failed after 4 attempts for {url}: {last_error}")
 
 
 def resolve_leisure_house_url() -> tuple[str, dict]:
@@ -2236,10 +2254,14 @@ def fit_age_group_models(panel: pd.DataFrame) -> dict:
     return out
 
 def main():
-    # Validate all external endpoints before spending time on the full extraction.
-    preflight_sources()
     if "--preflight-only" in sys.argv:
+        preflight_sources()
         return
+
+    # Manual runs keep the safety check by default. GitHub Actions uses
+    # --skip-preflight after its separate preflight step has already succeeded.
+    if "--skip-preflight" not in sys.argv:
+        preflight_sources()
 
     labor = get_labor_market()
     education = get_education()
