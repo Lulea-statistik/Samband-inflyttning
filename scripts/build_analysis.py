@@ -30,7 +30,8 @@ session.headers.update({"User-Agent": "Samband-inflyttning/1.0"})
 
 def metadata(url: str) -> dict:
     r = session.get(url, timeout=60)
-    r.raise_for_status()
+    if not r.ok:
+        raise RuntimeError(f"SCB metadata failed {r.status_code} for {url}: {r.text[:500]}")
     return r.json()
 
 
@@ -65,7 +66,8 @@ def px_csv(url: str, selections: dict[str, list[str]]) -> pd.DataFrame:
         query.append({"code": code, "selection": {"filter": "item", "values": values}})
     payload = {"query": query, "response": {"format": "csv"}}
     r = session.post(url, json=payload, timeout=180)
-    r.raise_for_status()
+    if not r.ok:
+        raise RuntimeError(f"SCB query failed {r.status_code} for {url}: {r.text[:1000]}")
     return pd.read_csv(io.StringIO(r.text), sep=None, engine="python")
 
 
@@ -133,6 +135,7 @@ def get_population() -> pd.DataFrame:
     region = find_var(meta, "region")
     age = find_var(meta, "ålder", "alder")
     sex = find_var(meta, "kön", "kon")
+    civil = find_var(meta, "civilstånd", "civilstand")
     content = find_var(meta, "tabellinnehåll", "contentscode")
     time = find_var(meta, "år", "tid")
 
@@ -150,6 +153,7 @@ def get_population() -> pd.DataFrame:
             region["code"]: munis,
             age["code"]: age_codes,
             sex["code"]: list(sex["values"]),
+            civil["code"]: list(civil["values"]),
             content["code"]: [pop_code],
             time["code"]: [str(year)],
         })
