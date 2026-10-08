@@ -580,6 +580,38 @@ def _detected_excel_sheet(content: bytes, sheet_name: str) -> pd.DataFrame:
     return pd.read_excel(io.BytesIO(content), sheet_name=sheet_name, header=best_row)
 
 
+def _debug_turnout_workbook(content: bytes, election_year: int) -> None:
+    """Print compact workbook schema samples when automatic parsing fails."""
+    try:
+        xl = pd.ExcelFile(io.BytesIO(content))
+    except Exception as exc:
+        print(f"Turnout debug {election_year}: could not open workbook: {exc}")
+        return
+
+    print(f"Turnout debug {election_year}: sheets={xl.sheet_names}")
+    for sheet in xl.sheet_names[:12]:
+        try:
+            raw = pd.read_excel(io.BytesIO(content), sheet_name=sheet, header=None, nrows=18)
+        except Exception as exc:
+            print(f"Turnout debug {election_year} sheet {sheet!r}: read failed: {exc}")
+            continue
+
+        print(
+            f"Turnout debug {election_year} sheet {sheet!r}: "
+            f"shape_sample={raw.shape}"
+        )
+        for idx, row in raw.iterrows():
+            vals = []
+            for val in row.tolist()[:16]:
+                text = str(val).strip()
+                if text and text.lower() != "nan":
+                    vals.append(text[:80])
+                else:
+                    vals.append("")
+            if any(vals):
+                print(f"  row {idx}: {vals}")
+
+
 def _turnout_rows_from_workbook(
     content: bytes,
     *,
@@ -793,8 +825,10 @@ def get_turnout_series() -> pd.DataFrame:
             muni_frames.extend(m)
             district_frames.extend(d)
 
+        debug_content = None
         if "combined" in sources:
             content = _excel_bytes(sources["combined"])
+            debug_content = content
             m, d = _turnout_rows_from_workbook(content, level_hint=None)
             muni_frames.extend(m)
             district_frames.extend(d)
@@ -840,6 +874,8 @@ def get_turnout_series() -> pd.DataFrame:
                 )
 
         if muni.empty or districts.empty:
+            if debug_content is not None:
+                _debug_turnout_workbook(debug_content, election_year)
             raise ValueError(
                 f"Turnout parser could not identify both municipality and district data for {election_year}. "
                 f"municipality_frames={len(muni_frames)}, district_frames={len(district_frames)}"
