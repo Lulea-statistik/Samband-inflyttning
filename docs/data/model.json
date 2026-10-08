@@ -11157,8 +11157,4023 @@
     "Alla strukturella förklaringsvariabler används laggade ett år för tydligare tidsordning mot inflyttningen.",
     "Variabelmatrisen redovisar parvis korrelation, gemensamt justerat R² samt extra justerat R² jämfört med den starkaste variabeln ensam.",
     "Tematisk marginalanalys tar bort ett valt tema i taget från fullmodellen och visar förändringen i justerat R², AIC och RMSE på samma analysurval.",
+    "Separata livsfasmodeller skattas för 18–23 år och 63–68 år, med inflyttade per 1 000 invånare i samma åldersgrupp som mål och åldersgruppens egen föregående inflyttning som historisk dynamik.",
     "Om konsensusurvalet blir alltför litet används backward-AIC som reserv för att undvika instabila små modeller.",
     "Urvalet för prognosvalidering görs endast på träningsåren och får inte se teståret.",
     "Samband ska inte tolkas som säkra kausala effekter; endogenitet och utelämnade variabler kan finnas."
-  ]
+  ],
+  "age_group_models": {
+    "18_23": {
+      "label": "18–23 år",
+      "interpretation": "Student-/etableringsålder",
+      "target": "inflyttning_18_23_per_1000",
+      "lag_target": "lag1_inflyttning_18_23_per_1000",
+      "rate_definition": "Inflyttade i åldersgruppen per 1 000 invånare i samma åldersgrupp",
+      "explanation": {
+        "window": 5,
+        "start_year": 2020,
+        "end_year": 2024,
+        "n_obs": 1160,
+        "n_municipalities": 290,
+        "r2": 0.7624128836022994,
+        "adjusted_r2": 0.7595078882926332,
+        "aic": 10151.5763832961,
+        "bic": 10227.419012557606,
+        "coefficients": [
+          {
+            "feature": "lag1_inflyttning_18_23_per_1000",
+            "coefficient": 0.696736837969994,
+            "standardized_coefficient": 0.7092157278678318,
+            "p_value": 3.33019871349669e-177,
+            "ci_low": 0.648623334147019,
+            "ci_high": 0.7448503417929689
+          },
+          {
+            "feature": "lag1_log_folkmangd",
+            "coefficient": -7.134488428565603,
+            "standardized_coefficient": -0.181701316287712,
+            "p_value": 2.2907922218881345e-09,
+            "ci_low": -9.474515314265203,
+            "ci_high": -4.794461542866003
+          },
+          {
+            "feature": "lag1_befolkningstillvaxt_pct",
+            "coefficient": -1.310337394037481,
+            "standardized_coefficient": -0.033491562886451186,
+            "p_value": 0.10607971995205183,
+            "ci_low": -2.899512412642592,
+            "ci_high": 0.2788376245676303
+          },
+          {
+            "feature": "lag1_andel_20_34",
+            "coefficient": 2.718605313502665,
+            "standardized_coefficient": 0.19408731684254776,
+            "p_value": 1.2414417098814018e-12,
+            "ci_low": 1.9682027879095596,
+            "ci_high": 3.46900783909577
+          },
+          {
+            "feature": "lag1_inflyttare_medelalder",
+            "coefficient": 0.020160369539150125,
+            "standardized_coefficient": 0.0013460983034758477,
+            "p_value": 0.9424413764868584,
+            "ci_low": -0.5271063476650931,
+            "ci_high": 0.5674270867433934
+          },
+          {
+            "feature": "lag1_inkomst_tkr",
+            "coefficient": -0.0575523409031634,
+            "standardized_coefficient": -0.078584611349618,
+            "p_value": 0.0008024029150437756,
+            "ci_low": -0.09120440182858007,
+            "ci_high": -0.023900279977746727
+          },
+          {
+            "feature": "lag1_sysselsattningsgrad",
+            "coefficient": -0.24771756674031833,
+            "standardized_coefficient": -0.02169622522816784,
+            "p_value": 0.3597902572589562,
+            "ci_low": -0.7778946349750129,
+            "ci_high": 0.28245950149437626
+          },
+          {
+            "feature": "lag1_andel_eftergymnasial",
+            "coefficient": 0.7417750542210086,
+            "standardized_coefficient": 0.1916983206290244,
+            "p_value": 2.0999876622073597e-06,
+            "ci_low": 0.4352850782547772,
+            "ci_high": 1.04826503018724
+          },
+          {
+            "feature": "lag1_andel_studerande",
+            "coefficient": 0.40052059906250714,
+            "standardized_coefficient": 0.02928662718163578,
+            "p_value": 0.36274224955568435,
+            "ci_low": -0.46197904728784267,
+            "ci_high": 1.263020245412857
+          },
+          {
+            "feature": "lag1_andel_hotell_restaurang_i",
+            "coefficient": 1.159702306243958,
+            "standardized_coefficient": 0.04801812148360543,
+            "p_value": 0.00098984047622486,
+            "ci_low": 0.4695414578240653,
+            "ci_high": 1.8498631546638507
+          },
+          {
+            "feature": "lag1_log_externa_fa_jobb_per_1000",
+            "coefficient": 0.5797454058204036,
+            "standardized_coefficient": 0.03979742991092851,
+            "p_value": 0.027684212872465613,
+            "ci_low": 0.06366084984117126,
+            "ci_high": 1.0958299617996359
+          }
+        ],
+        "vif": [
+          {
+            "feature": "lag1_inflyttning_18_23_per_1000",
+            "vif": 2.2773332669896464
+          },
+          {
+            "feature": "lag1_log_folkmangd",
+            "vif": 4.553685259350929
+          },
+          {
+            "feature": "lag1_befolkningstillvaxt_pct",
+            "vif": 1.8090060231441423
+          },
+          {
+            "feature": "lag1_andel_20_34",
+            "vif": 4.566435166499111
+          },
+          {
+            "feature": "lag1_inflyttare_medelalder",
+            "vif": 2.043574238177372
+          },
+          {
+            "feature": "lag1_inkomst_tkr",
+            "vif": 4.534779301415867
+          },
+          {
+            "feature": "lag1_sysselsattningsgrad",
+            "vif": 3.0518835545772194
+          },
+          {
+            "feature": "lag1_andel_eftergymnasial",
+            "vif": 9.172005918486233
+          },
+          {
+            "feature": "lag1_andel_studerande",
+            "vif": 6.51866270148787
+          },
+          {
+            "feature": "lag1_andel_hotell_restaurang_i",
+            "vif": 1.310762418120433
+          },
+          {
+            "feature": "lag1_log_externa_fa_jobb_per_1000",
+            "vif": 1.3472831881200642
+          }
+        ],
+        "variable_selection": {
+          "selected": [
+            "lag1_inflyttning_18_23_per_1000",
+            "lag1_log_folkmangd",
+            "lag1_befolkningstillvaxt_pct",
+            "lag1_andel_20_34",
+            "lag1_inflyttare_medelalder",
+            "lag1_inkomst_tkr",
+            "lag1_sysselsattningsgrad",
+            "lag1_andel_eftergymnasial",
+            "lag1_andel_studerande",
+            "lag1_andel_hotell_restaurang_i",
+            "lag1_log_externa_fa_jobb_per_1000"
+          ],
+          "excluded": [
+            "lag1_andel_smahus",
+            "lag1_arbetsloshet",
+            "lag1_andel_industri_bc",
+            "lag1_andel_kultur_service_rstu"
+          ],
+          "elastic_net_selected": [
+            "lag1_inflyttning_18_23_per_1000",
+            "lag1_log_folkmangd",
+            "lag1_befolkningstillvaxt_pct",
+            "lag1_andel_20_34",
+            "lag1_inflyttare_medelalder",
+            "lag1_inkomst_tkr",
+            "lag1_sysselsattningsgrad",
+            "lag1_arbetsloshet",
+            "lag1_andel_eftergymnasial",
+            "lag1_andel_studerande",
+            "lag1_andel_industri_bc",
+            "lag1_andel_hotell_restaurang_i",
+            "lag1_andel_kultur_service_rstu",
+            "lag1_log_externa_fa_jobb_per_1000"
+          ],
+          "backward_aic_selected": [
+            "lag1_inflyttning_18_23_per_1000",
+            "lag1_log_folkmangd",
+            "lag1_befolkningstillvaxt_pct",
+            "lag1_andel_20_34",
+            "lag1_inflyttare_medelalder",
+            "lag1_inkomst_tkr",
+            "lag1_andel_smahus",
+            "lag1_sysselsattningsgrad",
+            "lag1_arbetsloshet",
+            "lag1_andel_eftergymnasial",
+            "lag1_andel_studerande",
+            "lag1_andel_industri_bc",
+            "lag1_andel_hotell_restaurang_i",
+            "lag1_andel_kultur_service_rstu",
+            "lag1_log_externa_fa_jobb_per_1000"
+          ],
+          "pre_theme_consensus": [
+            "lag1_inflyttning_18_23_per_1000",
+            "lag1_log_folkmangd",
+            "lag1_befolkningstillvaxt_pct",
+            "lag1_andel_20_34",
+            "lag1_inflyttare_medelalder",
+            "lag1_inkomst_tkr",
+            "lag1_sysselsattningsgrad",
+            "lag1_arbetsloshet",
+            "lag1_andel_eftergymnasial",
+            "lag1_andel_studerande",
+            "lag1_andel_industri_bc",
+            "lag1_andel_hotell_restaurang_i",
+            "lag1_andel_kultur_service_rstu",
+            "lag1_log_externa_fa_jobb_per_1000"
+          ],
+          "thematic_selected": [
+            "lag1_inflyttning_18_23_per_1000",
+            "lag1_log_folkmangd",
+            "lag1_befolkningstillvaxt_pct",
+            "lag1_andel_20_34",
+            "lag1_inflyttare_medelalder",
+            "lag1_inkomst_tkr",
+            "lag1_sysselsattningsgrad",
+            "lag1_andel_eftergymnasial",
+            "lag1_andel_studerande",
+            "lag1_andel_hotell_restaurang_i",
+            "lag1_log_externa_fa_jobb_per_1000"
+          ],
+          "temporal_cv_selected": [
+            "lag1_inflyttning_18_23_per_1000",
+            "lag1_log_folkmangd",
+            "lag1_befolkningstillvaxt_pct",
+            "lag1_andel_20_34",
+            "lag1_inflyttare_medelalder",
+            "lag1_inkomst_tkr",
+            "lag1_sysselsattningsgrad",
+            "lag1_andel_eftergymnasial",
+            "lag1_andel_studerande",
+            "lag1_andel_hotell_restaurang_i",
+            "lag1_log_externa_fa_jobb_per_1000"
+          ],
+          "elastic_net": {
+            "alpha": 0.03821892620633119,
+            "l1_ratio": 0.5,
+            "coefficients": [
+              {
+                "feature": "lag1_inflyttning_18_23_per_1000",
+                "penalized_coefficient": 26.79156638447504
+              },
+              {
+                "feature": "lag1_log_folkmangd",
+                "penalized_coefficient": -6.197859059348421
+              },
+              {
+                "feature": "lag1_befolkningstillvaxt_pct",
+                "penalized_coefficient": -1.0187424430760386
+              },
+              {
+                "feature": "lag1_andel_20_34",
+                "penalized_coefficient": 6.817772102171453
+              },
+              {
+                "feature": "lag1_inflyttare_medelalder",
+                "penalized_coefficient": -0.46328675728656893
+              },
+              {
+                "feature": "lag1_inkomst_tkr",
+                "penalized_coefficient": -2.631717813792057
+              },
+              {
+                "feature": "lag1_andel_smahus",
+                "penalized_coefficient": 0.0
+              },
+              {
+                "feature": "lag1_sysselsattningsgrad",
+                "penalized_coefficient": -2.215400337643509
+              },
+              {
+                "feature": "lag1_arbetsloshet",
+                "penalized_coefficient": -2.0260736685392677
+              },
+              {
+                "feature": "lag1_andel_eftergymnasial",
+                "penalized_coefficient": 6.062322327913303
+              },
+              {
+                "feature": "lag1_andel_studerande",
+                "penalized_coefficient": 2.1105745403547806
+              },
+              {
+                "feature": "lag1_andel_industri_bc",
+                "penalized_coefficient": 0.7154298919382984
+              },
+              {
+                "feature": "lag1_andel_hotell_restaurang_i",
+                "penalized_coefficient": 1.8591211745810792
+              },
+              {
+                "feature": "lag1_andel_kultur_service_rstu",
+                "penalized_coefficient": 0.5734064663137463
+              },
+              {
+                "feature": "lag1_log_externa_fa_jobb_per_1000",
+                "penalized_coefficient": 1.6581765772888961
+              }
+            ]
+          },
+          "backward_aic_history": [],
+          "thematic_selection": {
+            "themes": {
+              "Historisk flyttdynamik": "lag1_inflyttning_18_23_per_1000",
+              "Kommunstorlek": "lag1_log_folkmangd",
+              "Befolkningsdynamik": "lag1_befolkningstillvaxt_pct",
+              "Åldersstruktur": "lag1_andel_20_34",
+              "Inflyttarprofil": "lag1_inflyttare_medelalder",
+              "Inkomstnivå": "lag1_inkomst_tkr",
+              "Arbetsmarknad": "lag1_sysselsattningsgrad",
+              "Humankapital": "lag1_andel_eftergymnasial",
+              "Studentmiljö": "lag1_andel_studerande",
+              "Näringslivsprofil": "lag1_andel_hotell_restaurang_i",
+              "Regional arbetsmarknadsaccess": "lag1_log_externa_fa_jobb_per_1000"
+            },
+            "incremental_aic": [
+              {
+                "feature": "lag1_inflyttning_18_23_per_1000",
+                "theme": "Historisk flyttdynamik",
+                "delta_aic_when_removed": 706.4608093892311
+              },
+              {
+                "feature": "lag1_log_folkmangd",
+                "theme": "Kommunstorlek",
+                "delta_aic_when_removed": 27.378127322010187
+              },
+              {
+                "feature": "lag1_befolkningstillvaxt_pct",
+                "theme": "Befolkningsdynamik",
+                "delta_aic_when_removed": 0.3285435114939901
+              },
+              {
+                "feature": "lag1_andel_20_34",
+                "theme": "Åldersstruktur",
+                "delta_aic_when_removed": 31.451432538997324
+              },
+              {
+                "feature": "lag1_inflyttare_medelalder",
+                "theme": "Inflyttarprofil",
+                "delta_aic_when_removed": -1.7362861230903945
+              },
+              {
+                "feature": "lag1_inkomst_tkr",
+                "theme": "Inkomstnivå",
+                "delta_aic_when_removed": 5.319117327533604
+              },
+              {
+                "feature": "lag1_sysselsattningsgrad",
+                "theme": "Arbetsmarknad",
+                "delta_aic_when_removed": 1.1443624444764282
+              },
+              {
+                "feature": "lag1_arbetsloshet",
+                "theme": "Arbetsmarknad",
+                "delta_aic_when_removed": 0.4778042627549439
+              },
+              {
+                "feature": "lag1_andel_eftergymnasial",
+                "theme": "Humankapital",
+                "delta_aic_when_removed": 15.887863640335127
+              },
+              {
+                "feature": "lag1_andel_studerande",
+                "theme": "Studentmiljö",
+                "delta_aic_when_removed": -1.276433886570885
+              },
+              {
+                "feature": "lag1_andel_industri_bc",
+                "theme": "Näringslivsprofil",
+                "delta_aic_when_removed": -0.5843054387041775
+              },
+              {
+                "feature": "lag1_andel_hotell_restaurang_i",
+                "theme": "Näringslivsprofil",
+                "delta_aic_when_removed": 6.0269088628811005
+              },
+              {
+                "feature": "lag1_andel_kultur_service_rstu",
+                "theme": "Näringslivsprofil",
+                "delta_aic_when_removed": -1.044328608422802
+              },
+              {
+                "feature": "lag1_log_externa_fa_jobb_per_1000",
+                "theme": "Regional arbetsmarknadsaccess",
+                "delta_aic_when_removed": 3.8618537002039375
+              }
+            ],
+            "n_themes": 11,
+            "rule": "max one variable per qualitative theme; within-theme choice by incremental AIC"
+          },
+          "temporal_cv": {
+            "reason": "fewer_than_3_temporal_folds",
+            "folds": 2,
+            "selected": [
+              "lag1_inflyttning_18_23_per_1000",
+              "lag1_log_folkmangd",
+              "lag1_befolkningstillvaxt_pct",
+              "lag1_andel_20_34",
+              "lag1_inflyttare_medelalder",
+              "lag1_inkomst_tkr",
+              "lag1_sysselsattningsgrad",
+              "lag1_andel_eftergymnasial",
+              "lag1_andel_studerande",
+              "lag1_andel_hotell_restaurang_i",
+              "lag1_log_externa_fa_jobb_per_1000"
+            ],
+            "history": []
+          }
+        },
+        "selected_features": [
+          "lag1_inflyttning_18_23_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder",
+          "lag1_inkomst_tkr",
+          "lag1_sysselsattningsgrad",
+          "lag1_andel_eftergymnasial",
+          "lag1_andel_studerande",
+          "lag1_andel_hotell_restaurang_i",
+          "lag1_log_externa_fa_jobb_per_1000"
+        ],
+        "excluded_features": [
+          "lag1_andel_smahus",
+          "lag1_arbetsloshet",
+          "lag1_andel_industri_bc",
+          "lag1_andel_kultur_service_rstu"
+        ],
+        "pairwise_matrix": {
+          "features": [
+            "lag1_inflyttning_18_23_per_1000",
+            "lag1_log_folkmangd",
+            "lag1_befolkningstillvaxt_pct",
+            "lag1_andel_20_34",
+            "lag1_inflyttare_medelalder",
+            "lag1_inkomst_tkr",
+            "lag1_andel_smahus",
+            "lag1_sysselsattningsgrad",
+            "lag1_arbetsloshet",
+            "lag1_andel_eftergymnasial",
+            "lag1_andel_studerande",
+            "lag1_andel_industri_bc",
+            "lag1_andel_hotell_restaurang_i",
+            "lag1_andel_kultur_service_rstu",
+            "lag1_log_externa_fa_jobb_per_1000"
+          ],
+          "single_adjusted_r2": {
+            "lag1_inflyttning_18_23_per_1000": 0.7380899923526074,
+            "lag1_log_folkmangd": 0.04082142618251983,
+            "lag1_befolkningstillvaxt_pct": 0.05301152302101331,
+            "lag1_andel_20_34": 0.29800020196638033,
+            "lag1_inflyttare_medelalder": 0.11911015583332418,
+            "lag1_inkomst_tkr": 0.00715142100075683,
+            "lag1_andel_smahus": 0.141023190032591,
+            "lag1_sysselsattningsgrad": 0.08351029623765882,
+            "lag1_arbetsloshet": 0.02221785053437597,
+            "lag1_andel_eftergymnasial": 0.07674319093362125,
+            "lag1_andel_studerande": 0.29423320607369363,
+            "lag1_andel_industri_bc": 0.007170837867432445,
+            "lag1_andel_hotell_restaurang_i": 0.011846232758581987,
+            "lag1_andel_kultur_service_rstu": 0.003100912603618222,
+            "lag1_log_externa_fa_jobb_per_1000": 0.024870354816119877
+          },
+          "rows": [
+            {
+              "x": "lag1_inflyttning_18_23_per_1000",
+              "y": "lag1_inflyttning_18_23_per_1000",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.7380899923526074,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Historisk flyttdynamik",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_18_23_per_1000",
+              "y": "lag1_log_folkmangd",
+              "correlation": 0.1862939262342994,
+              "joint_adjusted_r2": 0.7392886869098598,
+              "incremental_adjusted_r2": 0.001198694557252411,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Kommunstorlek",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_18_23_per_1000",
+              "y": "lag1_befolkningstillvaxt_pct",
+              "correlation": 0.26569197170381187,
+              "joint_adjusted_r2": 0.7378634473885238,
+              "incremental_adjusted_r2": -0.00022654496408358593,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Befolkningsdynamik",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_18_23_per_1000",
+              "y": "lag1_andel_20_34",
+              "correlation": 0.5422825734426148,
+              "joint_adjusted_r2": 0.7471677262827694,
+              "incremental_adjusted_r2": 0.00907773393016198,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Åldersstruktur",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_18_23_per_1000",
+              "y": "lag1_inflyttare_medelalder",
+              "correlation": -0.36776371921154805,
+              "joint_adjusted_r2": 0.7389999222328049,
+              "incremental_adjusted_r2": 0.0009099298801974465,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Inflyttarprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_18_23_per_1000",
+              "y": "lag1_inkomst_tkr",
+              "correlation": -0.10903097042509513,
+              "joint_adjusted_r2": 0.7379102486258762,
+              "incremental_adjusted_r2": -0.00017974372673124073,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Inkomstnivå",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_18_23_per_1000",
+              "y": "lag1_andel_smahus",
+              "correlation": -0.3624621995946949,
+              "joint_adjusted_r2": 0.7420426158486293,
+              "incremental_adjusted_r2": 0.003952623496021879,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Bostadsstruktur",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_18_23_per_1000",
+              "y": "lag1_sysselsattningsgrad",
+              "correlation": -0.32153790641452623,
+              "joint_adjusted_r2": 0.7380572251614752,
+              "incremental_adjusted_r2": -3.276719113221027e-05,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_18_23_per_1000",
+              "y": "lag1_arbetsloshet",
+              "correlation": 0.18411060009649052,
+              "joint_adjusted_r2": 0.737922605680631,
+              "incremental_adjusted_r2": -0.00016738667197646606,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_18_23_per_1000",
+              "y": "lag1_andel_eftergymnasial",
+              "correlation": 0.24405798595879316,
+              "joint_adjusted_r2": 0.7414454194185549,
+              "incremental_adjusted_r2": 0.0033554270659474916,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Humankapital",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_18_23_per_1000",
+              "y": "lag1_andel_studerande",
+              "correlation": 0.5338104626932025,
+              "joint_adjusted_r2": 0.7469333744581772,
+              "incremental_adjusted_r2": 0.008843382105569786,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Studentmiljö",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_18_23_per_1000",
+              "y": "lag1_andel_industri_bc",
+              "correlation": -0.04085368935711302,
+              "joint_adjusted_r2": 0.739285402427476,
+              "incremental_adjusted_r2": 0.0011954100748685637,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_18_23_per_1000",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": 0.06951243162393857,
+              "joint_adjusted_r2": 0.7391244023804803,
+              "incremental_adjusted_r2": 0.0010344100278728563,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_18_23_per_1000",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": -0.07156353010209467,
+              "joint_adjusted_r2": 0.738541080863879,
+              "incremental_adjusted_r2": 0.0004510885112716245,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_18_23_per_1000",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": 0.18256544484626125,
+              "joint_adjusted_r2": 0.737896658903514,
+              "incremental_adjusted_r2": -0.00019333344909344685,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_log_folkmangd",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.04082142618251983,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Kommunstorlek",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_befolkningstillvaxt_pct",
+              "correlation": 0.45858680371884764,
+              "joint_adjusted_r2": 0.06252293671154785,
+              "incremental_adjusted_r2": 0.009511413690534543,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Befolkningsdynamik",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_andel_20_34",
+              "correlation": 0.6650705043398323,
+              "joint_adjusted_r2": 0.34736217438591155,
+              "incremental_adjusted_r2": 0.04936197241953122,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Åldersstruktur",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_inflyttare_medelalder",
+              "correlation": -0.5151491032303194,
+              "joint_adjusted_r2": 0.11882777434888625,
+              "incremental_adjusted_r2": -0.00028238148443793243,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Inflyttarprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_inkomst_tkr",
+              "correlation": 0.31115905342395395,
+              "joint_adjusted_r2": 0.0612898570208521,
+              "incremental_adjusted_r2": 0.020468430838332274,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Inkomstnivå",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_andel_smahus",
+              "correlation": -0.7318958390021453,
+              "joint_adjusted_r2": 0.15263850381201405,
+              "incremental_adjusted_r2": 0.011615313779423042,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Bostadsstruktur",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_sysselsattningsgrad",
+              "correlation": -0.1052781195093902,
+              "joint_adjusted_r2": 0.11066903917022164,
+              "incremental_adjusted_r2": 0.027158742932562818,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_arbetsloshet",
+              "correlation": 0.11020758100311889,
+              "joint_adjusted_r2": 0.054403910422034296,
+              "incremental_adjusted_r2": 0.01358248423951447,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_andel_eftergymnasial",
+              "correlation": 0.6970423130613381,
+              "joint_adjusted_r2": 0.07601090440744407,
+              "incremental_adjusted_r2": -0.0007322865261771838,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Humankapital",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_andel_studerande",
+              "correlation": 0.6493979513627359,
+              "joint_adjusted_r2": 0.3430585716599751,
+              "incremental_adjusted_r2": 0.04882536558628148,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Studentmiljö",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_andel_industri_bc",
+              "correlation": -0.3385989406687114,
+              "joint_adjusted_r2": 0.04003009917089051,
+              "incremental_adjusted_r2": -0.000791327011629317,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": 0.13606264098250173,
+              "joint_adjusted_r2": 0.0454130542461848,
+              "incremental_adjusted_r2": 0.0045916280636649764,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": 0.06995928068159767,
+              "joint_adjusted_r2": 0.042384536245269055,
+              "incremental_adjusted_r2": 0.001563110062749229,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": -0.08839729255877703,
+              "joint_adjusted_r2": 0.06882949186743659,
+              "incremental_adjusted_r2": 0.02800806568491676,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_befolkningstillvaxt_pct",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.05301152302101331,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Befolkningsdynamik",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_andel_20_34",
+              "correlation": 0.3454864546498168,
+              "joint_adjusted_r2": 0.299320044232925,
+              "incremental_adjusted_r2": 0.0013198422665446907,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Åldersstruktur",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_inflyttare_medelalder",
+              "correlation": -0.33602625680701576,
+              "joint_adjusted_r2": 0.1335147101301224,
+              "incremental_adjusted_r2": 0.014404554296798211,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Inflyttarprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_inkomst_tkr",
+              "correlation": 0.24903899142488967,
+              "joint_adjusted_r2": 0.07855790880407654,
+              "incremental_adjusted_r2": 0.02554638578306323,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Inkomstnivå",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_andel_smahus",
+              "correlation": -0.24279592279358486,
+              "joint_adjusted_r2": 0.1584358473102997,
+              "incremental_adjusted_r2": 0.017412657277708687,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Bostadsstruktur",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_sysselsattningsgrad",
+              "correlation": 0.22848045103029693,
+              "joint_adjusted_r2": 0.18866745797382145,
+              "incremental_adjusted_r2": 0.10515716173616263,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_arbetsloshet",
+              "correlation": -0.16527098914366173,
+              "joint_adjusted_r2": 0.0966062040329323,
+              "incremental_adjusted_r2": 0.04359468101191899,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_andel_eftergymnasial",
+              "correlation": 0.46899967871944437,
+              "joint_adjusted_r2": 0.08609135627030606,
+              "incremental_adjusted_r2": 0.00934816533668481,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Humankapital",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_andel_studerande",
+              "correlation": 0.28402827555591365,
+              "joint_adjusted_r2": 0.3020168847799205,
+              "incremental_adjusted_r2": 0.007783678706226871,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Studentmiljö",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_andel_industri_bc",
+              "correlation": -0.27745542529997413,
+              "joint_adjusted_r2": 0.05224946756236948,
+              "incremental_adjusted_r2": -0.0007620554586438288,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": 0.22873483688681048,
+              "joint_adjusted_r2": 0.0541762132012229,
+              "incremental_adjusted_r2": 0.0011646901802095933,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": 0.12772865464292754,
+              "joint_adjusted_r2": 0.05651632266211304,
+              "incremental_adjusted_r2": 0.0035047996410997317,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": 0.2204873834640885,
+              "joint_adjusted_r2": 0.06263970989486267,
+              "incremental_adjusted_r2": 0.009628186873849365,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_20_34",
+              "y": "lag1_andel_20_34",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.29800020196638033,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Åldersstruktur",
+              "y_theme": "Åldersstruktur",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_20_34",
+              "y": "lag1_inflyttare_medelalder",
+              "correlation": -0.6259553801888211,
+              "joint_adjusted_r2": 0.29742000506974275,
+              "incremental_adjusted_r2": -0.0005801968966375748,
+              "x_theme": "Åldersstruktur",
+              "y_theme": "Inflyttarprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_20_34",
+              "y": "lag1_inkomst_tkr",
+              "correlation": -0.09549487557036154,
+              "joint_adjusted_r2": 0.2986558171446536,
+              "incremental_adjusted_r2": 0.0006556151782732833,
+              "x_theme": "Åldersstruktur",
+              "y_theme": "Inkomstnivå",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_20_34",
+              "y": "lag1_andel_smahus",
+              "correlation": -0.7636178130997467,
+              "joint_adjusted_r2": 0.30244098390472607,
+              "incremental_adjusted_r2": 0.004440781938345739,
+              "x_theme": "Åldersstruktur",
+              "y_theme": "Bostadsstruktur",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_20_34",
+              "y": "lag1_sysselsattningsgrad",
+              "correlation": -0.2797747904258172,
+              "joint_adjusted_r2": 0.31864232114937463,
+              "incremental_adjusted_r2": 0.0206421191829943,
+              "x_theme": "Åldersstruktur",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_20_34",
+              "y": "lag1_arbetsloshet",
+              "correlation": 0.22211523955381657,
+              "joint_adjusted_r2": 0.29842093474862996,
+              "incremental_adjusted_r2": 0.0004207327822496332,
+              "x_theme": "Åldersstruktur",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_20_34",
+              "y": "lag1_andel_eftergymnasial",
+              "correlation": 0.37862473105532446,
+              "joint_adjusted_r2": 0.3018205714736083,
+              "incremental_adjusted_r2": 0.003820369507227972,
+              "x_theme": "Åldersstruktur",
+              "y_theme": "Humankapital",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_20_34",
+              "y": "lag1_andel_studerande",
+              "correlation": 0.7654773094944125,
+              "joint_adjusted_r2": 0.33377284032457466,
+              "incremental_adjusted_r2": 0.03577263835819433,
+              "x_theme": "Åldersstruktur",
+              "y_theme": "Studentmiljö",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_20_34",
+              "y": "lag1_andel_industri_bc",
+              "correlation": -0.17493541828302903,
+              "joint_adjusted_r2": 0.2979280424592249,
+              "incremental_adjusted_r2": -7.215950715544484e-05,
+              "x_theme": "Åldersstruktur",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_20_34",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": -0.0008777495033539575,
+              "joint_adjusted_r2": 0.3066709723059944,
+              "incremental_adjusted_r2": 0.008670770339614053,
+              "x_theme": "Åldersstruktur",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_20_34",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": -0.08627348702770792,
+              "joint_adjusted_r2": 0.29752954719460767,
+              "incremental_adjusted_r2": -0.0004706547717726606,
+              "x_theme": "Åldersstruktur",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_20_34",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": -0.14969158964789134,
+              "joint_adjusted_r2": 0.3530629579255833,
+              "incremental_adjusted_r2": 0.05506275595920296,
+              "x_theme": "Åldersstruktur",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttare_medelalder",
+              "y": "lag1_inflyttare_medelalder",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.11911015583332418,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Inflyttarprofil",
+              "y_theme": "Inflyttarprofil",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttare_medelalder",
+              "y": "lag1_inkomst_tkr",
+              "correlation": -0.07629374036526186,
+              "joint_adjusted_r2": 0.13299911557395816,
+              "incremental_adjusted_r2": 0.013888959740633977,
+              "x_theme": "Inflyttarprofil",
+              "y_theme": "Inkomstnivå",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttare_medelalder",
+              "y": "lag1_andel_smahus",
+              "correlation": 0.45571460419795057,
+              "joint_adjusted_r2": 0.17679522457850105,
+              "incremental_adjusted_r2": 0.03577203454591005,
+              "x_theme": "Inflyttarprofil",
+              "y_theme": "Bostadsstruktur",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttare_medelalder",
+              "y": "lag1_sysselsattningsgrad",
+              "correlation": 0.1121043788739846,
+              "joint_adjusted_r2": 0.18596997557554118,
+              "incremental_adjusted_r2": 0.066859819742217,
+              "x_theme": "Inflyttarprofil",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttare_medelalder",
+              "y": "lag1_arbetsloshet",
+              "correlation": -0.2384851082051425,
+              "joint_adjusted_r2": 0.12403615229116693,
+              "incremental_adjusted_r2": 0.004925996457842752,
+              "x_theme": "Inflyttarprofil",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttare_medelalder",
+              "y": "lag1_andel_eftergymnasial",
+              "correlation": -0.36671481606417355,
+              "joint_adjusted_r2": 0.14180372654735773,
+              "incremental_adjusted_r2": 0.02269357071403355,
+              "x_theme": "Inflyttarprofil",
+              "y_theme": "Humankapital",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttare_medelalder",
+              "y": "lag1_andel_studerande",
+              "correlation": -0.5487532240204753,
+              "joint_adjusted_r2": 0.2975877566645816,
+              "incremental_adjusted_r2": 0.0033545505908879614,
+              "x_theme": "Inflyttarprofil",
+              "y_theme": "Studentmiljö",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttare_medelalder",
+              "y": "lag1_andel_industri_bc",
+              "correlation": 0.021141837312160516,
+              "joint_adjusted_r2": 0.12264515034115542,
+              "incremental_adjusted_r2": 0.003534994507831235,
+              "x_theme": "Inflyttarprofil",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttare_medelalder",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": 0.19434920116713994,
+              "joint_adjusted_r2": 0.14593013264333843,
+              "incremental_adjusted_r2": 0.026819976810014245,
+              "x_theme": "Inflyttarprofil",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttare_medelalder",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": 0.14735918391145958,
+              "joint_adjusted_r2": 0.11859416706933568,
+              "incremental_adjusted_r2": -0.0005159887639885063,
+              "x_theme": "Inflyttarprofil",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttare_medelalder",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": -0.0007894242235269045,
+              "joint_adjusted_r2": 0.1411864887126172,
+              "incremental_adjusted_r2": 0.022076332879293004,
+              "x_theme": "Inflyttarprofil",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inkomst_tkr",
+              "y": "lag1_inkomst_tkr",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.00715142100075683,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Inkomstnivå",
+              "y_theme": "Inkomstnivå",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inkomst_tkr",
+              "y": "lag1_andel_smahus",
+              "correlation": -0.1533070422011654,
+              "joint_adjusted_r2": 0.1578648724334012,
+              "incremental_adjusted_r2": 0.016841682400810187,
+              "x_theme": "Inkomstnivå",
+              "y_theme": "Bostadsstruktur",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inkomst_tkr",
+              "y": "lag1_sysselsattningsgrad",
+              "correlation": 0.49147304261948555,
+              "joint_adjusted_r2": 0.08652064462964404,
+              "incremental_adjusted_r2": 0.003010348391985218,
+              "x_theme": "Inkomstnivå",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inkomst_tkr",
+              "y": "lag1_arbetsloshet",
+              "correlation": -0.5378404843236041,
+              "joint_adjusted_r2": 0.021397772927222447,
+              "incremental_adjusted_r2": -0.0008200776071535243,
+              "x_theme": "Inkomstnivå",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inkomst_tkr",
+              "y": "lag1_andel_eftergymnasial",
+              "correlation": 0.725395913252512,
+              "joint_adjusted_r2": 0.24426934755042007,
+              "incremental_adjusted_r2": 0.16752615661679882,
+              "x_theme": "Inkomstnivå",
+              "y_theme": "Humankapital",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inkomst_tkr",
+              "y": "lag1_andel_studerande",
+              "correlation": -0.0415500590973514,
+              "joint_adjusted_r2": 0.3028155964294359,
+              "incremental_adjusted_r2": 0.008582390355742264,
+              "x_theme": "Inkomstnivå",
+              "y_theme": "Studentmiljö",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inkomst_tkr",
+              "y": "lag1_andel_industri_bc",
+              "correlation": -0.32225358518303676,
+              "joint_adjusted_r2": 0.01710597625312449,
+              "incremental_adjusted_r2": 0.009935138385692044,
+              "x_theme": "Inkomstnivå",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inkomst_tkr",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": 0.22588799958959152,
+              "joint_adjusted_r2": 0.02019054325251224,
+              "incremental_adjusted_r2": 0.008344310493930251,
+              "x_theme": "Inkomstnivå",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inkomst_tkr",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": 0.18861690803270945,
+              "joint_adjusted_r2": 0.006738005280550241,
+              "incremental_adjusted_r2": -0.0004134157202065891,
+              "x_theme": "Inkomstnivå",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inkomst_tkr",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": 0.19711918279416907,
+              "joint_adjusted_r2": 0.03534449564927711,
+              "incremental_adjusted_r2": 0.01047414083315723,
+              "x_theme": "Inkomstnivå",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_smahus",
+              "y": "lag1_andel_smahus",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.141023190032591,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Bostadsstruktur",
+              "y_theme": "Bostadsstruktur",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_smahus",
+              "y": "lag1_sysselsattningsgrad",
+              "correlation": 0.3381025324184884,
+              "joint_adjusted_r2": 0.16723306244612257,
+              "incremental_adjusted_r2": 0.026209872413531565,
+              "x_theme": "Bostadsstruktur",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_smahus",
+              "y": "lag1_arbetsloshet",
+              "correlation": -0.2956656770067927,
+              "joint_adjusted_r2": 0.14079426416489782,
+              "incremental_adjusted_r2": -0.00022892586769318601,
+              "x_theme": "Bostadsstruktur",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_smahus",
+              "y": "lag1_andel_eftergymnasial",
+              "correlation": -0.5064927068716164,
+              "joint_adjusted_r2": 0.14989635485203467,
+              "incremental_adjusted_r2": 0.008873164819443669,
+              "x_theme": "Bostadsstruktur",
+              "y_theme": "Humankapital",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_smahus",
+              "y": "lag1_andel_studerande",
+              "correlation": -0.6980593017798455,
+              "joint_adjusted_r2": 0.2943614078347251,
+              "incremental_adjusted_r2": 0.00012820176103145453,
+              "x_theme": "Bostadsstruktur",
+              "y_theme": "Studentmiljö",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_smahus",
+              "y": "lag1_andel_industri_bc",
+              "correlation": 0.19888259418345114,
+              "joint_adjusted_r2": 0.14028104293089305,
+              "incremental_adjusted_r2": -0.0007421471016979542,
+              "x_theme": "Bostadsstruktur",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_smahus",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": -0.10827337450553387,
+              "joint_adjusted_r2": 0.14390438859254162,
+              "incremental_adjusted_r2": 0.002881198559950615,
+              "x_theme": "Bostadsstruktur",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_smahus",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": 0.08737584710382898,
+              "joint_adjusted_r2": 0.14028426273397232,
+              "incremental_adjusted_r2": -0.0007389272986186857,
+              "x_theme": "Bostadsstruktur",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_smahus",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": 0.14348937530669442,
+              "joint_adjusted_r2": 0.18331361303758953,
+              "incremental_adjusted_r2": 0.04229042300499852,
+              "x_theme": "Bostadsstruktur",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_sysselsattningsgrad",
+              "y": "lag1_sysselsattningsgrad",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.08351029623765882,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_sysselsattningsgrad",
+              "y": "lag1_arbetsloshet",
+              "correlation": -0.8643447324535329,
+              "joint_adjusted_r2": 0.12219653258733987,
+              "incremental_adjusted_r2": 0.03868623634968105,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_sysselsattningsgrad",
+              "y": "lag1_andel_eftergymnasial",
+              "correlation": 0.22611387945625475,
+              "joint_adjusted_r2": 0.19957347101103828,
+              "incremental_adjusted_r2": 0.11606317477337946,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Humankapital",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_sysselsattningsgrad",
+              "y": "lag1_andel_studerande",
+              "correlation": -0.4928952078205176,
+              "joint_adjusted_r2": 0.29540971716687126,
+              "incremental_adjusted_r2": 0.0011765110931776235,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Studentmiljö",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_sysselsattningsgrad",
+              "y": "lag1_andel_industri_bc",
+              "correlation": -0.1558237095289642,
+              "joint_adjusted_r2": 0.09729083437569752,
+              "incremental_adjusted_r2": 0.0137805381380387,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_sysselsattningsgrad",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": 0.15758381619885894,
+              "joint_adjusted_r2": 0.1027625109184932,
+              "incremental_adjusted_r2": 0.01925221468083438,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_sysselsattningsgrad",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": 0.18866457245732934,
+              "joint_adjusted_r2": 0.08313146789980685,
+              "incremental_adjusted_r2": -0.00037882833785196635,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_sysselsattningsgrad",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": 0.017375603059868027,
+              "joint_adjusted_r2": 0.10718481846515637,
+              "incremental_adjusted_r2": 0.023674522227497552,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_arbetsloshet",
+              "y": "lag1_arbetsloshet",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.02221785053437597,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_arbetsloshet",
+              "y": "lag1_andel_eftergymnasial",
+              "correlation": -0.28427702662153104,
+              "joint_adjusted_r2": 0.12684299019659284,
+              "incremental_adjusted_r2": 0.05009979926297159,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Humankapital",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_arbetsloshet",
+              "y": "lag1_andel_studerande",
+              "correlation": 0.41478466317202356,
+              "joint_adjusted_r2": 0.29676113470468435,
+              "incremental_adjusted_r2": 0.0025279286309907167,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Studentmiljö",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_arbetsloshet",
+              "y": "lag1_andel_industri_bc",
+              "correlation": 0.2383905967219165,
+              "joint_adjusted_r2": 0.03422128579864003,
+              "incremental_adjusted_r2": 0.012003435264264062,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_arbetsloshet",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": -0.21354021212147545,
+              "joint_adjusted_r2": 0.03845881140193874,
+              "incremental_adjusted_r2": 0.01624096086756277,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_arbetsloshet",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": -0.19946812725462093,
+              "joint_adjusted_r2": 0.021396011335926723,
+              "incremental_adjusted_r2": -0.0008218391984492479,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_arbetsloshet",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": -0.026838825638561197,
+              "joint_adjusted_r2": 0.045568273363415845,
+              "incremental_adjusted_r2": 0.020697918547295968,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_eftergymnasial",
+              "y": "lag1_andel_eftergymnasial",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.07674319093362125,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Humankapital",
+              "y_theme": "Humankapital",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_eftergymnasial",
+              "y": "lag1_andel_studerande",
+              "correlation": 0.5123187423877124,
+              "joint_adjusted_r2": 0.29455475571459877,
+              "incremental_adjusted_r2": 0.0003215496409051388,
+              "x_theme": "Humankapital",
+              "y_theme": "Studentmiljö",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_eftergymnasial",
+              "y": "lag1_andel_industri_bc",
+              "correlation": -0.5002334192054325,
+              "joint_adjusted_r2": 0.08155263793646728,
+              "incremental_adjusted_r2": 0.0048094470028460234,
+              "x_theme": "Humankapital",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_eftergymnasial",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": 0.25813300890294427,
+              "joint_adjusted_r2": 0.0769515101528987,
+              "incremental_adjusted_r2": 0.0002083192192774419,
+              "x_theme": "Humankapital",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_eftergymnasial",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": 0.22110286103016155,
+              "joint_adjusted_r2": 0.08553666819024808,
+              "incremental_adjusted_r2": 0.008793477256626825,
+              "x_theme": "Humankapital",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_eftergymnasial",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": 0.11295433917599239,
+              "joint_adjusted_r2": 0.09072371636385845,
+              "incremental_adjusted_r2": 0.0139805254302372,
+              "x_theme": "Humankapital",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_studerande",
+              "y": "lag1_andel_studerande",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.29423320607369363,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Studentmiljö",
+              "y_theme": "Studentmiljö",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_studerande",
+              "y": "lag1_andel_industri_bc",
+              "correlation": -0.2536962029173803,
+              "joint_adjusted_r2": 0.2986346125454681,
+              "incremental_adjusted_r2": 0.0044014064717744494,
+              "x_theme": "Studentmiljö",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_studerande",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": 0.054497887654563926,
+              "joint_adjusted_r2": 0.29699534246667625,
+              "incremental_adjusted_r2": 0.002762136392982617,
+              "x_theme": "Studentmiljö",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_studerande",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": 5.860507459969377e-05,
+              "joint_adjusted_r2": 0.2949474311373548,
+              "incremental_adjusted_r2": 0.0007142250636611447,
+              "x_theme": "Studentmiljö",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_studerande",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": -0.054081478996049134,
+              "joint_adjusted_r2": 0.3265140892872873,
+              "incremental_adjusted_r2": 0.03228088321359368,
+              "x_theme": "Studentmiljö",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_industri_bc",
+              "y": "lag1_andel_industri_bc",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.007170837867432445,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Näringslivsprofil",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_industri_bc",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": -0.3759732536511255,
+              "joint_adjusted_r2": 0.012423725309791966,
+              "incremental_adjusted_r2": 0.0005774925512099793,
+              "x_theme": "Näringslivsprofil",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_industri_bc",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": -0.4044551000601289,
+              "joint_adjusted_r2": 0.011277216952384594,
+              "incremental_adjusted_r2": 0.00410637908495215,
+              "x_theme": "Näringslivsprofil",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_industri_bc",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": 0.07433444974008437,
+              "joint_adjusted_r2": 0.031131788161742002,
+              "incremental_adjusted_r2": 0.006261433345622125,
+              "x_theme": "Näringslivsprofil",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_hotell_restaurang_i",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.011846232758581987,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Näringslivsprofil",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_hotell_restaurang_i",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": 0.37642918876750675,
+              "joint_adjusted_r2": 0.01714000574434771,
+              "incremental_adjusted_r2": 0.005293772985765721,
+              "x_theme": "Näringslivsprofil",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_hotell_restaurang_i",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": -0.04477086400809391,
+              "joint_adjusted_r2": 0.03545215334688623,
+              "incremental_adjusted_r2": 0.010581798530766351,
+              "x_theme": "Näringslivsprofil",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_kultur_service_rstu",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.003100912603618222,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Näringslivsprofil",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_kultur_service_rstu",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": -0.04757552903737083,
+              "joint_adjusted_r2": 0.024798557558116552,
+              "incremental_adjusted_r2": -7.179725800332548e-05,
+              "x_theme": "Näringslivsprofil",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_externa_fa_jobb_per_1000",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.024870354816119877,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Regional arbetsmarknadsaccess",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": true,
+              "n_obs": 1160
+            }
+          ]
+        },
+        "theme_marginal_analysis": {
+          "rule": "remove one qualitative theme at a time from the selected full model",
+          "full_model_rmse": 18.98805140404446,
+          "rows": [
+            {
+              "theme": "Historisk flyttdynamik",
+              "features": [
+                "lag1_inflyttning_18_23_per_1000"
+              ],
+              "full_adjusted_r2": 0.7595078882926332,
+              "reduced_adjusted_r2": 0.5460694156623056,
+              "delta_adjusted_r2": 0.21343847263032756,
+              "full_aic": 10151.5763832961,
+              "reduced_aic": 10887.487160384579,
+              "delta_aic": 735.9107770884784,
+              "full_rmse": 18.98805140404446,
+              "reduced_rmse": 26.098423181340134,
+              "delta_rmse": 7.110371777295676
+            },
+            {
+              "theme": "Åldersstruktur",
+              "features": [
+                "lag1_andel_20_34"
+              ],
+              "full_adjusted_r2": 0.7595078882926332,
+              "reduced_adjusted_r2": 0.7515479832589587,
+              "delta_adjusted_r2": 0.007959905033674497,
+              "full_aic": 10151.5763832961,
+              "reduced_aic": 10188.361478777075,
+              "delta_aic": 36.78509548097463,
+              "full_rmse": 18.98805140404446,
+              "reduced_rmse": 19.30815646576089,
+              "delta_rmse": 0.3201050617164327
+            },
+            {
+              "theme": "Kommunstorlek",
+              "features": [
+                "lag1_log_folkmangd"
+              ],
+              "full_adjusted_r2": 0.7595078882926332,
+              "reduced_adjusted_r2": 0.7526964634429261,
+              "delta_adjusted_r2": 0.006811424849707093,
+              "full_aic": 10151.5763832961,
+              "reduced_aic": 10182.98689693806,
+              "delta_aic": 31.41051364196028,
+              "full_rmse": 18.98805140404446,
+              "reduced_rmse": 19.263478380538437,
+              "delta_rmse": 0.2754269764939785
+            },
+            {
+              "theme": "Humankapital",
+              "features": [
+                "lag1_andel_eftergymnasial"
+              ],
+              "full_adjusted_r2": 0.7595078882926332,
+              "reduced_adjusted_r2": 0.7557335789382706,
+              "delta_adjusted_r2": 0.003774309354362515,
+              "full_aic": 10151.5763832961,
+              "reduced_aic": 10168.652828107828,
+              "delta_aic": 17.076444811727924,
+              "full_rmse": 18.98805140404446,
+              "reduced_rmse": 19.144826326236217,
+              "delta_rmse": 0.15677492219175804
+            },
+            {
+              "theme": "Näringslivsprofil",
+              "features": [
+                "lag1_andel_hotell_restaurang_i"
+              ],
+              "full_adjusted_r2": 0.7595078882926332,
+              "reduced_adjusted_r2": 0.757942289335429,
+              "delta_adjusted_r2": 0.0015655989572042062,
+              "full_aic": 10151.5763832961,
+              "reduced_aic": 10158.116144815604,
+              "delta_aic": 6.539761519503372,
+              "full_rmse": 18.98805140404446,
+              "reduced_rmse": 19.058073919163025,
+              "delta_rmse": 0.07002251511856628
+            },
+            {
+              "theme": "Inkomstnivå",
+              "features": [
+                "lag1_inkomst_tkr"
+              ],
+              "full_adjusted_r2": 0.7595078882926332,
+              "reduced_adjusted_r2": 0.7584495556694942,
+              "delta_adjusted_r2": 0.0010583326231389245,
+              "full_aic": 10151.5763832961,
+              "reduced_aic": 10155.682649196304,
+              "delta_aic": 4.106265900203653,
+              "full_rmse": 18.98805140404446,
+              "reduced_rmse": 19.038093994759862,
+              "delta_rmse": 0.05004259071540318
+            },
+            {
+              "theme": "Regional arbetsmarknadsaccess",
+              "features": [
+                "lag1_log_externa_fa_jobb_per_1000"
+              ],
+              "full_adjusted_r2": 0.7595078882926332,
+              "reduced_adjusted_r2": 0.7585359291030295,
+              "delta_adjusted_r2": 0.0009719591896036883,
+              "full_aic": 10151.5763832961,
+              "reduced_aic": 10155.26778305539,
+              "delta_aic": 3.6913997592891974,
+              "full_rmse": 18.98805140404446,
+              "reduced_rmse": 19.034689876467528,
+              "delta_rmse": 0.04663847242306929
+            },
+            {
+              "theme": "Befolkningsdynamik",
+              "features": [
+                "lag1_befolkningstillvaxt_pct"
+              ],
+              "full_adjusted_r2": 0.7595078882926332,
+              "reduced_adjusted_r2": 0.7592009415812007,
+              "delta_adjusted_r2": 0.00030694671143249863,
+              "full_aic": 10151.5763832961,
+              "reduced_aic": 10152.0686375403,
+              "delta_aic": 0.4922542442000122,
+              "full_rmse": 18.98805140404446,
+              "reduced_rmse": 19.008460231260216,
+              "delta_rmse": 0.020408827215756986
+            },
+            {
+              "theme": "Arbetsmarknad",
+              "features": [
+                "lag1_sysselsattningsgrad"
+              ],
+              "full_adjusted_r2": 0.7595078882926332,
+              "reduced_adjusted_r2": 0.7595646280088298,
+              "delta_adjusted_r2": -5.6739716196685386e-05,
+              "full_aic": 10151.5763832961,
+              "reduced_aic": 10150.315328509576,
+              "delta_aic": -1.2610547865242552,
+              "full_rmse": 18.98805140404446,
+              "reduced_rmse": 18.99410026803979,
+              "delta_rmse": 0.006048863995331999
+            },
+            {
+              "theme": "Studentmiljö",
+              "features": [
+                "lag1_andel_studerande"
+              ],
+              "full_adjusted_r2": 0.7595078882926332,
+              "reduced_adjusted_r2": 0.7595886302722916,
+              "delta_adjusted_r2": -8.074197965846075e-05,
+              "full_aic": 10151.5763832961,
+              "reduced_aic": 10150.19952185759,
+              "delta_aic": -1.3768614385098772,
+              "full_rmse": 18.98805140404446,
+              "reduced_rmse": 18.993152169651406,
+              "delta_rmse": 0.005100765606947277
+            },
+            {
+              "theme": "Inflyttarprofil",
+              "features": [
+                "lag1_inflyttare_medelalder"
+              ],
+              "full_adjusted_r2": 0.7595078882926332,
+              "reduced_adjusted_r2": 0.7597168643300367,
+              "delta_adjusted_r2": -0.00020897603740355208,
+              "full_aic": 10151.5763832961,
+              "reduced_aic": 10149.580619378601,
+              "delta_aic": -1.9957639174990618,
+              "full_rmse": 18.98805140404446,
+              "reduced_rmse": 18.988086074314168,
+              "delta_rmse": 3.4670269709380364e-05
+            }
+          ]
+        },
+        "standard_errors": "Klustrade per kommun",
+        "year_fixed_effects": true
+      },
+      "validation": {
+        "test_year": 2024,
+        "n_train": 870,
+        "n_test": 290,
+        "selected_features": [
+          "lag1_inflyttning_18_23_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder",
+          "lag1_inkomst_tkr",
+          "lag1_andel_smahus",
+          "lag1_sysselsattningsgrad",
+          "lag1_andel_eftergymnasial",
+          "lag1_andel_studerande",
+          "lag1_andel_hotell_restaurang_i",
+          "lag1_log_externa_fa_jobb_per_1000"
+        ],
+        "models": {
+          "naive": {
+            "r2": 0.6838724795909823,
+            "rmse": 20.971387719958177,
+            "mae": 15.512572735579814
+          },
+          "ols": {
+            "r2": 0.7253835303901146,
+            "rmse": 19.54606357325917,
+            "mae": 14.548358277296979
+          },
+          "ridge": {
+            "r2": 0.7251451414411308,
+            "rmse": 19.55454550221788,
+            "mae": 14.56936951465364
+          }
+        }
+      }
+    },
+    "63_68": {
+      "label": "63–68 år",
+      "interpretation": "Pensionsnära/pensionsövergång",
+      "target": "inflyttning_63_68_per_1000",
+      "lag_target": "lag1_inflyttning_63_68_per_1000",
+      "rate_definition": "Inflyttade i åldersgruppen per 1 000 invånare i samma åldersgrupp",
+      "explanation": {
+        "window": 5,
+        "start_year": 2020,
+        "end_year": 2024,
+        "n_obs": 1160,
+        "n_municipalities": 290,
+        "r2": 0.5111674374525915,
+        "adjusted_r2": 0.5051904454214442,
+        "aic": 7964.733857141543,
+        "bic": 8040.576486403049,
+        "coefficients": [
+          {
+            "feature": "lag1_inflyttning_63_68_per_1000",
+            "coefficient": 0.3377942983734291,
+            "standardized_coefficient": 0.34884476081595756,
+            "p_value": 3.1391734672022393e-10,
+            "ci_low": 0.23256678454252566,
+            "ci_high": 0.44302181220433257
+          },
+          {
+            "feature": "lag1_log_folkmangd",
+            "coefficient": -1.7142668609074212,
+            "standardized_coefficient": -0.16073491873959672,
+            "p_value": 0.003166443648252075,
+            "ci_low": -2.8527919152175327,
+            "ci_high": -0.5757418065973094
+          },
+          {
+            "feature": "lag1_befolkningstillvaxt_pct",
+            "coefficient": 1.1803060360755224,
+            "standardized_coefficient": 0.11106659998452077,
+            "p_value": 0.006170273586429714,
+            "ci_low": 0.3355812250463637,
+            "ci_high": 2.025030847104681
+          },
+          {
+            "feature": "lag1_andel_20_34",
+            "coefficient": 0.057610096323301774,
+            "standardized_coefficient": 0.015142101948990015,
+            "p_value": 0.7923425458231186,
+            "ci_low": -0.3712794471825218,
+            "ci_high": 0.48649963982912536
+          },
+          {
+            "feature": "lag1_inflyttare_medelalder",
+            "coefficient": 0.9841466153644144,
+            "standardized_coefficient": 0.24192160850049838,
+            "p_value": 3.095204836361938e-07,
+            "ci_low": 0.607229979444107,
+            "ci_high": 1.3610632512847218
+          },
+          {
+            "feature": "lag1_inkomst_tkr",
+            "coefficient": 0.007362640233304772,
+            "standardized_coefficient": 0.037012180046202374,
+            "p_value": 0.42022084598529097,
+            "ci_low": -0.010540370306687814,
+            "ci_high": 0.025265650773297357
+          },
+          {
+            "feature": "lag1_andel_smahus",
+            "coefficient": 0.04648317959027741,
+            "standardized_coefficient": 0.06381142618838581,
+            "p_value": 0.17550985351520465,
+            "ci_low": -0.020767621825011767,
+            "ci_high": 0.11373398100556659
+          },
+          {
+            "feature": "lag1_sysselsattningsgrad",
+            "coefficient": -0.4833907916049687,
+            "standardized_coefficient": -0.15586992195946772,
+            "p_value": 6.638215915269209e-05,
+            "ci_low": -0.7209074099883958,
+            "ci_high": -0.2458741732215416
+          },
+          {
+            "feature": "lag1_andel_eftergymnasial",
+            "coefficient": 0.1206162962275126,
+            "standardized_coefficient": 0.11475949869549516,
+            "p_value": 0.04101791006348749,
+            "ci_low": 0.0049221070619667046,
+            "ci_high": 0.2363104853930585
+          },
+          {
+            "feature": "lag1_andel_hotell_restaurang_i",
+            "coefficient": 0.6456602379174077,
+            "standardized_coefficient": 0.09842360243551258,
+            "p_value": 0.00015082191430890938,
+            "ci_low": 0.31173757039337846,
+            "ci_high": 0.9795829054414369
+          },
+          {
+            "feature": "lag1_log_externa_fa_jobb_per_1000",
+            "coefficient": 0.7755288204217384,
+            "standardized_coefficient": 0.19599826292605033,
+            "p_value": 6.046316567928876e-13,
+            "ci_low": 0.5643999137329926,
+            "ci_high": 0.9866577271104843
+          }
+        ],
+        "vif": [
+          {
+            "feature": "lag1_inflyttning_63_68_per_1000",
+            "vif": 2.5895892812288617
+          },
+          {
+            "feature": "lag1_log_folkmangd",
+            "vif": 3.8954744828138206
+          },
+          {
+            "feature": "lag1_befolkningstillvaxt_pct",
+            "vif": 2.2232581937282485
+          },
+          {
+            "feature": "lag1_andel_20_34",
+            "vif": 4.368983687594274
+          },
+          {
+            "feature": "lag1_inflyttare_medelalder",
+            "vif": 3.002032553001182
+          },
+          {
+            "feature": "lag1_inkomst_tkr",
+            "vif": 4.126264576731758
+          },
+          {
+            "feature": "lag1_andel_smahus",
+            "vif": 4.126762940707563
+          },
+          {
+            "feature": "lag1_sysselsattningsgrad",
+            "vif": 2.3484013945272664
+          },
+          {
+            "feature": "lag1_andel_eftergymnasial",
+            "vif": 5.0375525874702785
+          },
+          {
+            "feature": "lag1_andel_hotell_restaurang_i",
+            "vif": 1.3118229870349103
+          },
+          {
+            "feature": "lag1_log_externa_fa_jobb_per_1000",
+            "vif": 1.4685938055247274
+          }
+        ],
+        "variable_selection": {
+          "selected": [
+            "lag1_inflyttning_63_68_per_1000",
+            "lag1_log_folkmangd",
+            "lag1_befolkningstillvaxt_pct",
+            "lag1_andel_20_34",
+            "lag1_inflyttare_medelalder",
+            "lag1_inkomst_tkr",
+            "lag1_andel_smahus",
+            "lag1_sysselsattningsgrad",
+            "lag1_andel_eftergymnasial",
+            "lag1_andel_hotell_restaurang_i",
+            "lag1_log_externa_fa_jobb_per_1000"
+          ],
+          "excluded": [
+            "lag1_arbetsloshet",
+            "lag1_andel_studerande",
+            "lag1_andel_industri_bc",
+            "lag1_andel_kultur_service_rstu"
+          ],
+          "elastic_net_selected": [
+            "lag1_inflyttning_63_68_per_1000",
+            "lag1_log_folkmangd",
+            "lag1_befolkningstillvaxt_pct",
+            "lag1_andel_20_34",
+            "lag1_inflyttare_medelalder",
+            "lag1_inkomst_tkr",
+            "lag1_andel_smahus",
+            "lag1_sysselsattningsgrad",
+            "lag1_andel_eftergymnasial",
+            "lag1_andel_industri_bc",
+            "lag1_andel_hotell_restaurang_i",
+            "lag1_andel_kultur_service_rstu",
+            "lag1_log_externa_fa_jobb_per_1000"
+          ],
+          "backward_aic_selected": [
+            "lag1_inflyttning_63_68_per_1000",
+            "lag1_log_folkmangd",
+            "lag1_befolkningstillvaxt_pct",
+            "lag1_andel_20_34",
+            "lag1_inflyttare_medelalder",
+            "lag1_inkomst_tkr",
+            "lag1_andel_smahus",
+            "lag1_sysselsattningsgrad",
+            "lag1_arbetsloshet",
+            "lag1_andel_eftergymnasial",
+            "lag1_andel_studerande",
+            "lag1_andel_industri_bc",
+            "lag1_andel_hotell_restaurang_i",
+            "lag1_andel_kultur_service_rstu",
+            "lag1_log_externa_fa_jobb_per_1000"
+          ],
+          "pre_theme_consensus": [
+            "lag1_inflyttning_63_68_per_1000",
+            "lag1_log_folkmangd",
+            "lag1_befolkningstillvaxt_pct",
+            "lag1_andel_20_34",
+            "lag1_inflyttare_medelalder",
+            "lag1_inkomst_tkr",
+            "lag1_andel_smahus",
+            "lag1_sysselsattningsgrad",
+            "lag1_andel_eftergymnasial",
+            "lag1_andel_industri_bc",
+            "lag1_andel_hotell_restaurang_i",
+            "lag1_andel_kultur_service_rstu",
+            "lag1_log_externa_fa_jobb_per_1000"
+          ],
+          "thematic_selected": [
+            "lag1_inflyttning_63_68_per_1000",
+            "lag1_log_folkmangd",
+            "lag1_befolkningstillvaxt_pct",
+            "lag1_andel_20_34",
+            "lag1_inflyttare_medelalder",
+            "lag1_inkomst_tkr",
+            "lag1_andel_smahus",
+            "lag1_sysselsattningsgrad",
+            "lag1_andel_eftergymnasial",
+            "lag1_andel_hotell_restaurang_i",
+            "lag1_log_externa_fa_jobb_per_1000"
+          ],
+          "temporal_cv_selected": [
+            "lag1_inflyttning_63_68_per_1000",
+            "lag1_log_folkmangd",
+            "lag1_befolkningstillvaxt_pct",
+            "lag1_andel_20_34",
+            "lag1_inflyttare_medelalder",
+            "lag1_inkomst_tkr",
+            "lag1_andel_smahus",
+            "lag1_sysselsattningsgrad",
+            "lag1_andel_eftergymnasial",
+            "lag1_andel_hotell_restaurang_i",
+            "lag1_log_externa_fa_jobb_per_1000"
+          ],
+          "elastic_net": {
+            "alpha": 0.0916273901188674,
+            "l1_ratio": 0.9,
+            "coefficients": [
+              {
+                "feature": "lag1_inflyttning_63_68_per_1000",
+                "penalized_coefficient": 3.9087015300717836
+              },
+              {
+                "feature": "lag1_log_folkmangd",
+                "penalized_coefficient": -1.3228211451040366
+              },
+              {
+                "feature": "lag1_befolkningstillvaxt_pct",
+                "penalized_coefficient": 0.7682474555301256
+              },
+              {
+                "feature": "lag1_andel_20_34",
+                "penalized_coefficient": -0.04509431632111056
+              },
+              {
+                "feature": "lag1_inflyttare_medelalder",
+                "penalized_coefficient": 2.0952366343027937
+              },
+              {
+                "feature": "lag1_inkomst_tkr",
+                "penalized_coefficient": 0.31407840466251963
+              },
+              {
+                "feature": "lag1_andel_smahus",
+                "penalized_coefficient": 0.13765304492758818
+              },
+              {
+                "feature": "lag1_sysselsattningsgrad",
+                "penalized_coefficient": -1.1039841569621442
+              },
+              {
+                "feature": "lag1_arbetsloshet",
+                "penalized_coefficient": -0.0
+              },
+              {
+                "feature": "lag1_andel_eftergymnasial",
+                "penalized_coefficient": 0.30967408436270155
+              },
+              {
+                "feature": "lag1_andel_studerande",
+                "penalized_coefficient": 0.0
+              },
+              {
+                "feature": "lag1_andel_industri_bc",
+                "penalized_coefficient": -0.5626982860323966
+              },
+              {
+                "feature": "lag1_andel_hotell_restaurang_i",
+                "penalized_coefficient": 0.7210519099223917
+              },
+              {
+                "feature": "lag1_andel_kultur_service_rstu",
+                "penalized_coefficient": 0.4984040600424529
+              },
+              {
+                "feature": "lag1_log_externa_fa_jobb_per_1000",
+                "penalized_coefficient": 2.192704237999858
+              }
+            ]
+          },
+          "backward_aic_history": [],
+          "thematic_selection": {
+            "themes": {
+              "Historisk flyttdynamik": "lag1_inflyttning_63_68_per_1000",
+              "Kommunstorlek": "lag1_log_folkmangd",
+              "Befolkningsdynamik": "lag1_befolkningstillvaxt_pct",
+              "Åldersstruktur": "lag1_andel_20_34",
+              "Inflyttarprofil": "lag1_inflyttare_medelalder",
+              "Inkomstnivå": "lag1_inkomst_tkr",
+              "Bostadsstruktur": "lag1_andel_smahus",
+              "Arbetsmarknad": "lag1_sysselsattningsgrad",
+              "Humankapital": "lag1_andel_eftergymnasial",
+              "Näringslivsprofil": "lag1_andel_hotell_restaurang_i",
+              "Regional arbetsmarknadsaccess": "lag1_log_externa_fa_jobb_per_1000"
+            },
+            "incremental_aic": [
+              {
+                "feature": "lag1_inflyttning_63_68_per_1000",
+                "theme": "Historisk flyttdynamik",
+                "delta_aic_when_removed": 105.26123196267235
+              },
+              {
+                "feature": "lag1_log_folkmangd",
+                "theme": "Kommunstorlek",
+                "delta_aic_when_removed": 14.521871985964026
+              },
+              {
+                "feature": "lag1_befolkningstillvaxt_pct",
+                "theme": "Befolkningsdynamik",
+                "delta_aic_when_removed": 8.969965230161506
+              },
+              {
+                "feature": "lag1_andel_20_34",
+                "theme": "Åldersstruktur",
+                "delta_aic_when_removed": -1.9911557073119184
+              },
+              {
+                "feature": "lag1_inflyttare_medelalder",
+                "theme": "Inflyttarprofil",
+                "delta_aic_when_removed": 35.428772291178575
+              },
+              {
+                "feature": "lag1_inkomst_tkr",
+                "theme": "Inkomstnivå",
+                "delta_aic_when_removed": -1.0576901630884095
+              },
+              {
+                "feature": "lag1_andel_smahus",
+                "theme": "Bostadsstruktur",
+                "delta_aic_when_removed": -1.2478795161805465
+              },
+              {
+                "feature": "lag1_sysselsattningsgrad",
+                "theme": "Arbetsmarknad",
+                "delta_aic_when_removed": 20.839198674901127
+              },
+              {
+                "feature": "lag1_andel_eftergymnasial",
+                "theme": "Humankapital",
+                "delta_aic_when_removed": -0.18443590412334743
+              },
+              {
+                "feature": "lag1_andel_industri_bc",
+                "theme": "Näringslivsprofil",
+                "delta_aic_when_removed": 2.2006552622797244
+              },
+              {
+                "feature": "lag1_andel_hotell_restaurang_i",
+                "theme": "Näringslivsprofil",
+                "delta_aic_when_removed": 6.481497316266541
+              },
+              {
+                "feature": "lag1_andel_kultur_service_rstu",
+                "theme": "Näringslivsprofil",
+                "delta_aic_when_removed": 2.11513181846567
+              },
+              {
+                "feature": "lag1_log_externa_fa_jobb_per_1000",
+                "theme": "Regional arbetsmarknadsaccess",
+                "delta_aic_when_removed": 63.63546576745284
+              }
+            ],
+            "n_themes": 11,
+            "rule": "max one variable per qualitative theme; within-theme choice by incremental AIC"
+          },
+          "temporal_cv": {
+            "reason": "fewer_than_3_temporal_folds",
+            "folds": 2,
+            "selected": [
+              "lag1_inflyttning_63_68_per_1000",
+              "lag1_log_folkmangd",
+              "lag1_befolkningstillvaxt_pct",
+              "lag1_andel_20_34",
+              "lag1_inflyttare_medelalder",
+              "lag1_inkomst_tkr",
+              "lag1_andel_smahus",
+              "lag1_sysselsattningsgrad",
+              "lag1_andel_eftergymnasial",
+              "lag1_andel_hotell_restaurang_i",
+              "lag1_log_externa_fa_jobb_per_1000"
+            ],
+            "history": []
+          }
+        },
+        "selected_features": [
+          "lag1_inflyttning_63_68_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder",
+          "lag1_inkomst_tkr",
+          "lag1_andel_smahus",
+          "lag1_sysselsattningsgrad",
+          "lag1_andel_eftergymnasial",
+          "lag1_andel_hotell_restaurang_i",
+          "lag1_log_externa_fa_jobb_per_1000"
+        ],
+        "excluded_features": [
+          "lag1_arbetsloshet",
+          "lag1_andel_studerande",
+          "lag1_andel_industri_bc",
+          "lag1_andel_kultur_service_rstu"
+        ],
+        "pairwise_matrix": {
+          "features": [
+            "lag1_inflyttning_63_68_per_1000",
+            "lag1_log_folkmangd",
+            "lag1_befolkningstillvaxt_pct",
+            "lag1_andel_20_34",
+            "lag1_inflyttare_medelalder",
+            "lag1_inkomst_tkr",
+            "lag1_andel_smahus",
+            "lag1_sysselsattningsgrad",
+            "lag1_arbetsloshet",
+            "lag1_andel_eftergymnasial",
+            "lag1_andel_studerande",
+            "lag1_andel_industri_bc",
+            "lag1_andel_hotell_restaurang_i",
+            "lag1_andel_kultur_service_rstu",
+            "lag1_log_externa_fa_jobb_per_1000"
+          ],
+          "single_adjusted_r2": {
+            "lag1_inflyttning_63_68_per_1000": 0.437412231112395,
+            "lag1_log_folkmangd": 0.0762799024139802,
+            "lag1_befolkningstillvaxt_pct": 0.017490209152024705,
+            "lag1_andel_20_34": 0.11024732098102008,
+            "lag1_inflyttare_medelalder": 0.2235449414614319,
+            "lag1_inkomst_tkr": 0.014544764360441942,
+            "lag1_andel_smahus": 0.06700369638643633,
+            "lag1_sysselsattningsgrad": 0.009867714932175864,
+            "lag1_arbetsloshet": 0.015997805803916076,
+            "lag1_andel_eftergymnasial": 0.011423803746912653,
+            "lag1_andel_studerande": 0.04261116891045613,
+            "lag1_andel_industri_bc": 0.017339580733361393,
+            "lag1_andel_hotell_restaurang_i": 0.06573824853677801,
+            "lag1_andel_kultur_service_rstu": 0.037080493806271986,
+            "lag1_log_externa_fa_jobb_per_1000": 0.1624409729957843
+          },
+          "rows": [
+            {
+              "x": "lag1_inflyttning_63_68_per_1000",
+              "y": "lag1_inflyttning_63_68_per_1000",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.437412231112395,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Historisk flyttdynamik",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_63_68_per_1000",
+              "y": "lag1_log_folkmangd",
+              "correlation": -0.26072786617158333,
+              "joint_adjusted_r2": 0.4449756945726,
+              "incremental_adjusted_r2": 0.007563463460204978,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Kommunstorlek",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_63_68_per_1000",
+              "y": "lag1_befolkningstillvaxt_pct",
+              "correlation": 0.1701855152005112,
+              "joint_adjusted_r2": 0.4369968551563087,
+              "incremental_adjusted_r2": -0.00041537595608631683,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Befolkningsdynamik",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_63_68_per_1000",
+              "y": "lag1_andel_20_34",
+              "correlation": -0.3307747487398804,
+              "joint_adjusted_r2": 0.44742821506808017,
+              "incremental_adjusted_r2": 0.010015983955685148,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Åldersstruktur",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_63_68_per_1000",
+              "y": "lag1_inflyttare_medelalder",
+              "correlation": 0.5504656957700513,
+              "joint_adjusted_r2": 0.4495317283421878,
+              "incremental_adjusted_r2": 0.012119497229792775,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Inflyttarprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_63_68_per_1000",
+              "y": "lag1_inkomst_tkr",
+              "correlation": 0.04185718173137929,
+              "joint_adjusted_r2": 0.4384061502581531,
+              "incremental_adjusted_r2": 0.000993919145758082,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Inkomstnivå",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_63_68_per_1000",
+              "y": "lag1_andel_smahus",
+              "correlation": 0.24500699072181115,
+              "joint_adjusted_r2": 0.44352737837350675,
+              "incremental_adjusted_r2": 0.006115147261111731,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Bostadsstruktur",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_63_68_per_1000",
+              "y": "lag1_sysselsattningsgrad",
+              "correlation": -0.03793367393973406,
+              "joint_adjusted_r2": 0.4369463393441595,
+              "incremental_adjusted_r2": -0.0004658917682355268,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_63_68_per_1000",
+              "y": "lag1_arbetsloshet",
+              "correlation": -0.06226269795854577,
+              "joint_adjusted_r2": 0.4381046939551251,
+              "incremental_adjusted_r2": 0.0006924628427300572,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_63_68_per_1000",
+              "y": "lag1_andel_eftergymnasial",
+              "correlation": -0.0667577045461231,
+              "joint_adjusted_r2": 0.4369269155269836,
+              "incremental_adjusted_r2": -0.0004853155854114277,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Humankapital",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_63_68_per_1000",
+              "y": "lag1_andel_studerande",
+              "correlation": -0.193013561363453,
+              "joint_adjusted_r2": 0.43949052482328166,
+              "incremental_adjusted_r2": 0.002078293710886636,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Studentmiljö",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_63_68_per_1000",
+              "y": "lag1_andel_industri_bc",
+              "correlation": -0.05044694911551245,
+              "joint_adjusted_r2": 0.44002080063068294,
+              "incremental_adjusted_r2": 0.0026085695182879176,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_63_68_per_1000",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": 0.26096755654399323,
+              "joint_adjusted_r2": 0.44163058818723677,
+              "incremental_adjusted_r2": 0.00421835707484175,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_63_68_per_1000",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": 0.13391959538251078,
+              "joint_adjusted_r2": 0.44322988986108935,
+              "incremental_adjusted_r2": 0.005817658748694332,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttning_63_68_per_1000",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": 0.38993162164006945,
+              "joint_adjusted_r2": 0.4582145344233207,
+              "incremental_adjusted_r2": 0.020802303310925696,
+              "x_theme": "Historisk flyttdynamik",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_log_folkmangd",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.0762799024139802,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Kommunstorlek",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_befolkningstillvaxt_pct",
+              "correlation": 0.45858680371884764,
+              "joint_adjusted_r2": 0.1346205287350355,
+              "incremental_adjusted_r2": 0.0583406263210553,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Befolkningsdynamik",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_andel_20_34",
+              "correlation": 0.6650705043398323,
+              "joint_adjusted_r2": 0.11337220955407734,
+              "incremental_adjusted_r2": 0.0031248885730572606,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Åldersstruktur",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_inflyttare_medelalder",
+              "correlation": -0.5151491032303194,
+              "joint_adjusted_r2": 0.22327676548556374,
+              "incremental_adjusted_r2": -0.0002681759758681457,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Inflyttarprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_inkomst_tkr",
+              "correlation": 0.31115905342395395,
+              "joint_adjusted_r2": 0.10314103838939093,
+              "incremental_adjusted_r2": 0.026861135975410733,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Inkomstnivå",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_andel_smahus",
+              "correlation": -0.7318958390021453,
+              "joint_adjusted_r2": 0.08102118980030526,
+              "incremental_adjusted_r2": 0.004741287386325066,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Bostadsstruktur",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_sysselsattningsgrad",
+              "correlation": -0.1052781195093902,
+              "joint_adjusted_r2": 0.07797519474349746,
+              "incremental_adjusted_r2": 0.0016952923295172617,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_arbetsloshet",
+              "correlation": 0.11020758100311889,
+              "joint_adjusted_r2": 0.07805905505206556,
+              "incremental_adjusted_r2": 0.0017791526380853684,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_andel_eftergymnasial",
+              "correlation": 0.6970423130613381,
+              "joint_adjusted_r2": 0.11179865659981036,
+              "incremental_adjusted_r2": 0.03551875418583017,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Humankapital",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_andel_studerande",
+              "correlation": 0.6493979513627359,
+              "joint_adjusted_r2": 0.07562436843388398,
+              "incremental_adjusted_r2": -0.0006555339800962123,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Studentmiljö",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_andel_industri_bc",
+              "correlation": -0.3385989406687114,
+              "joint_adjusted_r2": 0.11073890709070389,
+              "incremental_adjusted_r2": 0.03445900467672369,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": 0.13606264098250173,
+              "joint_adjusted_r2": 0.15127638678250133,
+              "incremental_adjusted_r2": 0.07499648436852113,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": 0.06995928068159767,
+              "joint_adjusted_r2": 0.10968989415901997,
+              "incremental_adjusted_r2": 0.03340999174503978,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_folkmangd",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": -0.08839729255877703,
+              "joint_adjusted_r2": 0.2123332714773034,
+              "incremental_adjusted_r2": 0.049892298481519104,
+              "x_theme": "Kommunstorlek",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_befolkningstillvaxt_pct",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.017490209152024705,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Befolkningsdynamik",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_andel_20_34",
+              "correlation": 0.3454864546498168,
+              "joint_adjusted_r2": 0.1537213876450757,
+              "incremental_adjusted_r2": 0.04347406666405562,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Åldersstruktur",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_inflyttare_medelalder",
+              "correlation": -0.33602625680701576,
+              "joint_adjusted_r2": 0.28594870254160387,
+              "incremental_adjusted_r2": 0.06240376108017198,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Inflyttarprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_inkomst_tkr",
+              "correlation": 0.24903899142488967,
+              "joint_adjusted_r2": 0.018474908619109165,
+              "incremental_adjusted_r2": 0.00098469946708446,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Inkomstnivå",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_andel_smahus",
+              "correlation": -0.24279592279358486,
+              "joint_adjusted_r2": 0.09083839189655163,
+              "incremental_adjusted_r2": 0.0238346955101153,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Bostadsstruktur",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_sysselsattningsgrad",
+              "correlation": 0.22848045103029693,
+              "joint_adjusted_r2": 0.019166517312409814,
+              "incremental_adjusted_r2": 0.0016763081603851093,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_arbetsloshet",
+              "correlation": -0.16527098914366173,
+              "joint_adjusted_r2": 0.020159661730573042,
+              "incremental_adjusted_r2": 0.002669452578548337,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_andel_eftergymnasial",
+              "correlation": 0.46899967871944437,
+              "joint_adjusted_r2": 0.02776351523643672,
+              "incremental_adjusted_r2": 0.010273306084412015,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Humankapital",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_andel_studerande",
+              "correlation": 0.28402827555591365,
+              "joint_adjusted_r2": 0.06164473705089735,
+              "incremental_adjusted_r2": 0.019033568140441215,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Studentmiljö",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_andel_industri_bc",
+              "correlation": -0.27745542529997413,
+              "joint_adjusted_r2": 0.020978731504876724,
+              "incremental_adjusted_r2": 0.0034885223528520193,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": 0.22873483688681048,
+              "joint_adjusted_r2": 0.06591186178442221,
+              "incremental_adjusted_r2": 0.00017361324764419983,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": 0.12772865464292754,
+              "joint_adjusted_r2": 0.04091600793218064,
+              "incremental_adjusted_r2": 0.0038355141259086567,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_befolkningstillvaxt_pct",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": 0.2204873834640885,
+              "joint_adjusted_r2": 0.16171540696966602,
+              "incremental_adjusted_r2": -0.000725566026118285,
+              "x_theme": "Befolkningsdynamik",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_20_34",
+              "y": "lag1_andel_20_34",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.11024732098102008,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Åldersstruktur",
+              "y_theme": "Åldersstruktur",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_20_34",
+              "y": "lag1_inflyttare_medelalder",
+              "correlation": -0.6259553801888211,
+              "joint_adjusted_r2": 0.22433202273339614,
+              "incremental_adjusted_r2": 0.0007870812719642517,
+              "x_theme": "Åldersstruktur",
+              "y_theme": "Inflyttarprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_20_34",
+              "y": "lag1_inkomst_tkr",
+              "correlation": -0.09549487557036154,
+              "joint_adjusted_r2": 0.11198609409122262,
+              "incremental_adjusted_r2": 0.0017387731102025406,
+              "x_theme": "Åldersstruktur",
+              "y_theme": "Inkomstnivå",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_20_34",
+              "y": "lag1_andel_smahus",
+              "correlation": -0.7636178130997467,
+              "joint_adjusted_r2": 0.10951925225859205,
+              "incremental_adjusted_r2": -0.0007280687224280324,
+              "x_theme": "Åldersstruktur",
+              "y_theme": "Bostadsstruktur",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_20_34",
+              "y": "lag1_sysselsattningsgrad",
+              "correlation": -0.2797747904258172,
+              "joint_adjusted_r2": 0.12162182598685811,
+              "incremental_adjusted_r2": 0.011374505005838031,
+              "x_theme": "Åldersstruktur",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_20_34",
+              "y": "lag1_arbetsloshet",
+              "correlation": 0.22211523955381657,
+              "joint_adjusted_r2": 0.1097521281406636,
+              "incremental_adjusted_r2": -0.0004951928403564843,
+              "x_theme": "Åldersstruktur",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_20_34",
+              "y": "lag1_andel_eftergymnasial",
+              "correlation": 0.37862473105532446,
+              "joint_adjusted_r2": 0.11685665352162689,
+              "incremental_adjusted_r2": 0.006609332540606805,
+              "x_theme": "Åldersstruktur",
+              "y_theme": "Humankapital",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_20_34",
+              "y": "lag1_andel_studerande",
+              "correlation": 0.7654773094944125,
+              "joint_adjusted_r2": 0.11903655981353745,
+              "incremental_adjusted_r2": 0.008789238832517365,
+              "x_theme": "Åldersstruktur",
+              "y_theme": "Studentmiljö",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_20_34",
+              "y": "lag1_andel_industri_bc",
+              "correlation": -0.17493541828302903,
+              "joint_adjusted_r2": 0.13112866749613006,
+              "incremental_adjusted_r2": 0.020881346515109978,
+              "x_theme": "Åldersstruktur",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_20_34",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": -0.0008777495033539575,
+              "joint_adjusted_r2": 0.16684712391035716,
+              "incremental_adjusted_r2": 0.056599802929337084,
+              "x_theme": "Åldersstruktur",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_20_34",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": -0.08627348702770792,
+              "joint_adjusted_r2": 0.12898717605596866,
+              "incremental_adjusted_r2": 0.018739855074948575,
+              "x_theme": "Åldersstruktur",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_20_34",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": -0.14969158964789134,
+              "joint_adjusted_r2": 0.23035778538753626,
+              "incremental_adjusted_r2": 0.06791681239175196,
+              "x_theme": "Åldersstruktur",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttare_medelalder",
+              "y": "lag1_inflyttare_medelalder",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.2235449414614319,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Inflyttarprofil",
+              "y_theme": "Inflyttarprofil",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttare_medelalder",
+              "y": "lag1_inkomst_tkr",
+              "correlation": -0.07629374036526186,
+              "joint_adjusted_r2": 0.2415928016868898,
+              "incremental_adjusted_r2": 0.0180478602254579,
+              "x_theme": "Inflyttarprofil",
+              "y_theme": "Inkomstnivå",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttare_medelalder",
+              "y": "lag1_andel_smahus",
+              "correlation": 0.45571460419795057,
+              "joint_adjusted_r2": 0.22367530160197702,
+              "incremental_adjusted_r2": 0.00013036014054512712,
+              "x_theme": "Inflyttarprofil",
+              "y_theme": "Bostadsstruktur",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttare_medelalder",
+              "y": "lag1_sysselsattningsgrad",
+              "correlation": 0.1121043788739846,
+              "joint_adjusted_r2": 0.22617597254705935,
+              "incremental_adjusted_r2": 0.0026310310856274555,
+              "x_theme": "Inflyttarprofil",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttare_medelalder",
+              "y": "lag1_arbetsloshet",
+              "correlation": -0.2384851082051425,
+              "joint_adjusted_r2": 0.223016676272636,
+              "incremental_adjusted_r2": -0.0005282651887958956,
+              "x_theme": "Inflyttarprofil",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttare_medelalder",
+              "y": "lag1_andel_eftergymnasial",
+              "correlation": -0.36671481606417355,
+              "joint_adjusted_r2": 0.24404782386827162,
+              "incremental_adjusted_r2": 0.02050288240683973,
+              "x_theme": "Inflyttarprofil",
+              "y_theme": "Humankapital",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttare_medelalder",
+              "y": "lag1_andel_studerande",
+              "correlation": -0.5487532240204753,
+              "joint_adjusted_r2": 0.2288501811771545,
+              "incremental_adjusted_r2": 0.0053052397157226094,
+              "x_theme": "Inflyttarprofil",
+              "y_theme": "Studentmiljö",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttare_medelalder",
+              "y": "lag1_andel_industri_bc",
+              "correlation": 0.021141837312160516,
+              "joint_adjusted_r2": 0.2326525328617276,
+              "incremental_adjusted_r2": 0.009107591400295711,
+              "x_theme": "Inflyttarprofil",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttare_medelalder",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": 0.19434920116713994,
+              "joint_adjusted_r2": 0.24674591639120214,
+              "incremental_adjusted_r2": 0.023200974929770246,
+              "x_theme": "Inflyttarprofil",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttare_medelalder",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": 0.14735918391145958,
+              "joint_adjusted_r2": 0.23270685635625643,
+              "incremental_adjusted_r2": 0.009161914894824541,
+              "x_theme": "Inflyttarprofil",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inflyttare_medelalder",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": -0.0007894242235269045,
+              "joint_adjusted_r2": 0.3766435056420958,
+              "incremental_adjusted_r2": 0.15309856418066392,
+              "x_theme": "Inflyttarprofil",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inkomst_tkr",
+              "y": "lag1_inkomst_tkr",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.014544764360441942,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Inkomstnivå",
+              "y_theme": "Inkomstnivå",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inkomst_tkr",
+              "y": "lag1_andel_smahus",
+              "correlation": -0.1533070422011654,
+              "joint_adjusted_r2": 0.07841964463377127,
+              "incremental_adjusted_r2": 0.01141594824733494,
+              "x_theme": "Inkomstnivå",
+              "y_theme": "Bostadsstruktur",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inkomst_tkr",
+              "y": "lag1_sysselsattningsgrad",
+              "correlation": 0.49147304261948555,
+              "joint_adjusted_r2": 0.017260660298712205,
+              "incremental_adjusted_r2": 0.002715895938270263,
+              "x_theme": "Inkomstnivå",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inkomst_tkr",
+              "y": "lag1_arbetsloshet",
+              "correlation": -0.5378404843236041,
+              "joint_adjusted_r2": 0.0165503409279657,
+              "incremental_adjusted_r2": 0.0005525351240496246,
+              "x_theme": "Inkomstnivå",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inkomst_tkr",
+              "y": "lag1_andel_eftergymnasial",
+              "correlation": 0.725395913252512,
+              "joint_adjusted_r2": 0.03499134751703625,
+              "incremental_adjusted_r2": 0.02044658315659431,
+              "x_theme": "Inkomstnivå",
+              "y_theme": "Humankapital",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inkomst_tkr",
+              "y": "lag1_andel_studerande",
+              "correlation": -0.0415500590973514,
+              "joint_adjusted_r2": 0.048110207835231455,
+              "incremental_adjusted_r2": 0.0054990389247753235,
+              "x_theme": "Inkomstnivå",
+              "y_theme": "Studentmiljö",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inkomst_tkr",
+              "y": "lag1_andel_industri_bc",
+              "correlation": -0.32225358518303676,
+              "joint_adjusted_r2": 0.018406774432840334,
+              "incremental_adjusted_r2": 0.001067193699478941,
+              "x_theme": "Inkomstnivå",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inkomst_tkr",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": 0.22588799958959152,
+              "joint_adjusted_r2": 0.06541405321515292,
+              "incremental_adjusted_r2": -0.000324195321625087,
+              "x_theme": "Inkomstnivå",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inkomst_tkr",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": 0.18861690803270945,
+              "joint_adjusted_r2": 0.037827229009582686,
+              "incremental_adjusted_r2": 0.0007467352033107,
+              "x_theme": "Inkomstnivå",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_inkomst_tkr",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": 0.19711918279416907,
+              "joint_adjusted_r2": 0.16180727153144459,
+              "incremental_adjusted_r2": -0.0006337014643397199,
+              "x_theme": "Inkomstnivå",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_smahus",
+              "y": "lag1_andel_smahus",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.06700369638643633,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Bostadsstruktur",
+              "y_theme": "Bostadsstruktur",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_smahus",
+              "y": "lag1_sysselsattningsgrad",
+              "correlation": 0.3381025324184884,
+              "joint_adjusted_r2": 0.07917345826888722,
+              "incremental_adjusted_r2": 0.012169761882450891,
+              "x_theme": "Bostadsstruktur",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_smahus",
+              "y": "lag1_arbetsloshet",
+              "correlation": -0.2956656770067927,
+              "joint_adjusted_r2": 0.06620675106692553,
+              "incremental_adjusted_r2": -0.0007969453195108001,
+              "x_theme": "Bostadsstruktur",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_smahus",
+              "y": "lag1_andel_eftergymnasial",
+              "correlation": -0.5064927068716164,
+              "joint_adjusted_r2": 0.07414250497551889,
+              "incremental_adjusted_r2": 0.007138808589082557,
+              "x_theme": "Bostadsstruktur",
+              "y_theme": "Humankapital",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_smahus",
+              "y": "lag1_andel_studerande",
+              "correlation": -0.6980593017798455,
+              "joint_adjusted_r2": 0.06634138886800611,
+              "incremental_adjusted_r2": -0.0006623075184302163,
+              "x_theme": "Bostadsstruktur",
+              "y_theme": "Studentmiljö",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_smahus",
+              "y": "lag1_andel_industri_bc",
+              "correlation": 0.19888259418345114,
+              "joint_adjusted_r2": 0.08569446490997035,
+              "incremental_adjusted_r2": 0.018690768523534018,
+              "x_theme": "Bostadsstruktur",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_smahus",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": -0.10827337450553387,
+              "joint_adjusted_r2": 0.1362688033994931,
+              "incremental_adjusted_r2": 0.06926510701305677,
+              "x_theme": "Bostadsstruktur",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_smahus",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": 0.08737584710382898,
+              "joint_adjusted_r2": 0.08749586036595725,
+              "incremental_adjusted_r2": 0.020492163979520917,
+              "x_theme": "Bostadsstruktur",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_smahus",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": 0.14348937530669442,
+              "joint_adjusted_r2": 0.19624036197112282,
+              "incremental_adjusted_r2": 0.03379938897533852,
+              "x_theme": "Bostadsstruktur",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_sysselsattningsgrad",
+              "y": "lag1_sysselsattningsgrad",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.009867714932175864,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_sysselsattningsgrad",
+              "y": "lag1_arbetsloshet",
+              "correlation": -0.8643447324535329,
+              "joint_adjusted_r2": 0.04635421970076814,
+              "incremental_adjusted_r2": 0.030356413896852064,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_sysselsattningsgrad",
+              "y": "lag1_andel_eftergymnasial",
+              "correlation": 0.22611387945625475,
+              "joint_adjusted_r2": 0.010715400333953462,
+              "incremental_adjusted_r2": -0.000708403412959191,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Humankapital",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_sysselsattningsgrad",
+              "y": "lag1_andel_studerande",
+              "correlation": -0.4928952078205176,
+              "joint_adjusted_r2": 0.05576164162039543,
+              "incremental_adjusted_r2": 0.013150472709939298,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Studentmiljö",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_sysselsattningsgrad",
+              "y": "lag1_andel_industri_bc",
+              "correlation": -0.1558237095289642,
+              "joint_adjusted_r2": 0.017806131841251238,
+              "incremental_adjusted_r2": 0.00046655110788984544,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_sysselsattningsgrad",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": 0.15758381619885894,
+              "joint_adjusted_r2": 0.06799756014382774,
+              "incremental_adjusted_r2": 0.00225931160704973,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_sysselsattningsgrad",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": 0.18866457245732934,
+              "joint_adjusted_r2": 0.03920800365409938,
+              "incremental_adjusted_r2": 0.0021275098478273913,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_sysselsattningsgrad",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": 0.017375603059868027,
+              "joint_adjusted_r2": 0.1624894153208427,
+              "incremental_adjusted_r2": 4.844232505840651e-05,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_arbetsloshet",
+              "y": "lag1_arbetsloshet",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.015997805803916076,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Arbetsmarknad",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_arbetsloshet",
+              "y": "lag1_andel_eftergymnasial",
+              "correlation": -0.28427702662153104,
+              "joint_adjusted_r2": 0.01998696608633055,
+              "incremental_adjusted_r2": 0.003989160282414472,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Humankapital",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_arbetsloshet",
+              "y": "lag1_andel_studerande",
+              "correlation": 0.41478466317202356,
+              "joint_adjusted_r2": 0.04205763569311827,
+              "incremental_adjusted_r2": -0.0005535332173378649,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Studentmiljö",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_arbetsloshet",
+              "y": "lag1_andel_industri_bc",
+              "correlation": 0.2383905967219165,
+              "joint_adjusted_r2": 0.020122645734198197,
+              "incremental_adjusted_r2": 0.002783065000836804,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_arbetsloshet",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": -0.21354021212147545,
+              "joint_adjusted_r2": 0.06614558926323588,
+              "incremental_adjusted_r2": 0.0004073407264578721,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_arbetsloshet",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": -0.19946812725462093,
+              "joint_adjusted_r2": 0.03847230111619815,
+              "incremental_adjusted_r2": 0.001391807309926163,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_arbetsloshet",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": -0.026838825638561197,
+              "joint_adjusted_r2": 0.16672793464988067,
+              "incremental_adjusted_r2": 0.004286961654096366,
+              "x_theme": "Arbetsmarknad",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_eftergymnasial",
+              "y": "lag1_andel_eftergymnasial",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.011423803746912653,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Humankapital",
+              "y_theme": "Humankapital",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_eftergymnasial",
+              "y": "lag1_andel_studerande",
+              "correlation": 0.5123187423877124,
+              "joint_adjusted_r2": 0.046289418321158404,
+              "incremental_adjusted_r2": 0.0036782494107022723,
+              "x_theme": "Humankapital",
+              "y_theme": "Studentmiljö",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_eftergymnasial",
+              "y": "lag1_andel_industri_bc",
+              "correlation": -0.5002334192054325,
+              "joint_adjusted_r2": 0.027239295629731597,
+              "incremental_adjusted_r2": 0.009899714896370204,
+              "x_theme": "Humankapital",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_eftergymnasial",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": 0.25813300890294427,
+              "joint_adjusted_r2": 0.07667864901447985,
+              "incremental_adjusted_r2": 0.01094040047770184,
+              "x_theme": "Humankapital",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_eftergymnasial",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": 0.22110286103016155,
+              "joint_adjusted_r2": 0.043260145557425966,
+              "incremental_adjusted_r2": 0.006179651751153981,
+              "x_theme": "Humankapital",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_eftergymnasial",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": 0.11295433917599239,
+              "joint_adjusted_r2": 0.1697509216106886,
+              "incremental_adjusted_r2": 0.007309948614904305,
+              "x_theme": "Humankapital",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_studerande",
+              "y": "lag1_andel_studerande",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.04261116891045613,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Studentmiljö",
+              "y_theme": "Studentmiljö",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_studerande",
+              "y": "lag1_andel_industri_bc",
+              "correlation": -0.2536962029173803,
+              "joint_adjusted_r2": 0.0618175501152447,
+              "incremental_adjusted_r2": 0.01920638120478857,
+              "x_theme": "Studentmiljö",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_studerande",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": 0.054497887654563926,
+              "joint_adjusted_r2": 0.10545974669101388,
+              "incremental_adjusted_r2": 0.03972149815423587,
+              "x_theme": "Studentmiljö",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_studerande",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": 5.860507459969377e-05,
+              "joint_adjusted_r2": 0.06963353270883843,
+              "incremental_adjusted_r2": 0.0270223637983823,
+              "x_theme": "Studentmiljö",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_studerande",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": -0.054081478996049134,
+              "joint_adjusted_r2": 0.18772044638531604,
+              "incremental_adjusted_r2": 0.025279473389531737,
+              "x_theme": "Studentmiljö",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_industri_bc",
+              "y": "lag1_andel_industri_bc",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.017339580733361393,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Näringslivsprofil",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_industri_bc",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": -0.3759732536511255,
+              "joint_adjusted_r2": 0.06492909122787738,
+              "incremental_adjusted_r2": -0.0008091573089006321,
+              "x_theme": "Näringslivsprofil",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_industri_bc",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": -0.4044551000601289,
+              "joint_adjusted_r2": 0.0368122731739724,
+              "incremental_adjusted_r2": -0.00026822063229958726,
+              "x_theme": "Näringslivsprofil",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_industri_bc",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": 0.07433444974008437,
+              "joint_adjusted_r2": 0.17575636671428163,
+              "incremental_adjusted_r2": 0.013315393718497326,
+              "x_theme": "Näringslivsprofil",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_hotell_restaurang_i",
+              "y": "lag1_andel_hotell_restaurang_i",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.06573824853677801,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Näringslivsprofil",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_hotell_restaurang_i",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": 0.37642918876750675,
+              "joint_adjusted_r2": 0.07182940525946258,
+              "incremental_adjusted_r2": 0.006091156722684565,
+              "x_theme": "Näringslivsprofil",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_hotell_restaurang_i",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": -0.04477086400809391,
+              "joint_adjusted_r2": 0.22698969564418492,
+              "incremental_adjusted_r2": 0.06454872264840061,
+              "x_theme": "Näringslivsprofil",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_kultur_service_rstu",
+              "y": "lag1_andel_kultur_service_rstu",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.037080493806271986,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Näringslivsprofil",
+              "y_theme": "Näringslivsprofil",
+              "same_theme": true,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_andel_kultur_service_rstu",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": -0.04757552903737083,
+              "joint_adjusted_r2": 0.19604108723349445,
+              "incremental_adjusted_r2": 0.033600114237710144,
+              "x_theme": "Näringslivsprofil",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": false,
+              "n_obs": 1160
+            },
+            {
+              "x": "lag1_log_externa_fa_jobb_per_1000",
+              "y": "lag1_log_externa_fa_jobb_per_1000",
+              "correlation": 1.0,
+              "joint_adjusted_r2": 0.1624409729957843,
+              "incremental_adjusted_r2": 0.0,
+              "x_theme": "Regional arbetsmarknadsaccess",
+              "y_theme": "Regional arbetsmarknadsaccess",
+              "same_theme": true,
+              "n_obs": 1160
+            }
+          ]
+        },
+        "theme_marginal_analysis": {
+          "rule": "remove one qualitative theme at a time from the selected full model",
+          "full_model_rmse": 7.397968020922318,
+          "rows": [
+            {
+              "theme": "Historisk flyttdynamik",
+              "features": [
+                "lag1_inflyttning_63_68_per_1000"
+              ],
+              "full_adjusted_r2": 0.5051904454214442,
+              "reduced_adjusted_r2": 0.4587524341585859,
+              "delta_adjusted_r2": 0.04643801126285829,
+              "full_aic": 7964.733857141543,
+              "reduced_aic": 8067.802960209282,
+              "delta_aic": 103.06910306773898,
+              "full_rmse": 7.397968020922318,
+              "reduced_rmse": 7.740712806546889,
+              "delta_rmse": 0.34274478562457134
+            },
+            {
+              "theme": "Regional arbetsmarknadsaccess",
+              "features": [
+                "lag1_log_externa_fa_jobb_per_1000"
+              ],
+              "full_adjusted_r2": 0.5051904454214442,
+              "reduced_adjusted_r2": 0.47959943877755395,
+              "delta_adjusted_r2": 0.025591006643890246,
+              "full_aic": 7964.733857141543,
+              "reduced_aic": 8022.240530166114,
+              "delta_aic": 57.50667302457077,
+              "full_rmse": 7.397968020922318,
+              "reduced_rmse": 7.590176145875527,
+              "delta_rmse": 0.1922081249532095
+            },
+            {
+              "theme": "Inflyttarprofil",
+              "features": [
+                "lag1_inflyttare_medelalder"
+              ],
+              "full_adjusted_r2": 0.5051904454214442,
+              "reduced_adjusted_r2": 0.4862420556351842,
+              "delta_adjusted_r2": 0.01894838978626001,
+              "full_aic": 7964.733857141543,
+              "reduced_aic": 8007.338478913509,
+              "delta_aic": 42.60462177196587,
+              "full_rmse": 7.397968020922318,
+              "reduced_rmse": 7.541578428867539,
+              "delta_rmse": 0.1436104079452214
+            },
+            {
+              "theme": "Arbetsmarknad",
+              "features": [
+                "lag1_sysselsattningsgrad"
+              ],
+              "full_adjusted_r2": 0.5051904454214442,
+              "reduced_adjusted_r2": 0.49564767981620783,
+              "delta_adjusted_r2": 0.00954276560523637,
+              "full_aic": 7964.733857141543,
+              "reduced_aic": 7985.904976399267,
+              "delta_aic": 21.171119257724058,
+              "full_rmse": 7.397968020922318,
+              "reduced_rmse": 7.472225816317965,
+              "delta_rmse": 0.07425779539564736
+            },
+            {
+              "theme": "Näringslivsprofil",
+              "features": [
+                "lag1_andel_hotell_restaurang_i"
+              ],
+              "full_adjusted_r2": 0.5051904454214442,
+              "reduced_adjusted_r2": 0.4981794031976584,
+              "delta_adjusted_r2": 0.0070110422237857906,
+              "full_aic": 7964.733857141543,
+              "reduced_aic": 7980.067400629207,
+              "delta_aic": 15.333543487664429,
+              "full_rmse": 7.397968020922318,
+              "reduced_rmse": 7.4534478626433565,
+              "delta_rmse": 0.0554798417210387
+            },
+            {
+              "theme": "Kommunstorlek",
+              "features": [
+                "lag1_log_folkmangd"
+              ],
+              "full_adjusted_r2": 0.5051904454214442,
+              "reduced_adjusted_r2": 0.49900519242879393,
+              "delta_adjusted_r2": 0.00618525299265027,
+              "full_aic": 7964.733857141543,
+              "reduced_aic": 7978.156947876962,
+              "delta_aic": 13.423090735418555,
+              "full_rmse": 7.397968020922318,
+              "reduced_rmse": 7.447312690789648,
+              "delta_rmse": 0.049344669867330104
+            },
+            {
+              "theme": "Befolkningsdynamik",
+              "features": [
+                "lag1_befolkningstillvaxt_pct"
+              ],
+              "full_adjusted_r2": 0.5051904454214442,
+              "reduced_adjusted_r2": 0.5006851214565688,
+              "delta_adjusted_r2": 0.004505323964875352,
+              "full_aic": 7964.733857141543,
+              "reduced_aic": 7974.260715477465,
+              "delta_aic": 9.526858335922043,
+              "full_rmse": 7.397968020922318,
+              "reduced_rmse": 7.4348160919300765,
+              "delta_rmse": 0.036848071007758776
+            },
+            {
+              "theme": "Humankapital",
+              "features": [
+                "lag1_andel_eftergymnasial"
+              ],
+              "full_adjusted_r2": 0.5051904454214442,
+              "reduced_adjusted_r2": 0.5030928485210164,
+              "delta_adjusted_r2": 0.0020975969004277673,
+              "full_aic": 7964.733857141543,
+              "reduced_aic": 7968.653594276173,
+              "delta_aic": 3.9197371346299406,
+              "full_rmse": 7.397968020922318,
+              "reduced_rmse": 7.416868859811097,
+              "delta_rmse": 0.018900838888779248
+            },
+            {
+              "theme": "Bostadsstruktur",
+              "features": [
+                "lag1_andel_smahus"
+              ],
+              "full_adjusted_r2": 0.5051904454214442,
+              "reduced_adjusted_r2": 0.5046279475020622,
+              "delta_adjusted_r2": 0.0005624979193820101,
+              "full_aic": 7964.733857141543,
+              "reduced_aic": 7965.064450753868,
+              "delta_aic": 0.33059361232517404,
+              "full_rmse": 7.397968020922318,
+              "reduced_rmse": 7.405403503727244,
+              "delta_rmse": 0.007435482804925897
+            },
+            {
+              "theme": "Inkomstnivå",
+              "features": [
+                "lag1_inkomst_tkr"
+              ],
+              "full_adjusted_r2": 0.5051904454214442,
+              "reduced_adjusted_r2": 0.5053162430759695,
+              "delta_adjusted_r2": -0.00012579765452525038,
+              "full_aic": 7964.733857141543,
+              "reduced_aic": 7963.451565931085,
+              "delta_aic": -1.2822912104584248,
+              "full_rmse": 7.397968020922318,
+              "reduced_rmse": 7.40025698990404,
+              "delta_rmse": 0.0022889689817224834
+            },
+            {
+              "theme": "Åldersstruktur",
+              "features": [
+                "lag1_andel_20_34"
+              ],
+              "full_adjusted_r2": 0.5051904454214442,
+              "reduced_adjusted_r2": 0.5055702104117064,
+              "delta_adjusted_r2": -0.0003797649902621547,
+              "full_aic": 7964.733857141543,
+              "reduced_aic": 7962.855876756737,
+              "delta_aic": -1.8779803848055963,
+              "full_rmse": 7.397968020922318,
+              "reduced_rmse": 7.398357124780111,
+              "delta_rmse": 0.0003891038577936712
+            }
+          ]
+        },
+        "standard_errors": "Klustrade per kommun",
+        "year_fixed_effects": true
+      },
+      "validation": {
+        "test_year": 2024,
+        "n_train": 870,
+        "n_test": 290,
+        "selected_features": [
+          "lag1_inflyttning_63_68_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder",
+          "lag1_inkomst_tkr",
+          "lag1_andel_smahus",
+          "lag1_sysselsattningsgrad",
+          "lag1_andel_eftergymnasial",
+          "lag1_andel_hotell_restaurang_i",
+          "lag1_log_externa_fa_jobb_per_1000"
+        ],
+        "models": {
+          "naive": {
+            "r2": 0.29075968461303003,
+            "rmse": 8.225588379342632,
+            "mae": 6.160760422268504
+          },
+          "ols": {
+            "r2": 0.49687560157920074,
+            "rmse": 6.928001213250009,
+            "mae": 5.1779297641316315
+          },
+          "ridge": {
+            "r2": 0.4998198563914611,
+            "rmse": 6.907700339053427,
+            "mae": 5.151309322540825
+          }
+        }
+      }
+    }
+  }
 }
