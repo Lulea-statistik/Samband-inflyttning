@@ -722,12 +722,30 @@ def get_industry_structure() -> pd.DataFrame:
     education_codes = list(education["values"])
     workplace_code = code_for_all_text(content, "arbetsställets", "belägenhet")
 
-    total_industry_code = exact_or_contains_code(industry, "A-U+US Total")
+    industry_pairs = list(zip(
+        industry["values"],
+        industry.get("valueTexts", industry["values"])
+    ))
+
+    total_industry_code = None
+    for code, text in industry_pairs:
+        t = str(text).strip().lower()
+        if (
+            ("a-u" in t or "a–u" in t)
+            and ("total" in t or "totalt" in t or "uppgift saknas" in t or "+us" in t or " us" in t)
+        ):
+            total_industry_code = code
+            break
+
     industry_bc = code_for_all_text(industry, "B+C", "tillverkningsindustri")
-    industry_i = code_for_all_text(industry, "I ", "hotell")
+    industry_i = code_for_all_text(industry, "I", "hotell")
     industry_rstu = code_for_all_text(industry, "R+S+T+U")
 
-    wanted = [total_industry_code, industry_bc, industry_i, industry_rstu]
+    if total_industry_code is not None:
+        wanted = [total_industry_code, industry_bc, industry_i, industry_rstu]
+    else:
+        # No explicit total category: request all industry groups and sum them.
+        wanted = list(industry["values"])
     label_map = dict(zip(
         [str(v) for v in industry["values"]],
         [str(t) for t in industry.get("valueTexts", industry["values"])]
@@ -781,7 +799,15 @@ def get_industry_structure() -> pd.DataFrame:
                 .rename(columns={"value": name})
             )
 
-        total = _sum_for(total_industry_code, "sysselsatta_totalt")
+        if total_industry_code is not None:
+            total = _sum_for(total_industry_code, "sysselsatta_totalt")
+        else:
+            total = (
+                df.groupby(["kommun_kod", "kommun", "year"], as_index=False)["value"]
+                .sum()
+                .rename(columns={"value": "sysselsatta_totalt"})
+            )
+
         bc = _sum_for(industry_bc, "sysselsatta_industri")
         hosp = _sum_for(industry_i, "sysselsatta_hotell_restaurang")
         rstu = _sum_for(industry_rstu, "sysselsatta_kultur_service")
