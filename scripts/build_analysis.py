@@ -268,7 +268,10 @@ def get_population() -> pd.DataFrame:
     age_codes = []
     for code, text in zip(age["values"], age.get("valueTexts", age["values"])):
         a = age_numeric(text)
-        if (np.isfinite(a) and 20 <= a <= 34) or "tot" in str(text).lower():
+        if (
+            (np.isfinite(a) and (18 <= a <= 34 or 63 <= a <= 68))
+            or "tot" in str(text).lower()
+        ):
             age_codes.append(code)
 
     rows = []
@@ -1059,6 +1062,16 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
         inflyttade=("value", "sum"),
         age_weight=("age_num", lambda x: 0.0),
     )
+
+    for lo, hi, suffix in [(18, 23, "18_23"), (63, 68, "63_68")]:
+        part = (
+            age_rows[age_rows["age_num"].between(lo, hi, inclusive="both")]
+            .groupby(["kommun_kod", "kommun", "year"], as_index=False)["value"]
+            .sum()
+            .rename(columns={"value": f"inflyttade_{suffix}"})
+        )
+        mg = mg.merge(part, on=["kommun_kod", "kommun", "year"], how="left")
+        mg[f"inflyttade_{suffix}"] = mg[f"inflyttade_{suffix}"].fillna(0)
     weighted = (
         age_rows.assign(wx=age_rows["value"] * age_rows["age_num"])
         .groupby(["kommun_kod", "kommun", "year"], as_index=False)
@@ -1089,8 +1102,18 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
         ["kommun_kod", "kommun", "year"], as_index=False
     )["value"].sum().rename(columns={"value": "bef_20_34"})
 
+    pop_18_23 = p_age[p_age["age_num"].between(18, 23, inclusive="both")].groupby(
+        ["kommun_kod", "kommun", "year"], as_index=False
+    )["value"].sum().rename(columns={"value": "bef_18_23"})
+
+    pop_63_68 = p_age[p_age["age_num"].between(63, 68, inclusive="both")].groupby(
+        ["kommun_kod", "kommun", "year"], as_index=False
+    )["value"].sum().rename(columns={"value": "bef_63_68"})
+
     panel = mg.merge(total, on=["kommun_kod", "kommun", "year"], how="left")
     panel = panel.merge(young, on=["kommun_kod", "kommun", "year"], how="left")
+    panel = panel.merge(pop_18_23, on=["kommun_kod", "kommun", "year"], how="left")
+    panel = panel.merge(pop_63_68, on=["kommun_kod", "kommun", "year"], how="left")
     panel = panel.merge(
         income[["kommun_kod", "year", "inkomst_tkr"]],
         on=["kommun_kod", "year"], how="left"
@@ -1137,6 +1160,12 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
 
     panel["andel_20_34"] = 100 * panel["bef_20_34"] / panel["folkmangd"]
     panel["inflyttning_per_1000"] = 1000 * panel["inflyttade"] / panel["folkmangd"]
+    panel["inflyttning_18_23_per_1000"] = (
+        1000 * panel["inflyttade_18_23"] / panel["bef_18_23"].replace(0, np.nan)
+    )
+    panel["inflyttning_63_68_per_1000"] = (
+        1000 * panel["inflyttade_63_68"] / panel["bef_63_68"].replace(0, np.nan)
+    )
     panel["log_folkmangd"] = np.log(panel["folkmangd"].where(panel["folkmangd"] > 0))
 
     panel = panel.sort_values(["kommun_kod", "year"])
@@ -1146,6 +1175,8 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     # All structural predictors are lagged one year so the explanatory value
     # precedes the migration outcome temporally.
     panel["lag1_inflyttning_per_1000"] = g["inflyttning_per_1000"].shift(1)
+    panel["lag1_inflyttning_18_23_per_1000"] = g["inflyttning_18_23_per_1000"].shift(1)
+    panel["lag1_inflyttning_63_68_per_1000"] = g["inflyttning_63_68_per_1000"].shift(1)
     panel["lag1_log_folkmangd"] = g["log_folkmangd"].shift(1)
     panel["lag1_befolkningstillvaxt_pct"] = g["befolkningstillvaxt_pct"].shift(1)
     panel["lag1_andel_20_34"] = g["andel_20_34"].shift(1)
@@ -1299,6 +1330,8 @@ def _elastic_net_selection(
 
 FEATURE_THEMES = {
     "lag1_inflyttning_per_1000": "Historisk flyttdynamik",
+    "lag1_inflyttning_18_23_per_1000": "Historisk flyttdynamik",
+    "lag1_inflyttning_63_68_per_1000": "Historisk flyttdynamik",
     "lag1_log_folkmangd": "Kommunstorlek",
     "lag1_befolkningstillvaxt_pct": "Befolkningsdynamik",
     "lag1_andel_20_34": "Åldersstruktur",
@@ -1825,12 +1858,102 @@ def fit_models(panel: pd.DataFrame) -> dict:
             "Alla strukturella förklaringsvariabler används laggade ett år för tydligare tidsordning mot inflyttningen.",
             "Variabelmatrisen redovisar parvis korrelation, gemensamt justerat R² samt extra justerat R² jämfört med den starkaste variabeln ensam.",
             "Tematisk marginalanalys tar bort ett valt tema i taget från fullmodellen och visar förändringen i justerat R², AIC och RMSE på samma analysurval.",
+            "Separata livsfasmodeller skattas för 18–23 år och 63–68 år, med inflyttade per 1 000 invånare i samma åldersgrupp som mål och åldersgruppens egen föregående inflyttning som historisk dynamik.",
             "Om konsensusurvalet blir alltför litet används backward-AIC som reserv för att undvika instabila små modeller.",
             "Urvalet för prognosvalidering görs endast på träningsåren och får inte se teståret.",
             "Samband ska inte tolkas som säkra kausala effekter; endogenitet och utelämnade variabler kan finnas.",
         ],
     }
 
+
+
+def fit_age_group_models(panel: pd.DataFrame) -> dict:
+    """
+    Separate five-year explanatory/validation models for selected life-stage
+    age groups. Outcomes are in-migrants per 1,000 residents in the same
+    age group, which avoids mechanically rewarding municipalities simply
+    because they have a larger share of that age group.
+    """
+    structural_features = [
+        "lag1_log_folkmangd",
+        "lag1_befolkningstillvaxt_pct",
+        "lag1_andel_20_34",
+        "lag1_inflyttare_medelalder",
+        "lag1_inkomst_tkr",
+        "lag1_andel_smahus",
+        "lag1_sysselsattningsgrad",
+        "lag1_arbetsloshet",
+        "lag1_andel_eftergymnasial",
+        "lag1_andel_studerande",
+        "lag1_andel_industri_bc",
+        "lag1_andel_hotell_restaurang_i",
+        "lag1_andel_kultur_service_rstu",
+        "lag1_log_externa_fa_jobb_per_1000",
+    ]
+
+    specs = {
+        "18_23": {
+            "label": "18–23 år",
+            "interpretation": "Student-/etableringsålder",
+            "target": "inflyttning_18_23_per_1000",
+            "lag_target": "lag1_inflyttning_18_23_per_1000",
+        },
+        "63_68": {
+            "label": "63–68 år",
+            "interpretation": "Pensionsnära/pensionsövergång",
+            "target": "inflyttning_63_68_per_1000",
+            "lag_target": "lag1_inflyttning_63_68_per_1000",
+        },
+    }
+
+    out = {}
+    for key, spec in specs.items():
+        features = [spec["lag_target"]] + structural_features
+        d = panel.dropna(subset=[spec["target"]] + features).copy()
+        if d.empty:
+            out[key] = {**spec, "error": "Inga kompletta observationer"}
+            continue
+
+        test_year = int(d["year"].max())
+        explanation, _, _ = _explanation_model(d, features, spec["target"], 5)
+
+        train = d[d["year"].between(test_year - 5, test_year - 1)].copy()
+        test = d[d["year"] == test_year].copy()
+        validation = None
+
+        if not train.empty and not test.empty:
+            sel = _select_features(train, features, spec["target"])
+            vf = sel["selected"]
+            Xtr, ytr = train[vf], train[spec["target"]]
+            Xte, yte = test[vf], test[spec["target"]]
+
+            naive_pred = test[spec["lag_target"]].to_numpy()
+            ols = LinearRegression().fit(Xtr, ytr)
+            ridge = make_pipeline(
+                StandardScaler(),
+                RidgeCV(alphas=np.logspace(-3, 3, 25))
+            ).fit(Xtr, ytr)
+
+            validation = {
+                "test_year": test_year,
+                "n_train": int(len(train)),
+                "n_test": int(len(test)),
+                "selected_features": vf,
+                "models": {
+                    "naive": _metrics(yte, naive_pred),
+                    "ols": _metrics(yte, ols.predict(Xte)),
+                    "ridge": _metrics(yte, ridge.predict(Xte)),
+                },
+            }
+
+        out[key] = {
+            **spec,
+            "rate_definition": "Inflyttade i åldersgruppen per 1 000 invånare i samma åldersgrupp",
+            "explanation": explanation,
+            "validation": validation,
+        }
+
+    return out
 
 def main():
     # Fetch the smaller auxiliary table first so API/schema failures are fast to diagnose.
@@ -1846,6 +1969,7 @@ def main():
     panel = build_panel(mig, pop, income, housing, labor, education, students, industry, fa15)
     panel.to_csv(OUT / "panel.csv", index=False)
     result = fit_models(panel)
+    result["age_group_models"] = fit_age_group_models(panel)
     (OUT / "model.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
