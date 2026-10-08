@@ -806,12 +806,22 @@ def get_industry_structure() -> pd.DataFrame:
 
         icol = dims["industry"]
         def _match_code(code):
-            target = label_map[str(code)].strip().lower()
-            return df[icol].astype(str).str.strip().str.lower() == target
+            code_text = str(code).strip().lower()
+            label_text = label_map.get(str(code), str(code)).strip().lower()
+            observed = df[icol].astype(str).str.strip().str.lower()
+            return observed.eq(code_text) | observed.eq(label_text)
 
         def _sum_for(code, name):
+            matched = df[_match_code(code)].copy()
+            if matched.empty:
+                observed_values = sorted(df[icol].dropna().astype(str).unique().tolist())[:30]
+                raise ValueError(
+                    f"No rows matched industry code={code!r}, "
+                    f"label={label_map.get(str(code))!r}, "
+                    f"observed sample={observed_values}"
+                )
             return (
-                df[_match_code(code)]
+                matched
                 .groupby(["kommun_kod", "kommun", "year"], as_index=False)["value"]
                 .sum()
                 .rename(columns={"value": name})
@@ -838,6 +848,12 @@ def get_industry_structure() -> pd.DataFrame:
         agg["andel_industri_bc"] = 100 * agg["sysselsatta_industri"] / denom
         agg["andel_hotell_restaurang_i"] = 100 * agg["sysselsatta_hotell_restaurang"] / denom
         agg["andel_kultur_service_rstu"] = 100 * agg["sysselsatta_kultur_service"] / denom
+
+        if len(agg) == 0:
+            raise ValueError(
+                f"Industry aggregation returned 0 municipalities for {year}. "
+                f"Industry values sample={sorted(df[icol].dropna().astype(str).unique().tolist())[:30]}"
+            )
 
         rows.append(agg[[
             "kommun_kod","kommun","year",
