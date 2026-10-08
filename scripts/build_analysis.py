@@ -164,23 +164,44 @@ def get_population() -> pd.DataFrame:
 def standardize_columns(df: pd.DataFrame) -> dict[str, str]:
     out = {}
     for c in df.columns:
-        cl = c.lower()
+        cl = str(c).strip().lower()
         if "region" in cl:
             out["region"] = c
         elif "ålder" in cl or "alder" in cl:
             out["age"] = c
         elif "kön" in cl or "kon" in cl:
             out["sex"] = c
-        elif cl in {"år", "tid"} or "år" == cl:
+        elif (
+            cl in {"år", "tid", "time"}
+            or cl.endswith(" år")
+            or cl.startswith("år ")
+            or "år" in cl
+            or "tid" in cl
+        ):
             out["year"] = c
+
+    if "year" not in out:
+        # SCB CSV exports can use the actual selected year as the column name
+        # when the time dimension has only one selected value.
+        year_like = [
+            c for c in df.columns
+            if str(c).strip().isdigit() and len(str(c).strip()) == 4
+        ]
+        if len(year_like) == 1:
+            out["year_value_column"] = year_like[0]
+
     return out
 
 
 def value_column(df: pd.DataFrame, dims: dict[str, str]) -> str:
-    dim_cols = set(dims.values())
+    dim_cols = {v for k, v in dims.items() if k != "year_value_column"}
     candidates = [c for c in df.columns if c not in dim_cols]
+    # If SCB encoded the selected year as the measure column header, that is
+    # exactly the numeric value column we want to read.
+    if "year_value_column" in dims:
+        return dims["year_value_column"]
     if not candidates:
-        raise ValueError("No value column found")
+        raise ValueError(f"No value column found. Columns: {list(df.columns)}")
     return candidates[-1]
 
 
@@ -197,7 +218,12 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame) -> pd.DataFrame:
     mig = mig.copy()
     mig["value"] = normalize_number(mig[mv])
     mig["age_num"] = mig[md["age"]].map(age_numeric)
-    mig["year"] = pd.to_numeric(mig[md["year"]], errors="coerce")
+    if "year" in md:
+        mig["year"] = pd.to_numeric(mig[md["year"]], errors="coerce")
+    elif "year_value_column" in md:
+        mig["year"] = int(str(md["year_value_column"]).strip())
+    else:
+        raise KeyError(f"Could not identify migration year column. Columns: {list(mig.columns)}")
     mig[["kommun_kod", "kommun"]] = mig[md["region"]].apply(lambda x: pd.Series(split_region(x)))
 
     # Aggregate both sexes. Total inflow from age-specific rows.
@@ -222,7 +248,12 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame) -> pd.DataFrame:
     pop = pop.copy()
     pop["value"] = normalize_number(pop[pv])
     pop["age_num"] = pop[pdims["age"]].map(age_numeric)
-    pop["year"] = pd.to_numeric(pop[pdims["year"]], errors="coerce")
+    if "year" in pdims:
+        pop["year"] = pd.to_numeric(pop[pdims["year"]], errors="coerce")
+    elif "year_value_column" in pdims:
+        pop["year"] = int(str(pdims["year_value_column"]).strip())
+    else:
+        raise KeyError(f"Could not identify population year column. Columns: {list(pop.columns)}")
     pop[["kommun_kod", "kommun"]] = pop[pdims["region"]].apply(lambda x: pd.Series(split_region(x)))
 
     # Sexes are separate rows, so sum across sex.
