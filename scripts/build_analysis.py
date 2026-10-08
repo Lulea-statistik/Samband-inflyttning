@@ -23,6 +23,7 @@ POPULATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE01
 INCOME_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/HE/HE0110/HE0110A/SamForvInk2"
 HOUSING_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104D/BO0104T02"
 LABOR_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210A/ArbStatusAr"
+EDUCATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/UF/UF0506/UF0506B/Utbildning"
 OUT = Path("docs/data")
 OUT.mkdir(parents=True, exist_ok=True)
 
@@ -458,6 +459,126 @@ def get_labor_market() -> pd.DataFrame:
 
     return pd.concat(rows, ignore_index=True)
 
+
+def get_education() -> pd.DataFrame:
+    """
+    Share of residents aged 25-64 with post-secondary education.
+    Uses SCB's official education-register municipality table.
+    """
+    meta = metadata(EDUCATION_URL)
+    region = find_var(meta, "region")
+    age = find_var(meta, "ålder", "alder")
+    education = find_var(meta, "utbildningsnivå", "utbildningsniva")
+    sex = find_var(meta, "kön", "kon")
+    content = find_var(meta, "tabellinnehåll", "contentscode")
+    time = find_var(meta, "år", "tid")
+
+    munis = municipality_codes(region)
+    sex_codes = aggregate_codes(sex)
+
+    age_codes = []
+    for code, text in zip(age["values"], age.get("valueTexts", age["values"])):
+        a = age_numeric(text)
+        if np.isfinite(a) and 25 <= a <= 64:
+            age_codes.append(code)
+    if not age_codes:
+        raise ValueError(
+            f"No education age codes identified for 25-64. "
+            f"Sample={list(zip(age['values'][:20], age.get('valueTexts', age['values'])[:20]))}"
+        )
+
+    edu_pairs = list(zip(
+        education["values"],
+        education.get("valueTexts", education["values"])
+    ))
+    postsecondary_codes = [
+        code for code, text in edu_pairs
+        if ("eftergymnasial" in str(text).lower() or "forskarutbild" in str(text).lower())
+    ]
+    if not postsecondary_codes:
+        raise ValueError(
+            f"No post-secondary education categories found: {[t for _, t in edu_pairs]}"
+        )
+
+    total_edu_codes = aggregate_codes(education)
+    has_explicit_total = len(total_edu_codes) == 1 and total_edu_codes[0] not in postsecondary_codes
+    if has_explicit_total:
+        requested_edu_codes = list(dict.fromkeys(postsecondary_codes + total_edu_codes))
+    else:
+        requested_edu_codes = [code for code, _ in edu_pairs]
+
+    count_code = code_for_text(content, "Antal")
+    rows = []
+    for year in AUX_YEARS:
+        df = px_csv(EDUCATION_URL, {
+            region["code"]: munis,
+            age["code"]: age_codes,
+            education["code"]: requested_edu_codes,
+            sex["code"]: sex_codes,
+            content["code"]: [count_code],
+            time["code"]: [str(year)],
+        })
+        dims = standardize_columns(df)
+        dim_cols = set(dims.values())
+        value_cols = [c for c in df.columns if c not in dim_cols]
+        if len(value_cols) != 1:
+            raise ValueError(
+                f"Expected one education value column for {year}, got {value_cols}; "
+                f"columns={list(df.columns)}"
+            )
+
+        df["value"] = normalize_number(df[value_cols[0]])
+        df["year"] = year
+        df[["kommun_kod", "kommun"]] = df[dims["region"]].apply(
+            lambda x: pd.Series(split_region(x))
+        )
+
+        ecol = dims["education"]
+        df["_postsecondary"] = df[ecol].astype(str).str.lower().apply(
+            lambda x: ("eftergymnasial" in x) or ("forskarutbild" in x)
+        )
+
+        numerator = (
+            df[df["_postsecondary"]]
+            .groupby(["kommun_kod", "kommun", "year"], as_index=False)["value"]
+            .sum()
+            .rename(columns={"value": "eftergymnasial"})
+        )
+
+        if has_explicit_total:
+            total_labels = {
+                str(text).strip().lower()
+                for code, text in edu_pairs
+                if code in total_edu_codes
+            }
+            denominator = (
+                df[df[ecol].astype(str).str.strip().str.lower().isin(total_labels)]
+                .groupby(["kommun_kod", "kommun", "year"], as_index=False)["value"]
+                .sum()
+                .rename(columns={"value": "utbildning_total"})
+            )
+        else:
+            denominator = (
+                df.groupby(["kommun_kod", "kommun", "year"], as_index=False)["value"]
+                .sum()
+                .rename(columns={"value": "utbildning_total"})
+            )
+
+        agg = denominator.merge(
+            numerator,
+            on=["kommun_kod", "kommun", "year"],
+            how="left",
+        )
+        agg["andel_eftergymnasial"] = (
+            100 * agg["eftergymnasial"] / agg["utbildning_total"].replace(0, np.nan)
+        )
+        rows.append(agg[[
+            "kommun_kod", "kommun", "year", "andel_eftergymnasial"
+        ]])
+        print(f"Education {year}: {len(agg):,} municipalities")
+
+    return pd.concat(rows, ignore_index=True)
+
 def standardize_columns(df: pd.DataFrame) -> dict[str, str]:
     out = {}
     for c in df.columns:
@@ -520,7 +641,7 @@ def split_region(value: str) -> tuple[str, str]:
     return s[:4], s[5:] if len(s) > 5 else s
 
 
-def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, housing: pd.DataFrame, labor: pd.DataFrame) -> pd.DataFrame:
+def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, housing: pd.DataFrame, labor: pd.DataFrame, education: pd.DataFrame) -> pd.DataFrame:
     md = standardize_columns(mig)
     mig = mig.copy()
     mig["value"] = normalize_number(mig["value"])
@@ -578,6 +699,10 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
         labor[["kommun_kod", "year", "sysselsattningsgrad", "arbetsloshet"]],
         on=["kommun_kod", "year"], how="left"
     )
+    panel = panel.merge(
+        education[["kommun_kod", "year", "andel_eftergymnasial"]],
+        on=["kommun_kod", "year"], how="left"
+    )
     panel["andel_20_34"] = 100 * panel["bef_20_34"] / panel["folkmangd"]
     panel["inflyttning_per_1000"] = 1000 * panel["inflyttade"] / panel["folkmangd"]
 
@@ -589,6 +714,7 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel["lag1_andel_smahus"] = g["andel_smahus"].shift(1)
     panel["lag1_sysselsattningsgrad"] = g["sysselsattningsgrad"].shift(1)
     panel["lag1_arbetsloshet"] = g["arbetsloshet"].shift(1)
+    panel["lag1_andel_eftergymnasial"] = g["andel_eftergymnasial"].shift(1)
     panel["befolkningstillvaxt_pct"] = 100 * g["folkmangd"].pct_change(fill_method=None)
     panel["log_folkmangd"] = np.log(panel["folkmangd"].where(panel["folkmangd"] > 0))
 
@@ -853,6 +979,7 @@ def fit_models(panel: pd.DataFrame) -> dict:
         "lag1_andel_smahus",
         "lag1_sysselsattningsgrad",
         "lag1_arbetsloshet",
+        "lag1_andel_eftergymnasial",
     ]
     model_df = panel.dropna(subset=[target] + features).copy()
     test_year = int(model_df["year"].max())
@@ -935,6 +1062,7 @@ def fit_models(panel: pd.DataFrame) -> dict:
             "Inkomst avser genomsnittlig sammanräknad förvärvsinkomst för 20–64-åringar och används laggad ett år.",
             "Andel småhus avser bostadslägenheter i småhus som andel av bostadsbeståndet och används laggad ett år.",
             "Arbetsmarknadsvariablerna är sysselsättningsgrad och arbetslöshet bland 20–64-åringar från SCB BAS och används laggade ett år.",
+            "Utbildningsvariabeln är andel 25–64-åringar med eftergymnasial utbildning och används laggad ett år.",
             "Variabelurvalet kombinerar Elastic Net och backward-AIC; variabler som väljs av båda behålls i första hand.",
             "Om konsensusurvalet blir alltför litet används backward-AIC som reserv för att undvika instabila små modeller.",
             "Urvalet för prognosvalidering görs endast på träningsåren och får inte se teståret.",
@@ -946,11 +1074,12 @@ def fit_models(panel: pd.DataFrame) -> dict:
 def main():
     # Fetch the smaller auxiliary table first so API/schema failures are fast to diagnose.
     labor = get_labor_market()
+    education = get_education()
     mig = get_migration()
     pop = get_population()
     income = get_income()
     housing = get_housing()
-    panel = build_panel(mig, pop, income, housing, labor)
+    panel = build_panel(mig, pop, income, housing, labor, education)
     panel.to_csv(OUT / "panel.csv", index=False)
     result = fit_models(panel)
     (OUT / "model.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
