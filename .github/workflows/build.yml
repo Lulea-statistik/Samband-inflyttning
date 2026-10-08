@@ -31,6 +31,8 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
+      - name: Preflight external sources
+        run: python scripts/build_analysis.py --preflight-only
       - name: Build SCB panel and regression
         run: python scripts/build_analysis.py
       - name: Commit generated data
