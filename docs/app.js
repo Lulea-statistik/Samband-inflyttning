@@ -1,6 +1,14 @@
 const fmt0 = new Intl.NumberFormat('sv-SE',{maximumFractionDigits:0});
 const fmt1 = new Intl.NumberFormat('sv-SE',{maximumFractionDigits:1});
 const fmt2 = new Intl.NumberFormat('sv-SE',{maximumFractionDigits:2});
+function fmt(value,digits=2){
+  const n=Number(value);
+  if(!Number.isFinite(n)) return '–';
+  return new Intl.NumberFormat('sv-SE',{
+    minimumFractionDigits:digits,
+    maximumFractionDigits:digits
+  }).format(n);
+}
 let panel=[], model={}, predictions=[], diagnostics=[], qq=[];
 let selectedWindow=5;
 
