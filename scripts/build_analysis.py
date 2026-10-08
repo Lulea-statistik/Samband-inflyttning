@@ -25,7 +25,16 @@ MIGRATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE010
 POPULATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101A/BefolkningNy"
 INCOME_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/HE/HE0110/HE0110A/SamForvInk2"
 HOUSING_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104D/BO0104T04"
-LEISURE_HOUSE_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104X/BO0104T08"
+LEISURE_HOUSE_URL_CANDIDATES = [
+    # SCB's PxWeb UI calls the table BO0104T08 while metadata reports matrix BO0104AI.
+    # Try stable API variants explicitly and fail during preflight, not after the long build.
+    "https://api.scb.se/OV0104/v1/doris/sv/ssd/BO/BO0104/BO0104AI",
+    "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104X/BO0104AI",
+    "https://api.scb.se/OV0104/v1/doris/sv/ssd/BO/BO0104/BO0104T08",
+    "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104T08",
+    "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104X/BO0104T08",
+]
+_LEISURE_HOUSE_RESOLVED_URL = None
 BRA_ANNUAL_RAW = "https://raw.githubusercontent.com/Lulea-statistik/BR-brottsstatistik/main/data/annual_all/year={year}.parquet"
 LABOR_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210A/ArbStatusAr"
 EDUCATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/UF/UF0506/UF0506B/Utbildning"
@@ -53,6 +62,30 @@ def metadata(url: str) -> dict:
     return r.json()
 
 
+def resolve_leisure_house_url() -> tuple[str, dict]:
+    global _LEISURE_HOUSE_RESOLVED_URL
+    if _LEISURE_HOUSE_RESOLVED_URL is not None:
+        return _LEISURE_HOUSE_RESOLVED_URL, metadata(_LEISURE_HOUSE_RESOLVED_URL)
+
+    errors = []
+    for url in LEISURE_HOUSE_URL_CANDIDATES:
+        try:
+            meta = metadata(url)
+            if not meta.get("variables"):
+                raise RuntimeError("metadata contains no variables")
+            _LEISURE_HOUSE_RESOLVED_URL = url
+            print(f"Resolved leisure-house API: {url}")
+            return url, meta
+        except Exception as exc:
+            errors.append(f"{url} -> {exc}")
+            print(f"Leisure-house candidate failed: {url} -> {exc}")
+
+    raise RuntimeError(
+        "No working SCB leisure-house v1 endpoint found. Tried:\n- "
+        + "\n- ".join(errors)
+    )
+
+
 def preflight_sources() -> None:
     """
     Fail fast before the expensive panel build if an external source URL,
@@ -63,7 +96,6 @@ def preflight_sources() -> None:
         "population": POPULATION_URL,
         "income": INCOME_URL,
         "housing": HOUSING_URL,
-        "leisure_houses": LEISURE_HOUSE_URL,
         "labor": LABOR_URL,
         "education": EDUCATION_URL,
         "students": STUDENT_URL,
@@ -84,6 +116,13 @@ def preflight_sources() -> None:
         except Exception as exc:
             failures.append(f"{name}: {exc}")
             print(f"Preflight FAILED {name}: {exc}")
+
+    try:
+        url, meta = resolve_leisure_house_url()
+        print(f"Preflight OK leisure_houses: {len(meta.get('variables', []))} variables via {url}")
+    except Exception as exc:
+        failures.append(f"leisure_houses: {exc}")
+        print(f"Preflight FAILED leisure_houses: {exc}")
 
     # Lightweight checks of the non-SCB sources used in the build.
     try:
@@ -500,7 +539,7 @@ def get_housing() -> pd.DataFrame:
 
 def get_leisure_houses() -> pd.DataFrame:
     """SCB annual leisure-house stock by municipality."""
-    meta = metadata(LEISURE_HOUSE_URL)
+    leisure_url, meta = resolve_leisure_house_url()
     region = find_var(meta, "region")
     time_var = find_var(meta, "år", "tid")
     munis = municipality_codes(region)
@@ -510,7 +549,7 @@ def get_leisure_houses() -> pd.DataFrame:
     for year in AUX_YEARS:
         if str(year) not in available_years:
             continue
-        df = px_csv(LEISURE_HOUSE_URL, {
+        df = px_csv(leisure_url, {
             region["code"]: munis,
             time_var["code"]: [str(year)],
         })
