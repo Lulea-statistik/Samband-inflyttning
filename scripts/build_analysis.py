@@ -5,6 +5,7 @@ import io
 import json
 import math
 import re
+import time
 from pathlib import Path
 
 import numpy as np
@@ -149,13 +150,34 @@ def px_csv(url: str, selections: dict[str, list[str]]) -> pd.DataFrame:
     for code, values in selections.items():
         query.append({"code": code, "selection": {"filter": "item", "values": values}})
     payload = {"query": query, "response": {"format": "csv"}}
-    r = session.post(url, json=payload, timeout=180)
-    if not r.ok:
-        raise RuntimeError(
-            f"SCB query failed {r.status_code} for {url}: {r.text[:1000]} "
-            f"| selections={json.dumps(selections, ensure_ascii=False)}"
-        )
-    return pd.read_csv(io.StringIO(r.text), sep=None, engine="python")
+
+    last_error = None
+    for attempt in range(1, 5):
+        try:
+            r = session.post(url, json=payload, timeout=180)
+            if r.ok:
+                return pd.read_csv(io.StringIO(r.text), sep=None, engine="python")
+
+            if r.status_code not in {429, 500, 502, 503, 504}:
+                raise RuntimeError(
+                    f"SCB query failed {r.status_code} for {url}: {r.text[:1000]} "
+                    f"| selections={json.dumps(selections, ensure_ascii=False)}"
+                )
+            last_error = RuntimeError(
+                f"Transient SCB HTTP {r.status_code} for {url}: {r.text[:500]}"
+            )
+        except requests.RequestException as exc:
+            last_error = exc
+
+        if attempt < 4:
+            wait_seconds = 2 * attempt
+            print(f"SCB transient error, retry {attempt}/4 after {wait_seconds}s: {last_error}")
+            time.sleep(wait_seconds)
+
+    raise RuntimeError(
+        f"SCB query failed after 4 attempts for {url}: {last_error} "
+        f"| selections={json.dumps(selections, ensure_ascii=False)}"
+    )
 
 
 def normalize_number(s: pd.Series) -> pd.Series:
@@ -509,7 +531,7 @@ def get_education() -> pd.DataFrame:
 
     count_code = code_for_text(content, "Antal")
     rows = []
-    chunk_size = 40
+    chunk_size = 20
     for year in AUX_YEARS:
         year_parts = []
         for i in range(0, len(munis), chunk_size):
