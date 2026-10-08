@@ -4,3 +4,5 @@ requests>=2.31
 scikit-learn>=1.5
 statsmodels>=0.14
 scipy>=1.10
+
+openpyxl>=3.1
