@@ -9,7 +9,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import requests
-from sklearn.linear_model import LinearRegression, RidgeCV
+from sklearn.linear_model import LinearRegression, RidgeCV, ElasticNetCV
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import make_pipeline
@@ -489,15 +489,150 @@ def _metrics(y_true, y_pred) -> dict:
     }
 
 
+def _design_with_year_effects(d: pd.DataFrame, features: list[str]) -> pd.DataFrame:
+    year_dummies = pd.get_dummies(
+        d["year"].astype(int).astype(str),
+        prefix="year",
+        drop_first=True,
+        dtype=float,
+    )
+    X = pd.concat(
+        [d[features].reset_index(drop=True), year_dummies.reset_index(drop=True)],
+        axis=1,
+    )
+    return sm.add_constant(X, has_constant="add").astype(float)
+
+
+def _backward_aic_selection(
+    d: pd.DataFrame,
+    features: list[str],
+    target: str,
+    min_improvement: float = 2.0,
+) -> tuple[list[str], list[dict]]:
+    """Backward elimination by AIC; year fixed effects are always retained."""
+    selected = list(features)
+    history = []
+
+    def fit_aic(fs: list[str]) -> float:
+        X = _design_with_year_effects(d, fs)
+        y = d[target].astype(float).reset_index(drop=True)
+        return float(sm.OLS(y, X).fit().aic)
+
+    current_aic = fit_aic(selected)
+    while len(selected) > 1:
+        candidates = []
+        for feature in selected:
+            trial = [f for f in selected if f != feature]
+            aic = fit_aic(trial)
+            candidates.append((aic, feature, trial))
+        best_aic, removed, trial = min(candidates, key=lambda x: x[0])
+        improvement = current_aic - best_aic
+        if improvement < min_improvement:
+            break
+        history.append({
+            "removed": removed,
+            "aic_before": _finite_float(current_aic),
+            "aic_after": _finite_float(best_aic),
+            "improvement": _finite_float(improvement),
+        })
+        selected = trial
+        current_aic = best_aic
+
+    return selected, history
+
+
+def _elastic_net_selection(
+    d: pd.DataFrame,
+    features: list[str],
+    target: str,
+) -> tuple[list[str], dict]:
+    """
+    Elastic Net variable selection on within-year deviations.
+    Demeaning by year keeps the selector focused on municipal differences
+    while year fixed effects remain unpenalized in the final OLS model.
+    """
+    work = d[["year", target] + features].dropna().reset_index(drop=True)
+    if len(work) < max(30, len(features) * 5):
+        return list(features), {"reason": "too_few_observations"}
+
+    X = work[features].astype(float)
+    y = work[target].astype(float)
+    Xw = X - X.groupby(work["year"]).transform("mean")
+    yw = y - y.groupby(work["year"]).transform("mean")
+
+    scaler = StandardScaler()
+    Xs = scaler.fit_transform(Xw)
+
+    years = sorted(work["year"].unique())
+    if len(years) >= 3:
+        splits = []
+        for yr in years:
+            test_idx = np.flatnonzero(work["year"].to_numpy() == yr)
+            train_idx = np.flatnonzero(work["year"].to_numpy() != yr)
+            if len(test_idx) and len(train_idx):
+                splits.append((train_idx, test_idx))
+        cv = splits
+    else:
+        cv = min(5, max(2, len(work) // 30))
+
+    model = ElasticNetCV(
+        l1_ratio=[0.1, 0.5, 0.9, 1.0],
+        alphas=np.logspace(-4, 2, 80),
+        cv=cv,
+        max_iter=50000,
+        random_state=42,
+    ).fit(Xs, yw)
+
+    coefs = np.asarray(model.coef_)
+    selected = [f for f, c in zip(features, coefs) if abs(float(c)) > 1e-8]
+    if not selected:
+        selected = [features[int(np.argmax(np.abs(coefs)))]]
+
+    return selected, {
+        "alpha": _finite_float(model.alpha_),
+        "l1_ratio": _finite_float(model.l1_ratio_),
+        "coefficients": [
+            {"feature": f, "penalized_coefficient": _finite_float(c)}
+            for f, c in zip(features, coefs)
+        ],
+    }
+
+
+def _select_features(
+    d: pd.DataFrame,
+    features: list[str],
+    target: str,
+) -> dict:
+    elastic, elastic_meta = _elastic_net_selection(d, features, target)
+    backward, backward_history = _backward_aic_selection(d, features, target)
+
+    consensus = [f for f in features if f in elastic and f in backward]
+    # Avoid an over-aggressive selector in small windows.
+    if len(consensus) < 2:
+        consensus = list(backward)
+    if not consensus:
+        consensus = [features[0]]
+
+    excluded = [f for f in features if f not in consensus]
+    return {
+        "selected": consensus,
+        "excluded": excluded,
+        "elastic_net_selected": elastic,
+        "backward_aic_selected": backward,
+        "elastic_net": elastic_meta,
+        "backward_aic_history": backward_history,
+    }
+
+
 def _explanation_model(df: pd.DataFrame, features: list[str], target: str, window: int) -> tuple[dict, pd.DataFrame, pd.DataFrame]:
     latest_year = int(df["year"].max())
     start_year = latest_year - window + 1
     d = df[df["year"].between(start_year, latest_year)].copy()
+    selection = _select_features(d, features, target)
+    selected_features = selection["selected"]
 
     # Year fixed effects absorb common national shocks/trends within the pooled window.
-    year_dummies = pd.get_dummies(d["year"].astype(int).astype(str), prefix="year", drop_first=True, dtype=float)
-    X = pd.concat([d[features].reset_index(drop=True), year_dummies.reset_index(drop=True)], axis=1)
-    X = sm.add_constant(X, has_constant="add").astype(float)
+    X = _design_with_year_effects(d, selected_features)
     y = d[target].reset_index(drop=True).astype(float)
     groups = d["kommun_kod"].reset_index(drop=True)
 
@@ -511,7 +646,7 @@ def _explanation_model(df: pd.DataFrame, features: list[str], target: str, windo
 
     y_sd = float(np.nanstd(y, ddof=1))
     coeffs = []
-    for feature in features:
+    for feature in selected_features:
         i = names.index(feature)
         x_sd = float(np.nanstd(d[feature], ddof=1))
         beta_std = params[i] * x_sd / y_sd if y_sd > 0 and x_sd > 0 else np.nan
@@ -525,8 +660,8 @@ def _explanation_model(df: pd.DataFrame, features: list[str], target: str, windo
         })
 
     vif_rows = []
-    vif_X = sm.add_constant(d[features].astype(float), has_constant="add")
-    for i, feature in enumerate(features, start=1):
+    vif_X = sm.add_constant(d[selected_features].astype(float), has_constant="add")
+    for i, feature in enumerate(selected_features, start=1):
         try:
             vif = variance_inflation_factor(vif_X.to_numpy(), i)
         except Exception:
@@ -567,6 +702,9 @@ def _explanation_model(df: pd.DataFrame, features: list[str], target: str, windo
         "bic": _finite_float(base_fit.bic),
         "coefficients": coeffs,
         "vif": vif_rows,
+        "variable_selection": selection,
+        "selected_features": selected_features,
+        "excluded_features": selection["excluded"],
         "standard_errors": "Klustrade per kommun",
         "year_fixed_effects": True,
     }
@@ -601,8 +739,11 @@ def fit_models(panel: pd.DataFrame) -> dict:
         train = model_df[model_df["year"].between(train_start, test_year - 1)].copy()
         test = model_df[model_df["year"] == test_year].copy()
 
-        Xtr, ytr = train[features], train[target]
-        Xte, yte = test[features], test[target]
+        validation_selection = _select_features(train, features, target)
+        validation_features = validation_selection["selected"]
+
+        Xtr, ytr = train[validation_features], train[target]
+        Xte, yte = test[validation_features], test[target]
 
         naive_pred = test["lag1_inflyttning_per_1000"].to_numpy()
         naive = _metrics(yte, naive_pred)
@@ -630,6 +771,9 @@ def fit_models(panel: pd.DataFrame) -> dict:
                 "test_year": test_year,
                 "n_train": int(len(train)),
                 "n_test": int(len(test)),
+                "selected_features": validation_features,
+                "excluded_features": validation_selection["excluded"],
+                "variable_selection": validation_selection,
                 "models": {
                     "naive": naive,
                     "ols": ols_m,
@@ -658,6 +802,9 @@ def fit_models(panel: pd.DataFrame) -> dict:
             "Prognosvalideringen för teståret använder endast de föregående 1–5 åren beroende på valt analysfönster.",
             "Inkomst avser genomsnittlig sammanräknad förvärvsinkomst för 20–64-åringar och används laggad ett år.",
             "Andel småhus avser bostadslägenheter i småhus som andel av bostadsbeståndet och används laggad ett år.",
+            "Variabelurvalet kombinerar Elastic Net och backward-AIC; variabler som väljs av båda behålls i första hand.",
+            "Om konsensusurvalet blir alltför litet används backward-AIC som reserv för att undvika instabila små modeller.",
+            "Urvalet för prognosvalidering görs endast på träningsåren och får inte se teståret.",
             "Samband ska inte tolkas som säkra kausala effekter; endogenitet och utelämnade variabler kan finnas.",
         ],
     }
