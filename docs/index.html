@@ -57,6 +57,7 @@
     <h2>Multipel regression</h2>
     <p class="lead">Förklaringsmodellen skattas på upp till fem års kommun-år och innehåller årseffekter. Osäkerheten beräknas med standardfel klustrade per kommun.</p>
     <div class="cards" id="regressionCards"></div>
+    <div class="panel"><h3>Variabelurval</h3><div id="selectionSummary"></div></div>
     <div class="panel"><h3>Standardiserade regressionskoefficienter</h3><div id="coefficients" class="chart"></div></div>
     <div class="panel"><h3>95 % konfidensintervall för koefficienter</h3><div id="coefficientCI" class="chart"></div></div>
     <div class="panel"><h3>Multikollinearitet – VIF</h3><div id="vifChart" class="chart"></div></div>
@@ -90,6 +91,7 @@
 
       <h3>Multipel linjär regression</h3>
       <p>OLS används som tolkningsbar grundmodell. När flera år ingår läggs årseffekter till för att fånga nationella skillnader mellan år. Eftersom samma kommun återkommer flera gånger används standardfel klustrade per kommun.</p>
+      <p>Förklaringsvariabler sållas automatiskt i två steg. Elastic Net används för att trycka ned svaga eller redundanta variabler mot noll, medan backward-AIC stegvis testar om modellen förbättras när en variabel tas bort. Variabler som väljs av båda metoderna behålls i första hand. Urvalet görs separat inom varje vald 1–5-årsperiod.</p>
 
       <h3>Begrepp och diagnostik</h3>
       <dl class="terms">
