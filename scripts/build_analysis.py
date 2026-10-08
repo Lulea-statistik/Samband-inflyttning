@@ -1099,6 +1099,67 @@ def _select_features(
     }
 
 
+def _pairwise_variable_matrix(
+    d: pd.DataFrame,
+    features: list[str],
+    target: str,
+) -> dict:
+    """
+    Pairwise diagnostics for the selected analysis window.
+    For each pair: Pearson correlation, joint adjusted R2 with year effects,
+    and incremental adjusted R2 over the stronger single-variable model.
+    """
+    rows = []
+    single_adj = {}
+
+    for feature in features:
+        work = d[["year", target, feature]].dropna().reset_index(drop=True)
+        X = _design_with_year_effects(work, [feature])
+        y = work[target].astype(float).reset_index(drop=True)
+        fit = sm.OLS(y, X).fit()
+        single_adj[feature] = float(fit.rsquared_adj)
+
+    for i, x in enumerate(features):
+        for j, yvar in enumerate(features):
+            if j < i:
+                continue
+
+            cols = ["year", target, x] if x == yvar else ["year", target, x, yvar]
+            work = d[cols].dropna().reset_index(drop=True)
+
+            if x == yvar:
+                corr = 1.0
+                joint_adj = single_adj[x]
+                incremental = 0.0
+            else:
+                corr = float(work[[x, yvar]].corr().iloc[0, 1])
+                X = _design_with_year_effects(work, [x, yvar])
+                yy = work[target].astype(float).reset_index(drop=True)
+                fit = sm.OLS(yy, X).fit()
+                joint_adj = float(fit.rsquared_adj)
+                incremental = joint_adj - max(single_adj[x], single_adj[yvar])
+
+            rows.append({
+                "x": x,
+                "y": yvar,
+                "correlation": _finite_float(corr),
+                "joint_adjusted_r2": _finite_float(joint_adj),
+                "incremental_adjusted_r2": _finite_float(incremental),
+                "x_theme": FEATURE_THEMES.get(x, x),
+                "y_theme": FEATURE_THEMES.get(yvar, yvar),
+                "same_theme": FEATURE_THEMES.get(x, x) == FEATURE_THEMES.get(yvar, yvar),
+                "n_obs": int(len(work)),
+            })
+
+    return {
+        "features": list(features),
+        "single_adjusted_r2": {
+            f: _finite_float(v) for f, v in single_adj.items()
+        },
+        "rows": rows,
+    }
+
+
 def _explanation_model(df: pd.DataFrame, features: list[str], target: str, window: int) -> tuple[dict, pd.DataFrame, pd.DataFrame]:
     latest_year = int(df["year"].max())
     start_year = latest_year - window + 1
@@ -1180,6 +1241,7 @@ def _explanation_model(df: pd.DataFrame, features: list[str], target: str, windo
         "variable_selection": selection,
         "selected_features": selected_features,
         "excluded_features": selection["excluded"],
+        "pairwise_matrix": _pairwise_variable_matrix(d, features, target),
         "standard_errors": "Klustrade per kommun",
         "year_fixed_effects": True,
     }
@@ -1286,6 +1348,7 @@ def fit_models(panel: pd.DataFrame) -> dict:
             "När flera variabler beskriver samma kvalitativa tema behålls högst en representant, vald efter inkrementellt AIC-bidrag.",
             "Tidsbaserad CV får endast sålla variabler när minst tre giltiga rolling-origin-foldar finns; annars behålls den tematiskt balanserade modellen.",
             "Alla strukturella förklaringsvariabler används laggade ett år för tydligare tidsordning mot inflyttningen.",
+            "Variabelmatrisen redovisar parvis korrelation, gemensamt justerat R² samt extra justerat R² jämfört med den starkaste variabeln ensam.",
             "Om konsensusurvalet blir alltför litet används backward-AIC som reserv för att undvika instabila små modeller.",
             "Urvalet för prognosvalidering görs endast på träningsåren och får inte se teståret.",
             "Samband ska inte tolkas som säkra kausala effekter; endogenitet och utelämnade variabler kan finnas.",
