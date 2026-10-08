@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Samband och inflyttning</title>
+  <title>Vad förklarar inflyttning till svenska kommuner?</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/d3-dsv@3"></script>
@@ -11,8 +11,8 @@
 <body>
 <header>
   <div>
-    <h1>Samband och inflyttning</h1>
-    <p>Regressionsanalys av inflyttning till svenska kommuner</p>
+    <h1>Vad förklarar inflyttning till en svensk kommun?</h1>
+    <p>Regressionsanalys av skillnader i inflyttning mellan Sveriges kommuner och över tid</p>
   </div>
 </header>
 <nav>
@@ -24,10 +24,24 @@
   <button class="tab" data-page="method">Metod & data</button>
 </nav>
 <main>
+  <div class="global-controls">
+    <label>Analysperiod
+      <select id="windowSelect">
+        <option value="1">1 år</option>
+        <option value="2">2 år</option>
+        <option value="3">3 år</option>
+        <option value="4">4 år</option>
+        <option value="5" selected>5 år</option>
+      </select>
+    </label>
+    <span id="windowDescription" class="note"></span>
+  </div>
+
   <section id="overview" class="page active">
     <h2>Översikt</h2>
+    <p class="lead">Syftet är att undersöka hur väl observerbara kommunegenskaper kan förklara variationen i <strong>inflyttade per 1 000 invånare</strong>. Varje observation är en kommun ett visst år.</p>
     <div id="cards" class="cards"></div>
-    <div class="panel"><h3>Modelljämförelse</h3><div id="modelCompare" class="chart"></div></div>
+    <div class="panel"><h3>Prognosvalidering på nästa år</h3><div id="modelCompare" class="chart"></div></div>
   </section>
 
   <section id="relationships" class="page">
@@ -41,12 +55,18 @@
 
   <section id="model" class="page">
     <h2>Multipel regression</h2>
-    <div class="panel"><h3>OLS-koefficienter</h3><div id="coefficients" class="chart"></div></div>
-    <p class="note">Koefficienternas storlek är inte direkt jämförbar mellan variabler med olika enheter. Standardiserade koefficienter läggs till i nästa steg.</p>
+    <p class="lead">Förklaringsmodellen skattas på upp till fem års kommun-år och innehåller årseffekter. Osäkerheten beräknas med standardfel klustrade per kommun.</p>
+    <div class="cards" id="regressionCards"></div>
+    <div class="panel"><h3>Standardiserade regressionskoefficienter</h3><div id="coefficients" class="chart"></div></div>
+    <div class="panel"><h3>95 % konfidensintervall för koefficienter</h3><div id="coefficientCI" class="chart"></div></div>
+    <div class="panel"><h3>Multikollinearitet – VIF</h3><div id="vifChart" class="chart"></div></div>
+    <div class="panel"><h3>Residualer mot skattade värden</h3><div id="residualChart" class="chart tall"></div></div>
+    <div class="panel"><h3>Normal Q–Q-plot</h3><div id="qqChart" class="chart"></div></div>
   </section>
 
   <section id="validation" class="page">
     <h2>Validering</h2>
+    <p class="lead">Teståret hålls helt utanför modellskattningen. Det gör att hög förklaringsgrad i historiska data inte automatiskt räknas som god prognosförmåga.</p>
     <div class="panel"><h3>Observerat mot predikterat</h3><div id="validationChart" class="chart tall"></div></div>
   </section>
 
@@ -59,10 +79,38 @@
   <section id="method" class="page">
     <h2>Metod & data</h2>
     <div class="text">
-      <p>En observation är en kommun och ett år. Målvariabeln i den första basmodellen är inflyttade per 1 000 invånare.</p>
-      <p>Prognosmodellen använder endast föregående års inflyttning och föregående års medelålder bland inflyttarna, tillsammans med demografiska variabler. Samma års inflyttarprofil används därför inte som förklaringsvariabel.</p>
-      <p>Senaste året hålls helt utanför träningen och används som testår. Detta minskar risken att hög förklaringsgrad bara beror på överanpassning.</p>
+      <h3>Syfte</h3>
+      <p>Rapporten är till för att <strong>förklara varför inflyttningen skiljer sig mellan svenska kommuner</strong>. Den ska identifiera statistiska samband och bedöma hur mycket av variationen i inflyttning som kan förklaras av observerbara faktorer. Samband ska inte automatiskt tolkas som orsakssamband.</p>
+
+      <h3>Observation och responsvariabel</h3>
+      <p>En observation är <strong>kommun × år</strong>. Responsvariabeln är inflyttade per 1 000 invånare. Analysperioden kan vara 1–5 år och standard är fem år. Ett femårsfönster ger fler observationer än ett enskilt tvärsnitt men begränsar samtidigt risken att mycket gamla strukturella förhållanden styr dagens modell.</p>
+
+      <h3>Förklaringsvariabler</h3>
+      <p>Grundmodellen innehåller föregående års inflyttning per 1 000 invånare, logaritmerad folkmängd, befolkningstillväxt, andel 20–34 år och föregående års genomsnittsålder bland inflyttare. Bostäder, arbetsmarknad, inkomster och utbildning ska läggas till stegvis och jämföras mot grundmodellen.</p>
+
+      <h3>Multipel linjär regression</h3>
+      <p>OLS används som tolkningsbar grundmodell. När flera år ingår läggs årseffekter till för att fånga nationella skillnader mellan år. Eftersom samma kommun återkommer flera gånger används standardfel klustrade per kommun.</p>
+
+      <h3>Begrepp och diagnostik</h3>
+      <dl class="terms">
+        <dt>R²</dt><dd>Andelen av variationen i responsvariabeln som modellen förklarar.</dd>
+        <dt>Justerat R²</dt><dd>Justerar R² för antalet förklaringsvariabler och är därför bättre vid jämförelse mellan modeller med olika komplexitet.</dd>
+        <dt>Regressionskoefficient</dt><dd>Den skattade förändringen i responsvariabeln när en förklaringsvariabel ändras, givet övriga variabler.</dd>
+        <dt>Konfidensintervall</dt><dd>Visar osäkerheten kring en skattad koefficient. Här används 95 % intervall.</dd>
+        <dt>Residual</dt><dd>Skillnaden mellan observerat och modellens skattade värde.</dd>
+        <dt>VIF</dt><dd>Variance Inflation Factor används för att upptäcka multikollinearitet mellan förklaringsvariabler.</dd>
+        <dt>Heteroskedasticitet</dt><dd>Residualernas spridning varierar systematiskt med de skattade värdena eller andra variabler.</dd>
+        <dt>Endogenitet</dt><dd>En förklaringsvariabel samvarierar med sådant som ligger i feltermen, vilket kan göra koefficienten missvisande.</dd>
+      </dl>
+
+      <h3>Modellbedömning</h3>
+      <p>Rapporten visar R², justerat R², AIC, BIC, VIF, residualdiagram och Q–Q-plot. R² ska inte användas ensamt eftersom det normalt inte minskar när fler variabler läggs till. Prognosdelen jämför dessutom modellerna mot ett helt separat testår med out-of-sample R², RMSE och MAE.</p>
+
+      <h3>Data</h3>
       <p>Källa: SCB Statistikdatabasen, tabellerna <strong>Flyttningar efter region, ålder, kön, tabellinnehåll och år</strong> samt <strong>Folkmängden efter region, civilstånd, ålder, kön, tabellinnehåll och år</strong>.</p>
+
+      <h3>Metodisk inspiration</h3>
+      <p>Upplägget för begrepp, regressionsdiagnostik och modelljämförelse är inspirerat av KTH-rapporten <em>Analys av faktorer som påverkar bränsleförbrukningen i en personbil – med multipel linjär regression</em> (2018), men analysfråga, data och modeller är anpassade till kommunal inflyttning.</p>
     </div>
   </section>
 </main>
