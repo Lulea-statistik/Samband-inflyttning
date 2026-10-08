@@ -26,7 +26,10 @@ POPULATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE01
 INCOME_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/HE/HE0110/HE0110A/SamForvInk2"
 HOUSING_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104D/BO0104T04"
 LEISURE_HOUSE_URL_CANDIDATES = [
-    # SCB's PxWeb UI calls the table BO0104T08 while metadata reports matrix BO0104AI.
+    # Exact branch from SCB PxWeb: START__BO__BO0104__BO0104H/BO0104T08
+    "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104H/BO0104T08",
+    # Fallback variants retained only for diagnosis.
+    # SCB's PxWeb UI calls the table BO0104T08 while metadata may expose another matrix id.
     # Try stable API variants explicitly and fail during preflight, not after the long build.
     "https://api.scb.se/OV0104/v1/doris/sv/ssd/BO/BO0104/BO0104AI",
     "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104X/BO0104AI",
