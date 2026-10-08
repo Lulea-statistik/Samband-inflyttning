@@ -462,7 +462,10 @@ def standardize_columns(df: pd.DataFrame) -> dict[str, str]:
     out = {}
     for c in df.columns:
         cl = str(c).strip().lower()
-        if "region" in cl:
+        # More specific dimensions must be tested before generic "region".
+        if "födelseregion" in cl or "fodelseregion" in cl:
+            out["birth_region"] = c
+        elif "region" in cl:
             out["region"] = c
         elif "ålder" in cl or "alder" in cl:
             out["age"] = c
@@ -476,8 +479,6 @@ def standardize_columns(df: pd.DataFrame) -> dict[str, str]:
             out["period"] = c
         elif "utbildningsnivå" in cl or "utbildningsniva" in cl or "utbildning" in cl:
             out["education"] = c
-        elif "födelseregion" in cl or "fodelseregion" in cl:
-            out["birth_region"] = c
         elif (
             cl in {"år", "tid", "time"}
             or cl.endswith(" år")
