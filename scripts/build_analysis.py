@@ -54,6 +54,20 @@ def code_for_text(var: dict, wanted: str) -> str:
     raise KeyError(f"Value {wanted!r} not found in {var.get('text')}")
 
 
+def total_code(var: dict) -> str:
+    """Return the code representing all/total for a dimension."""
+    pairs = list(zip(var["values"], var.get("valueTexts", var["values"])))
+    preferred = {"totalt", "total", "samtliga", "alla", "båda könen", "bada konen"}
+    for code, text in pairs:
+        if str(text).strip().lower() in preferred:
+            return code
+    for code, text in pairs:
+        t = str(text).strip().lower()
+        if "totalt" in t or "samtliga" in t or "båda könen" in t or "bada konen" in t:
+            return code
+    raise KeyError(f"No total category found in {var.get('text')}: {[t for _, t in pairs[:20]]}")
+
+
 def municipality_codes(region_var: dict) -> list[str]:
     # Four-digit municipal codes. This excludes the national and county totals.
     return [str(v) for v in region_var["values"] if len(str(v)) == 4 and str(v).isdigit()]
@@ -113,6 +127,7 @@ def get_migration() -> pd.DataFrame:
 
     munis = municipality_codes(region)
     inflow_code = code_for_text(content, "Inflyttningar")
+    sex_total = total_code(sex)
     rows = []
 
     # One year at a time stays safely below PxWeb cell limits.
@@ -123,7 +138,7 @@ def get_migration() -> pd.DataFrame:
         df = px_csv(MIGRATION_URL, {
             region["code"]: munis,
             age["code"]: list(age["values"]),
-            sex["code"]: list(sex["values"]),
+            sex["code"]: [sex_total],
             content["code"]: [inflow_code],
             time["code"]: [str(year)],
         })
@@ -149,6 +164,8 @@ def get_population() -> pd.DataFrame:
 
     munis = municipality_codes(region)
     pop_code = code_for_text(content, "Folkmängd")
+    sex_total = total_code(sex)
+    civil_total = total_code(civil)
     age_codes = []
     for code, text in zip(age["values"], age.get("valueTexts", age["values"])):
         a = age_numeric(text)
@@ -160,8 +177,8 @@ def get_population() -> pd.DataFrame:
         df = px_csv(POPULATION_URL, {
             region["code"]: munis,
             age["code"]: age_codes,
-            sex["code"]: list(sex["values"]),
-            civil["code"]: list(civil["values"]),
+            sex["code"]: [sex_total],
+            civil["code"]: [civil_total],
             content["code"]: [pop_code],
             time["code"]: [str(year)],
         })
@@ -186,6 +203,8 @@ def standardize_columns(df: pd.DataFrame) -> dict[str, str]:
             out["age"] = c
         elif "kön" in cl or "kon" in cl:
             out["sex"] = c
+        elif "civilstånd" in cl or "civilstand" in cl:
+            out["civil"] = c
         elif (
             cl in {"år", "tid", "time"}
             or cl.endswith(" år")
