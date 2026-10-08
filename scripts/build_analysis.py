@@ -24,6 +24,23 @@ from scipy.stats import norm
 MIGRATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101J/Flyttningar97"
 POPULATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101A/BefolkningNy"
 INCOME_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/HE/HE0110/HE0110A/SamForvInk2"
+INEQUALITY_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/HE/HE0110/HE0110I/Tab4InkDesoRegso"
+TURNOUT_SOURCES = {
+    2018: {
+        "municipality": "https://historik.val.se/val/val2018/statistik/2018_K_per_kommun.xlsx",
+        "district": "https://historik.val.se/val/val2018/statistik/2018_K_per_valdistrikt.xlsx",
+    },
+    2022: {
+        "combined": "https://www.val.se/download/18.162047b519a91d0533118f4e/1764337121617/roster-per-distrikt-slutligt-antal-roster-inklusive-totalt-valdeltagande-kommunval-2022.xlsx",
+    },
+    2026: {
+        "combined": "https://www.val.se/download/18.7faaad3f1a0b0c300e41823/1791364806507/roster-per-distrikt-slutligt-antal-roster-inklusive-totalt-valdeltagande-kommunvalen-2026-.xlsx",
+    },
+}
+LOOKAHEAD_ONLY_FEATURES = {
+    "lag1_valdeltagande_pct",
+    "lag1_valdeltagande_gap_pp",
+}
 HOUSING_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104D/BO0104T04"
 LEISURE_HOUSE_URL_CANDIDATES = [
     # Exact branch from SCB PxWeb: START__BO__BO0104__BO0104H/BO0104T08
@@ -116,6 +133,7 @@ def preflight_sources() -> None:
         "migration": MIGRATION_URL,
         "population": POPULATION_URL,
         "income": INCOME_URL,
+        "socioeconomic_gap": INEQUALITY_URL,
         "housing": HOUSING_URL,
         "labor": LABOR_URL,
         "education": EDUCATION_URL,
@@ -165,6 +183,18 @@ def preflight_sources() -> None:
     except Exception as exc:
         failures.append(f"FA15 workbook: {exc}")
         print(f"Preflight FAILED FA15 workbook: {exc}")
+
+    for election_year, sources in TURNOUT_SOURCES.items():
+        for level, source_url in sources.items():
+            try:
+                r = session.get(source_url, timeout=30, stream=True)
+                if not r.ok:
+                    raise RuntimeError(f"HTTP {r.status_code}")
+                print(f"Preflight OK turnout {election_year} {level}")
+                r.close()
+            except Exception as exc:
+                failures.append(f"turnout {election_year} {level}: {exc}")
+                print(f"Preflight FAILED turnout {election_year} {level}: {exc}")
 
     if failures:
         raise RuntimeError(
@@ -465,6 +495,329 @@ def get_income() -> pd.DataFrame:
         print(f"Income {year}: {len(agg):,} municipalities")
     return pd.concat(rows, ignore_index=True)
 
+
+
+def _norm_header(value: object) -> str:
+    text = str(value or "").strip().casefold()
+    text = unicodedata.normalize("NFKD", text)
+    text = "".join(ch for ch in text if not unicodedata.combining(ch))
+    return re.sub(r"[^a-z0-9]+", "", text)
+
+
+def _percent_number(series: pd.Series) -> pd.Series:
+    return pd.to_numeric(
+        series.astype(str)
+        .str.replace("\u00a0", "", regex=False)
+        .str.replace("%", "", regex=False)
+        .str.replace(" ", "", regex=False)
+        .str.replace(",", ".", regex=False),
+        errors="coerce",
+    )
+
+
+def _excel_bytes(url: str) -> bytes:
+    last_error = None
+    for attempt in range(1, 4):
+        try:
+            r = session.get(url, timeout=180)
+            if r.ok and len(r.content) > 1000:
+                return r.content
+            last_error = RuntimeError(f"HTTP {r.status_code}, {len(r.content)} bytes")
+        except requests.RequestException as exc:
+            last_error = exc
+        if attempt < 3:
+            time.sleep(2 * attempt)
+    raise RuntimeError(f"Could not download Excel source {url}: {last_error}")
+
+
+def _detected_excel_sheet(content: bytes, sheet_name: str) -> pd.DataFrame:
+    probe = pd.read_excel(io.BytesIO(content), sheet_name=sheet_name, header=None, nrows=30)
+    best_row = 0
+    best_score = -1
+    for idx, row in probe.iterrows():
+        vals = [_norm_header(x) for x in row.tolist()]
+        score = sum(
+            4 if "valdeltag" in v else
+            2 if ("kommun" in v or "valdistrikt" in v) else
+            1 if ("rostberattig" in v or "kod" in v) else 0
+            for v in vals if v
+        )
+        if score > best_score:
+            best_score = score
+            best_row = int(idx)
+    return pd.read_excel(io.BytesIO(content), sheet_name=sheet_name, header=best_row)
+
+
+def _turnout_rows_from_workbook(
+    content: bytes,
+    *,
+    level_hint: str | None = None,
+) -> tuple[list[pd.DataFrame], list[pd.DataFrame]]:
+    xl = pd.ExcelFile(io.BytesIO(content))
+    municipality_frames = []
+    district_frames = []
+
+    for sheet in xl.sheet_names:
+        try:
+            df = _detected_excel_sheet(content, sheet)
+        except Exception:
+            continue
+        if df.empty:
+            continue
+
+        cols = {c: _norm_header(c) for c in df.columns}
+        turnout_cols = [
+            c for c, n in cols.items()
+            if "valdeltag" in n and ("tot" in n or "procent" in n or "%" in str(c))
+        ]
+        if not turnout_cols:
+            turnout_cols = [c for c, n in cols.items() if "valdeltag" in n]
+        if not turnout_cols:
+            continue
+
+        turnout_col = turnout_cols[0]
+        kommun_code_col = next(
+            (c for c, n in cols.items() if "kommunkod" in n or n == "kommun"),
+            None,
+        )
+        kommun_name_col = next(
+            (c for c, n in cols.items() if "kommunnamn" in n or n in {"kommun", "kommunnamn"}),
+            None,
+        )
+        district_code_col = next(
+            (c for c, n in cols.items() if "valdistrikt" in n and "kod" in n),
+            None,
+        )
+        if district_code_col is None:
+            district_code_col = next(
+                (c for c, n in cols.items() if "valdistriktskod" in n),
+                None,
+            )
+        eligible_col = next(
+            (c for c, n in cols.items() if "rostberattig" in n and "antal" in n),
+            None,
+        )
+
+        out = pd.DataFrame()
+        out["turnout"] = _percent_number(df[turnout_col])
+
+        if kommun_code_col is not None:
+            out["kommun_kod"] = (
+                df[kommun_code_col].astype(str).str.extract(r"(\d{4})", expand=False)
+            )
+        elif district_code_col is not None:
+            out["kommun_kod"] = (
+                df[district_code_col].astype(str).str.extract(r"(\d{4})", expand=False)
+            )
+        else:
+            continue
+
+        if kommun_name_col is not None:
+            out["kommun"] = df[kommun_name_col].astype(str).str.strip()
+        else:
+            out["kommun"] = np.nan
+
+        if district_code_col is not None:
+            out["valdistrikt_kod"] = (
+                df[district_code_col].astype(str).str.extract(r"(\d{4,})", expand=False)
+            )
+        else:
+            out["valdistrikt_kod"] = np.nan
+
+        if eligible_col is not None:
+            out["rostberattigade"] = normalize_number(df[eligible_col])
+        else:
+            out["rostberattigade"] = np.nan
+
+        out = out[
+            out["kommun_kod"].str.fullmatch(r"\d{4}", na=False)
+            & out["turnout"].between(0, 100, inclusive="both")
+        ].copy()
+        if out.empty:
+            continue
+
+        sheet_norm = _norm_header(sheet)
+        is_district = (
+            level_hint == "district"
+            or (level_hint is None and ("valdistrikt" in sheet_norm or out["valdistrikt_kod"].notna().mean() > 0.5))
+        )
+        is_municipality = (
+            level_hint == "municipality"
+            or (level_hint is None and ("kommun" in sheet_norm and "valdistrikt" not in sheet_norm))
+        )
+
+        if is_district:
+            district_frames.append(out)
+        if is_municipality:
+            municipality_frames.append(out)
+
+    return municipality_frames, district_frames
+
+
+def get_turnout_series() -> pd.DataFrame:
+    """
+    Municipal turnout and within-municipality turnout gap in municipal elections.
+    Election-year observations are linearly interpolated between 2018, 2022 and
+    2026 for explanatory analysis. These interpolated variables are excluded
+    from out-of-sample validation to avoid using a future election endpoint.
+    """
+    election_rows = []
+
+    for election_year, sources in TURNOUT_SOURCES.items():
+        muni_frames = []
+        district_frames = []
+
+        if "municipality" in sources:
+            content = _excel_bytes(sources["municipality"])
+            m, d = _turnout_rows_from_workbook(content, level_hint="municipality")
+            muni_frames.extend(m)
+            district_frames.extend(d)
+
+        if "district" in sources:
+            content = _excel_bytes(sources["district"])
+            m, d = _turnout_rows_from_workbook(content, level_hint="district")
+            muni_frames.extend(m)
+            district_frames.extend(d)
+
+        if "combined" in sources:
+            content = _excel_bytes(sources["combined"])
+            m, d = _turnout_rows_from_workbook(content, level_hint=None)
+            muni_frames.extend(m)
+            district_frames.extend(d)
+
+        muni = pd.concat(muni_frames, ignore_index=True) if muni_frames else pd.DataFrame()
+        districts = pd.concat(district_frames, ignore_index=True) if district_frames else pd.DataFrame()
+
+        # If no explicit municipality sheet was detected, derive an eligible-voter
+        # weighted mean from districts when the denominator is available.
+        if muni.empty and not districts.empty and districts["rostberattigade"].notna().any():
+            tmp = districts.dropna(subset=["rostberattigade"]).copy()
+            tmp["weighted"] = tmp["turnout"] * tmp["rostberattigade"]
+            muni = (
+                tmp.groupby("kommun_kod", as_index=False)
+                .agg(weighted=("weighted", "sum"), rostberattigade=("rostberattigade", "sum"))
+            )
+            muni["turnout"] = muni["weighted"] / muni["rostberattigade"].replace(0, np.nan)
+            muni["kommun"] = np.nan
+
+        if muni.empty or districts.empty:
+            raise ValueError(
+                f"Turnout parser could not identify both municipality and district data for {election_year}. "
+                f"municipality_frames={len(muni_frames)}, district_frames={len(district_frames)}"
+            )
+
+        muni_agg = (
+            muni.groupby("kommun_kod", as_index=False)
+            .agg(valdeltagande_pct=("turnout", "mean"))
+        )
+        gap = (
+            districts.groupby("kommun_kod", as_index=False)["turnout"]
+            .agg(["min", "max"])
+            .reset_index()
+        )
+        gap["valdeltagande_gap_pp"] = gap["max"] - gap["min"]
+        annual = muni_agg.merge(
+            gap[["kommun_kod", "valdeltagande_gap_pp"]],
+            on="kommun_kod",
+            how="inner",
+        )
+        annual["election_year"] = election_year
+
+        if annual["kommun_kod"].nunique() < 280:
+            raise ValueError(
+                f"Turnout {election_year}: parsed only {annual['kommun_kod'].nunique()} municipalities"
+            )
+
+        election_rows.append(annual)
+        print(f"Turnout {election_year}: {annual['kommun_kod'].nunique():,} municipalities")
+
+    elections = pd.concat(election_rows, ignore_index=True)
+    years = sorted(set(AUX_YEARS))
+    out = []
+    for kommun_kod, g in elections.groupby("kommun_kod"):
+        g = g.sort_values("election_year")
+        xs = g["election_year"].to_numpy(dtype=float)
+        if len(xs) < 2:
+            continue
+        for year in years:
+            row = {"kommun_kod": kommun_kod, "year": year}
+            for metric in ["valdeltagande_pct", "valdeltagande_gap_pp"]:
+                ys = g[metric].to_numpy(dtype=float)
+                row[metric] = float(np.interp(year, xs, ys))
+            row["valdeltagande_interpolerad"] = year not in set(g["election_year"].astype(int))
+            out.append(row)
+
+    result = pd.DataFrame(out)
+    print(
+        f"Turnout interpolated series: {result['kommun_kod'].nunique():,} municipalities, "
+        f"{result['year'].min()}–{result['year'].max()}"
+    )
+    return result
+
+
+def get_socioeconomic_gap() -> pd.DataFrame:
+    """
+    Within-municipality spread in the share with low economic standard across
+    DeSO areas: max DeSO share minus min DeSO share, in percentage points.
+    """
+    meta = metadata(INEQUALITY_URL)
+    region = find_var(meta, "region")
+    age = find_var(meta, "ålder", "alder")
+    content = find_var(meta, "tabellinnehåll", "contentscode")
+    time_var = find_var(meta, "år", "tid")
+
+    low_code = code_for_all_text(content, "låg", "ekonomisk", "standard")
+    age_code = code_for_text(age, "totalt")
+
+    deso_values = []
+    for value, label in zip(region["values"], region.get("valueTexts", region["values"])):
+        text = f"{value} {label}"
+        if re.search(r"\d{4}[ABC]\d{4}", text):
+            deso_values.append(str(value))
+
+    if len(deso_values) < 5000:
+        raise ValueError(
+            f"Could identify only {len(deso_values)} DeSO selectors in income table"
+        )
+
+    rows = []
+    for year in AUX_YEARS:
+        df = px_csv(INEQUALITY_URL, {
+            region["code"]: deso_values,
+            age["code"]: [age_code],
+            content["code"]: [low_code],
+            time_var["code"]: [str(year)],
+        })
+        dims = standardize_columns(df)
+        region_col = dims.get("region")
+        if region_col is None:
+            raise ValueError(f"DeSO income response lacks region column for {year}")
+        value_col = value_column(df, dims)
+        df["low_pct"] = normalize_number(df[value_col])
+        df["deso"] = df[region_col].astype(str).str.extract(
+            r"(\d{4}[ABC]\d{4})", expand=False
+        )
+        df["kommun_kod"] = df["deso"].str[:4]
+        valid = df.dropna(subset=["low_pct", "deso"]).copy()
+
+        agg = (
+            valid.groupby("kommun_kod", as_index=False)
+            .agg(
+                deso_low_min=("low_pct", "min"),
+                deso_low_max=("low_pct", "max"),
+                antal_deso=("deso", "nunique"),
+            )
+        )
+        agg["ekonomisk_standard_gap_pp"] = agg["deso_low_max"] - agg["deso_low_min"]
+        agg["year"] = year
+        if agg["kommun_kod"].nunique() < 280:
+            raise ValueError(
+                f"Socioeconomic gap {year}: only {agg['kommun_kod'].nunique()} municipalities"
+            )
+        rows.append(agg[["kommun_kod", "year", "ekonomisk_standard_gap_pp", "antal_deso"]])
+        print(f"Socioeconomic gap {year}: {len(agg):,} municipalities")
+
+    return pd.concat(rows, ignore_index=True)
 
 def get_housing() -> pd.DataFrame:
     """
@@ -1248,7 +1601,7 @@ def split_region(value: str) -> tuple[str, str]:
     return s[:4], s[5:] if len(s) > 5 else s
 
 
-def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, housing: pd.DataFrame, leisure: pd.DataFrame, crime: pd.DataFrame, labor: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame, industry: pd.DataFrame, fa15: pd.DataFrame) -> pd.DataFrame:
+def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turnout: pd.DataFrame, inequality: pd.DataFrame, housing: pd.DataFrame, leisure: pd.DataFrame, crime: pd.DataFrame, labor: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame, industry: pd.DataFrame, fa15: pd.DataFrame) -> pd.DataFrame:
     md = standardize_columns(mig)
     mig = mig.copy()
     mig["value"] = normalize_number(mig["value"])
@@ -1337,6 +1690,14 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel = panel.merge(pop_70_79, on=["kommun_kod", "kommun", "year"], how="left")
     panel = panel.merge(
         income[["kommun_kod", "year", "inkomst_tkr"]],
+        on=["kommun_kod", "year"], how="left"
+    )
+    panel = panel.merge(
+        turnout[["kommun_kod", "year", "valdeltagande_pct", "valdeltagande_gap_pp", "valdeltagande_interpolerad"]],
+        on=["kommun_kod", "year"], how="left"
+    )
+    panel = panel.merge(
+        inequality[["kommun_kod", "year", "ekonomisk_standard_gap_pp"]],
         on=["kommun_kod", "year"], how="left"
     )
     panel = panel.merge(
@@ -1431,6 +1792,9 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel["lag1_andel_20_34"] = g["andel_20_34"].shift(1)
     panel["lag1_inflyttare_medelalder"] = g["inflyttare_medelalder"].shift(1)
     panel["lag1_inkomst_tkr"] = g["inkomst_tkr"].shift(1)
+    panel["lag1_valdeltagande_pct"] = g["valdeltagande_pct"].shift(1)
+    panel["lag1_valdeltagande_gap_pp"] = g["valdeltagande_gap_pp"].shift(1)
+    panel["lag1_ekonomisk_standard_gap_pp"] = g["ekonomisk_standard_gap_pp"].shift(1)
     panel["lag1_andel_smahus"] = g["andel_smahus"].shift(1)
     panel["lag1_fritidshusandel_bland_smahus"] = g["fritidshusandel_bland_smahus"].shift(1)
     panel["lag1_brott_per_100000"] = g["brott_per_100000"].shift(1)
@@ -1592,6 +1956,9 @@ FEATURE_THEMES = {
     "lag1_andel_20_34": "Åldersstruktur",
     "lag1_inflyttare_medelalder": "Inflyttarprofil",
     "lag1_inkomst_tkr": "Inkomstnivå",
+    "lag1_valdeltagande_pct": "Demokratisk delaktighet",
+    "lag1_valdeltagande_gap_pp": "Demokratisk ojämlikhet",
+    "lag1_ekonomisk_standard_gap_pp": "Socioekonomiska klyftor",
     "lag1_andel_smahus": "Landets lugn",
     "lag1_fritidshusandel_bland_smahus": "Landets lugn",
     "lag1_brott_per_100000": "Landets lugn",
@@ -2027,6 +2394,9 @@ def fit_models(panel: pd.DataFrame) -> dict:
         "lag1_andel_20_34",
         "lag1_inflyttare_medelalder",
         "lag1_inkomst_tkr",
+        "lag1_valdeltagande_pct",
+        "lag1_valdeltagande_gap_pp",
+        "lag1_ekonomisk_standard_gap_pp",
         "lag1_andel_smahus",
         "lag1_fritidshusandel_bland_smahus",
         "lag1_brott_per_100000",
@@ -2057,7 +2427,8 @@ def fit_models(panel: pd.DataFrame) -> dict:
         train = model_df[model_df["year"].between(train_start, test_year - 1)].copy()
         test = model_df[model_df["year"] == test_year].copy()
 
-        validation_selection = _select_features(train, features, target)
+        validation_candidates = [f for f in features if f not in LOOKAHEAD_ONLY_FEATURES]
+        validation_selection = _select_features(train, validation_candidates, target)
         validation_features = validation_selection["selected"]
 
         Xtr, ytr = train[validation_features], train[target]
@@ -2138,6 +2509,9 @@ def fit_models(panel: pd.DataFrame) -> dict:
             "Separata livsfasmodeller skattas för 18–23, 24–34, 35–49, 63–68 och 70–79 år, med inflyttade per 1 000 invånare i samma åldersgrupp som mål och åldersgruppens egen föregående inflyttning som historisk dynamik.",
             "Om konsensusurvalet blir alltför litet används backward-AIC som reserv för att undvika instabila små modeller.",
             "Urvalet för prognosvalidering görs endast på träningsåren och får inte se teståret.",
+            "Valdeltagande och valdeltagandeklyfta bygger på kommunvalen 2018, 2022 och 2026 och linjär interpolation mellan valåren. De används i den förklarande analysen men utesluts från prognosvalideringen eftersom interpolation mot ett senare val annars skulle ge framtidsinformation.",
+            "Valdeltagandeklyfta mäts som högsta minus lägsta valdeltagande mellan valdistrikt inom kommunen, i procentenheter.",
+            "Socioekonomisk klyfta mäts som högsta minus lägsta andel med låg ekonomisk standard mellan kommunens DeSO, i procentenheter. SCB byter DeSO-version för 2024, vilket dokumenteras som ett möjligt nivåbrott.",
             "Samband ska inte tolkas som säkra kausala effekter; endogenitet och utelämnade variabler kan finnas.",
         ],
     }
@@ -2157,6 +2531,9 @@ def fit_age_group_models(panel: pd.DataFrame) -> dict:
         "lag1_andel_20_34",
         "lag1_inflyttare_medelalder",
         "lag1_inkomst_tkr",
+        "lag1_valdeltagande_pct",
+        "lag1_valdeltagande_gap_pp",
+        "lag1_ekonomisk_standard_gap_pp",
         "lag1_andel_smahus",
         "lag1_fritidshusandel_bland_smahus",
         "lag1_brott_per_100000",
@@ -2220,7 +2597,8 @@ def fit_age_group_models(panel: pd.DataFrame) -> dict:
         validation = None
 
         if not train.empty and not test.empty:
-            sel = _select_features(train, features, spec["target"])
+            validation_candidates = [f for f in features if f not in LOOKAHEAD_ONLY_FEATURES]
+            sel = _select_features(train, validation_candidates, spec["target"])
             vf = sel["selected"]
             Xtr, ytr = train[vf], train[spec["target"]]
             Xte, yte = test[vf], test[spec["target"]]
@@ -2263,6 +2641,10 @@ def main():
     if "--skip-preflight" not in sys.argv:
         preflight_sources()
 
+    # Fetch the newly added smaller sources first so schema errors fail early.
+    turnout = get_turnout_series()
+    inequality = get_socioeconomic_gap()
+
     labor = get_labor_market()
     education = get_education()
     students = get_students()
@@ -2274,7 +2656,7 @@ def main():
     housing = get_housing()
     leisure = get_leisure_houses()
     crime = get_crime_total()
-    panel = build_panel(mig, pop, income, housing, leisure, crime, labor, education, students, industry, fa15)
+    panel = build_panel(mig, pop, income, turnout, inequality, housing, leisure, crime, labor, education, students, industry, fa15)
     panel.to_csv(OUT / "panel.csv", index=False)
     result = fit_models(panel)
     result["age_group_models"] = fit_age_group_models(panel)
