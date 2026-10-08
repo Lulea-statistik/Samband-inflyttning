@@ -1,6 +1,8 @@
+const fmt0 = new Intl.NumberFormat('sv-SE',{maximumFractionDigits:0});
 const fmt1 = new Intl.NumberFormat('sv-SE',{maximumFractionDigits:1});
 const fmt2 = new Intl.NumberFormat('sv-SE',{maximumFractionDigits:2});
-let panel=[], model={}, predictions=[];
+let panel=[], model={}, predictions=[], diagnostics=[], qq=[];
+let selectedWindow=5;
 
 const labels={
   lag1_inflyttning_per_1000:'Inflyttning föregående år per 1 000',
@@ -16,20 +18,24 @@ async function load(){
     const responses=await Promise.all([
       fetch('data/model.json',{cache:'no-store'}),
       fetch('data/panel.csv',{cache:'no-store'}),
-      fetch('data/predictions.csv',{cache:'no-store'})
+      fetch('data/predictions.csv',{cache:'no-store'}),
+      fetch('data/diagnostics.csv',{cache:'no-store'}),
+      fetch('data/qq.csv',{cache:'no-store'})
     ]);
     for(const r of responses){
       if(!r.ok) throw new Error('Analysdata saknas ännu ('+r.status+' '+r.url.split('/').pop()+'). GitHub Actions måste slutföras först.');
     }
-    const [mText,pText,prText]=await Promise.all(responses.map(r=>r.text()));
+    const [mText,pText,prText,dText,qText]=await Promise.all(responses.map(r=>r.text()));
     model=JSON.parse(mText);
     panel=d3.csvParse(pText,d3.autoType);
     predictions=d3.csvParse(prText,d3.autoType);
-    renderOverview();
+    diagnostics=d3.csvParse(dText,d3.autoType);
+    qq=d3.csvParse(qText,d3.autoType);
+    selectedWindow=Number(model.default_window||5);
+    initWindowSelector();
     initRelationships();
-    renderModel();
-    renderValidation();
     initMunicipality();
+    renderAll();
   }catch(err){
     showLoadError(err);
     console.error(err);
@@ -46,69 +52,239 @@ function showLoadError(err){
 function initTabs(){
   document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{
     document.querySelectorAll('.tab,.page').forEach(x=>x.classList.remove('active'));
-    b.classList.add('active'); document.getElementById(b.dataset.page).classList.add('active');
+    b.classList.add('active');
+    document.getElementById(b.dataset.page).classList.add('active');
+    setTimeout(()=>window.dispatchEvent(new Event('resize')),20);
   }));
 }
 
-function metricCard(label,value){return '<div class="card"><div class="label">'+label+'</div><div class="value">'+value+'</div></div>'}
+function initWindowSelector(){
+  const s=document.getElementById('windowSelect');
+  s.value=String(selectedWindow);
+  s.addEventListener('change',()=>{
+    selectedWindow=Number(s.value);
+    renderAll();
+  });
+}
+
+function wdata(){
+  return model.windows?.[String(selectedWindow)];
+}
+
+function renderAll(){
+  const w=wdata();
+  if(!w) return showLoadError(new Error('Modellresultat saknas för '+selectedWindow+' års analysperiod.'));
+  const e=w.explanation, v=w.validation;
+  document.getElementById('windowDescription').textContent=
+    'Förklaringsmodell: '+e.start_year+'–'+e.end_year+
+    ' · validering: '+v.train_start_year+'–'+v.train_end_year+' → test '+v.test_year;
+  renderOverview();
+  renderModel();
+  renderValidation();
+  renderMunicipality();
+}
+
+function metricCard(label,value,sub=''){
+  return '<div class="card"><div class="label">'+label+'</div><div class="value">'+value+'</div>'+(sub?'<div class="note">'+sub+'</div>':'')+'</div>';
+}
 
 function renderOverview(){
-  const best=Object.entries(model.models).sort((a,b)=>b[1].r2-a[1].r2)[0];
+  const w=wdata(), e=w.explanation, v=w.validation;
+  const best=Object.entries(v.models).sort((a,b)=>(b[1].r2??-Infinity)-(a[1].r2??-Infinity))[0];
   document.getElementById('cards').innerHTML=[
-    metricCard('Testår',model.test_year),
-    metricCard('Kommun-år i träning',model.n_train.toLocaleString('sv-SE')),
-    metricCard('Kommuner i test',model.n_test.toLocaleString('sv-SE')),
-    metricCard('Bästa test-R²',fmt2.format(best[1].r2)),
-    metricCard('Bästa modell',best[0].toUpperCase())
+    metricCard('Förklaringsperiod',e.start_year+'–'+e.end_year),
+    metricCard('Kommun-år',fmt0.format(e.n_obs)),
+    metricCard('Kommuner',fmt0.format(e.n_municipalities)),
+    metricCard('R²',fmt2.format(e.r2)),
+    metricCard('Justerat R²',fmt2.format(e.adjusted_r2)),
+    metricCard('Bästa test-R²',fmt2.format(best[1].r2),best[0].toUpperCase()+' · test '+v.test_year)
   ].join('');
-  const names=['Naiv','OLS','Ridge'];
-  Plotly.newPlot('modelCompare',[
-    {x:names,y:[model.models.naive.r2,model.models.ols.r2,model.models.ridge.r2],type:'bar',name:'R²'}
-  ],{margin:{t:20},yaxis:{title:'Out-of-sample R²'},xaxis:{title:'Modell'}},{responsive:true,displaylogo:false});
+
+  Plotly.react('modelCompare',[{
+    x:['Naiv','OLS','Ridge'],
+    y:[v.models.naive.r2,v.models.ols.r2,v.models.ridge.r2],
+    type:'bar',
+    name:'Out-of-sample R²',
+    hovertemplate:'%{x}<br>R²=%{y:.3f}<extra></extra>'
+  }],{
+    margin:{t:20},
+    yaxis:{title:'Out-of-sample R²'},
+    xaxis:{title:'Modell'}
+  },{responsive:true,displaylogo:false});
 }
 
 function initRelationships(){
   const x=document.getElementById('xvar');
-  Object.entries(labels).forEach(([k,v])=>x.add(new Option(v,k)));
-  const years=[...new Set(panel.map(d=>d.year))].sort((a,b)=>a-b);
-  const y=document.getElementById('yearFilter'); y.add(new Option('Alla år','all'));
-  years.forEach(v=>y.add(new Option(v,v)));
-  x.value='lag1_inflyttning_per_1000'; y.value=model.test_year;
-  x.addEventListener('change',renderScatter); y.addEventListener('change',renderScatter); renderScatter();
+  if(!x.options.length) Object.entries(labels).forEach(([k,v])=>x.add(new Option(v,k)));
+  const years=[...new Set(panel.map(d=>d.year))].filter(Number.isFinite).sort((a,b)=>a-b);
+  const y=document.getElementById('yearFilter');
+  if(!y.options.length){
+    y.add(new Option('Alla år','all'));
+    years.forEach(v=>y.add(new Option(v,v)));
+  }
+  x.value='lag1_inflyttning_per_1000';
+  y.value=String(model.test_year);
+  x.addEventListener('change',renderScatter);
+  y.addEventListener('change',renderScatter);
+  renderScatter();
 }
 
 function renderScatter(){
-  const key=document.getElementById('xvar').value, yf=document.getElementById('yearFilter').value;
+  const key=document.getElementById('xvar').value;
+  const yf=document.getElementById('yearFilter').value;
   const rows=panel.filter(d=>Number.isFinite(d[key])&&Number.isFinite(d.inflyttning_per_1000)&&(yf==='all'||d.year===+yf));
-  Plotly.newPlot('scatter',[{x:rows.map(d=>d[key]),y:rows.map(d=>d.inflyttning_per_1000),text:rows.map(d=>d.kommun+' · '+d.year),mode:'markers',type:'scatter',hovertemplate:'%{text}<br>x=%{x:.2f}<br>Inflyttning=%{y:.2f}<extra></extra>'}],
-    {margin:{t:20},xaxis:{title:labels[key]},yaxis:{title:'Inflyttade per 1 000'}},{responsive:true,displaylogo:false});
+  Plotly.react('scatter',[{
+    x:rows.map(d=>d[key]),
+    y:rows.map(d=>d.inflyttning_per_1000),
+    text:rows.map(d=>d.kommun+' · '+d.year),
+    mode:'markers',type:'scatter',
+    hovertemplate:'%{text}<br>x=%{x:.2f}<br>Inflyttning=%{y:.2f} per 1 000<extra></extra>'
+  }],{
+    margin:{t:20},
+    xaxis:{title:labels[key]},
+    yaxis:{title:'Inflyttade per 1 000'}
+  },{responsive:true,displaylogo:false});
 }
 
 function renderModel(){
-  const c=model.ols_coefficients;
-  Plotly.newPlot('coefficients',[{y:c.map(d=>labels[d.feature]||d.feature),x:c.map(d=>d.coefficient),type:'bar',orientation:'h'}],
-    {margin:{t:20,l:230},xaxis:{title:'OLS-koefficient'}},{responsive:true,displaylogo:false});
+  const e=wdata().explanation;
+  document.getElementById('regressionCards').innerHTML=[
+    metricCard('R²',fmt2.format(e.r2)),
+    metricCard('Justerat R²',fmt2.format(e.adjusted_r2)),
+    metricCard('AIC',fmt1.format(e.aic)),
+    metricCard('BIC',fmt1.format(e.bic)),
+    metricCard('Observationer',fmt0.format(e.n_obs)),
+    metricCard('Standardfel','Klustrade','per kommun')
+  ].join('');
+
+  const c=e.coefficients;
+  Plotly.react('coefficients',[{
+    y:c.map(d=>labels[d.feature]||d.feature),
+    x:c.map(d=>d.standardized_coefficient),
+    type:'bar',orientation:'h',
+    customdata:c.map(d=>[d.coefficient,d.p_value]),
+    hovertemplate:'%{y}<br>Standardiserad β=%{x:.3f}<br>Koefficient=%{customdata[0]:.3f}<br>p=%{customdata[1]:.3g}<extra></extra>'
+  }],{
+    margin:{t:20,l:245},
+    xaxis:{title:'Standardiserad koefficient β',zeroline:true}
+  },{responsive:true,displaylogo:false});
+
+  Plotly.react('coefficientCI',[{
+    y:c.map(d=>labels[d.feature]||d.feature),
+    x:c.map(d=>d.coefficient),
+    type:'scatter',mode:'markers',
+    error_x:{
+      type:'data',
+      symmetric:false,
+      array:c.map(d=>d.ci_high-d.coefficient),
+      arrayminus:c.map(d=>d.coefficient-d.ci_low),
+      visible:true
+    },
+    customdata:c.map(d=>d.p_value),
+    hovertemplate:'%{y}<br>β=%{x:.3f}<br>p=%{customdata:.3g}<extra></extra>'
+  }],{
+    margin:{t:20,l:245},
+    xaxis:{title:'Koefficient med 95 % konfidensintervall',zeroline:true}
+  },{responsive:true,displaylogo:false});
+
+  const vif=e.vif;
+  Plotly.react('vifChart',[{
+    y:vif.map(d=>labels[d.feature]||d.feature),
+    x:vif.map(d=>d.vif),
+    type:'bar',orientation:'h',
+    hovertemplate:'%{y}<br>VIF=%{x:.2f}<extra></extra>'
+  }],{
+    margin:{t:20,l:245},
+    xaxis:{title:'VIF'},
+    shapes:[
+      {type:'line',x0:5,x1:5,y0:-.5,y1:vif.length-.5,line:{dash:'dash'}},
+      {type:'line',x0:10,x1:10,y0:-.5,y1:vif.length-.5,line:{dash:'dot'}}
+    ]
+  },{responsive:true,displaylogo:false});
+
+  const d=diagnostics.filter(x=>x.window===selectedWindow);
+  Plotly.react('residualChart',[{
+    x:d.map(x=>x.fitted),
+    y:d.map(x=>x.std_residual),
+    text:d.map(x=>x.kommun+' · '+x.year),
+    mode:'markers',type:'scatter',
+    hovertemplate:'%{text}<br>Skattat=%{x:.2f}<br>Standardiserad residual=%{y:.2f}<extra></extra>'
+  }],{
+    margin:{t:20},
+    xaxis:{title:'Skattade värden'},
+    yaxis:{title:'Standardiserade residualer',zeroline:true}
+  },{responsive:true,displaylogo:false});
+
+  const q=qq.filter(x=>x.window===selectedWindow);
+  const vals=q.flatMap(x=>[x.theoretical,x.sample]).filter(Number.isFinite);
+  const lo=Math.min(...vals), hi=Math.max(...vals);
+  Plotly.react('qqChart',[{
+    x:q.map(x=>x.theoretical),
+    y:q.map(x=>x.sample),
+    mode:'markers',type:'scatter',
+    hovertemplate:'Teoretisk=%{x:.2f}<br>Residual=%{y:.2f}<extra></extra>'
+  }],{
+    margin:{t:20},
+    xaxis:{title:'Teoretiska normal-kvantiler'},
+    yaxis:{title:'Standardiserade residualer'},
+    shapes:[{type:'line',x0:lo,x1:hi,y0:lo,y1:hi,line:{dash:'dash'}}]
+  },{responsive:true,displaylogo:false});
 }
 
 function renderValidation(){
-  Plotly.newPlot('validation',[
-    {x:predictions.map(d=>d.inflyttning_per_1000),y:predictions.map(d=>d.pred_naiv),text:predictions.map(d=>d.kommun),mode:'markers',name:'Naiv'},
-    {x:predictions.map(d=>d.inflyttning_per_1000),y:predictions.map(d=>d.pred_ols),text:predictions.map(d=>d.kommun),mode:'markers',name:'OLS'},
-    {x:predictions.map(d=>d.inflyttning_per_1000),y:predictions.map(d=>d.pred_ridge),text:predictions.map(d=>d.kommun),mode:'markers',name:'Ridge'}
-  ],{margin:{t:20},xaxis:{title:'Observerat per 1 000'},yaxis:{title:'Predikterat per 1 000'}},{responsive:true,displaylogo:false});
+  const rows=predictions.filter(d=>d.window===selectedWindow);
+  if(!rows.length)return;
+  const observed=rows.map(d=>d.inflyttning_per_1000);
+  const predvals=rows.flatMap(d=>[d.pred_naiv,d.pred_ols,d.pred_ridge]);
+  const vals=observed.concat(predvals).filter(Number.isFinite);
+  const lo=Math.min(...vals), hi=Math.max(...vals);
+  Plotly.react('validationChart',[
+    {x:observed,y:rows.map(d=>d.pred_naiv),text:rows.map(d=>d.kommun),mode:'markers',name:'Naiv'},
+    {x:observed,y:rows.map(d=>d.pred_ols),text:rows.map(d=>d.kommun),mode:'markers',name:'OLS'},
+    {x:observed,y:rows.map(d=>d.pred_ridge),text:rows.map(d=>d.kommun),mode:'markers',name:'Ridge'}
+  ],{
+    margin:{t:20},
+    xaxis:{title:'Observerat per 1 000'},
+    yaxis:{title:'Predikterat per 1 000'},
+    shapes:[{type:'line',x0:lo,x1:hi,y0:lo,y1:hi,line:{dash:'dash'}}]
+  },{responsive:true,displaylogo:false});
 }
 
 function initMunicipality(){
   const s=document.getElementById('municipalitySelect');
-  const mun=[...new Map(panel.map(d=>[d.kommun_kod,d.kommun])).entries()].sort((a,b)=>a[1].localeCompare(b[1],'sv'));
-  mun.forEach(([k,v])=>s.add(new Option(v,k)));
-  const lulea=mun.find(x=>x[1]==='Luleå'); if(lulea)s.value=lulea[0];
-  s.addEventListener('change',renderMunicipality); renderMunicipality();
+  if(!s.options.length){
+    const mun=[...new Map(panel.map(d=>[d.kommun_kod,d.kommun])).entries()].sort((a,b)=>a[1].localeCompare(b[1],'sv'));
+    mun.forEach(([k,v])=>s.add(new Option(v,k)));
+    const lulea=mun.find(x=>x[1]==='Luleå');
+    if(lulea)s.value=lulea[0];
+    s.addEventListener('change',renderMunicipality);
+  }
 }
+
 function renderMunicipality(){
-  const code=document.getElementById('municipalitySelect').value;
+  const select=document.getElementById('municipalitySelect');
+  if(!select||!select.value)return;
+  const code=select.value;
   const rows=panel.filter(d=>d.kommun_kod===code).sort((a,b)=>a.year-b.year);
-  Plotly.newPlot('municipalityChart',[{x:rows.map(d=>d.year),y:rows.map(d=>d.inflyttning_per_1000),mode:'lines+markers',name:'Observerad inflyttning'}],
-    {margin:{t:20},xaxis:{title:'År'},yaxis:{title:'Inflyttade per 1 000'}},{responsive:true,displaylogo:false});
+  const testPred=predictions.find(d=>d.window===selectedWindow&&d.kommun_kod===code);
+  const traces=[{
+    x:rows.map(d=>d.year),
+    y:rows.map(d=>d.inflyttning_per_1000),
+    mode:'lines+markers',
+    name:'Observerad inflyttning'
+  }];
+  if(testPred){
+    traces.push({
+      x:[testPred.year],y:[testPred.pred_ols],
+      mode:'markers',name:'OLS-prediktion',
+      marker:{size:11,symbol:'diamond'}
+    });
+  }
+  Plotly.react('municipalityChart',traces,{
+    margin:{t:20},
+    xaxis:{title:'År'},
+    yaxis:{title:'Inflyttade per 1 000'}
+  },{responsive:true,displaylogo:false});
 }
+
 load();
