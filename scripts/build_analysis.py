@@ -26,6 +26,7 @@ HOUSING_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104D
 LABOR_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210A/ArbStatusAr"
 EDUCATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/UF/UF0506/UF0506B/Utbildning"
 STUDENT_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AA/AA0003/AA0003H/IntGr8Kom1N"
+INDUSTRY_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210F/ArRegUtb"
 OUT = Path("docs/data")
 OUT.mkdir(parents=True, exist_ok=True)
 
@@ -698,6 +699,118 @@ def get_students() -> pd.DataFrame:
 
     return pd.concat(rows, ignore_index=True)
 
+
+def get_industry_structure() -> pd.DataFrame:
+    """
+    Employment structure by workplace location, ages 15-74.
+    Three candidate shares of total employed persons:
+      B+C manufacturing/mining,
+      I hotels/restaurants,
+      R+S+T+U culture/recreation/other services.
+    SCB ArRegUtb, annual register 2020-2024.
+    """
+    meta = metadata(INDUSTRY_URL)
+    content = find_var(meta, "tabellinnehåll", "contentscode")
+    region = find_var(meta, "region")
+    sex = find_var(meta, "kön", "kon")
+    industry = find_var(meta, "näringsgren", "naringsgren")
+    education = find_var(meta, "utbildningsnivå", "utbildningsniva")
+    time = find_var(meta, "år", "tid")
+
+    munis = municipality_codes(region)
+    sex_codes = aggregate_codes(sex)
+    education_code = require_total_code(education)
+    workplace_code = code_for_all_text(content, "arbetsställets", "belägenhet")
+
+    total_industry_code = exact_or_contains_code(industry, "A-U+US Total")
+    industry_bc = code_for_all_text(industry, "B+C", "tillverkningsindustri")
+    industry_i = code_for_all_text(industry, "I ", "hotell")
+    industry_rstu = code_for_all_text(industry, "R+S+T+U")
+
+    wanted = [total_industry_code, industry_bc, industry_i, industry_rstu]
+    label_map = dict(zip(
+        [str(v) for v in industry["values"]],
+        [str(t) for t in industry.get("valueTexts", industry["values"])]
+    ))
+    available_years = {str(v) for v in time["values"]}
+
+    rows = []
+    for year in AUX_YEARS:
+        if str(year) not in available_years:
+            continue
+
+        df = px_csv(INDUSTRY_URL, {
+            content["code"]: [workplace_code],
+            region["code"]: munis,
+            sex["code"]: sex_codes,
+            industry["code"]: wanted,
+            education["code"]: [education_code],
+            time["code"]: [str(year)],
+        })
+
+        dims = standardize_columns(df)
+        for c in df.columns:
+            cl = str(c).lower()
+            if "näringsgren" in cl or "naringsgren" in cl:
+                dims["industry"] = c
+
+        dim_cols = set(dims.values())
+        value_cols = [c for c in df.columns if c not in dim_cols]
+        if len(value_cols) != 1:
+            raise ValueError(
+                f"Expected one industry value column for {year}, got {value_cols}; "
+                f"columns={list(df.columns)}"
+            )
+
+        df["value"] = normalize_number(df[value_cols[0]])
+        df["year"] = year
+        df[["kommun_kod", "kommun"]] = df[dims["region"]].apply(
+            lambda x: pd.Series(split_region(x))
+        )
+
+        icol = dims["industry"]
+        def _match_code(code):
+            target = label_map[str(code)].strip().lower()
+            return df[icol].astype(str).str.strip().str.lower() == target
+
+        def _sum_for(code, name):
+            return (
+                df[_match_code(code)]
+                .groupby(["kommun_kod", "kommun", "year"], as_index=False)["value"]
+                .sum()
+                .rename(columns={"value": name})
+            )
+
+        total = _sum_for(total_industry_code, "sysselsatta_totalt")
+        bc = _sum_for(industry_bc, "sysselsatta_industri")
+        hosp = _sum_for(industry_i, "sysselsatta_hotell_restaurang")
+        rstu = _sum_for(industry_rstu, "sysselsatta_kultur_service")
+
+        agg = total.merge(bc, on=["kommun_kod","kommun","year"], how="left")
+        agg = agg.merge(hosp, on=["kommun_kod","kommun","year"], how="left")
+        agg = agg.merge(rstu, on=["kommun_kod","kommun","year"], how="left")
+
+        denom = agg["sysselsatta_totalt"].replace(0, np.nan)
+        agg["andel_industri_bc"] = 100 * agg["sysselsatta_industri"] / denom
+        agg["andel_hotell_restaurang_i"] = 100 * agg["sysselsatta_hotell_restaurang"] / denom
+        agg["andel_kultur_service_rstu"] = 100 * agg["sysselsatta_kultur_service"] / denom
+
+        rows.append(agg[[
+            "kommun_kod","kommun","year",
+            "andel_industri_bc",
+            "andel_hotell_restaurang_i",
+            "andel_kultur_service_rstu",
+        ]])
+        print(f"Industry structure {year}: {len(agg):,} municipalities")
+
+    if not rows:
+        raise ValueError(
+            f"No industry years available for AUX_YEARS={AUX_YEARS}; "
+            f"table years={list(time['values'])}"
+        )
+
+    return pd.concat(rows, ignore_index=True)
+
 def standardize_columns(df: pd.DataFrame) -> dict[str, str]:
     out = {}
     for c in df.columns:
@@ -719,6 +832,8 @@ def standardize_columns(df: pd.DataFrame) -> dict[str, str]:
             out["period"] = c
         elif "utbildningsnivå" in cl or "utbildningsniva" in cl or "utbildning" in cl:
             out["education"] = c
+        elif "näringsgren" in cl or "naringsgren" in cl:
+            out["industry"] = c
         elif (
             cl in {"år", "tid", "time"}
             or cl.endswith(" år")
@@ -760,7 +875,7 @@ def split_region(value: str) -> tuple[str, str]:
     return s[:4], s[5:] if len(s) > 5 else s
 
 
-def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, housing: pd.DataFrame, labor: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame) -> pd.DataFrame:
+def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, housing: pd.DataFrame, labor: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame, industry: pd.DataFrame) -> pd.DataFrame:
     md = standardize_columns(mig)
     mig = mig.copy()
     mig["value"] = normalize_number(mig["value"])
@@ -826,6 +941,15 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
         students[["kommun_kod", "year", "andel_studerande"]],
         on=["kommun_kod", "year"], how="left"
     )
+    panel = panel.merge(
+        industry[[
+            "kommun_kod", "year",
+            "andel_industri_bc",
+            "andel_hotell_restaurang_i",
+            "andel_kultur_service_rstu",
+        ]],
+        on=["kommun_kod", "year"], how="left"
+    )
     panel["andel_20_34"] = 100 * panel["bef_20_34"] / panel["folkmangd"]
     panel["inflyttning_per_1000"] = 1000 * panel["inflyttade"] / panel["folkmangd"]
     panel["log_folkmangd"] = np.log(panel["folkmangd"].where(panel["folkmangd"] > 0))
@@ -847,6 +971,9 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel["lag1_arbetsloshet"] = g["arbetsloshet"].shift(1)
     panel["lag1_andel_eftergymnasial"] = g["andel_eftergymnasial"].shift(1)
     panel["lag1_andel_studerande"] = g["andel_studerande"].shift(1)
+    panel["lag1_andel_industri_bc"] = g["andel_industri_bc"].shift(1)
+    panel["lag1_andel_hotell_restaurang_i"] = g["andel_hotell_restaurang_i"].shift(1)
+    panel["lag1_andel_kultur_service_rstu"] = g["andel_kultur_service_rstu"].shift(1)
 
     return panel.reset_index(drop=True)
 
@@ -996,6 +1123,9 @@ FEATURE_THEMES = {
     "lag1_arbetsloshet": "Arbetsmarknad",
     "lag1_andel_eftergymnasial": "Humankapital",
     "lag1_andel_studerande": "Studentmiljö",
+    "lag1_andel_industri_bc": "Näringslivsprofil",
+    "lag1_andel_hotell_restaurang_i": "Näringslivsprofil",
+    "lag1_andel_kultur_service_rstu": "Näringslivsprofil",
 }
 
 
@@ -1359,6 +1489,9 @@ def fit_models(panel: pd.DataFrame) -> dict:
         "lag1_arbetsloshet",
         "lag1_andel_eftergymnasial",
         "lag1_andel_studerande",
+        "lag1_andel_industri_bc",
+        "lag1_andel_hotell_restaurang_i",
+        "lag1_andel_kultur_service_rstu",
     ]
     model_df = panel.dropna(subset=[target] + features).copy()
     test_year = int(model_df["year"].max())
@@ -1443,6 +1576,7 @@ def fit_models(panel: pd.DataFrame) -> dict:
             "Arbetsmarknadsvariablerna är sysselsättningsgrad och arbetslöshet bland 20–64-åringar från SCB BAS och används laggade ett år.",
             "Utbildningsvariabeln är andel 25–64-åringar med eftergymnasial utbildning och används laggad ett år.",
             "Studentmiljö mäts som andel studerande bland 20–64-åringar enligt SCB IntGr8Kom1N och används laggad ett år.",
+            "Näringslivsprofilen testas med andel sysselsatta efter arbetsställets belägenhet i B+C industri/gruvor, I hotell/restaurang samt R+S+T+U kultur/nöje/service enligt SCB ArRegUtb; högst en representant behålls från temat.",
             "Variabelurvalet kombinerar Elastic Net, backward-AIC, tematisk diversifiering och tidsbaserad rolling-origin-korsvalidering.",
             "När flera variabler beskriver samma kvalitativa tema behålls högst en representant, vald efter inkrementellt AIC-bidrag.",
             "Tidsbaserad CV får endast sålla variabler när minst tre giltiga rolling-origin-foldar finns; annars behålls den tematiskt balanserade modellen.",
@@ -1460,11 +1594,12 @@ def main():
     labor = get_labor_market()
     education = get_education()
     students = get_students()
+    industry = get_industry_structure()
     mig = get_migration()
     pop = get_population()
     income = get_income()
     housing = get_housing()
-    panel = build_panel(mig, pop, income, housing, labor, education, students)
+    panel = build_panel(mig, pop, income, housing, labor, education, students, industry)
     panel.to_csv(OUT / "panel.csv", index=False)
     result = fit_models(panel)
     (OUT / "model.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
