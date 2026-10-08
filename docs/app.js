@@ -12,8 +12,8 @@ const labels={
   lag1_inflyttare_medelalder:'Inflyttarnas medelålder föregående år',
   lag1_inkomst_tkr:'Genomsnittlig förvärvsinkomst 20–64 år, föregående år (tkr)',
   lag1_andel_smahus:'Andel småhus föregående år (%)',
-  lag1_andel_forvarvsarbetande:'Andel förvärvsarbetande 20–64 år, föregående år (%)',
-  lag1_andel_arbetslosa:'Andel inskrivna arbetslösa 20–64 år, föregående år (%)'
+  lag1_sysselsattningsgrad:'Sysselsättningsgrad 20–64 år, föregående år (%)',
+  lag1_arbetsloshet:'Arbetslöshet 20–64 år, föregående år (%)'
 };
 
 async function load(){
