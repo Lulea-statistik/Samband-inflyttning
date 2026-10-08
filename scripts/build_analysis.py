@@ -808,8 +808,18 @@ def get_industry_structure() -> pd.DataFrame:
         def _match_code(code):
             code_text = str(code).strip().lower()
             label_text = label_map.get(str(code), str(code)).strip().lower()
-            observed = df[icol].astype(str).str.strip().str.lower()
-            return observed.eq(code_text) | observed.eq(label_text)
+            combined_text = f"{code_text} {label_text}".strip()
+            observed = (
+                df[icol].astype(str)
+                .str.strip()
+                .str.lower()
+                .str.replace(r"\s+", " ", regex=True)
+            )
+            return (
+                observed.eq(code_text)
+                | observed.eq(label_text)
+                | observed.eq(combined_text)
+            )
 
         def _sum_for(code, name):
             matched = df[_match_code(code)].copy()
