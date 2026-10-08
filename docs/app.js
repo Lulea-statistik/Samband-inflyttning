@@ -243,6 +243,30 @@ function renderModel(){
     (cv.reason?'<br><strong>CV-status:</strong> '+cv.reason:'')+
     '</p>';
 
+  const tm=e.theme_marginal_analysis||{};
+  const trows=(tm.rows||[]).slice();
+  if(trows.length){
+    Plotly.react('themeMarginalChart',[{
+      y:trows.map(d=>d.theme),
+      x:trows.map(d=>d.delta_adjusted_r2),
+      type:'bar',orientation:'h',
+      customdata:trows.map(d=>[d.delta_aic,d.delta_rmse,(d.features||[]).map(f=>labels[f]||f).join(', ')]),
+      hovertemplate:'%{y}<br>Δ justerat R²=%{x:.4f}<br>Δ AIC=%{customdata[0]:.1f}<br>Δ RMSE=%{customdata[1]:.3f}<br>%{customdata[2]}<extra></extra>'
+    }],{
+      margin:{t:20,l:220},
+      xaxis:{title:'Förlust i justerat R² när temat tas bort',zeroline:true},
+      yaxis:{autorange:'reversed'}
+    },{responsive:true,displaylogo:false});
+
+    document.getElementById('themeMarginalTable').innerHTML=
+      '<table class="metric-table"><thead><tr><th>Tema</th><th>Variabel</th><th>Δ just. R²</th><th>Δ AIC</th><th>Δ RMSE</th></tr></thead><tbody>'+
+      trows.map(d=>'<tr><td>'+d.theme+'</td><td>'+(d.features||[]).map(f=>labels[f]||f).join(', ')+'</td><td>'+fmt(d.delta_adjusted_r2,4)+'</td><td>'+fmt(d.delta_aic,1)+'</td><td>'+fmt(d.delta_rmse,3)+'</td></tr>').join('')+
+      '</tbody></table>';
+  } else {
+    Plotly.purge('themeMarginalChart');
+    document.getElementById('themeMarginalTable').innerHTML='<p class="note">Marginalanalys saknas för valt fönster.</p>';
+  }
+
   const c=e.coefficients;
   Plotly.react('coefficients',[{
     y:c.map(d=>labels[d.feature]||d.feature),
