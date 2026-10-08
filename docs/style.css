@@ -13,3 +13,5 @@ main{padding:24px 28px;max-width:1500px;margin:auto}.page{display:none}.page.act
 .lead{max-width:980px;line-height:1.55;color:#405066}
 .terms{display:grid;grid-template-columns:minmax(150px,220px) 1fr;gap:8px 18px;margin:12px 0 22px}.terms dt{font-weight:700}.terms dd{margin:0;color:#526175}
 @media(max-width:700px){.terms{grid-template-columns:1fr}.terms dd{margin-bottom:8px}}
+
+.matrix-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;flex-wrap:wrap}.matrix-head h3{margin-top:0}.matrix-head>div{max-width:850px}.matrix-head label{font-size:13px;font-weight:700}.matrix-head select{display:block;margin-top:5px;padding:8px;min-width:230px}.matrix-chart{height:680px}@media(max-width:900px){.matrix-chart{height:620px}}
