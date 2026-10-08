@@ -29,59 +29,59 @@
         "coefficients": [
           {
             "feature": "lag1_inflyttning_per_1000",
-            "coefficient": 0.8357226498342419,
-            "standardized_coefficient": 0.8876828564580931,
-            "p_value": 2.3528474777904766e-276,
-            "ci_low": 0.7896091196524976,
-            "ci_high": 0.8818361800159863
+            "coefficient": 0.8357226498342416,
+            "standardized_coefficient": 0.8876828564580928,
+            "p_value": 2.352847477969567e-276,
+            "ci_low": 0.7896091196524945,
+            "ci_high": 0.8818361800159887
           },
           {
             "feature": "log_folkmangd",
-            "coefficient": -1.576081336727968,
-            "standardized_coefficient": -0.10452015807950193,
-            "p_value": 0.0065696528443811185,
-            "ci_low": -2.7126411818729936,
-            "ci_high": -0.4395214915829422
+            "coefficient": -1.5760813367279658,
+            "standardized_coefficient": -0.10452015807950178,
+            "p_value": 0.00656965284439327,
+            "ci_low": -2.712641181873246,
+            "ci_high": -0.4395214915826857
           },
           {
             "feature": "befolkningstillvaxt_pct",
-            "coefficient": 2.7811128094032607,
-            "standardized_coefficient": 0.15149584221852738,
-            "p_value": 2.5251339856051433e-07,
-            "ci_low": 1.723885616091484,
-            "ci_high": 3.8383400027150376
+            "coefficient": 2.781112809403262,
+            "standardized_coefficient": 0.15149584221852747,
+            "p_value": 2.525133985608835e-07,
+            "ci_low": 1.7238856160914287,
+            "ci_high": 3.8383400027150953
           },
           {
             "feature": "andel_20_34",
-            "coefficient": 0.17709926328631448,
-            "standardized_coefficient": 0.03343789266367129,
-            "p_value": 0.37397672068734766,
-            "ci_low": -0.21332709027854485,
-            "ci_high": 0.5675256168511738
+            "coefficient": 0.17709926328631517,
+            "standardized_coefficient": 0.03343789266367142,
+            "p_value": 0.37397672068736865,
+            "ci_low": -0.2133270902785628,
+            "ci_high": 0.5675256168511932
           },
           {
             "feature": "lag1_inflyttare_medelalder",
-            "coefficient": 0.418416036638274,
-            "standardized_coefficient": 0.07361138471972574,
-            "p_value": 0.009613620672167892,
-            "ci_low": 0.10171244948240277,
-            "ci_high": 0.7351196237941452
+            "coefficient": 0.4184160366382743,
+            "standardized_coefficient": 0.07361138471972581,
+            "p_value": 0.009613620672176424,
+            "ci_low": 0.10171244948236541,
+            "ci_high": 0.7351196237941833
           },
           {
             "feature": "lag1_inkomst_tkr",
-            "coefficient": 0.01652640271133045,
-            "standardized_coefficient": 0.05894340048220726,
-            "p_value": 0.056841355897237024,
-            "ci_low": -0.00048103500373091954,
-            "ci_high": 0.03353384042639182
+            "coefficient": 0.01652640271133044,
+            "standardized_coefficient": 0.05894340048220724,
+            "p_value": 0.05684135589725693,
+            "ci_low": -0.0004810350037322865,
+            "ci_high": 0.033533840426393166
           },
           {
             "feature": "lag1_andel_smahus",
-            "coefficient": -0.04510677207694487,
-            "standardized_coefficient": -0.04480276566776228,
-            "p_value": 0.1026368641892125,
-            "ci_low": -0.0992714093778153,
-            "ci_high": 0.009057865223925557
+            "coefficient": -0.04510677207694366,
+            "standardized_coefficient": -0.04480276566776108,
+            "p_value": 0.10263686418930343,
+            "ci_low": -0.09927140937782697,
+            "ci_high": 0.00905786522393965
           }
         ],
         "vif": [
@@ -99,11 +99,11 @@
           },
           {
             "feature": "andel_20_34",
-            "vif": 4.675290628691499
+            "vif": 4.675290628691497
           },
           {
             "feature": "lag1_inflyttare_medelalder",
-            "vif": 1.9245890440056386
+            "vif": 1.9245890440056381
           },
           {
             "feature": "lag1_inkomst_tkr",
@@ -153,19 +153,19 @@
               },
               {
                 "feature": "log_folkmangd",
-                "penalized_coefficient": -1.5813545778239604
+                "penalized_coefficient": -1.5813545778239606
               },
               {
                 "feature": "befolkningstillvaxt_pct",
-                "penalized_coefficient": 2.2928801706874666
+                "penalized_coefficient": 2.292880170687467
               },
               {
                 "feature": "andel_20_34",
-                "penalized_coefficient": 0.5055544949254296
+                "penalized_coefficient": 0.5055544949254295
               },
               {
                 "feature": "lag1_inflyttare_medelalder",
-                "penalized_coefficient": 1.1138832029546024
+                "penalized_coefficient": 1.1138832029546022
               },
               {
                 "feature": "lag1_inkomst_tkr",
@@ -248,15 +248,15 @@
               },
               {
                 "feature": "log_folkmangd",
-                "penalized_coefficient": -2.254543830361875
+                "penalized_coefficient": -2.2545438303618743
               },
               {
                 "feature": "befolkningstillvaxt_pct",
-                "penalized_coefficient": 2.7300810475529222
+                "penalized_coefficient": 2.730081047552922
               },
               {
                 "feature": "andel_20_34",
-                "penalized_coefficient": 1.5480707989480753
+                "penalized_coefficient": 1.5480707989480755
               },
               {
                 "feature": "lag1_inflyttare_medelalder",
@@ -268,7 +268,7 @@
               },
               {
                 "feature": "lag1_andel_smahus",
-                "penalized_coefficient": -1.1561181389550903
+                "penalized_coefficient": -1.1561181389550899
               }
             ]
           },
@@ -281,14 +281,14 @@
             "mae": 3.939854446341341
           },
           "ols": {
-            "r2": 0.8354514029498644,
-            "rmse": 6.139683933781739,
-            "mae": 4.863197245161266
+            "r2": 0.8354514029498639,
+            "rmse": 6.139683933781747,
+            "mae": 4.863197245161276
           },
           "ridge": {
-            "r2": 0.8359935187750835,
-            "rmse": 6.129561800168892,
-            "mae": 4.846705362953061
+            "r2": 0.8359935187750839,
+            "rmse": 6.129561800168885,
+            "mae": 4.846705362953053
           }
         }
       }
@@ -307,65 +307,65 @@
         "coefficients": [
           {
             "feature": "lag1_inflyttning_per_1000",
-            "coefficient": 0.8142474518087903,
-            "standardized_coefficient": 0.86393998810598,
+            "coefficient": 0.8142474518087917,
+            "standardized_coefficient": 0.8639399881059814,
             "p_value": 0.0,
-            "ci_low": 0.7834931246087439,
-            "ci_high": 0.8450017790088368
+            "ci_low": 0.783493124608745,
+            "ci_high": 0.8450017790088383
           },
           {
             "feature": "log_folkmangd",
-            "coefficient": -2.2885615363254614,
-            "standardized_coefficient": -0.1467393205142049,
-            "p_value": 9.138028585452912e-11,
-            "ci_low": -2.9807077874613164,
-            "ci_high": -1.5964152851896063
+            "coefficient": -2.2885615363254592,
+            "standardized_coefficient": -0.14673932051420477,
+            "p_value": 9.138028585420105e-11,
+            "ci_low": -2.980707787461256,
+            "ci_high": -1.5964152851896625
           },
           {
             "feature": "befolkningstillvaxt_pct",
-            "coefficient": 2.9227822163058828,
-            "standardized_coefficient": 0.1734338847600991,
-            "p_value": 1.6437006867202421e-16,
-            "ci_low": 2.2280400087314147,
-            "ci_high": 3.617524423880351
+            "coefficient": 2.922782216305889,
+            "standardized_coefficient": 0.17343388476009947,
+            "p_value": 1.6437006867140816e-16,
+            "ci_low": 2.2280400087314574,
+            "ci_high": 3.6175244238803206
           },
           {
             "feature": "andel_20_34",
-            "coefficient": 0.4487385459174825,
-            "standardized_coefficient": 0.08189239390337323,
-            "p_value": 0.0010861927847922554,
-            "ci_low": 0.17954380879581788,
-            "ci_high": 0.7179332830391472
+            "coefficient": 0.4487385459174843,
+            "standardized_coefficient": 0.08189239390337355,
+            "p_value": 0.001086192784787402,
+            "ci_low": 0.1795438087959228,
+            "ci_high": 0.7179332830390458
           },
           {
             "feature": "lag1_inflyttare_medelalder",
-            "coefficient": 0.26963956535371575,
-            "standardized_coefficient": 0.04467002912594816,
-            "p_value": 0.003247066013452968,
-            "ci_low": 0.09008626769203296,
-            "ci_high": 0.4491928630153985
+            "coefficient": 0.269639565353718,
+            "standardized_coefficient": 0.044670029125948536,
+            "p_value": 0.0032470660134398255,
+            "ci_low": 0.09008626769211012,
+            "ci_high": 0.4491928630153259
           },
           {
             "feature": "lag1_inkomst_tkr",
-            "coefficient": 0.016019215655334304,
-            "standardized_coefficient": 0.05483349263185452,
-            "p_value": 0.016443735218605468,
-            "ci_low": 0.0029311792355932852,
-            "ci_high": 0.02910725207507532
+            "coefficient": 0.016019215655334373,
+            "standardized_coefficient": 0.05483349263185475,
+            "p_value": 0.01644373521859751,
+            "ci_low": 0.0029311792355942654,
+            "ci_high": 0.02910725207507448
           },
           {
             "feature": "lag1_andel_smahus",
-            "coefficient": -0.07087354103744416,
-            "standardized_coefficient": -0.06819132107044278,
-            "p_value": 0.000404229966429699,
-            "ci_low": -0.11014341493792468,
-            "ci_high": -0.03160366713696363
+            "coefficient": -0.07087354103744405,
+            "standardized_coefficient": -0.06819132107044266,
+            "p_value": 0.0004042299664273508,
+            "ci_low": -0.1101434149379075,
+            "ci_high": -0.0316036671369806
           }
         ],
         "vif": [
           {
             "feature": "lag1_inflyttning_per_1000",
-            "vif": 1.3706359377980115
+            "vif": 1.3706359377980113
           },
           {
             "feature": "log_folkmangd",
@@ -377,11 +377,11 @@
           },
           {
             "feature": "andel_20_34",
-            "vif": 4.609805537790103
+            "vif": 4.609805537790105
           },
           {
             "feature": "lag1_inflyttare_medelalder",
-            "vif": 1.8552586739538028
+            "vif": 1.8552586739538033
           },
           {
             "feature": "lag1_inkomst_tkr",
@@ -431,19 +431,19 @@
               },
               {
                 "feature": "log_folkmangd",
-                "penalized_coefficient": -2.2918445082964904
+                "penalized_coefficient": -2.29184450829649
               },
               {
                 "feature": "befolkningstillvaxt_pct",
-                "penalized_coefficient": 2.6950636795756666
+                "penalized_coefficient": 2.695063679575666
               },
               {
                 "feature": "andel_20_34",
-                "penalized_coefficient": 1.277049027100207
+                "penalized_coefficient": 1.2770490271002066
               },
               {
                 "feature": "lag1_inflyttare_medelalder",
-                "penalized_coefficient": 0.6943249214285674
+                "penalized_coefficient": 0.6943249214285673
               },
               {
                 "feature": "lag1_inkomst_tkr",
@@ -533,11 +533,11 @@
               },
               {
                 "feature": "andel_20_34",
-                "penalized_coefficient": 0.8373936412261627
+                "penalized_coefficient": 0.8373936412261624
               },
               {
                 "feature": "lag1_inflyttare_medelalder",
-                "penalized_coefficient": 0.024227258659585423
+                "penalized_coefficient": 0.024227258659585374
               },
               {
                 "feature": "lag1_inkomst_tkr",
@@ -558,14 +558,14 @@
             "mae": 3.939854446341341
           },
           "ols": {
-            "r2": 0.8563281173426589,
-            "rmse": 5.736999526311533,
-            "mae": 4.376394682737741
+            "r2": 0.8563281173426598,
+            "rmse": 5.736999526311515,
+            "mae": 4.376394682737727
           },
           "ridge": {
             "r2": 0.856973856211633,
-            "rmse": 5.724092423268912,
-            "mae": 4.361185564736458
+            "rmse": 5.724092423268911,
+            "mae": 4.3611855647364575
           }
         }
       }
@@ -579,64 +579,64 @@
         "n_municipalities": 290,
         "r2": 0.9244912495205807,
         "adjusted_r2": 0.9237010416667263,
-        "aic": 5078.54056247944,
-        "bic": 5126.225494595927,
+        "aic": 5078.540562479441,
+        "bic": 5126.225494595928,
         "coefficients": [
           {
             "feature": "lag1_inflyttning_per_1000",
-            "coefficient": 0.8176137551589399,
-            "standardized_coefficient": 0.8693766650073216,
+            "coefficient": 0.8176137551589392,
+            "standardized_coefficient": 0.8693766650073208,
             "p_value": 0.0,
-            "ci_low": 0.7922875429524466,
+            "ci_low": 0.7922875429524453,
             "ci_high": 0.8429399673654331
           },
           {
             "feature": "log_folkmangd",
-            "coefficient": -2.2202605848448456,
-            "standardized_coefficient": -0.1376244246438162,
-            "p_value": 4.5992157947431935e-14,
-            "ci_low": -2.7971842992771885,
-            "ci_high": -1.6433368704125024
+            "coefficient": -2.2202605848448487,
+            "standardized_coefficient": -0.13762442464381638,
+            "p_value": 4.599215794769215e-14,
+            "ci_low": -2.797184299277249,
+            "ci_high": -1.6433368704124482
           },
           {
             "feature": "befolkningstillvaxt_pct",
-            "coefficient": 3.0521520179226993,
-            "standardized_coefficient": 0.1804676656587604,
-            "p_value": 5.520061296820905e-28,
-            "ci_low": 2.506676910527057,
-            "ci_high": 3.5976271253183416
+            "coefficient": 3.052152017922715,
+            "standardized_coefficient": 0.1804676656587613,
+            "p_value": 5.520061296829999e-28,
+            "ci_low": 2.5066769105270623,
+            "ci_high": 3.5976271253183674
           },
           {
             "feature": "andel_20_34",
-            "coefficient": 0.312376206753292,
-            "standardized_coefficient": 0.054931469175461434,
-            "p_value": 0.00690311380181375,
-            "ci_low": 0.08574281484448118,
-            "ci_high": 0.5390095986621027
+            "coefficient": 0.3123762067532876,
+            "standardized_coefficient": 0.054931469175460663,
+            "p_value": 0.006903113801817419,
+            "ci_low": 0.08574281484446516,
+            "ci_high": 0.53900959866211
           },
           {
             "feature": "lag1_inflyttare_medelalder",
-            "coefficient": 0.19667257088502843,
-            "standardized_coefficient": 0.03175407560399551,
-            "p_value": 0.011034865680240445,
-            "ci_low": 0.04500737900264032,
-            "ci_high": 0.34833776276741657
+            "coefficient": 0.19667257088502782,
+            "standardized_coefficient": 0.031754075603995416,
+            "p_value": 0.01103486568027917,
+            "ci_low": 0.04500737900256696,
+            "ci_high": 0.3483377627674887
           },
           {
             "feature": "lag1_inkomst_tkr",
-            "coefficient": 0.0046953225911258245,
-            "standardized_coefficient": 0.015492320118284707,
-            "p_value": 0.45049766553599857,
-            "ci_low": -0.007500329107323075,
-            "ci_high": 0.016890974289574725
+            "coefficient": 0.0046953225911258185,
+            "standardized_coefficient": 0.015492320118284688,
+            "p_value": 0.45049766553599,
+            "ci_low": -0.007500329107322835,
+            "ci_high": 0.01689097428957447
           },
           {
             "feature": "lag1_andel_smahus",
-            "coefficient": -0.0849554295424338,
-            "standardized_coefficient": -0.07916864098704254,
-            "p_value": 4.856340942447514e-07,
-            "ci_low": -0.11804620467312356,
-            "ci_high": -0.05186465441174405
+            "coefficient": -0.0849554295424348,
+            "standardized_coefficient": -0.07916864098704347,
+            "p_value": 4.856340942462523e-07,
+            "ci_low": -0.11804620467312885,
+            "ci_high": -0.05186465441174076
           }
         ],
         "vif": [
@@ -708,27 +708,27 @@
               },
               {
                 "feature": "log_folkmangd",
-                "penalized_coefficient": -1.9482726425305106
+                "penalized_coefficient": -1.948272642530511
               },
               {
                 "feature": "befolkningstillvaxt_pct",
-                "penalized_coefficient": 2.7827141042560823
+                "penalized_coefficient": 2.782714104256083
               },
               {
                 "feature": "andel_20_34",
-                "penalized_coefficient": 0.7016065999713587
+                "penalized_coefficient": 0.7016065999713584
               },
               {
                 "feature": "lag1_inflyttare_medelalder",
-                "penalized_coefficient": 0.39947168498252783
+                "penalized_coefficient": 0.3994716849825278
               },
               {
                 "feature": "lag1_inkomst_tkr",
-                "penalized_coefficient": 0.14005637283011535
+                "penalized_coefficient": 0.1400563728301153
               },
               {
                 "feature": "lag1_andel_smahus",
-                "penalized_coefficient": -1.1686639844716114
+                "penalized_coefficient": -1.1686639844716116
               }
             ]
           },
@@ -810,15 +810,15 @@
               },
               {
                 "feature": "andel_20_34",
-                "penalized_coefficient": 0.8588594553530491
+                "penalized_coefficient": 0.8588594553530493
               },
               {
                 "feature": "lag1_inflyttare_medelalder",
-                "penalized_coefficient": 0.2337022902062662
+                "penalized_coefficient": 0.23370229020626626
               },
               {
                 "feature": "lag1_inkomst_tkr",
-                "penalized_coefficient": 0.11613159889142642
+                "penalized_coefficient": 0.11613159889142656
               },
               {
                 "feature": "lag1_andel_smahus",
@@ -835,14 +835,14 @@
             "mae": 3.939854446341341
           },
           "ols": {
-            "r2": 0.8745863860286249,
-            "rmse": 5.360079906496023,
-            "mae": 4.0777111611389065
+            "r2": 0.8745863860286245,
+            "rmse": 5.360079906496032,
+            "mae": 4.077711161138911
           },
           "ridge": {
-            "r2": 0.8750343173650603,
-            "rmse": 5.3504992264461855,
-            "mae": 4.066957804435388
+            "r2": 0.8750343173650605,
+            "rmse": 5.35049922644618,
+            "mae": 4.066957804435383
           }
         }
       }
@@ -861,65 +861,65 @@
         "coefficients": [
           {
             "feature": "lag1_inflyttning_per_1000",
-            "coefficient": 0.8371685445354095,
-            "standardized_coefficient": 0.8613973373019231,
+            "coefficient": 0.8371685445354087,
+            "standardized_coefficient": 0.8613973373019225,
             "p_value": 0.0,
-            "ci_low": 0.8124573477200759,
-            "ci_high": 0.861879741350743
+            "ci_low": 0.8124573477200758,
+            "ci_high": 0.8618797413507415
           },
           {
             "feature": "log_folkmangd",
-            "coefficient": -2.1554217460344303,
-            "standardized_coefficient": -0.12868824321265326,
-            "p_value": 9.120863719476441e-15,
-            "ci_low": -2.700458132878788,
-            "ci_high": -1.6103853591900725
+            "coefficient": -2.1554217460344214,
+            "standardized_coefficient": -0.12868824321265274,
+            "p_value": 9.120863719295807e-15,
+            "ci_low": -2.7004581328786,
+            "ci_high": -1.6103853591902428
           },
           {
             "feature": "befolkningstillvaxt_pct",
-            "coefficient": 3.1073538964880822,
-            "standardized_coefficient": 0.18087017015029452,
-            "p_value": 1.04138896860975e-40,
-            "ci_low": 2.6514789315392515,
-            "ci_high": 3.563228861436913
+            "coefficient": 3.1073538964880907,
+            "standardized_coefficient": 0.180870170150295,
+            "p_value": 1.0413889686044077e-40,
+            "ci_low": 2.651478931539272,
+            "ci_high": 3.5632288614369094
           },
           {
             "feature": "andel_20_34",
-            "coefficient": 0.371713068122324,
-            "standardized_coefficient": 0.06278919040594234,
-            "p_value": 0.0005324890916347733,
-            "ci_low": 0.16138562598502637,
-            "ci_high": 0.5820405102596217
+            "coefficient": 0.3717130681223244,
+            "standardized_coefficient": 0.0627891904059424,
+            "p_value": 0.0005324890916366791,
+            "ci_low": 0.16138562598496803,
+            "ci_high": 0.5820405102596808
           },
           {
             "feature": "lag1_inflyttare_medelalder",
-            "coefficient": 0.23514607437474083,
-            "standardized_coefficient": 0.03664010439559216,
-            "p_value": 0.0007920708324666419,
-            "ci_low": 0.09779818350455549,
-            "ci_high": 0.3724939652449262
+            "coefficient": 0.23514607437474055,
+            "standardized_coefficient": 0.03664010439559213,
+            "p_value": 0.0007920708324661076,
+            "ci_low": 0.09779818350456304,
+            "ci_high": 0.37249396524491807
           },
           {
             "feature": "lag1_inkomst_tkr",
-            "coefficient": 0.009614855373737767,
-            "standardized_coefficient": 0.03063782659251638,
-            "p_value": 0.06629697214427274,
-            "ci_low": -0.000646886513207736,
-            "ci_high": 0.01987659726068327
+            "coefficient": 0.009614855373737727,
+            "standardized_coefficient": 0.030637826592516255,
+            "p_value": 0.06629697214429088,
+            "ci_low": -0.0006468865132084178,
+            "ci_high": 0.019876597260683873
           },
           {
             "feature": "lag1_andel_smahus",
-            "coefficient": -0.0794040871551849,
-            "standardized_coefficient": -0.07141949531420884,
-            "p_value": 8.990723410460876e-08,
-            "ci_low": -0.10851528225031229,
-            "ci_high": -0.05029289206005753
+            "coefficient": -0.07940408715518464,
+            "standardized_coefficient": -0.07141949531420862,
+            "p_value": 8.990723410424734e-08,
+            "ci_low": -0.10851528225030796,
+            "ci_high": -0.05029289206006132
           }
         ],
         "vif": [
           {
             "feature": "lag1_inflyttning_per_1000",
-            "vif": 1.4045918274926945
+            "vif": 1.4045918274926943
           },
           {
             "feature": "log_folkmangd",
@@ -939,7 +939,7 @@
           },
           {
             "feature": "lag1_inkomst_tkr",
-            "vif": 1.5739418343039824
+            "vif": 1.5739418343039822
           },
           {
             "feature": "lag1_andel_smahus",
@@ -997,11 +997,11 @@
               },
               {
                 "feature": "lag1_inflyttare_medelalder",
-                "penalized_coefficient": 0.5940522828166453
+                "penalized_coefficient": 0.5940522828166451
               },
               {
                 "feature": "lag1_inkomst_tkr",
-                "penalized_coefficient": 0.4961304973015834
+                "penalized_coefficient": 0.49613049730158354
               },
               {
                 "feature": "lag1_andel_smahus",
@@ -1087,15 +1087,15 @@
               },
               {
                 "feature": "andel_20_34",
-                "penalized_coefficient": 0.5443123815387596
+                "penalized_coefficient": 0.5443123815387597
               },
               {
                 "feature": "lag1_inflyttare_medelalder",
-                "penalized_coefficient": 0.2873814397375547
+                "penalized_coefficient": 0.2873814397375548
               },
               {
                 "feature": "lag1_inkomst_tkr",
-                "penalized_coefficient": 0.19278849156142178
+                "penalized_coefficient": 0.1927884915614217
               },
               {
                 "feature": "lag1_andel_smahus",
@@ -1112,14 +1112,14 @@
             "mae": 3.939854446341341
           },
           "ols": {
-            "r2": 0.8831963231578084,
-            "rmse": 5.172817776002377,
-            "mae": 3.912328492977029
+            "r2": 0.8831963231578082,
+            "rmse": 5.172817776002384,
+            "mae": 3.912328492977035
           },
           "ridge": {
-            "r2": 0.8835586327196114,
-            "rmse": 5.164788846601279,
-            "mae": 3.903963314611147
+            "r2": 0.8835586327196119,
+            "rmse": 5.164788846601267,
+            "mae": 3.9039633146111368
           }
         }
       }
@@ -1138,59 +1138,59 @@
         "coefficients": [
           {
             "feature": "lag1_inflyttning_per_1000",
-            "coefficient": 0.8557940075178907,
-            "standardized_coefficient": 0.8719835782792826,
+            "coefficient": 0.8557940075178926,
+            "standardized_coefficient": 0.8719835782792847,
             "p_value": 0.0,
-            "ci_low": 0.8325814979132155,
-            "ci_high": 0.879006517122566
+            "ci_low": 0.8325814979132178,
+            "ci_high": 0.8790065171225674
           },
           {
             "feature": "log_folkmangd",
-            "coefficient": -1.9464698446531743,
-            "standardized_coefficient": -0.11508198976389854,
-            "p_value": 4.6769366147814484e-14,
-            "ci_low": -2.452396935267747,
-            "ci_high": -1.4405427540386018
+            "coefficient": -1.946469844653166,
+            "standardized_coefficient": -0.11508198976389805,
+            "p_value": 4.676936614769335e-14,
+            "ci_low": -2.4523969352677137,
+            "ci_high": -1.4405427540386184
           },
           {
             "feature": "befolkningstillvaxt_pct",
             "coefficient": 3.0844167089254384,
             "standardized_coefficient": 0.1776749574482248,
-            "p_value": 7.163692789443017e-42,
-            "ci_low": 2.638509038197777,
-            "ci_high": 3.5303243796531
+            "p_value": 7.163692789437185e-42,
+            "ci_low": 2.638509038197779,
+            "ci_high": 3.5303243796530976
           },
           {
             "feature": "andel_20_34",
-            "coefficient": 0.23131607212580663,
-            "standardized_coefficient": 0.03864972363686654,
-            "p_value": 0.02054121585729414,
-            "ci_low": 0.035586358165845405,
-            "ci_high": 0.4270457860857678
+            "coefficient": 0.23131607212579858,
+            "standardized_coefficient": 0.038649723636865196,
+            "p_value": 0.020541215857293908,
+            "ci_low": 0.035586358165844545,
+            "ci_high": 0.4270457860857526
           },
           {
             "feature": "lag1_inflyttare_medelalder",
-            "coefficient": 0.20986048501680588,
-            "standardized_coefficient": 0.03259631244907022,
-            "p_value": 0.0012847444160148304,
-            "ci_low": 0.08209650698050855,
-            "ci_high": 0.33762446305310323
+            "coefficient": 0.20986048501680593,
+            "standardized_coefficient": 0.03259631244907023,
+            "p_value": 0.0012847444160129652,
+            "ci_low": 0.08209650698052509,
+            "ci_high": 0.3376244630530868
           },
           {
             "feature": "lag1_inkomst_tkr",
-            "coefficient": 0.008230600121913388,
-            "standardized_coefficient": 0.02580434284532853,
-            "p_value": 0.10912216343951858,
-            "ci_low": -0.0018381618855331863,
-            "ci_high": 0.018299362129359963
+            "coefficient": 0.008230600121912852,
+            "standardized_coefficient": 0.02580434284532685,
+            "p_value": 0.10912216343955822,
+            "ci_low": -0.0018381618855341925,
+            "ci_high": 0.018299362129359897
           },
           {
             "feature": "lag1_andel_smahus",
-            "coefficient": -0.07214391485441438,
-            "standardized_coefficient": -0.06435114490560356,
-            "p_value": 5.4165630471935846e-08,
-            "ci_low": -0.09815050040098647,
-            "ci_high": -0.046137329307842284
+            "coefficient": -0.07214391485441506,
+            "standardized_coefficient": -0.06435114490560417,
+            "p_value": 5.416563047174771e-08,
+            "ci_low": -0.09815050040098444,
+            "ci_high": -0.04613732930784568
           }
         ],
         "vif": [
@@ -1216,7 +1216,7 @@
           },
           {
             "feature": "lag1_inkomst_tkr",
-            "vif": 1.5644082306080624
+            "vif": 1.564408230608063
           },
           {
             "feature": "lag1_andel_smahus",
@@ -1266,19 +1266,19 @@
               },
               {
                 "feature": "befolkningstillvaxt_pct",
-                "penalized_coefficient": 2.8705549223989797
+                "penalized_coefficient": 2.870554922398979
               },
               {
                 "feature": "andel_20_34",
-                "penalized_coefficient": 0.662299534659084
+                "penalized_coefficient": 0.6622995346590843
               },
               {
                 "feature": "lag1_inflyttare_medelalder",
-                "penalized_coefficient": 0.525170179517769
+                "penalized_coefficient": 0.5251701795177688
               },
               {
                 "feature": "lag1_inkomst_tkr",
-                "penalized_coefficient": 0.42043807717408926
+                "penalized_coefficient": 0.42043807717408965
               },
               {
                 "feature": "lag1_andel_smahus",
@@ -1364,11 +1364,11 @@
               },
               {
                 "feature": "andel_20_34",
-                "penalized_coefficient": 0.4876316941819759
+                "penalized_coefficient": 0.48763169418197605
               },
               {
                 "feature": "lag1_inflyttare_medelalder",
-                "penalized_coefficient": 0.3485357231901205
+                "penalized_coefficient": 0.34853572319012033
               },
               {
                 "feature": "lag1_inkomst_tkr",
@@ -1376,7 +1376,7 @@
               },
               {
                 "feature": "lag1_andel_smahus",
-                "penalized_coefficient": -0.9300544852205312
+                "penalized_coefficient": -0.930054485220531
               }
             ]
           },
@@ -1389,14 +1389,14 @@
             "mae": 3.939854446341341
           },
           "ols": {
-            "r2": 0.8839277208424967,
-            "rmse": 5.156596847272484,
-            "mae": 3.9373829665205133
+            "r2": 0.8839277208424972,
+            "rmse": 5.156596847272472,
+            "mae": 3.9373829665205027
           },
           "ridge": {
-            "r2": 0.8841947553217191,
-            "rmse": 5.150661829682046,
-            "mae": 3.9306942991588154
+            "r2": 0.8841947553217193,
+            "rmse": 5.150661829682041,
+            "mae": 3.93069429915881
           }
         }
       }
