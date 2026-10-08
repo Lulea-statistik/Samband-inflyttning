@@ -98,7 +98,7 @@
     <div class="panel">
       <div class="matrix-head">
         <div>
-          <h3>Hur skiftar drivkrafterna genom livscykeln?</h3>
+          <h3>Vilka teman tillför förklaringsvärde i olika livsfaser?</h3>
           <p class="note">Varje ruta visar tappet i justerat R² när temat tas bort från just den åldersgruppens modell. Större positivt värde betyder större självständigt bidrag. Tom ruta betyder att temat inte valdes in i modellen. Färgskalan är kvadratrotskomprimerad för att små strukturella skillnader ska vara synliga; siffrorna i rutorna är de faktiska Δ justerat R²-värdena.</p>
         </div>
         <label>Visa
@@ -109,6 +109,11 @@
         </label>
       </div>
       <div id="lifeStageHeatmap" class="chart matrix-chart"></div>
+    </div>
+    <div class="panel">
+      <h3>Vald representant inom varje tema</h3>
+      <p class="note">Tabellen visar vilken kandidatvariabel som vann det tematiska urvalet i respektive livsfas. Streck betyder att temat inte ingick i den valda modellen. Det gör det möjligt att skilja mellan ett temas betydelse och <em>vilken mätbar aspekt</em> av temat som modellen föredrar.</p>
+      <div id="lifeStageWinnerTable" class="table-wrap"></div>
     </div>
     <div id="ageModels"></div>
   </section>
@@ -177,6 +182,6 @@
     </div>
   </section>
 </main>
-<script src="app.js?v=20261008-5"></script>
+<script src="app.js?v=20261008-6"></script>
 </body>
 </html>
