@@ -833,11 +833,11 @@ def _turnout_rows_from_workbook(
             derived_muni = df[district_code_col].map(
                 lambda x: _municipality_code(x, from_district=True)
             ).astype("string")
-            if level_hint == "district":
-                out["kommun_kod"] = derived_muni
-            else:
-                missing_muni = out["kommun_kod"].isna()
-                out.loc[missing_muni, "kommun_kod"] = derived_muni.loc[missing_muni]
+            # Prefer an explicit/reconstructed municipality code from the
+            # workbook columns. Historical polling-district codes are not
+            # guaranteed to embed the municipality code in the same positions.
+            missing_muni = out["kommun_kod"].isna()
+            out.loc[missing_muni, "kommun_kod"] = derived_muni.loc[missing_muni]
         else:
             out["valdistrikt_kod"] = pd.Series(pd.NA, index=df.index, dtype="string")
 
