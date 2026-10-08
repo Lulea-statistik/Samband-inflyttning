@@ -21,6 +21,7 @@ MIGRATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE010
 POPULATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101A/BefolkningNy"
 INCOME_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/HE/HE0110/HE0110A/SamForvInk2"
 HOUSING_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104D/BO0104T02"
+LABOR_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM9906/AM9906B/RegionInd19U1aN1"
 OUT = Path("docs/data")
 OUT.mkdir(parents=True, exist_ok=True)
 
@@ -94,6 +95,20 @@ def exact_or_contains_code(var: dict, wanted: str) -> str:
         if wanted_l in str(text).lower():
             return code
     raise KeyError(f"Value {wanted!r} not found in {var.get('text')}")
+
+
+def require_total_code(var: dict) -> str:
+    """Return a genuine total category; do not aggregate percentage strata."""
+    pairs = list(zip(var["values"], var.get("valueTexts", var["values"])))
+    preferred = {"totalt", "total", "samtliga", "alla", "samtliga utbildningar"}
+    for code, text in pairs:
+        if str(text).strip().lower() in preferred:
+            return code
+    for code, text in pairs:
+        t = str(text).strip().lower()
+        if "totalt" in t or "samtliga" in t:
+            return code
+    raise KeyError(f"No total category found in {var.get('text')}: {[t for _, t in pairs[:30]]}")
 
 
 def municipality_codes(region_var: dict) -> list[str]:
@@ -339,6 +354,66 @@ def get_housing() -> pd.DataFrame:
         print(f"Housing {year}: {len(agg):,} municipalities")
     return pd.concat(rows, ignore_index=True)
 
+
+def get_labor_market() -> pd.DataFrame:
+    """
+    Employment and registered unemployment shares for the resident population
+    aged 20-64. Uses BAS table 2019-2024 and the total education category.
+    """
+    meta = metadata(LABOR_URL)
+    region = find_var(meta, "region")
+    education = find_var(meta, "utbildningsnivå", "utbildningsniva", "utbildning")
+    content = find_var(meta, "tabellinnehåll", "contentscode")
+    time = find_var(meta, "år", "tid")
+
+    munis = municipality_codes(region)
+    edu_total = require_total_code(education)
+
+    employed_code = code_for_all_text(content, "förvärvsarbetande", "(a)")
+    unemployed_code = code_for_all_text(content, "arbetslösa", "(b)")
+    total_code = code_for_all_text(content, "totalt", "(a+b+c)")
+
+    rows = []
+    for year in AUX_YEARS:
+        if year < 2019:
+            continue
+        df = px_csv(LABOR_URL, {
+            region["code"]: munis,
+            education["code"]: [edu_total],
+            content["code"]: [employed_code, unemployed_code, total_code],
+            time["code"]: [str(year)],
+        })
+        dims = standardize_columns(df)
+        dim_cols = set(dims.values())
+        value_cols = [c for c in df.columns if c not in dim_cols]
+
+        emp_col = next((c for c in value_cols if "förvärvsarbetande" in str(c).lower() and "(a)" in str(c).lower()), None)
+        unemp_col = next((c for c in value_cols if "arbetslösa" in str(c).lower() and "(b)" in str(c).lower()), None)
+        total_col = next((c for c in value_cols if "totalt" in str(c).lower() and "a+b+c" in str(c).lower()), None)
+        if not emp_col or not unemp_col or not total_col:
+            raise ValueError(f"Could not identify labor-market columns for {year}: {list(df.columns)}")
+
+        df["employed"] = normalize_number(df[emp_col])
+        df["unemployed"] = normalize_number(df[unemp_col])
+        df["labor_total"] = normalize_number(df[total_col])
+        df["year"] = year
+        df[["kommun_kod", "kommun"]] = df[dims["region"]].apply(lambda x: pd.Series(split_region(x)))
+
+        agg = df.groupby(["kommun_kod", "kommun", "year"], as_index=False).agg(
+            employed=("employed", "sum"),
+            unemployed=("unemployed", "sum"),
+            labor_total=("labor_total", "sum"),
+        )
+        agg["andel_forvarvsarbetande"] = 100 * agg["employed"] / agg["labor_total"].replace(0, np.nan)
+        agg["andel_arbetslosa"] = 100 * agg["unemployed"] / agg["labor_total"].replace(0, np.nan)
+        rows.append(agg[[
+            "kommun_kod", "kommun", "year",
+            "andel_forvarvsarbetande", "andel_arbetslosa"
+        ]])
+        print(f"Labor market {year}: {len(agg):,} municipalities")
+
+    return pd.concat(rows, ignore_index=True)
+
 def standardize_columns(df: pd.DataFrame) -> dict[str, str]:
     out = {}
     for c in df.columns:
@@ -355,6 +430,8 @@ def standardize_columns(df: pd.DataFrame) -> dict[str, str]:
             out["house_type"] = c
         elif "byggnadsperiod" in cl or "byggnadsår" in cl or "byggnadsar" in cl:
             out["period"] = c
+        elif "utbildningsnivå" in cl or "utbildningsniva" in cl or "utbildning" in cl:
+            out["education"] = c
         elif (
             cl in {"år", "tid", "time"}
             or cl.endswith(" år")
@@ -396,7 +473,7 @@ def split_region(value: str) -> tuple[str, str]:
     return s[:4], s[5:] if len(s) > 5 else s
 
 
-def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, housing: pd.DataFrame) -> pd.DataFrame:
+def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, housing: pd.DataFrame, labor: pd.DataFrame) -> pd.DataFrame:
     md = standardize_columns(mig)
     mig = mig.copy()
     mig["value"] = normalize_number(mig["value"])
@@ -450,6 +527,10 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
         housing[["kommun_kod", "year", "andel_smahus"]],
         on=["kommun_kod", "year"], how="left"
     )
+    panel = panel.merge(
+        labor[["kommun_kod", "year", "andel_forvarvsarbetande", "andel_arbetslosa"]],
+        on=["kommun_kod", "year"], how="left"
+    )
     panel["andel_20_34"] = 100 * panel["bef_20_34"] / panel["folkmangd"]
     panel["inflyttning_per_1000"] = 1000 * panel["inflyttade"] / panel["folkmangd"]
 
@@ -459,6 +540,8 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel["lag1_inflyttare_medelalder"] = g["inflyttare_medelalder"].shift(1)
     panel["lag1_inkomst_tkr"] = g["inkomst_tkr"].shift(1)
     panel["lag1_andel_smahus"] = g["andel_smahus"].shift(1)
+    panel["lag1_andel_forvarvsarbetande"] = g["andel_forvarvsarbetande"].shift(1)
+    panel["lag1_andel_arbetslosa"] = g["andel_arbetslosa"].shift(1)
     panel["befolkningstillvaxt_pct"] = 100 * g["folkmangd"].pct_change(fill_method=None)
     panel["log_folkmangd"] = np.log(panel["folkmangd"].where(panel["folkmangd"] > 0))
 
@@ -721,6 +804,8 @@ def fit_models(panel: pd.DataFrame) -> dict:
         "lag1_inflyttare_medelalder",
         "lag1_inkomst_tkr",
         "lag1_andel_smahus",
+        "lag1_andel_forvarvsarbetande",
+        "lag1_andel_arbetslosa",
     ]
     model_df = panel.dropna(subset=[target] + features).copy()
     test_year = int(model_df["year"].max())
@@ -802,6 +887,7 @@ def fit_models(panel: pd.DataFrame) -> dict:
             "Prognosvalideringen för teståret använder endast de föregående 1–5 åren beroende på valt analysfönster.",
             "Inkomst avser genomsnittlig sammanräknad förvärvsinkomst för 20–64-åringar och används laggad ett år.",
             "Andel småhus avser bostadslägenheter i småhus som andel av bostadsbeståndet och används laggad ett år.",
+            "Arbetsmarknadsvariablerna är andel förvärvsarbetande och andel inskrivna arbetslösa bland 20–64-åringar och används laggade ett år.",
             "Variabelurvalet kombinerar Elastic Net och backward-AIC; variabler som väljs av båda behålls i första hand.",
             "Om konsensusurvalet blir alltför litet används backward-AIC som reserv för att undvika instabila små modeller.",
             "Urvalet för prognosvalidering görs endast på träningsåren och får inte se teståret.",
@@ -815,7 +901,8 @@ def main():
     pop = get_population()
     income = get_income()
     housing = get_housing()
-    panel = build_panel(mig, pop, income, housing)
+    labor = get_labor_market()
+    panel = build_panel(mig, pop, income, housing, labor)
     panel.to_csv(OUT / "panel.csv", index=False)
     result = fit_models(panel)
     (OUT / "model.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
