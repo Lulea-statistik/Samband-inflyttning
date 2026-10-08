@@ -544,14 +544,21 @@ def _municipality_code(value: object, *, from_district: bool = False) -> object:
     if not digits:
         return np.nan
     if from_district:
-        # Valdistriktskoder are normally 8 digits; a leading zero may be lost
-        # when Excel stores them numerically.
-        digits = digits.zfill(8)
+        # Valmyndigheten has used both 6-digit and longer polling-district
+        # codes across election files. The municipality is always the first
+        # four digits after restoring a possible lost leading zero.
+        if len(digits) <= 6:
+            digits = digits.zfill(6)
+        else:
+            digits = digits.zfill(8)
         return digits[:4]
     if len(digits) <= 4:
         return digits.zfill(4)
     # Defensive fallback when a district-like code ends up in this column.
-    digits = digits.zfill(8)
+    if len(digits) <= 6:
+        digits = digits.zfill(6)
+    else:
+        digits = digits.zfill(8)
     return digits[:4]
 
 
@@ -559,7 +566,9 @@ def _district_code(value: object) -> object:
     digits = _code_digits(value)
     if not digits:
         return np.nan
-    return digits.zfill(8)
+    # Preserve the historical 6-digit coding used in older election files;
+    # only pad longer modern variants to eight digits.
+    return digits.zfill(6 if len(digits) <= 6 else 8)
 
 
 
@@ -1086,6 +1095,16 @@ def get_turnout_series() -> pd.DataFrame:
                 )
 
         if muni.empty or districts.empty:
+            print(
+                f"Turnout {election_year} after official-code filter: "
+                f"municipality_rows={len(muni)}, district_rows={len(districts)}"
+            )
+            if muni_frames:
+                sample_muni = pd.concat(muni_frames, ignore_index=True)["kommun_kod"].dropna().astype(str).unique()[:12]
+                print(f"Turnout {election_year} municipality-code sample before filter: {sample_muni.tolist()}")
+            if district_frames:
+                sample_dist = pd.concat(district_frames, ignore_index=True)["kommun_kod"].dropna().astype(str).unique()[:12]
+                print(f"Turnout {election_year} district-derived municipality-code sample before filter: {sample_dist.tolist()}")
             if debug_content is not None:
                 _debug_turnout_workbook(debug_content, election_year)
             raise ValueError(
