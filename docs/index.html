@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Samband och inflyttning</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-dsv@3"></script>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Samband och inflyttning</h1>
+    <p>Regressionsanalys av inflyttning till svenska kommuner</p>
+  </div>
+</header>
+<nav>
+  <button class="tab active" data-page="overview">Översikt</button>
+  <button class="tab" data-page="relationships">Samband</button>
+  <button class="tab" data-page="model">Multipel regression</button>
+  <button class="tab" data-page="validation">Validering</button>
+  <button class="tab" data-page="municipality">Kommunprofil</button>
+  <button class="tab" data-page="method">Metod & data</button>
+</nav>
+<main>
+  <section id="overview" class="page active">
+    <h2>Översikt</h2>
+    <div id="cards" class="cards"></div>
+    <div class="panel"><h3>Modelljämförelse</h3><div id="modelCompare" class="chart"></div></div>
+  </section>
+
+  <section id="relationships" class="page">
+    <h2>Samband</h2>
+    <div class="controls">
+      <label>Förklaringsvariabel <select id="xvar"></select></label>
+      <label>År <select id="yearFilter"></select></label>
+    </div>
+    <div class="panel"><div id="scatter" class="chart tall"></div></div>
+  </section>
+
+  <section id="model" class="page">
+    <h2>Multipel regression</h2>
+    <div class="panel"><h3>OLS-koefficienter</h3><div id="coefficients" class="chart"></div></div>
+    <p class="note">Koefficienternas storlek är inte direkt jämförbar mellan variabler med olika enheter. Standardiserade koefficienter läggs till i nästa steg.</p>
+  </section>
+
+  <section id="validation" class="page">
+    <h2>Validering</h2>
+    <div class="panel"><h3>Observerat mot predikterat</h3><div id="validationChart" class="chart tall"></div></div>
+  </section>
+
+  <section id="municipality" class="page">
+    <h2>Kommunprofil</h2>
+    <div class="controls"><label>Kommun <select id="municipalitySelect"></select></label></div>
+    <div class="panel"><div id="municipalityChart" class="chart tall"></div></div>
+  </section>
+
+  <section id="method" class="page">
+    <h2>Metod & data</h2>
+    <div class="text">
+      <p>En observation är en kommun och ett år. Målvariabeln i den första basmodellen är inflyttade per 1 000 invånare.</p>
+      <p>Prognosmodellen använder endast föregående års inflyttning och föregående års medelålder bland inflyttarna, tillsammans med demografiska variabler. Samma års inflyttarprofil används därför inte som förklaringsvariabel.</p>
+      <p>Senaste året hålls helt utanför träningen och används som testår. Detta minskar risken att hög förklaringsgrad bara beror på överanpassning.</p>
+      <p>Källa: SCB Statistikdatabasen, tabellerna <strong>Flyttningar efter region, ålder, kön, tabellinnehåll och år</strong> samt <strong>Folkmängden efter region, civilstånd, ålder, kön, tabellinnehåll och år</strong>.</p>
+    </div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
