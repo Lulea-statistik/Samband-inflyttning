@@ -34,7 +34,8 @@ const labels={
   lag1_andel_industri_bc:'Andel sysselsatta i B+C industri/gruvor, föregående år (%)',
   lag1_andel_hotell_restaurang_i:'Andel sysselsatta i I hotell/restaurang, föregående år (%)',
   lag1_andel_kultur_service_rstu:'Andel sysselsatta i R+S+T+U kultur/nöje/service, föregående år (%)',
-  lag1_log_externa_fa_jobb_per_1000:'Regional arbetsmarknadsaccess (FA15), föregående år'
+  lag1_log_externa_fa_jobb_per_1000:'Regional arbetsmarknadsaccess (FA15), föregående år',
+  lag1_andel_fa_arbetsplatser_i_egen_kommun:'Regional arbetsmotor: egen andel av FA-regionens arbetsplatser, föregående år (%)'
 };
 
 async function load(){
