@@ -6,6 +6,7 @@ import json
 import math
 import re
 import time
+import unicodedata
 from pathlib import Path
 
 import numpy as np
@@ -23,6 +24,8 @@ MIGRATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE010
 POPULATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101A/BefolkningNy"
 INCOME_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/HE/HE0110/HE0110A/SamForvInk2"
 HOUSING_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104D/BO0104T04"
+LEISURE_HOUSE_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104T08"
+BRA_ANNUAL_RAW = "https://raw.githubusercontent.com/Lulea-statistik/BR-brottsstatistik/main/data/annual_all/year={year}.parquet"
 LABOR_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210A/ArbStatusAr"
 EDUCATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/UF/UF0506/UF0506B/Utbildning"
 STUDENT_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AA/AA0003/AA0003H/IntGr8Kom1N"
@@ -429,6 +432,81 @@ def get_housing() -> pd.DataFrame:
             "bostader_smahus", "bostader_totalt", "andel_smahus"
         ]])
         print(f"Housing {year}: {len(agg):,} municipalities")
+
+    return pd.concat(rows, ignore_index=True)
+
+
+def get_leisure_houses() -> pd.DataFrame:
+    """SCB annual leisure-house stock by municipality."""
+    meta = metadata(LEISURE_HOUSE_URL)
+    region = find_var(meta, "region")
+    time_var = find_var(meta, "år", "tid")
+    munis = municipality_codes(region)
+    available_years = {str(v) for v in time_var["values"]}
+    rows = []
+
+    for year in AUX_YEARS:
+        if str(year) not in available_years:
+            continue
+        df = px_csv(LEISURE_HOUSE_URL, {
+            region["code"]: munis,
+            time_var["code"]: [str(year)],
+        })
+        dims = standardize_columns(df)
+        value_cols = [c for c in df.columns if c not in set(dims.values())]
+        if len(value_cols) != 1:
+            raise ValueError(f"Expected one leisure-house value column for {year}, got {value_cols}")
+        df["fritidshus"] = normalize_number(df[value_cols[0]])
+        df["year"] = year
+        df[["kommun_kod", "kommun"]] = df[dims["region"]].apply(
+            lambda x: pd.Series(split_region(x))
+        )
+        agg = (
+            df.groupby(["kommun_kod", "kommun", "year"], as_index=False)["fritidshus"]
+            .sum()
+        )
+        rows.append(agg)
+        print(f"Leisure houses {year}: {len(agg):,} municipalities")
+
+    return pd.concat(rows, ignore_index=True)
+
+
+def _normalize_place_name(value: object) -> str:
+    text = str(value or "").strip().casefold()
+    text = unicodedata.normalize("NFKD", text)
+    text = "".join(ch for ch in text if not unicodedata.combining(ch))
+    text = re.sub(r"\bkommun\b", "", text)
+    text = re.sub(r"[^a-z0-9]+", "", text)
+    return text
+
+
+def get_crime_total() -> pd.DataFrame:
+    """
+    Total reported crimes per 100,000 inhabitants from the user's national
+    BRÅ annual dataset. Category 5036 is 'Totalt antal brott'.
+    """
+    rows = []
+    for year in AUX_YEARS:
+        url = BRA_ANNUAL_RAW.format(year=year)
+        try:
+            df = pd.read_parquet(url, columns=["År", "Kommun", "Brott_ID", "Per100000"])
+        except Exception as exc:
+            raise RuntimeError(f"Could not read BRÅ annual parquet for {year}: {exc}") from exc
+
+        df["Brott_ID"] = pd.to_numeric(df["Brott_ID"], errors="coerce")
+        df = df[df["Brott_ID"] == 5036].copy()
+        df["brott_per_100000"] = pd.to_numeric(df["Per100000"], errors="coerce")
+        df["year"] = year
+        df["kommun_nyckel"] = df["Kommun"].map(_normalize_place_name)
+
+        agg = (
+            df.groupby(["kommun_nyckel", "year"], as_index=False)["brott_per_100000"]
+            .mean()
+        )
+        if len(agg) < 280:
+            raise ValueError(f"BRÅ total crime {year}: only {len(agg)} municipalities")
+        rows.append(agg)
+        print(f"BRÅ total crime {year}: {len(agg):,} municipalities")
 
     return pd.concat(rows, ignore_index=True)
 
@@ -1048,7 +1126,7 @@ def split_region(value: str) -> tuple[str, str]:
     return s[:4], s[5:] if len(s) > 5 else s
 
 
-def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, housing: pd.DataFrame, labor: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame, industry: pd.DataFrame, fa15: pd.DataFrame) -> pd.DataFrame:
+def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, housing: pd.DataFrame, leisure: pd.DataFrame, crime: pd.DataFrame, labor: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame, industry: pd.DataFrame, fa15: pd.DataFrame) -> pd.DataFrame:
     md = standardize_columns(mig)
     mig = mig.copy()
     mig["value"] = normalize_number(mig["value"])
@@ -1140,8 +1218,21 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
         on=["kommun_kod", "year"], how="left"
     )
     panel = panel.merge(
-        housing[["kommun_kod", "year", "andel_smahus"]],
+        housing[["kommun_kod", "year", "bostader_smahus", "andel_smahus"]],
         on=["kommun_kod", "year"], how="left"
+    )
+    panel = panel.merge(
+        leisure[["kommun_kod", "year", "fritidshus"]],
+        on=["kommun_kod", "year"], how="left"
+    )
+    panel["fritidshusandel_bland_smahus"] = (
+        100 * panel["fritidshus"] /
+        (panel["fritidshus"] + panel["bostader_smahus"]).replace(0, np.nan)
+    )
+    panel["kommun_nyckel"] = panel["kommun"].map(_normalize_place_name)
+    panel = panel.merge(
+        crime[["kommun_nyckel", "year", "brott_per_100000"]],
+        on=["kommun_nyckel", "year"], how="left"
     )
     panel = panel.merge(
         labor[["kommun_kod", "year", "sysselsattningsgrad", "arbetsloshet"]],
@@ -1216,6 +1307,8 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel["lag1_inflyttare_medelalder"] = g["inflyttare_medelalder"].shift(1)
     panel["lag1_inkomst_tkr"] = g["inkomst_tkr"].shift(1)
     panel["lag1_andel_smahus"] = g["andel_smahus"].shift(1)
+    panel["lag1_fritidshusandel_bland_smahus"] = g["fritidshusandel_bland_smahus"].shift(1)
+    panel["lag1_brott_per_100000"] = g["brott_per_100000"].shift(1)
     panel["lag1_sysselsattningsgrad"] = g["sysselsattningsgrad"].shift(1)
     panel["lag1_arbetsloshet"] = g["arbetsloshet"].shift(1)
     panel["lag1_andel_eftergymnasial"] = g["andel_eftergymnasial"].shift(1)
@@ -1373,7 +1466,9 @@ FEATURE_THEMES = {
     "lag1_andel_20_34": "Åldersstruktur",
     "lag1_inflyttare_medelalder": "Inflyttarprofil",
     "lag1_inkomst_tkr": "Inkomstnivå",
-    "lag1_andel_smahus": "Bostadsstruktur",
+    "lag1_andel_smahus": "Landets lugn",
+    "lag1_fritidshusandel_bland_smahus": "Landets lugn",
+    "lag1_brott_per_100000": "Landets lugn",
     "lag1_sysselsattningsgrad": "Arbetsmarknad",
     "lag1_arbetsloshet": "Arbetsmarknad",
     "lag1_andel_eftergymnasial": "Humankapital",
@@ -1806,6 +1901,8 @@ def fit_models(panel: pd.DataFrame) -> dict:
         "lag1_inflyttare_medelalder",
         "lag1_inkomst_tkr",
         "lag1_andel_smahus",
+        "lag1_fritidshusandel_bland_smahus",
+        "lag1_brott_per_100000",
         "lag1_sysselsattningsgrad",
         "lag1_arbetsloshet",
         "lag1_andel_eftergymnasial",
@@ -1894,7 +1991,10 @@ def fit_models(panel: pd.DataFrame) -> dict:
             "Standardfel i förklaringsmodellen är klustrade per kommun eftersom samma kommun förekommer flera år.",
             "Prognosvalideringen för teståret använder endast de föregående 1–5 åren beroende på valt analysfönster.",
             "Inkomst avser genomsnittlig sammanräknad förvärvsinkomst för 20–64-åringar och används laggad ett år.",
+            "Landets lugn testas som ett gemensamt tema där andel småhus, anmälda brott per 100 000 invånare och fritidshusandel bland småhusliknande bostäder konkurrerar om att representera temat.",
             "Andel småhus avser lägenheter i småhus dividerat med samtliga lägenheter i småhus, flerbostadshus, övriga hus och specialbostäder enligt SCB BO0104T04 och används laggad ett år.",
+            "Fritidshusandelen beräknas som fritidshus / (fritidshus + bostäder i småhus) enligt SCB BO0104T08 och BO0104T04; måttet är en proxy eftersom fritidshus räknas som hus medan småhuskomponenten räknas som bostadslägenheter.",
+            "Brottsmåttet är totalt antal anmälda brott per 100 000 invånare från BRÅ:s årsvisa kommunstatistik i Lulea-statistik/BR-brottsstatistik och används laggat ett år.",
             "Arbetsmarknadsvariablerna är sysselsättningsgrad och arbetslöshet bland 20–64-åringar från SCB BAS och används laggade ett år.",
             "Utbildningsvariabeln är andel 25–64-åringar med eftergymnasial utbildning och används laggad ett år.",
             "Studentmiljö mäts som andel studerande bland 20–64-åringar enligt SCB IntGr8Kom1N och används laggad ett år.",
@@ -1929,6 +2029,8 @@ def fit_age_group_models(panel: pd.DataFrame) -> dict:
         "lag1_inflyttare_medelalder",
         "lag1_inkomst_tkr",
         "lag1_andel_smahus",
+        "lag1_fritidshusandel_bland_smahus",
+        "lag1_brott_per_100000",
         "lag1_sysselsattningsgrad",
         "lag1_arbetsloshet",
         "lag1_andel_eftergymnasial",
@@ -2032,7 +2134,9 @@ def main():
     pop = get_population()
     income = get_income()
     housing = get_housing()
-    panel = build_panel(mig, pop, income, housing, labor, education, students, industry, fa15)
+    leisure = get_leisure_houses()
+    crime = get_crime_total()
+    panel = build_panel(mig, pop, income, housing, leisure, crime, labor, education, students, industry, fa15)
     panel.to_csv(OUT / "panel.csv", index=False)
     result = fit_models(panel)
     result["age_group_models"] = fit_age_group_models(panel)
