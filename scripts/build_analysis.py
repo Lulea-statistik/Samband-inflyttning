@@ -14,9 +14,8 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import make_pipeline
 
-BASE = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101A"
-MIGRATION_URL = f"{BASE}/Flyttningar97"
-POPULATION_URL = f"{BASE}/BefolkningNy"
+MIGRATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101J/Flyttningar97"
+POPULATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101A/BefolkningNy"
 OUT = Path("docs/data")
 OUT.mkdir(parents=True, exist_ok=True)
 
