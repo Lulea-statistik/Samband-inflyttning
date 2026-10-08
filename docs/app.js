@@ -167,11 +167,16 @@ function renderModel(){
   const excluded=(sel.excluded||[]).map(f=>labels[f]||f);
   const elastic=(sel.elastic_net_selected||[]).map(f=>labels[f]||f);
   const backward=(sel.backward_aic_selected||[]).map(f=>labels[f]||f);
+  const temporal=(sel.temporal_cv_selected||[]).map(f=>labels[f]||f);
+  const cv=sel.temporal_cv||{};
   document.getElementById('selectionSummary').innerHTML=
     '<p><strong>Behållna variabler:</strong> '+(selected.length?selected.join(', '):'–')+'</p>'+
     '<p><strong>Bortsållade variabler:</strong> '+(excluded.length?excluded.join(', '):'inga')+'</p>'+
     '<p class="note"><strong>Elastic Net valde:</strong> '+(elastic.length?elastic.join(', '):'–')+
-    '<br><strong>Backward-AIC valde:</strong> '+(backward.length?backward.join(', '):'–')+'</p>';
+    '<br><strong>Backward-AIC valde:</strong> '+(backward.length?backward.join(', '):'–')+
+    '<br><strong>Tidsbaserad korsvalidering valde:</strong> '+(temporal.length?temporal.join(', '):'–')+
+    (cv.mean_rmse!=null?'<br><strong>Rolling-origin RMSE:</strong> '+fmt(cv.mean_rmse,2):'')+
+    '</p>';
 
   const c=e.coefficients;
   Plotly.react('coefficients',[{
