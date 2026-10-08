@@ -5,6 +5,7 @@ import io
 import json
 import math
 import re
+import sys
 import time
 import unicodedata
 from pathlib import Path
@@ -24,7 +25,7 @@ MIGRATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE010
 POPULATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101A/BefolkningNy"
 INCOME_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/HE/HE0110/HE0110A/SamForvInk2"
 HOUSING_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104D/BO0104T04"
-LEISURE_HOUSE_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/BO/BO0104/BO0104T08"
+LEISURE_HOUSE_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104X/BO0104T08"
 BRA_ANNUAL_RAW = "https://raw.githubusercontent.com/Lulea-statistik/BR-brottsstatistik/main/data/annual_all/year={year}.parquet"
 LABOR_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210A/ArbStatusAr"
 EDUCATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/UF/UF0506/UF0506B/Utbildning"
@@ -50,6 +51,67 @@ def metadata(url: str) -> dict:
     if not r.ok:
         raise RuntimeError(f"SCB metadata failed {r.status_code} for {url}: {r.text[:500]}")
     return r.json()
+
+
+def preflight_sources() -> None:
+    """
+    Fail fast before the expensive panel build if an external source URL,
+    table id or schema endpoint has changed.
+    """
+    scb_sources = {
+        "migration": MIGRATION_URL,
+        "population": POPULATION_URL,
+        "income": INCOME_URL,
+        "housing": HOUSING_URL,
+        "leisure_houses": LEISURE_HOUSE_URL,
+        "labor": LABOR_URL,
+        "education": EDUCATION_URL,
+        "students": STUDENT_URL,
+        "industry": INDUSTRY_URL,
+    }
+
+    print("Preflight: validating SCB metadata endpoints...")
+    failures = []
+    for name, url in scb_sources.items():
+        started = time.time()
+        try:
+            meta = metadata(url)
+            variables = meta.get("variables", [])
+            if not variables:
+                raise RuntimeError("metadata contains no variables")
+            elapsed = time.time() - started
+            print(f"Preflight OK {name}: {len(variables)} variables ({elapsed:.1f}s)")
+        except Exception as exc:
+            failures.append(f"{name}: {exc}")
+            print(f"Preflight FAILED {name}: {exc}")
+
+    # Lightweight checks of the non-SCB sources used in the build.
+    try:
+        r = session.get(BRA_ANNUAL_RAW.format(year=END_YEAR), timeout=30, stream=True)
+        if not r.ok:
+            raise RuntimeError(f"HTTP {r.status_code}")
+        print(f"Preflight OK BRÅ annual parquet {END_YEAR}")
+        r.close()
+    except Exception as exc:
+        failures.append(f"BRÅ annual parquet: {exc}")
+        print(f"Preflight FAILED BRÅ annual parquet: {exc}")
+
+    try:
+        r = session.get(FA15_XLSX_URL, timeout=30, stream=True)
+        if not r.ok:
+            raise RuntimeError(f"HTTP {r.status_code}")
+        print("Preflight OK FA15 workbook")
+        r.close()
+    except Exception as exc:
+        failures.append(f"FA15 workbook: {exc}")
+        print(f"Preflight FAILED FA15 workbook: {exc}")
+
+    if failures:
+        raise RuntimeError(
+            "External-source preflight failed before the full build:\n- "
+            + "\n- ".join(failures)
+        )
+    print("Preflight complete: all external sources reachable.")
 
 
 def find_var(meta: dict, *needles: str) -> dict:
@@ -2132,7 +2194,11 @@ def fit_age_group_models(panel: pd.DataFrame) -> dict:
     return out
 
 def main():
-    # Fetch the smaller auxiliary table first so API/schema failures are fast to diagnose.
+    # Validate all external endpoints before spending time on the full extraction.
+    preflight_sources()
+    if "--preflight-only" in sys.argv:
+        return
+
     labor = get_labor_market()
     education = get_education()
     students = get_students()
