@@ -1,0 +1,333 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import io
+import json
+import math
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+import requests
+from sklearn.linear_model import LinearRegression, RidgeCV
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import make_pipeline
+
+BASE = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101A"
+MIGRATION_URL = f"{BASE}/Flyttningar97"
+POPULATION_URL = f"{BASE}/BefolkningNy"
+OUT = Path("docs/data")
+OUT.mkdir(parents=True, exist_ok=True)
+
+START_YEAR = 2002
+END_YEAR = 2024
+YEARS = list(range(START_YEAR, END_YEAR + 1))
+
+session = requests.Session()
+session.headers.update({"User-Agent": "Samband-inflyttning/1.0"})
+
+
+def metadata(url: str) -> dict:
+    r = session.get(url, timeout=60)
+    r.raise_for_status()
+    return r.json()
+
+
+def find_var(meta: dict, *needles: str) -> dict:
+    needles = tuple(n.lower() for n in needles)
+    for v in meta["variables"]:
+        hay = f'{v.get("code","")} {v.get("text","")}'.lower()
+        if any(n in hay for n in needles):
+            return v
+    raise KeyError(f"Variable not found: {needles}")
+
+
+def code_for_text(var: dict, wanted: str) -> str:
+    wanted_l = wanted.lower()
+    for code, text in zip(var["values"], var.get("valueTexts", var["values"])):
+        if text.lower() == wanted_l:
+            return code
+    for code, text in zip(var["values"], var.get("valueTexts", var["values"])):
+        if wanted_l in text.lower():
+            return code
+    raise KeyError(f"Value {wanted!r} not found in {var.get('text')}")
+
+
+def municipality_codes(region_var: dict) -> list[str]:
+    # Four-digit municipal codes. This excludes the national and county totals.
+    return [str(v) for v in region_var["values"] if len(str(v)) == 4 and str(v).isdigit()]
+
+
+def px_csv(url: str, selections: dict[str, list[str]]) -> pd.DataFrame:
+    query = []
+    for code, values in selections.items():
+        query.append({"code": code, "selection": {"filter": "item", "values": values}})
+    payload = {"query": query, "response": {"format": "csv"}}
+    r = session.post(url, json=payload, timeout=180)
+    r.raise_for_status()
+    return pd.read_csv(io.StringIO(r.text), sep=None, engine="python")
+
+
+def normalize_number(s: pd.Series) -> pd.Series:
+    return pd.to_numeric(
+        s.astype(str)
+        .str.replace("\u00a0", "", regex=False)
+        .str.replace(" ", "", regex=False)
+        .str.replace(",", ".", regex=False)
+        .replace({"..": np.nan, ".": np.nan, "nan": np.nan}),
+        errors="coerce",
+    )
+
+
+def age_numeric(label: str) -> float:
+    x = str(label).lower().replace("år", "").strip()
+    if "tot" in x:
+        return np.nan
+    if "+" in x:
+        try:
+            return float(x.replace("+", "").strip())
+        except ValueError:
+            return np.nan
+    if "–" in x or "-" in x:
+        sep = "–" if "–" in x else "-"
+        try:
+            a, b = [float(z.strip()) for z in x.split(sep, 1)]
+            return (a + b) / 2
+        except ValueError:
+            return np.nan
+    try:
+        return float(x)
+    except ValueError:
+        return np.nan
+
+
+def get_migration() -> pd.DataFrame:
+    meta = metadata(MIGRATION_URL)
+    region = find_var(meta, "region")
+    age = find_var(meta, "ålder", "alder")
+    sex = find_var(meta, "kön", "kon")
+    content = find_var(meta, "tabellinnehåll", "contentscode")
+    time = find_var(meta, "år", "tid")
+
+    munis = municipality_codes(region)
+    inflow_code = code_for_text(content, "Inflyttningar")
+    rows = []
+
+    # One year at a time stays safely below PxWeb cell limits.
+    for year in YEARS:
+        df = px_csv(MIGRATION_URL, {
+            region["code"]: munis,
+            age["code"]: list(age["values"]),
+            sex["code"]: list(sex["values"]),
+            content["code"]: [inflow_code],
+            time["code"]: [str(year)],
+        })
+        rows.append(df)
+        print(f"Migration {year}: {len(df):,} rows")
+    return pd.concat(rows, ignore_index=True)
+
+
+def get_population() -> pd.DataFrame:
+    meta = metadata(POPULATION_URL)
+    region = find_var(meta, "region")
+    age = find_var(meta, "ålder", "alder")
+    sex = find_var(meta, "kön", "kon")
+    content = find_var(meta, "tabellinnehåll", "contentscode")
+    time = find_var(meta, "år", "tid")
+
+    munis = municipality_codes(region)
+    pop_code = code_for_text(content, "Folkmängd")
+    age_codes = []
+    for code, text in zip(age["values"], age.get("valueTexts", age["values"])):
+        a = age_numeric(text)
+        if (np.isfinite(a) and 20 <= a <= 34) or "tot" in str(text).lower():
+            age_codes.append(code)
+
+    rows = []
+    for year in YEARS:
+        df = px_csv(POPULATION_URL, {
+            region["code"]: munis,
+            age["code"]: age_codes,
+            sex["code"]: list(sex["values"]),
+            content["code"]: [pop_code],
+            time["code"]: [str(year)],
+        })
+        rows.append(df)
+        print(f"Population {year}: {len(df):,} rows")
+    return pd.concat(rows, ignore_index=True)
+
+
+def standardize_columns(df: pd.DataFrame) -> dict[str, str]:
+    out = {}
+    for c in df.columns:
+        cl = c.lower()
+        if "region" in cl:
+            out["region"] = c
+        elif "ålder" in cl or "alder" in cl:
+            out["age"] = c
+        elif "kön" in cl or "kon" in cl:
+            out["sex"] = c
+        elif cl in {"år", "tid"} or "år" == cl:
+            out["year"] = c
+    return out
+
+
+def value_column(df: pd.DataFrame, dims: dict[str, str]) -> str:
+    dim_cols = set(dims.values())
+    candidates = [c for c in df.columns if c not in dim_cols]
+    if not candidates:
+        raise ValueError("No value column found")
+    return candidates[-1]
+
+
+def split_region(value: str) -> tuple[str, str]:
+    s = str(value).strip()
+    if " " in s and s.split(" ", 1)[0].isdigit():
+        return s.split(" ", 1)[0], s.split(" ", 1)[1]
+    return s[:4], s[5:] if len(s) > 5 else s
+
+
+def build_panel(mig: pd.DataFrame, pop: pd.DataFrame) -> pd.DataFrame:
+    md = standardize_columns(mig)
+    mv = value_column(mig, md)
+    mig = mig.copy()
+    mig["value"] = normalize_number(mig[mv])
+    mig["age_num"] = mig[md["age"]].map(age_numeric)
+    mig["year"] = pd.to_numeric(mig[md["year"]], errors="coerce")
+    mig[["kommun_kod", "kommun"]] = mig[md["region"]].apply(lambda x: pd.Series(split_region(x)))
+
+    # Aggregate both sexes. Total inflow from age-specific rows.
+    age_rows = mig[np.isfinite(mig["age_num"])].copy()
+    mg = age_rows.groupby(["kommun_kod", "kommun", "year"], as_index=False).agg(
+        inflyttade=("value", "sum"),
+        age_weight=("age_num", lambda x: 0.0),
+    )
+    weighted = (
+        age_rows.assign(wx=age_rows["value"] * age_rows["age_num"])
+        .groupby(["kommun_kod", "kommun", "year"], as_index=False)
+        .agg(wx=("wx", "sum"), n=("value", "sum"))
+    )
+    weighted["inflyttare_medelalder"] = weighted["wx"] / weighted["n"].replace(0, np.nan)
+    mg = mg.drop(columns=["age_weight"]).merge(
+        weighted[["kommun_kod", "kommun", "year", "inflyttare_medelalder"]],
+        on=["kommun_kod", "kommun", "year"], how="left"
+    )
+
+    pdims = standardize_columns(pop)
+    pv = value_column(pop, pdims)
+    pop = pop.copy()
+    pop["value"] = normalize_number(pop[pv])
+    pop["age_num"] = pop[pdims["age"]].map(age_numeric)
+    pop["year"] = pd.to_numeric(pop[pdims["year"]], errors="coerce")
+    pop[["kommun_kod", "kommun"]] = pop[pdims["region"]].apply(lambda x: pd.Series(split_region(x)))
+
+    # Sexes are separate rows, so sum across sex.
+    p_age = pop.groupby(["kommun_kod", "kommun", "year", pdims["age"]], as_index=False)["value"].sum()
+    p_age["age_num"] = p_age[pdims["age"]].map(age_numeric)
+
+    total = p_age[p_age["age_num"].isna()].groupby(
+        ["kommun_kod", "kommun", "year"], as_index=False
+    )["value"].sum().rename(columns={"value": "folkmangd"})
+
+    young = p_age[p_age["age_num"].between(20, 34, inclusive="both")].groupby(
+        ["kommun_kod", "kommun", "year"], as_index=False
+    )["value"].sum().rename(columns={"value": "bef_20_34"})
+
+    panel = mg.merge(total, on=["kommun_kod", "kommun", "year"], how="left")
+    panel = panel.merge(young, on=["kommun_kod", "kommun", "year"], how="left")
+    panel["andel_20_34"] = 100 * panel["bef_20_34"] / panel["folkmangd"]
+    panel["inflyttning_per_1000"] = 1000 * panel["inflyttade"] / panel["folkmangd"]
+
+    panel = panel.sort_values(["kommun_kod", "year"])
+    g = panel.groupby("kommun_kod", group_keys=False)
+    panel["lag1_inflyttning_per_1000"] = g["inflyttning_per_1000"].shift(1)
+    panel["lag1_inflyttare_medelalder"] = g["inflyttare_medelalder"].shift(1)
+    panel["befolkningstillvaxt_pct"] = 100 * g["folkmangd"].pct_change(fill_method=None)
+    panel["log_folkmangd"] = np.log(panel["folkmangd"].where(panel["folkmangd"] > 0))
+
+    return panel.reset_index(drop=True)
+
+
+def metrics(y_true, y_pred) -> dict:
+    return {
+        "r2": float(r2_score(y_true, y_pred)),
+        "rmse": float(math.sqrt(mean_squared_error(y_true, y_pred))),
+        "mae": float(mean_absolute_error(y_true, y_pred)),
+    }
+
+
+def fit_models(panel: pd.DataFrame) -> dict:
+    target = "inflyttning_per_1000"
+    features = [
+        "lag1_inflyttning_per_1000",
+        "log_folkmangd",
+        "befolkningstillvaxt_pct",
+        "andel_20_34",
+        "lag1_inflyttare_medelalder",
+    ]
+    model_df = panel.dropna(subset=[target] + features).copy()
+    test_year = int(model_df["year"].max())
+    train = model_df[model_df["year"] < test_year]
+    test = model_df[model_df["year"] == test_year]
+
+    Xtr, ytr = train[features], train[target]
+    Xte, yte = test[features], test[target]
+
+    naive_pred = test["lag1_inflyttning_per_1000"].to_numpy()
+    naive = metrics(yte, naive_pred)
+
+    ols = LinearRegression().fit(Xtr, ytr)
+    ols_pred = ols.predict(Xte)
+    ols_m = metrics(yte, ols_pred)
+
+    ridge = make_pipeline(StandardScaler(), RidgeCV(alphas=np.logspace(-3, 3, 25))).fit(Xtr, ytr)
+    ridge_pred = ridge.predict(Xte)
+    ridge_m = metrics(yte, ridge_pred)
+
+    pred = test[["kommun_kod", "kommun", "year", target]].copy()
+    pred["pred_naiv"] = naive_pred
+    pred["pred_ols"] = ols_pred
+    pred["pred_ridge"] = ridge_pred
+    pred.to_csv(OUT / "predictions.csv", index=False)
+
+    coeffs = [
+        {"feature": f, "coefficient": float(c)}
+        for f, c in zip(features, ols.coef_)
+    ]
+
+    return {
+        "generated_from_year": START_YEAR,
+        "generated_to_year": END_YEAR,
+        "test_year": test_year,
+        "n_train": int(len(train)),
+        "n_test": int(len(test)),
+        "target": target,
+        "features": features,
+        "models": {
+            "naive": naive,
+            "ols": ols_m,
+            "ridge": ridge_m,
+        },
+        "ols_intercept": float(ols.intercept_),
+        "ols_coefficients": coeffs,
+        "notes": [
+            "Teståret hålls helt utanför träningen.",
+            "Inflyttarnas medelålder används endast laggad ett år i prognosmodellen.",
+            "Detta är en första basmodell; bostäder, arbetsmarknad och inkomster läggs till stegvis.",
+        ],
+    }
+
+
+def main():
+    mig = get_migration()
+    pop = get_population()
+    panel = build_panel(mig, pop)
+    panel.to_csv(OUT / "panel.csv", index=False)
+    result = fit_models(panel)
+    (OUT / "model.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+if __name__ == "__main__":
+    main()
