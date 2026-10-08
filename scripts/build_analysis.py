@@ -585,6 +585,14 @@ def _turnout_rows_from_workbook(
     *,
     level_hint: str | None = None,
 ) -> tuple[list[pd.DataFrame], list[pd.DataFrame]]:
+    """
+    Parse Valmyndigheten workbooks across old/new layouts.
+
+    Some workbooks name the turnout column explicitly "Valdeltagande", while
+    newer layouts can put turnout on a sheet named Valdeltagande and call the
+    numeric column simply Andel/Procent. Geography can likewise be stored in
+    dedicated Kommun-/Valdistriktskod columns or a generic Områdeskod column.
+    """
     xl = pd.ExcelFile(io.BytesIO(content))
     municipality_frames = []
     district_frames = []
@@ -592,102 +600,160 @@ def _turnout_rows_from_workbook(
     for sheet in xl.sheet_names:
         try:
             df = _detected_excel_sheet(content, sheet)
-        except Exception:
+        except Exception as exc:
+            print(f"Turnout sheet skipped {sheet!r}: {exc}")
             continue
         if df.empty:
             continue
 
         cols = {c: _norm_header(c) for c in df.columns}
+        sheet_norm = _norm_header(sheet)
+
         turnout_cols = [
             c for c, n in cols.items()
-            if "valdeltag" in n and ("tot" in n or "procent" in n or "%" in str(c))
+            if "valdeltag" in n and ("tot" in n or "procent" in n or "andel" in n or "%" in str(c))
         ]
         if not turnout_cols:
             turnout_cols = [c for c, n in cols.items() if "valdeltag" in n]
-        if not turnout_cols:
+        if not turnout_cols and "valdeltag" in sheet_norm:
+            turnout_cols = [
+                c for c, n in cols.items()
+                if ("andel" in n or "procent" in n or "%" in str(c))
+                and "parti" not in n
+            ]
+
+        eligible_col = next(
+            (c for c, n in cols.items() if "rostberattig" in n and "antal" in n),
+            None,
+        )
+        if eligible_col is None:
+            eligible_col = next((c for c, n in cols.items() if "rostberattig" in n), None)
+
+        voted_col = next(
+            (
+                c for c, n in cols.items()
+                if ("rostande" in n or "avgivnaroster" in n or "avgivnarost" in n)
+                and "andel" not in n and "procent" not in n
+            ),
+            None,
+        )
+
+        # If no explicit turnout column exists, derive turnout from voters /
+        # eligible voters when those counts are available.
+        turnout_col = turnout_cols[0] if turnout_cols else None
+        if turnout_col is None and not (eligible_col is not None and voted_col is not None):
             continue
 
-        turnout_col = turnout_cols[0]
         kommun_code_col = next(
-            (c for c, n in cols.items() if "kommunkod" in n or n == "kommun"),
+            (c for c, n in cols.items() if "kommunkod" in n),
+            None,
+        )
+        district_code_col = next(
+            (c for c, n in cols.items() if ("valdistrikt" in n and "kod" in n) or "valdistriktskod" in n),
+            None,
+        )
+        generic_code_col = next(
+            (
+                c for c, n in cols.items()
+                if n in {"kod", "omradeskod", "omradekod", "valomradeskod"}
+                or ("omrade" in n and n.endswith("kod"))
+            ),
             None,
         )
         kommun_name_col = next(
             (c for c, n in cols.items() if "kommunnamn" in n or n in {"kommun", "kommunnamn"}),
             None,
         )
-        district_code_col = next(
-            (c for c, n in cols.items() if "valdistrikt" in n and "kod" in n),
-            None,
-        )
-        if district_code_col is None:
-            district_code_col = next(
-                (c for c, n in cols.items() if "valdistriktskod" in n),
-                None,
-            )
-        eligible_col = next(
-            (c for c, n in cols.items() if "rostberattig" in n and "antal" in n),
-            None,
-        )
-        if eligible_col is None:
-            eligible_col = next(
-                (c for c, n in cols.items() if "rostberattig" in n),
-                None,
-            )
 
-        out = pd.DataFrame()
-        out["turnout"] = _percent_number(df[turnout_col])
-        finite_turnout = out["turnout"].dropna()
-        # Excel percentage-formatted cells are often stored as 0.85 rather
-        # than 85. Detect that representation and normalize to percent.
-        if not finite_turnout.empty and finite_turnout.median() <= 1.5:
-            out["turnout"] = 100 * out["turnout"]
-
-        if kommun_code_col is not None:
-            out["kommun_kod"] = df[kommun_code_col].map(_municipality_code)
-        elif district_code_col is not None:
-            out["kommun_kod"] = df[district_code_col].map(
-                lambda x: _municipality_code(x, from_district=True)
-            )
+        out = pd.DataFrame(index=df.index)
+        if turnout_col is not None:
+            out["turnout"] = _percent_number(df[turnout_col])
+            finite_turnout = out["turnout"].dropna()
+            if not finite_turnout.empty and finite_turnout.median() <= 1.5:
+                out["turnout"] = 100 * out["turnout"]
         else:
-            continue
-
-        if kommun_name_col is not None:
-            out["kommun"] = df[kommun_name_col].astype(str).str.strip()
-        else:
-            out["kommun"] = np.nan
-
-        if district_code_col is not None:
-            out["valdistrikt_kod"] = df[district_code_col].map(_district_code)
-        else:
-            out["valdistrikt_kod"] = np.nan
+            eligible = normalize_number(df[eligible_col])
+            voted = normalize_number(df[voted_col])
+            out["turnout"] = 100 * voted / eligible.replace(0, np.nan)
 
         if eligible_col is not None:
             out["rostberattigade"] = normalize_number(df[eligible_col])
         else:
             out["rostberattigade"] = np.nan
 
-        out = out[
-            out["kommun_kod"].str.fullmatch(r"\d{4}", na=False)
+        if kommun_name_col is not None:
+            out["kommun"] = df[kommun_name_col].astype(str).str.strip()
+        else:
+            out["kommun"] = np.nan
+
+        # Dedicated geography columns.
+        if kommun_code_col is not None:
+            out["kommun_kod"] = df[kommun_code_col].map(_municipality_code)
+        else:
+            out["kommun_kod"] = np.nan
+
+        if district_code_col is not None:
+            out["valdistrikt_kod"] = df[district_code_col].map(_district_code)
+            missing_muni = out["kommun_kod"].isna()
+            out.loc[missing_muni, "kommun_kod"] = df.loc[missing_muni, district_code_col].map(
+                lambda x: _municipality_code(x, from_district=True)
+            )
+        else:
+            out["valdistrikt_kod"] = np.nan
+
+        # Generic area-code layouts (used by some 2022/2026 exports).
+        if generic_code_col is not None:
+            raw_generic = df[generic_code_col].map(_code_digits)
+            generic_len = raw_generic.str.len()
+            is_district_code = generic_len.ge(5)
+            is_municipality_code = generic_len.between(1, 4)
+
+            fill_muni = out["kommun_kod"].isna() & is_municipality_code
+            out.loc[fill_muni, "kommun_kod"] = df.loc[fill_muni, generic_code_col].map(_municipality_code)
+
+            fill_district = out["valdistrikt_kod"].isna() & is_district_code
+            out.loc[fill_district, "valdistrikt_kod"] = df.loc[fill_district, generic_code_col].map(_district_code)
+
+            fill_from_district = out["kommun_kod"].isna() & is_district_code
+            out.loc[fill_from_district, "kommun_kod"] = df.loc[fill_from_district, generic_code_col].map(
+                lambda x: _municipality_code(x, from_district=True)
+            )
+
+        valid = (
+            out["kommun_kod"].astype(str).str.fullmatch(r"\d{4}", na=False)
             & out["turnout"].between(0, 100, inclusive="both")
-        ].copy()
+        )
+        out = out[valid].copy()
         if out.empty:
             continue
 
-        sheet_norm = _norm_header(sheet)
-        is_district = (
-            level_hint == "district"
-            or (level_hint is None and ("valdistrikt" in sheet_norm or out["valdistrikt_kod"].notna().mean() > 0.5))
-        )
-        is_municipality = (
-            level_hint == "municipality"
-            or (level_hint is None and ("kommun" in sheet_norm and "valdistrikt" not in sheet_norm))
-        )
+        row_is_district = out["valdistrikt_kod"].notna()
+        row_is_municipality = ~row_is_district
 
-        if is_district:
-            district_frames.append(out)
-        if is_municipality:
-            municipality_frames.append(out)
+        if level_hint == "district":
+            row_is_district[:] = True
+            row_is_municipality[:] = False
+        elif level_hint == "municipality":
+            row_is_municipality[:] = True
+            row_is_district[:] = False
+        elif "valdistrikt" in sheet_norm:
+            row_is_district[:] = True
+            row_is_municipality[:] = False
+        elif "kommun" in sheet_norm and "valdistrikt" not in sheet_norm:
+            row_is_municipality[:] = True
+            row_is_district[:] = False
+
+        if row_is_district.any():
+            district_frames.append(out[row_is_district].copy())
+        if row_is_municipality.any():
+            municipality_frames.append(out[row_is_municipality].copy())
+
+        print(
+            f"Turnout sheet {sheet!r}: rows={len(out)}, "
+            f"municipality_rows={int(row_is_municipality.sum())}, "
+            f"district_rows={int(row_is_district.sum())}, "
+            f"turnout_col={turnout_col!r}, generic_code_col={generic_code_col!r}"
+        )
 
     return municipality_frames, district_frames
 
@@ -699,6 +765,14 @@ def get_turnout_series() -> pd.DataFrame:
     2026 for explanatory analysis. These interpolated variables are excluded
     from out-of-sample validation to avoid using a future election endpoint.
     """
+    pop_meta = metadata(POPULATION_URL)
+    pop_region = find_var(pop_meta, "region")
+    official_municipalities = {
+        _municipality_code(v)
+        for v in municipality_codes(pop_region)
+    }
+    official_municipalities = {x for x in official_municipalities if isinstance(x, str)}
+
     election_rows = []
 
     for election_year, sources in TURNOUT_SOURCES.items():
@@ -726,17 +800,38 @@ def get_turnout_series() -> pd.DataFrame:
         muni = pd.concat(muni_frames, ignore_index=True) if muni_frames else pd.DataFrame()
         districts = pd.concat(district_frames, ignore_index=True) if district_frames else pd.DataFrame()
 
-        # If no explicit municipality sheet was detected, derive an eligible-voter
-        # weighted mean from districts when the denominator is available.
-        if muni.empty and not districts.empty and districts["rostberattigade"].notna().any():
+        if not muni.empty:
+            muni = muni[muni["kommun_kod"].isin(official_municipalities)].copy()
+        if not districts.empty:
+            districts = districts[districts["kommun_kod"].isin(official_municipalities)].copy()
+
+        # Prefer a mathematically exact municipality turnout reconstructed from
+        # physical districts when eligible-voter counts are available.
+        if not districts.empty and districts["rostberattigade"].notna().any():
             tmp = districts.dropna(subset=["rostberattigade"]).copy()
             tmp["weighted"] = tmp["turnout"] * tmp["rostberattigade"]
             muni = (
                 tmp.groupby("kommun_kod", as_index=False)
                 .agg(weighted=("weighted", "sum"), rostberattigade=("rostberattigade", "sum"))
             )
-            muni["turnout"] = muni["weighted"] / muni["rostberattigade"].replace(0, np.nan)
-            muni["kommun"] = np.nan
+            district_muni = (
+                tmp.groupby("kommun_kod", as_index=False)
+                .agg(weighted=("weighted", "sum"), rostberattigade=("rostberattigade", "sum"))
+            )
+            district_muni["turnout"] = (
+                district_muni["weighted"] / district_muni["rostberattigade"].replace(0, np.nan)
+            )
+            district_muni["kommun"] = np.nan
+            # Use district reconstruction when it covers the whole country;
+            # otherwise retain explicit municipality rows for any missing codes.
+            if muni.empty:
+                muni = district_muni
+            else:
+                explicit = muni[["kommun_kod", "kommun", "turnout", "rostberattigade"]].copy()
+                combined = pd.concat([district_muni, explicit], ignore_index=True)
+                combined["_priority"] = combined["weighted"].notna().astype(int) if "weighted" in combined.columns else 0
+                muni = combined.sort_values("_priority", ascending=False).drop_duplicates("kommun_kod")
+                muni = muni.drop(columns=["_priority"], errors="ignore")
 
         if muni.empty or districts.empty:
             raise ValueError(
