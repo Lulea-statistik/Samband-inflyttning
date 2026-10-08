@@ -1,0 +1,9 @@
+:root{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#172033;background:#f4f7fa}
+*{box-sizing:border-box}body{margin:0}header{background:#fff;border-bottom:1px solid #dde4eb;padding:22px 28px}h1{margin:0;font-size:28px}header p{margin:5px 0 0;color:#607087}
+nav{display:flex;gap:8px;flex-wrap:wrap;padding:12px 28px;background:#fff;border-bottom:1px solid #dde4eb;position:sticky;top:0;z-index:10}
+.tab{border:0;background:transparent;padding:10px 13px;border-radius:7px;cursor:pointer;font-weight:600;color:#526175}.tab.active{background:#e9f1f8;color:#173d5d}
+main{padding:24px 28px;max-width:1500px;margin:auto}.page{display:none}.page.active{display:block}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:18px 0}.card,.panel{background:#fff;border:1px solid #dde4eb;border-radius:10px}.card{padding:16px}.card .label{font-size:13px;color:#6a7788}.card .value{font-size:25px;font-weight:700;margin-top:7px}
+.panel{padding:15px;margin:16px 0}.chart{height:390px}.chart.tall{height:520px}.controls{display:flex;gap:16px;flex-wrap:wrap;margin:14px 0}.controls label{font-size:13px;font-weight:600}.controls select{display:block;margin-top:5px;padding:8px;min-width:210px}
+.text{max-width:900px;line-height:1.55}.note{color:#67758a;font-size:14px}
+@media(max-width:700px){main,header,nav{padding-left:14px;padding-right:14px}.chart,.chart.tall{height:420px}}
