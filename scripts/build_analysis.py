@@ -27,8 +27,9 @@ INCOME_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/HE/HE0110/HE0110A/
 INEQUALITY_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/HE/HE0110/HE0110I/Tab4InkDesoRegso"
 TURNOUT_SOURCES = {
     2018: {
-        "municipality": "https://historik.val.se/val/val2018/statistik/2018_K_per_kommun.xlsx",
-        "district": "https://historik.val.se/val/val2018/statistik/2018_K_per_valdistrikt.xlsx",
+        # Valmyndigheten's dedicated 2018 turnout workbook has both aggregate
+        # and physical polling-district turnout, which is easier and safer to parse.
+        "combined": "https://www.val.se/download/18.162047b519a91d05331190c1/1662381161111/2018-valdeltagande-kommunval.xlsx",
     },
     2022: {
         "combined": "https://www.val.se/download/18.162047b519a91d0533118f4e/1764337121617/roster-per-distrikt-slutligt-antal-roster-inklusive-totalt-valdeltagande-kommunval-2022.xlsx",
