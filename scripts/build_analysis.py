@@ -727,19 +727,37 @@ def get_industry_structure() -> pd.DataFrame:
         industry.get("valueTexts", industry["values"])
     ))
 
+    def industry_code(code_needles=(), text_needles=()):
+        code_needles_l = [str(x).lower() for x in code_needles]
+        text_needles_l = [str(x).lower() for x in text_needles]
+        for code, text in industry_pairs:
+            c = str(code).strip().lower()
+            t = str(text).strip().lower()
+            if (
+                all(n in c for n in code_needles_l)
+                and all(n in t for n in text_needles_l)
+            ):
+                return code
+        raise KeyError(
+            f"Industry category not found. code_needles={code_needles}, "
+            f"text_needles={text_needles}, "
+            f"sample={[(str(c), str(t)) for c, t in industry_pairs[:20]]}"
+        )
+
     total_industry_code = None
     for code, text in industry_pairs:
+        c = str(code).strip().lower()
         t = str(text).strip().lower()
         if (
-            ("a-u" in t or "a–u" in t)
-            and ("total" in t or "totalt" in t or "uppgift saknas" in t or "+us" in t or " us" in t)
+            ("a-u+us" in c or "a–u+us" in c or "a-u" in c or "a–u" in c)
+            and ("total" in t or "totalt" in t or "+us" in c or " us" in t)
         ):
             total_industry_code = code
             break
 
-    industry_bc = code_for_all_text(industry, "B+C", "tillverkningsindustri")
-    industry_i = code_for_all_text(industry, "I", "hotell")
-    industry_rstu = code_for_all_text(industry, "R+S+T+U")
+    industry_bc = industry_code(code_needles=("b+c",))
+    industry_i = industry_code(code_needles=("i",), text_needles=("hotell",))
+    industry_rstu = industry_code(code_needles=("r+s+t+u",))
 
     if total_industry_code is not None:
         wanted = [total_industry_code, industry_bc, industry_i, industry_rstu]
