@@ -34,7 +34,7 @@ jobs:
       - name: Preflight external sources
         run: python scripts/build_analysis.py --preflight-only
       - name: Build SCB panel and regression
-        run: python scripts/build_analysis.py
+        run: python scripts/build_analysis.py --skip-preflight
       - name: Commit generated data
         shell: bash
         run: |
