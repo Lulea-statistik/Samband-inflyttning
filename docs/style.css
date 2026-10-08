@@ -7,3 +7,9 @@ main{padding:24px 28px;max-width:1500px;margin:auto}.page{display:none}.page.act
 .panel{padding:15px;margin:16px 0}.chart{height:390px}.chart.tall{height:520px}.controls{display:flex;gap:16px;flex-wrap:wrap;margin:14px 0}.controls label{font-size:13px;font-weight:600}.controls select{display:block;margin-top:5px;padding:8px;min-width:210px}
 .text{max-width:900px;line-height:1.55}.note{color:#67758a;font-size:14px}
 @media(max-width:700px){main,header,nav{padding-left:14px;padding-right:14px}.chart,.chart.tall{height:420px}}
+
+.global-controls{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;background:#fff;border:1px solid #dde4eb;border-radius:10px;padding:12px 14px;margin-bottom:18px}
+.global-controls label{font-size:13px;font-weight:700}.global-controls select{display:block;margin-top:5px;padding:8px 10px;min-width:120px}
+.lead{max-width:980px;line-height:1.55;color:#405066}
+.terms{display:grid;grid-template-columns:minmax(150px,220px) 1fr;gap:8px 18px;margin:12px 0 22px}.terms dt{font-weight:700}.terms dd{margin:0;color:#526175}
+@media(max-width:700px){.terms{grid-template-columns:1fr}.terms dd{margin-bottom:8px}}
