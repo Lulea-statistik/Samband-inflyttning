@@ -767,6 +767,10 @@ def _turnout_rows_from_workbook(
             (c for c, n in cols.items() if "kommunkod" in n),
             None,
         )
+        county_code_col = next(
+            (c for c, n in cols.items() if "lanskod" in n or n == "lan"),
+            None,
+        )
         district_code_col = next(
             (c for c, n in cols.items() if ("valdistrikt" in n and "kod" in n) or "valdistriktskod" in n),
             None,
@@ -809,16 +813,31 @@ def _turnout_rows_from_workbook(
         # start; pandas 3.x no longer permits silently assigning strings into
         # a float column that was initialized with np.nan.
         if kommun_code_col is not None:
-            out["kommun_kod"] = df[kommun_code_col].map(_municipality_code).astype("string")
+            raw_kommun = df[kommun_code_col].map(_code_digits).astype("string")
+            # Valmyndigheten 2018 stores LÄNSKOD and the two-digit municipal
+            # suffix in separate columns. Reconstruct the official 4-digit
+            # municipality code (e.g. 01 + 14 = 0114).
+            if county_code_col is not None:
+                raw_county = df[county_code_col].map(_code_digits).astype("string").str.zfill(2)
+                short_suffix = raw_kommun.str.len().le(2)
+                combined_code = raw_county + raw_kommun.str.zfill(2)
+                parsed_code = raw_kommun.map(_municipality_code).astype("string")
+                out["kommun_kod"] = parsed_code.where(~short_suffix, combined_code)
+            else:
+                out["kommun_kod"] = raw_kommun.map(_municipality_code).astype("string")
         else:
             out["kommun_kod"] = pd.Series(pd.NA, index=df.index, dtype="string")
 
         if district_code_col is not None:
             out["valdistrikt_kod"] = df[district_code_col].map(_district_code).astype("string")
-            missing_muni = out["kommun_kod"].isna()
-            out.loc[missing_muni, "kommun_kod"] = df.loc[missing_muni, district_code_col].map(
+            derived_muni = df[district_code_col].map(
                 lambda x: _municipality_code(x, from_district=True)
-            )
+            ).astype("string")
+            if level_hint == "district":
+                out["kommun_kod"] = derived_muni
+            else:
+                missing_muni = out["kommun_kod"].isna()
+                out.loc[missing_muni, "kommun_kod"] = derived_muni.loc[missing_muni]
         else:
             out["valdistrikt_kod"] = pd.Series(pd.NA, index=df.index, dtype="string")
 
