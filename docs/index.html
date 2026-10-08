@@ -58,6 +58,22 @@
     <p class="lead">Förklaringsmodellen skattas på upp till fem års kommun-år och innehåller årseffekter. Osäkerheten beräknas med standardfel klustrade per kommun.</p>
     <div class="cards" id="regressionCards"></div>
     <div class="panel"><h3>Variabelurval</h3><div id="selectionSummary"></div></div>
+    <div class="panel">
+      <div class="matrix-head">
+        <div>
+          <h3>Variabelmatris</h3>
+          <p class="note">Jämför kandidater parvis. Hög korrelation visar överlappning, medan extra justerat R² visar om två variabler tillför självständig förklaringskraft tillsammans.</p>
+        </div>
+        <label>Visa
+          <select id="matrixMetric">
+            <option value="correlation">Korrelation (r)</option>
+            <option value="joint_adjusted_r2">Gemensamt justerat R²</option>
+            <option value="incremental_adjusted_r2">Extra förklaringsvärde</option>
+          </select>
+        </label>
+      </div>
+      <div id="variableMatrix" class="chart matrix-chart"></div>
+    </div>
     <div class="panel"><h3>Standardiserade regressionskoefficienter</h3><div id="coefficients" class="chart"></div></div>
     <div class="panel"><h3>95 % konfidensintervall för koefficienter</h3><div id="coefficientCI" class="chart"></div></div>
     <div class="panel"><h3>Multikollinearitet – VIF</h3><div id="vifChart" class="chart"></div></div>
@@ -92,6 +108,9 @@
       <h3>Multipel linjär regression</h3>
       <p>OLS används som tolkningsbar grundmodell. När flera år ingår läggs årseffekter till för att fånga nationella skillnader mellan år. Eftersom samma kommun återkommer flera gånger används standardfel klustrade per kommun.</p>
       <p>Förklaringsvariabler sållas automatiskt i fyra steg. Elastic Net används för att dämpa svaga eller redundanta variabler, backward-AIC prövar deras inkrementella modellbidrag och därefter grupperas variablerna i kvalitativt skilda teman, exempelvis historisk flyttdynamik, kommunstorlek, befolkningsdynamik, åldersstruktur, bostäder, arbetsmarknad och humankapital. Om flera variabler beskriver samma tema behålls högst en representant. Tidsbaserad rolling-origin-korsvalidering används först när minst tre giltiga tidsfoldar finns; med färre foldar får den inte reducera modellen. Alla strukturella förklaringsvariabler avser föregående år för att tydliggöra tidsordningen mot årets inflyttning.</p>
+
+      <h3>Variabelmatris</h3>
+      <p>Variabelmatrisen testar kandidaterna två och två. <strong>Korrelation</strong> visar hur nära variablerna samvarierar. <strong>Gemensamt justerat R²</strong> visar förklaringsgraden när ett par används tillsammans med årseffekter. <strong>Extra förklaringsvärde</strong> är skillnaden mellan parets justerade R² och den starkaste variabelns justerade R² ensam. Ett lågt extra värde trots höga enskilda samband tyder på att variablerna till stor del representerar samma underliggande förklaring.</p>
 
       <h3>Begrepp och diagnostik</h3>
       <dl class="terms">
