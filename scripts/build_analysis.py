@@ -9,6 +9,8 @@ import sys
 import time
 import unicodedata
 from pathlib import Path
+from html.parser import HTMLParser
+from urllib.parse import urljoin
 
 import numpy as np
 import pandas as pd
@@ -27,17 +29,29 @@ INCOME_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/HE/HE0110/HE0110A/
 INEQUALITY_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/HE/HE0110/HE0110I/Tab4InkDesoRegso"
 TURNOUT_SOURCES = {
     2018: {
-        # Valmyndigheten's dedicated 2018 turnout workbook has both aggregate
-        # and physical polling-district turnout, which is easier and safer to parse.
-        "combined": "https://www.val.se/download/18.162047b519a91d05331190c1/1662381161111/2018-valdeltagande-kommunval.xlsx",
+        "municipality": {
+            "page": "https://historik.val.se/val/val2018/statistik/index.html",
+            "link_text": "2018_R_per_kommun.xlsx",
+        },
+        "district": {
+            "page": "https://historik.val.se/val/val2018/statistik/index.html",
+            "link_text": "2018_R_per_valdistrikt.xlsx",
+        },
     },
     2022: {
-        "combined": "https://www.val.se/download/18.162047b519a91d0533118f4e/1764337121617/roster-per-distrikt-slutligt-antal-roster-inklusive-totalt-valdeltagande-kommunval-2022.xlsx",
+        "combined": {
+            "page": "https://www.val.se/valresultat-och-statistik/statistik-och-data/radata-fran-val-2002-2022",
+            "link_text": "Röster per distrikt, slutligt antal röster, inklusive totalt valdeltagande, riksdagsvalet 2022",
+        },
     },
     2026: {
-        "combined": "https://www.val.se/download/18.7faaad3f1a0b0c300e41823/1791364806507/roster-per-distrikt-slutligt-antal-roster-inklusive-totalt-valdeltagande-kommunvalen-2026-.xlsx",
+        "combined": {
+            "page": "https://www.val.se/valresultat-och-statistik/statistik-och-data/radata-val-2026",
+            "link_text": "Röster per distrikt i riksdagsvalet 2026, slutlig rösträkning",
+        },
     },
 }
+
 LOOKAHEAD_ONLY_FEATURES = {
     "lag1_valdeltagande_pct",
     "lag1_valdeltagande_gap_pp",
@@ -186,16 +200,17 @@ def preflight_sources() -> None:
         print(f"Preflight FAILED FA15 workbook: {exc}")
 
     for election_year, sources in TURNOUT_SOURCES.items():
-        for level, source_url in sources.items():
+        for level, source_spec in sources.items():
             try:
+                source_url = _resolve_external_file(source_spec)
                 r = session.get(source_url, timeout=30, stream=True)
                 if not r.ok:
                     raise RuntimeError(f"HTTP {r.status_code}")
-                print(f"Preflight OK turnout {election_year} {level}")
+                print(f"Preflight OK riksdags-turnout {election_year} {level}")
                 r.close()
             except Exception as exc:
-                failures.append(f"turnout {election_year} {level}: {exc}")
-                print(f"Preflight FAILED turnout {election_year} {level}: {exc}")
+                failures.append(f"riksdags-turnout {election_year} {level}: {exc}")
+                print(f"Preflight FAILED riksdags-turnout {election_year} {level}: {exc}")
 
     if failures:
         raise RuntimeError(
@@ -545,6 +560,69 @@ def _district_code(value: object) -> object:
     if not digits:
         return np.nan
     return digits.zfill(8)
+
+
+
+class _LinkCollector(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.links: list[tuple[str, str]] = []
+        self._href: str | None = None
+        self._parts: list[str] = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag.lower() == "a":
+            self._href = dict(attrs).get("href")
+            self._parts = []
+
+    def handle_data(self, data):
+        if self._href is not None:
+            self._parts.append(data)
+
+    def handle_endtag(self, tag):
+        if tag.lower() == "a" and self._href is not None:
+            self.links.append((self._href, " ".join(self._parts).strip()))
+            self._href = None
+            self._parts = []
+
+
+def _resolve_external_file(source: object) -> str:
+    """Resolve a direct file URL or an official-page link by visible link text."""
+    if isinstance(source, str):
+        return source
+    if not isinstance(source, dict):
+        raise TypeError(f"Unsupported source specification: {source!r}")
+
+    direct = source.get("url")
+    if direct:
+        return str(direct)
+
+    page = source.get("page")
+    needle = str(source.get("link_text") or "").strip()
+    if not page or not needle:
+        raise ValueError(f"Source specification lacks page/link_text: {source!r}")
+
+    r = session.get(str(page), timeout=60)
+    r.raise_for_status()
+    parser = _LinkCollector()
+    parser.feed(r.text)
+
+    needle_norm = _norm_header(needle)
+    candidates = []
+    for href, text in parser.links:
+        text_norm = _norm_header(text)
+        href_name = href.rsplit("/", 1)[-1]
+        href_norm = _norm_header(href_name)
+        if needle_norm in text_norm or needle_norm in href_norm:
+            candidates.append(urljoin(str(page), href))
+
+    if not candidates:
+        raise RuntimeError(
+            f"Could not resolve download link containing {needle!r} from {page}"
+        )
+    resolved = candidates[0]
+    print(f"Resolved turnout source: {needle} -> {resolved}")
+    return resolved
 
 
 def _excel_bytes(url: str) -> bytes:
@@ -921,9 +999,10 @@ def _turnout_rows_from_pivot_workbook(
 
 def get_turnout_series() -> pd.DataFrame:
     """
-    Municipal turnout and within-municipality turnout gap in municipal elections.
-    Election-year observations are linearly interpolated between 2018, 2022 and
-    2026 for explanatory analysis. These interpolated variables are excluded
+    Municipal turnout and within-municipality turnout gap in Swedish parliamentary
+    elections (riksdagsval). Election-year observations are linearly interpolated
+    between 2018, 2022 and 2026 for explanatory analysis. The sub-municipal gap
+    is based on polling districts (valdistrikt), not DeSO. These interpolated variables are excluded
     from out-of-sample validation to avoid using a future election endpoint.
     """
     pop_meta = metadata(POPULATION_URL)
@@ -941,20 +1020,20 @@ def get_turnout_series() -> pd.DataFrame:
         district_frames = []
 
         if "municipality" in sources:
-            content = _excel_bytes(sources["municipality"])
+            content = _excel_bytes(_resolve_external_file(sources["municipality"]))
             m, d = _turnout_rows_from_workbook(content, level_hint="municipality")
             muni_frames.extend(m)
             district_frames.extend(d)
 
         if "district" in sources:
-            content = _excel_bytes(sources["district"])
+            content = _excel_bytes(_resolve_external_file(sources["district"]))
             m, d = _turnout_rows_from_workbook(content, level_hint="district")
             muni_frames.extend(m)
             district_frames.extend(d)
 
         debug_content = None
         if "combined" in sources:
-            content = _excel_bytes(sources["combined"])
+            content = _excel_bytes(_resolve_external_file(sources["combined"]))
             debug_content = content
             m, d = _turnout_rows_from_workbook(content, level_hint=None)
             if not m or not d:
@@ -2831,8 +2910,8 @@ def fit_models(panel: pd.DataFrame) -> dict:
             "Separata livsfasmodeller skattas för 18–23, 24–34, 35–49, 63–68 och 70–79 år, med inflyttade per 1 000 invånare i samma åldersgrupp som mål och åldersgruppens egen föregående inflyttning som historisk dynamik.",
             "Om konsensusurvalet blir alltför litet används backward-AIC som reserv för att undvika instabila små modeller.",
             "Urvalet för prognosvalidering görs endast på träningsåren och får inte se teståret.",
-            "Valdeltagande och valdeltagandeklyfta bygger på kommunvalen 2018, 2022 och 2026 och linjär interpolation mellan valåren. De används i den förklarande analysen men utesluts från prognosvalideringen eftersom interpolation mot ett senare val annars skulle ge framtidsinformation.",
-            "Valdeltagandeklyfta mäts som högsta minus lägsta valdeltagande mellan valdistrikt inom kommunen, i procentenheter.",
+            "Valdeltagande och valdeltagandeklyfta bygger på riksdagsvalen 2018, 2022 och 2026 och linjär interpolation mellan valåren. De används i den förklarande analysen men utesluts från prognosvalideringen eftersom interpolation mot ett senare val annars skulle ge framtidsinformation.",
+            "Valdeltagandeklyfta mäts som högsta minus lägsta valdeltagande mellan valdistrikt inom kommunen, i procentenheter. Valdistrikt är valgeografi och ska inte förväxlas med DeSO.",
             "Socioekonomisk klyfta mäts som högsta minus lägsta andel med låg ekonomisk standard mellan kommunens DeSO, i procentenheter. SCB byter DeSO-version för 2024, vilket dokumenteras som ett möjligt nivåbrott.",
             "Samband ska inte tolkas som säkra kausala effekter; endogenitet och utelämnade variabler kan finnas.",
         ],
