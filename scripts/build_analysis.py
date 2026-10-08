@@ -1044,6 +1044,35 @@ def _turnout_rows_from_pivot_workbook(
         eligible = pd.to_numeric(pd.Series([eligible_val]), errors="coerce").iloc[0]
         label_key = key(label)
 
+        # A polling district can have exactly the same name as its municipality
+        # (notably Bjurholm and Arjeplog in the 2022 parliamentary workbook).
+        # In the pivot hierarchy the municipality subtotal comes first and the
+        # same-named district follows.  Once a municipality context is active,
+        # prefer an exact district lookup before interpreting the repeated label
+        # as another municipality subtotal.
+        same_name_district = None
+        if current_muni_name is not None and current_muni_code is not None:
+            same_name_district = district_lookup.get(
+                (key(current_muni_name), label_key)
+            )
+
+        if (
+            same_name_district is not None
+            and label_key == key(current_muni_name)
+        ):
+            kommun_kod, district_code = same_name_district
+            if pd.notna(votes) and pd.notna(eligible) and float(eligible) > 0:
+                turnout = 100 * float(votes) / float(eligible)
+                if 0 <= turnout <= 100:
+                    district_rows.append({
+                        "kommun_kod": kommun_kod,
+                        "kommun": current_muni_name,
+                        "turnout": turnout,
+                        "rostberattigade": float(eligible),
+                        "valdistrikt_kod": district_code,
+                    })
+            continue
+
         if label_key in municipality_codes_by_name:
             current_muni_name = label
             current_muni_code = municipality_codes_by_name[label_key]
@@ -1225,12 +1254,20 @@ def get_turnout_series() -> pd.DataFrame:
         n_muni = int(muni_agg["kommun_kod"].nunique())
         n_district_muni = int(gap["kommun_kod"].nunique())
         n_merged = int(annual["kommun_kod"].nunique())
+        missing_from_district_all = sorted(
+            set(muni_agg["kommun_kod"]) - set(gap["kommun_kod"])
+        )
         print(
             f"Turnout {election_year} parse counts: municipality={n_muni}, "
             f"district municipalities={n_district_muni}, merged={n_merged}"
         )
+        if missing_from_district_all:
+            print(
+                f"Turnout {election_year} municipalities without district gap: "
+                f"{missing_from_district_all}"
+            )
         if n_merged < 280:
-            missing_from_district = sorted(set(muni_agg["kommun_kod"]) - set(gap["kommun_kod"]))[:15]
+            missing_from_district = missing_from_district_all[:15]
             missing_from_muni = sorted(set(gap["kommun_kod"]) - set(muni_agg["kommun_kod"]))[:15]
             raise ValueError(
                 f"Turnout {election_year}: parsed only {n_merged} municipalities. "
