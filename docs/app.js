@@ -14,6 +14,11 @@ let selectedWindow=5;
 
 const labels={
   lag1_inflyttning_per_1000:'Inflyttning föregående år per 1 000',
+  lag1_inflyttning_18_23_per_1000:'Inflyttning 18–23 år föregående år per 1 000 i samma ålder',
+  lag1_inflyttning_24_34_per_1000:'Inflyttning 24–34 år föregående år per 1 000 i samma ålder',
+  lag1_inflyttning_35_49_per_1000:'Inflyttning 35–49 år föregående år per 1 000 i samma ålder',
+  lag1_inflyttning_63_68_per_1000:'Inflyttning 63–68 år föregående år per 1 000 i samma ålder',
+  lag1_inflyttning_70_79_per_1000:'Inflyttning 70–79 år föregående år per 1 000 i samma ålder',
   lag1_log_folkmangd:'Folkmängd (log), föregående år',
   lag1_befolkningstillvaxt_pct:'Befolkningstillväxt, föregående år (%)',
   lag1_andel_20_34:'Andel 20–34 år, föregående år (%)',
@@ -102,6 +107,7 @@ function renderAll(){
   renderModel();
   renderVariableMatrix();
   renderAgeModels();
+  renderRegressionEquations();
   renderValidation();
   renderMunicipality();
 }
@@ -436,6 +442,56 @@ function renderAgeModels(){
   }).join('');
   root.innerHTML=html;
   renderLifeStageHeatmap();
+}
+
+
+function renderRegressionEquations(){
+  const root=document.getElementById('regressionEquations');
+  if(!root) return;
+  const models=model.age_group_models||{};
+  const keys=['18_23','24_34','35_49','63_68','70_79'];
+
+  const targetLabels={
+    '18_23':'Inflyttning 18–23 år per 1 000 invånare 18–23 år',
+    '24_34':'Inflyttning 24–34 år per 1 000 invånare 24–34 år',
+    '35_49':'Inflyttning 35–49 år per 1 000 invånare 35–49 år',
+    '63_68':'Inflyttning 63–68 år per 1 000 invånare 63–68 år',
+    '70_79':'Inflyttning 70–79 år per 1 000 invånare 70–79 år'
+  };
+
+  root.innerHTML=keys.map(key=>{
+    const m=models[key];
+    if(!m||m.error) return '<div class="panel"><h3>'+key.replace('_','–')+' år</h3><p class="note">Ekvationen saknas tills modellen är byggd.</p></div>';
+    const e=m.explanation||{};
+    const intercept=Number(e.intercept);
+    const terms=(e.coefficients||[]).map(c=>{
+      const coef=Number(c.coefficient);
+      const sign=coef>=0?' + ':' − ';
+      return '<div class="eq-term"><span class="eq-sign">'+sign+'</span><span class="eq-coef">'+fmt(Math.abs(coef),4)+'</span> × <span class="eq-var">'+(labels[c.feature]||c.feature)+'</span></div>';
+    }).join('');
+    const years=(e.year_effect_coefficients||[]);
+    const yearText=years.length
+      ? years.map(d=>d.year+': '+(Number(d.coefficient)>=0?'+':'')+fmt(d.coefficient,4)).join(' · ')
+      : 'inga separata årsdummies';
+
+    return '<div class="panel equation-panel">'+
+      '<h3>'+m.label+' – '+m.interpretation+'</h3>'+
+      '<div class="equation-grid">'+
+        '<div class="equation-box">'+
+          '<div class="equation-target">'+targetLabels[key]+' =</div>'+
+          '<div class="eq-term"><span class="eq-coef">'+fmt(intercept,4)+'</span> <span class="eq-var">intercept</span></div>'+
+          terms+
+          '<div class="eq-term"><span class="eq-sign"> + </span><span class="eq-var">årseffekter</span></div>'+
+          '<div class="note equation-years"><strong>Årseffekter:</strong> '+yearText+'</div>'+
+        '</div>'+
+        '<div class="equation-stats">'+
+          metricCard('R²',fmt(e.r2,3))+
+          metricCard('Justerat R²',fmt(e.adjusted_r2,3))+
+          metricCard('Observationer',fmt0.format(e.n_obs))+
+        '</div>'+
+      '</div>'+
+      '</div>';
+  }).join('');
 }
 
 
