@@ -686,24 +686,26 @@ def _turnout_rows_from_workbook(
         else:
             out["kommun"] = np.nan
 
-        # Dedicated geography columns.
+        # Dedicated geography columns. Use pandas' string dtype from the
+        # start; pandas 3.x no longer permits silently assigning strings into
+        # a float column that was initialized with np.nan.
         if kommun_code_col is not None:
-            out["kommun_kod"] = df[kommun_code_col].map(_municipality_code)
+            out["kommun_kod"] = df[kommun_code_col].map(_municipality_code).astype("string")
         else:
-            out["kommun_kod"] = np.nan
+            out["kommun_kod"] = pd.Series(pd.NA, index=df.index, dtype="string")
 
         if district_code_col is not None:
-            out["valdistrikt_kod"] = df[district_code_col].map(_district_code)
+            out["valdistrikt_kod"] = df[district_code_col].map(_district_code).astype("string")
             missing_muni = out["kommun_kod"].isna()
             out.loc[missing_muni, "kommun_kod"] = df.loc[missing_muni, district_code_col].map(
                 lambda x: _municipality_code(x, from_district=True)
             )
         else:
-            out["valdistrikt_kod"] = np.nan
+            out["valdistrikt_kod"] = pd.Series(pd.NA, index=df.index, dtype="string")
 
         # Generic area-code layouts (used by some 2022/2026 exports).
         if generic_code_col is not None:
-            raw_generic = df[generic_code_col].map(_code_digits)
+            raw_generic = df[generic_code_col].map(_code_digits).astype("string")
             generic_len = raw_generic.str.len()
             is_district_code = generic_len.ge(5)
             is_municipality_code = generic_len.between(1, 4)
