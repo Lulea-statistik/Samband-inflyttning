@@ -52,6 +52,14 @@ TURNOUT_SOURCES = {
     },
 }
 
+# Secondary public references supplied for independent sanity checks.  These are
+# intentionally non-blocking: Valmyndigheten remains the primary source because
+# its machine-readable workbooks are more stable than presentation HTML.
+SVT_TURNOUT_REFERENCE_URLS = [
+    "https://valresultat.svt.se/2018/10000.html",
+    "https://valresultat.svt.se/2026/riksdagsval-0764-alvesta.html",
+]
+
 LOOKAHEAD_ONLY_FEATURES = {
     "lag1_valdeltagande_pct",
     "lag1_valdeltagande_gap_pp",
@@ -211,6 +219,18 @@ def preflight_sources() -> None:
             except Exception as exc:
                 failures.append(f"riksdags-turnout {election_year} {level}: {exc}")
                 print(f"Preflight FAILED riksdags-turnout {election_year} {level}: {exc}")
+
+    # SVT is a useful independent reference/fallback, but it must never make the
+    # build fail when Valmyndigheten's official source is healthy.
+    for source_url in SVT_TURNOUT_REFERENCE_URLS:
+        try:
+            r = session.get(source_url, timeout=20, stream=True)
+            if not r.ok:
+                raise RuntimeError(f"HTTP {r.status_code}")
+            print(f"Preflight OK optional SVT turnout reference: {source_url}")
+            r.close()
+        except Exception as exc:
+            print(f"Preflight WARNING optional SVT turnout reference unavailable: {source_url} -> {exc}")
 
     if failures:
         raise RuntimeError(
@@ -1285,7 +1305,22 @@ def get_socioeconomic_gap() -> pd.DataFrame:
         region_col = dims.get("region")
         if region_col is None:
             raise ValueError(f"DeSO income response lacks region column for {year}")
-        value_col = value_column(df, dims)
+
+        # PxWeb commonly puts both the measure name and selected year in the
+        # value-column header, e.g. "Låg ekonomisk standard, procent 2018".
+        # Identify this measure explicitly before falling back to the generic
+        # dimension/value inference.  This also protects against a descriptive
+        # measure header being mistaken for the time dimension.
+        value_col = next(
+            (
+                c for c in df.columns
+                if "låg ekonomisk standard" in str(c).strip().lower()
+                or "lag ekonomisk standard" in str(c).strip().lower()
+            ),
+            None,
+        )
+        if value_col is None:
+            value_col = value_column(df, dims)
         df["low_pct"] = normalize_number(df[value_col])
         df["deso"] = df[region_col].astype(str).str.extract(
             r"(\d{4}[ABC]\d{4})", expand=False
@@ -2057,9 +2092,11 @@ def standardize_columns(df: pd.DataFrame) -> dict[str, str]:
             cl in {"år", "tid", "time"}
             or cl.endswith(" år")
             or cl.startswith("år ")
-            or "år" in cl
-            or "tid" in cl
+            or cl.startswith("tid ")
+            or cl.startswith("time ")
         ):
+            # Do not classify every descriptive measure that merely contains
+            # "år"/"tid" somewhere in its header as the time dimension.
             out["year"] = c
 
     if "year" not in out:
