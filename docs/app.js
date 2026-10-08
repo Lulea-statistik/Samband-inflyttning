@@ -11,13 +11,36 @@ const labels={
 };
 
 async function load(){
-  const [m,p,pr]=await Promise.all([
-    fetch('data/model.json').then(r=>r.json()),
-    fetch('data/panel.csv').then(r=>r.text()),
-    fetch('data/predictions.csv').then(r=>r.text())
-  ]);
-  model=m; panel=d3.csvParse(p, d3.autoType); predictions=d3.csvParse(pr,d3.autoType);
-  initTabs(); renderOverview(); initRelationships(); renderModel(); renderValidation(); initMunicipality();
+  initTabs();
+  try{
+    const responses=await Promise.all([
+      fetch('data/model.json',{cache:'no-store'}),
+      fetch('data/panel.csv',{cache:'no-store'}),
+      fetch('data/predictions.csv',{cache:'no-store'})
+    ]);
+    for(const r of responses){
+      if(!r.ok) throw new Error('Analysdata saknas ännu ('+r.status+' '+r.url.split('/').pop()+'). GitHub Actions måste slutföras först.');
+    }
+    const [mText,pText,prText]=await Promise.all(responses.map(r=>r.text()));
+    model=JSON.parse(mText);
+    panel=d3.csvParse(pText,d3.autoType);
+    predictions=d3.csvParse(prText,d3.autoType);
+    renderOverview();
+    initRelationships();
+    renderModel();
+    renderValidation();
+    initMunicipality();
+  }catch(err){
+    showLoadError(err);
+    console.error(err);
+  }
+}
+
+function showLoadError(err){
+  const cards=document.getElementById('cards');
+  if(cards) cards.innerHTML='<div class="card"><div class="label">Status</div><div class="value" style="font-size:18px">Data byggs eller behöver repareras</div><div class="note" style="margin-top:8px">'+String(err.message||err)+'</div></div>';
+  const chart=document.getElementById('modelCompare');
+  if(chart) chart.innerHTML='<p class="note">Navigationen fungerar, men diagrammen fylls först när analysdata har skapats av GitHub Actions.</p>';
 }
 
 function initTabs(){
@@ -88,4 +111,4 @@ function renderMunicipality(){
   Plotly.newPlot('municipalityChart',[{x:rows.map(d=>d.year),y:rows.map(d=>d.inflyttning_per_1000),mode:'lines+markers',name:'Observerad inflyttning'}],
     {margin:{t:20},xaxis:{title:'År'},yaxis:{title:'Inflyttade per 1 000'}},{responsive:true,displaylogo:false});
 }
-load().catch(err=>{document.body.insertAdjacentHTML('beforeend','<pre style="padding:20px;color:#a00">'+err+'</pre>');console.error(err)});
+load();
