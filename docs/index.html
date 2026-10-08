@@ -19,6 +19,8 @@
   <button class="tab active" data-page="overview">Översikt</button>
   <button class="tab" data-page="relationships">Samband</button>
   <button class="tab" data-page="model">Multipel regression</button>
+  <button class="tab" data-page="ages">Åldersgrupper</button>
+  <button class="tab" data-page="equations">Regressionsekvationer</button>
   <button class="tab" data-page="validation">Validering</button>
   <button class="tab" data-page="municipality">Kommunprofil</button>
   <button class="tab" data-page="method">Metod & data</button>
@@ -111,6 +113,12 @@
     <div id="ageModels"></div>
   </section>
 
+  <section id="equations" class="page">
+    <h2>Regressionsekvationer per åldersgrupp</h2>
+    <p class="lead">Här visas de skattade femårsmodellerna för respektive livsfas. Koefficienterna är ostandardiserade och gäller målvariabeln inflyttade per 1 000 invånare i samma åldersgrupp. R² visas intill varje ekvation.</p>
+    <div id="regressionEquations"></div>
+  </section>
+
   <section id="validation" class="page">
     <h2>Validering</h2>
     <p class="lead">Teståret hålls helt utanför modellskattningen. Det gör att hög förklaringsgrad i historiska data inte automatiskt räknas som god prognosförmåga.</p>
@@ -165,6 +173,6 @@
     </div>
   </section>
 </main>
-<script src="app.js?v=20261008-2"></script>
+<script src="app.js?v=20261008-3"></script>
 </body>
 </html>
