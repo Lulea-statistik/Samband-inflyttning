@@ -269,7 +269,7 @@ def get_population() -> pd.DataFrame:
     for code, text in zip(age["values"], age.get("valueTexts", age["values"])):
         a = age_numeric(text)
         if (
-            (np.isfinite(a) and (18 <= a <= 34 or 63 <= a <= 68))
+            (np.isfinite(a) and (18 <= a <= 49 or 63 <= a <= 79))
             or "tot" in str(text).lower()
         ):
             age_codes.append(code)
@@ -1063,7 +1063,13 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
         age_weight=("age_num", lambda x: 0.0),
     )
 
-    for lo, hi, suffix in [(18, 23, "18_23"), (63, 68, "63_68")]:
+    for lo, hi, suffix in [
+        (18, 23, "18_23"),
+        (24, 34, "24_34"),
+        (35, 49, "35_49"),
+        (63, 68, "63_68"),
+        (70, 79, "70_79"),
+    ]:
         part = (
             age_rows[age_rows["age_num"].between(lo, hi, inclusive="both")]
             .groupby(["kommun_kod", "kommun", "year"], as_index=False)["value"]
@@ -1106,14 +1112,29 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
         ["kommun_kod", "kommun", "year"], as_index=False
     )["value"].sum().rename(columns={"value": "bef_18_23"})
 
+    pop_24_34 = p_age[p_age["age_num"].between(24, 34, inclusive="both")].groupby(
+        ["kommun_kod", "kommun", "year"], as_index=False
+    )["value"].sum().rename(columns={"value": "bef_24_34"})
+
+    pop_35_49 = p_age[p_age["age_num"].between(35, 49, inclusive="both")].groupby(
+        ["kommun_kod", "kommun", "year"], as_index=False
+    )["value"].sum().rename(columns={"value": "bef_35_49"})
+
     pop_63_68 = p_age[p_age["age_num"].between(63, 68, inclusive="both")].groupby(
         ["kommun_kod", "kommun", "year"], as_index=False
     )["value"].sum().rename(columns={"value": "bef_63_68"})
 
+    pop_70_79 = p_age[p_age["age_num"].between(70, 79, inclusive="both")].groupby(
+        ["kommun_kod", "kommun", "year"], as_index=False
+    )["value"].sum().rename(columns={"value": "bef_70_79"})
+
     panel = mg.merge(total, on=["kommun_kod", "kommun", "year"], how="left")
     panel = panel.merge(young, on=["kommun_kod", "kommun", "year"], how="left")
     panel = panel.merge(pop_18_23, on=["kommun_kod", "kommun", "year"], how="left")
+    panel = panel.merge(pop_24_34, on=["kommun_kod", "kommun", "year"], how="left")
+    panel = panel.merge(pop_35_49, on=["kommun_kod", "kommun", "year"], how="left")
     panel = panel.merge(pop_63_68, on=["kommun_kod", "kommun", "year"], how="left")
+    panel = panel.merge(pop_70_79, on=["kommun_kod", "kommun", "year"], how="left")
     panel = panel.merge(
         income[["kommun_kod", "year", "inkomst_tkr"]],
         on=["kommun_kod", "year"], how="left"
@@ -1163,8 +1184,17 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel["inflyttning_18_23_per_1000"] = (
         1000 * panel["inflyttade_18_23"] / panel["bef_18_23"].replace(0, np.nan)
     )
+    panel["inflyttning_24_34_per_1000"] = (
+        1000 * panel["inflyttade_24_34"] / panel["bef_24_34"].replace(0, np.nan)
+    )
+    panel["inflyttning_35_49_per_1000"] = (
+        1000 * panel["inflyttade_35_49"] / panel["bef_35_49"].replace(0, np.nan)
+    )
     panel["inflyttning_63_68_per_1000"] = (
         1000 * panel["inflyttade_63_68"] / panel["bef_63_68"].replace(0, np.nan)
+    )
+    panel["inflyttning_70_79_per_1000"] = (
+        1000 * panel["inflyttade_70_79"] / panel["bef_70_79"].replace(0, np.nan)
     )
     panel["log_folkmangd"] = np.log(panel["folkmangd"].where(panel["folkmangd"] > 0))
 
@@ -1176,7 +1206,10 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     # precedes the migration outcome temporally.
     panel["lag1_inflyttning_per_1000"] = g["inflyttning_per_1000"].shift(1)
     panel["lag1_inflyttning_18_23_per_1000"] = g["inflyttning_18_23_per_1000"].shift(1)
+    panel["lag1_inflyttning_24_34_per_1000"] = g["inflyttning_24_34_per_1000"].shift(1)
+    panel["lag1_inflyttning_35_49_per_1000"] = g["inflyttning_35_49_per_1000"].shift(1)
     panel["lag1_inflyttning_63_68_per_1000"] = g["inflyttning_63_68_per_1000"].shift(1)
+    panel["lag1_inflyttning_70_79_per_1000"] = g["inflyttning_70_79_per_1000"].shift(1)
     panel["lag1_log_folkmangd"] = g["log_folkmangd"].shift(1)
     panel["lag1_befolkningstillvaxt_pct"] = g["befolkningstillvaxt_pct"].shift(1)
     panel["lag1_andel_20_34"] = g["andel_20_34"].shift(1)
@@ -1331,7 +1364,10 @@ def _elastic_net_selection(
 FEATURE_THEMES = {
     "lag1_inflyttning_per_1000": "Historisk flyttdynamik",
     "lag1_inflyttning_18_23_per_1000": "Historisk flyttdynamik",
+    "lag1_inflyttning_24_34_per_1000": "Historisk flyttdynamik",
+    "lag1_inflyttning_35_49_per_1000": "Historisk flyttdynamik",
     "lag1_inflyttning_63_68_per_1000": "Historisk flyttdynamik",
+    "lag1_inflyttning_70_79_per_1000": "Historisk flyttdynamik",
     "lag1_log_folkmangd": "Kommunstorlek",
     "lag1_befolkningstillvaxt_pct": "Befolkningsdynamik",
     "lag1_andel_20_34": "Åldersstruktur",
@@ -1858,7 +1894,7 @@ def fit_models(panel: pd.DataFrame) -> dict:
             "Alla strukturella förklaringsvariabler används laggade ett år för tydligare tidsordning mot inflyttningen.",
             "Variabelmatrisen redovisar parvis korrelation, gemensamt justerat R² samt extra justerat R² jämfört med den starkaste variabeln ensam.",
             "Tematisk marginalanalys tar bort ett valt tema i taget från fullmodellen och visar förändringen i justerat R², AIC och RMSE på samma analysurval.",
-            "Separata livsfasmodeller skattas för 18–23 år och 63–68 år, med inflyttade per 1 000 invånare i samma åldersgrupp som mål och åldersgruppens egen föregående inflyttning som historisk dynamik.",
+            "Separata livsfasmodeller skattas för 18–23, 24–34, 35–49, 63–68 och 70–79 år, med inflyttade per 1 000 invånare i samma åldersgrupp som mål och åldersgruppens egen föregående inflyttning som historisk dynamik.",
             "Om konsensusurvalet blir alltför litet används backward-AIC som reserv för att undvika instabila små modeller.",
             "Urvalet för prognosvalidering görs endast på träningsåren och får inte se teståret.",
             "Samband ska inte tolkas som säkra kausala effekter; endogenitet och utelämnade variabler kan finnas.",
@@ -1898,11 +1934,29 @@ def fit_age_group_models(panel: pd.DataFrame) -> dict:
             "target": "inflyttning_18_23_per_1000",
             "lag_target": "lag1_inflyttning_18_23_per_1000",
         },
+        "24_34": {
+            "label": "24–34 år",
+            "interpretation": "Etablering i arbetsliv och familjebildning",
+            "target": "inflyttning_24_34_per_1000",
+            "lag_target": "lag1_inflyttning_24_34_per_1000",
+        },
+        "35_49": {
+            "label": "35–49 år",
+            "interpretation": "Familje-/yrkesetablering",
+            "target": "inflyttning_35_49_per_1000",
+            "lag_target": "lag1_inflyttning_35_49_per_1000",
+        },
         "63_68": {
             "label": "63–68 år",
             "interpretation": "Pensionsnära/pensionsövergång",
             "target": "inflyttning_63_68_per_1000",
             "lag_target": "lag1_inflyttning_63_68_per_1000",
+        },
+        "70_79": {
+            "label": "70–79 år",
+            "interpretation": "Senare pensionsfas",
+            "target": "inflyttning_70_79_per_1000",
+            "lag_target": "lag1_inflyttning_70_79_per_1000",
         },
     }
 
