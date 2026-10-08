@@ -15,7 +15,10 @@ const labels={
   lag1_sysselsattningsgrad:'Sysselsättningsgrad 20–64 år, föregående år (%)',
   lag1_arbetsloshet:'Arbetslöshet 20–64 år, föregående år (%)',
   lag1_andel_eftergymnasial:'Andel eftergymnasialt utbildade 25–64 år, föregående år (%)',
-  lag1_andel_studerande:'Andel studerande 20–64 år, föregående år (%)'
+  lag1_andel_studerande:'Andel studerande 20–64 år, föregående år (%)',
+  lag1_andel_industri_bc:'Andel sysselsatta i B+C industri/gruvor, föregående år (%)',
+  lag1_andel_hotell_restaurang_i:'Andel sysselsatta i I hotell/restaurang, föregående år (%)',
+  lag1_andel_kultur_service_rstu:'Andel sysselsatta i R+S+T+U kultur/nöje/service, föregående år (%)'
 };
 
 async function load(){
