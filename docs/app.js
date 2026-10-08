@@ -359,6 +359,44 @@ function renderModel(){
   },{responsive:true,displaylogo:false});
 }
 
+function renderLifeStageWinners(){
+  const root=document.getElementById('lifeStageWinnerTable');
+  if(!root) return;
+  const models=model.age_group_models||{};
+  const keys=['18_23','24_34','35_49','63_68','70_79'];
+  const ageLabels=keys.map(k=>(models[k]&&models[k].label)||k.replace('_','–')+' år');
+
+  const winnerMaps={};
+  const themeSet=new Set();
+  keys.forEach(k=>{
+    const sel=(((models[k]||{}).explanation||{}).variable_selection||{}).thematic_selection||{};
+    const themes=sel.themes||{};
+    winnerMaps[k]=themes;
+    Object.keys(themes).forEach(t=>{ if(t!=='Historisk flyttdynamik') themeSet.add(t); });
+  });
+
+  const themes=Array.from(themeSet).sort((a,b)=>a.localeCompare(b,'sv'));
+  const shortLabel=f=>(labels[f]||f)
+    .replace(', föregående år','')
+    .replace(' föregående år','')
+    .replace('Genomsnittlig ','')
+    .replace(/s+/g,' ')
+    .trim();
+
+  root.innerHTML=
+    '<table class="metric-table winner-table"><thead><tr><th>Tema</th>'+
+    ageLabels.map(x=>'<th>'+x+'</th>').join('')+
+    '</tr></thead><tbody>'+
+    themes.map(theme=>'<tr><td><strong>'+theme+'</strong></td>'+
+      keys.map(k=>{
+        const f=winnerMaps[k]?.[theme];
+        return '<td>'+(f?shortLabel(f):'<span class="muted">–</span>')+'</td>';
+      }).join('')+
+    '</tr>').join('')+
+    '</tbody></table>';
+}
+
+
 function renderLifeStageHeatmap(){
   const models=model.age_group_models||{};
   const keys=['18_23','24_34','35_49','63_68','70_79'];
@@ -392,7 +430,9 @@ function renderLifeStageHeatmap(){
   const colorZ=rawZ.map(row=>row.map(v=>v==null?null:Math.sign(v)*Math.sqrt(Math.abs(v))));
   const custom=themes.map(t=>keys.map(k=>{
     const r=maps[k].get(t);
-    return r ? [r.delta_adjusted_r2,r.delta_aic,r.delta_rmse] : [null,null,null];
+    const sel=(((models[k]||{}).explanation||{}).variable_selection||{}).thematic_selection||{};
+    const winner=(sel.themes||{})[t];
+    return r ? [r.delta_adjusted_r2,r.delta_aic,r.delta_rmse,winner?(labels[winner]||winner):'–'] : [null,null,null,'–'];
   }));
   const text=rawZ.map(row=>row.map(v=>v==null?'':(v>=0?'+':'')+v.toFixed(4)));
 
@@ -406,7 +446,7 @@ function renderLifeStageHeatmap(){
     type:'heatmap',
     hoverongaps:false,
     colorbar:{title:'√|Δ just. R²|'},
-    hovertemplate:'%{y}<br>%{x}<br>Δ justerat R²=%{customdata[0]:.4f}<br>Δ AIC=%{customdata[1]:.1f}<br>Δ RMSE=%{customdata[2]:.3f}<extra></extra>'
+    hovertemplate:'%{y}<br>%{x}<br>Vald variabel: %{customdata[3]}<br>Δ justerat R²=%{customdata[0]:.4f}<br>Δ AIC=%{customdata[1]:.1f}<br>Δ RMSE=%{customdata[2]:.3f}<extra></extra>'
   }],{
     margin:{t:20,l:210,b:70},
     xaxis:{side:'bottom'},
@@ -435,8 +475,11 @@ function renderAgeModels(){
       '<div class="cards">'+
         metricCard('Justerat R²',fmt2.format(e.adjusted_r2))+
         metricCard('Observationer',fmt0.format(e.n_obs))+
-        metricCard('Teman',fmt0.format((e.selected_features||[]).length))+
+        metricCard('Valda variabler',fmt0.format((e.selected_features||[]).length))+
         (v?metricCard('Ridge R²',fmt2.format(v.ridge.r2)):'')+
+        (v&&Number.isFinite(v.ridge?.r2)&&Number.isFinite(v.naive?.r2)
+          ? metricCard('Ridge − naiv',fmt(v.ridge.r2-v.naive.r2,3),'skillnad i test-R²')
+          : '')+
       '</div>'+
       '<table class="metric-table"><thead><tr><th>Tema</th><th>Δ just. R²</th><th>Δ AIC</th><th>Δ RMSE</th></tr></thead><tbody>'+
       top.map(d=>'<tr><td>'+d.theme+'</td><td>'+fmt(d.delta_adjusted_r2,4)+'</td><td>'+fmt(d.delta_aic,1)+'</td><td>'+fmt(d.delta_rmse,3)+'</td></tr>').join('')+
@@ -445,6 +488,7 @@ function renderAgeModels(){
   }).join('');
   root.innerHTML=html;
   renderLifeStageHeatmap();
+  renderLifeStageWinners();
 }
 
 
