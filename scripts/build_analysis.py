@@ -19,12 +19,17 @@ from scipy.stats import norm
 
 MIGRATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101J/Flyttningar97"
 POPULATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101A/BefolkningNy"
+INCOME_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/HE/HE0110/HE0110A/SamForvInk2"
+HOUSING_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104D/BO0104T02"
 OUT = Path("docs/data")
 OUT.mkdir(parents=True, exist_ok=True)
 
 START_YEAR = 2002
 END_YEAR = 2024
 YEARS = list(range(START_YEAR, END_YEAR + 1))
+# Auxiliary explanatory variables only need to cover the longest analysis
+# window plus one lag year.
+AUX_YEARS = list(range(max(2013, END_YEAR - 6), END_YEAR + 1))
 
 session = requests.Session()
 session.headers.update({"User-Agent": "Samband-inflyttning/1.0"})
@@ -69,6 +74,26 @@ def aggregate_codes(var: dict) -> list[str]:
         if "totalt" in t or "samtliga" in t or "båda könen" in t or "bada konen" in t:
             return [code]
     return [code for code, _ in pairs]
+
+
+def code_for_all_text(var: dict, *needles: str) -> str:
+    needles_l = [n.lower() for n in needles]
+    for code, text in zip(var["values"], var.get("valueTexts", var["values"])):
+        t = str(text).lower()
+        if all(n in t for n in needles_l):
+            return code
+    raise KeyError(f"Value containing {needles!r} not found in {var.get('text')}")
+
+
+def exact_or_contains_code(var: dict, wanted: str) -> str:
+    wanted_l = wanted.lower().strip()
+    for code, text in zip(var["values"], var.get("valueTexts", var["values"])):
+        if str(text).lower().strip() == wanted_l:
+            return code
+    for code, text in zip(var["values"], var.get("valueTexts", var["values"])):
+        if wanted_l in str(text).lower():
+            return code
+    raise KeyError(f"Value {wanted!r} not found in {var.get('text')}")
 
 
 def municipality_codes(region_var: dict) -> list[str]:
@@ -196,6 +221,124 @@ def get_population() -> pd.DataFrame:
     return pd.concat(rows, ignore_index=True)
 
 
+
+def get_income() -> pd.DataFrame:
+    """Mean earned income (tkr) for ages 20-64, aggregated correctly across sex."""
+    meta = metadata(INCOME_URL)
+    region = find_var(meta, "region")
+    age = find_var(meta, "ålder", "alder")
+    sex = find_var(meta, "kön", "kon")
+    content = find_var(meta, "tabellinnehåll", "contentscode")
+    time = find_var(meta, "år", "tid")
+
+    munis = municipality_codes(region)
+    age_code = code_for_all_text(age, "20", "64")
+    sex_codes = aggregate_codes(sex)
+    total_sum_code = code_for_all_text(content, "totalsumma")
+    count_code = code_for_all_text(content, "antal", "person")
+
+    rows = []
+    for year in AUX_YEARS:
+        df = px_csv(INCOME_URL, {
+            region["code"]: munis,
+            age["code"]: [age_code],
+            sex["code"]: sex_codes,
+            content["code"]: [total_sum_code, count_code],
+            time["code"]: [str(year)],
+        })
+        dims = standardize_columns(df)
+        dim_cols = set(dims.values())
+        value_cols = [c for c in df.columns if c not in dim_cols]
+        sum_col = next((c for c in value_cols if "totalsumma" in str(c).lower()), None)
+        count_col = next((c for c in value_cols if "antal" in str(c).lower() and "person" in str(c).lower()), None)
+        if not sum_col or not count_col:
+            raise ValueError(f"Could not identify income columns for {year}: {list(df.columns)}")
+        df["sum_mnkr"] = normalize_number(df[sum_col])
+        df["persons"] = normalize_number(df[count_col])
+        df["year"] = year
+        df[["kommun_kod", "kommun"]] = df[dims["region"]].apply(lambda x: pd.Series(split_region(x)))
+        agg = df.groupby(["kommun_kod", "kommun", "year"], as_index=False).agg(
+            sum_mnkr=("sum_mnkr", "sum"),
+            persons=("persons", "sum"),
+        )
+        agg["inkomst_tkr"] = 1000 * agg["sum_mnkr"] / agg["persons"].replace(0, np.nan)
+        rows.append(agg[["kommun_kod", "kommun", "year", "inkomst_tkr"]])
+        print(f"Income {year}: {len(agg):,} municipalities")
+    return pd.concat(rows, ignore_index=True)
+
+
+def get_housing() -> pd.DataFrame:
+    """Share of dwelling stock located in small houses."""
+    meta = metadata(HOUSING_URL)
+    region = find_var(meta, "region")
+    house_type = find_var(meta, "hustyp")
+    period = find_var(meta, "byggnadsperiod", "byggnadsår", "byggnadsar")
+    time = find_var(meta, "år", "tid")
+
+    # Some PxWeb tables expose a separate content dimension, others only one measure.
+    content = None
+    try:
+        content = find_var(meta, "tabellinnehåll", "contentscode")
+    except KeyError:
+        pass
+
+    munis = municipality_codes(region)
+    small_code = exact_or_contains_code(house_type, "småhus")
+    total_house_codes = aggregate_codes(house_type)
+    period_codes = aggregate_codes(period)
+
+    rows = []
+    for year in AUX_YEARS:
+        selections = {
+            region["code"]: munis,
+            house_type["code"]: list(dict.fromkeys(total_house_codes + [small_code])),
+            period["code"]: period_codes,
+            time["code"]: [str(year)],
+        }
+        if content is not None:
+            selections[content["code"]] = [content["values"][0]]
+
+        df = px_csv(HOUSING_URL, selections)
+        dims = standardize_columns(df)
+        # Add table-specific dimensions if the generic recognizer does not know them.
+        for c in df.columns:
+            cl = str(c).lower()
+            if "hustyp" in cl:
+                dims["house_type"] = c
+            elif "byggnadsperiod" in cl or "byggnadsår" in cl or "byggnadsar" in cl:
+                dims["period"] = c
+        dim_cols = set(dims.values())
+        value_cols = [c for c in df.columns if c not in dim_cols]
+        if len(value_cols) != 1:
+            raise ValueError(f"Expected one housing value column for {year}, got {value_cols}")
+        val_col = value_cols[0]
+        df["value"] = normalize_number(df[val_col])
+        df["year"] = year
+        df[["kommun_kod", "kommun"]] = df[dims["region"]].apply(lambda x: pd.Series(split_region(x)))
+
+        hcol = dims["house_type"]
+        df["_is_small"] = df[hcol].astype(str).str.lower().str.contains("småhus", regex=False)
+        # If the table has an explicit total category, use that for denominator;
+        # otherwise sum all component house types.
+        house_texts = [str(x).strip().lower() for x in df[hcol].dropna().unique()]
+        total_labels = [x for x in house_texts if x in {"totalt","total","samtliga","alla"} or "totalt" in x]
+        if total_labels:
+            totals = df[df[hcol].astype(str).str.lower().isin(total_labels)].groupby(
+                ["kommun_kod","kommun","year"], as_index=False
+            )["value"].sum().rename(columns={"value":"bostader_totalt"})
+        else:
+            totals = df.groupby(["kommun_kod","kommun","year"], as_index=False)["value"].sum().rename(
+                columns={"value":"bostader_totalt"}
+            )
+        small = df[df["_is_small"]].groupby(
+            ["kommun_kod","kommun","year"], as_index=False
+        )["value"].sum().rename(columns={"value":"bostader_smahus"})
+        agg = totals.merge(small, on=["kommun_kod","kommun","year"], how="left")
+        agg["andel_smahus"] = 100 * agg["bostader_smahus"] / agg["bostader_totalt"].replace(0, np.nan)
+        rows.append(agg[["kommun_kod","kommun","year","andel_smahus"]])
+        print(f"Housing {year}: {len(agg):,} municipalities")
+    return pd.concat(rows, ignore_index=True)
+
 def standardize_columns(df: pd.DataFrame) -> dict[str, str]:
     out = {}
     for c in df.columns:
@@ -208,6 +351,10 @@ def standardize_columns(df: pd.DataFrame) -> dict[str, str]:
             out["sex"] = c
         elif "civilstånd" in cl or "civilstand" in cl:
             out["civil"] = c
+        elif "hustyp" in cl:
+            out["house_type"] = c
+        elif "byggnadsperiod" in cl or "byggnadsår" in cl or "byggnadsar" in cl:
+            out["period"] = c
         elif (
             cl in {"år", "tid", "time"}
             or cl.endswith(" år")
@@ -249,7 +396,7 @@ def split_region(value: str) -> tuple[str, str]:
     return s[:4], s[5:] if len(s) > 5 else s
 
 
-def build_panel(mig: pd.DataFrame, pop: pd.DataFrame) -> pd.DataFrame:
+def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, housing: pd.DataFrame) -> pd.DataFrame:
     md = standardize_columns(mig)
     mig = mig.copy()
     mig["value"] = normalize_number(mig["value"])
@@ -295,6 +442,14 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame) -> pd.DataFrame:
 
     panel = mg.merge(total, on=["kommun_kod", "kommun", "year"], how="left")
     panel = panel.merge(young, on=["kommun_kod", "kommun", "year"], how="left")
+    panel = panel.merge(
+        income[["kommun_kod", "year", "inkomst_tkr"]],
+        on=["kommun_kod", "year"], how="left"
+    )
+    panel = panel.merge(
+        housing[["kommun_kod", "year", "andel_smahus"]],
+        on=["kommun_kod", "year"], how="left"
+    )
     panel["andel_20_34"] = 100 * panel["bef_20_34"] / panel["folkmangd"]
     panel["inflyttning_per_1000"] = 1000 * panel["inflyttade"] / panel["folkmangd"]
 
@@ -302,6 +457,8 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame) -> pd.DataFrame:
     g = panel.groupby("kommun_kod", group_keys=False)
     panel["lag1_inflyttning_per_1000"] = g["inflyttning_per_1000"].shift(1)
     panel["lag1_inflyttare_medelalder"] = g["inflyttare_medelalder"].shift(1)
+    panel["lag1_inkomst_tkr"] = g["inkomst_tkr"].shift(1)
+    panel["lag1_andel_smahus"] = g["andel_smahus"].shift(1)
     panel["befolkningstillvaxt_pct"] = 100 * g["folkmangd"].pct_change(fill_method=None)
     panel["log_folkmangd"] = np.log(panel["folkmangd"].where(panel["folkmangd"] > 0))
 
@@ -424,6 +581,8 @@ def fit_models(panel: pd.DataFrame) -> dict:
         "befolkningstillvaxt_pct",
         "andel_20_34",
         "lag1_inflyttare_medelalder",
+        "lag1_inkomst_tkr",
+        "lag1_andel_smahus",
     ]
     model_df = panel.dropna(subset=[target] + features).copy()
     test_year = int(model_df["year"].max())
@@ -497,6 +656,8 @@ def fit_models(panel: pd.DataFrame) -> dict:
             "Årseffekter ingår i förklaringsmodellen för att fånga gemensamma nationella årsvariationer.",
             "Standardfel i förklaringsmodellen är klustrade per kommun eftersom samma kommun förekommer flera år.",
             "Prognosvalideringen för teståret använder endast de föregående 1–5 åren beroende på valt analysfönster.",
+            "Inkomst avser genomsnittlig sammanräknad förvärvsinkomst för 20–64-åringar och används laggad ett år.",
+            "Andel småhus avser bostadslägenheter i småhus som andel av bostadsbeståndet och används laggad ett år.",
             "Samband ska inte tolkas som säkra kausala effekter; endogenitet och utelämnade variabler kan finnas.",
         ],
     }
@@ -505,7 +666,9 @@ def fit_models(panel: pd.DataFrame) -> dict:
 def main():
     mig = get_migration()
     pop = get_population()
-    panel = build_panel(mig, pop)
+    income = get_income()
+    housing = get_housing()
+    panel = build_panel(mig, pop, income, housing)
     panel.to_csv(OUT / "panel.csv", index=False)
     result = fit_models(panel)
     (OUT / "model.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
