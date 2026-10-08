@@ -86,7 +86,7 @@
       <p>En observation är <strong>kommun × år</strong>. Responsvariabeln är inflyttade per 1 000 invånare. Analysperioden kan vara 1–5 år och standard är fem år. Ett femårsfönster ger fler observationer än ett enskilt tvärsnitt men begränsar samtidigt risken att mycket gamla strukturella förhållanden styr dagens modell.</p>
 
       <h3>Förklaringsvariabler</h3>
-      <p>Grundmodellen innehåller föregående års inflyttning per 1 000 invånare, logaritmerad folkmängd, befolkningstillväxt, andel 20–34 år och föregående års genomsnittsålder bland inflyttare. Bostäder, arbetsmarknad, inkomster och utbildning ska läggas till stegvis och jämföras mot grundmodellen.</p>
+      <p>Grundmodellen innehåller föregående års inflyttning per 1 000 invånare, logaritmerad folkmängd, befolkningstillväxt, andel 20–34 år och föregående års genomsnittsålder bland inflyttare. Därtill ingår nu <strong>genomsnittlig sammanräknad förvärvsinkomst för 20–64-åringar</strong> och <strong>andel bostadslägenheter i småhus</strong>, båda laggade ett år. Arbetsmarknad och utbildning kan därefter läggas till stegvis och jämföras mot modellen.</p>
 
       <h3>Multipel linjär regression</h3>
       <p>OLS används som tolkningsbar grundmodell. När flera år ingår läggs årseffekter till för att fånga nationella skillnader mellan år. Eftersom samma kommun återkommer flera gånger används standardfel klustrade per kommun.</p>
@@ -107,7 +107,7 @@
       <p>Rapporten visar R², justerat R², AIC, BIC, VIF, residualdiagram och Q–Q-plot. R² ska inte användas ensamt eftersom det normalt inte minskar när fler variabler läggs till. Prognosdelen jämför dessutom modellerna mot ett helt separat testår med out-of-sample R², RMSE och MAE.</p>
 
       <h3>Data</h3>
-      <p>Källa: SCB Statistikdatabasen, tabellerna <strong>Flyttningar efter region, ålder, kön, tabellinnehåll och år</strong> samt <strong>Folkmängden efter region, civilstånd, ålder, kön, tabellinnehåll och år</strong>.</p>
+      <p>Källa: SCB Statistikdatabasen. Rapporten använder flyttnings- och befolkningsdata samt sammanräknad förvärvsinkomst och bostadsbestånd efter hustyp. Inkomstvariabeln avser genomsnittlig förvärvsinkomst för 20–64-åringar. Andel småhus beräknas som bostadslägenheter i småhus dividerat med totalt bostadsbestånd.</p>
 
       <h3>Metodisk inspiration</h3>
       <p>Upplägget för begrepp, regressionsdiagnostik och modelljämförelse är inspirerat av KTH-rapporten <em>Analys av faktorer som påverkar bränsleförbrukningen i en personbil – med multipel linjär regression</em> (2018), men analysfråga, data och modeller är anpassade till kommunal inflyttning.</p>
