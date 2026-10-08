@@ -14,7 +14,8 @@ const labels={
   lag1_andel_smahus:'Andel småhus föregående år (%)',
   lag1_sysselsattningsgrad:'Sysselsättningsgrad 20–64 år, föregående år (%)',
   lag1_arbetsloshet:'Arbetslöshet 20–64 år, föregående år (%)',
-  lag1_andel_eftergymnasial:'Andel eftergymnasialt utbildade 25–64 år, föregående år (%)'
+  lag1_andel_eftergymnasial:'Andel eftergymnasialt utbildade 25–64 år, föregående år (%)',
+  lag1_andel_studerande:'Andel studerande 20–64 år, föregående år (%)'
 };
 
 async function load(){
