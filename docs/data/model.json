@@ -2,8 +2,8 @@
   "generated_from_year": 2002,
   "generated_to_year": 2024,
   "test_year": 2024,
-  "n_train": 6089,
-  "n_test": 290,
+  "default_window": 5,
+  "max_window": 5,
   "target": "inflyttning_per_1000",
   "features": [
     "lag1_inflyttning_per_1000",
@@ -12,49 +12,528 @@
     "andel_20_34",
     "lag1_inflyttare_medelalder"
   ],
-  "models": {
-    "naive": {
-      "r2": 0.8815153162322329,
-      "rmse": 5.209907702840686,
-      "mae": 3.939854446341341
+  "windows": {
+    "1": {
+      "explanation": {
+        "window": 1,
+        "start_year": 2024,
+        "end_year": 2024,
+        "n_obs": 290,
+        "n_municipalities": 290,
+        "r2": 0.921503298432134,
+        "adjusted_r2": 0.9201213142496011,
+        "aic": 1672.9095328479725,
+        "bic": 1694.9288183858557,
+        "coefficients": [
+          {
+            "feature": "lag1_inflyttning_per_1000",
+            "coefficient": 0.8577102462880668,
+            "standardized_coefficient": 0.9110375093811057,
+            "p_value": 4.4940879258974237e-268,
+            "ci_low": 0.8096522251286655,
+            "ci_high": 0.9057682674474681
+          },
+          {
+            "feature": "log_folkmangd",
+            "coefficient": -0.7696598036303279,
+            "standardized_coefficient": -0.05104112488882616,
+            "p_value": 0.10241493613156116,
+            "ci_low": -1.6932777073841931,
+            "ci_high": 0.15395810012353717
+          },
+          {
+            "feature": "befolkningstillvaxt_pct",
+            "coefficient": 2.984017120751512,
+            "standardized_coefficient": 0.16254866950174332,
+            "p_value": 3.281898688996866e-10,
+            "ci_low": 2.0534341053717657,
+            "ci_high": 3.9146001361312583
+          },
+          {
+            "feature": "andel_20_34",
+            "coefficient": 0.057664605761793525,
+            "standardized_coefficient": 0.010887582828837068,
+            "p_value": 0.7363040721843341,
+            "ci_low": -0.2779552120596338,
+            "ci_high": 0.3932844235832209
+          },
+          {
+            "feature": "lag1_inflyttare_medelalder",
+            "coefficient": 0.3777123134643795,
+            "standardized_coefficient": 0.06645043207041544,
+            "p_value": 0.019654079127449365,
+            "ci_low": 0.060379093021831476,
+            "ci_high": 0.6950455339069275
+          }
+        ],
+        "vif": [
+          {
+            "feature": "lag1_inflyttning_per_1000",
+            "vif": 1.3263507911462848
+          },
+          {
+            "feature": "log_folkmangd",
+            "vif": 2.2982506834516365
+          },
+          {
+            "feature": "befolkningstillvaxt_pct",
+            "vif": 1.4922761162143905
+          },
+          {
+            "feature": "andel_20_34",
+            "vif": 2.6338670018639525
+          },
+          {
+            "feature": "lag1_inflyttare_medelalder",
+            "vif": 1.8233829758772169
+          }
+        ],
+        "standard_errors": "Klustrade per kommun",
+        "year_fixed_effects": true
+      },
+      "validation": {
+        "train_start_year": 2023,
+        "train_end_year": 2023,
+        "test_year": 2024,
+        "n_train": 290,
+        "n_test": 290,
+        "models": {
+          "naive": {
+            "r2": 0.8815153162322329,
+            "rmse": 5.209907702840686,
+            "mae": 3.939854446341341
+          },
+          "ols": {
+            "r2": 0.821813726096294,
+            "rmse": 6.389046453323766,
+            "mae": 5.028249747364961
+          },
+          "ridge": {
+            "r2": 0.8218408356455802,
+            "rmse": 6.388560414881199,
+            "mae": 5.02737934109316
+          }
+        }
+      }
     },
-    "ols": {
-      "r2": 0.8980417787909369,
-      "rmse": 4.832924912171784,
-      "mae": 3.614100604837719
+    "2": {
+      "explanation": {
+        "window": 2,
+        "start_year": 2023,
+        "end_year": 2024,
+        "n_obs": 580,
+        "n_municipalities": 290,
+        "r2": 0.9205758453690875,
+        "adjusted_r2": 0.9197441788284497,
+        "aic": 3379.37540492546,
+        "bic": 3409.916601650243,
+        "coefficients": [
+          {
+            "feature": "lag1_inflyttning_per_1000",
+            "coefficient": 0.8354311704520878,
+            "standardized_coefficient": 0.8864165234541418,
+            "p_value": 0.0,
+            "ci_low": 0.8035499551765152,
+            "ci_high": 0.8673123857276605
+          },
+          {
+            "feature": "log_folkmangd",
+            "coefficient": -1.3318344763130805,
+            "standardized_coefficient": -0.08539533807133795,
+            "p_value": 1.94822848422021e-05,
+            "ci_low": -1.943050752105235,
+            "ci_high": -0.720618200520926
+          },
+          {
+            "feature": "befolkningstillvaxt_pct",
+            "coefficient": 3.0569483188190065,
+            "standardized_coefficient": 0.1813951171201969,
+            "p_value": 2.1715449545770253e-21,
+            "ci_low": 2.4260278561429427,
+            "ci_high": 3.6878687814950704
+          },
+          {
+            "feature": "andel_20_34",
+            "coefficient": 0.41600652754914436,
+            "standardized_coefficient": 0.0759189749362286,
+            "p_value": 0.0008431911856153565,
+            "ci_low": 0.1717567335860349,
+            "ci_high": 0.6602563215122538
+          },
+          {
+            "feature": "lag1_inflyttare_medelalder",
+            "coefficient": 0.24276009992836545,
+            "standardized_coefficient": 0.040217023492797786,
+            "p_value": 0.015356986288752532,
+            "ci_low": 0.04646031465519901,
+            "ci_high": 0.4390598852015319
+          }
+        ],
+        "vif": [
+          {
+            "feature": "lag1_inflyttning_per_1000",
+            "vif": 1.2544179290745494
+          },
+          {
+            "feature": "log_folkmangd",
+            "vif": 2.2546184078209057
+          },
+          {
+            "feature": "befolkningstillvaxt_pct",
+            "vif": 1.521436568683245
+          },
+          {
+            "feature": "andel_20_34",
+            "vif": 2.543758267444929
+          },
+          {
+            "feature": "lag1_inflyttare_medelalder",
+            "vif": 1.7649414357389723
+          }
+        ],
+        "standard_errors": "Klustrade per kommun",
+        "year_fixed_effects": true
+      },
+      "validation": {
+        "train_start_year": 2022,
+        "train_end_year": 2023,
+        "test_year": 2024,
+        "n_train": 580,
+        "n_test": 290,
+        "models": {
+          "naive": {
+            "r2": 0.8815153162322329,
+            "rmse": 5.209907702840686,
+            "mae": 3.939854446341341
+          },
+          "ols": {
+            "r2": 0.8578994184906469,
+            "rmse": 5.70554125859561,
+            "mae": 4.341342566674109
+          },
+          "ridge": {
+            "r2": 0.8579672020213713,
+            "rmse": 5.704180293502767,
+            "mae": 4.338839776765722
+          }
+        }
+      }
     },
-    "ridge": {
-      "r2": 0.8980346995210683,
-      "rmse": 4.8330926916084715,
-      "mae": 3.6138839418798336
+    "3": {
+      "explanation": {
+        "window": 3,
+        "start_year": 2022,
+        "end_year": 2024,
+        "n_obs": 870,
+        "n_municipalities": 290,
+        "r2": 0.9223062211006544,
+        "adjusted_r2": 0.9216752971420751,
+        "aic": 5099.358738056206,
+        "bic": 5137.506683749395,
+        "coefficients": [
+          {
+            "feature": "lag1_inflyttning_per_1000",
+            "coefficient": 0.831044853516013,
+            "standardized_coefficient": 0.8836580826368325,
+            "p_value": 0.0,
+            "ci_low": 0.806569571068018,
+            "ci_high": 0.855520135964008
+          },
+          {
+            "feature": "log_folkmangd",
+            "coefficient": -1.4550555920143604,
+            "standardized_coefficient": -0.0901926512782451,
+            "p_value": 8.248284318642474e-09,
+            "ci_low": -1.9498857045791052,
+            "ci_high": -0.9602254794496157
+          },
+          {
+            "feature": "befolkningstillvaxt_pct",
+            "coefficient": 2.9200708024702413,
+            "standardized_coefficient": 0.17265796663652755,
+            "p_value": 2.5831914981216795e-30,
+            "ci_low": 2.4198690132865277,
+            "ci_high": 3.420272591653955
+          },
+          {
+            "feature": "andel_20_34",
+            "coefficient": 0.4779749139745519,
+            "standardized_coefficient": 0.08405206186005468,
+            "p_value": 1.5089823136836737e-06,
+            "ci_low": 0.2832128878576664,
+            "ci_high": 0.6727369400914374
+          },
+          {
+            "feature": "lag1_inflyttare_medelalder",
+            "coefficient": 0.22563492355215645,
+            "standardized_coefficient": 0.036430237267632844,
+            "p_value": 0.006107200640664761,
+            "ci_low": 0.06435073754817289,
+            "ci_high": 0.38691910955614
+          }
+        ],
+        "vif": [
+          {
+            "feature": "lag1_inflyttning_per_1000",
+            "vif": 1.2712069857816521
+          },
+          {
+            "feature": "log_folkmangd",
+            "vif": 2.236856321060171
+          },
+          {
+            "feature": "befolkningstillvaxt_pct",
+            "vif": 1.5537880365752579
+          },
+          {
+            "feature": "andel_20_34",
+            "vif": 2.439435135916653
+          },
+          {
+            "feature": "lag1_inflyttare_medelalder",
+            "vif": 1.728747035799616
+          }
+        ],
+        "standard_errors": "Klustrade per kommun",
+        "year_fixed_effects": true
+      },
+      "validation": {
+        "train_start_year": 2021,
+        "train_end_year": 2023,
+        "test_year": 2024,
+        "n_train": 870,
+        "n_test": 290,
+        "models": {
+          "naive": {
+            "r2": 0.8815153162322329,
+            "rmse": 5.209907702840686,
+            "mae": 3.939854446341341
+          },
+          "ols": {
+            "r2": 0.8736767766918693,
+            "rmse": 5.379482784692539,
+            "mae": 4.077146147056398
+          },
+          "ridge": {
+            "r2": 0.8736928123235482,
+            "rmse": 5.379141334640562,
+            "mae": 4.076701092062762
+          }
+        }
+      }
+    },
+    "4": {
+      "explanation": {
+        "window": 4,
+        "start_year": 2021,
+        "end_year": 2024,
+        "n_obs": 1160,
+        "n_municipalities": 290,
+        "r2": 0.9240460978366738,
+        "adjusted_r2": 0.9235181819224195,
+        "aic": 6850.631018633902,
+        "bic": 6896.136596190806,
+        "coefficients": [
+          {
+            "feature": "lag1_inflyttning_per_1000",
+            "coefficient": 0.8538237020162833,
+            "standardized_coefficient": 0.8785345176224413,
+            "p_value": 0.0,
+            "ci_low": 0.8277430392916946,
+            "ci_high": 0.8799043647408721
+          },
+          {
+            "feature": "log_folkmangd",
+            "coefficient": -1.2815372241490721,
+            "standardized_coefficient": -0.07651345927579314,
+            "p_value": 4.0331206917470604e-08,
+            "ci_low": -1.739104344193526,
+            "ci_high": -0.8239701041046181
+          },
+          {
+            "feature": "befolkningstillvaxt_pct",
+            "coefficient": 3.0160376196166654,
+            "standardized_coefficient": 0.17555491122407715,
+            "p_value": 1.2266007811944628e-45,
+            "ci_low": 2.599146237811116,
+            "ci_high": 3.432929001422215
+          },
+          {
+            "feature": "andel_20_34",
+            "coefficient": 0.46542073786020777,
+            "standardized_coefficient": 0.07861814349438442,
+            "p_value": 7.760652615482412e-06,
+            "ci_low": 0.2614241777413215,
+            "ci_high": 0.669417297979094
+          },
+          {
+            "feature": "lag1_inflyttare_medelalder",
+            "coefficient": 0.2503541034952516,
+            "standardized_coefficient": 0.03900979640983647,
+            "p_value": 0.0011703515634536278,
+            "ci_low": 0.09918846210799004,
+            "ci_high": 0.4015197448825132
+          }
+        ],
+        "vif": [
+          {
+            "feature": "lag1_inflyttning_per_1000",
+            "vif": 1.2593468461316428
+          },
+          {
+            "feature": "log_folkmangd",
+            "vif": 2.111507025447341
+          },
+          {
+            "feature": "befolkningstillvaxt_pct",
+            "vif": 1.4621977936523582
+          },
+          {
+            "feature": "andel_20_34",
+            "vif": 2.372569215752603
+          },
+          {
+            "feature": "lag1_inflyttare_medelalder",
+            "vif": 1.7076447229887977
+          }
+        ],
+        "standard_errors": "Klustrade per kommun",
+        "year_fixed_effects": true
+      },
+      "validation": {
+        "train_start_year": 2020,
+        "train_end_year": 2023,
+        "test_year": 2024,
+        "n_train": 1160,
+        "n_test": 290,
+        "models": {
+          "naive": {
+            "r2": 0.8815153162322329,
+            "rmse": 5.209907702840686,
+            "mae": 3.939854446341341
+          },
+          "ols": {
+            "r2": 0.8847585521206857,
+            "rmse": 5.1381085566182785,
+            "mae": 3.8781945225214822
+          },
+          "ridge": {
+            "r2": 0.884793607539262,
+            "rmse": 5.137327013826364,
+            "mae": 3.877145337380851
+          }
+        }
+      }
+    },
+    "5": {
+      "explanation": {
+        "window": 5,
+        "start_year": 2020,
+        "end_year": 2024,
+        "n_obs": 1450,
+        "n_municipalities": 290,
+        "r2": 0.9244821508792567,
+        "adjusted_r2": 0.924010164322252,
+        "aic": 8574.456660939626,
+        "bic": 8627.249849293772,
+        "coefficients": [
+          {
+            "feature": "lag1_inflyttning_per_1000",
+            "coefficient": 0.870715507595955,
+            "standardized_coefficient": 0.8871873573628761,
+            "p_value": 0.0,
+            "ci_low": 0.8464263147335951,
+            "ci_high": 0.8950047004583148
+          },
+          {
+            "feature": "log_folkmangd",
+            "coefficient": -1.1596901020262635,
+            "standardized_coefficient": -0.068564866194709,
+            "p_value": 6.373544500127634e-08,
+            "ci_low": -1.5799849247634894,
+            "ci_high": -0.7393952792890377
+          },
+          {
+            "feature": "befolkningstillvaxt_pct",
+            "coefficient": 2.9673895193397177,
+            "standardized_coefficient": 0.17093371497286158,
+            "p_value": 1.1544683762962452e-46,
+            "ci_low": 2.561937572797312,
+            "ci_high": 3.3728414658821233
+          },
+          {
+            "feature": "andel_20_34",
+            "coefficient": 0.324359258485015,
+            "standardized_coefficient": 0.05419595614042148,
+            "p_value": 0.0006472994560479763,
+            "ci_low": 0.13798098944669082,
+            "ci_high": 0.5107375275233392
+          },
+          {
+            "feature": "lag1_inflyttare_medelalder",
+            "coefficient": 0.22555890216059632,
+            "standardized_coefficient": 0.03503464909035767,
+            "p_value": 0.0012974793682297172,
+            "ci_low": 0.08811687503203658,
+            "ci_high": 0.36300092928915606
+          }
+        ],
+        "vif": [
+          {
+            "feature": "lag1_inflyttning_per_1000",
+            "vif": 1.2538367149989178
+          },
+          {
+            "feature": "log_folkmangd",
+            "vif": 2.0845128305374145
+          },
+          {
+            "feature": "befolkningstillvaxt_pct",
+            "vif": 1.4453050918568822
+          },
+          {
+            "feature": "andel_20_34",
+            "vif": 2.3414628148881125
+          },
+          {
+            "feature": "lag1_inflyttare_medelalder",
+            "vif": 1.645406974497829
+          }
+        ],
+        "standard_errors": "Klustrade per kommun",
+        "year_fixed_effects": true
+      },
+      "validation": {
+        "train_start_year": 2019,
+        "train_end_year": 2023,
+        "test_year": 2024,
+        "n_train": 1450,
+        "n_test": 290,
+        "models": {
+          "naive": {
+            "r2": 0.8815153162322329,
+            "rmse": 5.209907702840686,
+            "mae": 3.939854446341341
+          },
+          "ols": {
+            "r2": 0.8793417367163848,
+            "rmse": 5.257477922163213,
+            "mae": 4.008220951327999
+          },
+          "ridge": {
+            "r2": 0.879357290135671,
+            "rmse": 5.257139054390519,
+            "mae": 4.007700178920711
+          }
+        }
+      }
     }
   },
-  "ols_intercept": 17.712398744609487,
-  "ols_coefficients": [
-    {
-      "feature": "lag1_inflyttning_per_1000",
-      "coefficient": 0.8166407377010357
-    },
-    {
-      "feature": "log_folkmangd",
-      "coefficient": -2.248088820923479
-    },
-    {
-      "feature": "befolkningstillvaxt_pct",
-      "coefficient": 4.093576685935027
-    },
-    {
-      "feature": "andel_20_34",
-      "coefficient": 0.38029069320853226
-    },
-    {
-      "feature": "lag1_inflyttare_medelalder",
-      "coefficient": 0.25273881166384754
-    }
-  ],
   "notes": [
-    "Teståret hålls helt utanför träningen.",
-    "Inflyttarnas medelålder används endast laggad ett år i prognosmodellen.",
-    "Detta är en första basmodell; bostäder, arbetsmarknad och inkomster läggs till stegvis."
+    "Förklaringsmodellen använder kommun-år och som standard de fem senaste observerade åren.",
+    "Årseffekter ingår i förklaringsmodellen för att fånga gemensamma nationella årsvariationer.",
+    "Standardfel i förklaringsmodellen är klustrade per kommun eftersom samma kommun förekommer flera år.",
+    "Prognosvalideringen för teståret använder endast de föregående 1–5 åren beroende på valt analysfönster.",
+    "Samband ska inte tolkas som säkra kausala effekter; endogenitet och utelämnade variabler kan finnas."
   ]
 }
