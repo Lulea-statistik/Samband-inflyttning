@@ -342,6 +342,63 @@ function renderModel(){
   },{responsive:true,displaylogo:false});
 }
 
+function renderLifeStageHeatmap(){
+  const models=model.age_group_models||{};
+  const keys=['18_23','24_34','35_49','63_68','70_79'];
+  const labelsAge=keys.map(k=>(models[k]&&models[k].label)||k.replace('_','–')+' år');
+  const mode=(document.getElementById('lifeStageMetric')||{}).value||'structural';
+
+  const maps={};
+  const themeSet=new Set();
+  keys.forEach(k=>{
+    const rows=(((models[k]||{}).explanation||{}).theme_marginal_analysis||{}).rows||[];
+    maps[k]=new Map(rows.map(r=>[r.theme,r]));
+    rows.forEach(r=>themeSet.add(r.theme));
+  });
+
+  let themes=Array.from(themeSet);
+  if(mode==='structural') themes=themes.filter(t=>t!=='Historisk flyttdynamik');
+
+  // Order themes by their strongest observed marginal contribution across life stages.
+  themes.sort((a,b)=>{
+    const ma=Math.max(...keys.map(k=>maps[k].get(a)?.delta_adjusted_r2??-Infinity));
+    const mb=Math.max(...keys.map(k=>maps[k].get(b)?.delta_adjusted_r2??-Infinity));
+    return mb-ma;
+  });
+
+  const rawZ=themes.map(t=>keys.map(k=>{
+    const r=maps[k].get(t);
+    return r ? r.delta_adjusted_r2 : null;
+  }));
+  // Compress the colour scale so structural differences remain visible even
+  // when historical persistence is shown. Hover/text always use raw delta R².
+  const colorZ=rawZ.map(row=>row.map(v=>v==null?null:Math.sign(v)*Math.sqrt(Math.abs(v))));
+  const custom=themes.map(t=>keys.map(k=>{
+    const r=maps[k].get(t);
+    return r ? [r.delta_adjusted_r2,r.delta_aic,r.delta_rmse] : [null,null,null];
+  }));
+  const text=rawZ.map(row=>row.map(v=>v==null?'':(v>=0?'+':'')+v.toFixed(4)));
+
+  Plotly.react('lifeStageHeatmap',[{
+    x:labelsAge,
+    y:themes,
+    z:colorZ,
+    customdata:custom,
+    text:text,
+    texttemplate:'%{text}',
+    type:'heatmap',
+    hoverongaps:false,
+    colorbar:{title:'√|Δ just. R²|'},
+    hovertemplate:'%{y}<br>%{x}<br>Δ justerat R²=%{customdata[0]:.4f}<br>Δ AIC=%{customdata[1]:.1f}<br>Δ RMSE=%{customdata[2]:.3f}<extra></extra>'
+  }],{
+    margin:{t:20,l:210,b:70},
+    xaxis:{side:'bottom'},
+    yaxis:{autorange:'reversed'},
+    annotations:[],
+    height:Math.max(420,90+themes.length*34)
+  },{responsive:true,displaylogo:false});
+}
+
 function renderAgeModels(){
   const root=document.getElementById('ageModels');
   if(!root) return;
@@ -370,6 +427,7 @@ function renderAgeModels(){
       '</div>';
   }).join('');
   root.innerHTML=html;
+  renderLifeStageHeatmap();
 }
 
 
@@ -430,3 +488,5 @@ function renderMunicipality(){
 }
 
 load();
+
+document.getElementById('lifeStageMetric')?.addEventListener('change',renderLifeStageHeatmap);
