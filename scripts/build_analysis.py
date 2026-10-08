@@ -719,7 +719,7 @@ def get_industry_structure() -> pd.DataFrame:
 
     munis = municipality_codes(region)
     sex_codes = aggregate_codes(sex)
-    education_code = require_total_code(education)
+    education_codes = list(education["values"])
     workplace_code = code_for_all_text(content, "arbetsställets", "belägenhet")
 
     total_industry_code = exact_or_contains_code(industry, "A-U+US Total")
@@ -744,7 +744,7 @@ def get_industry_structure() -> pd.DataFrame:
             region["code"]: munis,
             sex["code"]: sex_codes,
             industry["code"]: wanted,
-            education["code"]: [education_code],
+            education["code"]: education_codes,
             time["code"]: [str(year)],
         })
 
