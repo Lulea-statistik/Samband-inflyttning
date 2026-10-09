@@ -55127,6 +55127,8 @@
       "end_year": 2024,
       "density_definition": "population per km2 land area, log1p transformed and lagged one year",
       "population_size_definition": "natural log population, lagged one year",
+      "tatortsgrad_definition": "SCB tätortsgrad, percent of municipality population living in statistical urban areas, lagged one year",
+      "built_land_definition": "SCB built/developed land / SCB total land area in MarkanvN, percent, lagged one year",
       "sea_share_unit": "10 percentage points",
       "rows": [
         {
@@ -55300,6 +55302,178 @@
               "ci_high": 0.0022126532712798824
             }
           ]
+        },
+        {
+          "model": "coast_vs_urban_area_share",
+          "urbanity_feature": "lag1_tatortsgrad_pct",
+          "urbanity_center_log_units": 78.0,
+          "geography_feature": "kustkommun_hav",
+          "geography_scaled_feature": "kustkommun_hav",
+          "interaction_feature": "kustkommun_hav_x_lag1_tatortsgrad_pct",
+          "n_obs": 1160,
+          "n_municipalities": 290,
+          "n_years": 4,
+          "urbanity_only_adjusted_r2": 0.9168233653045412,
+          "geography_main_adjusted_r2": 0.9167603766186134,
+          "interaction_adjusted_r2": 0.9167944995739129,
+          "delta_adjusted_r2_geography_beyond_urbanity": -6.29886859278006e-05,
+          "delta_adjusted_r2_interaction": 3.4122955299475954e-05,
+          "delta_aic_geography_beyond_urbanity": -1.8592373229130317,
+          "delta_aic_interaction": -0.5045959438175487,
+          "delta_rmse_geography_beyond_urbanity": 0.00028955792038587447,
+          "delta_rmse_interaction": 0.0030750582783438674,
+          "coefficients": [
+            {
+              "feature": "lag1_tatortsgrad_pct",
+              "coefficient": 0.01633825695155211,
+              "p_value": 0.3115278457666336,
+              "ci_low": -0.015303758527468118,
+              "ci_high": 0.04798027243057234
+            },
+            {
+              "feature": "kustkommun_hav",
+              "coefficient": -0.08295109439081799,
+              "p_value": 0.8029672500086278,
+              "ci_low": -0.7345560493276924,
+              "ci_high": 0.5686538605460565
+            },
+            {
+              "feature": "kustkommun_hav_x_lag1_tatortsgrad_pct",
+              "coefficient": -0.02864434195715667,
+              "p_value": 0.11190611566430374,
+              "ci_low": -0.06396072468959818,
+              "ci_high": 0.0066720407752848335
+            }
+          ]
+        },
+        {
+          "model": "sea_share_vs_urban_area_share",
+          "urbanity_feature": "lag1_tatortsgrad_pct",
+          "urbanity_center_log_units": 78.0,
+          "geography_feature": "havsandel_pct",
+          "geography_scaled_feature": "geo_havsandel_10pp",
+          "interaction_feature": "geo_havsandel_10pp_x_lag1_tatortsgrad_pct",
+          "n_obs": 1160,
+          "n_municipalities": 290,
+          "n_years": 4,
+          "urbanity_only_adjusted_r2": 0.9168233653045412,
+          "geography_main_adjusted_r2": 0.9167564468148738,
+          "interaction_adjusted_r2": 0.9168096195112302,
+          "delta_adjusted_r2_geography_beyond_urbanity": -6.691848966744463e-05,
+          "delta_adjusted_r2_interaction": 5.31726963564072e-05,
+          "delta_aic_geography_beyond_urbanity": -1.9140004819637397,
+          "delta_aic_interaction": -0.23902074735451606,
+          "delta_rmse_geography_beyond_urbanity": 0.00017690865230068908,
+          "delta_rmse_interaction": 0.0036210492601354005,
+          "coefficients": [
+            {
+              "feature": "lag1_tatortsgrad_pct",
+              "coefficient": 0.01881574623399344,
+              "p_value": 0.24493533974635162,
+              "ci_low": -0.012900898022676677,
+              "ci_high": 0.05053239049066356
+            },
+            {
+              "feature": "geo_havsandel_10pp",
+              "coefficient": -0.002447561657582184,
+              "p_value": 0.9701636361493904,
+              "ci_low": -0.13070266242045442,
+              "ci_high": 0.12580753910529008
+            },
+            {
+              "feature": "geo_havsandel_10pp_x_lag1_tatortsgrad_pct",
+              "coefficient": -0.005720852943656532,
+              "p_value": 0.06282559006022616,
+              "ci_low": -0.011747794617716509,
+              "ci_high": 0.00030608873040344556
+            }
+          ]
+        },
+        {
+          "model": "coast_vs_built_land_share",
+          "urbanity_feature": "lag1_bebyggd_anlagd_andel_land_pct",
+          "urbanity_center_log_units": 5.3915116541956944,
+          "geography_feature": "kustkommun_hav",
+          "geography_scaled_feature": "kustkommun_hav",
+          "interaction_feature": "kustkommun_hav_x_lag1_bebyggd_anlagd_andel_land_pct",
+          "n_obs": 1160,
+          "n_municipalities": 290,
+          "n_years": 4,
+          "urbanity_only_adjusted_r2": 0.9168608764323235,
+          "geography_main_adjusted_r2": 0.9168097678248729,
+          "interaction_adjusted_r2": 0.9173277247796738,
+          "delta_adjusted_r2_geography_beyond_urbanity": -5.110860745061174e-05,
+          "delta_adjusted_r2_interaction": 0.0005179569548009466,
+          "delta_aic_geography_beyond_urbanity": -1.6939900377938102,
+          "delta_aic_interaction": 6.264721051169545,
+          "delta_rmse_geography_beyond_urbanity": 0.0006293178904757113,
+          "delta_rmse_interaction": 0.016965268579103743,
+          "coefficients": [
+            {
+              "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+              "coefficient": 0.1455240638203935,
+              "p_value": 0.003676933769905293,
+              "ci_low": 0.04732828074381751,
+              "ci_high": 0.24371984689696952
+            },
+            {
+              "feature": "kustkommun_hav",
+              "coefficient": 0.007033192033321867,
+              "p_value": 0.9841467640236206,
+              "ci_low": -0.6867026382423136,
+              "ci_high": 0.7007690223089573
+            },
+            {
+              "feature": "kustkommun_hav_x_lag1_bebyggd_anlagd_andel_land_pct",
+              "coefficient": -0.11769382210606631,
+              "p_value": 0.003332038506817337,
+              "ci_low": -0.19628002437813738,
+              "ci_high": -0.039107619833995244
+            }
+          ]
+        },
+        {
+          "model": "sea_share_vs_built_land_share",
+          "urbanity_feature": "lag1_bebyggd_anlagd_andel_land_pct",
+          "urbanity_center_log_units": 5.3915116541956944,
+          "geography_feature": "havsandel_pct",
+          "geography_scaled_feature": "geo_havsandel_10pp",
+          "interaction_feature": "geo_havsandel_10pp_x_lag1_bebyggd_anlagd_andel_land_pct",
+          "n_obs": 1160,
+          "n_municipalities": 290,
+          "n_years": 4,
+          "urbanity_only_adjusted_r2": 0.9168608764323235,
+          "geography_main_adjusted_r2": 0.9167966710711579,
+          "interaction_adjusted_r2": 0.9171306881481309,
+          "delta_adjusted_r2_geography_beyond_urbanity": -6.420536116558129e-05,
+          "delta_adjusted_r2_interaction": 0.0003340170769730033,
+          "delta_aic_geography_beyond_urbanity": -1.8765960742275638,
+          "delta_aic_interaction": 3.6859351670891556,
+          "delta_rmse_geography_beyond_urbanity": 0.0002537935497208821,
+          "delta_rmse_interaction": 0.011679113367129013,
+          "coefficients": [
+            {
+              "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+              "coefficient": 0.07467533640439677,
+              "p_value": 0.06508119377348089,
+              "ci_low": -0.004666004442484606,
+              "ci_high": 0.15401667725127816
+            },
+            {
+              "feature": "geo_havsandel_10pp",
+              "coefficient": 0.06970828050405446,
+              "p_value": 0.3307233220290755,
+              "ci_low": -0.07075807431671206,
+              "ci_high": 0.210174635324821
+            },
+            {
+              "feature": "geo_havsandel_10pp_x_lag1_bebyggd_anlagd_andel_land_pct",
+              "coefficient": -0.017915576973375705,
+              "p_value": 0.005679165551531181,
+              "ci_low": -0.030611538833066235,
+              "ci_high": -0.005219615113685176
+            }
+          ]
         }
       ]
     },
@@ -55310,6 +55484,8 @@
         "end_year": 2024,
         "density_definition": "population per km2 land area, log1p transformed and lagged one year",
         "population_size_definition": "natural log population, lagged one year",
+        "tatortsgrad_definition": "SCB tätortsgrad, percent of municipality population living in statistical urban areas, lagged one year",
+        "built_land_definition": "SCB built/developed land / SCB total land area in MarkanvN, percent, lagged one year",
         "sea_share_unit": "10 percentage points",
         "rows": [
           {
@@ -55483,6 +55659,178 @@
                 "ci_high": -0.001021953596313352
               }
             ]
+          },
+          {
+            "model": "coast_vs_urban_area_share",
+            "urbanity_feature": "lag1_tatortsgrad_pct",
+            "urbanity_center_log_units": 78.0,
+            "geography_feature": "kustkommun_hav",
+            "geography_scaled_feature": "kustkommun_hav",
+            "interaction_feature": "kustkommun_hav_x_lag1_tatortsgrad_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.7692412753347859,
+            "geography_main_adjusted_r2": 0.7695578889925915,
+            "interaction_adjusted_r2": 0.7697047786218684,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.0003166136578055534,
+            "delta_adjusted_r2_interaction": 0.00014688962927689175,
+            "delta_aic_geography_beyond_urbanity": 0.6133542336065148,
+            "delta_aic_interaction": -0.23877443974561174,
+            "delta_rmse_geography_beyond_urbanity": 0.020866626841634428,
+            "delta_rmse_interaction": 0.014049455199845795,
+            "coefficients": [
+              {
+                "feature": "lag1_tatortsgrad_pct",
+                "coefficient": 0.045131056038735545,
+                "p_value": 0.47911683688141526,
+                "ci_low": -0.07985450037396565,
+                "ci_high": 0.17011661245143672
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": 2.8511670162732754,
+                "p_value": 0.034402159617677626,
+                "ci_low": 0.20940670003861772,
+                "ci_high": 5.492927332507933
+              },
+              {
+                "feature": "kustkommun_hav_x_lag1_tatortsgrad_pct",
+                "coefficient": -0.12363674292633695,
+                "p_value": 0.10099326537452297,
+                "ci_low": -0.27138985599943505,
+                "ci_high": 0.024116370146761157
+              }
+            ]
+          },
+          {
+            "model": "sea_share_vs_urban_area_share",
+            "urbanity_feature": "lag1_tatortsgrad_pct",
+            "urbanity_center_log_units": 78.0,
+            "geography_feature": "havsandel_pct",
+            "geography_scaled_feature": "geo_havsandel_10pp",
+            "interaction_feature": "geo_havsandel_10pp_x_lag1_tatortsgrad_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.7692412753347859,
+            "geography_main_adjusted_r2": 0.7695924905902691,
+            "interaction_adjusted_r2": 0.770187814790226,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.000351215255483206,
+            "delta_adjusted_r2_interaction": 0.0005953241999568926,
+            "delta_aic_geography_beyond_urbanity": 0.7875449092771305,
+            "delta_aic_interaction": 2.0226494959770207,
+            "delta_rmse_geography_beyond_urbanity": 0.022256636893228432,
+            "delta_rmse_interaction": 0.032070997555887715,
+            "coefficients": [
+              {
+                "feature": "lag1_tatortsgrad_pct",
+                "coefficient": 0.05097249502331566,
+                "p_value": 0.427097554875166,
+                "ci_low": -0.07482486415767645,
+                "ci_high": 0.17676985420430777
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": 0.6349626345475649,
+                "p_value": 0.025355777160521866,
+                "ci_low": 0.0783714306195602,
+                "ci_high": 1.1915538384755695
+              },
+              {
+                "feature": "geo_havsandel_10pp_x_lag1_tatortsgrad_pct",
+                "coefficient": -0.03392563732908075,
+                "p_value": 0.018688021376107436,
+                "ci_low": -0.062200132072386796,
+                "ci_high": -0.005651142585774708
+              }
+            ]
+          },
+          {
+            "model": "coast_vs_built_land_share",
+            "urbanity_feature": "lag1_bebyggd_anlagd_andel_land_pct",
+            "urbanity_center_log_units": 5.3915116541956944,
+            "geography_feature": "kustkommun_hav",
+            "geography_scaled_feature": "kustkommun_hav",
+            "interaction_feature": "kustkommun_hav_x_lag1_bebyggd_anlagd_andel_land_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.7692556512551464,
+            "geography_main_adjusted_r2": 0.7695468441900308,
+            "interaction_adjusted_r2": 0.7693491568126467,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.0002911929348844433,
+            "delta_adjusted_r2_interaction": -0.0001976873773841259,
+            "delta_aic_geography_beyond_urbanity": 0.48548971391210216,
+            "delta_aic_interaction": -1.973068441679061,
+            "delta_rmse_geography_beyond_urbanity": 0.019845606498037682,
+            "delta_rmse_interaction": 0.00021492092984232158,
+            "coefficients": [
+              {
+                "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+                "coefficient": 0.04146960592130093,
+                "p_value": 0.8540636970306013,
+                "ci_low": -0.40041753637680794,
+                "ci_high": 0.4833567482194098
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": 2.60925830944175,
+                "p_value": 0.06338419522474692,
+                "ci_low": -0.14543521531390535,
+                "ci_high": 5.3639518341974055
+              },
+              {
+                "feature": "kustkommun_hav_x_lag1_bebyggd_anlagd_andel_land_pct",
+                "coefficient": -0.02657834091733789,
+                "p_value": 0.8808837043268147,
+                "ci_low": -0.37421209971353875,
+                "ci_high": 0.32105541787886294
+              }
+            ]
+          },
+          {
+            "model": "sea_share_vs_built_land_share",
+            "urbanity_feature": "lag1_bebyggd_anlagd_andel_land_pct",
+            "urbanity_center_log_units": 5.3915116541956944,
+            "geography_feature": "havsandel_pct",
+            "geography_scaled_feature": "geo_havsandel_10pp",
+            "interaction_feature": "geo_havsandel_10pp_x_lag1_bebyggd_anlagd_andel_land_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.7692556512551464,
+            "geography_main_adjusted_r2": 0.7695968718327404,
+            "interaction_adjusted_r2": 0.7696977282063283,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.0003412205775940036,
+            "delta_adjusted_r2_interaction": 0.00010085637358792088,
+            "delta_aic_geography_beyond_urbanity": 0.7373342380669783,
+            "delta_aic_interaction": -0.4705354354427982,
+            "delta_rmse_geography_beyond_urbanity": 0.02185529472655645,
+            "delta_rmse_interaction": 0.012200254113636788,
+            "coefficients": [
+              {
+                "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+                "coefficient": 0.10720445291176459,
+                "p_value": 0.37718732403417443,
+                "ci_low": -0.13072908114169843,
+                "ci_high": 0.3451379869652276
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": 0.6935633490251452,
+                "p_value": 0.028463501640694822,
+                "ci_low": 0.07308887866330105,
+                "ci_high": 1.3140378193869893
+              },
+              {
+                "feature": "geo_havsandel_10pp_x_lag1_bebyggd_anlagd_andel_land_pct",
+                "coefficient": -0.036213176620663326,
+                "p_value": 0.1925817949961136,
+                "ci_low": -0.09068565870005349,
+                "ci_high": 0.01825930545872683
+              }
+            ]
           }
         ]
       },
@@ -55492,6 +55840,8 @@
         "end_year": 2024,
         "density_definition": "population per km2 land area, log1p transformed and lagged one year",
         "population_size_definition": "natural log population, lagged one year",
+        "tatortsgrad_definition": "SCB tätortsgrad, percent of municipality population living in statistical urban areas, lagged one year",
+        "built_land_definition": "SCB built/developed land / SCB total land area in MarkanvN, percent, lagged one year",
         "sea_share_unit": "10 percentage points",
         "rows": [
           {
@@ -55665,6 +56015,178 @@
                 "ci_high": 0.28826253649006656
               }
             ]
+          },
+          {
+            "model": "coast_vs_urban_area_share",
+            "urbanity_feature": "lag1_tatortsgrad_pct",
+            "urbanity_center_log_units": 78.0,
+            "geography_feature": "kustkommun_hav",
+            "geography_scaled_feature": "kustkommun_hav",
+            "interaction_feature": "kustkommun_hav_x_lag1_tatortsgrad_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.8842055133734846,
+            "geography_main_adjusted_r2": 0.8844602474221507,
+            "interaction_adjusted_r2": 0.8843730180869187,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.00025473404866604987,
+            "delta_adjusted_r2_interaction": -8.722933523197529e-05,
+            "delta_aic_geography_beyond_urbanity": 1.5726629662894993,
+            "delta_aic_interaction": -1.8565531069980352,
+            "delta_rmse_geography_beyond_urbanity": 0.022609854311648192,
+            "delta_rmse_interaction": 0.0009070871166834138,
+            "coefficients": [
+              {
+                "feature": "lag1_tatortsgrad_pct",
+                "coefficient": 0.02621443007610169,
+                "p_value": 0.631183312966745,
+                "ci_low": -0.08081203655516259,
+                "ci_high": 0.13324089670736597
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": -2.2380536123802184,
+                "p_value": 0.04502518043742395,
+                "ci_low": -4.426470387323527,
+                "ci_high": -0.04963683743690961
+              },
+              {
+                "feature": "kustkommun_hav_x_lag1_tatortsgrad_pct",
+                "coefficient": -0.0281126460410022,
+                "p_value": 0.6799603711630345,
+                "ci_low": -0.1616822833613843,
+                "ci_high": 0.10545699127937991
+              }
+            ]
+          },
+          {
+            "model": "sea_share_vs_urban_area_share",
+            "urbanity_feature": "lag1_tatortsgrad_pct",
+            "urbanity_center_log_units": 78.0,
+            "geography_feature": "havsandel_pct",
+            "geography_scaled_feature": "geo_havsandel_10pp",
+            "interaction_feature": "geo_havsandel_10pp_x_lag1_tatortsgrad_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.8842055133734846,
+            "geography_main_adjusted_r2": 0.8844043152567657,
+            "interaction_adjusted_r2": 0.8843310745981798,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.0001988018832810301,
+            "delta_adjusted_r2_interaction": -7.324065858582696e-05,
+            "delta_aic_geography_beyond_urbanity": 1.0112491574400337,
+            "delta_aic_interaction": -1.7158510006192955,
+            "delta_rmse_geography_beyond_urbanity": 0.01905921205175609,
+            "delta_rmse_interaction": 0.0017971979264217453,
+            "coefficients": [
+              {
+                "feature": "lag1_tatortsgrad_pct",
+                "coefficient": 0.04011624369126115,
+                "p_value": 0.4666871918487633,
+                "ci_low": -0.06790488392590355,
+                "ci_high": 0.14813737130842583
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": -0.3757708269038501,
+                "p_value": 0.09230428868097239,
+                "ci_low": -0.8132855146842484,
+                "ci_high": 0.061743860876548096
+              },
+              {
+                "feature": "geo_havsandel_10pp_x_lag1_tatortsgrad_pct",
+                "coefficient": -0.007174606538456424,
+                "p_value": 0.5732146711416022,
+                "ci_low": -0.032137123350134404,
+                "ci_high": 0.017787910273221554
+              }
+            ]
+          },
+          {
+            "model": "coast_vs_built_land_share",
+            "urbanity_feature": "lag1_bebyggd_anlagd_andel_land_pct",
+            "urbanity_center_log_units": 5.3915116541956944,
+            "geography_feature": "kustkommun_hav",
+            "geography_scaled_feature": "kustkommun_hav",
+            "interaction_feature": "kustkommun_hav_x_lag1_bebyggd_anlagd_andel_land_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.8843768232034535,
+            "geography_main_adjusted_r2": 0.8847850114855548,
+            "interaction_adjusted_r2": 0.884841971785611,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.0004081882821013183,
+            "delta_adjusted_r2_interaction": 5.69603000561969e-05,
+            "delta_aic_geography_beyond_urbanity": 3.120422088457417,
+            "delta_aic_interaction": -0.4074896685851854,
+            "delta_rmse_geography_beyond_urbanity": 0.03237018372093026,
+            "delta_rmse_interaction": 0.010052944018244858,
+            "coefficients": [
+              {
+                "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+                "coefficient": 0.32999621408876323,
+                "p_value": 0.0668337116577848,
+                "ci_low": -0.02289771746749225,
+                "ci_high": 0.6828901456450187
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": -2.500485264463778,
+                "p_value": 0.0379485149929181,
+                "ci_low": -4.861878971694097,
+                "ci_high": -0.13909155723345945
+              },
+              {
+                "feature": "kustkommun_hav_x_lag1_bebyggd_anlagd_andel_land_pct",
+                "coefficient": -0.16114586331066544,
+                "p_value": 0.29101237341758,
+                "ci_low": -0.4602642327255637,
+                "ci_high": 0.13797250610423284
+              }
+            ]
+          },
+          {
+            "model": "sea_share_vs_built_land_share",
+            "urbanity_feature": "lag1_bebyggd_anlagd_andel_land_pct",
+            "urbanity_center_log_units": 5.3915116541956944,
+            "geography_feature": "havsandel_pct",
+            "geography_scaled_feature": "geo_havsandel_10pp",
+            "interaction_feature": "geo_havsandel_10pp_x_lag1_bebyggd_anlagd_andel_land_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.8843768232034535,
+            "geography_main_adjusted_r2": 0.8846543174491006,
+            "interaction_adjusted_r2": 0.8845775198650476,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.0002774942456471585,
+            "delta_adjusted_r2_interaction": -7.679758405298998e-05,
+            "delta_aic_geography_beyond_urbanity": 1.8053227020427585,
+            "delta_aic_interaction": -1.7531907509746816,
+            "delta_rmse_geography_beyond_urbanity": 0.024063231274372043,
+            "delta_rmse_interaction": 0.0015593534445113022,
+            "coefficients": [
+              {
+                "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+                "coefficient": 0.19126604287536236,
+                "p_value": 0.11809098961854908,
+                "ci_low": -0.048601970965228586,
+                "ci_high": 0.4311340567159533
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": -0.3824771279211304,
+                "p_value": 0.1147509589268978,
+                "ci_low": -0.8577779035639057,
+                "ci_high": 0.09282364772164481
+              },
+              {
+                "feature": "geo_havsandel_10pp_x_lag1_bebyggd_anlagd_andel_land_pct",
+                "coefficient": -0.01140293573060386,
+                "p_value": 0.5773747494136966,
+                "ci_low": -0.051511337766199046,
+                "ci_high": 0.02870546630499133
+              }
+            ]
           }
         ]
       },
@@ -55674,6 +56196,8 @@
         "end_year": 2024,
         "density_definition": "population per km2 land area, log1p transformed and lagged one year",
         "population_size_definition": "natural log population, lagged one year",
+        "tatortsgrad_definition": "SCB tätortsgrad, percent of municipality population living in statistical urban areas, lagged one year",
+        "built_land_definition": "SCB built/developed land / SCB total land area in MarkanvN, percent, lagged one year",
         "sea_share_unit": "10 percentage points",
         "rows": [
           {
@@ -55847,6 +56371,178 @@
                 "ci_high": 0.1500100467899748
               }
             ]
+          },
+          {
+            "model": "coast_vs_urban_area_share",
+            "urbanity_feature": "lag1_tatortsgrad_pct",
+            "urbanity_center_log_units": 78.0,
+            "geography_feature": "kustkommun_hav",
+            "geography_scaled_feature": "kustkommun_hav",
+            "interaction_feature": "kustkommun_hav_x_lag1_tatortsgrad_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.8146829247340599,
+            "geography_main_adjusted_r2": 0.8149598071421091,
+            "interaction_adjusted_r2": 0.8147988997952447,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.00027688240804923936,
+            "delta_adjusted_r2_interaction": -0.0001609073468644695,
+            "delta_aic_geography_beyond_urbanity": 0.7560295493622107,
+            "delta_aic_interaction": -1.9857981486284189,
+            "delta_rmse_geography_beyond_urbanity": 0.009287753061039794,
+            "delta_rmse_interaction": 4.7831328137348805e-05,
+            "coefficients": [
+              {
+                "feature": "lag1_tatortsgrad_pct",
+                "coefficient": -0.004469329157348928,
+                "p_value": 0.8771684296894823,
+                "ci_low": -0.06114466714314749,
+                "ci_high": 0.052206008828449633
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": -1.1202844415066804,
+                "p_value": 0.0709318327971125,
+                "ci_low": -2.3361328240751034,
+                "ci_high": 0.0955639410617426
+              },
+              {
+                "feature": "kustkommun_hav_x_lag1_tatortsgrad_pct",
+                "coefficient": 0.00467728332297325,
+                "p_value": 0.8922583009289904,
+                "ci_low": -0.06300448695803632,
+                "ci_high": 0.07235905360398281
+              }
+            ]
+          },
+          {
+            "model": "sea_share_vs_urban_area_share",
+            "urbanity_feature": "lag1_tatortsgrad_pct",
+            "urbanity_center_log_units": 78.0,
+            "geography_feature": "havsandel_pct",
+            "geography_scaled_feature": "geo_havsandel_10pp",
+            "interaction_feature": "geo_havsandel_10pp_x_lag1_tatortsgrad_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.8146829247340599,
+            "geography_main_adjusted_r2": 0.8152744442850078,
+            "interaction_adjusted_r2": 0.8151243408799351,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.0005915195509479387,
+            "delta_adjusted_r2_interaction": -0.00015010340507271014,
+            "delta_aic_geography_beyond_urbanity": 2.730139781359867,
+            "delta_aic_interaction": -1.9197275476417417,
+            "delta_rmse_geography_beyond_urbanity": 0.015933678216810243,
+            "delta_rmse_interaction": 0.00027012095629697086,
+            "coefficients": [
+              {
+                "feature": "lag1_tatortsgrad_pct",
+                "coefficient": 0.0032878175973202065,
+                "p_value": 0.9096275201765854,
+                "ci_low": -0.0534833574440698,
+                "ci_high": 0.06005899263871021
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": -0.28603452233830673,
+                "p_value": 0.018023709907317765,
+                "ci_low": -0.5230689352692595,
+                "ci_high": -0.049000109407354
+              },
+              {
+                "feature": "geo_havsandel_10pp_x_lag1_tatortsgrad_pct",
+                "coefficient": 0.00202088809642418,
+                "p_value": 0.7153650712610578,
+                "ci_low": -0.008840916627120204,
+                "ci_high": 0.012882692819968563
+              }
+            ]
+          },
+          {
+            "model": "coast_vs_built_land_share",
+            "urbanity_feature": "lag1_bebyggd_anlagd_andel_land_pct",
+            "urbanity_center_log_units": 5.3915116541956944,
+            "geography_feature": "kustkommun_hav",
+            "geography_scaled_feature": "kustkommun_hav",
+            "interaction_feature": "kustkommun_hav_x_lag1_bebyggd_anlagd_andel_land_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.8146620446639738,
+            "geography_main_adjusted_r2": 0.8149929122782616,
+            "interaction_adjusted_r2": 0.8151188464017974,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.00033086761428779976,
+            "delta_adjusted_r2_interaction": 0.00012593412353578692,
+            "delta_aic_geography_beyond_urbanity": 1.0942734901864242,
+            "delta_aic_interaction": -0.187643466895679,
+            "delta_rmse_geography_beyond_urbanity": 0.010427454410320003,
+            "delta_rmse_interaction": 0.006101041360541792,
+            "coefficients": [
+              {
+                "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+                "coefficient": 0.1117246432326834,
+                "p_value": 0.13462358407430186,
+                "ci_low": -0.03463858258892831,
+                "ci_high": 0.2580878690542951
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": -1.0050718348637073,
+                "p_value": 0.1251146443267412,
+                "ci_low": -2.2895230909589794,
+                "ci_high": 0.2793794212315648
+              },
+              {
+                "feature": "kustkommun_hav_x_lag1_bebyggd_anlagd_andel_land_pct",
+                "coefficient": -0.09268868265765802,
+                "p_value": 0.1395680660648317,
+                "ci_low": -0.21565220324614515,
+                "ci_high": 0.03027483793082912
+              }
+            ]
+          },
+          {
+            "model": "sea_share_vs_built_land_share",
+            "urbanity_feature": "lag1_bebyggd_anlagd_andel_land_pct",
+            "urbanity_center_log_units": 5.3915116541956944,
+            "geography_feature": "havsandel_pct",
+            "geography_scaled_feature": "geo_havsandel_10pp",
+            "interaction_feature": "geo_havsandel_10pp_x_lag1_bebyggd_anlagd_andel_land_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.8146620446639738,
+            "geography_main_adjusted_r2": 0.8153058099652083,
+            "interaction_adjusted_r2": 0.815199805299588,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.0006437653012344446,
+            "delta_adjusted_r2_interaction": -0.000106004665620274,
+            "delta_aic_geography_beyond_urbanity": 3.0578123003615474,
+            "delta_aic_interaction": -1.6431105370684236,
+            "delta_rmse_geography_beyond_urbanity": 0.017037214139932644,
+            "delta_rmse_interaction": 0.0012007779628024906,
+            "coefficients": [
+              {
+                "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+                "coefficient": 0.04442246653266609,
+                "p_value": 0.5167994219399459,
+                "ci_low": -0.08987985851344682,
+                "ci_high": 0.17872479157877902
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": -0.2442741446813991,
+                "p_value": 0.06665629877432834,
+                "ci_low": -0.5053278954305067,
+                "ci_high": 0.016779606067708536
+              },
+              {
+                "feature": "geo_havsandel_10pp_x_lag1_bebyggd_anlagd_andel_land_pct",
+                "coefficient": -0.007362902271646239,
+                "p_value": 0.4968898248359581,
+                "ci_low": -0.028604002522246152,
+                "ci_high": 0.013878197978953677
+              }
+            ]
           }
         ]
       },
@@ -55856,6 +56552,8 @@
         "end_year": 2024,
         "density_definition": "population per km2 land area, log1p transformed and lagged one year",
         "population_size_definition": "natural log population, lagged one year",
+        "tatortsgrad_definition": "SCB tätortsgrad, percent of municipality population living in statistical urban areas, lagged one year",
+        "built_land_definition": "SCB built/developed land / SCB total land area in MarkanvN, percent, lagged one year",
         "sea_share_unit": "10 percentage points",
         "rows": [
           {
@@ -56029,6 +56727,178 @@
                 "ci_high": 0.12126371177200479
               }
             ]
+          },
+          {
+            "model": "coast_vs_urban_area_share",
+            "urbanity_feature": "lag1_tatortsgrad_pct",
+            "urbanity_center_log_units": 78.0,
+            "geography_feature": "kustkommun_hav",
+            "geography_scaled_feature": "kustkommun_hav",
+            "interaction_feature": "kustkommun_hav_x_lag1_tatortsgrad_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.5793756013924636,
+            "geography_main_adjusted_r2": 0.5810517026297799,
+            "interaction_adjusted_r2": 0.5807891973944954,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.0016761012373163187,
+            "delta_adjusted_r2_interaction": -0.00026250523528448255,
+            "delta_aic_geography_beyond_urbanity": 3.6504787714357008,
+            "delta_aic_interaction": -1.7068265911957496,
+            "delta_rmse_geography_beyond_urbanity": 0.016548866671103113,
+            "delta_rmse_interaction": 0.0008575336389515797,
+            "coefficients": [
+              {
+                "feature": "lag1_tatortsgrad_pct",
+                "coefficient": 0.0006407636147819501,
+                "p_value": 0.98264584419989,
+                "ci_low": -0.057095444369858646,
+                "ci_high": 0.058376971599422546
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": 1.3578915098443676,
+                "p_value": 0.012982451904657601,
+                "ci_low": 0.28657496407980676,
+                "ci_high": 2.429208055608928
+              },
+              {
+                "feature": "kustkommun_hav_x_lag1_tatortsgrad_pct",
+                "coefficient": -0.01858824729510205,
+                "p_value": 0.5637113101131546,
+                "ci_low": -0.08169220088830575,
+                "ci_high": 0.04451570629810165
+              }
+            ]
+          },
+          {
+            "model": "sea_share_vs_urban_area_share",
+            "urbanity_feature": "lag1_tatortsgrad_pct",
+            "urbanity_center_log_units": 78.0,
+            "geography_feature": "havsandel_pct",
+            "geography_scaled_feature": "geo_havsandel_10pp",
+            "interaction_feature": "geo_havsandel_10pp_x_lag1_tatortsgrad_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.5793756013924636,
+            "geography_main_adjusted_r2": 0.5853251863229125,
+            "interaction_adjusted_r2": 0.5849664837437603,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.005949584930448948,
+            "delta_adjusted_r2_interaction": -0.0003587025791522702,
+            "delta_aic_geography_beyond_urbanity": 15.543825883290992,
+            "delta_aic_interaction": -1.9832107723104855,
+            "delta_rmse_geography_beyond_urbanity": 0.051250139560204744,
+            "delta_rmse_interaction": 4.886037439710833e-05,
+            "coefficients": [
+              {
+                "feature": "lag1_tatortsgrad_pct",
+                "coefficient": -0.023050886573725525,
+                "p_value": 0.4467589451635471,
+                "ci_low": -0.08243201047325056,
+                "ci_high": 0.036330237325799514
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": 0.4560172625739184,
+                "p_value": 0.0001781700432098475,
+                "ci_low": 0.21755662104151793,
+                "ci_high": 0.6944779041063188
+              },
+              {
+                "feature": "geo_havsandel_10pp_x_lag1_tatortsgrad_pct",
+                "coefficient": -0.0007897964037989536,
+                "p_value": 0.9015391119526616,
+                "ci_low": -0.013301971196388936,
+                "ci_high": 0.01172237838879103
+              }
+            ]
+          },
+          {
+            "model": "coast_vs_built_land_share",
+            "urbanity_feature": "lag1_bebyggd_anlagd_andel_land_pct",
+            "urbanity_center_log_units": 5.3915116541956944,
+            "geography_feature": "kustkommun_hav",
+            "geography_scaled_feature": "kustkommun_hav",
+            "interaction_feature": "kustkommun_hav_x_lag1_bebyggd_anlagd_andel_land_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.5802415668711931,
+            "geography_main_adjusted_r2": 0.5813471286199126,
+            "interaction_adjusted_r2": 0.5811429929694598,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.0011055617487194525,
+            "delta_adjusted_r2_interaction": -0.0002041356504527414,
+            "delta_aic_geography_beyond_urbanity": 2.078128551682312,
+            "delta_aic_interaction": -1.5456992756035106,
+            "delta_rmse_geography_beyond_urbanity": 0.011935579861025225,
+            "delta_rmse_interaction": 0.0013283170873803485,
+            "coefficients": [
+              {
+                "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+                "coefficient": 0.07950093506014899,
+                "p_value": 0.1408648576834275,
+                "ci_low": -0.0263127931955697,
+                "ci_high": 0.18531466331586768
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": 1.2192435889896136,
+                "p_value": 0.02813729969844889,
+                "ci_low": 0.13073593320616972,
+                "ci_high": 2.3077512447730575
+              },
+              {
+                "feature": "kustkommun_hav_x_lag1_bebyggd_anlagd_andel_land_pct",
+                "coefficient": -0.04007243486624872,
+                "p_value": 0.37821630745231727,
+                "ci_low": -0.12920275404064852,
+                "ci_high": 0.04905788430815108
+              }
+            ]
+          },
+          {
+            "model": "sea_share_vs_built_land_share",
+            "urbanity_feature": "lag1_bebyggd_anlagd_andel_land_pct",
+            "urbanity_center_log_units": 5.3915116541956944,
+            "geography_feature": "havsandel_pct",
+            "geography_scaled_feature": "geo_havsandel_10pp",
+            "interaction_feature": "geo_havsandel_10pp_x_lag1_bebyggd_anlagd_andel_land_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.5802415668711931,
+            "geography_main_adjusted_r2": 0.5851508562802541,
+            "interaction_adjusted_r2": 0.5847944512647136,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.004909289409060991,
+            "delta_adjusted_r2_interaction": -0.0003564050155404619,
+            "delta_aic_geography_beyond_urbanity": 12.665636768277182,
+            "delta_aic_interaction": -1.9763705638579268,
+            "delta_rmse_geography_beyond_urbanity": 0.0428245919901018,
+            "delta_rmse_interaction": 6.878124927478524e-05,
+            "coefficients": [
+              {
+                "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+                "coefficient": 0.02393611573934894,
+                "p_value": 0.5492719045437707,
+                "ci_low": -0.0544037121306592,
+                "ci_high": 0.10227594360935707
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": 0.40012260634107794,
+                "p_value": 0.002054567734378122,
+                "ci_low": 0.14568793574543826,
+                "ci_high": 0.6545572769367176
+              },
+              {
+                "feature": "geo_havsandel_10pp_x_lag1_bebyggd_anlagd_andel_land_pct",
+                "coefficient": 0.0016054408563420464,
+                "p_value": 0.8632114032626174,
+                "ci_low": -0.016658239070799403,
+                "ci_high": 0.019869120783483494
+              }
+            ]
           }
         ]
       },
@@ -56038,6 +56908,8 @@
         "end_year": 2024,
         "density_definition": "population per km2 land area, log1p transformed and lagged one year",
         "population_size_definition": "natural log population, lagged one year",
+        "tatortsgrad_definition": "SCB tätortsgrad, percent of municipality population living in statistical urban areas, lagged one year",
+        "built_land_definition": "SCB built/developed land / SCB total land area in MarkanvN, percent, lagged one year",
         "sea_share_unit": "10 percentage points",
         "rows": [
           {
@@ -56209,6 +57081,178 @@
                 "p_value": 0.3605819403333218,
                 "ci_low": -0.10569166539617303,
                 "ci_high": 0.038453043965063584
+              }
+            ]
+          },
+          {
+            "model": "coast_vs_urban_area_share",
+            "urbanity_feature": "lag1_tatortsgrad_pct",
+            "urbanity_center_log_units": 78.0,
+            "geography_feature": "kustkommun_hav",
+            "geography_scaled_feature": "kustkommun_hav",
+            "interaction_feature": "kustkommun_hav_x_lag1_tatortsgrad_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.47014901182634006,
+            "geography_main_adjusted_r2": 0.47108697960045276,
+            "interaction_adjusted_r2": 0.47086273104123066,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.0009379677741127024,
+            "delta_adjusted_r2_interaction": -0.00022424855922209552,
+            "delta_aic_geography_beyond_urbanity": 1.0706250381790596,
+            "delta_aic_interaction": -1.4755057956172095,
+            "delta_rmse_geography_beyond_urbanity": 0.005979007047629992,
+            "delta_rmse_interaction": 0.0010204845772401328,
+            "coefficients": [
+              {
+                "feature": "lag1_tatortsgrad_pct",
+                "coefficient": 0.002182588095863627,
+                "p_value": 0.8981968673433048,
+                "ci_low": -0.0312534870334882,
+                "ci_high": 0.03561866322521546
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": 0.6162142666008272,
+                "p_value": 0.06061490155681264,
+                "ci_low": -0.027478928883638787,
+                "ci_high": 1.2599074620852933
+              },
+              {
+                "feature": "kustkommun_hav_x_lag1_tatortsgrad_pct",
+                "coefficient": -0.015633049606332848,
+                "p_value": 0.4385691196980711,
+                "ci_low": -0.05518862658579221,
+                "ci_high": 0.023922527373126515
+              }
+            ]
+          },
+          {
+            "model": "sea_share_vs_urban_area_share",
+            "urbanity_feature": "lag1_tatortsgrad_pct",
+            "urbanity_center_log_units": 78.0,
+            "geography_feature": "havsandel_pct",
+            "geography_scaled_feature": "geo_havsandel_10pp",
+            "interaction_feature": "geo_havsandel_10pp_x_lag1_tatortsgrad_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.47014901182634006,
+            "geography_main_adjusted_r2": 0.47285601845887604,
+            "interaction_adjusted_r2": 0.4726758105205384,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.00270700663253598,
+            "delta_adjusted_r2_interaction": -0.0001802079383376176,
+            "delta_aic_geography_beyond_urbanity": 4.956943658180535,
+            "delta_aic_interaction": -1.3802797146527155,
+            "delta_rmse_geography_beyond_urbanity": 0.01353496522225317,
+            "delta_rmse_interaction": 0.0012037188140308075,
+            "coefficients": [
+              {
+                "feature": "lag1_tatortsgrad_pct",
+                "coefficient": -0.0008293983597704334,
+                "p_value": 0.9621734846115663,
+                "ci_low": -0.035105561974928215,
+                "ci_high": 0.03344676525538735
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": 0.17856944598812918,
+                "p_value": 0.007952575714880906,
+                "ci_low": 0.04670072949380141,
+                "ci_high": 0.3104381624824569
+              },
+              {
+                "feature": "geo_havsandel_10pp_x_lag1_tatortsgrad_pct",
+                "coefficient": -0.0031336401183999123,
+                "p_value": 0.36402240936101715,
+                "ci_low": -0.009899794402461953,
+                "ci_high": 0.003632514165662128
+              }
+            ]
+          },
+          {
+            "model": "coast_vs_built_land_share",
+            "urbanity_feature": "lag1_bebyggd_anlagd_andel_land_pct",
+            "urbanity_center_log_units": 5.3915116541956944,
+            "geography_feature": "kustkommun_hav",
+            "geography_scaled_feature": "kustkommun_hav",
+            "interaction_feature": "kustkommun_hav_x_lag1_bebyggd_anlagd_andel_land_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.4704216083472378,
+            "geography_main_adjusted_r2": 0.47108864225326785,
+            "interaction_adjusted_r2": 0.4706768117819703,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.0006670339060300678,
+            "delta_adjusted_r2_interaction": -0.00041183047129755845,
+            "delta_aic_geography_beyond_urbanity": 0.47732382599679113,
+            "delta_aic_interaction": -1.8866617882313221,
+            "delta_rmse_geography_beyond_urbanity": 0.004823128497934981,
+            "delta_rmse_interaction": 0.00022053621056539185,
+            "coefficients": [
+              {
+                "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+                "coefficient": 0.01547018833022807,
+                "p_value": 0.6927518481474793,
+                "ci_low": -0.061267901231237466,
+                "ci_high": 0.09220827789169361
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": 0.5766499913212173,
+                "p_value": 0.08857863026353556,
+                "ci_low": -0.08703214013037142,
+                "ci_high": 1.2403321227728061
+              },
+              {
+                "feature": "kustkommun_hav_x_lag1_bebyggd_anlagd_andel_land_pct",
+                "coefficient": -0.012576818761877075,
+                "p_value": 0.7129831613697284,
+                "ci_low": -0.0795876628873008,
+                "ci_high": 0.05443402536354665
+              }
+            ]
+          },
+          {
+            "model": "sea_share_vs_built_land_share",
+            "urbanity_feature": "lag1_bebyggd_anlagd_andel_land_pct",
+            "urbanity_center_log_units": 5.3915116541956944,
+            "geography_feature": "havsandel_pct",
+            "geography_scaled_feature": "geo_havsandel_10pp",
+            "interaction_feature": "geo_havsandel_10pp_x_lag1_bebyggd_anlagd_andel_land_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.4704216083472378,
+            "geography_main_adjusted_r2": 0.4727936540353218,
+            "interaction_adjusted_r2": 0.4724254677771642,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.0023720456880840235,
+            "delta_adjusted_r2_interaction": -0.000368186258157599,
+            "delta_aic_geography_beyond_urbanity": 4.2227688242501245,
+            "delta_aic_interaction": -1.7936221988065881,
+            "delta_rmse_geography_beyond_urbanity": 0.012105403327796083,
+            "delta_rmse_interaction": 0.0004009190500502413,
+            "coefficients": [
+              {
+                "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+                "coefficient": 0.00996034908165978,
+                "p_value": 0.7333797685642511,
+                "ci_low": -0.04735035407123721,
+                "ci_high": 0.06727105223455677
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": 0.17974189870203527,
+                "p_value": 0.010897968024305175,
+                "ci_low": 0.041370307347000757,
+                "ci_high": 0.3181134900570698
+              },
+              {
+                "feature": "geo_havsandel_10pp_x_lag1_bebyggd_anlagd_andel_land_pct",
+                "coefficient": -0.0031424383861330092,
+                "p_value": 0.5716824098243787,
+                "ci_low": -0.014032348631978567,
+                "ci_high": 0.007747471859712549
               }
             ]
           }
@@ -56581,6 +57625,10 @@
     "centroid_definition": "Area-weighted polygon centroid northing from swemaps GeoParquet derived from SCB municipal boundaries, reprojected to EPSG:3006",
     "sea_share_definition": "Sea water to territorial border / total municipal area, percent",
     "urbanity_proxy": "log1p(population / SCB land area), lagged one year",
+    "direct_urbanity_controls": [
+      "SCB tätortsgrad (population share in statistical urban areas)",
+      "SCB built/developed land share of total land area in MarkanvN"
+    ],
     "production_status": "candidate_only"
   }
 }
