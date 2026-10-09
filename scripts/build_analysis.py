@@ -87,6 +87,8 @@ BRA_ANNUAL_RAW = "https://raw.githubusercontent.com/Lulea-statistik/BR-brottssta
 LABOR_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210A/ArbStatusAr"
 MONTHLY_EMPLOYMENT_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210B/ArbStDoNMNN"
 AREA_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/MI/MI0802/Areal2012NN"
+TATORTSGRAD_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/MI/MI0810/MI0810A/TatortGrad"
+LAND_USE_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/MI/MI0803/MI0803A/MarkanvN"
 MUNICIPAL_GEOPARQUET_URL = "https://raw.githubusercontent.com/stefur/swemaps/main/src/swemaps/data/kommun.parquet"
 GEOGRAPHY_CRS = "EPSG:3006"
 EDUCATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/UF/UF0506/UF0506B/Utbildning"
@@ -205,6 +207,8 @@ def preflight_sources() -> None:
         "labor": LABOR_URL,
         "monthly_employment": MONTHLY_EMPLOYMENT_URL,
         "municipal_area": AREA_URL,
+        "urban_area_share": TATORTSGRAD_URL,
+        "land_use": LAND_USE_URL,
         "education": EDUCATION_URL,
         "students": STUDENT_URL,
         "industry": INDUSTRY_URL,
@@ -2982,6 +2986,212 @@ def get_geography() -> pd.DataFrame:
     return geo
 
 
+
+def _metadata_year_values(time_var: dict, max_year: int) -> list[str]:
+    out = []
+    for value in time_var.get("values", []):
+        text = str(value).strip()
+        match = re.search(r"(?:19|20)\d{2}", text)
+        if not match:
+            continue
+        year = int(match.group(0))
+        if year <= max_year:
+            out.append(str(value))
+    if not out:
+        raise ValueError(
+            f"No usable years <= {max_year} in {time_var.get('text')}: "
+            f"{time_var.get('values', [])[:20]}"
+        )
+    return out
+
+
+def get_tatortsgrad() -> pd.DataFrame:
+    """
+    SCB's direct municipality urban-area share (tätortsgrad), percent.
+    Measurements are sparse. They are merged by measurement year and later
+    forward-filled only, so future measurements never leak backwards.
+    """
+    meta = metadata(TATORTSGRAD_URL)
+    content = find_var(meta, "tabellinnehåll", "contentscode")
+    region = find_var(meta, "region")
+    time_var = find_var(meta, "vart 5:e år", "år", "tid")
+
+    content_code = code_for_text(content, "Tätortsgrad")
+    munis = municipality_codes(region)
+    years = _metadata_year_values(time_var, END_YEAR)
+
+    df = px_csv(TATORTSGRAD_URL, {
+        content["code"]: [content_code],
+        region["code"]: munis,
+        time_var["code"]: years,
+    })
+
+    dims = standardize_columns(df)
+    region_col = dims.get("region")
+    year_col = dims.get("year")
+    if region_col is None or year_col is None:
+        raise ValueError(
+            f"Could not identify region/year in tätortsgrad response: {list(df.columns)}"
+        )
+
+    excluded = {region_col, year_col}
+    value_cols = [c for c in df.columns if c not in excluded]
+    value_col = next(
+        (c for c in value_cols if "tätortsgrad" in str(c).casefold()),
+        value_cols[-1] if value_cols else None,
+    )
+    if value_col is None:
+        raise ValueError(f"No tätortsgrad value column found: {list(df.columns)}")
+
+    out = df[[region_col, year_col, value_col]].copy()
+    out[["kommun_kod", "kommun_tatort"]] = out[region_col].apply(
+        lambda x: pd.Series(split_region(x))
+    )
+    out["year"] = pd.to_numeric(
+        out[year_col].astype(str).str.extract(r"((?:19|20)\d{2})")[0],
+        errors="coerce",
+    )
+    out["tatortsgrad_pct"] = normalize_number(out[value_col])
+    out = out.dropna(subset=["year", "tatortsgrad_pct"])
+    out["year"] = out["year"].astype(int)
+    out["kommun_kod"] = out["kommun_kod"].astype(str).str.zfill(4)
+
+    if out["kommun_kod"].nunique() < 285:
+        raise ValueError(
+            f"Tätortsgrad covers only {out['kommun_kod'].nunique()} municipalities"
+        )
+    if not out["tatortsgrad_pct"].between(0, 100.0001).all():
+        raise ValueError("Tätortsgrad outside 0-100%; check SCB parsing")
+
+    print(
+        "Tätortsgrad: "
+        f"{out['kommun_kod'].nunique()} municipalities, "
+        f"measurement years={sorted(out['year'].unique().tolist())}"
+    )
+    return out[["kommun_kod", "year", "tatortsgrad_pct"]]
+
+
+def get_land_use_urbanity() -> pd.DataFrame:
+    """
+    Share of SCB total land area classified as built-up/developed land.
+    Numerator and denominator come from the same MarkanvN table.
+    """
+    meta = metadata(LAND_USE_URL)
+    region = find_var(meta, "region")
+    land_class = find_var(meta, "markanvändningsklass")
+    content = find_var(meta, "tabellinnehåll", "contentscode")
+    time_var = find_var(meta, "vart 5:e år", "år", "tid")
+
+    built_code = code_for_text(land_class, "bebyggd och anlagd mark")
+    total_land_code = code_for_text(land_class, "total landareal")
+    munis = municipality_codes(region)
+    years = _metadata_year_values(time_var, END_YEAR)
+    measure_codes = aggregate_codes(content)
+
+    df = px_csv(LAND_USE_URL, {
+        region["code"]: munis,
+        land_class["code"]: [built_code, total_land_code],
+        content["code"]: measure_codes,
+        time_var["code"]: years,
+    })
+
+    dims = standardize_columns(df)
+    region_col = dims.get("region")
+    year_col = dims.get("year")
+    class_col = next(
+        (c for c in df.columns if "markanvändningsklass" in _norm_header(c)),
+        None,
+    )
+    if region_col is None or year_col is None or class_col is None:
+        raise ValueError(
+            f"Could not identify region/year/class in MarkanvN response: {list(df.columns)}"
+        )
+
+    excluded = {region_col, year_col, class_col}
+    value_cols = [c for c in df.columns if c not in excluded]
+    value_col = next(
+        (c for c in value_cols if "hektar" in str(c).casefold()),
+        value_cols[-1] if value_cols else None,
+    )
+    if value_col is None:
+        raise ValueError(f"No MarkanvN hectare value column found: {list(df.columns)}")
+
+    work = df[[region_col, year_col, class_col, value_col]].copy()
+    work[["kommun_kod", "kommun_mark"]] = work[region_col].apply(
+        lambda x: pd.Series(split_region(x))
+    )
+    work["year"] = pd.to_numeric(
+        work[year_col].astype(str).str.extract(r"((?:19|20)\d{2})")[0],
+        errors="coerce",
+    )
+    work["value_ha"] = normalize_number(work[value_col])
+    work["kommun_kod"] = work["kommun_kod"].astype(str).str.zfill(4)
+
+    def kind(value: object) -> str | None:
+        text = _norm_header(value)
+        if "bebyggdoch-anlagdmark" in text:
+            return "built"
+        if "bebyggdochanlagdmark" in text:
+            return "built"
+        if "totallandareal" in text:
+            return "total_land"
+        return None
+
+    # Normalization may retain punctuation differently; use direct substring
+    # fallback on the original label as well.
+    work["kind"] = work[class_col].map(kind)
+    missing_kind = work["kind"].isna()
+    original = work.loc[missing_kind, class_col].astype(str).str.casefold()
+    work.loc[missing_kind & original.str.contains("bebyggd och anlagd mark", regex=False), "kind"] = "built"
+    work.loc[missing_kind & original.str.contains("total landareal", regex=False), "kind"] = "total_land"
+
+    work = work.dropna(subset=["year", "value_ha", "kind"])
+    work["year"] = work["year"].astype(int)
+    pivot = (
+        work.pivot_table(
+            index=["kommun_kod", "year"],
+            columns="kind",
+            values="value_ha",
+            aggfunc="sum",
+        )
+        .reset_index()
+    )
+    if "built" not in pivot.columns or "total_land" not in pivot.columns:
+        raise ValueError(
+            f"MarkanvN response lacks built/total land values: {list(pivot.columns)}"
+        )
+
+    pivot["bebyggd_anlagd_andel_land_pct"] = (
+        100 * pivot["built"] / pivot["total_land"].replace(0, np.nan)
+    )
+    if pivot["kommun_kod"].nunique() < 285:
+        raise ValueError(
+            f"MarkanvN covers only {pivot['kommun_kod'].nunique()} municipalities"
+        )
+    if not pivot["bebyggd_anlagd_andel_land_pct"].dropna().between(0, 100.0001).all():
+        raise ValueError("Built/developed land share outside 0-100%; check SCB parsing")
+
+    print(
+        "Built/developed land share: "
+        f"{pivot['kommun_kod'].nunique()} municipalities, "
+        f"measurement years={sorted(pivot['year'].unique().tolist())}"
+    )
+    return pivot[[
+        "kommun_kod", "year", "bebyggd_anlagd_andel_land_pct"
+    ]]
+
+
+def get_direct_urbanity() -> pd.DataFrame:
+    tatort = get_tatortsgrad()
+    land_use = get_land_use_urbanity()
+    return tatort.merge(
+        land_use,
+        on=["kommun_kod", "year"],
+        how="outer",
+        validate="one_to_one",
+    )
+
+
 def standardize_columns(df: pd.DataFrame) -> dict[str, str]:
     out = {}
     for c in df.columns:
@@ -3048,7 +3258,7 @@ def split_region(value: str) -> tuple[str, str]:
     return s[:4], s[5:] if len(s) > 5 else s
 
 
-def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turnout: pd.DataFrame, inequality: pd.DataFrame, housing: pd.DataFrame, completed_housing: pd.DataFrame, leisure: pd.DataFrame, crime: pd.DataFrame, labor: pd.DataFrame, monthly_employment: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame, activity: pd.DataFrame, industry: pd.DataFrame, fa15: pd.DataFrame, geography: pd.DataFrame) -> pd.DataFrame:
+def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turnout: pd.DataFrame, inequality: pd.DataFrame, housing: pd.DataFrame, completed_housing: pd.DataFrame, leisure: pd.DataFrame, crime: pd.DataFrame, labor: pd.DataFrame, monthly_employment: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame, activity: pd.DataFrame, industry: pd.DataFrame, fa15: pd.DataFrame, geography: pd.DataFrame, direct_urbanity: pd.DataFrame) -> pd.DataFrame:
     md = standardize_columns(mig)
     mig = mig.copy()
     mig["value"] = normalize_number(mig["value"])
@@ -3231,6 +3441,13 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turn
         ]],
         on="kommun_kod", how="left"
     )
+    panel = panel.merge(
+        direct_urbanity[[
+            "kommun_kod", "year", "tatortsgrad_pct",
+            "bebyggd_anlagd_andel_land_pct",
+        ]],
+        on=["kommun_kod", "year"], how="left"
+    )
 
     # Functional labour-market access: jobs in the rest of the municipality's
     # FA15 region relative to the municipality's own population.
@@ -3279,6 +3496,13 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turn
     )
 
     panel = panel.sort_values(["kommun_kod", "year"])
+    sparse_urbanity_cols = [
+        "tatortsgrad_pct",
+        "bebyggd_anlagd_andel_land_pct",
+    ]
+    panel[sparse_urbanity_cols] = (
+        panel.groupby("kommun_kod", group_keys=False)[sparse_urbanity_cols].ffill()
+    )
     g = panel.groupby("kommun_kod", group_keys=False)
     panel["befolkningstillvaxt_pct"] = 100 * g["folkmangd"].pct_change(fill_method=None)
     panel["bostadsbestandsforandring_pct"] = (
@@ -3296,6 +3520,8 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turn
     panel["lag1_inflyttning_70_79_per_1000"] = g["inflyttning_70_79_per_1000"].shift(1)
     panel["lag1_log_folkmangd"] = g["log_folkmangd"].shift(1)
     panel["lag1_log_befolkningstathet_land"] = g["log_befolkningstathet_land"].shift(1)
+    panel["lag1_tatortsgrad_pct"] = g["tatortsgrad_pct"].shift(1)
+    panel["lag1_bebyggd_anlagd_andel_land_pct"] = g["bebyggd_anlagd_andel_land_pct"].shift(1)
     panel["lag1_befolkningstillvaxt_pct"] = g["befolkningstillvaxt_pct"].shift(1)
     panel["lag1_andel_20_34"] = g["andel_20_34"].shift(1)
     panel["lag1_inflyttare_medelalder"] = g["inflyttare_medelalder"].shift(1)
@@ -4490,11 +4716,36 @@ def _geography_urbanity_tests(
             "geo": "havsandel_pct",
             "geo_scaled": "geo_havsandel_10pp",
         },
+        {
+            "name": "coast_vs_urban_area_share",
+            "urbanity": "lag1_tatortsgrad_pct",
+            "geo": "kustkommun_hav",
+            "geo_scaled": "kustkommun_hav",
+        },
+        {
+            "name": "sea_share_vs_urban_area_share",
+            "urbanity": "lag1_tatortsgrad_pct",
+            "geo": "havsandel_pct",
+            "geo_scaled": "geo_havsandel_10pp",
+        },
+        {
+            "name": "coast_vs_built_land_share",
+            "urbanity": "lag1_bebyggd_anlagd_andel_land_pct",
+            "geo": "kustkommun_hav",
+            "geo_scaled": "kustkommun_hav",
+        },
+        {
+            "name": "sea_share_vs_built_land_share",
+            "urbanity": "lag1_bebyggd_anlagd_andel_land_pct",
+            "geo": "havsandel_pct",
+            "geo_scaled": "geo_havsandel_10pp",
+        },
     ]
 
     needed = [
         "kommun_kod", "year", target, "kustkommun_hav", "havsandel_pct",
         "lag1_log_folkmangd", "lag1_log_befolkningstathet_land",
+        "lag1_tatortsgrad_pct", "lag1_bebyggd_anlagd_andel_land_pct",
     ] + list(base_features)
     needed = list(dict.fromkeys(needed))
     d = (
@@ -4607,6 +4858,8 @@ def _geography_urbanity_tests(
             "population per km2 land area, log1p transformed and lagged one year"
         ),
         "population_size_definition": "natural log population, lagged one year",
+        "tatortsgrad_definition": "SCB tätortsgrad, percent of municipality population living in statistical urban areas, lagged one year",
+        "built_land_definition": "SCB built/developed land / SCB total land area in MarkanvN, percent, lagged one year",
         "sea_share_unit": "10 percentage points",
         "rows": rows,
     }
@@ -4669,6 +4922,7 @@ def main():
     industry = get_industry_structure()
     fa15 = get_fa15_membership()
     geography = get_geography()
+    direct_urbanity = get_direct_urbanity()
     mig = get_migration()
     pop = get_population()
     income = get_income()
@@ -4676,7 +4930,7 @@ def main():
     completed_housing = get_completed_housing()
     leisure = get_leisure_houses()
     crime = get_crime_total()
-    panel = build_panel(mig, pop, income, turnout, inequality, housing, completed_housing, leisure, crime, labor, monthly_employment, education, students, activity, industry, fa15, geography)
+    panel = build_panel(mig, pop, income, turnout, inequality, housing, completed_housing, leisure, crime, labor, monthly_employment, education, students, activity, industry, fa15, geography, direct_urbanity)
     panel.to_csv(OUT / "panel.csv", index=False)
     result = fit_models(panel)
     age_models = fit_age_group_models(panel)
@@ -4798,6 +5052,10 @@ def main():
         "centroid_definition": "Area-weighted polygon centroid northing from swemaps GeoParquet derived from SCB municipal boundaries, reprojected to EPSG:3006",
         "sea_share_definition": "Sea water to territorial border / total municipal area, percent",
         "urbanity_proxy": "log1p(population / SCB land area), lagged one year",
+        "direct_urbanity_controls": [
+            "SCB tätortsgrad (population share in statistical urban areas)",
+            "SCB built/developed land share of total land area in MarkanvN",
+        ],
         "production_status": "candidate_only",
     }
 
