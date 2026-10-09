@@ -65,6 +65,7 @@ LOOKAHEAD_ONLY_FEATURES = {
     "lag1_valdeltagande_gap_pp",
 }
 HOUSING_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104D/BO0104T04"
+COMPLETED_HOUSING_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0101/BO0101A/LghReHtypUfAr"
 LEISURE_HOUSE_URL_CANDIDATES = [
     # Exact branch from SCB PxWeb: START__BO__BO0104__BO0104H/BO0104T08
     "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104H/BO0104T08",
@@ -158,6 +159,7 @@ def preflight_sources() -> None:
         "income": INCOME_URL,
         "socioeconomic_gap": INEQUALITY_URL,
         "housing": HOUSING_URL,
+        "completed_housing": COMPLETED_HOUSING_URL,
         "labor": LABOR_URL,
         "education": EDUCATION_URL,
         "students": STUDENT_URL,
@@ -1477,9 +1479,13 @@ def get_housing() -> pd.DataFrame:
         )
 
         hcol = dims["house_type"]
+        tcol = dims["tenure"]
         df["_is_small"] = df[hcol].astype(str).str.lower().str.contains(
             "småhus", regex=False
         )
+        tenure_text = df[tcol].astype(str).str.lower()
+        df["_is_rental"] = tenure_text.str.contains("hyres", regex=False)
+        df["_is_condo"] = tenure_text.str.contains("bostadsr", regex=False)
 
         totals = (
             df.groupby(["kommun_kod", "kommun", "year"], as_index=False)["value"]
@@ -1492,20 +1498,116 @@ def get_housing() -> pd.DataFrame:
             .sum()
             .rename(columns={"value": "bostader_smahus"})
         )
+        rental = (
+            df[df["_is_rental"]]
+            .groupby(["kommun_kod", "kommun", "year"], as_index=False)["value"]
+            .sum()
+            .rename(columns={"value": "bostader_hyresratt"})
+        )
+        condo = (
+            df[df["_is_condo"]]
+            .groupby(["kommun_kod", "kommun", "year"], as_index=False)["value"]
+            .sum()
+            .rename(columns={"value": "bostader_bostadsratt"})
+        )
 
         agg = totals.merge(
             small,
             on=["kommun_kod", "kommun", "year"],
             how="left",
+        ).merge(
+            rental,
+            on=["kommun_kod", "kommun", "year"],
+            how="left",
+        ).merge(
+            condo,
+            on=["kommun_kod", "kommun", "year"],
+            how="left",
         )
+        for col in ["bostader_smahus", "bostader_hyresratt", "bostader_bostadsratt"]:
+            agg[col] = agg[col].fillna(0)
         agg["andel_smahus"] = (
             100 * agg["bostader_smahus"] / agg["bostader_totalt"].replace(0, np.nan)
         )
+        agg["andel_hyresratt"] = (
+            100 * agg["bostader_hyresratt"] / agg["bostader_totalt"].replace(0, np.nan)
+        )
+        agg["andel_bostadsratt"] = (
+            100 * agg["bostader_bostadsratt"] / agg["bostader_totalt"].replace(0, np.nan)
+        )
         rows.append(agg[[
             "kommun_kod", "kommun", "year",
-            "bostader_smahus", "bostader_totalt", "andel_smahus"
+            "bostader_smahus", "bostader_totalt", "andel_smahus",
+            "andel_hyresratt", "andel_bostadsratt"
         ]])
         print(f"Housing {year}: {len(agg):,} municipalities")
+
+    return pd.concat(rows, ignore_index=True)
+
+
+def get_completed_housing() -> pd.DataFrame:
+    """
+    Completed dwellings in newly constructed buildings by municipality and year.
+    SCB table LghReHtypUfAr.  House type and tenure categories are mutually
+    exclusive, so summing them gives the municipality total for each year.
+    """
+    meta = metadata(COMPLETED_HOUSING_URL)
+    region = find_var(meta, "region")
+    house_type = find_var(meta, "hustyp")
+    tenure = find_var(meta, "upplåtelseform", "upplatelseform")
+    time = find_var(meta, "år", "tid")
+
+    content = None
+    try:
+        content = find_var(meta, "tabellinnehåll", "contentscode")
+    except KeyError:
+        pass
+
+    munis = municipality_codes(region)
+    rows = []
+    for year in AUX_YEARS:
+        selections = {
+            region["code"]: munis,
+            house_type["code"]: list(house_type["values"]),
+            tenure["code"]: list(tenure["values"]),
+            time["code"]: [str(year)],
+        }
+        if content is not None:
+            selections[content["code"]] = [content["values"][0]]
+
+        df = px_csv(COMPLETED_HOUSING_URL, selections)
+        dims = standardize_columns(df)
+        for c in df.columns:
+            cl = str(c).lower()
+            if "hustyp" in cl:
+                dims["house_type"] = c
+            elif "upplåtelseform" in cl or "upplatelseform" in cl:
+                dims["tenure"] = c
+
+        dim_cols = set(dims.values())
+        value_cols = [c for c in df.columns if c not in dim_cols]
+        if len(value_cols) != 1:
+            raise ValueError(
+                f"Expected one completed-housing value column for {year}, got {value_cols}; "
+                f"columns={list(df.columns)}"
+            )
+
+        df["value"] = normalize_number(df[value_cols[0]])
+        df["year"] = year
+        df[["kommun_kod", "kommun"]] = df[dims["region"]].apply(
+            lambda x: pd.Series(split_region(x))
+        )
+        agg = (
+            df.groupby(["kommun_kod", "kommun", "year"], as_index=False)["value"]
+            .sum(min_count=1)
+            .rename(columns={"value": "fardigstallda_bostader"})
+        )
+        if agg["kommun_kod"].nunique() < 280:
+            raise ValueError(
+                f"Completed housing {year}: only {agg['kommun_kod'].nunique()} municipalities"
+            )
+        rows.append(agg)
+        print(f"Completed housing {year}: {len(agg):,} municipalities")
 
     return pd.concat(rows, ignore_index=True)
 
@@ -2202,7 +2304,7 @@ def split_region(value: str) -> tuple[str, str]:
     return s[:4], s[5:] if len(s) > 5 else s
 
 
-def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turnout: pd.DataFrame, inequality: pd.DataFrame, housing: pd.DataFrame, leisure: pd.DataFrame, crime: pd.DataFrame, labor: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame, industry: pd.DataFrame, fa15: pd.DataFrame) -> pd.DataFrame:
+def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turnout: pd.DataFrame, inequality: pd.DataFrame, housing: pd.DataFrame, completed_housing: pd.DataFrame, leisure: pd.DataFrame, crime: pd.DataFrame, labor: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame, industry: pd.DataFrame, fa15: pd.DataFrame) -> pd.DataFrame:
     md = standardize_columns(mig)
     mig = mig.copy()
     mig["value"] = normalize_number(mig["value"])
@@ -2302,7 +2404,14 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turn
         on=["kommun_kod", "year"], how="left"
     )
     panel = panel.merge(
-        housing[["kommun_kod", "year", "bostader_smahus", "andel_smahus"]],
+        housing[[
+            "kommun_kod", "year", "bostader_smahus", "bostader_totalt",
+            "andel_smahus", "andel_hyresratt", "andel_bostadsratt"
+        ]],
+        on=["kommun_kod", "year"], how="left"
+    )
+    panel = panel.merge(
+        completed_housing[["kommun_kod", "year", "fardigstallda_bostader"]],
         on=["kommun_kod", "year"], how="left"
     )
     panel = panel.merge(
@@ -2358,6 +2467,12 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turn
     )
 
     panel["andel_20_34"] = 100 * panel["bef_20_34"] / panel["folkmangd"]
+    panel["bostader_per_1000"] = (
+        1000 * panel["bostader_totalt"] / panel["folkmangd"].replace(0, np.nan)
+    )
+    panel["fardigstallda_bostader_per_1000"] = (
+        1000 * panel["fardigstallda_bostader"] / panel["folkmangd"].replace(0, np.nan)
+    )
     panel["inflyttning_per_1000"] = 1000 * panel["inflyttade"] / panel["folkmangd"]
     panel["inflyttning_18_23_per_1000"] = (
         1000 * panel["inflyttade_18_23"] / panel["bef_18_23"].replace(0, np.nan)
@@ -2379,6 +2494,9 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turn
     panel = panel.sort_values(["kommun_kod", "year"])
     g = panel.groupby("kommun_kod", group_keys=False)
     panel["befolkningstillvaxt_pct"] = 100 * g["folkmangd"].pct_change(fill_method=None)
+    panel["bostadsbestandsforandring_pct"] = (
+        100 * g["bostader_totalt"].pct_change(fill_method=None)
+    )
 
     # All structural predictors are lagged one year so the explanatory value
     # precedes the migration outcome temporally.
@@ -2396,6 +2514,11 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turn
     panel["lag1_valdeltagande_pct"] = g["valdeltagande_pct"].shift(1)
     panel["lag1_valdeltagande_gap_pp"] = g["valdeltagande_gap_pp"].shift(1)
     panel["lag1_ekonomisk_standard_gap_pp"] = g["ekonomisk_standard_gap_pp"].shift(1)
+    panel["lag1_bostader_per_1000"] = g["bostader_per_1000"].shift(1)
+    panel["lag1_bostadsbestandsforandring_pct"] = g["bostadsbestandsforandring_pct"].shift(1)
+    panel["lag1_fardigstallda_bostader_per_1000"] = g["fardigstallda_bostader_per_1000"].shift(1)
+    panel["lag1_andel_hyresratt"] = g["andel_hyresratt"].shift(1)
+    panel["lag1_andel_bostadsratt"] = g["andel_bostadsratt"].shift(1)
     panel["lag1_andel_smahus"] = g["andel_smahus"].shift(1)
     panel["lag1_fritidshusandel_bland_smahus"] = g["fritidshusandel_bland_smahus"].shift(1)
     panel["lag1_brott_per_100000"] = g["brott_per_100000"].shift(1)
@@ -2560,6 +2683,11 @@ FEATURE_THEMES = {
     "lag1_valdeltagande_pct": "Demokratisk delaktighet",
     "lag1_valdeltagande_gap_pp": "Demokratisk ojämlikhet",
     "lag1_ekonomisk_standard_gap_pp": "Socioekonomiska klyftor",
+    "lag1_bostader_per_1000": "Bostadsutbud",
+    "lag1_bostadsbestandsforandring_pct": "Bostadsdynamik",
+    "lag1_fardigstallda_bostader_per_1000": "Bostadsdynamik",
+    "lag1_andel_hyresratt": "Upplåtelseform",
+    "lag1_andel_bostadsratt": "Upplåtelseform",
     "lag1_andel_smahus": "Landets lugn",
     "lag1_fritidshusandel_bland_smahus": "Landets lugn",
     "lag1_brott_per_100000": "Landets lugn",
@@ -2998,6 +3126,11 @@ def fit_models(panel: pd.DataFrame) -> dict:
         "lag1_valdeltagande_pct",
         "lag1_valdeltagande_gap_pp",
         "lag1_ekonomisk_standard_gap_pp",
+        "lag1_bostader_per_1000",
+        "lag1_bostadsbestandsforandring_pct",
+        "lag1_fardigstallda_bostader_per_1000",
+        "lag1_andel_hyresratt",
+        "lag1_andel_bostadsratt",
         "lag1_andel_smahus",
         "lag1_fritidshusandel_bland_smahus",
         "lag1_brott_per_100000",
@@ -3092,6 +3225,9 @@ def fit_models(panel: pd.DataFrame) -> dict:
             "Prognosvalideringen för teståret använder endast de föregående 1–5 åren beroende på valt analysfönster.",
             "Inkomst avser genomsnittlig sammanräknad förvärvsinkomst för 20–64-åringar och används laggad ett år.",
             "Landets lugn testas som ett gemensamt tema där andel småhus, anmälda brott per 100 000 invånare och fritidshusandel bland småhusliknande bostäder konkurrerar om att representera temat.",
+            "Bostadsutbud mäts som totalt bostadsbestånd per 1 000 invånare enligt SCB BO0104T04 och används laggat ett år.",
+            "Bostadsdynamik testas med både årlig förändring i bostadsbeståndet och färdigställda lägenheter i nybyggda hus per 1 000 invånare; högst en av dessa behålls inom temat.",
+            "Upplåtelseform testas med andel hyresrätt respektive bostadsrätt av bostadsbeståndet; högst en representant behålls inom temat.",
             "Andel småhus avser lägenheter i småhus dividerat med samtliga lägenheter i småhus, flerbostadshus, övriga hus och specialbostäder enligt SCB BO0104T04 och används laggad ett år.",
             "Fritidshusandelen beräknas som fritidshus / (fritidshus + bostäder i småhus) enligt SCB BO0104T08 och BO0104T04; måttet är en proxy eftersom fritidshus räknas som hus medan småhuskomponenten räknas som bostadslägenheter.",
             "Brottsmåttet är totalt antal anmälda brott per 100 000 invånare från BRÅ:s årsvisa kommunstatistik i Lulea-statistik/BR-brottsstatistik och används laggat ett år.",
@@ -3135,6 +3271,11 @@ def fit_age_group_models(panel: pd.DataFrame) -> dict:
         "lag1_valdeltagande_pct",
         "lag1_valdeltagande_gap_pp",
         "lag1_ekonomisk_standard_gap_pp",
+        "lag1_bostader_per_1000",
+        "lag1_bostadsbestandsforandring_pct",
+        "lag1_fardigstallda_bostader_per_1000",
+        "lag1_andel_hyresratt",
+        "lag1_andel_bostadsratt",
         "lag1_andel_smahus",
         "lag1_fritidshusandel_bland_smahus",
         "lag1_brott_per_100000",
@@ -3255,9 +3396,10 @@ def main():
     pop = get_population()
     income = get_income()
     housing = get_housing()
+    completed_housing = get_completed_housing()
     leisure = get_leisure_houses()
     crime = get_crime_total()
-    panel = build_panel(mig, pop, income, turnout, inequality, housing, leisure, crime, labor, education, students, industry, fa15)
+    panel = build_panel(mig, pop, income, turnout, inequality, housing, completed_housing, leisure, crime, labor, education, students, industry, fa15)
     panel.to_csv(OUT / "panel.csv", index=False)
     result = fit_models(panel)
     result["age_group_models"] = fit_age_group_models(panel)
