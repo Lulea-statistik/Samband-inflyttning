@@ -4300,6 +4300,142 @@ def _employment_variation_rankings(panel: pd.DataFrame) -> dict:
 
 
 
+
+def _geography_interaction_tests(
+    panel: pd.DataFrame,
+    target: str,
+    base_features: list[str],
+    start_year: int,
+    end_year: int,
+) -> dict:
+    """
+    Test whether a coastal/sea-share association changes with northing.
+    Main effects are always included before the interaction term is tested.
+    Northing is centred on the municipality median and expressed per 100 km;
+    sea share is expressed per 10 percentage points for readable coefficients.
+    """
+    static = (
+        panel[["kommun_kod", "kommun_centroid_northing_km"]]
+        .drop_duplicates("kommun_kod")
+        .dropna()
+    )
+    northing_center_km = float(static["kommun_centroid_northing_km"].median())
+
+    specs = {
+        "coast_x_northing": {
+            "main": ["geo_northing_100km", "kustkommun_hav"],
+            "interaction": "geo_kust_x_northing",
+        },
+        "sea_share_x_northing": {
+            "main": ["geo_northing_100km", "geo_havsandel_10pp"],
+            "interaction": "geo_havsandel_x_northing",
+        },
+    }
+
+    cols = [
+        "kommun_kod", "year", target,
+        "kommun_centroid_northing_km", "havsandel_pct", "kustkommun_hav",
+    ] + list(base_features)
+    d = (
+        panel.loc[panel["year"].between(start_year, end_year), cols]
+        .dropna()
+        .reset_index(drop=True)
+    )
+    d["geo_northing_100km"] = (
+        d["kommun_centroid_northing_km"] - northing_center_km
+    ) / 100.0
+    d["geo_havsandel_10pp"] = d["havsandel_pct"] / 10.0
+    d["geo_kust_x_northing"] = (
+        d["kustkommun_hav"] * d["geo_northing_100km"]
+    )
+    d["geo_havsandel_x_northing"] = (
+        d["geo_havsandel_10pp"] * d["geo_northing_100km"]
+    )
+
+    rows = []
+    for name, spec in specs.items():
+        main_features = list(base_features) + spec["main"]
+        full_features = main_features + [spec["interaction"]]
+
+        y = d[target].astype(float).reset_index(drop=True)
+        X_main = _design_with_year_effects(d, main_features)
+        X_full = _design_with_year_effects(d, full_features)
+
+        main_fit = sm.OLS(y, X_main).fit()
+        full_fit = sm.OLS(y, X_full).fit()
+        robust = sm.OLS(y, X_full).fit(
+            cov_type="cluster",
+            cov_kwds={"groups": d["kommun_kod"].reset_index(drop=True)},
+        )
+
+        names = list(robust.model.exog_names)
+        params = np.asarray(robust.params)
+        pvals = np.asarray(robust.pvalues)
+        conf = np.asarray(robust.conf_int())
+
+        coeffs = []
+        for feature in spec["main"] + [spec["interaction"]]:
+            i = names.index(feature)
+            coeffs.append({
+                "feature": feature,
+                "coefficient": _finite_float(params[i]),
+                "p_value": _finite_float(pvals[i]),
+                "ci_low": _finite_float(conf[i, 0]),
+                "ci_high": _finite_float(conf[i, 1]),
+            })
+
+        main_rmse = float(np.sqrt(np.mean(np.square(main_fit.resid))))
+        full_rmse = float(np.sqrt(np.mean(np.square(full_fit.resid))))
+
+        row = {
+            "model": name,
+            "n_obs": int(len(d)),
+            "n_municipalities": int(d["kommun_kod"].nunique()),
+            "n_years": int(d["year"].nunique()),
+            "northing_center_km_epsg3006": _finite_float(northing_center_km),
+            "main_adjusted_r2": _finite_float(main_fit.rsquared_adj),
+            "full_adjusted_r2": _finite_float(full_fit.rsquared_adj),
+            "delta_adjusted_r2_interaction": _finite_float(
+                full_fit.rsquared_adj - main_fit.rsquared_adj
+            ),
+            "main_aic": _finite_float(main_fit.aic),
+            "full_aic": _finite_float(full_fit.aic),
+            "delta_aic_interaction": _finite_float(main_fit.aic - full_fit.aic),
+            "main_rmse": _finite_float(main_rmse),
+            "full_rmse": _finite_float(full_rmse),
+            "delta_rmse_interaction": _finite_float(main_rmse - full_rmse),
+            "coefficients": coeffs,
+            "interaction_feature": spec["interaction"],
+        }
+
+        coef_map = {x["feature"]: x["coefficient"] for x in coeffs}
+        if name == "coast_x_northing":
+            row["interpretation"] = {
+                "inland_northing_effect_per_100km": coef_map.get("geo_northing_100km"),
+                "coastal_northing_effect_per_100km": _finite_float(
+                    (coef_map.get("geo_northing_100km") or 0.0)
+                    + (coef_map.get("geo_kust_x_northing") or 0.0)
+                ),
+                "coast_effect_at_national_median_northing": coef_map.get("kustkommun_hav"),
+            }
+        else:
+            row["interpretation"] = {
+                "sea_share_effect_per_10pp_at_median_northing": coef_map.get("geo_havsandel_10pp"),
+                "change_in_sea_share_effect_per_100km_north": coef_map.get("geo_havsandel_x_northing"),
+            }
+
+        rows.append(row)
+
+    return {
+        "rule": "interaction tested only after including both main effects, on the same observations as the base model",
+        "start_year": start_year,
+        "end_year": end_year,
+        "northing_unit": "100 km from median municipality centroid northing in EPSG:3006",
+        "sea_share_unit": "10 percentage points",
+        "rows": rows,
+    }
+
+
 def _geography_rankings(panel: pd.DataFrame) -> dict:
     """Simple source-QA rankings for the static geography candidate variables."""
     cols = [
@@ -4440,10 +4576,30 @@ def main():
             if "error" not in model
         },
     }
+    result["geography_interaction_tests"] = {
+        "overall": _geography_interaction_tests(
+            panel,
+            result["target"],
+            overall_base,
+            END_YEAR - 4,
+            END_YEAR,
+        ),
+        "age_groups": {
+            key: _geography_interaction_tests(
+                panel,
+                model["target"],
+                model["explanation"]["selected_features"],
+                END_YEAR - 4,
+                END_YEAR,
+            )
+            for key, model in age_models.items()
+            if "error" not in model
+        },
+    }
     result["geography_rankings"] = _geography_rankings(panel)
     result["geography_metadata"] = {
         "centroid_crs": GEOGRAPHY_CRS,
-        "centroid_definition": "Area-weighted polygon centroid northing from SCB simplified municipal boundaries",
+        "centroid_definition": "Area-weighted polygon centroid northing from swemaps GeoParquet derived from SCB municipal boundaries, reprojected to EPSG:3006",
         "sea_share_definition": "Sea water to territorial border / total municipal area, percent",
         "production_status": "candidate_only",
     }
