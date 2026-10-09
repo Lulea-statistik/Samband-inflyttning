@@ -2709,11 +2709,9 @@ def get_fa15_membership() -> pd.DataFrame:
 def get_municipal_area_geography() -> pd.DataFrame:
     """
     Static municipality geography from SCB's land/water-area table.
-    Sea share is sea water out to the territorial border divided by total area.
-    SCB does not expose total area as a selectable area type here, so total area
-    is reconstructed as the sum of the four non-overlapping reported components:
-    land, inland water excluding the four large lakes, the four large lakes,
-    and sea water. The most recent year not later than END_YEAR is used.
+    Sea share is sea water out to the territorial border divided by SCB's
+    reported total municipal area. The most recent year not later than
+    END_YEAR is used for all model years.
     """
     meta = metadata(AREA_URL)
     region = find_var(meta, "region")
@@ -2722,13 +2720,9 @@ def get_municipal_area_geography() -> pd.DataFrame:
     time_var = find_var(meta, "år", "tid")
 
     munis = municipality_codes(region)
-    land_code = code_for_text(area_type, "landareal")
-    inland_code = code_for_text(area_type, "inlandsvatten")
-    big_lakes_code = code_for_all_text(area_type, "fyra", "stora", "sjö")
+    total_code = code_for_text(area_type, "totalt")
     sea_code = code_for_text(area_type, "havsvatten")
     km2_code = code_for_text(content, "Kvadratkilometer")
-
-    component_codes = [land_code, inland_code, big_lakes_code, sea_code]
 
     available_years = sorted(
         int(v) for v in time_var["values"]
@@ -2745,10 +2739,14 @@ def get_municipal_area_geography() -> pd.DataFrame:
             for x in area_type.get("valueTexts", area_type.get("values", []))
         )
     )
+    print(
+        f"Using SCB area codes total={total_code!r}, sea={sea_code!r}, "
+        f"year={area_year}"
+    )
 
     df = px_csv(AREA_URL, {
         region["code"]: munis,
-        area_type["code"]: component_codes,
+        area_type["code"]: [total_code, sea_code],
         content["code"]: [km2_code],
         time_var["code"]: [str(area_year)],
     })
@@ -2787,18 +2785,16 @@ def get_municipal_area_geography() -> pd.DataFrame:
 
     def area_kind(value: object) -> str | None:
         text = _norm_header(value)
-        if "landareal" in text:
-            return "land"
-        if "inlandsvatten" in text:
-            return "inland"
-        if "fyrastora" in text and "sjo" in text:
-            return "big_lakes"
+        if text == "totalt":
+            return "total"
         if "havsvatten" in text:
             return "sea"
         return None
 
     work["kind"] = work[area_col].map(area_kind)
-    unknown = sorted(work.loc[work["kind"].isna(), area_col].astype(str).unique().tolist())
+    unknown = sorted(
+        work.loc[work["kind"].isna(), area_col].astype(str).unique().tolist()
+    )
     if unknown:
         raise ValueError(f"Unrecognized SCB area types in selected response: {unknown}")
 
@@ -2812,17 +2808,13 @@ def get_municipal_area_geography() -> pd.DataFrame:
         .reset_index()
     )
 
-    required = ["land", "inland", "big_lakes", "sea"]
-    missing_columns = [col for col in required if col not in pivot.columns]
-    if missing_columns:
+    if "total" not in pivot.columns or "sea" not in pivot.columns:
         raise ValueError(
-            f"SCB area response lacks component columns {missing_columns}. "
-            f"Columns={list(pivot.columns)}"
+            f"SCB area response lacks total/sea values. Columns={list(pivot.columns)}"
         )
 
+    pivot = pivot.rename(columns={"total": "totalareal_km2", "sea": "hav_km2"})
     pivot["kommun_kod"] = pivot["kommun_kod"].astype(str).str.zfill(4)
-    pivot["totalareal_km2"] = pivot[required].sum(axis=1, min_count=len(required))
-    pivot["hav_km2"] = pivot["sea"]
     pivot["havsandel_pct"] = (
         100 * pivot["hav_km2"] / pivot["totalareal_km2"].replace(0, np.nan)
     )
@@ -2835,7 +2827,7 @@ def get_municipal_area_geography() -> pd.DataFrame:
         )
     if pivot["totalareal_km2"].isna().sum() > 5:
         raise ValueError(
-            f"Too many municipalities lack complete area components: "
+            f"Too many municipalities lack total area: "
             f"{int(pivot['totalareal_km2'].isna().sum())}"
         )
     if not pivot["havsandel_pct"].dropna().between(0, 100.0001).all():
