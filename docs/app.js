@@ -14,6 +14,7 @@ let selectedWindow=5;
 
 const labels={
   lag1_inflyttning_per_1000:'Inflyttning föregående år per 1 000',
+  lag1_utflyttning_per_1000:'Utflyttning föregående år per 1 000',
   lag1_inflyttning_18_23_per_1000:'Inflyttning 18–23 år föregående år per 1 000 i samma ålder',
   lag1_inflyttning_24_34_per_1000:'Inflyttning 24–34 år föregående år per 1 000 i samma ålder',
   lag1_inflyttning_35_49_per_1000:'Inflyttning 35–49 år föregående år per 1 000 i samma ålder',
@@ -27,6 +28,11 @@ const labels={
   lag1_valdeltagande_pct:'Valdeltagande i riksdagsval, linjärt interpolerat, föregående år (%)',
   lag1_valdeltagande_gap_pp:'Riksdagsvaldeltagandeklyfta mellan valdistrikt, föregående år (procentenheter)',
   lag1_ekonomisk_standard_gap_pp:'Socioekonomisk klyfta mellan DeSO, föregående år (procentenheter)',
+  lag1_bostader_per_1000:'Bostadsbestånd föregående år per 1 000 invånare',
+  lag1_bostadsbestandsforandring_pct:'Förändring i bostadsbestånd föregående år (%)',
+  lag1_fardigstallda_bostader_per_1000:'Färdigställda bostäder föregående år per 1 000 invånare',
+  lag1_andel_hyresratt:'Andel hyresrätt föregående år (%)',
+  lag1_andel_bostadsratt:'Andel bostadsrätt föregående år (%)',
   lag1_andel_smahus:'Andel småhus föregående år (%)',
   lag1_fritidshusandel_bland_smahus:'Fritidshusandel bland småhusliknande bostäder, föregående år (%)',
   lag1_brott_per_100000:'Anmälda brott per 100 000 invånare, föregående år',

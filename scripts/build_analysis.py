@@ -419,6 +419,7 @@ def get_migration() -> pd.DataFrame:
 
     munis = municipality_codes(region)
     inflow_code = code_for_text(content, "Inflyttningar")
+    outflow_code = code_for_text(content, "Utflyttningar")
     sex_codes = aggregate_codes(sex)
     rows = []
 
@@ -431,17 +432,31 @@ def get_migration() -> pd.DataFrame:
             region["code"]: munis,
             age["code"]: list(age["values"]),
             sex["code"]: sex_codes,
-            content["code"]: [inflow_code],
+            content["code"]: [inflow_code, outflow_code],
             time["code"]: [str(year)],
         })
         dims = standardize_columns(df)
         value_candidates = [c for c in df.columns if c not in set(dims.values())]
-        if len(value_candidates) != 1:
-            raise ValueError(f"Expected one migration value column for {year}, got {value_candidates}")
-        df = df.rename(columns={value_candidates[0]: "value"})
+        inflow_col = next(
+            (c for c in value_candidates if "inflytt" in str(c).lower()),
+            None,
+        )
+        outflow_col = next(
+            (c for c in value_candidates if "utflytt" in str(c).lower()),
+            None,
+        )
+        if inflow_col is None or outflow_col is None:
+            raise ValueError(
+                f"Could not identify inflow/outflow columns for {year}: "
+                f"{value_candidates}"
+            )
+        df = df.rename(columns={
+            inflow_col: "value",
+            outflow_col: "utflyttning_value",
+        })
         df["year"] = year
         rows.append(df)
-        print(f"Migration {year}: {len(df):,} rows")
+        print(f"Migration in/out {year}: {len(df):,} rows")
     return pd.concat(rows, ignore_index=True)
 
 
@@ -2308,6 +2323,7 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turn
     md = standardize_columns(mig)
     mig = mig.copy()
     mig["value"] = normalize_number(mig["value"])
+    mig["utflyttning_value"] = normalize_number(mig["utflyttning_value"])
     mig["age_num"] = mig[md["age"]].map(age_numeric)
     mig["year"] = pd.to_numeric(mig["year"], errors="coerce")
     mig[["kommun_kod", "kommun"]] = mig[md["region"]].apply(lambda x: pd.Series(split_region(x)))
@@ -2316,6 +2332,7 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turn
     age_rows = mig[np.isfinite(mig["age_num"])].copy()
     mg = age_rows.groupby(["kommun_kod", "kommun", "year"], as_index=False).agg(
         inflyttade=("value", "sum"),
+        utflyttade=("utflyttning_value", "sum"),
         age_weight=("age_num", lambda x: 0.0),
     )
 
@@ -2474,6 +2491,9 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turn
         1000 * panel["fardigstallda_bostader"] / panel["folkmangd"].replace(0, np.nan)
     )
     panel["inflyttning_per_1000"] = 1000 * panel["inflyttade"] / panel["folkmangd"]
+    panel["utflyttning_per_1000"] = (
+        1000 * panel["utflyttade"] / panel["folkmangd"].replace(0, np.nan)
+    )
     panel["inflyttning_18_23_per_1000"] = (
         1000 * panel["inflyttade_18_23"] / panel["bef_18_23"].replace(0, np.nan)
     )
@@ -2501,6 +2521,7 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turn
     # All structural predictors are lagged one year so the explanatory value
     # precedes the migration outcome temporally.
     panel["lag1_inflyttning_per_1000"] = g["inflyttning_per_1000"].shift(1)
+    panel["lag1_utflyttning_per_1000"] = g["utflyttning_per_1000"].shift(1)
     panel["lag1_inflyttning_18_23_per_1000"] = g["inflyttning_18_23_per_1000"].shift(1)
     panel["lag1_inflyttning_24_34_per_1000"] = g["inflyttning_24_34_per_1000"].shift(1)
     panel["lag1_inflyttning_35_49_per_1000"] = g["inflyttning_35_49_per_1000"].shift(1)
@@ -2669,7 +2690,8 @@ def _elastic_net_selection(
 
 
 FEATURE_THEMES = {
-    "lag1_inflyttning_per_1000": "Historisk flyttdynamik",
+    "lag1_inflyttning_per_1000": "Historisk inflyttningsdynamik",
+    "lag1_utflyttning_per_1000": "Historisk utflyttningsdynamik",
     "lag1_inflyttning_18_23_per_1000": "Historisk flyttdynamik",
     "lag1_inflyttning_24_34_per_1000": "Historisk flyttdynamik",
     "lag1_inflyttning_35_49_per_1000": "Historisk flyttdynamik",
@@ -3118,6 +3140,7 @@ def fit_models(panel: pd.DataFrame) -> dict:
     target = "inflyttning_per_1000"
     features = [
         "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
         "lag1_log_folkmangd",
         "lag1_befolkningstillvaxt_pct",
         "lag1_andel_20_34",
@@ -3223,6 +3246,7 @@ def fit_models(panel: pd.DataFrame) -> dict:
             "Årseffekter ingår i förklaringsmodellen för att fånga gemensamma nationella årsvariationer.",
             "Standardfel i förklaringsmodellen är klustrade per kommun eftersom samma kommun förekommer flera år.",
             "Prognosvalideringen för teståret använder endast de föregående 1–5 åren beroende på valt analysfönster.",
+            "Föregående års utflyttning per 1 000 invånare testas som ett separat historiskt dynamiktema för att se om utflödet tillför information utöver föregående års inflyttning.",
             "Inkomst avser genomsnittlig sammanräknad förvärvsinkomst för 20–64-åringar och används laggad ett år.",
             "Landets lugn testas som ett gemensamt tema där andel småhus, anmälda brott per 100 000 invånare och fritidshusandel bland småhusliknande bostäder konkurrerar om att representera temat.",
             "Bostadsutbud mäts som totalt bostadsbestånd per 1 000 invånare enligt SCB BO0104T04 och används laggat ett år.",
@@ -3263,6 +3287,7 @@ def fit_age_group_models(panel: pd.DataFrame) -> dict:
     because they have a larger share of that age group.
     """
     structural_features = [
+        "lag1_utflyttning_per_1000",
         "lag1_log_folkmangd",
         "lag1_befolkningstillvaxt_pct",
         "lag1_andel_20_34",
