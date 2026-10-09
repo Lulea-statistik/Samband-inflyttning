@@ -3008,8 +3008,8 @@ def _metadata_year_values(time_var: dict, max_year: int) -> list[str]:
 def get_tatortsgrad() -> pd.DataFrame:
     """
     SCB's direct municipality urban-area share (tätortsgrad), percent.
-    Measurements are sparse. They are merged by measurement year and later
-    forward-filled only, so future measurements never leak backwards.
+    PxWeb CSV returns one measure column per selected measurement year, e.g.
+    'Tätortsgrad 2020'. Convert that wide response to municipality-year rows.
     """
     meta = metadata(TATORTSGRAD_URL)
     content = find_var(meta, "tabellinnehåll", "contentscode")
@@ -3028,30 +3028,36 @@ def get_tatortsgrad() -> pd.DataFrame:
 
     dims = standardize_columns(df)
     region_col = dims.get("region")
-    year_col = dims.get("year")
-    if region_col is None or year_col is None:
+    if region_col is None:
         raise ValueError(
-            f"Could not identify region/year in tätortsgrad response: {list(df.columns)}"
+            f"Could not identify region in tätortsgrad response: {list(df.columns)}"
         )
 
-    excluded = {region_col, year_col}
-    value_cols = [c for c in df.columns if c not in excluded]
-    value_col = next(
-        (c for c in value_cols if "tätortsgrad" in str(c).casefold()),
-        value_cols[-1] if value_cols else None,
-    )
-    if value_col is None:
-        raise ValueError(f"No tätortsgrad value column found: {list(df.columns)}")
+    year_value_cols = [
+        c for c in df.columns
+        if c != region_col
+        and re.search(r"(?:19|20)\d{2}", str(c))
+        and "tätortsgrad" in str(c).casefold()
+    ]
+    if not year_value_cols:
+        raise ValueError(
+            f"No year-valued tätortsgrad columns found: {list(df.columns)}"
+        )
 
-    out = df[[region_col, year_col, value_col]].copy()
+    out = df[[region_col] + year_value_cols].melt(
+        id_vars=[region_col],
+        value_vars=year_value_cols,
+        var_name="measure_year",
+        value_name="raw_value",
+    )
     out[["kommun_kod", "kommun_tatort"]] = out[region_col].apply(
         lambda x: pd.Series(split_region(x))
     )
     out["year"] = pd.to_numeric(
-        out[year_col].astype(str).str.extract(r"((?:19|20)\d{2})")[0],
+        out["measure_year"].astype(str).str.extract(r"((?:19|20)\d{2})")[0],
         errors="coerce",
     )
-    out["tatortsgrad_pct"] = normalize_number(out[value_col])
+    out["tatortsgrad_pct"] = normalize_number(out["raw_value"])
     out = out.dropna(subset=["year", "tatortsgrad_pct"])
     out["year"] = out["year"].astype(int)
     out["kommun_kod"] = out["kommun_kod"].astype(str).str.zfill(4)
@@ -3074,7 +3080,8 @@ def get_tatortsgrad() -> pd.DataFrame:
 def get_land_use_urbanity() -> pd.DataFrame:
     """
     Share of SCB total land area classified as built-up/developed land.
-    Numerator and denominator come from the same MarkanvN table.
+    Numerator and denominator come from the same MarkanvN table. PxWeb returns
+    selected years as separate measure columns, so reshape wide -> long first.
     """
     meta = metadata(LAND_USE_URL)
     region = find_var(meta, "region")
@@ -3097,53 +3104,57 @@ def get_land_use_urbanity() -> pd.DataFrame:
 
     dims = standardize_columns(df)
     region_col = dims.get("region")
-    year_col = dims.get("year")
     class_col = next(
         (c for c in df.columns if "markanvändningsklass" in _norm_header(c)),
         None,
     )
-    if region_col is None or year_col is None or class_col is None:
+    if region_col is None or class_col is None:
         raise ValueError(
-            f"Could not identify region/year/class in MarkanvN response: {list(df.columns)}"
+            f"Could not identify region/class in MarkanvN response: {list(df.columns)}"
         )
 
-    excluded = {region_col, year_col, class_col}
-    value_cols = [c for c in df.columns if c not in excluded]
-    value_col = next(
-        (c for c in value_cols if "hektar" in str(c).casefold()),
-        value_cols[-1] if value_cols else None,
-    )
-    if value_col is None:
-        raise ValueError(f"No MarkanvN hectare value column found: {list(df.columns)}")
+    year_value_cols = [
+        c for c in df.columns
+        if c not in {region_col, class_col}
+        and re.search(r"(?:19|20)\d{2}", str(c))
+    ]
+    if not year_value_cols:
+        raise ValueError(
+            f"No year-valued MarkanvN columns found: {list(df.columns)}"
+        )
 
-    work = df[[region_col, year_col, class_col, value_col]].copy()
+    work = df[[region_col, class_col] + year_value_cols].melt(
+        id_vars=[region_col, class_col],
+        value_vars=year_value_cols,
+        var_name="measure_year",
+        value_name="raw_value",
+    )
     work[["kommun_kod", "kommun_mark"]] = work[region_col].apply(
         lambda x: pd.Series(split_region(x))
     )
     work["year"] = pd.to_numeric(
-        work[year_col].astype(str).str.extract(r"((?:19|20)\d{2})")[0],
+        work["measure_year"].astype(str).str.extract(r"((?:19|20)\d{2})")[0],
         errors="coerce",
     )
-    work["value_ha"] = normalize_number(work[value_col])
+    work["value_ha"] = normalize_number(work["raw_value"])
     work["kommun_kod"] = work["kommun_kod"].astype(str).str.zfill(4)
 
     def kind(value: object) -> str | None:
-        text = _norm_header(value)
-        if "bebyggdoch-anlagdmark" in text:
+        text = str(value).casefold()
+        if "bebyggd och anlagd mark" in text:
             return "built"
-        if "bebyggdochanlagdmark" in text:
-            return "built"
-        if "totallandareal" in text:
+        if "total landareal" in text:
             return "total_land"
         return None
 
-    # Normalization may retain punctuation differently; use direct substring
-    # fallback on the original label as well.
     work["kind"] = work[class_col].map(kind)
-    missing_kind = work["kind"].isna()
-    original = work.loc[missing_kind, class_col].astype(str).str.casefold()
-    work.loc[missing_kind & original.str.contains("bebyggd och anlagd mark", regex=False), "kind"] = "built"
-    work.loc[missing_kind & original.str.contains("total landareal", regex=False), "kind"] = "total_land"
+    unknown = sorted(
+        work.loc[work["kind"].isna(), class_col].astype(str).unique().tolist()
+    )
+    if unknown:
+        raise ValueError(
+            f"Unrecognized selected MarkanvN classes: {unknown}"
+        )
 
     work = work.dropna(subset=["year", "value_ha", "kind"])
     work["year"] = work["year"].astype(int)
