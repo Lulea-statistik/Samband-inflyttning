@@ -8,6 +8,7 @@ import re
 import sys
 import time
 import unicodedata
+import zipfile
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urljoin
@@ -15,6 +16,8 @@ from urllib.parse import urljoin
 import numpy as np
 import pandas as pd
 import requests
+import shapefile
+from shapely.geometry import shape as shapely_shape
 from sklearn.linear_model import LinearRegression, RidgeCV, ElasticNetCV
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler
@@ -82,6 +85,12 @@ _LEISURE_HOUSE_RESOLVED_URL = None
 BRA_ANNUAL_RAW = "https://raw.githubusercontent.com/Lulea-statistik/BR-brottsstatistik/main/data/annual_all/year={year}.parquet"
 LABOR_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210A/ArbStatusAr"
 MONTHLY_EMPLOYMENT_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210B/ArbStDoNMNN"
+AREA_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/MI/MI0802/Areal2012NN"
+MUNICIPAL_BOUNDARY_SOURCE = {
+    "page": "https://www.scb.se/hitta-statistik/regional-statistik-och-kartor/regionala-indelningar/digitala-granser/?menu=open",
+    "link_text": "Län, kommuner och LA-regioner, ArcView-shape",
+}
+GEOGRAPHY_CRS = "EPSG:3006"
 EDUCATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/UF/UF0506/UF0506B/Utbildning"
 STUDENT_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AA/AA0003/AA0003H/IntGr8Kom1N"
 INDUSTRY_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210F/ArRegUtb"
@@ -114,6 +123,11 @@ EMPLOYMENT_DYNAMICS_LAG_FEATURES = [
     "lag1_sysselsatta_bostad_forandring_pct",
     "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
     "lag1_sysselsatta_bostad_sasongsvariation_pct",
+]
+GEOGRAPHY_CANDIDATE_FEATURES = [
+    "kommun_centroid_northing_km",
+    "havsandel_pct",
+    "kustkommun_hav",
 ]
 OUT = Path("docs/data")
 OUT.mkdir(parents=True, exist_ok=True)
@@ -192,6 +206,7 @@ def preflight_sources() -> None:
         "completed_housing": COMPLETED_HOUSING_URL,
         "labor": LABOR_URL,
         "monthly_employment": MONTHLY_EMPLOYMENT_URL,
+        "municipal_area": AREA_URL,
         "education": EDUCATION_URL,
         "students": STUDENT_URL,
         "industry": INDUSTRY_URL,
@@ -253,6 +268,17 @@ def preflight_sources() -> None:
     except Exception as exc:
         failures.append(f"FA15 workbook: {exc}")
         print(f"Preflight FAILED FA15 workbook: {exc}")
+
+    try:
+        boundary_url = _resolve_external_file(MUNICIPAL_BOUNDARY_SOURCE)
+        r = session.get(boundary_url, timeout=30, stream=True)
+        if not r.ok:
+            raise RuntimeError(f"HTTP {r.status_code}")
+        print(f"Preflight OK SCB municipal boundaries: {boundary_url}")
+        r.close()
+    except Exception as exc:
+        failures.append(f"SCB municipal boundaries: {exc}")
+        print(f"Preflight FAILED SCB municipal boundaries: {exc}")
 
     for election_year, sources in TURNOUT_SOURCES.items():
         for level, source_spec in sources.items():
@@ -2679,6 +2705,272 @@ def get_fa15_membership() -> pd.DataFrame:
     print(f"FA15 membership: {fa['kommun_kod'].nunique():,} municipalities")
     return fa[["kommun_kod", "fa15_id", "fa15_kod", "fa15_namn"]]
 
+
+def get_municipal_area_geography() -> pd.DataFrame:
+    """
+    Static municipality geography from SCB's land/water-area table.
+    Sea share is sea water out to the territorial border divided by total area.
+    The most recent year not later than END_YEAR is used for all model years.
+    """
+    meta = metadata(AREA_URL)
+    region = find_var(meta, "region")
+    area_type = find_var(meta, "arealtyp")
+    content = find_var(meta, "tabellinnehåll", "contentscode")
+    time_var = find_var(meta, "år", "tid")
+
+    munis = municipality_codes(region)
+    total_code = code_for_text(area_type, "totalareal")
+    sea_code = code_for_text(area_type, "havsvatten")
+    km2_code = code_for_text(content, "Kvadratkilometer")
+
+    available_years = sorted(
+        int(v) for v in time_var["values"]
+        if str(v).isdigit() and int(v) <= END_YEAR
+    )
+    if not available_years:
+        raise ValueError(f"No municipality-area year available <= {END_YEAR}")
+    area_year = available_years[-1]
+
+    df = px_csv(AREA_URL, {
+        region["code"]: munis,
+        area_type["code"]: [total_code, sea_code],
+        content["code"]: [km2_code],
+        time_var["code"]: [str(area_year)],
+    })
+
+    dims = standardize_columns(df)
+    region_col = dims.get("region")
+    area_col = next(
+        (c for c in df.columns if "arealtyp" in _norm_header(c)),
+        None,
+    )
+    if region_col is None or area_col is None:
+        raise ValueError(
+            f"Could not identify region/area-type columns in SCB area response: {list(df.columns)}"
+        )
+
+    excluded = {region_col, area_col}
+    if dims.get("year"):
+        excluded.add(dims["year"])
+    value_cols = [c for c in df.columns if c not in excluded]
+    value_col = next(
+        (
+            c for c in value_cols
+            if "kvadratkilometer" in str(c).casefold()
+            or str(c).strip() == str(area_year)
+        ),
+        value_cols[-1] if value_cols else None,
+    )
+    if value_col is None:
+        raise ValueError(f"No numeric area column found in {list(df.columns)}")
+
+    work = df[[region_col, area_col, value_col]].copy()
+    work["value"] = normalize_number(work[value_col])
+    work[["kommun_kod", "kommun_area"]] = work[region_col].apply(
+        lambda x: pd.Series(split_region(x))
+    )
+
+    def area_kind(value: object) -> str | None:
+        text = _norm_header(value)
+        if "totalareal" in text:
+            return "total"
+        if "havsvatten" in text:
+            return "sea"
+        return None
+
+    work["kind"] = work[area_col].map(area_kind)
+    work = work.dropna(subset=["kind", "value"])
+    pivot = (
+        work.pivot_table(
+            index="kommun_kod",
+            columns="kind",
+            values="value",
+            aggfunc="sum",
+        )
+        .reset_index()
+    )
+
+    if "total" not in pivot.columns or "sea" not in pivot.columns:
+        raise ValueError(
+            f"SCB area response lacks total/sea values. Columns={list(pivot.columns)}"
+        )
+
+    pivot = pivot.rename(columns={"total": "totalareal_km2", "sea": "hav_km2"})
+    pivot["kommun_kod"] = pivot["kommun_kod"].astype(str).str.zfill(4)
+    pivot["havsandel_pct"] = (
+        100 * pivot["hav_km2"] / pivot["totalareal_km2"].replace(0, np.nan)
+    )
+    pivot["kustkommun_hav"] = (pivot["hav_km2"] > 0).astype(float)
+    pivot["geografi_areal_ar"] = int(area_year)
+
+    if pivot["kommun_kod"].nunique() < 285:
+        raise ValueError(
+            f"SCB municipality-area data covers only {pivot['kommun_kod'].nunique()} municipalities"
+        )
+    if not pivot["havsandel_pct"].dropna().between(0, 100.0001).all():
+        raise ValueError("Sea share outside 0-100%; check SCB area parsing")
+
+    print(
+        f"Municipal sea-area geography {area_year}: "
+        f"{pivot['kommun_kod'].nunique()} municipalities, "
+        f"{int(pivot['kustkommun_hav'].sum())} with sea water"
+    )
+    return pivot[[
+        "kommun_kod",
+        "totalareal_km2",
+        "hav_km2",
+        "havsandel_pct",
+        "kustkommun_hav",
+        "geografi_areal_ar",
+    ]]
+
+
+def get_municipal_centroid_northing(valid_codes: set[str]) -> pd.DataFrame:
+    """
+    Area-weighted polygon centroid northing from SCB's simplified municipal
+    boundary layer in SWEREF 99 TM (EPSG:3006). The geometry is used only for
+    coarse north-south position, not for area calculations.
+    """
+    boundary_url = _resolve_external_file(MUNICIPAL_BOUNDARY_SOURCE)
+    r = session.get(boundary_url, timeout=120)
+    if not r.ok:
+        raise RuntimeError(
+            f"SCB municipal boundary download failed {r.status_code}: {r.text[:300]}"
+        )
+
+    archive = zipfile.ZipFile(io.BytesIO(r.content))
+    members = {name.casefold(): name for name in archive.namelist()}
+
+    def member_for(name: str) -> str | None:
+        return members.get(name.casefold())
+
+    candidates = []
+    for shp_name in [n for n in archive.namelist() if n.casefold().endswith(".shp")]:
+        base = shp_name[:-4]
+        dbf_name = member_for(base + ".dbf")
+        shx_name = member_for(base + ".shx")
+        if not dbf_name:
+            continue
+
+        kwargs = {
+            "shp": io.BytesIO(archive.read(shp_name)),
+            "dbf": io.BytesIO(archive.read(dbf_name)),
+            "encoding": "latin1",
+        }
+        if shx_name:
+            kwargs["shx"] = io.BytesIO(archive.read(shx_name))
+        reader = shapefile.Reader(**kwargs)
+        records = reader.records()
+        fields = [f[0] for f in reader.fields[1:]]
+
+        for field_idx, field_name in enumerate(fields):
+            matched = 0
+            for record in records:
+                code = _municipality_code(record[field_idx])
+                if code in valid_codes:
+                    matched += 1
+            if matched >= 280:
+                candidates.append({
+                    "matched": matched,
+                    "distance_from_290": abs(len(records) - 290),
+                    "shp_name": shp_name,
+                    "dbf_name": dbf_name,
+                    "shx_name": shx_name,
+                    "field_idx": field_idx,
+                    "field_name": field_name,
+                })
+
+    if not candidates:
+        raise ValueError(
+            "Could not identify the municipality shapefile/code field in SCB boundary archive"
+        )
+
+    best = sorted(
+        candidates,
+        key=lambda x: (-x["matched"], x["distance_from_290"]),
+    )[0]
+
+    kwargs = {
+        "shp": io.BytesIO(archive.read(best["shp_name"])),
+        "dbf": io.BytesIO(archive.read(best["dbf_name"])),
+        "encoding": "latin1",
+    }
+    if best["shx_name"]:
+        kwargs["shx"] = io.BytesIO(archive.read(best["shx_name"]))
+    reader = shapefile.Reader(**kwargs)
+
+    rows = []
+    for sr in reader.iterShapeRecords():
+        code = _municipality_code(sr.record[best["field_idx"]])
+        if code not in valid_codes:
+            continue
+        geom = shapely_shape(sr.shape.__geo_interface__)
+        if geom.is_empty:
+            continue
+
+        if geom.geom_type == "MultiPolygon":
+            parts = [part for part in geom.geoms if not part.is_empty and part.area > 0]
+            total_area = sum(part.area for part in parts)
+            if total_area <= 0:
+                continue
+            northing_m = sum(part.centroid.y * part.area for part in parts) / total_area
+        elif geom.geom_type == "Polygon":
+            northing_m = geom.centroid.y
+        else:
+            polygon_parts = [
+                part for part in getattr(geom, "geoms", [])
+                if part.geom_type in {"Polygon", "MultiPolygon"} and not part.is_empty
+            ]
+            if not polygon_parts:
+                northing_m = geom.centroid.y
+            else:
+                weighted = []
+                for part in polygon_parts:
+                    if part.geom_type == "MultiPolygon":
+                        for sub in part.geoms:
+                            if not sub.is_empty and sub.area > 0:
+                                weighted.append(sub)
+                    elif part.area > 0:
+                        weighted.append(part)
+                total_area = sum(part.area for part in weighted)
+                northing_m = (
+                    sum(part.centroid.y * part.area for part in weighted) / total_area
+                    if total_area > 0
+                    else geom.centroid.y
+                )
+
+        if not np.isfinite(northing_m) or not (5_000_000 < northing_m < 8_500_000):
+            raise ValueError(
+                f"Implausible {GEOGRAPHY_CRS} northing for municipality {code}: {northing_m}"
+            )
+        rows.append({
+            "kommun_kod": code,
+            "kommun_centroid_northing_km": float(northing_m) / 1000.0,
+        })
+
+    out = pd.DataFrame(rows).drop_duplicates("kommun_kod")
+    if out["kommun_kod"].nunique() < 285:
+        raise ValueError(
+            f"Municipal centroid layer covers only {out['kommun_kod'].nunique()} municipalities"
+        )
+    print(
+        f"Municipal centroid northing: {out['kommun_kod'].nunique()} municipalities "
+        f"from {best['shp_name']} field {best['field_name']} in {GEOGRAPHY_CRS}"
+    )
+    return out
+
+
+def get_geography() -> pd.DataFrame:
+    area = get_municipal_area_geography()
+    valid_codes = set(area["kommun_kod"].astype(str))
+    centroid = get_municipal_centroid_northing(valid_codes)
+    geo = area.merge(centroid, on="kommun_kod", how="left")
+    missing = int(geo["kommun_centroid_northing_km"].isna().sum())
+    if missing:
+        raise ValueError(f"Missing centroid northing for {missing} municipalities")
+    return geo
+
+
 def standardize_columns(df: pd.DataFrame) -> dict[str, str]:
     out = {}
     for c in df.columns:
@@ -2745,7 +3037,7 @@ def split_region(value: str) -> tuple[str, str]:
     return s[:4], s[5:] if len(s) > 5 else s
 
 
-def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turnout: pd.DataFrame, inequality: pd.DataFrame, housing: pd.DataFrame, completed_housing: pd.DataFrame, leisure: pd.DataFrame, crime: pd.DataFrame, labor: pd.DataFrame, monthly_employment: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame, activity: pd.DataFrame, industry: pd.DataFrame, fa15: pd.DataFrame) -> pd.DataFrame:
+def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turnout: pd.DataFrame, inequality: pd.DataFrame, housing: pd.DataFrame, completed_housing: pd.DataFrame, leisure: pd.DataFrame, crime: pd.DataFrame, labor: pd.DataFrame, monthly_employment: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame, activity: pd.DataFrame, industry: pd.DataFrame, fa15: pd.DataFrame, geography: pd.DataFrame) -> pd.DataFrame:
     md = standardize_columns(mig)
     mig = mig.copy()
     mig["value"] = normalize_number(mig["value"])
@@ -2919,6 +3211,13 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turn
     )
     panel = panel.merge(
         fa15[["kommun_kod", "fa15_id", "fa15_kod", "fa15_namn"]],
+        on="kommun_kod", how="left"
+    )
+    panel = panel.merge(
+        geography[[
+            "kommun_kod", "totalareal_km2", "hav_km2", "havsandel_pct",
+            "kustkommun_hav", "geografi_areal_ar", "kommun_centroid_northing_km",
+        ]],
         on="kommun_kod", how="left"
     )
 
@@ -3603,10 +3902,10 @@ def _sparse_candidate_tests(
     end_year: int,
 ) -> dict:
     """
-    Test sparse candidate variables one at a time against the same baseline on
-    exactly the same complete-case observations. This prevents sparse Kolada
-    coverage from changing the production model sample before a candidate has
-    demonstrated incremental value.
+    Test candidate variables one at a time against the same baseline on exactly
+    the same complete-case observations. This prevents source coverage from
+    changing the production model sample before a candidate has demonstrated
+    incremental value.
     """
     rows = []
     for candidate in candidates:
@@ -3676,7 +3975,7 @@ def _sparse_candidate_tests(
         default=None,
     )
     return {
-        "rule": "one sparse Kolada candidate at a time versus the same baseline and same observations",
+        "rule": "one candidate at a time versus the same baseline and same observations",
         "start_year": start_year,
         "end_year": end_year,
         "rows": rows,
@@ -3808,6 +4107,7 @@ def fit_models(panel: pd.DataFrame) -> dict:
             "Utbildningsvariabeln är andel 25–64-åringar med eftergymnasial utbildning och används laggad ett år.",
             "Studentmiljö mäts som andel studerande bland 20–64-åringar enligt SCB IntGr8Kom1N och används laggad ett år.",
             "Koladas fritids-/aktivitetsmått testas först som ett separat glest kandidattema på samma observationsurval som basmodellen. De förs inte automatiskt in i produktionsmodellen förrän de visar stabilt marginalbidrag och tillräcklig täckning.",
+            "Geografi testas separat som statiska kandidatmått: kommunpolygonens centroid-northing i SWEREF 99 TM (EPSG:3006), havsvattnets andel av kommunens totalareal samt en binär indikator för kommuner med havsvatten. Geografivariablerna är tidsinvarianta och laggas därför inte.",
             "Näringslivsprofilen testas med andel sysselsatta efter arbetsställets belägenhet i B+C industri/gruvor, I hotell/restaurang samt R+S+T+U kultur/nöje/service enligt SCB ArRegUtb; högst en representant behålls från temat.",
             "Regional arbetsmarknadsaccess mäts som log(1 + jobb i övriga kommuner inom samma FA15-region per 1 000 invånare i den egna kommunen), laggad ett år.",
             "Regional arbetsmotor mäts som den egna kommunens arbetsplatser dividerat med samtliga arbetsplatser inom samma FA15-region, uttryckt i procent och laggat ett år.",
@@ -3996,6 +4296,42 @@ def _employment_variation_rankings(panel: pd.DataFrame) -> dict:
     return out
 
 
+
+def _geography_rankings(panel: pd.DataFrame) -> dict:
+    """Simple source-QA rankings for the static geography candidate variables."""
+    cols = [
+        "kommun_kod", "kommun", "kommun_centroid_northing_km",
+        "havsandel_pct", "kustkommun_hav",
+    ]
+    work = panel[cols].drop_duplicates("kommun_kod").copy()
+
+    def records(frame: pd.DataFrame) -> list[dict]:
+        return [
+            {
+                "kommun_kod": str(r.kommun_kod),
+                "kommun": str(r.kommun),
+                "northing_km_epsg3006": _finite_float(r.kommun_centroid_northing_km),
+                "havsandel_pct": _finite_float(r.havsandel_pct),
+                "kustkommun_hav": _finite_float(r.kustkommun_hav),
+            }
+            for r in frame.itertuples(index=False)
+        ]
+
+    return {
+        "crs": GEOGRAPHY_CRS,
+        "northmost": records(
+            work.sort_values("kommun_centroid_northing_km", ascending=False).head(15)
+        ),
+        "southmost": records(
+            work.sort_values("kommun_centroid_northing_km", ascending=True).head(15)
+        ),
+        "highest_sea_share": records(
+            work.sort_values("havsandel_pct", ascending=False).head(20)
+        ),
+        "coastal_municipalities": int((work["kustkommun_hav"] > 0).sum()),
+    }
+
+
 def main():
     if "--preflight-only" in sys.argv:
         preflight_sources()
@@ -4017,6 +4353,7 @@ def main():
     activity = get_kolada_activity()
     industry = get_industry_structure()
     fa15 = get_fa15_membership()
+    geography = get_geography()
     mig = get_migration()
     pop = get_population()
     income = get_income()
@@ -4024,7 +4361,7 @@ def main():
     completed_housing = get_completed_housing()
     leisure = get_leisure_houses()
     crime = get_crime_total()
-    panel = build_panel(mig, pop, income, turnout, inequality, housing, completed_housing, leisure, crime, labor, monthly_employment, education, students, activity, industry, fa15)
+    panel = build_panel(mig, pop, income, turnout, inequality, housing, completed_housing, leisure, crime, labor, monthly_employment, education, students, activity, industry, fa15, geography)
     panel.to_csv(OUT / "panel.csv", index=False)
     result = fit_models(panel)
     age_models = fit_age_group_models(panel)
@@ -4077,6 +4414,36 @@ def main():
         },
     }
     result["employment_seasonality_rankings"] = _employment_variation_rankings(panel)
+
+    result["geography_candidate_tests"] = {
+        "overall": _sparse_candidate_tests(
+            panel,
+            result["target"],
+            overall_base,
+            GEOGRAPHY_CANDIDATE_FEATURES,
+            END_YEAR - 4,
+            END_YEAR,
+        ),
+        "age_groups": {
+            key: _sparse_candidate_tests(
+                panel,
+                model["target"],
+                model["explanation"]["selected_features"],
+                GEOGRAPHY_CANDIDATE_FEATURES,
+                END_YEAR - 4,
+                END_YEAR,
+            )
+            for key, model in age_models.items()
+            if "error" not in model
+        },
+    }
+    result["geography_rankings"] = _geography_rankings(panel)
+    result["geography_metadata"] = {
+        "centroid_crs": GEOGRAPHY_CRS,
+        "centroid_definition": "Area-weighted polygon centroid northing from SCB simplified municipal boundaries",
+        "sea_share_definition": "Sea water to territorial border / total municipal area, percent",
+        "production_status": "candidate_only",
+    }
 
     (OUT / "model.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(result, ensure_ascii=False, indent=2))
