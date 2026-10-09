@@ -2719,7 +2719,7 @@ def get_municipal_area_geography() -> pd.DataFrame:
     time_var = find_var(meta, "år", "tid")
 
     munis = municipality_codes(region)
-    total_code = code_for_text(area_type, "totalareal")
+    total_code = code_for_all_text(area_type, "total", "areal")
     sea_code = code_for_text(area_type, "havsvatten")
     km2_code = code_for_text(content, "Kvadratkilometer")
 
