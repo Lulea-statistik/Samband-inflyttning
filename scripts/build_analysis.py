@@ -1184,8 +1184,12 @@ def get_turnout_series() -> pd.DataFrame:
         if not districts.empty:
             districts = districts[districts["kommun_kod"].isin(official_municipalities)].copy()
 
-        # Prefer a mathematically exact municipality turnout reconstructed from
-        # physical districts when eligible-voter counts are available.
+        # Municipality turnout must come from the official municipality total
+        # whenever it exists.  Reconstructing it from geographic polling
+        # districts can undercount late/collection-district votes that have no
+        # separate eligible-voter denominator.  District rows are therefore
+        # used for the within-municipality gap, while reconstruction is only a
+        # fallback when an explicit municipality total is genuinely absent.
         if not districts.empty and districts["rostberattigade"].notna().any():
             explicit_muni = muni.copy()
             tmp = districts.dropna(subset=["rostberattigade"]).copy()
@@ -1199,17 +1203,22 @@ def get_turnout_series() -> pd.DataFrame:
             )
             district_muni["kommun"] = np.nan
 
-            # Use district reconstruction where available, but retain the
-            # explicit municipality row as fallback for municipalities where
-            # the district workbook does not yield a complete aggregate.
             if explicit_muni.empty:
                 muni = district_muni
             else:
                 explicit = explicit_muni[
                     ["kommun_kod", "kommun", "turnout", "rostberattigade"]
                 ].copy()
-                combined = pd.concat([district_muni, explicit], ignore_index=True, sort=False)
-                combined["_priority"] = combined["weighted"].notna().astype(int)
+                explicit["_priority"] = 1
+                district_fallback = district_muni[
+                    ["kommun_kod", "kommun", "turnout", "rostberattigade"]
+                ].copy()
+                district_fallback["_priority"] = 0
+                combined = pd.concat(
+                    [explicit, district_fallback],
+                    ignore_index=True,
+                    sort=False,
+                )
                 muni = (
                     combined.sort_values("_priority", ascending=False)
                     .drop_duplicates("kommun_kod")
@@ -1261,6 +1270,31 @@ def get_turnout_series() -> pd.DataFrame:
             f"Turnout {election_year} parse counts: municipality={n_muni}, "
             f"district municipalities={n_district_muni}, merged={n_merged}"
         )
+        # Diagnostic only: large differences are expected when a municipality
+        # has collection/late-count votes outside the geographic district rows.
+        if (
+            'explicit_muni' in locals()
+            and not explicit_muni.empty
+            and 'district_muni' in locals()
+            and not district_muni.empty
+        ):
+            turnout_check = explicit_muni[
+                ["kommun_kod", "turnout"]
+            ].drop_duplicates("kommun_kod").merge(
+                district_muni[["kommun_kod", "turnout"]].drop_duplicates("kommun_kod"),
+                on="kommun_kod",
+                how="inner",
+                suffixes=("_official", "_district_reconstructed"),
+            )
+            if not turnout_check.empty:
+                turnout_check["abs_diff_pp"] = (
+                    turnout_check["turnout_official"]
+                    - turnout_check["turnout_district_reconstructed"]
+                ).abs()
+                print(
+                    f"Turnout {election_year} official-vs-district reconstruction: "
+                    f"max abs diff={turnout_check['abs_diff_pp'].max():.3f} pp"
+                )
         if missing_from_district_all:
             print(
                 f"Turnout {election_year} municipalities without district gap: "
