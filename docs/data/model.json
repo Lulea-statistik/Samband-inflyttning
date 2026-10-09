@@ -54528,6 +54528,1694 @@
       }
     }
   },
+  "geography_interaction_tests": {
+    "overall": {
+      "rule": "interaction tested only after including both main effects, on the same observations as the base model",
+      "start_year": 2020,
+      "end_year": 2024,
+      "northing_unit": "100 km from median municipality centroid northing in EPSG:3006",
+      "sea_share_unit": "10 percentage points",
+      "rows": [
+        {
+          "model": "coast_x_northing",
+          "n_obs": 1160,
+          "n_municipalities": 290,
+          "n_years": 4,
+          "northing_center_km_epsg3006": 6542.659355061926,
+          "main_adjusted_r2": 0.9168694440513077,
+          "full_adjusted_r2": 0.9168084606047513,
+          "delta_adjusted_r2_interaction": -6.09834465563619e-05,
+          "main_aic": 6960.151599552437,
+          "full_aic": 6961.98246753508,
+          "delta_aic_interaction": -1.8308679826432126,
+          "main_rmse": 4.769117580536566,
+          "full_rmse": 4.768769916279464,
+          "delta_rmse_interaction": 0.0003476642571023092,
+          "coefficients": [
+            {
+              "feature": "geo_northing_100km",
+              "coefficient": 0.11618148370336248,
+              "p_value": 0.12064040484219626,
+              "ci_low": -0.030531238249021125,
+              "ci_high": 0.26289420565574606
+            },
+            {
+              "feature": "kustkommun_hav",
+              "coefficient": -0.08242097335739754,
+              "p_value": 0.7910872409441102,
+              "ci_low": -0.692246293092132,
+              "ci_high": 0.527404346377337
+            },
+            {
+              "feature": "geo_kust_x_northing",
+              "coefficient": -0.044488918229845076,
+              "p_value": 0.7244611890823939,
+              "ci_low": -0.29185338620911694,
+              "ci_high": 0.20287554974942681
+            }
+          ],
+          "interaction_feature": "geo_kust_x_northing",
+          "interpretation": {
+            "inland_northing_effect_per_100km": 0.11618148370336248,
+            "coastal_northing_effect_per_100km": 0.0716925654735174,
+            "coast_effect_at_national_median_northing": -0.08242097335739754
+          }
+        },
+        {
+          "model": "sea_share_x_northing",
+          "n_obs": 1160,
+          "n_municipalities": 290,
+          "n_years": 4,
+          "northing_center_km_epsg3006": 6542.659355061926,
+          "main_adjusted_r2": 0.9168649524891997,
+          "full_adjusted_r2": 0.9168635348896635,
+          "delta_adjusted_r2_interaction": -1.4175995362020188e-06,
+          "main_aic": 6960.21427291287,
+          "full_aic": 6961.214272509557,
+          "delta_aic_interaction": -0.999999596687303,
+          "main_rmse": 4.769246417028963,
+          "full_rmse": 4.7671911495149395,
+          "delta_rmse_interaction": 0.0020552675140237397,
+          "coefficients": [
+            {
+              "feature": "geo_northing_100km",
+              "coefficient": 0.13830837413004546,
+              "p_value": 0.060436410989091846,
+              "ci_low": -0.0060674060530400975,
+              "ci_high": 0.282684154313131
+            },
+            {
+              "feature": "geo_havsandel_10pp",
+              "coefficient": -0.006799970392754151,
+              "p_value": 0.9109119487715432,
+              "ci_low": -0.12591602932297652,
+              "ci_high": 0.1123160885374682
+            },
+            {
+              "feature": "geo_havsandel_x_northing",
+              "coefficient": -0.021738266936115518,
+              "p_value": 0.26417685174570826,
+              "ci_low": -0.05989628462588845,
+              "ci_high": 0.016419750753657418
+            }
+          ],
+          "interaction_feature": "geo_havsandel_x_northing",
+          "interpretation": {
+            "sea_share_effect_per_10pp_at_median_northing": -0.006799970392754151,
+            "change_in_sea_share_effect_per_100km_north": -0.021738266936115518
+          }
+        }
+      ]
+    },
+    "age_groups": {
+      "18_23": {
+        "rule": "interaction tested only after including both main effects, on the same observations as the base model",
+        "start_year": 2020,
+        "end_year": 2024,
+        "northing_unit": "100 km from median municipality centroid northing in EPSG:3006",
+        "sea_share_unit": "10 percentage points",
+        "rows": [
+          {
+            "model": "coast_x_northing",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "northing_center_km_epsg3006": 6542.659355061926,
+            "main_adjusted_r2": 0.7711357812815679,
+            "full_adjusted_r2": 0.771008100173673,
+            "delta_adjusted_r2_interaction": -0.00012768110789485032,
+            "main_aic": 10102.9347199035,
+            "full_aic": 10104.56011563438,
+            "delta_aic_interaction": -1.6253957308799727,
+            "main_rmse": 18.450381595593175,
+            "full_rmse": 18.447402701737825,
+            "delta_rmse_interaction": 0.0029788938553494404,
+            "coefficients": [
+              {
+                "feature": "geo_northing_100km",
+                "coefficient": -0.9200060894612456,
+                "p_value": 0.0023105151949337314,
+                "ci_low": -1.511772567875242,
+                "ci_high": -0.3282396110472491
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": 2.3769006471909604,
+                "p_value": 0.08115342703276324,
+                "ci_low": -0.29428794989126006,
+                "ci_high": 5.04808924427318
+              },
+              {
+                "feature": "geo_kust_x_northing",
+                "coefficient": 0.2609349013010491,
+                "p_value": 0.4826073886799047,
+                "ci_low": -0.46746847836998184,
+                "ci_high": 0.9893382809720801
+              }
+            ],
+            "interaction_feature": "geo_kust_x_northing",
+            "interpretation": {
+              "inland_northing_effect_per_100km": -0.9200060894612456,
+              "coastal_northing_effect_per_100km": -0.6590711881601965,
+              "coast_effect_at_national_median_northing": 2.3769006471909604
+            }
+          },
+          {
+            "model": "sea_share_x_northing",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "northing_center_km_epsg3006": 6542.659355061926,
+            "main_adjusted_r2": 0.7711008536376394,
+            "full_adjusted_r2": 0.7710200894732953,
+            "delta_adjusted_r2_interaction": -8.076416434410483e-05,
+            "main_aic": 10103.111737420088,
+            "full_aic": 10104.499380072712,
+            "delta_aic_interaction": -1.3876426526239811,
+            "main_rmse": 18.451789425478445,
+            "full_rmse": 18.446919771264195,
+            "delta_rmse_interaction": 0.004869654214250119,
+            "coefficients": [
+              {
+                "feature": "geo_northing_100km",
+                "coefficient": -0.9130845806273514,
+                "p_value": 0.0014582954271178301,
+                "ci_low": -1.4753507489586173,
+                "ci_high": -0.35081841229608557
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": 0.4660438754941517,
+                "p_value": 0.09993076654003738,
+                "ci_low": -0.08916832807560571,
+                "ci_high": 1.0212560790639091
+              },
+              {
+                "feature": "geo_havsandel_x_northing",
+                "coefficient": 0.06755528731236496,
+                "p_value": 0.3554737896351329,
+                "ci_low": -0.07573744279028236,
+                "ci_high": 0.21084801741501227
+              }
+            ],
+            "interaction_feature": "geo_havsandel_x_northing",
+            "interpretation": {
+              "sea_share_effect_per_10pp_at_median_northing": 0.4660438754941517,
+              "change_in_sea_share_effect_per_100km_north": 0.06755528731236496
+            }
+          }
+        ]
+      },
+      "24_34": {
+        "rule": "interaction tested only after including both main effects, on the same observations as the base model",
+        "start_year": 2020,
+        "end_year": 2024,
+        "northing_unit": "100 km from median municipality centroid northing in EPSG:3006",
+        "sea_share_unit": "10 percentage points",
+        "rows": [
+          {
+            "model": "coast_x_northing",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "northing_center_km_epsg3006": 6542.659355061926,
+            "main_adjusted_r2": 0.8848913187788688,
+            "full_adjusted_r2": 0.8848690336179029,
+            "delta_adjusted_r2_interaction": -2.2285160965918038e-05,
+            "main_aic": 9560.823791215344,
+            "full_aic": 9562.029462128434,
+            "delta_aic_interaction": -1.2056709130902163,
+            "main_rmse": 14.64359086486578,
+            "full_rmse": 14.638578003177752,
+            "delta_rmse_interaction": 0.005012861688028281,
+            "coefficients": [
+              {
+                "feature": "geo_northing_100km",
+                "coefficient": 0.5973860099880335,
+                "p_value": 0.013864115446758963,
+                "ci_low": 0.12157662621889936,
+                "ci_high": 1.0731953937571677
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": -1.871119087363804,
+                "p_value": 0.0868376686962001,
+                "ci_low": -4.012848149603526,
+                "ci_high": 0.27060997487591765
+              },
+              {
+                "feature": "geo_kust_x_northing",
+                "coefficient": -0.3009356272706722,
+                "p_value": 0.5061794636941401,
+                "ci_low": -1.1881564981765373,
+                "ci_high": 0.5862852436351931
+              }
+            ],
+            "interaction_feature": "geo_kust_x_northing",
+            "interpretation": {
+              "inland_northing_effect_per_100km": 0.5973860099880335,
+              "coastal_northing_effect_per_100km": 0.2964503827173613,
+              "coast_effect_at_national_median_northing": -1.871119087363804
+            }
+          },
+          {
+            "model": "sea_share_x_northing",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "northing_center_km_epsg3006": 6542.659355061926,
+            "main_adjusted_r2": 0.8848004222324984,
+            "full_adjusted_r2": 0.8849519413133774,
+            "delta_adjusted_r2_interaction": 0.00015151908087895904,
+            "main_aic": 9561.739433578561,
+            "full_aic": 9561.19382620652,
+            "delta_aic_interaction": 0.5456073720415588,
+            "main_rmse": 14.649371441780414,
+            "full_rmse": 14.633306314002509,
+            "delta_rmse_interaction": 0.01606512777790492,
+            "coefficients": [
+              {
+                "feature": "geo_northing_100km",
+                "coefficient": 0.6629022062528642,
+                "p_value": 0.006161441063443793,
+                "ci_low": 0.18855603099473156,
+                "ci_high": 1.1372483815109968
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": -0.3265465078352828,
+                "p_value": 0.12566291476683544,
+                "ci_low": -0.7444689653705634,
+                "ci_high": 0.0913759496999979
+              },
+              {
+                "feature": "geo_havsandel_x_northing",
+                "coefficient": -0.10792782022428783,
+                "p_value": 0.1326007493942301,
+                "ci_low": -0.2485828920978289,
+                "ci_high": 0.03272725164925326
+              }
+            ],
+            "interaction_feature": "geo_havsandel_x_northing",
+            "interpretation": {
+              "sea_share_effect_per_10pp_at_median_northing": -0.3265465078352828,
+              "change_in_sea_share_effect_per_100km_north": -0.10792782022428783
+            }
+          }
+        ]
+      },
+      "35_49": {
+        "rule": "interaction tested only after including both main effects, on the same observations as the base model",
+        "start_year": 2020,
+        "end_year": 2024,
+        "northing_unit": "100 km from median municipality centroid northing in EPSG:3006",
+        "sea_share_unit": "10 percentage points",
+        "rows": [
+          {
+            "model": "coast_x_northing",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "northing_center_km_epsg3006": 6542.659355061926,
+            "main_adjusted_r2": 0.8172008569082334,
+            "full_adjusted_r2": 0.8171336564898906,
+            "delta_adjusted_r2_interaction": -6.720041834284984e-05,
+            "main_aic": 8097.441364345132,
+            "full_aic": 8098.845246966856,
+            "delta_aic_interaction": -1.4038826217247333,
+            "main_rmse": 7.76624045070559,
+            "full_rmse": 7.76424519373689,
+            "delta_rmse_interaction": 0.0019952569686996213,
+            "coefficients": [
+              {
+                "feature": "geo_northing_100km",
+                "coefficient": 0.5454890281975131,
+                "p_value": 0.0016997521267941447,
+                "ci_low": 0.20480620339031175,
+                "ci_high": 0.8861718530047145
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": -1.0343228077769095,
+                "p_value": 0.06185071379303472,
+                "ci_low": -2.1199359966972096,
+                "ci_high": 0.05129038114339046
+              },
+              {
+                "feature": "geo_kust_x_northing",
+                "coefficient": -0.14187262831114233,
+                "p_value": 0.5971361358610938,
+                "ci_low": -0.6679898471668912,
+                "ci_high": 0.3842445905446066
+              }
+            ],
+            "interaction_feature": "geo_kust_x_northing",
+            "interpretation": {
+              "inland_northing_effect_per_100km": 0.5454890281975131,
+              "coastal_northing_effect_per_100km": 0.40361639988637077,
+              "coast_effect_at_national_median_northing": -1.0343228077769095
+            }
+          },
+          {
+            "model": "sea_share_x_northing",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "northing_center_km_epsg3006": 6542.659355061926,
+            "main_adjusted_r2": 0.8173780515083573,
+            "full_adjusted_r2": 0.8175991267906015,
+            "delta_adjusted_r2_interaction": 0.000221075282244243,
+            "main_aic": 8096.316384112803,
+            "full_aic": 8095.888804032016,
+            "delta_aic_interaction": 0.4275800807863561,
+            "main_rmse": 7.76247547266573,
+            "full_rmse": 7.754357293634809,
+            "delta_rmse_interaction": 0.008118179030921269,
+            "coefficients": [
+              {
+                "feature": "geo_northing_100km",
+                "coefficient": 0.5847614146447763,
+                "p_value": 0.0006521383869373933,
+                "ci_low": 0.24855469834394045,
+                "ci_high": 0.9209681309456121
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": -0.2625082496750284,
+                "p_value": 0.02467898122425775,
+                "ci_low": -0.4915452872097708,
+                "ci_high": -0.03347121214028598
+              },
+              {
+                "feature": "geo_havsandel_x_northing",
+                "coefficient": -0.05702569986052336,
+                "p_value": 0.18714097251225514,
+                "ci_low": -0.14175745534372264,
+                "ci_high": 0.027706055622675904
+              }
+            ],
+            "interaction_feature": "geo_havsandel_x_northing",
+            "interpretation": {
+              "sea_share_effect_per_10pp_at_median_northing": -0.2625082496750284,
+              "change_in_sea_share_effect_per_100km_north": -0.05702569986052336
+            }
+          }
+        ]
+      },
+      "63_68": {
+        "rule": "interaction tested only after including both main effects, on the same observations as the base model",
+        "start_year": 2020,
+        "end_year": 2024,
+        "northing_unit": "100 km from median municipality centroid northing in EPSG:3006",
+        "sea_share_unit": "10 percentage points",
+        "rows": [
+          {
+            "model": "coast_x_northing",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "northing_center_km_epsg3006": 6542.659355061926,
+            "main_adjusted_r2": 0.586459420643602,
+            "full_adjusted_r2": 0.5862513031742028,
+            "delta_adjusted_r2_interaction": -0.00020811746939919384,
+            "main_aic": 7763.49631455853,
+            "full_aic": 7765.060166326685,
+            "delta_aic_interaction": -1.563851768155473,
+            "main_rmse": 6.742498596659306,
+            "full_rmse": 6.74123116026387,
+            "delta_rmse_interaction": 0.001267436395436583,
+            "coefficients": [
+              {
+                "feature": "geo_northing_100km",
+                "coefficient": -0.3373037384970343,
+                "p_value": 0.014233299895201744,
+                "ci_low": -0.606996368080795,
+                "ci_high": -0.0676111089132736
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": 1.0493692004209425,
+                "p_value": 0.03600287586271263,
+                "ci_low": 0.06852567207215587,
+                "ci_high": 2.030212728769729
+              },
+              {
+                "feature": "geo_kust_x_northing",
+                "coefficient": -0.1032878188443782,
+                "p_value": 0.525869623623504,
+                "ci_low": -0.42243153070699196,
+                "ci_high": 0.21585589301823555
+              }
+            ],
+            "interaction_feature": "geo_kust_x_northing",
+            "interpretation": {
+              "inland_northing_effect_per_100km": -0.3373037384970343,
+              "coastal_northing_effect_per_100km": -0.44059155734141253,
+              "coast_effect_at_national_median_northing": 1.0493692004209425
+            }
+          },
+          {
+            "model": "sea_share_x_northing",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "northing_center_km_epsg3006": 6542.659355061926,
+            "main_adjusted_r2": 0.5895358855606441,
+            "full_adjusted_r2": 0.5892011957677483,
+            "delta_adjusted_r2_interaction": -0.0003346897928957482,
+            "main_aic": 7754.8344321381055,
+            "full_aic": 7756.760122961656,
+            "delta_aic_interaction": -1.9256908235502124,
+            "main_rmse": 6.717371941365571,
+            "full_rmse": 6.717156788614314,
+            "delta_rmse_interaction": 0.00021515275125683075,
+            "coefficients": [
+              {
+                "feature": "geo_northing_100km",
+                "coefficient": -0.3364769826613204,
+                "p_value": 0.009207828103382205,
+                "ci_low": -0.5897112442308616,
+                "ci_high": -0.08324272109177927
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": 0.35981614002261486,
+                "p_value": 0.0004215116965766683,
+                "ci_low": 0.15982194194015167,
+                "ci_high": 0.5598103381050781
+              },
+              {
+                "feature": "geo_havsandel_x_northing",
+                "coefficient": -0.008558883612414693,
+                "p_value": 0.7979720213814052,
+                "ci_low": -0.07409365528725005,
+                "ci_high": 0.05697588806242067
+              }
+            ],
+            "interaction_feature": "geo_havsandel_x_northing",
+            "interpretation": {
+              "sea_share_effect_per_10pp_at_median_northing": 0.35981614002261486,
+              "change_in_sea_share_effect_per_100km_north": -0.008558883612414693
+            }
+          }
+        ]
+      },
+      "70_79": {
+        "rule": "interaction tested only after including both main effects, on the same observations as the base model",
+        "start_year": 2020,
+        "end_year": 2024,
+        "northing_unit": "100 km from median municipality centroid northing in EPSG:3006",
+        "sea_share_unit": "10 percentage points",
+        "rows": [
+          {
+            "model": "coast_x_northing",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "northing_center_km_epsg3006": 6542.659355061926,
+            "main_adjusted_r2": 0.47226849280592065,
+            "full_adjusted_r2": 0.47224849544761127,
+            "delta_adjusted_r2_interaction": -1.999735830937599e-05,
+            "main_aic": 6822.229843134268,
+            "full_aic": 6823.257591433197,
+            "delta_aic_interaction": -1.0277482989295095,
+            "main_rmse": 4.509383902109026,
+            "full_rmse": 4.507494532439192,
+            "delta_rmse_interaction": 0.0018893696698345508,
+            "coefficients": [
+              {
+                "feature": "geo_northing_100km",
+                "coefficient": -0.051940118478739764,
+                "p_value": 0.49688501714082156,
+                "ci_low": -0.2017795293611943,
+                "ci_high": 0.09789929240371477
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": 0.5625531807928108,
+                "p_value": 0.08233077685958708,
+                "ci_low": -0.0720934234726992,
+                "ci_high": 1.197199785058321
+              },
+              {
+                "feature": "geo_kust_x_northing",
+                "coefficient": -0.10062191992397329,
+                "p_value": 0.36753503685039546,
+                "ci_low": -0.31948252509409397,
+                "ci_high": 0.11823868524614739
+              }
+            ],
+            "interaction_feature": "geo_kust_x_northing",
+            "interpretation": {
+              "inland_northing_effect_per_100km": -0.051940118478739764,
+              "coastal_northing_effect_per_100km": -0.15256203840271304,
+              "coast_effect_at_national_median_northing": 0.5625531807928108
+            }
+          },
+          {
+            "model": "sea_share_x_northing",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "northing_center_km_epsg3006": 6542.659355061926,
+            "main_adjusted_r2": 0.47379753212427156,
+            "full_adjusted_r2": 0.473337827641618,
+            "delta_adjusted_r2_interaction": -0.0004597044826535335,
+            "main_aic": 6818.86400258702,
+            "full_aic": 6820.860760242011,
+            "delta_aic_interaction": -1.996757654990688,
+            "main_rmse": 4.502846461363774,
+            "full_rmse": 4.502840168358795,
+            "delta_rmse_interaction": 6.293004978452643e-06,
+            "coefficients": [
+              {
+                "feature": "geo_northing_100km",
+                "coefficient": -0.08239239579430352,
+                "p_value": 0.2703969830802603,
+                "ci_low": -0.22891174702210798,
+                "ci_high": 0.06412695543350094
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": 0.15524700049459156,
+                "p_value": 0.01543300450993101,
+                "ci_low": 0.029618763336427573,
+                "ci_high": 0.28087523765275557
+              },
+              {
+                "feature": "geo_havsandel_x_northing",
+                "coefficient": -0.0011841979344379807,
+                "p_value": 0.9589289993078918,
+                "ci_low": -0.046253957643175025,
+                "ci_high": 0.04388556177429906
+              }
+            ],
+            "interaction_feature": "geo_havsandel_x_northing",
+            "interpretation": {
+              "sea_share_effect_per_10pp_at_median_northing": 0.15524700049459156,
+              "change_in_sea_share_effect_per_100km_north": -0.0011841979344379807
+            }
+          }
+        ]
+      }
+    }
+  },
+  "geography_urbanity_tests": {
+    "overall": {
+      "rule": "urbanity control first, then coast/sea-share main effect, then interaction; same observations in all nested models",
+      "start_year": 2020,
+      "end_year": 2024,
+      "density_definition": "population per km2 land area, log1p transformed and lagged one year",
+      "population_size_definition": "natural log population, lagged one year",
+      "sea_share_unit": "10 percentage points",
+      "rows": [
+        {
+          "model": "coast_vs_population_size",
+          "urbanity_feature": "lag1_log_folkmangd",
+          "urbanity_center_log_units": 9.693629729328851,
+          "geography_feature": "kustkommun_hav",
+          "geography_scaled_feature": "kustkommun_hav",
+          "interaction_feature": "kustkommun_hav_x_lag1_log_folkmangd",
+          "n_obs": 1160,
+          "n_municipalities": 290,
+          "n_years": 4,
+          "urbanity_only_adjusted_r2": 0.9168806797329582,
+          "geography_main_adjusted_r2": 0.9168147820245005,
+          "interaction_adjusted_r2": 0.9167652157151486,
+          "delta_adjusted_r2_geography_beyond_urbanity": -6.589770845766285e-05,
+          "delta_adjusted_r2_interaction": -4.9566309351933846e-05,
+          "delta_aic_geography_beyond_urbanity": -1.90130315173883,
+          "delta_aic_interaction": -1.672101133387514,
+          "delta_rmse_geography_beyond_urbanity": 0.0002030467466056507,
+          "delta_rmse_interaction": 0.0006745167491803983,
+          "coefficients": [
+            {
+              "feature": "lag1_log_folkmangd",
+              "coefficient": -0.7407900126152759,
+              "p_value": 0.032266182129390815,
+              "ci_low": -1.418910366420919,
+              "ci_high": -0.06266965880963271
+            },
+            {
+              "feature": "kustkommun_hav",
+              "coefficient": -0.0342614582284545,
+              "p_value": 0.922882984739798,
+              "ci_low": -0.727952246018953,
+              "ci_high": 0.659429329562044
+            },
+            {
+              "feature": "kustkommun_hav_x_lag1_log_folkmangd",
+              "coefficient": -0.1923819584248134,
+              "p_value": 0.5160888644810695,
+              "ci_low": -0.7730253171813677,
+              "ci_high": 0.38826140033174084
+            }
+          ]
+        },
+        {
+          "model": "sea_share_vs_population_size",
+          "urbanity_feature": "lag1_log_folkmangd",
+          "urbanity_center_log_units": 9.693629729328851,
+          "geography_feature": "havsandel_pct",
+          "geography_scaled_feature": "geo_havsandel_10pp",
+          "interaction_feature": "geo_havsandel_10pp_x_lag1_log_folkmangd",
+          "n_obs": 1160,
+          "n_municipalities": 290,
+          "n_years": 4,
+          "urbanity_only_adjusted_r2": 0.9168806797329582,
+          "geography_main_adjusted_r2": 0.9168099006476903,
+          "interaction_adjusted_r2": 0.9167438764821354,
+          "delta_adjusted_r2_geography_beyond_urbanity": -7.077908526786914e-05,
+          "delta_adjusted_r2_interaction": -6.602416555490098e-05,
+          "delta_aic_geography_beyond_urbanity": -1.969370905926553,
+          "delta_aic_interaction": -1.9013890817750507,
+          "delta_rmse_geography_beyond_urbanity": 6.301345226500388e-05,
+          "delta_rmse_interaction": 0.00020286729017371385,
+          "coefficients": [
+            {
+              "feature": "lag1_log_folkmangd",
+              "coefficient": -0.7972809873662808,
+              "p_value": 0.03124266268889063,
+              "ci_low": -1.522752232381717,
+              "ci_high": -0.0718097423508447
+            },
+            {
+              "feature": "geo_havsandel_10pp",
+              "coefficient": -0.004392803005238463,
+              "p_value": 0.948204569471472,
+              "ci_low": -0.13692856043942175,
+              "ci_high": 0.1281429544289448
+            },
+            {
+              "feature": "geo_havsandel_10pp_x_lag1_log_folkmangd",
+              "coefficient": -0.02147240210762601,
+              "p_value": 0.643246252487663,
+              "ci_low": -0.11233668138339677,
+              "ci_high": 0.06939187716814475
+            }
+          ]
+        },
+        {
+          "model": "coast_vs_population_density",
+          "urbanity_feature": "lag1_log_befolkningstathet_land",
+          "urbanity_center_log_units": 3.3857951169442164,
+          "geography_feature": "kustkommun_hav",
+          "geography_scaled_feature": "kustkommun_hav",
+          "interaction_feature": "kustkommun_hav_x_lag1_log_befolkningstathet_land",
+          "n_obs": 1160,
+          "n_municipalities": 290,
+          "n_years": 4,
+          "urbanity_only_adjusted_r2": 0.9168094517704014,
+          "geography_main_adjusted_r2": 0.9167482247385309,
+          "interaction_adjusted_r2": 0.9168847542668711,
+          "delta_adjusted_r2_geography_beyond_urbanity": -6.122703187050327e-05,
+          "delta_adjusted_r2_interaction": 0.00013652952834020127,
+          "delta_aic_geography_beyond_urbanity": -1.834544525381716,
+          "delta_aic_interaction": 0.9236947449644504,
+          "delta_rmse_geography_beyond_urbanity": 0.0003403792541201156,
+          "delta_rmse_interaction": 0.006010697311613633,
+          "coefficients": [
+            {
+              "feature": "lag1_log_befolkningstathet_land",
+              "coefficient": 0.24383126889736664,
+              "p_value": 0.4019605986956184,
+              "ci_low": -0.32637079163309557,
+              "ci_high": 0.8140333294278288
+            },
+            {
+              "feature": "kustkommun_hav",
+              "coefficient": -0.017412397577274474,
+              "p_value": 0.9660129798629801,
+              "ci_low": -0.8183565598268376,
+              "ci_high": 0.7835317646722886
+            },
+            {
+              "feature": "kustkommun_hav_x_lag1_log_befolkningstathet_land",
+              "coefficient": -0.3746827546986499,
+              "p_value": 0.09481876879159924,
+              "ci_low": -0.8142882026275091,
+              "ci_high": 0.06492269323020922
+            }
+          ]
+        },
+        {
+          "model": "sea_share_vs_population_density",
+          "urbanity_feature": "lag1_log_befolkningstathet_land",
+          "urbanity_center_log_units": 3.3857951169442164,
+          "geography_feature": "havsandel_pct",
+          "geography_scaled_feature": "geo_havsandel_10pp",
+          "interaction_feature": "geo_havsandel_10pp_x_lag1_log_befolkningstathet_land",
+          "n_obs": 1160,
+          "n_municipalities": 290,
+          "n_years": 4,
+          "urbanity_only_adjusted_r2": 0.9168094517704014,
+          "geography_main_adjusted_r2": 0.9167421402760939,
+          "interaction_adjusted_r2": 0.9168375085415863,
+          "delta_adjusted_r2_geography_beyond_urbanity": -6.731149430749817e-05,
+          "delta_adjusted_r2_interaction": 9.536826549239041e-05,
+          "delta_aic_geography_beyond_urbanity": -1.919320117263851,
+          "delta_aic_interaction": 0.349271532111743,
+          "delta_rmse_geography_beyond_urbanity": 0.00016597976050469754,
+          "delta_rmse_interaction": 0.0048305398742236605,
+          "coefficients": [
+            {
+              "feature": "lag1_log_befolkningstathet_land",
+              "coefficient": 0.2154919092095849,
+              "p_value": 0.4699227883333812,
+              "ci_low": -0.3689997071067898,
+              "ci_high": 0.7999835255259595
+            },
+            {
+              "feature": "geo_havsandel_10pp",
+              "coefficient": 0.026664808028730946,
+              "p_value": 0.7423957068500964,
+              "ci_low": -0.13233991049490465,
+              "ci_high": 0.18566952655236654
+            },
+            {
+              "feature": "geo_havsandel_10pp_x_lag1_log_befolkningstathet_land",
+              "coefficient": -0.07107271403050948,
+              "p_value": 0.05732976317655232,
+              "ci_low": -0.14435808133229883,
+              "ci_high": 0.0022126532712798824
+            }
+          ]
+        }
+      ]
+    },
+    "age_groups": {
+      "18_23": {
+        "rule": "urbanity control first, then coast/sea-share main effect, then interaction; same observations in all nested models",
+        "start_year": 2020,
+        "end_year": 2024,
+        "density_definition": "population per km2 land area, log1p transformed and lagged one year",
+        "population_size_definition": "natural log population, lagged one year",
+        "sea_share_unit": "10 percentage points",
+        "rows": [
+          {
+            "model": "coast_vs_population_size",
+            "urbanity_feature": "lag1_log_folkmangd",
+            "urbanity_center_log_units": 9.693629729328851,
+            "geography_feature": "kustkommun_hav",
+            "geography_scaled_feature": "kustkommun_hav",
+            "interaction_feature": "kustkommun_hav_x_lag1_log_folkmangd",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.7694014428274462,
+            "geography_main_adjusted_r2": 0.7697461788033158,
+            "interaction_adjusted_r2": 0.7695820135138278,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.00034473597586959226,
+            "delta_adjusted_r2_interaction": -0.00016416528948792752,
+            "delta_aic_geography_beyond_urbanity": 0.7552332216546347,
+            "delta_aic_interaction": -1.8060790812178311,
+            "delta_rmse_geography_beyond_urbanity": 0.02200083602529901,
+            "delta_rmse_interaction": 0.001547495581910141,
+            "coefficients": [
+              {
+                "feature": "lag1_log_folkmangd",
+                "coefficient": -3.3295679820691855,
+                "p_value": 0.05028218678528706,
+                "ci_low": -6.663232413333711,
+                "ci_high": 0.004096449195340135
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": 2.895440599824987,
+                "p_value": 0.04982623937257032,
+                "ci_low": 0.0021975760853800708,
+                "ci_high": 5.7886836235645935
+              },
+              {
+                "feature": "kustkommun_hav_x_lag1_log_folkmangd",
+                "coefficient": -0.5757689413836865,
+                "p_value": 0.6098657464439506,
+                "ci_low": -2.787337748601366,
+                "ci_high": 1.635799865833993
+              }
+            ]
+          },
+          {
+            "model": "sea_share_vs_population_size",
+            "urbanity_feature": "lag1_log_folkmangd",
+            "urbanity_center_log_units": 9.693629729328851,
+            "geography_feature": "havsandel_pct",
+            "geography_scaled_feature": "geo_havsandel_10pp",
+            "interaction_feature": "geo_havsandel_10pp_x_lag1_log_folkmangd",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.7694014428274462,
+            "geography_main_adjusted_r2": 0.7697946714438222,
+            "interaction_adjusted_r2": 0.7696134277852859,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.000393228616376029,
+            "delta_adjusted_r2_interaction": -0.00018124365853633417,
+            "delta_aic_geography_beyond_urbanity": 0.9995609246707318,
+            "delta_aic_interaction": -1.8922462180689763,
+            "delta_rmse_geography_beyond_urbanity": 0.023950558293321933,
+            "delta_rmse_interaction": 0.0008598042894085722,
+            "coefficients": [
+              {
+                "feature": "lag1_log_folkmangd",
+                "coefficient": -3.3640550538677663,
+                "p_value": 0.04259898367660113,
+                "ci_low": -6.6158600063154775,
+                "ci_high": -0.11225010142005498
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": 0.5451888138262886,
+                "p_value": 0.08844639485726719,
+                "ci_low": -0.08202341041042804,
+                "ci_high": 1.1724010380630052
+              },
+              {
+                "feature": "geo_havsandel_10pp_x_lag1_log_folkmangd",
+                "coefficient": -0.0867472845193765,
+                "p_value": 0.7171972822253625,
+                "ci_low": -0.5561515519267738,
+                "ci_high": 0.38265698288802075
+              }
+            ]
+          },
+          {
+            "model": "coast_vs_population_density",
+            "urbanity_feature": "lag1_log_befolkningstathet_land",
+            "urbanity_center_log_units": 3.3857951169442164,
+            "geography_feature": "kustkommun_hav",
+            "geography_scaled_feature": "kustkommun_hav",
+            "interaction_feature": "kustkommun_hav_x_lag1_log_befolkningstathet_land",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.769583862985544,
+            "geography_main_adjusted_r2": 0.7696958033108989,
+            "interaction_adjusted_r2": 0.7696848566984232,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.00011194032535488674,
+            "delta_adjusted_r2_interaction": -1.0946612475692952e-05,
+            "delta_aic_geography_beyond_urbanity": -0.41563650680473074,
+            "delta_aic_interaction": -1.0335583050036803,
+            "delta_rmse_geography_beyond_urbanity": 0.0126439413524011,
+            "delta_rmse_interaction": 0.007708405432598653,
+            "coefficients": [
+              {
+                "feature": "lag1_log_befolkningstathet_land",
+                "coefficient": 1.304277748103432,
+                "p_value": 0.2983396444354016,
+                "ci_low": -1.1537376908467039,
+                "ci_high": 3.762293187053568
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": 2.4836989577066735,
+                "p_value": 0.07698142311026468,
+                "ci_low": -0.2689318551412434,
+                "ci_high": 5.23632977055459
+              },
+              {
+                "feature": "kustkommun_hav_x_lag1_log_befolkningstathet_land",
+                "coefficient": -0.8766723426518732,
+                "p_value": 0.29015617168118746,
+                "ci_low": -2.5010627731134725,
+                "ci_high": 0.747718087809726
+              }
+            ]
+          },
+          {
+            "model": "sea_share_vs_population_density",
+            "urbanity_feature": "lag1_log_befolkningstathet_land",
+            "urbanity_center_log_units": 3.3857951169442164,
+            "geography_feature": "havsandel_pct",
+            "geography_scaled_feature": "geo_havsandel_10pp",
+            "interaction_feature": "geo_havsandel_10pp_x_lag1_log_befolkningstathet_land",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.769583862985544,
+            "geography_main_adjusted_r2": 0.7696846860754013,
+            "interaction_adjusted_r2": 0.7701570699838048,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.0001008230898572604,
+            "delta_adjusted_r2_interaction": 0.0004723839084035397,
+            "delta_aic_geography_beyond_urbanity": -0.4716306316004193,
+            "delta_aic_interaction": 1.4032159694252186,
+            "delta_rmse_geography_beyond_urbanity": 0.01219722994175143,
+            "delta_rmse_interaction": 0.027130690152315395,
+            "coefficients": [
+              {
+                "feature": "lag1_log_befolkningstathet_land",
+                "coefficient": 1.3280413230921155,
+                "p_value": 0.2848075472118965,
+                "ci_low": -1.1055387236409073,
+                "ci_high": 3.7616213698251384
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": 0.6647433194737987,
+                "p_value": 0.04450343597428289,
+                "ci_low": 0.016327756689096695,
+                "ci_high": 1.3131588822585007
+              },
+              {
+                "feature": "geo_havsandel_10pp_x_lag1_log_befolkningstathet_land",
+                "coefficient": -0.3388132514396198,
+                "p_value": 0.04931089576287653,
+                "ci_low": -0.6766045492829262,
+                "ci_high": -0.001021953596313352
+              }
+            ]
+          }
+        ]
+      },
+      "24_34": {
+        "rule": "urbanity control first, then coast/sea-share main effect, then interaction; same observations in all nested models",
+        "start_year": 2020,
+        "end_year": 2024,
+        "density_definition": "population per km2 land area, log1p transformed and lagged one year",
+        "population_size_definition": "natural log population, lagged one year",
+        "sea_share_unit": "10 percentage points",
+        "rows": [
+          {
+            "model": "coast_vs_population_size",
+            "urbanity_feature": "lag1_log_folkmangd",
+            "urbanity_center_log_units": 9.693629729328851,
+            "geography_feature": "kustkommun_hav",
+            "geography_scaled_feature": "kustkommun_hav",
+            "interaction_feature": "kustkommun_hav_x_lag1_log_folkmangd",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.8843051860989166,
+            "geography_main_adjusted_r2": 0.8845478433453648,
+            "interaction_adjusted_r2": 0.8844468496395544,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.00024265724644823017,
+            "delta_adjusted_r2_interaction": -0.00010099370581040379,
+            "delta_aic_geography_beyond_urbanity": 1.4526262604777003,
+            "delta_aic_interaction": -1.9962954303518927,
+            "delta_rmse_geography_beyond_urbanity": 0.02185092967037683,
+            "delta_rmse_interaction": 2.3427965102129633e-05,
+            "coefficients": [
+              {
+                "feature": "lag1_log_folkmangd",
+                "coefficient": -1.2994648747758708,
+                "p_value": 0.19868867677680258,
+                "ci_low": -3.281034312602732,
+                "ci_high": 0.6821045630509908
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": -2.279919337435688,
+                "p_value": 0.06039165692149791,
+                "ci_low": -4.659441314141597,
+                "ci_high": 0.09960263927022162
+              },
+              {
+                "feature": "kustkommun_hav_x_lag1_log_folkmangd",
+                "coefficient": 0.06276257592574758,
+                "p_value": 0.9502214681679412,
+                "ci_low": -1.9076846304316337,
+                "ci_high": 2.0332097822831288
+              }
+            ]
+          },
+          {
+            "model": "sea_share_vs_population_size",
+            "urbanity_feature": "lag1_log_folkmangd",
+            "urbanity_center_log_units": 9.693629729328851,
+            "geography_feature": "havsandel_pct",
+            "geography_scaled_feature": "geo_havsandel_10pp",
+            "interaction_feature": "geo_havsandel_10pp_x_lag1_log_folkmangd",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.8843051860989166,
+            "geography_main_adjusted_r2": 0.8844761819929705,
+            "interaction_adjusted_r2": 0.8843986806464239,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.0001709958940538936,
+            "delta_adjusted_r2_interaction": -7.750134654660457e-05,
+            "delta_aic_geography_beyond_urbanity": 0.7328356279995205,
+            "delta_aic_interaction": -1.759956689669707,
+            "delta_rmse_geography_beyond_urbanity": 0.017298212053221462,
+            "delta_rmse_interaction": 0.0015184448842830989,
+            "coefficients": [
+              {
+                "feature": "lag1_log_folkmangd",
+                "coefficient": -1.5142921331720318,
+                "p_value": 0.14671708376252965,
+                "ci_low": -3.559431280863454,
+                "ci_high": 0.5308470145193902
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": -0.41410773850042454,
+                "p_value": 0.07970007100059805,
+                "ci_low": -0.8772570358291143,
+                "ci_high": 0.049041558828265275
+              },
+              {
+                "feature": "geo_havsandel_10pp_x_lag1_log_folkmangd",
+                "coefficient": 0.10196216918822747,
+                "p_value": 0.5486870137915238,
+                "ci_low": -0.23125876446394028,
+                "ci_high": 0.43518310284039524
+              }
+            ]
+          },
+          {
+            "model": "coast_vs_population_density",
+            "urbanity_feature": "lag1_log_befolkningstathet_land",
+            "urbanity_center_log_units": 3.3857951169442164,
+            "geography_feature": "kustkommun_hav",
+            "geography_scaled_feature": "kustkommun_hav",
+            "interaction_feature": "kustkommun_hav_x_lag1_log_befolkningstathet_land",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.8842152635124058,
+            "geography_main_adjusted_r2": 0.8844591243538444,
+            "interaction_adjusted_r2": 0.8843639600521973,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.00024386084143868114,
+            "delta_adjusted_r2_interaction": -9.516430164713263e-05,
+            "delta_aic_geography_beyond_urbanity": 1.4637090528867702,
+            "delta_aic_interaction": -1.9361467462713335,
+            "delta_rmse_geography_beyond_urbanity": 0.021919923328312052,
+            "delta_rmse_interaction": 0.00040378524528783544,
+            "coefficients": [
+              {
+                "feature": "lag1_log_befolkningstathet_land",
+                "coefficient": 0.3729676702867031,
+                "p_value": 0.6835932209205411,
+                "ci_low": -1.4206200603841939,
+                "ci_high": 2.1665554009576002
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": -2.336374942956861,
+                "p_value": 0.0893215866598518,
+                "ci_low": -5.031633987676857,
+                "ci_high": 0.358884101763135
+              },
+              {
+                "feature": "kustkommun_hav_x_lag1_log_befolkningstathet_land",
+                "coefficient": -0.1791765667295414,
+                "p_value": 0.8195787516800239,
+                "ci_low": -1.7188518033557725,
+                "ci_high": 1.3604986698966894
+              }
+            ]
+          },
+          {
+            "model": "sea_share_vs_population_density",
+            "urbanity_feature": "lag1_log_befolkningstathet_land",
+            "urbanity_center_log_units": 3.3857951169442164,
+            "geography_feature": "havsandel_pct",
+            "geography_scaled_feature": "geo_havsandel_10pp",
+            "interaction_feature": "geo_havsandel_10pp_x_lag1_log_befolkningstathet_land",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.8842152635124058,
+            "geography_main_adjusted_r2": 0.8843961007819277,
+            "interaction_adjusted_r2": 0.8842946027561762,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.00018083726952189405,
+            "delta_adjusted_r2_interaction": -0.00010149802575143418,
+            "delta_aic_geography_beyond_urbanity": 0.831141474598553,
+            "delta_aic_interaction": -1.999126552589587,
+            "delta_rmse_geography_beyond_urbanity": 0.01791919071272119,
+            "delta_rmse_interaction": 5.5249516819344535e-06,
+            "coefficients": [
+              {
+                "feature": "lag1_log_befolkningstathet_land",
+                "coefficient": 0.4111249714775471,
+                "p_value": 0.6555907900704365,
+                "ci_low": -1.3955431684743493,
+                "ci_high": 2.217793111429444
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": -0.42771640405606487,
+                "p_value": 0.11965495053753424,
+                "ci_low": -0.9663978576944585,
+                "ci_high": 0.11096504958232872
+              },
+              {
+                "feature": "geo_havsandel_10pp_x_lag1_log_befolkningstathet_land",
+                "coefficient": 0.00431199322411957,
+                "p_value": 0.9762556983401581,
+                "ci_low": -0.2796385500418274,
+                "ci_high": 0.28826253649006656
+              }
+            ]
+          }
+        ]
+      },
+      "35_49": {
+        "rule": "urbanity control first, then coast/sea-share main effect, then interaction; same observations in all nested models",
+        "start_year": 2020,
+        "end_year": 2024,
+        "density_definition": "population per km2 land area, log1p transformed and lagged one year",
+        "population_size_definition": "natural log population, lagged one year",
+        "sea_share_unit": "10 percentage points",
+        "rows": [
+          {
+            "model": "coast_vs_population_size",
+            "urbanity_feature": "lag1_log_folkmangd",
+            "urbanity_center_log_units": 9.693629729328851,
+            "geography_feature": "kustkommun_hav",
+            "geography_scaled_feature": "kustkommun_hav",
+            "interaction_feature": "kustkommun_hav_x_lag1_log_folkmangd",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.8148247496970796,
+            "geography_main_adjusted_r2": 0.8151206405774106,
+            "interaction_adjusted_r2": 0.8151387442746276,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.00029589088033099564,
+            "delta_adjusted_r2_interaction": 1.8103697216997894e-05,
+            "delta_aic_geography_beyond_urbanity": 0.8757199772717286,
+            "delta_aic_interaction": -0.8648288269278055,
+            "delta_rmse_geography_beyond_urbanity": 0.00969141079072422,
+            "delta_rmse_interaction": 0.0038223137025772402,
+            "coefficients": [
+              {
+                "feature": "lag1_log_folkmangd",
+                "coefficient": -0.060086534871073016,
+                "p_value": 0.9385641625955203,
+                "ci_low": -1.5880526106541295,
+                "ci_high": 1.4678795409119834
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": -1.4165833505342262,
+                "p_value": 0.035041082709389555,
+                "ci_low": -2.7337588847678225,
+                "ci_high": -0.09940781630062978
+              },
+              {
+                "feature": "kustkommun_hav_x_lag1_log_folkmangd",
+                "coefficient": 0.5892649465143369,
+                "p_value": 0.3130931399039495,
+                "ci_low": -0.5556517493849451,
+                "ci_high": 1.734181642413619
+              }
+            ]
+          },
+          {
+            "model": "sea_share_vs_population_size",
+            "urbanity_feature": "lag1_log_folkmangd",
+            "urbanity_center_log_units": 9.693629729328851,
+            "geography_feature": "havsandel_pct",
+            "geography_scaled_feature": "geo_havsandel_10pp",
+            "interaction_feature": "geo_havsandel_10pp_x_lag1_log_folkmangd",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.8148247496970796,
+            "geography_main_adjusted_r2": 0.8154301499990126,
+            "interaction_adjusted_r2": 0.8154633575982777,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.0006054003019330123,
+            "delta_adjusted_r2_interaction": 3.320759926506156e-05,
+            "delta_aic_geography_beyond_urbanity": 2.819321446131653,
+            "delta_aic_interaction": -0.7696988667748883,
+            "delta_rmse_geography_beyond_urbanity": 0.016234706277532318,
+            "delta_rmse_interaction": 0.00413907846990913,
+            "coefficients": [
+              {
+                "feature": "lag1_log_folkmangd",
+                "coefficient": 0.056466364604926156,
+                "p_value": 0.9438806896220808,
+                "ci_low": -1.5157311441383143,
+                "ci_high": 1.6286638733481666
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": -0.322039120672957,
+                "p_value": 0.010878059822930887,
+                "ci_low": -0.5698939516244114,
+                "ci_high": -0.07418428972150257
+              },
+              {
+                "feature": "geo_havsandel_10pp_x_lag1_log_folkmangd",
+                "coefficient": 0.12441084484313467,
+                "p_value": 0.17829761033440727,
+                "ci_low": -0.056746673119617064,
+                "ci_high": 0.3055683628058864
+              }
+            ]
+          },
+          {
+            "model": "coast_vs_population_density",
+            "urbanity_feature": "lag1_log_befolkningstathet_land",
+            "urbanity_center_log_units": 3.3857951169442164,
+            "geography_feature": "kustkommun_hav",
+            "geography_scaled_feature": "kustkommun_hav",
+            "interaction_feature": "kustkommun_hav_x_lag1_log_befolkningstathet_land",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.8152115028813226,
+            "geography_main_adjusted_r2": 0.8152428724358319,
+            "interaction_adjusted_r2": 0.8151020592302354,
+            "delta_adjusted_r2_geography_beyond_urbanity": 3.1369554509330655e-05,
+            "delta_adjusted_r2_interaction": -0.0001408132055965572,
+            "delta_aic_geography_beyond_urbanity": -0.7814861030874454,
+            "delta_aic_interaction": -1.8612838551644018,
+            "delta_rmse_geography_beyond_urbanity": 0.004101860748944475,
+            "delta_rmse_interaction": 0.00046682101414763366,
+            "coefficients": [
+              {
+                "feature": "lag1_log_befolkningstathet_land",
+                "coefficient": -0.6098421942217689,
+                "p_value": 0.22105797079098577,
+                "ci_low": -1.5865925881241085,
+                "ci_high": 0.36690819968057087
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": -0.7197577769590222,
+                "p_value": 0.3554161554575501,
+                "ci_low": -2.246266004378109,
+                "ci_high": 0.8067504504600644
+              },
+              {
+                "feature": "kustkommun_hav_x_lag1_log_befolkningstathet_land",
+                "coefficient": -0.14058988263619998,
+                "p_value": 0.7509154673423011,
+                "ci_low": -1.008651994979389,
+                "ci_high": 0.7274722297069892
+              }
+            ]
+          },
+          {
+            "model": "sea_share_vs_population_density",
+            "urbanity_feature": "lag1_log_befolkningstathet_land",
+            "urbanity_center_log_units": 3.3857951169442164,
+            "geography_feature": "havsandel_pct",
+            "geography_scaled_feature": "geo_havsandel_10pp",
+            "interaction_feature": "geo_havsandel_10pp_x_lag1_log_befolkningstathet_land",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.8152115028813226,
+            "geography_main_adjusted_r2": 0.8154165814864384,
+            "interaction_adjusted_r2": 0.8152550747280498,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.00020507860511576048,
+            "delta_adjusted_r2_interaction": -0.0001615067583885521,
+            "delta_aic_geography_beyond_urbanity": 0.30966143379191635,
+            "delta_aic_interaction": -1.9920558300618723,
+            "delta_rmse_geography_beyond_urbanity": 0.007773142556488644,
+            "delta_rmse_interaction": 2.6722672832768524e-05,
+            "coefficients": [
+              {
+                "feature": "lag1_log_befolkningstathet_land",
+                "coefficient": -0.5189074608714823,
+                "p_value": 0.3217551897480281,
+                "ci_low": -1.5453315242997614,
+                "ci_high": 0.5075166025567968
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": -0.21613806839992786,
+                "p_value": 0.16709950305410315,
+                "ci_low": -0.5227592099459389,
+                "ci_high": 0.0904830731460832
+              },
+              {
+                "feature": "geo_havsandel_10pp_x_lag1_log_befolkningstathet_land",
+                "coefficient": 0.006909668857500068,
+                "p_value": 0.9246025402756416,
+                "ci_low": -0.13619070907497463,
+                "ci_high": 0.1500100467899748
+              }
+            ]
+          }
+        ]
+      },
+      "63_68": {
+        "rule": "urbanity control first, then coast/sea-share main effect, then interaction; same observations in all nested models",
+        "start_year": 2020,
+        "end_year": 2024,
+        "density_definition": "population per km2 land area, log1p transformed and lagged one year",
+        "population_size_definition": "natural log population, lagged one year",
+        "sea_share_unit": "10 percentage points",
+        "rows": [
+          {
+            "model": "coast_vs_population_size",
+            "urbanity_feature": "lag1_log_folkmangd",
+            "urbanity_center_log_units": 9.693629729328851,
+            "geography_feature": "kustkommun_hav",
+            "geography_scaled_feature": "kustkommun_hav",
+            "interaction_feature": "kustkommun_hav_x_lag1_log_folkmangd",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.5794924933089922,
+            "geography_main_adjusted_r2": 0.5810489327932891,
+            "interaction_adjusted_r2": 0.5821432182638189,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.0015564394842968454,
+            "delta_adjusted_r2_interaction": 0.00109428547052981,
+            "delta_aic_geography_beyond_urbanity": 3.320399674429609,
+            "delta_aic_interaction": 2.0536234096198314,
+            "delta_rmse_geography_beyond_urbanity": 0.015581088570538526,
+            "delta_rmse_interaction": 0.011847303335954074,
+            "coefficients": [
+              {
+                "feature": "lag1_log_folkmangd",
+                "coefficient": 0.2850104332454028,
+                "p_value": 0.6881496559056971,
+                "ci_low": -1.1067573103596626,
+                "ci_high": 1.6767781768504684
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": 1.8340076548665034,
+                "p_value": 0.002082196908603399,
+                "ci_low": 0.6662700848304557,
+                "ci_high": 3.0017452249025514
+              },
+              {
+                "feature": "kustkommun_hav_x_lag1_log_folkmangd",
+                "coefficient": -0.9677721436339051,
+                "p_value": 0.03410538449672308,
+                "ci_low": -1.8629852330195016,
+                "ci_high": -0.07255905424830855
+              }
+            ]
+          },
+          {
+            "model": "sea_share_vs_population_size",
+            "urbanity_feature": "lag1_log_folkmangd",
+            "urbanity_center_log_units": 9.693629729328851,
+            "geography_feature": "havsandel_pct",
+            "geography_scaled_feature": "geo_havsandel_10pp",
+            "interaction_feature": "geo_havsandel_10pp_x_lag1_log_folkmangd",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.5794924933089922,
+            "geography_main_adjusted_r2": 0.5850918265226529,
+            "interaction_adjusted_r2": 0.5852376910186707,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.005599333213660684,
+            "delta_adjusted_r2_interaction": 0.00014586449601783347,
+            "delta_aic_geography_beyond_urbanity": 14.568805269284894,
+            "delta_aic_interaction": -0.572340151024946,
+            "delta_rmse_geography_beyond_urbanity": 0.04840527948025031,
+            "delta_rmse_interaction": 0.004154712107792058,
+            "coefficients": [
+              {
+                "feature": "lag1_log_folkmangd",
+                "coefficient": -0.10148812715281791,
+                "p_value": 0.8799327352230988,
+                "ci_low": -1.4183180945780156,
+                "ci_high": 1.21534184027238
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": 0.482882902923272,
+                "p_value": 4.214376920990134e-05,
+                "ci_low": 0.2517863577048192,
+                "ci_high": 0.7139794481417248
+              },
+              {
+                "feature": "geo_havsandel_10pp_x_lag1_log_folkmangd",
+                "coefficient": -0.11531537126098848,
+                "p_value": 0.23041719138379357,
+                "ci_low": -0.30377265765548767,
+                "ci_high": 0.07314191513351073
+              }
+            ]
+          },
+          {
+            "model": "coast_vs_population_density",
+            "urbanity_feature": "lag1_log_befolkningstathet_land",
+            "urbanity_center_log_units": 3.3857951169442164,
+            "geography_feature": "kustkommun_hav",
+            "geography_scaled_feature": "kustkommun_hav",
+            "interaction_feature": "kustkommun_hav_x_lag1_log_befolkningstathet_land",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.5835190770572263,
+            "geography_main_adjusted_r2": 0.5834988726752512,
+            "interaction_adjusted_r2": 0.583231897050458,
+            "delta_adjusted_r2_geography_beyond_urbanity": -2.0204381975030827e-05,
+            "delta_adjusted_r2_interaction": -0.0002669756247932753,
+            "delta_aic_geography_beyond_urbanity": -1.0373881579625959,
+            "delta_aic_interaction": -1.7235370580965537,
+            "delta_rmse_geography_beyond_urbanity": 0.002808168776511799,
+            "delta_rmse_interaction": 0.0008062931191190614,
+            "coefficients": [
+              {
+                "feature": "lag1_log_befolkningstathet_land",
+                "coefficient": 1.1454901909875614,
+                "p_value": 0.0025694773473299223,
+                "ci_low": 0.40084945644336156,
+                "ci_high": 1.8901309255317613
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": 0.6684574666663693,
+                "p_value": 0.24926850397458555,
+                "ci_low": -0.46870145117713913,
+                "ci_high": 1.8056163845098778
+              },
+              {
+                "feature": "kustkommun_hav_x_lag1_log_befolkningstathet_land",
+                "coefficient": -0.1731256913628625,
+                "p_value": 0.5684699480236184,
+                "ci_low": -0.7681043927200044,
+                "ci_high": 0.42185300999427944
+              }
+            ]
+          },
+          {
+            "model": "sea_share_vs_population_density",
+            "urbanity_feature": "lag1_log_befolkningstathet_land",
+            "urbanity_center_log_units": 3.3857951169442164,
+            "geography_feature": "havsandel_pct",
+            "geography_scaled_feature": "geo_havsandel_10pp",
+            "interaction_feature": "geo_havsandel_10pp_x_lag1_log_befolkningstathet_land",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.5835190770572263,
+            "geography_main_adjusted_r2": 0.5858476624802398,
+            "interaction_adjusted_r2": 0.5854926979425557,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.0023285854230135072,
+            "delta_adjusted_r2_interaction": -0.0003549645376841326,
+            "delta_aic_geography_beyond_urbanity": 5.522756476799259,
+            "delta_aic_interaction": -1.97401467988675,
+            "delta_rmse_geography_beyond_urbanity": 0.021914682373805228,
+            "delta_rmse_interaction": 7.557523590140391e-05,
+            "coefficients": [
+              {
+                "feature": "lag1_log_befolkningstathet_land",
+                "coefficient": 0.668108908754112,
+                "p_value": 0.07892677270218225,
+                "ci_low": -0.07720047712487621,
+                "ci_high": 1.4134182946331002
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": 0.33768904218392987,
+                "p_value": 0.016909676710728194,
+                "ci_low": 0.060606177808267714,
+                "ci_high": 0.614771906559592
+              },
+              {
+                "feature": "geo_havsandel_10pp_x_lag1_log_befolkningstathet_land",
+                "coefficient": -0.010713082799971956,
+                "p_value": 0.8735915899652795,
+                "ci_low": -0.14268987737194871,
+                "ci_high": 0.12126371177200479
+              }
+            ]
+          }
+        ]
+      },
+      "70_79": {
+        "rule": "urbanity control first, then coast/sea-share main effect, then interaction; same observations in all nested models",
+        "start_year": 2020,
+        "end_year": 2024,
+        "density_definition": "population per km2 land area, log1p transformed and lagged one year",
+        "population_size_definition": "natural log population, lagged one year",
+        "sea_share_unit": "10 percentage points",
+        "rows": [
+          {
+            "model": "coast_vs_population_size",
+            "urbanity_feature": "lag1_log_folkmangd",
+            "urbanity_center_log_units": 9.693629729328851,
+            "geography_feature": "kustkommun_hav",
+            "geography_scaled_feature": "kustkommun_hav",
+            "interaction_feature": "kustkommun_hav_x_lag1_log_folkmangd",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.47016696615675957,
+            "geography_main_adjusted_r2": 0.47163688232723955,
+            "interaction_adjusted_r2": 0.47149604718144533,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.001469916170479979,
+            "delta_adjusted_r2_interaction": -0.00014083514579421585,
+            "delta_aic_geography_beyond_urbanity": 2.2379785792627445,
+            "delta_aic_interaction": -1.2929498935927768,
+            "delta_rmse_geography_beyond_urbanity": 0.008249819454267282,
+            "delta_rmse_interaction": 0.0013749059001835207,
+            "coefficients": [
+              {
+                "feature": "lag1_log_folkmangd",
+                "coefficient": -0.2606984431574479,
+                "p_value": 0.5374553861817652,
+                "ci_low": -1.089283089479767,
+                "ci_high": 0.567886203164871
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": 0.8810633049525033,
+                "p_value": 0.019509773202639562,
+                "ci_low": 0.14171607638898642,
+                "ci_high": 1.6204105335160202
+              },
+              {
+                "feature": "kustkommun_hav_x_lag1_log_folkmangd",
+                "coefficient": -0.26358397934325506,
+                "p_value": 0.3536681683205518,
+                "ci_low": -0.8205827601268775,
+                "ci_high": 0.29341480144036736
+              }
+            ]
+          },
+          {
+            "model": "sea_share_vs_population_size",
+            "urbanity_feature": "lag1_log_folkmangd",
+            "urbanity_center_log_units": 9.693629729328851,
+            "geography_feature": "havsandel_pct",
+            "geography_scaled_feature": "geo_havsandel_10pp",
+            "interaction_feature": "geo_havsandel_10pp_x_lag1_log_folkmangd",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.47016696615675957,
+            "geography_main_adjusted_r2": 0.47347464866623,
+            "interaction_adjusted_r2": 0.4730341651457868,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.0033076825094704443,
+            "delta_adjusted_r2_interaction": -0.0004404835204432356,
+            "delta_aic_geography_beyond_urbanity": 6.279753937683381,
+            "delta_aic_interaction": -1.9538267696352705,
+            "delta_rmse_geography_beyond_urbanity": 0.016103674569148296,
+            "delta_rmse_interaction": 8.964339474282212e-05,
+            "coefficients": [
+              {
+                "feature": "lag1_log_folkmangd",
+                "coefficient": -0.3547903628574204,
+                "p_value": 0.3599697003817792,
+                "ci_low": -1.114413472893987,
+                "ci_high": 0.4048327471791462
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": 0.20072764328506776,
+                "p_value": 0.003809980151999254,
+                "ci_low": 0.06476026451133929,
+                "ci_high": 0.3366950220587962
+              },
+              {
+                "feature": "geo_havsandel_10pp_x_lag1_log_folkmangd",
+                "coefficient": -0.013734781625891927,
+                "p_value": 0.8047106730388384,
+                "ci_low": -0.1226088098792538,
+                "ci_high": 0.09513924662746995
+              }
+            ]
+          },
+          {
+            "model": "coast_vs_population_density",
+            "urbanity_feature": "lag1_log_befolkningstathet_land",
+            "urbanity_center_log_units": 3.3857951169442164,
+            "geography_feature": "kustkommun_hav",
+            "geography_scaled_feature": "kustkommun_hav",
+            "interaction_feature": "kustkommun_hav_x_lag1_log_befolkningstathet_land",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.47128309881688024,
+            "geography_main_adjusted_r2": 0.47150289642192145,
+            "interaction_adjusted_r2": 0.47129121869805735,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.00021979760504120538,
+            "delta_adjusted_r2_interaction": -0.000211677723864101,
+            "delta_aic_geography_beyond_urbanity": -0.5023484676094085,
+            "delta_aic_interaction": -1.4483122892797837,
+            "delta_rmse_geography_beyond_urbanity": 0.002914036444655821,
+            "delta_rmse_interaction": 0.0010729653399401684,
+            "coefficients": [
+              {
+                "feature": "lag1_log_befolkningstathet_land",
+                "coefficient": 0.23032170479145125,
+                "p_value": 0.23158569354480363,
+                "ci_low": -0.14703199320539445,
+                "ci_high": 0.6076754027882969
+              },
+              {
+                "feature": "kustkommun_hav",
+                "coefficient": 0.5118394470929626,
+                "p_value": 0.1504171787490685,
+                "ci_low": -0.18575818169583858,
+                "ci_high": 1.2094370758817639
+              },
+              {
+                "feature": "kustkommun_hav_x_lag1_log_befolkningstathet_land",
+                "coefficient": -0.14936050759033784,
+                "p_value": 0.4329706340486573,
+                "ci_low": -0.5226985289387898,
+                "ci_high": 0.22397751375811412
+              }
+            ]
+          },
+          {
+            "model": "sea_share_vs_population_density",
+            "urbanity_feature": "lag1_log_befolkningstathet_land",
+            "urbanity_center_log_units": 3.3857951169442164,
+            "geography_feature": "havsandel_pct",
+            "geography_scaled_feature": "geo_havsandel_10pp",
+            "interaction_feature": "geo_havsandel_10pp_x_lag1_log_befolkningstathet_land",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "urbanity_only_adjusted_r2": 0.47128309881688024,
+            "geography_main_adjusted_r2": 0.47297686322552945,
+            "interaction_adjusted_r2": 0.4727921640868936,
+            "delta_adjusted_r2_geography_beyond_urbanity": 0.001693764408649212,
+            "delta_adjusted_r2_interaction": -0.00018469913863583542,
+            "delta_aic_geography_beyond_urbanity": 2.737385908316355,
+            "delta_aic_interaction": -1.3902525111479918,
+            "delta_rmse_geography_beyond_urbanity": 0.009211276163736848,
+            "delta_rmse_interaction": 0.0011842148552130283,
+            "coefficients": [
+              {
+                "feature": "lag1_log_befolkningstathet_land",
+                "coefficient": 0.16578939212948024,
+                "p_value": 0.38898393429468203,
+                "ci_low": -0.21140825352488568,
+                "ci_high": 0.5429870377838462
+              },
+              {
+                "feature": "geo_havsandel_10pp",
+                "coefficient": 0.1723792677369697,
+                "p_value": 0.0212433432005852,
+                "ci_low": 0.02571641393107313,
+                "ci_high": 0.31904212154286626
+              },
+              {
+                "feature": "geo_havsandel_10pp_x_lag1_log_befolkningstathet_land",
+                "coefficient": -0.03361931071555472,
+                "p_value": 0.3605819403333218,
+                "ci_low": -0.10569166539617303,
+                "ci_high": 0.038453043965063584
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
   "geography_rankings": {
     "crs": "EPSG:3006",
     "northmost": [
@@ -54890,8 +56578,9 @@
   },
   "geography_metadata": {
     "centroid_crs": "EPSG:3006",
-    "centroid_definition": "Area-weighted polygon centroid northing from SCB simplified municipal boundaries",
+    "centroid_definition": "Area-weighted polygon centroid northing from swemaps GeoParquet derived from SCB municipal boundaries, reprojected to EPSG:3006",
     "sea_share_definition": "Sea water to territorial border / total municipal area, percent",
+    "urbanity_proxy": "log1p(population / SCB land area), lagged one year",
     "production_status": "candidate_only"
   }
 }
