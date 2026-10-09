@@ -85,6 +85,26 @@ EDUCATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/UF/UF0506/UF050
 STUDENT_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AA/AA0003/AA0003H/IntGr8Kom1N"
 INDUSTRY_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210F/ArRegUtb"
 FA15_XLSX_URL = "https://tillvaxtverket.se/download/18.8fc3d8b1855c7f9043216/1672314363587/FA-regioner%202015%20%C3%A5r%20indelning%20%281%29.xlsx"
+KOLADA_API_BASE = "https://api.kolada.se/v3"
+KOLADA_ACTIVITY_SPECS = {
+    "kolada_idrott_deltagartillfallen": {
+        "title": "Deltagartillfällen i idrottsföreningar, antal/inv 7-20 år",
+        "search": "Deltagartillfällen idrottsföreningar",
+    },
+    "kolada_bibliotek_aktivitetstillfallen": {
+        "title": "Aktivitetstillfällen för barn och unga i kommunala bibliotek, antal/1000 inv 0-18 år",
+        "search": "Aktivitetstillfällen bibliotek",
+    },
+    "kolada_kulturskola_andel": {
+        "title": "Elever i musik- eller kulturskola, 6-15 år, andel (%)",
+        "search": "Elever musik kulturskola 6-15",
+    },
+}
+ACTIVITY_LAG_FEATURES = [
+    "lag1_kolada_idrott_deltagartillfallen",
+    "lag1_kolada_bibliotek_aktivitetstillfallen",
+    "lag1_kolada_kulturskola_andel",
+]
 OUT = Path("docs/data")
 OUT.mkdir(parents=True, exist_ok=True)
 
@@ -187,6 +207,16 @@ def preflight_sources() -> None:
     except Exception as exc:
         failures.append(f"leisure_houses: {exc}")
         print(f"Preflight FAILED leisure_houses: {exc}")
+
+    try:
+        resolved_kolada = resolve_kolada_activity_kpis()
+        print(
+            "Preflight OK Kolada activity KPIs: "
+            + ", ".join(f"{k}={v['id']}" for k, v in resolved_kolada.items())
+        )
+    except Exception as exc:
+        failures.append(f"Kolada activity KPIs: {exc}")
+        print(f"Preflight FAILED Kolada activity KPIs: {exc}")
 
     # Lightweight checks of the non-SCB sources used in the build.
     try:
@@ -566,6 +596,157 @@ def _percent_number(series: pd.Series) -> pd.Series:
         .str.replace(",", ".", regex=False),
         errors="coerce",
     )
+
+
+def _kolada_json(path: str, params: dict | None = None) -> dict:
+    """GET JSON from Kolada API v3 with the same transient retry policy as SCB."""
+    url = f"{KOLADA_API_BASE}{path}"
+    last_error = None
+    for attempt in range(1, 5):
+        try:
+            r = session.get(url, params=params or {}, timeout=60)
+            if r.ok:
+                return r.json()
+            if r.status_code not in {429, 500, 502, 503, 504}:
+                raise RuntimeError(
+                    f"Kolada API failed {r.status_code} for {r.url}: {r.text[:500]}"
+                )
+            last_error = RuntimeError(
+                f"Kolada transient HTTP {r.status_code} for {r.url}: {r.text[:300]}"
+            )
+        except requests.RequestException as exc:
+            last_error = exc
+
+        if attempt < 4:
+            wait = 2 * attempt
+            print(f"Kolada retry {attempt}/4 for {url} after {last_error}; waiting {wait}s")
+            time.sleep(wait)
+
+    raise RuntimeError(f"Kolada API failed after 4 attempts for {url}: {last_error}")
+
+
+def _kolada_total_value(values: list[dict]) -> float:
+    active = [
+        v for v in (values or [])
+        if not v.get("isdeleted", False) and v.get("value") is not None
+    ]
+    if not active:
+        return np.nan
+
+    total = []
+    for value in active:
+        gender = str(value.get("gender") or "").strip().casefold()
+        if gender in {"", "t", "tot", "total", "totalt", "alla"}:
+            total.append(value)
+    chosen = total[0] if total else (active[0] if len(active) == 1 else None)
+    if chosen is None:
+        return np.nan
+    try:
+        return float(chosen["value"])
+    except (TypeError, ValueError):
+        return np.nan
+
+
+def _kolada_year_rows(kpi_id: str, year: int) -> list[dict]:
+    payload = _kolada_json(
+        f"/data/kpi/{kpi_id}/year/{year}",
+        {"region_type": "municipality", "per_page": 5000},
+    )
+    return payload.get("values", [])
+
+
+def _resolve_kolada_kpi(spec: dict) -> tuple[str, str]:
+    payload = _kolada_json(
+        "/kpi",
+        {"title": spec["search"], "per_page": 5000},
+    )
+    candidates = payload.get("values", [])
+    wanted = _norm_header(spec["title"])
+    exact = [c for c in candidates if _norm_header(c.get("title")) == wanted]
+    if not exact:
+        raise RuntimeError(
+            f"Kolada KPI not found for exact title: {spec['title']}. "
+            f"Search returned {[c.get('title') for c in candidates[:10]]}"
+        )
+
+    # Kolada can retain older/replaced KPI ids with the same title. Pick the id
+    # with the best municipality coverage in the two most recent model years.
+    scored = []
+    for candidate in exact:
+        kpi_id = str(candidate["id"])
+        coverage = 0
+        for year in [END_YEAR - 1, END_YEAR]:
+            try:
+                rows = _kolada_year_rows(kpi_id, year)
+                coverage += sum(
+                    np.isfinite(_kolada_total_value(row.get("values", [])))
+                    for row in rows
+                    if re.fullmatch(r"\d{4}", str(row.get("municipality", "")))
+                )
+            except Exception:
+                pass
+        scored.append((coverage, kpi_id, str(candidate.get("title") or spec["title"])))
+
+    scored.sort(reverse=True)
+    coverage, kpi_id, title = scored[0]
+    if coverage == 0:
+        raise RuntimeError(
+            f"Kolada KPI candidates for '{spec['title']}' had no usable data "
+            f"in {END_YEAR-1}-{END_YEAR}: {scored}"
+        )
+    print(f"Resolved Kolada KPI: {kpi_id} -> {title} (recent coverage score={coverage})")
+    return kpi_id, title
+
+
+def resolve_kolada_activity_kpis() -> dict[str, dict]:
+    resolved = {}
+    for column, spec in KOLADA_ACTIVITY_SPECS.items():
+        kpi_id, title = _resolve_kolada_kpi(spec)
+        resolved[column] = {"id": kpi_id, "title": title}
+    return resolved
+
+
+def get_kolada_activity() -> pd.DataFrame:
+    """
+    Sparse Kolada candidate theme. Values are kept observed (no interpolation or
+    carry-forward) and are tested separately so missingness cannot shrink the
+    production model's complete-case sample.
+    """
+    resolved = resolve_kolada_activity_kpis()
+    frames = []
+    for column, info in resolved.items():
+        rows = []
+        for year in AUX_YEARS:
+            data = _kolada_year_rows(info["id"], year)
+            for item in data:
+                kommun_kod = str(item.get("municipality", "")).strip()
+                if not re.fullmatch(r"\d{4}", kommun_kod):
+                    continue
+                value = _kolada_total_value(item.get("values", []))
+                if np.isfinite(value):
+                    rows.append({
+                        "kommun_kod": kommun_kod,
+                        "year": int(year),
+                        column: float(value),
+                    })
+            n_year = sum(r["year"] == year for r in rows)
+            print(f"Kolada {info['id']} {year}: {n_year} municipalities with {column}")
+
+        frame = pd.DataFrame(rows)
+        if frame.empty:
+            frame = pd.DataFrame(columns=["kommun_kod", "year", column])
+        else:
+            frame = (
+                frame.groupby(["kommun_kod", "year"], as_index=False)[column]
+                .mean()
+            )
+        frames.append(frame)
+
+    out = frames[0]
+    for frame in frames[1:]:
+        out = out.merge(frame, on=["kommun_kod", "year"], how="outer")
+    return out
+
 
 
 def _code_digits(value: object) -> str:
@@ -2319,7 +2500,7 @@ def split_region(value: str) -> tuple[str, str]:
     return s[:4], s[5:] if len(s) > 5 else s
 
 
-def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turnout: pd.DataFrame, inequality: pd.DataFrame, housing: pd.DataFrame, completed_housing: pd.DataFrame, leisure: pd.DataFrame, crime: pd.DataFrame, labor: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame, industry: pd.DataFrame, fa15: pd.DataFrame) -> pd.DataFrame:
+def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turnout: pd.DataFrame, inequality: pd.DataFrame, housing: pd.DataFrame, completed_housing: pd.DataFrame, leisure: pd.DataFrame, crime: pd.DataFrame, labor: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame, activity: pd.DataFrame, industry: pd.DataFrame, fa15: pd.DataFrame) -> pd.DataFrame:
     md = standardize_columns(mig)
     mig = mig.copy()
     mig["value"] = normalize_number(mig["value"])
@@ -2457,6 +2638,15 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turn
         on=["kommun_kod", "year"], how="left"
     )
     panel = panel.merge(
+        activity[[
+            "kommun_kod", "year",
+            "kolada_idrott_deltagartillfallen",
+            "kolada_bibliotek_aktivitetstillfallen",
+            "kolada_kulturskola_andel",
+        ]],
+        on=["kommun_kod", "year"], how="left"
+    )
+    panel = panel.merge(
         industry[[
             "kommun_kod", "year",
             "sysselsatta_totalt",
@@ -2547,6 +2737,9 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turn
     panel["lag1_arbetsloshet"] = g["arbetsloshet"].shift(1)
     panel["lag1_andel_eftergymnasial"] = g["andel_eftergymnasial"].shift(1)
     panel["lag1_andel_studerande"] = g["andel_studerande"].shift(1)
+    panel["lag1_kolada_idrott_deltagartillfallen"] = g["kolada_idrott_deltagartillfallen"].shift(1)
+    panel["lag1_kolada_bibliotek_aktivitetstillfallen"] = g["kolada_bibliotek_aktivitetstillfallen"].shift(1)
+    panel["lag1_kolada_kulturskola_andel"] = g["kolada_kulturskola_andel"].shift(1)
     panel["lag1_andel_industri_bc"] = g["andel_industri_bc"].shift(1)
     panel["lag1_andel_hotell_restaurang_i"] = g["andel_hotell_restaurang_i"].shift(1)
     panel["lag1_andel_kultur_service_rstu"] = g["andel_kultur_service_rstu"].shift(1)
@@ -3136,6 +3329,96 @@ def _explanation_model(df: pd.DataFrame, features: list[str], target: str, windo
     return result, diag, qq
 
 
+def _sparse_candidate_tests(
+    panel: pd.DataFrame,
+    target: str,
+    base_features: list[str],
+    candidates: list[str],
+    start_year: int,
+    end_year: int,
+) -> dict:
+    """
+    Test sparse candidate variables one at a time against the same baseline on
+    exactly the same complete-case observations. This prevents sparse Kolada
+    coverage from changing the production model sample before a candidate has
+    demonstrated incremental value.
+    """
+    rows = []
+    for candidate in candidates:
+        cols = ["kommun_kod", "year", target] + list(base_features) + [candidate]
+        d = (
+            panel.loc[panel["year"].between(start_year, end_year), cols]
+            .dropna()
+            .reset_index(drop=True)
+        )
+        n_obs = int(len(d))
+        n_municipalities = int(d["kommun_kod"].nunique()) if n_obs else 0
+        n_years = int(d["year"].nunique()) if n_obs else 0
+        if n_obs < 150 or n_municipalities < 80 or n_years < 2:
+            rows.append({
+                "feature": candidate,
+                "status": "insufficient_coverage",
+                "n_obs": n_obs,
+                "n_municipalities": n_municipalities,
+                "n_years": n_years,
+            })
+            continue
+
+        y = d[target].astype(float).reset_index(drop=True)
+        X_base = _design_with_year_effects(d, list(base_features))
+        X_full = _design_with_year_effects(d, list(base_features) + [candidate])
+        base_fit = sm.OLS(y, X_base).fit()
+        full_fit = sm.OLS(y, X_full).fit()
+        robust = sm.OLS(y, X_full).fit(
+            cov_type="cluster",
+            cov_kwds={"groups": d["kommun_kod"].reset_index(drop=True)},
+        )
+
+        base_rmse = float(np.sqrt(np.mean(np.square(base_fit.resid))))
+        full_rmse = float(np.sqrt(np.mean(np.square(full_fit.resid))))
+        names = list(robust.model.exog_names)
+        i = names.index(candidate)
+        coef = float(np.asarray(robust.params)[i])
+        p_value = float(np.asarray(robust.pvalues)[i])
+        y_sd = float(np.nanstd(y, ddof=1))
+        x_sd = float(np.nanstd(d[candidate], ddof=1))
+        standardized = coef * x_sd / y_sd if y_sd > 0 and x_sd > 0 else np.nan
+
+        rows.append({
+            "feature": candidate,
+            "status": "tested",
+            "n_obs": n_obs,
+            "n_municipalities": n_municipalities,
+            "n_years": n_years,
+            "coefficient": _finite_float(coef),
+            "standardized_coefficient": _finite_float(standardized),
+            "p_value": _finite_float(p_value),
+            "base_adjusted_r2": _finite_float(base_fit.rsquared_adj),
+            "full_adjusted_r2": _finite_float(full_fit.rsquared_adj),
+            "delta_adjusted_r2": _finite_float(full_fit.rsquared_adj - base_fit.rsquared_adj),
+            "base_aic": _finite_float(base_fit.aic),
+            "full_aic": _finite_float(full_fit.aic),
+            "delta_aic": _finite_float(base_fit.aic - full_fit.aic),
+            "base_rmse": _finite_float(base_rmse),
+            "full_rmse": _finite_float(full_rmse),
+            "delta_rmse": _finite_float(base_rmse - full_rmse),
+        })
+
+    tested = [r for r in rows if r.get("status") == "tested"]
+    winner = max(
+        tested,
+        key=lambda r: r.get("delta_aic") if r.get("delta_aic") is not None else -1e99,
+        default=None,
+    )
+    return {
+        "rule": "one sparse Kolada candidate at a time versus the same baseline and same observations",
+        "start_year": start_year,
+        "end_year": end_year,
+        "rows": rows,
+        "winner": winner.get("feature") if winner else None,
+    }
+
+
 def fit_models(panel: pd.DataFrame) -> dict:
     target = "inflyttning_per_1000"
     features = [
@@ -3258,6 +3541,7 @@ def fit_models(panel: pd.DataFrame) -> dict:
             "Arbetsmarknadsvariablerna är sysselsättningsgrad och arbetslöshet bland 20–64-åringar från SCB BAS och används laggade ett år.",
             "Utbildningsvariabeln är andel 25–64-åringar med eftergymnasial utbildning och används laggad ett år.",
             "Studentmiljö mäts som andel studerande bland 20–64-åringar enligt SCB IntGr8Kom1N och används laggad ett år.",
+            "Koladas fritids-/aktivitetsmått testas först som ett separat glest kandidattema på samma observationsurval som basmodellen. De förs inte automatiskt in i produktionsmodellen förrän de visar stabilt marginalbidrag och tillräcklig täckning.",
             "Näringslivsprofilen testas med andel sysselsatta efter arbetsställets belägenhet i B+C industri/gruvor, I hotell/restaurang samt R+S+T+U kultur/nöje/service enligt SCB ArRegUtb; högst en representant behålls från temat.",
             "Regional arbetsmarknadsaccess mäts som log(1 + jobb i övriga kommuner inom samma FA15-region per 1 000 invånare i den egna kommunen), laggad ett år.",
             "Regional arbetsmotor mäts som den egna kommunens arbetsplatser dividerat med samtliga arbetsplatser inom samma FA15-region, uttryckt i procent och laggat ett år.",
@@ -3415,6 +3699,7 @@ def main():
     labor = get_labor_market()
     education = get_education()
     students = get_students()
+    activity = get_kolada_activity()
     industry = get_industry_structure()
     fa15 = get_fa15_membership()
     mig = get_migration()
@@ -3424,10 +3709,36 @@ def main():
     completed_housing = get_completed_housing()
     leisure = get_leisure_houses()
     crime = get_crime_total()
-    panel = build_panel(mig, pop, income, turnout, inequality, housing, completed_housing, leisure, crime, labor, education, students, industry, fa15)
+    panel = build_panel(mig, pop, income, turnout, inequality, housing, completed_housing, leisure, crime, labor, education, students, activity, industry, fa15)
     panel.to_csv(OUT / "panel.csv", index=False)
     result = fit_models(panel)
-    result["age_group_models"] = fit_age_group_models(panel)
+    age_models = fit_age_group_models(panel)
+    result["age_group_models"] = age_models
+
+    overall_base = result["windows"]["5"]["explanation"]["selected_features"]
+    result["activity_candidate_tests"] = {
+        "overall": _sparse_candidate_tests(
+            panel,
+            result["target"],
+            overall_base,
+            ACTIVITY_LAG_FEATURES,
+            END_YEAR - 4,
+            END_YEAR,
+        ),
+        "age_groups": {
+            key: _sparse_candidate_tests(
+                panel,
+                model["target"],
+                model["explanation"]["selected_features"],
+                ACTIVITY_LAG_FEATURES,
+                END_YEAR - 4,
+                END_YEAR,
+            )
+            for key, model in age_models.items()
+            if "error" not in model
+        },
+    }
+
     (OUT / "model.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
