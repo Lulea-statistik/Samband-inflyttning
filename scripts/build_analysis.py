@@ -81,6 +81,7 @@ LEISURE_HOUSE_URL_CANDIDATES = [
 _LEISURE_HOUSE_RESOLVED_URL = None
 BRA_ANNUAL_RAW = "https://raw.githubusercontent.com/Lulea-statistik/BR-brottsstatistik/main/data/annual_all/year={year}.parquet"
 LABOR_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210A/ArbStatusAr"
+MONTHLY_EMPLOYMENT_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210B/ArbStDoNMNN"
 EDUCATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/UF/UF0506/UF0506B/Utbildning"
 STUDENT_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AA/AA0003/AA0003H/IntGr8Kom1N"
 INDUSTRY_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210F/ArRegUtb"
@@ -104,6 +105,12 @@ ACTIVITY_LAG_FEATURES = [
     "lag1_kolada_lok_foreningar_per_10000",
     "lag1_kolada_flickdominerade_idrottsforeningar_andel",
     "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+]
+EMPLOYMENT_DYNAMICS_LAG_FEATURES = [
+    "lag1_sysselsatta_arbetsstalle_forandring_pct",
+    "lag1_sysselsatta_bostad_forandring_pct",
+    "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+    "lag1_sysselsatta_bostad_sasongsvariation_pct",
 ]
 OUT = Path("docs/data")
 OUT.mkdir(parents=True, exist_ok=True)
@@ -181,6 +188,7 @@ def preflight_sources() -> None:
         "housing": HOUSING_URL,
         "completed_housing": COMPLETED_HOUSING_URL,
         "labor": LABOR_URL,
+        "monthly_employment": MONTHLY_EMPLOYMENT_URL,
         "education": EDUCATION_URL,
         "students": STUDENT_URL,
         "industry": INDUSTRY_URL,
@@ -1956,6 +1964,195 @@ def get_labor_market() -> pd.DataFrame:
     return pd.concat(rows, ignore_index=True)
 
 
+def get_monthly_employment() -> pd.DataFrame:
+    """
+    Monthly employed persons by municipality from SCB BAS, separately by
+    workplace location and residence location. The source is not seasonally or
+    calendar adjusted, so the within-year range is an observed seasonality/
+    volatility indicator rather than a pure cyclical effect.
+    """
+    meta = metadata(MONTHLY_EMPLOYMENT_URL)
+    region = find_var(meta, "region")
+    sex = find_var(meta, "kön", "kon")
+    industry = find_var(meta, "näringsgren", "sni")
+    birth_region = find_var(meta, "födelseregion", "fodelseregion")
+    content = find_var(meta, "tabellinnehåll", "contentscode")
+    month = find_var(meta, "månad", "manad")
+
+    munis = municipality_codes(region)
+
+    def one_aggregate_code(var: dict, label: str) -> str:
+        codes = aggregate_codes(var)
+        if len(codes) != 1:
+            raise ValueError(
+                f"Could not identify one aggregate code for {label}: "
+                f"{list(zip(var['values'][:30], var.get('valueTexts', var['values'])[:30]))}"
+            )
+        return codes[0]
+
+    sex_code = one_aggregate_code(sex, "sex")
+    birth_code = one_aggregate_code(birth_region, "birth region")
+
+    industry_code = None
+    for code, text_value in zip(
+        industry["values"],
+        industry.get("valueTexts", industry["values"]),
+    ):
+        norm = _norm_header(text_value)
+        if "auus" in norm and "total" in norm:
+            industry_code = code
+            break
+    if industry_code is None:
+        try:
+            industry_code = require_total_code(industry)
+        except Exception as exc:
+            raise ValueError(
+                "Could not identify A-U+US Total in monthly employment table"
+            ) from exc
+
+    workplace_code = code_for_text(content, "arbetsställets belägenhet")
+    residence_code = code_for_text(content, "bostadens belägenhet")
+
+    long_rows = []
+    first_year = max(2020, min(AUX_YEARS))
+    for year in range(first_year, END_YEAR + 1):
+        month_codes = [
+            code
+            for code, text_value in zip(
+                month["values"],
+                month.get("valueTexts", month["values"]),
+            )
+            if str(text_value).startswith(f"{year}M")
+        ]
+        if len(month_codes) != 12:
+            raise ValueError(
+                f"Monthly employment {year}: expected 12 months, got {len(month_codes)}"
+            )
+
+        df = px_csv(MONTHLY_EMPLOYMENT_URL, {
+            region["code"]: munis,
+            sex["code"]: [sex_code],
+            industry["code"]: [industry_code],
+            birth_region["code"]: [birth_code],
+            content["code"]: [workplace_code, residence_code],
+            month["code"]: month_codes,
+        })
+
+        dims = standardize_columns(df)
+        for c in df.columns:
+            norm = _norm_header(c)
+            if "naringsgren" in norm:
+                dims["industry"] = c
+            elif "fodelseregion" in norm:
+                dims["birth_region"] = c
+            elif norm in {"kon", "kön"}:
+                dims["sex"] = c
+
+        if "region" not in dims:
+            raise ValueError(
+                f"Monthly employment {year}: region column not found; columns={list(df.columns)}"
+            )
+
+        df[["kommun_kod", "kommun"]] = df[dims["region"]].apply(
+            lambda x: pd.Series(split_region(x))
+        )
+        dim_cols = set(dims.values())
+        value_cols = [c for c in df.columns if c not in dim_cols and c not in {"kommun_kod", "kommun"}]
+
+        parsed = 0
+        for value_col in value_cols:
+            label = str(value_col)
+            month_match = re.search(r"(20\d{2}M\d{2})", label, flags=re.I)
+            if not month_match:
+                continue
+            month_label = month_match.group(1).upper()
+            norm = _norm_header(label)
+            if "arbetsstalletsbelagenhet" in norm:
+                measure = "arbetsstalle"
+            elif "bostadensbelagenhet" in norm:
+                measure = "bostad"
+            else:
+                continue
+
+            temp = df[["kommun_kod", "kommun"]].copy()
+            temp["year"] = year
+            temp["month"] = month_label
+            temp["measure"] = measure
+            temp["value"] = normalize_number(df[value_col])
+            long_rows.append(temp)
+            parsed += 1
+
+        if parsed != 24:
+            raise ValueError(
+                f"Monthly employment {year}: expected 24 month/measure columns, "
+                f"parsed {parsed}; value columns={value_cols[:30]}"
+            )
+        print(f"Monthly employment {year}: parsed {parsed} month/measure columns")
+
+    monthly = pd.concat(long_rows, ignore_index=True)
+    monthly = (
+        monthly.groupby(
+            ["kommun_kod", "kommun", "year", "month", "measure"],
+            as_index=False,
+        )["value"].mean()
+    )
+
+    summaries = []
+    for measure in ["arbetsstalle", "bostad"]:
+        part = monthly[monthly["measure"] == measure].copy()
+        agg = (
+            part.groupby(["kommun_kod", "kommun", "year"], as_index=False)
+            .agg(
+                medel=("value", "mean"),
+                minimum=("value", "min"),
+                maximum=("value", "max"),
+                antal_manader=("value", "count"),
+            )
+        )
+        if (agg["antal_manader"] < 12).any():
+            bad = agg.loc[agg["antal_manader"] < 12, ["kommun_kod", "year", "antal_manader"]]
+            raise ValueError(
+                f"Monthly employment {measure}: incomplete municipality-years: "
+                f"{bad.head(20).to_dict('records')}"
+            )
+        prefix = f"sysselsatta_{measure}"
+        agg[f"{prefix}_sasongsvariation_pct"] = (
+            100
+            * (agg["maximum"] - agg["minimum"])
+            / agg["medel"].replace(0, np.nan)
+        )
+        agg = agg.rename(columns={
+            "medel": f"{prefix}_medel",
+            "minimum": f"{prefix}_min",
+            "maximum": f"{prefix}_max",
+        }).drop(columns=["antal_manader"])
+        summaries.append(agg)
+
+    out = summaries[0].merge(
+        summaries[1],
+        on=["kommun_kod", "kommun", "year"],
+        how="inner",
+    )
+    out = out.sort_values(["kommun_kod", "year"]).reset_index(drop=True)
+    g = out.groupby("kommun_kod", group_keys=False)
+    out["sysselsatta_arbetsstalle_forandring_pct"] = (
+        100 * g["sysselsatta_arbetsstalle_medel"].pct_change(fill_method=None)
+    )
+    out["sysselsatta_bostad_forandring_pct"] = (
+        100 * g["sysselsatta_bostad_medel"].pct_change(fill_method=None)
+    )
+
+    for year in sorted(out["year"].unique()):
+        n = out.loc[out["year"] == year, "kommun_kod"].nunique()
+        print(f"Monthly employment annual summary {year}: {n} municipalities")
+        if n < 280:
+            raise ValueError(
+                f"Monthly employment annual summary {year}: only {n} municipalities"
+            )
+
+    return out
+
+
 def get_education() -> pd.DataFrame:
     """
     Share of residents aged 25-64 with post-secondary education.
@@ -2500,7 +2697,7 @@ def split_region(value: str) -> tuple[str, str]:
     return s[:4], s[5:] if len(s) > 5 else s
 
 
-def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turnout: pd.DataFrame, inequality: pd.DataFrame, housing: pd.DataFrame, completed_housing: pd.DataFrame, leisure: pd.DataFrame, crime: pd.DataFrame, labor: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame, activity: pd.DataFrame, industry: pd.DataFrame, fa15: pd.DataFrame) -> pd.DataFrame:
+def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turnout: pd.DataFrame, inequality: pd.DataFrame, housing: pd.DataFrame, completed_housing: pd.DataFrame, leisure: pd.DataFrame, crime: pd.DataFrame, labor: pd.DataFrame, monthly_employment: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame, activity: pd.DataFrame, industry: pd.DataFrame, fa15: pd.DataFrame) -> pd.DataFrame:
     md = standardize_columns(mig)
     mig = mig.copy()
     mig["value"] = normalize_number(mig["value"])
@@ -2630,6 +2827,22 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turn
         on=["kommun_kod", "year"], how="left"
     )
     panel = panel.merge(
+        monthly_employment[[
+            "kommun_kod", "year",
+            "sysselsatta_arbetsstalle_medel",
+            "sysselsatta_arbetsstalle_min",
+            "sysselsatta_arbetsstalle_max",
+            "sysselsatta_arbetsstalle_sasongsvariation_pct",
+            "sysselsatta_arbetsstalle_forandring_pct",
+            "sysselsatta_bostad_medel",
+            "sysselsatta_bostad_min",
+            "sysselsatta_bostad_max",
+            "sysselsatta_bostad_sasongsvariation_pct",
+            "sysselsatta_bostad_forandring_pct",
+        ]],
+        on=["kommun_kod", "year"], how="left"
+    )
+    panel = panel.merge(
         education[["kommun_kod", "year", "andel_eftergymnasial"]],
         on=["kommun_kod", "year"], how="left"
     )
@@ -2735,6 +2948,10 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turn
     panel["lag1_brott_per_100000"] = g["brott_per_100000"].shift(1)
     panel["lag1_sysselsattningsgrad"] = g["sysselsattningsgrad"].shift(1)
     panel["lag1_arbetsloshet"] = g["arbetsloshet"].shift(1)
+    panel["lag1_sysselsatta_arbetsstalle_forandring_pct"] = g["sysselsatta_arbetsstalle_forandring_pct"].shift(1)
+    panel["lag1_sysselsatta_bostad_forandring_pct"] = g["sysselsatta_bostad_forandring_pct"].shift(1)
+    panel["lag1_sysselsatta_arbetsstalle_sasongsvariation_pct"] = g["sysselsatta_arbetsstalle_sasongsvariation_pct"].shift(1)
+    panel["lag1_sysselsatta_bostad_sasongsvariation_pct"] = g["sysselsatta_bostad_sasongsvariation_pct"].shift(1)
     panel["lag1_andel_eftergymnasial"] = g["andel_eftergymnasial"].shift(1)
     panel["lag1_andel_studerande"] = g["andel_studerande"].shift(1)
     panel["lag1_kolada_lok_foreningar_per_10000"] = g["kolada_lok_foreningar_per_10000"].shift(1)
@@ -3539,6 +3756,7 @@ def fit_models(panel: pd.DataFrame) -> dict:
             "Fritidshusandelen beräknas som fritidshus / (fritidshus + bostäder i småhus) enligt SCB BO0104T08 och BO0104T04; måttet är en proxy eftersom fritidshus räknas som hus medan småhuskomponenten räknas som bostadslägenheter.",
             "Brottsmåttet är totalt antal anmälda brott per 100 000 invånare från BRÅ:s årsvisa kommunstatistik i Lulea-statistik/BR-brottsstatistik och används laggat ett år.",
             "Arbetsmarknadsvariablerna är sysselsättningsgrad och arbetslöshet bland 20–64-åringar från SCB BAS och används laggade ett år.",
+            "Månadsvis BAS-statistik används dessutom för kandidatmått på sysselsättningsdynamik: förändring i årsmedel samt max-minus-min som andel av årsmedlet, separat efter arbetsställets och bostadens belägenhet. Serien är varken säsongsrensad eller kalenderkorrigerad och måtten testas därför först utanför produktionsmodellen.",
             "Utbildningsvariabeln är andel 25–64-åringar med eftergymnasial utbildning och används laggad ett år.",
             "Studentmiljö mäts som andel studerande bland 20–64-åringar enligt SCB IntGr8Kom1N och används laggad ett år.",
             "Koladas fritids-/aktivitetsmått testas först som ett separat glest kandidattema på samma observationsurval som basmodellen. De förs inte automatiskt in i produktionsmodellen förrän de visar stabilt marginalbidrag och tillräcklig täckning.",
@@ -3682,6 +3900,54 @@ def fit_age_group_models(panel: pd.DataFrame) -> dict:
 
     return out
 
+def _employment_variation_rankings(panel: pd.DataFrame) -> dict:
+    """Rank municipalities by observed within-year employment variation."""
+    specs = {
+        "arbetsstalle": "sysselsatta_arbetsstalle_sasongsvariation_pct",
+        "bostad": "sysselsatta_bostad_sasongsvariation_pct",
+    }
+    out = {}
+    for key, feature in specs.items():
+        work = panel[["kommun_kod", "kommun", "year", feature]].dropna().copy()
+        if work.empty:
+            out[key] = {"latest_year": None, "top_latest": [], "top_multiyear_mean": []}
+            continue
+
+        latest_year = int(work["year"].max())
+        top_latest = (
+            work[work["year"] == latest_year]
+            .sort_values(feature, ascending=False)
+            .head(20)
+        )
+        avg = (
+            work.groupby(["kommun_kod", "kommun"], as_index=False)[feature]
+            .mean()
+            .sort_values(feature, ascending=False)
+            .head(20)
+        )
+        out[key] = {
+            "feature": feature,
+            "latest_year": latest_year,
+            "top_latest": [
+                {
+                    "kommun_kod": str(r.kommun_kod),
+                    "kommun": str(r.kommun),
+                    "variation_pct": _finite_float(getattr(r, feature)),
+                }
+                for r in top_latest.itertuples(index=False)
+            ],
+            "top_multiyear_mean": [
+                {
+                    "kommun_kod": str(r.kommun_kod),
+                    "kommun": str(r.kommun),
+                    "variation_pct": _finite_float(getattr(r, feature)),
+                }
+                for r in avg.itertuples(index=False)
+            ],
+        }
+    return out
+
+
 def main():
     if "--preflight-only" in sys.argv:
         preflight_sources()
@@ -3697,6 +3963,7 @@ def main():
     inequality = get_socioeconomic_gap()
 
     labor = get_labor_market()
+    monthly_employment = get_monthly_employment()
     education = get_education()
     students = get_students()
     activity = get_kolada_activity()
@@ -3709,7 +3976,7 @@ def main():
     completed_housing = get_completed_housing()
     leisure = get_leisure_houses()
     crime = get_crime_total()
-    panel = build_panel(mig, pop, income, turnout, inequality, housing, completed_housing, leisure, crime, labor, education, students, activity, industry, fa15)
+    panel = build_panel(mig, pop, income, turnout, inequality, housing, completed_housing, leisure, crime, labor, monthly_employment, education, students, activity, industry, fa15)
     panel.to_csv(OUT / "panel.csv", index=False)
     result = fit_models(panel)
     age_models = fit_age_group_models(panel)
@@ -3738,6 +4005,30 @@ def main():
             if "error" not in model
         },
     }
+
+    result["employment_dynamics_candidate_tests"] = {
+        "overall": _sparse_candidate_tests(
+            panel,
+            result["target"],
+            overall_base,
+            EMPLOYMENT_DYNAMICS_LAG_FEATURES,
+            END_YEAR - 4,
+            END_YEAR,
+        ),
+        "age_groups": {
+            key: _sparse_candidate_tests(
+                panel,
+                model["target"],
+                model["explanation"]["selected_features"],
+                EMPLOYMENT_DYNAMICS_LAG_FEATURES,
+                END_YEAR - 4,
+                END_YEAR,
+            )
+            for key, model in age_models.items()
+            if "error" not in model
+        },
+    }
+    result["employment_seasonality_rankings"] = _employment_variation_rankings(panel)
 
     (OUT / "model.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(result, ensure_ascii=False, indent=2))
