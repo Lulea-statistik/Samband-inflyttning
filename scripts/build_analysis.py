@@ -2718,6 +2718,7 @@ def get_municipal_area_geography() -> pd.DataFrame:
 
     munis = municipality_codes(region)
     total_code = code_for_text(area_type, "totalt")
+    land_code = code_for_text(area_type, "landareal")
     sea_code = code_for_text(area_type, "havsvatten")
     km2_code = code_for_text(content, "Kvadratkilometer")
 
@@ -2737,13 +2738,13 @@ def get_municipal_area_geography() -> pd.DataFrame:
         )
     )
     print(
-        f"Using SCB area codes total={total_code!r}, sea={sea_code!r}, "
+        f"Using SCB area codes total={total_code!r}, land={land_code!r}, sea={sea_code!r}, "
         f"year={area_year}"
     )
 
     df = px_csv(AREA_URL, {
         region["code"]: munis,
-        area_type["code"]: [total_code, sea_code],
+        area_type["code"]: [total_code, land_code, sea_code],
         content["code"]: [km2_code],
         time_var["code"]: [str(area_year)],
     })
@@ -2784,6 +2785,8 @@ def get_municipal_area_geography() -> pd.DataFrame:
         text = _norm_header(value)
         if text == "totalt":
             return "total"
+        if "landareal" in text:
+            return "land"
         if "havsvatten" in text:
             return "sea"
         return None
@@ -2805,12 +2808,16 @@ def get_municipal_area_geography() -> pd.DataFrame:
         .reset_index()
     )
 
-    if "total" not in pivot.columns or "sea" not in pivot.columns:
+    if any(col not in pivot.columns for col in ["total", "land", "sea"]):
         raise ValueError(
-            f"SCB area response lacks total/sea values. Columns={list(pivot.columns)}"
+            f"SCB area response lacks total/land/sea values. Columns={list(pivot.columns)}"
         )
 
-    pivot = pivot.rename(columns={"total": "totalareal_km2", "sea": "hav_km2"})
+    pivot = pivot.rename(columns={
+        "total": "totalareal_km2",
+        "land": "landareal_km2",
+        "sea": "hav_km2",
+    })
     pivot["kommun_kod"] = pivot["kommun_kod"].astype(str).str.zfill(4)
     pivot["havsandel_pct"] = (
         100 * pivot["hav_km2"] / pivot["totalareal_km2"].replace(0, np.nan)
@@ -2838,6 +2845,7 @@ def get_municipal_area_geography() -> pd.DataFrame:
     return pivot[[
         "kommun_kod",
         "totalareal_km2",
+        "landareal_km2",
         "hav_km2",
         "havsandel_pct",
         "kustkommun_hav",
@@ -3218,7 +3226,7 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turn
     )
     panel = panel.merge(
         geography[[
-            "kommun_kod", "totalareal_km2", "hav_km2", "havsandel_pct",
+            "kommun_kod", "totalareal_km2", "landareal_km2", "hav_km2", "havsandel_pct",
             "kustkommun_hav", "geografi_areal_ar", "kommun_centroid_northing_km",
         ]],
         on="kommun_kod", how="left"
@@ -3263,6 +3271,12 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turn
         1000 * panel["inflyttade_70_79"] / panel["bef_70_79"].replace(0, np.nan)
     )
     panel["log_folkmangd"] = np.log(panel["folkmangd"].where(panel["folkmangd"] > 0))
+    panel["befolkningstathet_land_per_km2"] = (
+        panel["folkmangd"] / panel["landareal_km2"].replace(0, np.nan)
+    )
+    panel["log_befolkningstathet_land"] = np.log1p(
+        panel["befolkningstathet_land_per_km2"]
+    )
 
     panel = panel.sort_values(["kommun_kod", "year"])
     g = panel.groupby("kommun_kod", group_keys=False)
@@ -3281,6 +3295,7 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turn
     panel["lag1_inflyttning_63_68_per_1000"] = g["inflyttning_63_68_per_1000"].shift(1)
     panel["lag1_inflyttning_70_79_per_1000"] = g["inflyttning_70_79_per_1000"].shift(1)
     panel["lag1_log_folkmangd"] = g["log_folkmangd"].shift(1)
+    panel["lag1_log_befolkningstathet_land"] = g["log_befolkningstathet_land"].shift(1)
     panel["lag1_befolkningstillvaxt_pct"] = g["befolkningstillvaxt_pct"].shift(1)
     panel["lag1_andel_20_34"] = g["andel_20_34"].shift(1)
     panel["lag1_inflyttare_medelalder"] = g["inflyttare_medelalder"].shift(1)
@@ -4436,6 +4451,167 @@ def _geography_interaction_tests(
     }
 
 
+
+def _geography_urbanity_tests(
+    panel: pd.DataFrame,
+    target: str,
+    base_features: list[str],
+    start_year: int,
+    end_year: int,
+) -> dict:
+    """
+    Test whether coast/sea share adds information beyond municipality size or
+    land-based population density, and whether that geography effect changes
+    with the urbanity proxy. Geography is never promoted here; this is
+    candidate diagnostics only.
+    """
+    specs = [
+        {
+            "name": "coast_vs_population_size",
+            "urbanity": "lag1_log_folkmangd",
+            "geo": "kustkommun_hav",
+            "geo_scaled": "kustkommun_hav",
+        },
+        {
+            "name": "sea_share_vs_population_size",
+            "urbanity": "lag1_log_folkmangd",
+            "geo": "havsandel_pct",
+            "geo_scaled": "geo_havsandel_10pp",
+        },
+        {
+            "name": "coast_vs_population_density",
+            "urbanity": "lag1_log_befolkningstathet_land",
+            "geo": "kustkommun_hav",
+            "geo_scaled": "kustkommun_hav",
+        },
+        {
+            "name": "sea_share_vs_population_density",
+            "urbanity": "lag1_log_befolkningstathet_land",
+            "geo": "havsandel_pct",
+            "geo_scaled": "geo_havsandel_10pp",
+        },
+    ]
+
+    needed = [
+        "kommun_kod", "year", target, "kustkommun_hav", "havsandel_pct",
+        "lag1_log_folkmangd", "lag1_log_befolkningstathet_land",
+    ] + list(base_features)
+    needed = list(dict.fromkeys(needed))
+    d = (
+        panel.loc[panel["year"].between(start_year, end_year), needed]
+        .dropna()
+        .reset_index(drop=True)
+    )
+    d["geo_havsandel_10pp"] = d["havsandel_pct"] / 10.0
+
+    rows = []
+    for spec in specs:
+        urbanity = spec["urbanity"]
+        geo_scaled = spec["geo_scaled"]
+
+        # Force the urbanity control into the comparison exactly once, even if
+        # automated selection omitted it from this life-stage model.
+        base_core = [f for f in base_features if f != urbanity]
+        urbanity_center = float(d[urbanity].median())
+        centered = f"{urbanity}_centered"
+        interaction = f"{geo_scaled}_x_{urbanity}"
+        d[centered] = d[urbanity] - urbanity_center
+        d[interaction] = d[geo_scaled] * d[centered]
+
+        urbanity_only_features = base_core + [urbanity]
+        geography_main_features = urbanity_only_features + [geo_scaled]
+        interaction_features = geography_main_features + [interaction]
+
+        y = d[target].astype(float).reset_index(drop=True)
+        fit_urbanity = sm.OLS(
+            y, _design_with_year_effects(d, urbanity_only_features)
+        ).fit()
+        fit_geo = sm.OLS(
+            y, _design_with_year_effects(d, geography_main_features)
+        ).fit()
+        fit_interaction = sm.OLS(
+            y, _design_with_year_effects(d, interaction_features)
+        ).fit()
+        robust = sm.OLS(
+            y, _design_with_year_effects(d, interaction_features)
+        ).fit(
+            cov_type="cluster",
+            cov_kwds={"groups": d["kommun_kod"].reset_index(drop=True)},
+        )
+
+        names = list(robust.model.exog_names)
+        params = np.asarray(robust.params)
+        pvals = np.asarray(robust.pvalues)
+        conf = np.asarray(robust.conf_int())
+
+        def coef_row(feature: str) -> dict:
+            i = names.index(feature)
+            return {
+                "feature": feature,
+                "coefficient": _finite_float(params[i]),
+                "p_value": _finite_float(pvals[i]),
+                "ci_low": _finite_float(conf[i, 0]),
+                "ci_high": _finite_float(conf[i, 1]),
+            }
+
+        geo_rmse = float(np.sqrt(np.mean(np.square(fit_geo.resid))))
+        urbanity_rmse = float(np.sqrt(np.mean(np.square(fit_urbanity.resid))))
+        interaction_rmse = float(np.sqrt(np.mean(np.square(fit_interaction.resid))))
+
+        rows.append({
+            "model": spec["name"],
+            "urbanity_feature": urbanity,
+            "urbanity_center_log_units": _finite_float(urbanity_center),
+            "geography_feature": spec["geo"],
+            "geography_scaled_feature": geo_scaled,
+            "interaction_feature": interaction,
+            "n_obs": int(len(d)),
+            "n_municipalities": int(d["kommun_kod"].nunique()),
+            "n_years": int(d["year"].nunique()),
+            "urbanity_only_adjusted_r2": _finite_float(fit_urbanity.rsquared_adj),
+            "geography_main_adjusted_r2": _finite_float(fit_geo.rsquared_adj),
+            "interaction_adjusted_r2": _finite_float(fit_interaction.rsquared_adj),
+            "delta_adjusted_r2_geography_beyond_urbanity": _finite_float(
+                fit_geo.rsquared_adj - fit_urbanity.rsquared_adj
+            ),
+            "delta_adjusted_r2_interaction": _finite_float(
+                fit_interaction.rsquared_adj - fit_geo.rsquared_adj
+            ),
+            "delta_aic_geography_beyond_urbanity": _finite_float(
+                fit_urbanity.aic - fit_geo.aic
+            ),
+            "delta_aic_interaction": _finite_float(
+                fit_geo.aic - fit_interaction.aic
+            ),
+            "delta_rmse_geography_beyond_urbanity": _finite_float(
+                urbanity_rmse - geo_rmse
+            ),
+            "delta_rmse_interaction": _finite_float(
+                geo_rmse - interaction_rmse
+            ),
+            "coefficients": [
+                coef_row(urbanity),
+                coef_row(geo_scaled),
+                coef_row(interaction),
+            ],
+        })
+
+    return {
+        "rule": (
+            "urbanity control first, then coast/sea-share main effect, then "
+            "interaction; same observations in all nested models"
+        ),
+        "start_year": start_year,
+        "end_year": end_year,
+        "density_definition": (
+            "population per km2 land area, log1p transformed and lagged one year"
+        ),
+        "population_size_definition": "natural log population, lagged one year",
+        "sea_share_unit": "10 percentage points",
+        "rows": rows,
+    }
+
+
 def _geography_rankings(panel: pd.DataFrame) -> dict:
     """Simple source-QA rankings for the static geography candidate variables."""
     cols = [
@@ -4596,11 +4772,32 @@ def main():
             if "error" not in model
         },
     }
+    result["geography_urbanity_tests"] = {
+        "overall": _geography_urbanity_tests(
+            panel,
+            result["target"],
+            overall_base,
+            END_YEAR - 4,
+            END_YEAR,
+        ),
+        "age_groups": {
+            key: _geography_urbanity_tests(
+                panel,
+                model["target"],
+                model["explanation"]["selected_features"],
+                END_YEAR - 4,
+                END_YEAR,
+            )
+            for key, model in age_models.items()
+            if "error" not in model
+        },
+    }
     result["geography_rankings"] = _geography_rankings(panel)
     result["geography_metadata"] = {
         "centroid_crs": GEOGRAPHY_CRS,
         "centroid_definition": "Area-weighted polygon centroid northing from swemaps GeoParquet derived from SCB municipal boundaries, reprojected to EPSG:3006",
         "sea_share_definition": "Sea water to territorial border / total municipal area, percent",
+        "urbanity_proxy": "log1p(population / SCB land area), lagged one year",
         "production_status": "candidate_only",
     }
 
