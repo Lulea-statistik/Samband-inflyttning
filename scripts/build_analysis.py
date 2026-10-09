@@ -87,23 +87,23 @@ INDUSTRY_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210
 FA15_XLSX_URL = "https://tillvaxtverket.se/download/18.8fc3d8b1855c7f9043216/1672314363587/FA-regioner%202015%20%C3%A5r%20indelning%20%281%29.xlsx"
 KOLADA_API_BASE = "https://api.kolada.se/v3"
 KOLADA_ACTIVITY_SPECS = {
-    "kolada_idrott_deltagartillfallen": {
-        "title": "Deltagartillfällen i idrottsföreningar, antal/inv 7-20 år",
-        "search": "Deltagartillfällen idrottsföreningar",
+    "kolada_lok_foreningar_per_10000": {
+        "title": "Idrottsföreningar med LOK-stöd, antal/10 000 inv",
+        "search": "Idrottsföreningar med LOK-stöd",
     },
-    "kolada_bibliotek_aktivitetstillfallen": {
-        "title": "Aktivitetstillfällen för barn och unga i kommunala bibliotek, antal/1000 inv 0-18 år",
-        "search": "Aktivitetstillfällen bibliotek",
+    "kolada_flickdominerade_idrottsforeningar_andel": {
+        "title": "Idrottsföreningar med flickdominerad verksamhet, andel (%)",
+        "search": "Idrottsföreningar med flickdominerad verksamhet",
     },
-    "kolada_kulturskola_andel": {
-        "title": "Elever i musik- eller kulturskola, 6-15 år, andel (%)",
-        "search": "Elever musik kulturskola 6-15",
+    "kolada_utbetalt_lok_stod_kr_per_inv": {
+        "title": "Utbetalt LOK-Stöd till idrottsföreningar, kr/inv",
+        "search": "Utbetalt LOK-Stöd till idrottsföreningar",
     },
 }
 ACTIVITY_LAG_FEATURES = [
-    "lag1_kolada_idrott_deltagartillfallen",
-    "lag1_kolada_bibliotek_aktivitetstillfallen",
-    "lag1_kolada_kulturskola_andel",
+    "lag1_kolada_lok_foreningar_per_10000",
+    "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+    "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
 ]
 OUT = Path("docs/data")
 OUT.mkdir(parents=True, exist_ok=True)
@@ -2640,9 +2640,9 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turn
     panel = panel.merge(
         activity[[
             "kommun_kod", "year",
-            "kolada_idrott_deltagartillfallen",
-            "kolada_bibliotek_aktivitetstillfallen",
-            "kolada_kulturskola_andel",
+            "kolada_lok_foreningar_per_10000",
+            "kolada_flickdominerade_idrottsforeningar_andel",
+            "kolada_utbetalt_lok_stod_kr_per_inv",
         ]],
         on=["kommun_kod", "year"], how="left"
     )
@@ -2737,9 +2737,9 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turn
     panel["lag1_arbetsloshet"] = g["arbetsloshet"].shift(1)
     panel["lag1_andel_eftergymnasial"] = g["andel_eftergymnasial"].shift(1)
     panel["lag1_andel_studerande"] = g["andel_studerande"].shift(1)
-    panel["lag1_kolada_idrott_deltagartillfallen"] = g["kolada_idrott_deltagartillfallen"].shift(1)
-    panel["lag1_kolada_bibliotek_aktivitetstillfallen"] = g["kolada_bibliotek_aktivitetstillfallen"].shift(1)
-    panel["lag1_kolada_kulturskola_andel"] = g["kolada_kulturskola_andel"].shift(1)
+    panel["lag1_kolada_lok_foreningar_per_10000"] = g["kolada_lok_foreningar_per_10000"].shift(1)
+    panel["lag1_kolada_flickdominerade_idrottsforeningar_andel"] = g["kolada_flickdominerade_idrottsforeningar_andel"].shift(1)
+    panel["lag1_kolada_utbetalt_lok_stod_kr_per_inv"] = g["kolada_utbetalt_lok_stod_kr_per_inv"].shift(1)
     panel["lag1_andel_industri_bc"] = g["andel_industri_bc"].shift(1)
     panel["lag1_andel_hotell_restaurang_i"] = g["andel_hotell_restaurang_i"].shift(1)
     panel["lag1_andel_kultur_service_rstu"] = g["andel_kultur_service_rstu"].shift(1)
