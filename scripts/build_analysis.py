@@ -4880,6 +4880,121 @@ def _geography_urbanity_tests(
     }
 
 
+
+def _geography_joint_control_tests(
+    panel: pd.DataFrame,
+    target: str,
+    base_features: list[str],
+    start_year: int,
+    end_year: int,
+) -> dict:
+    """
+    Final candidate robustness test for coastal geography. Hold northing,
+    municipality size, SCB urban-area share and SCB built/developed land share
+    constant simultaneously, then test whether coast or sea share adds
+    explanatory value. No interaction is promoted or used here.
+    """
+    controls = [
+        "geo_northing_100km",
+        "lag1_log_folkmangd",
+        "lag1_tatortsgrad_pct",
+        "lag1_bebyggd_anlagd_andel_land_pct",
+    ]
+    needed = list(dict.fromkeys(
+        ["kommun_kod", "year", target, "kommun_centroid_northing_km",
+         "havsandel_pct", "kustkommun_hav",
+         "lag1_log_folkmangd", "lag1_tatortsgrad_pct",
+         "lag1_bebyggd_anlagd_andel_land_pct"]
+        + list(base_features)
+    ))
+    d = (
+        panel.loc[panel["year"].between(start_year, end_year), needed]
+        .dropna()
+        .reset_index(drop=True)
+    )
+    northing_center_km = float(
+        panel[["kommun_kod", "kommun_centroid_northing_km"]]
+        .drop_duplicates("kommun_kod")["kommun_centroid_northing_km"]
+        .dropna()
+        .median()
+    )
+    d["geo_northing_100km"] = (
+        d["kommun_centroid_northing_km"] - northing_center_km
+    ) / 100.0
+    d["geo_havsandel_10pp"] = d["havsandel_pct"] / 10.0
+
+    # Ensure every forced control enters exactly once even if it was already
+    # selected by the life-stage model.
+    base_core = [
+        f for f in base_features
+        if f not in {
+            "lag1_log_folkmangd",
+            "lag1_tatortsgrad_pct",
+            "lag1_bebyggd_anlagd_andel_land_pct",
+        }
+    ]
+    control_features = list(dict.fromkeys(base_core + controls))
+
+    y = d[target].astype(float).reset_index(drop=True)
+    X_controls = _design_with_year_effects(d, control_features)
+    control_fit = sm.OLS(y, X_controls).fit()
+    control_rmse = float(np.sqrt(np.mean(np.square(control_fit.resid))))
+
+    rows = []
+    for name, geo_feature in [
+        ("coast_after_joint_controls", "kustkommun_hav"),
+        ("sea_share_after_joint_controls", "geo_havsandel_10pp"),
+    ]:
+        full_features = control_features + [geo_feature]
+        X_full = _design_with_year_effects(d, full_features)
+        full_fit = sm.OLS(y, X_full).fit()
+        robust = sm.OLS(y, X_full).fit(
+            cov_type="cluster",
+            cov_kwds={"groups": d["kommun_kod"].reset_index(drop=True)},
+        )
+        names = list(robust.model.exog_names)
+        i = names.index(geo_feature)
+        conf = np.asarray(robust.conf_int())
+        full_rmse = float(np.sqrt(np.mean(np.square(full_fit.resid))))
+
+        rows.append({
+            "model": name,
+            "geography_feature": geo_feature,
+            "n_obs": int(len(d)),
+            "n_municipalities": int(d["kommun_kod"].nunique()),
+            "n_years": int(d["year"].nunique()),
+            "coefficient": _finite_float(np.asarray(robust.params)[i]),
+            "p_value": _finite_float(np.asarray(robust.pvalues)[i]),
+            "ci_low": _finite_float(conf[i, 0]),
+            "ci_high": _finite_float(conf[i, 1]),
+            "controls_adjusted_r2": _finite_float(control_fit.rsquared_adj),
+            "full_adjusted_r2": _finite_float(full_fit.rsquared_adj),
+            "delta_adjusted_r2": _finite_float(
+                full_fit.rsquared_adj - control_fit.rsquared_adj
+            ),
+            "controls_aic": _finite_float(control_fit.aic),
+            "full_aic": _finite_float(full_fit.aic),
+            "delta_aic": _finite_float(control_fit.aic - full_fit.aic),
+            "controls_rmse": _finite_float(control_rmse),
+            "full_rmse": _finite_float(full_rmse),
+            "delta_rmse": _finite_float(control_rmse - full_rmse),
+        })
+
+    return {
+        "rule": (
+            "same observations; baseline plus northing, log population, SCB "
+            "urban-area share and SCB built/developed land share are held "
+            "constant simultaneously before coast/sea share is added"
+        ),
+        "start_year": start_year,
+        "end_year": end_year,
+        "northing_unit": "100 km from national median municipality centroid northing",
+        "sea_share_unit": "10 percentage points",
+        "forced_controls": controls,
+        "rows": rows,
+    }
+
+
 def _geography_rankings(panel: pd.DataFrame) -> dict:
     """Simple source-QA rankings for the static geography candidate variables."""
     cols = [
@@ -5051,6 +5166,26 @@ def main():
         ),
         "age_groups": {
             key: _geography_urbanity_tests(
+                panel,
+                model["target"],
+                model["explanation"]["selected_features"],
+                END_YEAR - 4,
+                END_YEAR,
+            )
+            for key, model in age_models.items()
+            if "error" not in model
+        },
+    }
+    result["geography_joint_control_tests"] = {
+        "overall": _geography_joint_control_tests(
+            panel,
+            result["target"],
+            overall_base,
+            END_YEAR - 4,
+            END_YEAR,
+        ),
+        "age_groups": {
+            key: _geography_joint_control_tests(
                 panel,
                 model["target"],
                 model["explanation"]["selected_features"],
