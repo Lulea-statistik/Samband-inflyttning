@@ -3105,7 +3105,11 @@ def get_land_use_urbanity() -> pd.DataFrame:
     dims = standardize_columns(df)
     region_col = dims.get("region")
     class_col = next(
-        (c for c in df.columns if "markanvändningsklass" in _norm_header(c)),
+        (
+            c for c in df.columns
+            if "markanvändningsklass" in str(c).casefold()
+            or "markanvandningsklass" in _norm_header(c)
+        ),
         None,
     )
     if region_col is None or class_col is None:
