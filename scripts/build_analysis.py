@@ -89,14 +89,17 @@ FA15_XLSX_URL = "https://tillvaxtverket.se/download/18.8fc3d8b1855c7f9043216/167
 KOLADA_API_BASE = "https://api.kolada.se/v3"
 KOLADA_ACTIVITY_SPECS = {
     "kolada_lok_foreningar_per_10000": {
+        "id": "U09804",
         "title": "Idrottsföreningar med LOK-stöd, antal/10 000 inv",
         "search": "Idrottsföreningar med LOK-stöd",
     },
     "kolada_flickdominerade_idrottsforeningar_andel": {
+        "id": "U09805",
         "title": "Idrottsföreningar med flickdominerad verksamhet, andel (%)",
         "search": "Idrottsföreningar med flickdominerad verksamhet",
     },
     "kolada_utbetalt_lok_stod_kr_per_inv": {
+        "id": "U09812",
         "title": "Utbetalt LOK-Stöd till idrottsföreningar, kr/inv",
         "search": "Utbetalt LOK-Stöd till idrottsföreningar",
     },
@@ -218,13 +221,17 @@ def preflight_sources() -> None:
 
     try:
         resolved_kolada = resolve_kolada_activity_kpis()
+        for info in resolved_kolada.values():
+            _kolada_year_rows(info["id"], END_YEAR)
         print(
-            "Preflight OK Kolada activity KPIs: "
+            "Preflight OK optional Kolada activity KPIs: "
             + ", ".join(f"{k}={v['id']}" for k, v in resolved_kolada.items())
         )
     except Exception as exc:
-        failures.append(f"Kolada activity KPIs: {exc}")
-        print(f"Preflight FAILED Kolada activity KPIs: {exc}")
+        print(
+            "Preflight WARNING optional Kolada activity source unavailable; "
+            f"existing candidate data will be reused: {exc}"
+        )
 
     # Lightweight checks of the non-SCB sources used in the build.
     try:
@@ -664,6 +671,9 @@ def _kolada_year_rows(kpi_id: str, year: int) -> list[dict]:
 
 
 def _resolve_kolada_kpi(spec: dict) -> tuple[str, str]:
+    if spec.get("id"):
+        return str(spec["id"]), str(spec["title"])
+
     payload = _kolada_json(
         "/kpi",
         {"title": spec["search"], "per_page": 5000},
@@ -714,49 +724,87 @@ def resolve_kolada_activity_kpis() -> dict[str, dict]:
     return resolved
 
 
+def _existing_kolada_activity_fallback() -> pd.DataFrame:
+    """
+    Reuse the last successfully generated Kolada observations when the external
+    Kolada API is temporarily unavailable. These candidate indicators are not
+    part of the production feature set, so a transient outage must not block
+    unrelated SCB model updates.
+    """
+    path = OUT / "panel.csv"
+    cols = [
+        "kommun_kod",
+        "year",
+        "kolada_lok_foreningar_per_10000",
+        "kolada_flickdominerade_idrottsforeningar_andel",
+        "kolada_utbetalt_lok_stod_kr_per_inv",
+    ]
+    if not path.exists():
+        raise RuntimeError("No existing panel.csv available for Kolada fallback")
+    old = pd.read_csv(path, dtype={"kommun_kod": str})
+    missing = [c for c in cols if c not in old.columns]
+    if missing:
+        raise RuntimeError(
+            f"Existing panel.csv lacks Kolada fallback columns: {missing}"
+        )
+    out = old[cols].copy()
+    out["kommun_kod"] = out["kommun_kod"].astype(str).str.zfill(4)
+    out["year"] = pd.to_numeric(out["year"], errors="coerce")
+    out = out.dropna(subset=["year"]).copy()
+    out["year"] = out["year"].astype(int)
+    out = out.drop_duplicates(["kommun_kod", "year"])
+    print(
+        "Kolada API unavailable; reusing last generated Kolada candidate data "
+        f"from {path}"
+    )
+    return out
+
+
 def get_kolada_activity() -> pd.DataFrame:
     """
     Sparse Kolada candidate theme. Values are kept observed (no interpolation or
     carry-forward) and are tested separately so missingness cannot shrink the
-    production model's complete-case sample.
+    production model's complete-case sample. If Kolada is temporarily
+    unavailable, reuse the last successfully generated candidate observations.
     """
-    resolved = resolve_kolada_activity_kpis()
-    frames = []
-    for column, info in resolved.items():
-        rows = []
-        for year in AUX_YEARS:
-            data = _kolada_year_rows(info["id"], year)
-            for item in data:
-                kommun_kod = str(item.get("municipality", "")).strip()
-                if not re.fullmatch(r"\d{4}", kommun_kod):
-                    continue
-                value = _kolada_total_value(item.get("values", []))
-                if np.isfinite(value):
-                    rows.append({
-                        "kommun_kod": kommun_kod,
-                        "year": int(year),
-                        column: float(value),
-                    })
-            n_year = sum(r["year"] == year for r in rows)
-            print(f"Kolada {info['id']} {year}: {n_year} municipalities with {column}")
+    try:
+        resolved = resolve_kolada_activity_kpis()
+        frames = []
+        for column, info in resolved.items():
+            rows = []
+            for year in AUX_YEARS:
+                data = _kolada_year_rows(info["id"], year)
+                for item in data:
+                    kommun_kod = str(item.get("municipality", "")).strip()
+                    if not re.fullmatch(r"\d{4}", kommun_kod):
+                        continue
+                    value = _kolada_total_value(item.get("values", []))
+                    if np.isfinite(value):
+                        rows.append({
+                            "kommun_kod": kommun_kod,
+                            "year": int(year),
+                            column: float(value),
+                        })
+                n_year = sum(r["year"] == year for r in rows)
+                print(f"Kolada {info['id']} {year}: {n_year} municipalities with {column}")
 
-        frame = pd.DataFrame(rows)
-        if frame.empty:
-            frame = pd.DataFrame(columns=["kommun_kod", "year", column])
-        else:
-            frame = (
-                frame.groupby(["kommun_kod", "year"], as_index=False)[column]
-                .mean()
-            )
-        frames.append(frame)
+            frame = pd.DataFrame(rows)
+            if frame.empty:
+                frame = pd.DataFrame(columns=["kommun_kod", "year", column])
+            else:
+                frame = (
+                    frame.groupby(["kommun_kod", "year"], as_index=False)[column]
+                    .mean()
+                )
+            frames.append(frame)
 
-    out = frames[0]
-    for frame in frames[1:]:
-        out = out.merge(frame, on=["kommun_kod", "year"], how="outer")
-    return out
-
-
-
+        out = frames[0]
+        for frame in frames[1:]:
+            out = out.merge(frame, on=["kommun_kod", "year"], how="outer")
+        return out
+    except Exception as exc:
+        print(f"WARNING: live Kolada candidate refresh failed: {exc}")
+        return _existing_kolada_activity_fallback()
 def _code_digits(value: object) -> str:
     text = str(value or "").strip()
     # Excel often turns codes such as 0114 into numeric 114.0.
