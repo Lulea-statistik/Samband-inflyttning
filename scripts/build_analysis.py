@@ -8,7 +8,6 @@ import re
 import sys
 import time
 import unicodedata
-import zipfile
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urljoin
@@ -16,8 +15,10 @@ from urllib.parse import urljoin
 import numpy as np
 import pandas as pd
 import requests
-import shapefile
-from shapely.geometry import shape as shapely_shape
+import pyarrow.parquet as pq
+from pyproj import Transformer
+from shapely import from_wkb
+from shapely.ops import transform as shapely_transform
 from sklearn.linear_model import LinearRegression, RidgeCV, ElasticNetCV
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler
@@ -86,10 +87,7 @@ BRA_ANNUAL_RAW = "https://raw.githubusercontent.com/Lulea-statistik/BR-brottssta
 LABOR_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210A/ArbStatusAr"
 MONTHLY_EMPLOYMENT_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210B/ArbStDoNMNN"
 AREA_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/MI/MI0802/Areal2012NN"
-MUNICIPAL_BOUNDARY_SOURCE = {
-    "page": "https://www.scb.se/hitta-statistik/regional-statistik-och-kartor/regionala-indelningar/digitala-granser/?menu=open",
-    "link_text": "Län, kommuner och LA-regioner, ArcView-shape",
-}
+MUNICIPAL_GEOPARQUET_URL = "https://raw.githubusercontent.com/stefur/swemaps/main/src/swemaps/data/kommun.parquet"
 GEOGRAPHY_CRS = "EPSG:3006"
 EDUCATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/UF/UF0506/UF0506B/Utbildning"
 STUDENT_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AA/AA0003/AA0003H/IntGr8Kom1N"
@@ -270,15 +268,14 @@ def preflight_sources() -> None:
         print(f"Preflight FAILED FA15 workbook: {exc}")
 
     try:
-        boundary_url = _resolve_external_file(MUNICIPAL_BOUNDARY_SOURCE)
-        r = session.get(boundary_url, timeout=30, stream=True)
+        r = session.get(MUNICIPAL_GEOPARQUET_URL, timeout=30, stream=True)
         if not r.ok:
             raise RuntimeError(f"HTTP {r.status_code}")
-        print(f"Preflight OK SCB municipal boundaries: {boundary_url}")
+        print(f"Preflight OK SCB-derived municipal GeoParquet: {MUNICIPAL_GEOPARQUET_URL}")
         r.close()
     except Exception as exc:
-        failures.append(f"SCB municipal boundaries: {exc}")
-        print(f"Preflight FAILED SCB municipal boundaries: {exc}")
+        failures.append(f"SCB-derived municipal GeoParquet: {exc}")
+        print(f"Preflight FAILED SCB-derived municipal GeoParquet: {exc}")
 
     for election_year, sources in TURNOUT_SOURCES.items():
         for level, source_spec in sources.items():
@@ -2850,117 +2847,97 @@ def get_municipal_area_geography() -> pd.DataFrame:
 
 def get_municipal_centroid_northing(valid_codes: set[str]) -> pd.DataFrame:
     """
-    Area-weighted polygon centroid northing from SCB's simplified municipal
-    boundary layer in SWEREF 99 TM (EPSG:3006). The geometry is used only for
-    coarse north-south position, not for area calculations.
+    Area-weighted municipality-polygon centroid northing in SWEREF 99 TM.
+    The source is the SCB-derived swemaps GeoParquet. Its CRS is verified from
+    GeoParquet metadata before the full geometry is reprojected to EPSG:3006.
+    Geometry is used only for coarse north-south position, not area measures.
     """
-    boundary_url = _resolve_external_file(MUNICIPAL_BOUNDARY_SOURCE)
-    r = session.get(boundary_url, timeout=120)
+    r = session.get(MUNICIPAL_GEOPARQUET_URL, timeout=120)
     if not r.ok:
         raise RuntimeError(
-            f"SCB municipal boundary download failed {r.status_code}: {r.text[:300]}"
+            f"Municipal GeoParquet download failed {r.status_code}: {r.text[:300]}"
         )
 
-    archive = zipfile.ZipFile(io.BytesIO(r.content))
-    members = {name.casefold(): name for name in archive.namelist()}
-
-    def member_for(name: str) -> str | None:
-        return members.get(name.casefold())
-
-    candidates = []
-    for shp_name in [n for n in archive.namelist() if n.casefold().endswith(".shp")]:
-        base = shp_name[:-4]
-        dbf_name = member_for(base + ".dbf")
-        shx_name = member_for(base + ".shx")
-        if not dbf_name:
-            continue
-
-        kwargs = {
-            "shp": io.BytesIO(archive.read(shp_name)),
-            "dbf": io.BytesIO(archive.read(dbf_name)),
-            "encoding": "latin1",
-        }
-        if shx_name:
-            kwargs["shx"] = io.BytesIO(archive.read(shx_name))
-        reader = shapefile.Reader(**kwargs)
-        records = reader.records()
-        fields = [f[0] for f in reader.fields[1:]]
-
-        for field_idx, field_name in enumerate(fields):
-            matched = 0
-            for record in records:
-                code = _municipality_code(record[field_idx])
-                if code in valid_codes:
-                    matched += 1
-            if matched >= 280:
-                candidates.append({
-                    "matched": matched,
-                    "distance_from_290": abs(len(records) - 290),
-                    "shp_name": shp_name,
-                    "dbf_name": dbf_name,
-                    "shx_name": shx_name,
-                    "field_idx": field_idx,
-                    "field_name": field_name,
-                })
-
-    if not candidates:
+    table = pq.read_table(io.BytesIO(r.content), columns=["kommun_kod", "kommun", "geometry"])
+    if table.num_rows < 285:
         raise ValueError(
-            "Could not identify the municipality shapefile/code field in SCB boundary archive"
+            f"Municipal GeoParquet has only {table.num_rows} rows; expected close to 290"
         )
 
-    best = sorted(
-        candidates,
-        key=lambda x: (-x["matched"], x["distance_from_290"]),
-    )[0]
+    schema_meta = table.schema.metadata or {}
+    geo_raw = schema_meta.get(b"geo")
+    if geo_raw is None:
+        raise ValueError("Municipal GeoParquet lacks required 'geo' CRS metadata")
 
-    kwargs = {
-        "shp": io.BytesIO(archive.read(best["shp_name"])),
-        "dbf": io.BytesIO(archive.read(best["dbf_name"])),
-        "encoding": "latin1",
-    }
-    if best["shx_name"]:
-        kwargs["shx"] = io.BytesIO(archive.read(best["shx_name"]))
-    reader = shapefile.Reader(**kwargs)
+    try:
+        geo_meta = json.loads(geo_raw.decode("utf-8"))
+        primary = geo_meta.get("primary_column")
+        geom_meta = geo_meta.get("columns", {}).get(primary or "geometry", {})
+        crs_meta = geom_meta.get("crs")
+    except Exception as exc:
+        raise ValueError(f"Could not parse GeoParquet CRS metadata: {exc}") from exc
+
+    if primary not in {None, "geometry"}:
+        raise ValueError(f"Unexpected GeoParquet primary geometry column: {primary!r}")
+    if not isinstance(crs_meta, dict):
+        raise ValueError(f"GeoParquet CRS metadata missing or invalid: {crs_meta!r}")
+
+    crs_id = crs_meta.get("id") or {}
+    authority = str(crs_id.get("authority") or "").upper()
+    code = str(crs_id.get("code") or "").upper()
+    if authority == "EPSG" and code == "4326":
+        source_crs = "EPSG:4326"
+    elif authority == "OGC" and code == "CRS84":
+        source_crs = "OGC:CRS84"
+    else:
+        raise ValueError(
+            f"Unexpected municipal GeoParquet CRS id {authority}:{code}; "
+            "expected EPSG:4326 or OGC:CRS84"
+        )
+
+    transformer = Transformer.from_crs(source_crs, GEOGRAPHY_CRS, always_xy=True)
+    codes = table["kommun_kod"].to_pylist()
+    geoms = table["geometry"].to_pylist()
 
     rows = []
-    for sr in reader.iterShapeRecords():
-        code = _municipality_code(sr.record[best["field_idx"]])
-        if code not in valid_codes:
-            continue
-        geom = shapely_shape(sr.shape.__geo_interface__)
-        if geom.is_empty:
+    for raw_code, wkb in zip(codes, geoms):
+        code = str(raw_code).strip().zfill(4)
+        if code not in valid_codes or wkb is None:
             continue
 
-        if geom.geom_type == "MultiPolygon":
-            parts = [part for part in geom.geoms if not part.is_empty and part.area > 0]
-            total_area = sum(part.area for part in parts)
-            if total_area <= 0:
-                continue
-            northing_m = sum(part.centroid.y * part.area for part in parts) / total_area
-        elif geom.geom_type == "Polygon":
-            northing_m = geom.centroid.y
+        geom_src = from_wkb(wkb)
+        if geom_src.is_empty:
+            continue
+
+        # Reproject the complete geometry, never just bounds/corners.
+        geom = shapely_transform(transformer.transform, geom_src)
+
+        if geom.geom_type == "Polygon":
+            parts = [geom]
+        elif geom.geom_type == "MultiPolygon":
+            parts = [part for part in geom.geoms if not part.is_empty]
+        elif geom.geom_type == "GeometryCollection":
+            parts = []
+            for part in geom.geoms:
+                if part.geom_type == "Polygon" and not part.is_empty:
+                    parts.append(part)
+                elif part.geom_type == "MultiPolygon":
+                    parts.extend(
+                        sub for sub in part.geoms
+                        if not sub.is_empty
+                    )
         else:
-            polygon_parts = [
-                part for part in getattr(geom, "geoms", [])
-                if part.geom_type in {"Polygon", "MultiPolygon"} and not part.is_empty
-            ]
-            if not polygon_parts:
-                northing_m = geom.centroid.y
-            else:
-                weighted = []
-                for part in polygon_parts:
-                    if part.geom_type == "MultiPolygon":
-                        for sub in part.geoms:
-                            if not sub.is_empty and sub.area > 0:
-                                weighted.append(sub)
-                    elif part.area > 0:
-                        weighted.append(part)
-                total_area = sum(part.area for part in weighted)
-                northing_m = (
-                    sum(part.centroid.y * part.area for part in weighted) / total_area
-                    if total_area > 0
-                    else geom.centroid.y
-                )
+            raise ValueError(
+                f"Unexpected municipality geometry type for {code}: {geom.geom_type}"
+            )
+
+        parts = [part for part in parts if part.area > 0]
+        total_area = sum(part.area for part in parts)
+        if total_area <= 0:
+            continue
+        northing_m = (
+            sum(part.centroid.y * part.area for part in parts) / total_area
+        )
 
         if not np.isfinite(northing_m) or not (5_000_000 < northing_m < 8_500_000):
             raise ValueError(
@@ -2973,12 +2950,15 @@ def get_municipal_centroid_northing(valid_codes: set[str]) -> pd.DataFrame:
 
     out = pd.DataFrame(rows).drop_duplicates("kommun_kod")
     if out["kommun_kod"].nunique() < 285:
+        missing = sorted(valid_codes - set(out["kommun_kod"]))
         raise ValueError(
-            f"Municipal centroid layer covers only {out['kommun_kod'].nunique()} municipalities"
+            f"Municipal centroid layer covers only {out['kommun_kod'].nunique()} municipalities; "
+            f"missing sample={missing[:20]}"
         )
+
     print(
-        f"Municipal centroid northing: {out['kommun_kod'].nunique()} municipalities "
-        f"from {best['shp_name']} field {best['field_name']} in {GEOGRAPHY_CRS}"
+        f"Municipal centroid northing: {out['kommun_kod'].nunique()} municipalities; "
+        f"source CRS={source_crs}, display/analysis CRS={GEOGRAPHY_CRS}"
     )
     return out
 
