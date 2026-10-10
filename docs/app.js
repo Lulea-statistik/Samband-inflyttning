@@ -153,6 +153,7 @@ function renderAll(){
     (variantMeta.label || model.model_label || 'Modell')+': '+e.start_year+'–'+e.end_year+
     ' · validering: '+v.train_start_year+'–'+v.train_end_year+' → test '+v.test_year;
   renderOverview();
+  renderVariantComparison();
   renderModel();
   renderVariableMatrix();
   renderAgeModels();
@@ -178,8 +179,11 @@ function renderOverview(){
     metricCard('Bästa test-R²',fmt2.format(best[1].r2),best[0].toUpperCase()+' · test '+v.test_year)
   ].join('');
 
+  const naiveLabel = selectedModelVariant==='demographic_blind'
+    ? 'Naiv historik (extern referens)'
+    : 'Naiv';
   Plotly.react('modelCompare',[{
-    x:['Naiv','OLS','Ridge'],
+    x:[naiveLabel,'OLS','Ridge'],
     y:[v.models.naive.r2,v.models.ols.r2,v.models.ridge.r2],
     type:'bar',
     name:'Out-of-sample R²',
@@ -187,9 +191,51 @@ function renderOverview(){
   }],{
     margin:{t:20},
     yaxis:{title:'Out-of-sample R²'},
-    xaxis:{title:'Modell'}
+    xaxis:{title:'Modell'},
+    annotations:selectedModelVariant==='demographic_blind' ? [{
+      text:'Naiv historik använder föregående års inflyttning och är endast benchmark – den ingår inte i den demografiskt blinda modellen.',
+      xref:'paper',yref:'paper',x:0,y:1.14,showarrow:false,align:'left',font:{size:12}
+    }] : []
   },{responsive:true,displaylogo:false});
 }
+
+function renderVariantComparison(){
+  const root=document.getElementById('variantComparison');
+  if(!root) return;
+  const forecast=rootModel.windows?.[String(selectedWindow)];
+  const blind=rootModel.model_variants?.demographic_blind?.windows?.[String(selectedWindow)];
+  if(!forecast||!blind){
+    root.innerHTML='<p class="note">Jämförelsedata saknas för valt analysfönster.</p>';
+    return;
+  }
+  const rows=[
+    {
+      label:'Prognosmodell',
+      adj:forecast.explanation?.adjusted_r2,
+      test:forecast.validation?.models?.ridge?.r2,
+      rmse:forecast.validation?.models?.ridge?.rmse
+    },
+    {
+      label:'Demografiskt blind strukturmodell',
+      adj:blind.explanation?.adjusted_r2,
+      test:blind.validation?.models?.ridge?.r2,
+      rmse:blind.validation?.models?.ridge?.rmse
+    }
+  ];
+  Plotly.react(root,[{
+    x:rows.map(d=>d.label),
+    y:rows.map(d=>d.test),
+    customdata:rows.map(d=>[d.adj,d.rmse]),
+    type:'bar',
+    name:'Ridge test-R²',
+    hovertemplate:'%{x}<br>Test-R²=%{y:.3f}<br>Justerat R² i förklaringsmodellen=%{customdata[0]:.3f}<br>Test-RMSE=%{customdata[1]:.2f}<extra></extra>'
+  }],{
+    margin:{t:20,b:100},
+    yaxis:{title:'Out-of-sample R²'},
+    xaxis:{title:''}
+  },{responsive:true,displaylogo:false});
+}
+
 
 function initRelationships(){
   const x=document.getElementById('xvar');
