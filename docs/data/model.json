@@ -26944,7 +26944,7 @@
     "Vakans testas med SCB:s andel lediga lägenheter i allmännyttiga flerbostadshus. Dessutom testas lediga allmännyttiga lägenheter dividerat med kommunens totala bostadsbestånd; det senare är endast en partiell vakansproxy eftersom privata lediga lägenheter saknas i täljaren.",
     "Landets lugn testas som ett gemensamt tema där andel småhus, anmälda brott per 100 000 invånare och fritidshusandel bland småhusliknande bostäder konkurrerar om att representera temat.",
     "Bostadsutbud mäts som totalt bostadsbestånd per 1 000 invånare enligt SCB BO0104T04 och används laggat ett år.",
-    "Bostadsstorlek testas separat som kandidattema från SCB:s bostadsareatabell: andel bostäder minst 111 m², andel bostäder minst 141 m² samt andel småhus minst 111 m². Nämnarna exkluderar poster där bostadsarea saknas och måtten används laggade ett år. Kandidater som ser starka ut robusthetstestas dessutom med nordlighet, kommunstorlek, tätortsgrad, bebyggd mark, havsandel och småhusandel hållna konstanta samt med separat 2024-holdout.",
+    "Bostadsstorlek testas separat som kandidattema från SCB:s bostadsareatabell: andel bostäder minst 111 m², andel bostäder minst 141 m² samt andel småhus minst 111 m². Nämnarna exkluderar poster där bostadsarea saknas och måtten används laggade ett år. Kandidater som ser starka ut robusthetstestas dessutom med nordlighet, kommunstorlek, tätortsgrad, bebyggd mark, havsandel och småhusandel hållna konstanta. För den demografiskt blinda modellen krävs även expanding-window holdout över flera testår innan eventuell produktionsstatus.",
     "Bostadsdynamik testas med både årlig förändring i bostadsbeståndet och färdigställda lägenheter i nybyggda hus per 1 000 invånare; högst en av dessa behålls inom temat.",
     "Upplåtelseform testas med andel hyresrätt respektive bostadsrätt av bostadsbeståndet; högst en representant behålls inom temat.",
     "Andel småhus avser lägenheter i småhus dividerat med samtliga lägenheter i småhus, flerbostadshus, övriga hus och specialbostäder enligt SCB BO0104T04 och används laggad ett år.",
@@ -80493,7 +80493,7 @@
         "Vakans testas med SCB:s andel lediga lägenheter i allmännyttiga flerbostadshus. Dessutom testas lediga allmännyttiga lägenheter dividerat med kommunens totala bostadsbestånd; det senare är endast en partiell vakansproxy eftersom privata lediga lägenheter saknas i täljaren.",
         "Landets lugn testas som ett gemensamt tema där andel småhus, anmälda brott per 100 000 invånare och fritidshusandel bland småhusliknande bostäder konkurrerar om att representera temat.",
         "Bostadsutbud mäts som totalt bostadsbestånd per 1 000 invånare enligt SCB BO0104T04 och används laggat ett år.",
-        "Bostadsstorlek testas separat som kandidattema från SCB:s bostadsareatabell: andel bostäder minst 111 m², andel bostäder minst 141 m² samt andel småhus minst 111 m². Nämnarna exkluderar poster där bostadsarea saknas och måtten används laggade ett år. Kandidater som ser starka ut robusthetstestas dessutom med nordlighet, kommunstorlek, tätortsgrad, bebyggd mark, havsandel och småhusandel hållna konstanta samt med separat 2024-holdout.",
+        "Bostadsstorlek testas separat som kandidattema från SCB:s bostadsareatabell: andel bostäder minst 111 m², andel bostäder minst 141 m² samt andel småhus minst 111 m². Nämnarna exkluderar poster där bostadsarea saknas och måtten används laggade ett år. Kandidater som ser starka ut robusthetstestas dessutom med nordlighet, kommunstorlek, tätortsgrad, bebyggd mark, havsandel och småhusandel hållna konstanta. För den demografiskt blinda modellen krävs även expanding-window holdout över flera testår innan eventuell produktionsstatus.",
         "Bostadsdynamik testas med både årlig förändring i bostadsbeståndet och färdigställda lägenheter i nybyggda hus per 1 000 invånare; högst en av dessa behålls inom temat.",
         "Upplåtelseform testas med andel hyresrätt respektive bostadsrätt av bostadsbeståndet; högst en representant behålls inom temat.",
         "Andel småhus avser lägenheter i småhus dividerat med samtliga lägenheter i småhus, flerbostadshus, övriga hus och specialbostäder enligt SCB BO0104T04 och används laggad ett år.",
@@ -100430,6 +100430,1078 @@
                   "full_r2": 0.3103195970951973,
                   "delta_r2": 0.003704995627904717
                 }
+              }
+            ]
+          }
+        }
+      },
+      "housing_size_rolling_holdout_tests": {
+        "overall": {
+          "status": "tested",
+          "rule": "expanding-window holdout; each test year is predicted only from earlier years; northing, log population, SCB urban-area share, built/developed land share, sea share and small-house share held constant",
+          "first_test_year": 2021,
+          "last_test_year": 2024,
+          "forced_controls": [
+            "geo_northing_100km",
+            "lag1_log_folkmangd",
+            "lag1_tatortsgrad_pct",
+            "lag1_bebyggd_anlagd_andel_land_pct",
+            "geo_havsandel_10pp",
+            "lag1_andel_smahus"
+          ],
+          "rows": [
+            {
+              "feature": "lag1_andel_bostader_111_plus",
+              "yearly": [
+                {
+                  "test_year": 2021,
+                  "status": "insufficient_coverage",
+                  "n_train": 0,
+                  "n_test": 290
+                },
+                {
+                  "test_year": 2022,
+                  "status": "tested",
+                  "n_train": 290,
+                  "n_test": 290,
+                  "base_rmse": 10.611449831470194,
+                  "full_rmse": 10.558826233403868,
+                  "delta_rmse": 0.05262359806632588,
+                  "base_r2": 0.599345084300828,
+                  "full_r2": 0.6033090335507248,
+                  "delta_r2": 0.003963949249896848
+                },
+                {
+                  "test_year": 2023,
+                  "status": "tested",
+                  "n_train": 580,
+                  "n_test": 290,
+                  "base_rmse": 9.50693056970357,
+                  "full_rmse": 9.471325205824822,
+                  "delta_rmse": 0.03560536387874791,
+                  "base_r2": 0.650303344111678,
+                  "full_r2": 0.6529178074650933,
+                  "delta_r2": 0.0026144633534153083
+                },
+                {
+                  "test_year": 2024,
+                  "status": "tested",
+                  "n_train": 870,
+                  "n_test": 290,
+                  "base_rmse": 9.347574134991559,
+                  "full_rmse": 9.17810485787773,
+                  "delta_rmse": 0.16946927711382997,
+                  "base_r2": 0.6185830481577617,
+                  "full_r2": 0.632287676618293,
+                  "delta_r2": 0.013704628460531332
+                }
+              ],
+              "tested_years": 3,
+              "years_improved_rmse": 3,
+              "years_improved_r2": 3,
+              "mean_delta_rmse": 0.0858994130196346,
+              "mean_delta_r2": 0.0067610136879478295,
+              "median_delta_rmse": 0.05262359806632588,
+              "median_delta_r2": 0.003963949249896848
+            },
+            {
+              "feature": "lag1_andel_bostader_141_plus",
+              "yearly": [
+                {
+                  "test_year": 2021,
+                  "status": "insufficient_coverage",
+                  "n_train": 0,
+                  "n_test": 290
+                },
+                {
+                  "test_year": 2022,
+                  "status": "tested",
+                  "n_train": 290,
+                  "n_test": 290,
+                  "base_rmse": 10.611449831470194,
+                  "full_rmse": 10.654933900492514,
+                  "delta_rmse": -0.043484069022319716,
+                  "base_r2": 0.599345084300828,
+                  "full_r2": 0.5960547134609511,
+                  "delta_r2": -0.0032903708398769327
+                },
+                {
+                  "test_year": 2023,
+                  "status": "tested",
+                  "n_train": 580,
+                  "n_test": 290,
+                  "base_rmse": 9.50693056970357,
+                  "full_rmse": 9.486644138609295,
+                  "delta_rmse": 0.020286431094275414,
+                  "base_r2": 0.650303344111678,
+                  "full_r2": 0.6517941571910304,
+                  "delta_r2": 0.0014908130793523933
+                },
+                {
+                  "test_year": 2024,
+                  "status": "tested",
+                  "n_train": 870,
+                  "n_test": 290,
+                  "base_rmse": 9.347574134991559,
+                  "full_rmse": 9.27815437344307,
+                  "delta_rmse": 0.06941976154848994,
+                  "base_r2": 0.6185830481577617,
+                  "full_r2": 0.6242271980726497,
+                  "delta_r2": 0.005644149914888041
+                }
+              ],
+              "tested_years": 3,
+              "years_improved_rmse": 2,
+              "years_improved_r2": 2,
+              "mean_delta_rmse": 0.015407374540148547,
+              "mean_delta_r2": 0.0012815307181211673,
+              "median_delta_rmse": 0.020286431094275414,
+              "median_delta_r2": 0.0014908130793523933
+            },
+            {
+              "feature": "lag1_andel_smahus_111_plus",
+              "yearly": [
+                {
+                  "test_year": 2021,
+                  "status": "insufficient_coverage",
+                  "n_train": 0,
+                  "n_test": 290
+                },
+                {
+                  "test_year": 2022,
+                  "status": "tested",
+                  "n_train": 290,
+                  "n_test": 290,
+                  "base_rmse": 10.611449831470194,
+                  "full_rmse": 10.589646655886174,
+                  "delta_rmse": 0.02180317558402045,
+                  "base_r2": 0.599345084300828,
+                  "full_r2": 0.6009898312897055,
+                  "delta_r2": 0.0016447469888775101
+                },
+                {
+                  "test_year": 2023,
+                  "status": "tested",
+                  "n_train": 580,
+                  "n_test": 290,
+                  "base_rmse": 9.50693056970357,
+                  "full_rmse": 9.537916153589842,
+                  "delta_rmse": -0.03098558388627204,
+                  "base_r2": 0.650303344111678,
+                  "full_r2": 0.6480201228456228,
+                  "delta_r2": -0.00228322126605518
+                },
+                {
+                  "test_year": 2024,
+                  "status": "tested",
+                  "n_train": 870,
+                  "n_test": 290,
+                  "base_rmse": 9.347574134991559,
+                  "full_rmse": 9.313497337323419,
+                  "delta_rmse": 0.0340767976681402,
+                  "base_r2": 0.6185830481577617,
+                  "full_r2": 0.6213589078240565,
+                  "delta_r2": 0.0027758596662947888
+                }
+              ],
+              "tested_years": 3,
+              "years_improved_rmse": 2,
+              "years_improved_r2": 2,
+              "mean_delta_rmse": 0.008298129788629538,
+              "mean_delta_r2": 0.0007124617963723731,
+              "median_delta_rmse": 0.02180317558402045,
+              "median_delta_r2": 0.0016447469888775101
+            }
+          ]
+        },
+        "age_groups": {
+          "18_23": {
+            "status": "tested",
+            "rule": "expanding-window holdout; each test year is predicted only from earlier years; northing, log population, SCB urban-area share, built/developed land share, sea share and small-house share held constant",
+            "first_test_year": 2021,
+            "last_test_year": 2024,
+            "forced_controls": [
+              "geo_northing_100km",
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_bebyggd_anlagd_andel_land_pct",
+              "geo_havsandel_10pp",
+              "lag1_andel_smahus"
+            ],
+            "rows": [
+              {
+                "feature": "lag1_andel_bostader_111_plus",
+                "yearly": [
+                  {
+                    "test_year": 2021,
+                    "status": "insufficient_coverage",
+                    "n_train": 0,
+                    "n_test": 290
+                  },
+                  {
+                    "test_year": 2022,
+                    "status": "tested",
+                    "n_train": 290,
+                    "n_test": 290,
+                    "base_rmse": 42.899966268261814,
+                    "full_rmse": 42.30012145544028,
+                    "delta_rmse": 0.5998448128215372,
+                    "base_r2": -0.1529406941276905,
+                    "full_r2": -0.12092432957197508,
+                    "delta_r2": 0.03201636455571544
+                  },
+                  {
+                    "test_year": 2023,
+                    "status": "tested",
+                    "n_train": 580,
+                    "n_test": 290,
+                    "base_rmse": 25.995246498995648,
+                    "full_rmse": 25.833066059152703,
+                    "delta_rmse": 0.1621804398429454,
+                    "base_r2": 0.5305656792880892,
+                    "full_r2": 0.5364048678669568,
+                    "delta_r2": 0.005839188578867671
+                  },
+                  {
+                    "test_year": 2024,
+                    "status": "tested",
+                    "n_train": 870,
+                    "n_test": 290,
+                    "base_rmse": 26.874063832175494,
+                    "full_rmse": 26.687796463576426,
+                    "delta_rmse": 0.18626736859906856,
+                    "base_r2": 0.48087176019259303,
+                    "full_r2": 0.488043101582308,
+                    "delta_r2": 0.00717134138971498
+                  }
+                ],
+                "tested_years": 3,
+                "years_improved_rmse": 3,
+                "years_improved_r2": 3,
+                "mean_delta_rmse": 0.3160975404211837,
+                "mean_delta_r2": 0.015008964841432696,
+                "median_delta_rmse": 0.18626736859906856,
+                "median_delta_r2": 0.00717134138971498
+              },
+              {
+                "feature": "lag1_andel_bostader_141_plus",
+                "yearly": [
+                  {
+                    "test_year": 2021,
+                    "status": "insufficient_coverage",
+                    "n_train": 0,
+                    "n_test": 290
+                  },
+                  {
+                    "test_year": 2022,
+                    "status": "tested",
+                    "n_train": 290,
+                    "n_test": 290,
+                    "base_rmse": 42.899966268261814,
+                    "full_rmse": 42.98072149333752,
+                    "delta_rmse": -0.08075522507570554,
+                    "base_r2": -0.1529406941276905,
+                    "full_r2": -0.15728538831138006,
+                    "delta_r2": -0.004344694183689546
+                  },
+                  {
+                    "test_year": 2023,
+                    "status": "tested",
+                    "n_train": 580,
+                    "n_test": 290,
+                    "base_rmse": 25.995246498995648,
+                    "full_rmse": 25.9812849188463,
+                    "delta_rmse": 0.013961580149349118,
+                    "base_r2": 0.5305656792880892,
+                    "full_r2": 0.531069793366316,
+                    "delta_r2": 0.0005041140782268139
+                  },
+                  {
+                    "test_year": 2024,
+                    "status": "tested",
+                    "n_train": 870,
+                    "n_test": 290,
+                    "base_rmse": 26.874063832175494,
+                    "full_rmse": 26.85636951080513,
+                    "delta_rmse": 0.017694321370363753,
+                    "base_r2": 0.48087176019259303,
+                    "full_r2": 0.48155514012228173,
+                    "delta_r2": 0.0006833799296886989
+                  }
+                ],
+                "tested_years": 3,
+                "years_improved_rmse": 2,
+                "years_improved_r2": 2,
+                "mean_delta_rmse": -0.01636644118533089,
+                "mean_delta_r2": -0.0010524000585913444,
+                "median_delta_rmse": 0.013961580149349118,
+                "median_delta_r2": 0.0005041140782268139
+              },
+              {
+                "feature": "lag1_andel_smahus_111_plus",
+                "yearly": [
+                  {
+                    "test_year": 2021,
+                    "status": "insufficient_coverage",
+                    "n_train": 0,
+                    "n_test": 290
+                  },
+                  {
+                    "test_year": 2022,
+                    "status": "tested",
+                    "n_train": 290,
+                    "n_test": 290,
+                    "base_rmse": 42.899966268261814,
+                    "full_rmse": 42.25678394880583,
+                    "delta_rmse": 0.6431823194559811,
+                    "base_r2": -0.1529406941276905,
+                    "full_r2": -0.11862867749381767,
+                    "delta_r2": 0.034312016633872844
+                  },
+                  {
+                    "test_year": 2023,
+                    "status": "tested",
+                    "n_train": 580,
+                    "n_test": 290,
+                    "base_rmse": 25.995246498995648,
+                    "full_rmse": 25.923622566250593,
+                    "delta_rmse": 0.07162393274505519,
+                    "base_r2": 0.5305656792880892,
+                    "full_r2": 0.5331489525305318,
+                    "delta_r2": 0.002583273242442674
+                  },
+                  {
+                    "test_year": 2024,
+                    "status": "tested",
+                    "n_train": 870,
+                    "n_test": 290,
+                    "base_rmse": 26.874063832175494,
+                    "full_rmse": 26.74626861435522,
+                    "delta_rmse": 0.1277952178202746,
+                    "base_r2": 0.48087176019259303,
+                    "full_r2": 0.4857972800078677,
+                    "delta_r2": 0.00492551981527467
+                  }
+                ],
+                "tested_years": 3,
+                "years_improved_rmse": 3,
+                "years_improved_r2": 3,
+                "mean_delta_rmse": 0.2808671566737703,
+                "mean_delta_r2": 0.01394026989719673,
+                "median_delta_rmse": 0.1277952178202746,
+                "median_delta_r2": 0.00492551981527467
+              }
+            ]
+          },
+          "24_34": {
+            "status": "tested",
+            "rule": "expanding-window holdout; each test year is predicted only from earlier years; northing, log population, SCB urban-area share, built/developed land share, sea share and small-house share held constant",
+            "first_test_year": 2021,
+            "last_test_year": 2024,
+            "forced_controls": [
+              "geo_northing_100km",
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_bebyggd_anlagd_andel_land_pct",
+              "geo_havsandel_10pp",
+              "lag1_andel_smahus"
+            ],
+            "rows": [
+              {
+                "feature": "lag1_andel_bostader_111_plus",
+                "yearly": [
+                  {
+                    "test_year": 2021,
+                    "status": "insufficient_coverage",
+                    "n_train": 0,
+                    "n_test": 290
+                  },
+                  {
+                    "test_year": 2022,
+                    "status": "tested",
+                    "n_train": 290,
+                    "n_test": 290,
+                    "base_rmse": 24.10871870545647,
+                    "full_rmse": 24.003012702867895,
+                    "delta_rmse": 0.1057060025885761,
+                    "base_r2": 0.6893016888267243,
+                    "full_r2": 0.6920202635154249,
+                    "delta_r2": 0.0027185746887006257
+                  },
+                  {
+                    "test_year": 2023,
+                    "status": "tested",
+                    "n_train": 580,
+                    "n_test": 290,
+                    "base_rmse": 23.07373459270356,
+                    "full_rmse": 23.14877893380412,
+                    "delta_rmse": -0.07504434110056124,
+                    "base_r2": 0.6998918439489994,
+                    "full_r2": 0.6979365434109062,
+                    "delta_r2": -0.00195530053809323
+                  },
+                  {
+                    "test_year": 2024,
+                    "status": "tested",
+                    "n_train": 870,
+                    "n_test": 290,
+                    "base_rmse": 21.502605022411537,
+                    "full_rmse": 21.510732960274755,
+                    "delta_rmse": -0.008127937863218193,
+                    "base_r2": 0.7263725339611053,
+                    "full_r2": 0.7261656336922304,
+                    "delta_r2": -0.00020690026887493218
+                  }
+                ],
+                "tested_years": 3,
+                "years_improved_rmse": 1,
+                "years_improved_r2": 1,
+                "mean_delta_rmse": 0.007511241208265555,
+                "mean_delta_r2": 0.0001854579605774879,
+                "median_delta_rmse": -0.008127937863218193,
+                "median_delta_r2": -0.00020690026887493218
+              },
+              {
+                "feature": "lag1_andel_bostader_141_plus",
+                "yearly": [
+                  {
+                    "test_year": 2021,
+                    "status": "insufficient_coverage",
+                    "n_train": 0,
+                    "n_test": 290
+                  },
+                  {
+                    "test_year": 2022,
+                    "status": "tested",
+                    "n_train": 290,
+                    "n_test": 290,
+                    "base_rmse": 24.10871870545647,
+                    "full_rmse": 24.28916884243201,
+                    "delta_rmse": -0.18045013697553713,
+                    "base_r2": 0.6893016888267243,
+                    "full_r2": 0.6846332222345299,
+                    "delta_r2": -0.004668466592194331
+                  },
+                  {
+                    "test_year": 2023,
+                    "status": "tested",
+                    "n_train": 580,
+                    "n_test": 290,
+                    "base_rmse": 23.07373459270356,
+                    "full_rmse": 23.07241623541038,
+                    "delta_rmse": 0.0013183572931794174,
+                    "base_r2": 0.6998918439489994,
+                    "full_r2": 0.6999261373549168,
+                    "delta_r2": 3.4293405917429354e-05
+                  },
+                  {
+                    "test_year": 2024,
+                    "status": "tested",
+                    "n_train": 870,
+                    "n_test": 290,
+                    "base_rmse": 21.502605022411537,
+                    "full_rmse": 21.501506414120573,
+                    "delta_rmse": 0.001098608290963199,
+                    "base_r2": 0.7263725339611053,
+                    "full_r2": 0.7264004935244386,
+                    "delta_r2": 2.7959563333235238e-05
+                  }
+                ],
+                "tested_years": 3,
+                "years_improved_rmse": 2,
+                "years_improved_r2": 2,
+                "mean_delta_rmse": -0.05934439046379817,
+                "mean_delta_r2": -0.0015354045409812223,
+                "median_delta_rmse": 0.001098608290963199,
+                "median_delta_r2": 2.7959563333235238e-05
+              },
+              {
+                "feature": "lag1_andel_smahus_111_plus",
+                "yearly": [
+                  {
+                    "test_year": 2021,
+                    "status": "insufficient_coverage",
+                    "n_train": 0,
+                    "n_test": 290
+                  },
+                  {
+                    "test_year": 2022,
+                    "status": "tested",
+                    "n_train": 290,
+                    "n_test": 290,
+                    "base_rmse": 24.10871870545647,
+                    "full_rmse": 24.12578805144898,
+                    "delta_rmse": -0.017069345992506868,
+                    "base_r2": 0.6893016888267243,
+                    "full_r2": 0.6888615746515853,
+                    "delta_r2": -0.00044011417513900586
+                  },
+                  {
+                    "test_year": 2023,
+                    "status": "tested",
+                    "n_train": 580,
+                    "n_test": 290,
+                    "base_rmse": 23.07373459270356,
+                    "full_rmse": 23.06789022419458,
+                    "delta_rmse": 0.0058443685089777375,
+                    "base_r2": 0.6998918439489994,
+                    "full_r2": 0.7000438540642715,
+                    "delta_r2": 0.0001520101152721054
+                  },
+                  {
+                    "test_year": 2024,
+                    "status": "tested",
+                    "n_train": 870,
+                    "n_test": 290,
+                    "base_rmse": 21.502605022411537,
+                    "full_rmse": 21.48285322459463,
+                    "delta_rmse": 0.01975179781690528,
+                    "base_r2": 0.7263725339611053,
+                    "full_r2": 0.7268749988572772,
+                    "delta_r2": 0.0005024648961718947
+                  }
+                ],
+                "tested_years": 3,
+                "years_improved_rmse": 2,
+                "years_improved_r2": 2,
+                "mean_delta_rmse": 0.002842273444458717,
+                "mean_delta_r2": 7.145361210166475e-05,
+                "median_delta_rmse": 0.0058443685089777375,
+                "median_delta_r2": 0.0001520101152721054
+              }
+            ]
+          },
+          "35_49": {
+            "status": "tested",
+            "rule": "expanding-window holdout; each test year is predicted only from earlier years; northing, log population, SCB urban-area share, built/developed land share, sea share and small-house share held constant",
+            "first_test_year": 2021,
+            "last_test_year": 2024,
+            "forced_controls": [
+              "geo_northing_100km",
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_bebyggd_anlagd_andel_land_pct",
+              "geo_havsandel_10pp",
+              "lag1_andel_smahus"
+            ],
+            "rows": [
+              {
+                "feature": "lag1_andel_bostader_111_plus",
+                "yearly": [
+                  {
+                    "test_year": 2021,
+                    "status": "insufficient_coverage",
+                    "n_train": 0,
+                    "n_test": 290
+                  },
+                  {
+                    "test_year": 2022,
+                    "status": "tested",
+                    "n_train": 290,
+                    "n_test": 290,
+                    "base_rmse": 12.480074943971818,
+                    "full_rmse": 12.223661393756359,
+                    "delta_rmse": 0.2564135502154592,
+                    "base_r2": 0.5366309040506192,
+                    "full_r2": 0.5554759106598037,
+                    "delta_r2": 0.018845006609184534
+                  },
+                  {
+                    "test_year": 2023,
+                    "status": "tested",
+                    "n_train": 580,
+                    "n_test": 290,
+                    "base_rmse": 11.636957364398643,
+                    "full_rmse": 11.663511038545343,
+                    "delta_rmse": -0.02655367414669918,
+                    "base_r2": 0.5659584568414926,
+                    "full_r2": 0.5639753702152772,
+                    "delta_r2": -0.00198308662621538
+                  },
+                  {
+                    "test_year": 2024,
+                    "status": "tested",
+                    "n_train": 870,
+                    "n_test": 290,
+                    "base_rmse": 11.431993586795949,
+                    "full_rmse": 11.400267259437337,
+                    "delta_rmse": 0.03172632735861214,
+                    "base_r2": 0.5543497492746097,
+                    "full_r2": 0.5568198742641662,
+                    "delta_r2": 0.002470124989556566
+                  }
+                ],
+                "tested_years": 3,
+                "years_improved_rmse": 2,
+                "years_improved_r2": 2,
+                "mean_delta_rmse": 0.08719540114245738,
+                "mean_delta_r2": 0.006444014990841906,
+                "median_delta_rmse": 0.03172632735861214,
+                "median_delta_r2": 0.002470124989556566
+              },
+              {
+                "feature": "lag1_andel_bostader_141_plus",
+                "yearly": [
+                  {
+                    "test_year": 2021,
+                    "status": "insufficient_coverage",
+                    "n_train": 0,
+                    "n_test": 290
+                  },
+                  {
+                    "test_year": 2022,
+                    "status": "tested",
+                    "n_train": 290,
+                    "n_test": 290,
+                    "base_rmse": 12.480074943971818,
+                    "full_rmse": 12.44704814880089,
+                    "delta_rmse": 0.03302679517092777,
+                    "base_r2": 0.5366309040506192,
+                    "full_r2": 0.5390801436364204,
+                    "delta_r2": 0.002449239585801233
+                  },
+                  {
+                    "test_year": 2023,
+                    "status": "tested",
+                    "n_train": 580,
+                    "n_test": 290,
+                    "base_rmse": 11.636957364398643,
+                    "full_rmse": 11.601966171948401,
+                    "delta_rmse": 0.03499119245024218,
+                    "base_r2": 0.5659584568414926,
+                    "full_r2": 0.5685647733953076,
+                    "delta_r2": 0.002606316553815047
+                  },
+                  {
+                    "test_year": 2024,
+                    "status": "tested",
+                    "n_train": 870,
+                    "n_test": 290,
+                    "base_rmse": 11.431993586795949,
+                    "full_rmse": 11.424752695569655,
+                    "delta_rmse": 0.007240891226294011,
+                    "base_r2": 0.5543497492746097,
+                    "full_r2": 0.5549141098166295,
+                    "delta_r2": 0.0005643605420198039
+                  }
+                ],
+                "tested_years": 3,
+                "years_improved_rmse": 3,
+                "years_improved_r2": 3,
+                "mean_delta_rmse": 0.025086292949154654,
+                "mean_delta_r2": 0.0018733055605453612,
+                "median_delta_rmse": 0.03302679517092777,
+                "median_delta_r2": 0.002449239585801233
+              },
+              {
+                "feature": "lag1_andel_smahus_111_plus",
+                "yearly": [
+                  {
+                    "test_year": 2021,
+                    "status": "insufficient_coverage",
+                    "n_train": 0,
+                    "n_test": 290
+                  },
+                  {
+                    "test_year": 2022,
+                    "status": "tested",
+                    "n_train": 290,
+                    "n_test": 290,
+                    "base_rmse": 12.480074943971818,
+                    "full_rmse": 12.452852845248328,
+                    "delta_rmse": 0.027222098723489907,
+                    "base_r2": 0.5366309040506192,
+                    "full_r2": 0.5386501422927855,
+                    "delta_r2": 0.0020192382421663213
+                  },
+                  {
+                    "test_year": 2023,
+                    "status": "tested",
+                    "n_train": 580,
+                    "n_test": 290,
+                    "base_rmse": 11.636957364398643,
+                    "full_rmse": 11.668028886632374,
+                    "delta_rmse": -0.031071522233730775,
+                    "base_r2": 0.5659584568414926,
+                    "full_r2": 0.5636375174793378,
+                    "delta_r2": -0.002320939362154828
+                  },
+                  {
+                    "test_year": 2024,
+                    "status": "tested",
+                    "n_train": 870,
+                    "n_test": 290,
+                    "base_rmse": 11.431993586795949,
+                    "full_rmse": 11.42725114990693,
+                    "delta_rmse": 0.00474243688901943,
+                    "base_r2": 0.5543497492746097,
+                    "full_r2": 0.5547194187986647,
+                    "delta_r2": 0.0003696695240550385
+                  }
+                ],
+                "tested_years": 3,
+                "years_improved_rmse": 2,
+                "years_improved_r2": 2,
+                "mean_delta_rmse": 0.0002976711262595207,
+                "mean_delta_r2": 2.2656134688843938e-05,
+                "median_delta_rmse": 0.00474243688901943,
+                "median_delta_r2": 0.0003696695240550385
+              }
+            ]
+          },
+          "63_68": {
+            "status": "tested",
+            "rule": "expanding-window holdout; each test year is predicted only from earlier years; northing, log population, SCB urban-area share, built/developed land share, sea share and small-house share held constant",
+            "first_test_year": 2021,
+            "last_test_year": 2024,
+            "forced_controls": [
+              "geo_northing_100km",
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_bebyggd_anlagd_andel_land_pct",
+              "geo_havsandel_10pp",
+              "lag1_andel_smahus"
+            ],
+            "rows": [
+              {
+                "feature": "lag1_andel_bostader_111_plus",
+                "yearly": [
+                  {
+                    "test_year": 2021,
+                    "status": "insufficient_coverage",
+                    "n_train": 0,
+                    "n_test": 290
+                  },
+                  {
+                    "test_year": 2022,
+                    "status": "tested",
+                    "n_train": 290,
+                    "n_test": 290,
+                    "base_rmse": 7.443870780852698,
+                    "full_rmse": 7.497545296143066,
+                    "delta_rmse": -0.053674515290368596,
+                    "base_r2": 0.5085061428591182,
+                    "full_r2": 0.5013926920246918,
+                    "delta_r2": -0.0071134508344263825
+                  },
+                  {
+                    "test_year": 2023,
+                    "status": "tested",
+                    "n_train": 580,
+                    "n_test": 290,
+                    "base_rmse": 7.4586013455466444,
+                    "full_rmse": 7.449275355588545,
+                    "delta_rmse": 0.009325989958099079,
+                    "base_r2": 0.4246691150599574,
+                    "full_r2": 0.4261069652321021,
+                    "delta_r2": 0.0014378501721447057
+                  },
+                  {
+                    "test_year": 2024,
+                    "status": "tested",
+                    "n_train": 870,
+                    "n_test": 290,
+                    "base_rmse": 7.477078297855388,
+                    "full_rmse": 7.490888142710295,
+                    "delta_rmse": -0.013809844854907105,
+                    "base_r2": 0.41396530910616003,
+                    "full_r2": 0.41179854781368375,
+                    "delta_r2": -0.0021667612924762825
+                  }
+                ],
+                "tested_years": 3,
+                "years_improved_rmse": 1,
+                "years_improved_r2": 1,
+                "mean_delta_rmse": -0.01938612339572554,
+                "mean_delta_r2": -0.0026141206515859863,
+                "median_delta_rmse": -0.013809844854907105,
+                "median_delta_r2": -0.0021667612924762825
+              },
+              {
+                "feature": "lag1_andel_bostader_141_plus",
+                "yearly": [
+                  {
+                    "test_year": 2021,
+                    "status": "insufficient_coverage",
+                    "n_train": 0,
+                    "n_test": 290
+                  },
+                  {
+                    "test_year": 2022,
+                    "status": "tested",
+                    "n_train": 290,
+                    "n_test": 290,
+                    "base_rmse": 7.443870780852698,
+                    "full_rmse": 7.563634641686761,
+                    "delta_rmse": -0.11976386083406343,
+                    "base_r2": 0.5085061428591182,
+                    "full_r2": 0.4925637047367989,
+                    "delta_r2": -0.015942438122319325
+                  },
+                  {
+                    "test_year": 2023,
+                    "status": "tested",
+                    "n_train": 580,
+                    "n_test": 290,
+                    "base_rmse": 7.4586013455466444,
+                    "full_rmse": 7.463199519372158,
+                    "delta_rmse": -0.004598173825513641,
+                    "base_r2": 0.4246691150599574,
+                    "full_r2": 0.4239595217325902,
+                    "delta_r2": -0.0007095933273671973
+                  },
+                  {
+                    "test_year": 2024,
+                    "status": "tested",
+                    "n_train": 870,
+                    "n_test": 290,
+                    "base_rmse": 7.477078297855388,
+                    "full_rmse": 7.474689503595018,
+                    "delta_rmse": 0.0023887942603701973,
+                    "base_r2": 0.41396530910616003,
+                    "full_r2": 0.4143397047259403,
+                    "delta_r2": 0.0003743956197802545
+                  }
+                ],
+                "tested_years": 3,
+                "years_improved_rmse": 1,
+                "years_improved_r2": 1,
+                "mean_delta_rmse": -0.040657746799735626,
+                "mean_delta_r2": -0.0054258786099687555,
+                "median_delta_rmse": -0.004598173825513641,
+                "median_delta_r2": -0.0007095933273671973
+              },
+              {
+                "feature": "lag1_andel_smahus_111_plus",
+                "yearly": [
+                  {
+                    "test_year": 2021,
+                    "status": "insufficient_coverage",
+                    "n_train": 0,
+                    "n_test": 290
+                  },
+                  {
+                    "test_year": 2022,
+                    "status": "tested",
+                    "n_train": 290,
+                    "n_test": 290,
+                    "base_rmse": 7.443870780852698,
+                    "full_rmse": 7.4753089516513676,
+                    "delta_rmse": -0.03143817079866995,
+                    "base_r2": 0.5085061428591182,
+                    "full_r2": 0.5043458619282154,
+                    "delta_r2": -0.0041602809309028155
+                  },
+                  {
+                    "test_year": 2023,
+                    "status": "tested",
+                    "n_train": 580,
+                    "n_test": 290,
+                    "base_rmse": 7.4586013455466444,
+                    "full_rmse": 7.4588582159764885,
+                    "delta_rmse": -0.00025687042984401387,
+                    "base_r2": 0.4246691150599574,
+                    "full_r2": 0.4246294861725296,
+                    "delta_r2": -3.9628887427811677e-05
+                  },
+                  {
+                    "test_year": 2024,
+                    "status": "tested",
+                    "n_train": 870,
+                    "n_test": 290,
+                    "base_rmse": 7.477078297855388,
+                    "full_rmse": 7.490674826226959,
+                    "delta_rmse": -0.013596528371571104,
+                    "base_r2": 0.41396530910616003,
+                    "full_r2": 0.4118320475206204,
+                    "delta_r2": -0.002133261585539614
+                  }
+                ],
+                "tested_years": 3,
+                "years_improved_rmse": 0,
+                "years_improved_r2": 0,
+                "mean_delta_rmse": -0.015097189866695023,
+                "mean_delta_r2": -0.002111057134623414,
+                "median_delta_rmse": -0.013596528371571104,
+                "median_delta_r2": -0.002133261585539614
+              }
+            ]
+          },
+          "70_79": {
+            "status": "tested",
+            "rule": "expanding-window holdout; each test year is predicted only from earlier years; northing, log population, SCB urban-area share, built/developed land share, sea share and small-house share held constant",
+            "first_test_year": 2021,
+            "last_test_year": 2024,
+            "forced_controls": [
+              "geo_northing_100km",
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_bebyggd_anlagd_andel_land_pct",
+              "geo_havsandel_10pp",
+              "lag1_andel_smahus"
+            ],
+            "rows": [
+              {
+                "feature": "lag1_andel_bostader_111_plus",
+                "yearly": [
+                  {
+                    "test_year": 2021,
+                    "status": "insufficient_coverage",
+                    "n_train": 0,
+                    "n_test": 290
+                  },
+                  {
+                    "test_year": 2022,
+                    "status": "tested",
+                    "n_train": 290,
+                    "n_test": 290,
+                    "base_rmse": 5.177360814730324,
+                    "full_rmse": 5.181553722106849,
+                    "delta_rmse": -0.004192907376524779,
+                    "base_r2": 0.30488212542544524,
+                    "full_r2": 0.30375578126884184,
+                    "delta_r2": -0.0011263441566033983
+                  },
+                  {
+                    "test_year": 2023,
+                    "status": "tested",
+                    "n_train": 580,
+                    "n_test": 290,
+                    "base_rmse": 4.675419529712947,
+                    "full_rmse": 4.668842335035959,
+                    "delta_rmse": 0.006577194676988363,
+                    "base_r2": 0.3639801026379017,
+                    "full_r2": 0.3657682990802391,
+                    "delta_r2": 0.0017881964423374086
+                  },
+                  {
+                    "test_year": 2024,
+                    "status": "tested",
+                    "n_train": 870,
+                    "n_test": 290,
+                    "base_rmse": 5.433424507308552,
+                    "full_rmse": 5.418092834555994,
+                    "delta_rmse": 0.015331672752558312,
+                    "base_r2": 0.3066146014672926,
+                    "full_r2": 0.310522177408593,
+                    "delta_r2": 0.003907575941300423
+                  }
+                ],
+                "tested_years": 3,
+                "years_improved_rmse": 2,
+                "years_improved_r2": 2,
+                "mean_delta_rmse": 0.005905320017673965,
+                "mean_delta_r2": 0.0015231427423448112,
+                "median_delta_rmse": 0.006577194676988363,
+                "median_delta_r2": 0.0017881964423374086
+              },
+              {
+                "feature": "lag1_andel_bostader_141_plus",
+                "yearly": [
+                  {
+                    "test_year": 2021,
+                    "status": "insufficient_coverage",
+                    "n_train": 0,
+                    "n_test": 290
+                  },
+                  {
+                    "test_year": 2022,
+                    "status": "tested",
+                    "n_train": 290,
+                    "n_test": 290,
+                    "base_rmse": 5.177360814730324,
+                    "full_rmse": 5.175569577637598,
+                    "delta_rmse": 0.0017912370927266608,
+                    "base_r2": 0.30488212542544524,
+                    "full_r2": 0.30536302894945533,
+                    "delta_r2": 0.00048090352401009007
+                  },
+                  {
+                    "test_year": 2023,
+                    "status": "tested",
+                    "n_train": 580,
+                    "n_test": 290,
+                    "base_rmse": 4.675419529712947,
+                    "full_rmse": 4.6858853989105596,
+                    "delta_rmse": -0.010465869197612498,
+                    "base_r2": 0.3639801026379017,
+                    "full_r2": 0.3611294701937121,
+                    "delta_r2": -0.0028506324441895936
+                  },
+                  {
+                    "test_year": 2024,
+                    "status": "tested",
+                    "n_train": 870,
+                    "n_test": 290,
+                    "base_rmse": 5.433424507308552,
+                    "full_rmse": 5.431831689266013,
+                    "delta_rmse": 0.0015928180425390792,
+                    "base_r2": 0.3066146014672926,
+                    "full_r2": 0.3070210762008351,
+                    "delta_r2": 0.0004064747335424945
+                  }
+                ],
+                "tested_years": 3,
+                "years_improved_rmse": 2,
+                "years_improved_r2": 2,
+                "mean_delta_rmse": -0.0023606046874489195,
+                "mean_delta_r2": -0.0006544180622123363,
+                "median_delta_rmse": 0.0015928180425390792,
+                "median_delta_r2": 0.0004064747335424945
+              },
+              {
+                "feature": "lag1_andel_smahus_111_plus",
+                "yearly": [
+                  {
+                    "test_year": 2021,
+                    "status": "insufficient_coverage",
+                    "n_train": 0,
+                    "n_test": 290
+                  },
+                  {
+                    "test_year": 2022,
+                    "status": "tested",
+                    "n_train": 290,
+                    "n_test": 290,
+                    "base_rmse": 5.177360814730324,
+                    "full_rmse": 5.157175262366049,
+                    "delta_rmse": 0.020185552364274884,
+                    "base_r2": 0.30488212542544524,
+                    "full_r2": 0.31029182584551507,
+                    "delta_r2": 0.0054097004200698295
+                  },
+                  {
+                    "test_year": 2023,
+                    "status": "tested",
+                    "n_train": 580,
+                    "n_test": 290,
+                    "base_rmse": 4.675419529712947,
+                    "full_rmse": 4.663623443233859,
+                    "delta_rmse": 0.011796086479088252,
+                    "base_r2": 0.3639801026379017,
+                    "full_r2": 0.3671854112525652,
+                    "delta_r2": 0.0032053086146635046
+                  },
+                  {
+                    "test_year": 2024,
+                    "status": "tested",
+                    "n_train": 870,
+                    "n_test": 290,
+                    "base_rmse": 5.433424507308552,
+                    "full_rmse": 5.418888740020247,
+                    "delta_rmse": 0.014535767288305301,
+                    "base_r2": 0.3066146014672926,
+                    "full_r2": 0.3103195970951973,
+                    "delta_r2": 0.003704995627904717
+                  }
+                ],
+                "tested_years": 3,
+                "years_improved_rmse": 3,
+                "years_improved_r2": 3,
+                "mean_delta_rmse": 0.01550580204388948,
+                "mean_delta_r2": 0.00410666822087935,
+                "median_delta_rmse": 0.014535767288305301,
+                "median_delta_r2": 0.003704995627904717
               }
             ]
           }
