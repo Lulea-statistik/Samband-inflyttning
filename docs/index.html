@@ -28,6 +28,12 @@
 </nav>
 <main>
   <div class="global-controls">
+    <label>Geografi
+      <select id="geographySelect">
+        <option value="sweden" selected>Sverige – kommunmodellen</option>
+        <option value="lulea">Luleå – utveckling</option>
+      </select>
+    </label>
     <label>Modell
       <select id="modelVariantSelect">
         <option value="forecast" selected>Prognosmodell</option>
@@ -48,9 +54,9 @@
 
   <section id="public" class="page public-page">
     <section class="public-hero">
-      <div class="eyebrow">Inflyttning till svenska kommuner</div>
-      <h2>Två frågor kräver två olika modeller</h2>
-      <p>En modell försöker <strong>förutsäga nästa års inflyttning så träffsäkert som möjligt</strong>. Den andra försöker förstå <strong>vilka strukturella egenskaper som hänger ihop med inflyttning</strong> utan att använda tidigare migration eller befolkningstillväxt som genväg.</p>
+      <div class="eyebrow" id="publicEyebrow">Inflyttning till svenska kommuner</div>
+      <h2 id="publicHeroTitle">Två frågor kräver två olika modeller</h2>
+      <p id="publicHeroText">En modell försöker <strong>förutsäga nästa års inflyttning så träffsäkert som möjligt</strong>. Den andra försöker förstå <strong>vilka strukturella egenskaper som hänger ihop med inflyttning</strong> utan att använda tidigare migration eller befolkningstillväxt som genväg.</p>
     </section>
 
     <section class="public-kpis" id="publicKpis"></section>
@@ -107,19 +113,45 @@
   <section id="overview" class="page active">
     <h2>Översikt</h2>
     <p class="lead">Rapporten skiljer nu på två modeller. <strong>Prognosmodellen</strong> får använda historisk demografi om det förbättrar träffsäkerheten. <strong>Den demografiskt blinda strukturmodellen</strong> förbjuder historisk migration, befolkningstillväxt, åldersstruktur och inflyttarprofil som förklaringsvariabler, men tillåter kommunstorlek samt strukturella bostads-, arbetsmarknads-, ekonomiska och geografiska variabler.</p>
-    <div class="panel"><h3 id="variantPurposeTitle">Prognosmodell</h3><p id="variantPurposeText" class="note"></p></div>
-    <div id="cards" class="cards"></div>
-    <div class="panel">
-      <h3>Direkt jämförelse mellan modellspåren</h3>
-      <p class="note">Samma testår används. Prognosmodellen får använda historisk demografi; strukturmodellen får inte göra det. Skillnaden visar hur mycket prediktiv information som finns i historisk demografi jämfört med enbart strukturella variabler.</p>
-      <div id="variantComparison" class="chart"></div>
+    <div id="swedenOverview">
+      <div class="panel"><h3 id="variantPurposeTitle">Prognosmodell</h3><p id="variantPurposeText" class="note"></p></div>
+      <div id="cards" class="cards"></div>
+      <div class="panel">
+        <h3>Direkt jämförelse mellan modellspåren</h3>
+        <p class="note">Samma testår används. Prognosmodellen får använda historisk demografi; strukturmodellen får inte göra det. Skillnaden visar hur mycket prediktiv information som finns i historisk demografi jämfört med enbart strukturella variabler.</p>
+        <div id="variantComparison" class="chart"></div>
+      </div>
+      <div class="panel">
+        <h3>Vilka teman bär modellernas förklaringsvärde?</h3>
+        <p class="note">Staplarna visar hur mycket <strong>justerat R² minskar</strong> när ett tema tas bort ur modellen. Det är ett borttagnings-test av självständigt förklaringsvärde. Bidragen är inte additiva eftersom teman överlappar och samvarierar.</p>
+        <div id="r2ContributionProfile" class="chart tall"></div>
+      </div>
+      <div class="panel"><h3>Prognosvalidering på nästa år</h3><div id="modelCompare" class="chart"></div></div>
     </div>
-    <div class="panel">
-      <h3>Vilka teman bär modellernas förklaringsvärde?</h3>
-      <p class="note">Staplarna visar hur mycket <strong>justerat R² minskar</strong> när ett tema tas bort ur modellen. Det är ett borttagnings-test av självständigt förklaringsvärde. Bidragen är inte additiva eftersom teman överlappar och samvarierar.</p>
-      <div id="r2ContributionProfile" class="chart tall"></div>
+
+    <div id="luleaOverview" hidden>
+      <div class="panel lulea-method">
+        <h3>Så anpassas modellen till Luleå</h3>
+        <p>Luleå får inte en separat regression på bara sina egna år. I stället används samma Sverigemodell som referens. För varje år jämförs Luleås värde för varje vald variabel med genomsnittet bland kommunerna samma år. Skillnaden multipliceras med modellens koefficient och summeras till ett modellberäknat Luleå–Sverige-gap.</p>
+        <p class="note">Detta gör Luleå-vyn jämförbar med Sverigemodellen och undviker att dra starka slutsatser från ett mycket litet lokalt observationsunderlag.</p>
+      </div>
+      <div id="luleaCards" class="cards"></div>
+      <div class="panel">
+        <h3>Luleås utveckling jämfört med Sverige</h3>
+        <p class="note">Faktisk inflyttning per 1 000 jämförs med kommunernas genomsnitt och den nivå som Sverigemodellen skattar för Luleå.</p>
+        <div id="luleaDevelopmentChart" class="chart tall"></div>
+      </div>
+      <div class="panel">
+        <h3>Vad förklarar Luleås avvikelse från genomsnittskommunen?</h3>
+        <p class="note">Positiva bidrag drar modellens skattning för Luleå uppåt relativt riksgenomsnittet; negativa bidrag drar den nedåt. Bidragen avser det senaste året i vald analysperiod.</p>
+        <div id="luleaLatestContributions" class="chart tall"></div>
+      </div>
+      <div class="panel">
+        <h3>Vad har förändrats inom Luleå under perioden?</h3>
+        <p class="note">Diagrammet visar hur varje temas modellbidrag till Luleå–Sverige-gapet har förändrats från periodens första till sista år.</p>
+        <div id="luleaContributionChange" class="chart tall"></div>
+      </div>
     </div>
-    <div class="panel"><h3>Prognosvalidering på nästa år</h3><div id="modelCompare" class="chart"></div></div>
   </section>
 
   <section id="relationships" class="page">
