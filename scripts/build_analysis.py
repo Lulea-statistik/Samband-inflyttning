@@ -89,6 +89,7 @@ MONTHLY_EMPLOYMENT_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0
 AREA_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/MI/MI0802/Areal2012NN"
 TATORTSGRAD_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/MI/MI0810/MI0810A/TatortGrad"
 LAND_USE_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/MI/MI0803/MI0803A/MarkanvN"
+VEHICLE_TRAFFIC_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/TK/TK1001/TK1001A/FordonTrafik"
 MUNICIPAL_GEOPARQUET_URL = "https://raw.githubusercontent.com/stefur/swemaps/main/src/swemaps/data/kommun.parquet"
 GEOGRAPHY_CRS = "EPSG:3006"
 EDUCATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/UF/UF0506/UF0506B/Utbildning"
@@ -128,6 +129,10 @@ GEOGRAPHY_CANDIDATE_FEATURES = [
     "kommun_centroid_northing_km",
     "havsandel_pct",
     "kustkommun_hav",
+]
+SNOWMOBILE_PROXY_FEATURES = [
+    "lag1_snoskoterandel_alla_fordon_pct",
+    "lag1_snoskoterandel_exkl_dragfordon_pct",
 ]
 OUT = Path("docs/data")
 OUT.mkdir(parents=True, exist_ok=True)
@@ -209,6 +214,7 @@ def preflight_sources() -> None:
         "municipal_area": AREA_URL,
         "urban_area_share": TATORTSGRAD_URL,
         "land_use": LAND_USE_URL,
+        "vehicles_by_municipality": VEHICLE_TRAFFIC_URL,
         "education": EDUCATION_URL,
         "students": STUDENT_URL,
         "industry": INDUSTRY_URL,
@@ -3196,6 +3202,147 @@ def get_land_use_urbanity() -> pd.DataFrame:
     ]]
 
 
+
+def get_snowmobile_proxy() -> pd.DataFrame:
+    """
+    Municipality-year snowmobile share from SCB vehicles in traffic.
+    The user's exact measure divides snowmobiles by the sum of all published
+    vehicle categories. A robustness variant excludes 'dragfordon', because
+    SCB notes that it is a sub-item already included in light/heavy trucks.
+    """
+    meta = metadata(VEHICLE_TRAFFIC_URL)
+    region = find_var(meta, "region")
+    vehicle_type = find_var(meta, "fordonsslag")
+    time_var = find_var(meta, "år", "tid")
+
+    munis = municipality_codes(region)
+    vehicle_codes = list(vehicle_type.get("values", []))
+    vehicle_labels = list(
+        vehicle_type.get("valueTexts", vehicle_type.get("values", []))
+    )
+    years = [
+        str(v) for v in time_var.get("values", [])
+        if str(v).isdigit()
+        and max(START_YEAR, END_YEAR - 6) <= int(v) <= END_YEAR
+    ]
+    if not years:
+        raise ValueError("No usable vehicle years for snowmobile proxy")
+
+    print(
+        "SCB vehicle categories: "
+        + "; ".join(str(x) for x in vehicle_labels)
+    )
+
+    df = px_csv(VEHICLE_TRAFFIC_URL, {
+        region["code"]: munis,
+        vehicle_type["code"]: vehicle_codes,
+        time_var["code"]: years,
+    })
+
+    dims = standardize_columns(df)
+    region_col = dims.get("region")
+    type_col = next(
+        (c for c in df.columns if "fordonsslag" in str(c).casefold()),
+        None,
+    )
+    if region_col is None or type_col is None:
+        raise ValueError(
+            f"Could not identify region/vehicle type columns: {list(df.columns)}"
+        )
+
+    year_value_cols = [
+        c for c in df.columns
+        if c not in {region_col, type_col}
+        and re.search(r"(?:19|20)\d{2}", str(c))
+    ]
+    if not year_value_cols:
+        raise ValueError(
+            f"No year-valued vehicle columns found: {list(df.columns)}"
+        )
+
+    work = df[[region_col, type_col] + year_value_cols].melt(
+        id_vars=[region_col, type_col],
+        value_vars=year_value_cols,
+        var_name="measure_year",
+        value_name="raw_value",
+    )
+    work[["kommun_kod", "kommun_fordon"]] = work[region_col].apply(
+        lambda x: pd.Series(split_region(x))
+    )
+    work["kommun_kod"] = work["kommun_kod"].astype(str).str.zfill(4)
+    work["year"] = pd.to_numeric(
+        work["measure_year"].astype(str).str.extract(r"((?:19|20)\d{2})")[0],
+        errors="coerce",
+    )
+    work["antal_fordon"] = normalize_number(work["raw_value"])
+    work["fordonsslag_norm"] = (
+        work[type_col].astype(str).str.strip().str.casefold()
+    )
+    work = work.dropna(subset=["year", "antal_fordon"])
+    work["year"] = work["year"].astype(int)
+
+    snowmobile_labels = sorted(
+        x for x in work["fordonsslag_norm"].unique()
+        if x == "snöskoter"
+    )
+    if snowmobile_labels != ["snöskoter"]:
+        raise ValueError(
+            f"Expected exact 'snöskoter' category, found {snowmobile_labels}"
+        )
+
+    grouped = (
+        work.groupby(["kommun_kod", "year", "fordonsslag_norm"], as_index=False)
+        ["antal_fordon"].sum()
+    )
+    snow = (
+        grouped[grouped["fordonsslag_norm"] == "snöskoter"]
+        [["kommun_kod", "year", "antal_fordon"]]
+        .rename(columns={"antal_fordon": "snoskotrar"})
+    )
+    total_all = (
+        grouped.groupby(["kommun_kod", "year"], as_index=False)["antal_fordon"]
+        .sum()
+        .rename(columns={"antal_fordon": "fordon_summa_alla_publicerade"})
+    )
+    total_no_drag = (
+        grouped[grouped["fordonsslag_norm"] != "dragfordon"]
+        .groupby(["kommun_kod", "year"], as_index=False)["antal_fordon"]
+        .sum()
+        .rename(columns={"antal_fordon": "fordon_summa_exkl_dragfordon"})
+    )
+
+    out = (
+        snow.merge(total_all, on=["kommun_kod", "year"], how="outer")
+        .merge(total_no_drag, on=["kommun_kod", "year"], how="outer")
+    )
+    out["snoskoterandel_alla_fordon_pct"] = (
+        100 * out["snoskotrar"]
+        / out["fordon_summa_alla_publicerade"].replace(0, np.nan)
+    )
+    out["snoskoterandel_exkl_dragfordon_pct"] = (
+        100 * out["snoskotrar"]
+        / out["fordon_summa_exkl_dragfordon"].replace(0, np.nan)
+    )
+
+    coverage = out.groupby("year")["kommun_kod"].nunique().to_dict()
+    if min(coverage.values(), default=0) < 285:
+        raise ValueError(
+            f"Vehicle proxy municipality coverage too low: {coverage}"
+        )
+    for col in [
+        "snoskoterandel_alla_fordon_pct",
+        "snoskoterandel_exkl_dragfordon_pct",
+    ]:
+        if not out[col].dropna().between(0, 100.0001).all():
+            raise ValueError(f"{col} outside 0-100%")
+
+    print(
+        f"Snowmobile proxy years={sorted(out['year'].unique().tolist())}; "
+        f"municipalities/latest={coverage.get(int(out['year'].max()), 0)}"
+    )
+    return out
+
+
 def get_direct_urbanity() -> pd.DataFrame:
     tatort = get_tatortsgrad()
     land_use = get_land_use_urbanity()
@@ -4995,6 +5142,85 @@ def _geography_joint_control_tests(
     }
 
 
+
+def _snowmobile_proxy_diagnostics(panel: pd.DataFrame) -> dict:
+    """
+    Describe whether snowmobile ownership share behaves like a north/cold-
+    climate proxy before interpreting any migration association.
+    """
+    cols = [
+        "kommun_kod", "kommun", "year",
+        "snoskoterandel_alla_fordon_pct",
+        "snoskoterandel_exkl_dragfordon_pct",
+        "kommun_centroid_northing_km",
+        "havsandel_pct",
+        "lag1_tatortsgrad_pct",
+        "lag1_bebyggd_anlagd_andel_land_pct",
+    ]
+    work = panel[cols].dropna(
+        subset=["snoskoterandel_alla_fordon_pct"]
+    ).copy()
+    latest_year = int(work["year"].max())
+    latest = work[work["year"] == latest_year].drop_duplicates("kommun_kod")
+
+    corr_cols = [
+        "snoskoterandel_alla_fordon_pct",
+        "snoskoterandel_exkl_dragfordon_pct",
+        "kommun_centroid_northing_km",
+        "havsandel_pct",
+        "lag1_tatortsgrad_pct",
+        "lag1_bebyggd_anlagd_andel_land_pct",
+    ]
+    pearson = latest[corr_cols].corr(method="pearson")
+    spearman = latest[corr_cols].corr(method="spearman")
+
+    snow = "snoskoterandel_alla_fordon_pct"
+    def corr_record(other: str) -> dict:
+        return {
+            "feature": other,
+            "pearson": _finite_float(pearson.loc[snow, other]),
+            "spearman": _finite_float(spearman.loc[snow, other]),
+        }
+
+    top = (
+        latest.sort_values(snow, ascending=False)
+        .head(25)
+    )
+    return {
+        "latest_year": latest_year,
+        "n_municipalities": int(latest["kommun_kod"].nunique()),
+        "definition_exact_user_ratio": (
+            "snowmobiles / sum of all 12 published SCB vehicle categories"
+        ),
+        "robustness_ratio": (
+            "snowmobiles / sum of published vehicle categories excluding "
+            "dragfordon, because dragfordon is a sub-item of light/heavy trucks"
+        ),
+        "correlations": [
+            corr_record("kommun_centroid_northing_km"),
+            corr_record("havsandel_pct"),
+            corr_record("lag1_tatortsgrad_pct"),
+            corr_record("lag1_bebyggd_anlagd_andel_land_pct"),
+        ],
+        "top_latest": [
+            {
+                "kommun_kod": str(r.kommun_kod),
+                "kommun": str(r.kommun),
+                "snoskoterandel_pct": _finite_float(
+                    r.snoskoterandel_alla_fordon_pct
+                ),
+                "snoskoterandel_exkl_dragfordon_pct": _finite_float(
+                    r.snoskoterandel_exkl_dragfordon_pct
+                ),
+                "northing_km": _finite_float(
+                    r.kommun_centroid_northing_km
+                ),
+            }
+            for r in top.itertuples(index=False)
+        ],
+    }
+
+
 def _geography_rankings(panel: pd.DataFrame) -> dict:
     """Simple source-QA rankings for the static geography candidate variables."""
     cols = [
@@ -5053,6 +5279,7 @@ def main():
     fa15 = get_fa15_membership()
     geography = get_geography()
     direct_urbanity = get_direct_urbanity()
+    snowmobile_proxy = get_snowmobile_proxy()
     mig = get_migration()
     pop = get_population()
     income = get_income()
@@ -5061,6 +5288,20 @@ def main():
     leisure = get_leisure_houses()
     crime = get_crime_total()
     panel = build_panel(mig, pop, income, turnout, inequality, housing, completed_housing, leisure, crime, labor, monthly_employment, education, students, activity, industry, fa15, geography, direct_urbanity)
+    panel = panel.merge(
+        snowmobile_proxy,
+        on=["kommun_kod", "year"],
+        how="left",
+        validate="many_to_one",
+    )
+    panel = panel.sort_values(["kommun_kod", "year"])
+    vehicle_g = panel.groupby("kommun_kod", group_keys=False)
+    panel["lag1_snoskoterandel_alla_fordon_pct"] = (
+        vehicle_g["snoskoterandel_alla_fordon_pct"].shift(1)
+    )
+    panel["lag1_snoskoterandel_exkl_dragfordon_pct"] = (
+        vehicle_g["snoskoterandel_exkl_dragfordon_pct"].shift(1)
+    )
     panel.to_csv(OUT / "panel.csv", index=False)
     result = fit_models(panel)
     age_models = fit_age_group_models(panel)
@@ -5113,6 +5354,30 @@ def main():
         },
     }
     result["employment_seasonality_rankings"] = _employment_variation_rankings(panel)
+
+    result["snowmobile_proxy_candidate_tests"] = {
+        "overall": _sparse_candidate_tests(
+            panel,
+            result["target"],
+            overall_base,
+            SNOWMOBILE_PROXY_FEATURES,
+            END_YEAR - 4,
+            END_YEAR,
+        ),
+        "age_groups": {
+            key: _sparse_candidate_tests(
+                panel,
+                model["target"],
+                model["explanation"]["selected_features"],
+                SNOWMOBILE_PROXY_FEATURES,
+                END_YEAR - 4,
+                END_YEAR,
+            )
+            for key, model in age_models.items()
+            if "error" not in model
+        },
+    }
+    result["snowmobile_proxy_diagnostics"] = _snowmobile_proxy_diagnostics(panel)
 
     result["geography_candidate_tests"] = {
         "overall": _sparse_candidate_tests(
@@ -5206,6 +5471,7 @@ def main():
             "SCB tätortsgrad (population share in statistical urban areas)",
             "SCB built/developed land share of total land area in MarkanvN",
         ],
+        "snowmobile_proxy": "SCB snowmobiles as share of published vehicle stock; exact and denominator-robust variants, lagged one year",
         "production_status": "candidate_only",
     }
 
