@@ -114,6 +114,7 @@ function initGeographySelector(){
   s.addEventListener('change',()=>{
     selectedGeography=s.value;
     renderAll();
+    renderScatter();
   });
 }
 
@@ -320,8 +321,14 @@ function renderGeographyContext(){
   }
 
   const technicalNote=document.getElementById('windowDescription');
+  const methodNote=document.getElementById('geographyMethodNote');
   if(technicalNote && selectedGeography==='lulea'){
     technicalNote.textContent+=' · Luleå-vyn använder denna nationella modell som referens';
+  }
+  if(methodNote){
+    methodNote.textContent=selectedGeography==='lulea'
+      ? 'Tekniska regressions-, ålders- och valideringsflikar visar Sverigemodellen som används för att tolka Luleå.'
+      : '';
   }
 }
 
@@ -481,6 +488,18 @@ function renderPublicPage(){
     if(eyebrow) eyebrow.textContent='Luleås inflyttning i ett Sverigeperspektiv';
     if(title) title.textContent='Varför utvecklas Luleås inflyttning som den gör?';
     if(txt) txt.innerHTML='Samma modell som används för Sveriges kommuner används här som <strong>referensram för Luleå</strong>. Vi jämför Luleås egenskaper med genomsnittskommunen och ser vilka teman som drar den modellberäknade skillnaden uppåt eller nedåt.';
+    const e1=document.getElementById('publicChart1Eyebrow'), t1=document.getElementById('publicChart1Title'), p1=document.getElementById('publicChart1Text');
+    const e2=document.getElementById('publicChart2Eyebrow'), t2=document.getElementById('publicChart2Title'), p2=document.getElementById('publicChart2Text');
+    const e3=document.getElementById('publicChart3Eyebrow'), t3=document.getElementById('publicChart3Title'), p3=document.getElementById('publicChart3Text');
+    if(e1) e1.textContent='Luleå jämfört med genomsnittskommunen';
+    if(t1) t1.textContent='Utvecklingen kan följas år för år';
+    if(p1) p1.textContent='Den faktiska inflyttningen i Luleå jämförs med kommunmedlet och den nivå som Sverigemodellen skattar för Luleå.';
+    if(e2) e2.textContent='Vad gör Luleå annorlunda?';
+    if(t2) t2.textContent='Teman som drar Luleå uppåt eller nedåt';
+    if(p2) p2.textContent='Bidragen visar hur Luleås egenskaper, relativt genomsnittskommunen samma år, påverkar den modellberäknade skillnaden i inflyttning.';
+    if(e3) e3.textContent='Förändring över tid';
+    if(t3) t3.textContent='Vilka drivkrafter har stärkts eller försvagats?';
+    if(p3) p3.textContent='Här jämförs varje temas bidrag i början och slutet av analysperioden. Det visar vad som har förändrats i Luleås modellprofil.';
 
     const kpis=document.getElementById('publicKpis');
     if(kpis) kpis.innerHTML=[
@@ -537,6 +556,18 @@ function renderPublicPage(){
   if(eyebrow) eyebrow.textContent='Inflyttning till svenska kommuner';
   if(title) title.textContent='Två frågor kräver två olika modeller';
   if(txt) txt.innerHTML='En modell försöker <strong>förutsäga nästa års inflyttning så träffsäkert som möjligt</strong>. Den andra försöker förstå <strong>vilka strukturella egenskaper som hänger ihop med inflyttning</strong> utan att använda tidigare migration eller befolkningstillväxt som genväg.';
+  const e1=document.getElementById('publicChart1Eyebrow'), t1=document.getElementById('publicChart1Title'), p1=document.getElementById('publicChart1Text');
+  const e2=document.getElementById('publicChart2Eyebrow'), t2=document.getElementById('publicChart2Title'), p2=document.getElementById('publicChart2Text');
+  const e3=document.getElementById('publicChart3Eyebrow'), t3=document.getElementById('publicChart3Title'), p3=document.getElementById('publicChart3Text');
+  if(e1) e1.textContent='Hur mycket variation fångas?';
+  if(t1) t1.textContent='Historisk demografi ger en stor prognosfördel';
+  if(p1) p1.textContent='Test-R² visar hur väl modellerna fångar variationen i ett år som inte användes när modellen skattades. Det är inte samma sak som “procent rätt”.';
+  if(e2) e2.textContent='Vad träder fram utan demografisk historik?';
+  if(t2) t2.textContent='Bostäder, kommunstorlek och humankapital blir tydligare';
+  if(p2) p2.textContent='Här visas de teman där strukturmodellen tappar mest justerat R² när temat tas bort. Ett större tapp betyder mer självständigt förklaringsvärde inom modellen.';
+  if(e3) e3.textContent='Olika livsfaser';
+  if(t3) t3.textContent='Historik betyder mest för yngre – struktur relativt mer för äldre';
+  if(p3) p3.textContent='Åldersdiagrammet jämför modellerna i samma testår. För de äldre grupperna står den strukturella modellen relativt starkare än för yngre inflyttare.';
 
   const fw=rootModel.windows?.['5'];
   const bw=rootModel.model_variants?.demographic_blind?.windows?.['5'];
@@ -635,7 +666,10 @@ function initRelationships(){
 function renderScatter(){
   const key=document.getElementById('xvar').value;
   const yf=document.getElementById('yearFilter').value;
-  const rows=panel.filter(d=>Number.isFinite(d[key])&&Number.isFinite(d.inflyttning_per_1000)&&(yf==='all'||d.year===+yf));
+  let rows=panel.filter(d=>Number.isFinite(d[key])&&Number.isFinite(d.inflyttning_per_1000)&&(yf==='all'||d.year===+yf));
+  if(selectedGeography==='lulea'){
+    rows=panel.filter(d=>String(d.kommun_kod)==='2580'&&Number.isFinite(d[key])&&Number.isFinite(d.inflyttning_per_1000));
+  }
   Plotly.react('scatter',[{
     x:rows.map(d=>d[key]),
     y:rows.map(d=>d.inflyttning_per_1000),
@@ -645,7 +679,8 @@ function renderScatter(){
   }],{
     margin:{t:20},
     xaxis:{title:labels[key]},
-    yaxis:{title:'Inflyttade per 1 000'}
+    yaxis:{title:'Inflyttade per 1 000'},
+    title:selectedGeography==='lulea'?'Luleå över tid':'Sveriges kommuner'
   },{responsive:true,displaylogo:false});
 }
 
