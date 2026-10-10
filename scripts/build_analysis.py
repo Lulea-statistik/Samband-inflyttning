@@ -4389,7 +4389,7 @@ def _sparse_candidate_tests(
     }
 
 
-def fit_models(panel: pd.DataFrame) -> dict:
+def fit_models(panel: pd.DataFrame, *, demographic_blind: bool = False, output_suffix: str = "") -> dict:
     target = "inflyttning_per_1000"
     features = [
         "lag1_inflyttning_per_1000",
@@ -4420,6 +4420,16 @@ def fit_models(panel: pd.DataFrame) -> dict:
         "lag1_log_externa_fa_jobb_per_1000",
         "lag1_andel_fa_arbetsplatser_i_egen_kommun",
     ]
+    direct_demographic_features = {
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_befolkningstillvaxt_pct",
+        "lag1_andel_20_34",
+        "lag1_inflyttare_medelalder",
+    }
+    if demographic_blind:
+        features = [f for f in features if f not in direct_demographic_features]
+
     model_df = panel.dropna(subset=[target] + features).copy()
     test_year = int(model_df["year"].max())
 
@@ -4481,9 +4491,9 @@ def fit_models(panel: pd.DataFrame) -> dict:
             },
         }
 
-    pd.concat(pred_frames, ignore_index=True).to_csv(OUT / "predictions.csv", index=False)
-    pd.concat(diag_frames, ignore_index=True).to_csv(OUT / "diagnostics.csv", index=False)
-    pd.concat(qq_frames, ignore_index=True).to_csv(OUT / "qq.csv", index=False)
+    pd.concat(pred_frames, ignore_index=True).to_csv(OUT / f"predictions{output_suffix}.csv", index=False)
+    pd.concat(diag_frames, ignore_index=True).to_csv(OUT / f"diagnostics{output_suffix}.csv", index=False)
+    pd.concat(qq_frames, ignore_index=True).to_csv(OUT / f"qq{output_suffix}.csv", index=False)
 
     return {
         "generated_from_year": START_YEAR,
@@ -4492,9 +4502,14 @@ def fit_models(panel: pd.DataFrame) -> dict:
         "default_window": 5,
         "max_window": 5,
         "target": target,
+        "model_id": "demographic_blind" if demographic_blind else "forecast",
+        "model_label": "Demografiskt blind strukturmodell" if demographic_blind else "Prognosmodell",
+        "demographic_blind": demographic_blind,
+        "excluded_direct_demographic_features": sorted(direct_demographic_features) if demographic_blind else [],
         "features": features,
         "windows": windows,
         "notes": [
+            ("Den demografiskt blinda modellen förbjuder historisk inflyttning, utflyttning, befolkningstillväxt, åldersstruktur och inflyttarnas tidigare medelålder som förklaringsvariabler. Kommunstorlek samt bostads- och arbetsmarknadsvariabler är tillåtna strukturella kontroller." if demographic_blind else "Prognosmodellen får använda historiska demografiska variabler när de förbättrar prognosförmågan."),
             "Förklaringsmodellen använder kommun-år och som standard de fem senaste observerade åren.",
             "Årseffekter ingår i förklaringsmodellen för att fånga gemensamma nationella årsvariationer.",
             "Standardfel i förklaringsmodellen är klustrade per kommun eftersom samma kommun förekommer flera år.",
@@ -4535,7 +4550,7 @@ def fit_models(panel: pd.DataFrame) -> dict:
 
 
 
-def fit_age_group_models(panel: pd.DataFrame) -> dict:
+def fit_age_group_models(panel: pd.DataFrame, *, demographic_blind: bool = False) -> dict:
     """
     Separate five-year explanatory/validation models for selected life-stage
     age groups. Outcomes are in-migrants per 1,000 residents in the same
@@ -4570,6 +4585,17 @@ def fit_age_group_models(panel: pd.DataFrame) -> dict:
         "lag1_log_externa_fa_jobb_per_1000",
         "lag1_andel_fa_arbetsplatser_i_egen_kommun",
     ]
+
+    if demographic_blind:
+        structural_features = [
+            f for f in structural_features
+            if f not in {
+                "lag1_utflyttning_per_1000",
+                "lag1_befolkningstillvaxt_pct",
+                "lag1_andel_20_34",
+                "lag1_inflyttare_medelalder",
+            }
+        ]
 
     specs = {
         "18_23": {
@@ -4606,7 +4632,9 @@ def fit_age_group_models(panel: pd.DataFrame) -> dict:
 
     out = {}
     for key, spec in specs.items():
-        features = [spec["lag_target"]] + structural_features
+        features = list(structural_features)
+        if not demographic_blind:
+            features = [spec["lag_target"]] + features
         d = panel.dropna(subset=[spec["target"]] + features).copy()
         if d.empty:
             out[key] = {**spec, "error": "Inga kompletta observationer"}
@@ -4647,6 +4675,8 @@ def fit_age_group_models(panel: pd.DataFrame) -> dict:
 
         out[key] = {
             **spec,
+            "model_id": "demographic_blind" if demographic_blind else "forecast",
+            "demographic_blind": demographic_blind,
             "rate_definition": "Inflyttade i åldersgruppen per 1 000 invånare i samma åldersgrupp",
             "explanation": explanation,
             "validation": validation,
@@ -5441,6 +5471,13 @@ def main():
     age_models = fit_age_group_models(panel)
     result["age_group_models"] = age_models
 
+    # Parallel structural model: historical demographic outcomes are excluded
+    # from the feature pool, while municipality size and structural housing,
+    # labour-market, economic and place characteristics remain eligible.
+    blind_result = fit_models(panel, demographic_blind=True, output_suffix="_blind")
+    blind_age_models = fit_age_group_models(panel, demographic_blind=True)
+    blind_result["age_group_models"] = blind_age_models
+
     overall_base = result["windows"]["5"]["explanation"]["selected_features"]
     result["activity_candidate_tests"] = {
         "overall": _sparse_candidate_tests(
@@ -5624,6 +5661,63 @@ def main():
         ],
         "snowmobile_proxy": "SCB snowmobiles as share of published vehicle stock; exact and denominator-robust variants, lagged one year",
         "production_status": "candidate_only",
+    }
+
+    blind_base = blind_result["windows"]["5"]["explanation"]["selected_features"]
+    blind_result["snowmobile_proxy_candidate_tests"] = {
+        "overall": _sparse_candidate_tests(
+            panel,
+            blind_result["target"],
+            blind_base,
+            SNOWMOBILE_PROXY_FEATURES,
+            END_YEAR - 4,
+            END_YEAR,
+        ),
+        "age_groups": {
+            key: _sparse_candidate_tests(
+                panel,
+                model["target"],
+                model["explanation"]["selected_features"],
+                SNOWMOBILE_PROXY_FEATURES,
+                END_YEAR - 4,
+                END_YEAR,
+            )
+            for key, model in blind_age_models.items()
+            if "error" not in model
+        },
+    }
+    blind_result["snowmobile_proxy_diagnostics"] = result["snowmobile_proxy_diagnostics"]
+    blind_result["snowmobile_proxy_residual_tests"] = {
+        "overall": _snowmobile_proxy_residual_tests(
+            panel, blind_result["target"], blind_base, END_YEAR - 4, END_YEAR
+        ),
+        "age_groups": {
+            key: _snowmobile_proxy_residual_tests(
+                panel,
+                model["target"],
+                model["explanation"]["selected_features"],
+                END_YEAR - 4,
+                END_YEAR,
+            )
+            for key, model in blind_age_models.items()
+            if "error" not in model
+        },
+    }
+
+    result["model_variants"] = {
+        "demographic_blind": blind_result,
+    }
+    result["model_variant_metadata"] = {
+        "forecast": {
+            "label": "Prognosmodell",
+            "purpose": "Maximera prognosförmåga; historiska demografiska variabler är tillåtna.",
+        },
+        "demographic_blind": {
+            "label": "Demografiskt blind strukturmodell",
+            "purpose": "Identifiera strukturella samband utan historisk migration, befolkningstillväxt, åldersstruktur eller inflyttarprofil som genväg.",
+            "allowed_demographic_control": "Kommunstorlek (log folkmängd) är tillåten som strukturell kontroll.",
+            "allowed_endogenous_structures": "Bostads- och arbetsmarknadsförändringar får ingå men ska tolkas som samband, inte säkra orsakseffekter.",
+        },
     }
 
     (OUT / "model.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
