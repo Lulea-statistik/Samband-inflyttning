@@ -30,6 +30,8 @@ from scipy.stats import norm
 MIGRATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101J/Flyttningar97"
 POPULATION_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101A/BefolkningNy"
 INCOME_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/HE/HE0110/HE0110A/SamForvInk2"
+HOUSE_PRICE_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0501/BO0501B/FastprisSHRegionAr"
+VACANCY_ALLM_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0303/BO0303A/OuthAllmLghTypKom0"
 INEQUALITY_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/HE/HE0110/HE0110I/Tab4InkDesoRegso"
 TURNOUT_SOURCES = {
     2018: {
@@ -134,6 +136,14 @@ SNOWMOBILE_PROXY_FEATURES = [
     "lag1_snoskoterandel_alla_fordon_pct",
     "lag1_snoskoterandel_exkl_dragfordon_pct",
 ]
+HOUSING_MARKET_CANDIDATE_FEATURES = [
+    "lag1_inkomst_median_tkr",
+    "lag1_smahuspris_medel_tkr",
+    "lag1_smahuspris_inkomstkvot_medel",
+    "lag1_smahuspris_inkomstkvot_median",
+    "lag1_lediga_allmannytta_pct",
+    "lag1_lediga_allmannytta_av_total_bostadsbestand_pct",
+]
 OUT = Path("docs/data")
 OUT.mkdir(parents=True, exist_ok=True)
 
@@ -206,6 +216,8 @@ def preflight_sources() -> None:
         "migration": MIGRATION_URL,
         "population": POPULATION_URL,
         "income": INCOME_URL,
+        "house_prices": HOUSE_PRICE_URL,
+        "allmannytta_vacancy": VACANCY_ALLM_URL,
         "socioeconomic_gap": INEQUALITY_URL,
         "housing": HOUSING_URL,
         "completed_housing": COMPLETED_HOUSING_URL,
@@ -583,7 +595,14 @@ def get_population() -> pd.DataFrame:
 
 
 def get_income() -> pd.DataFrame:
-    """Mean earned income (tkr) for ages 20-64, aggregated correctly across sex."""
+    """
+    Mean and median earned income (tkr) for ages 20-64.
+
+    The existing mean is retained as total income divided by persons so it is
+    aggregated correctly. Median income is requested for the table's total-sex
+    category and is kept as a separate candidate so mean versus median can be
+    compared on exactly the same model observations.
+    """
     meta = metadata(INCOME_URL)
     region = find_var(meta, "region")
     age = find_var(meta, "ålder", "alder")
@@ -594,8 +613,14 @@ def get_income() -> pd.DataFrame:
     munis = municipality_codes(region)
     age_code = code_for_all_text(age, "20", "64")
     sex_codes = aggregate_codes(sex)
+    if len(sex_codes) != 1:
+        raise ValueError(
+            "Median income requires one total-sex category; "
+            f"SCB returned {len(sex_codes)} sex selectors"
+        )
     total_sum_code = code_for_all_text(content, "totalsumma")
     count_code = code_for_all_text(content, "antal", "person")
+    median_code = code_for_all_text(content, "medianinkomst")
 
     rows = []
     for year in AUX_YEARS:
@@ -622,11 +647,136 @@ def get_income() -> pd.DataFrame:
             persons=("persons", "sum"),
         )
         agg["inkomst_tkr"] = 1000 * agg["sum_mnkr"] / agg["persons"].replace(0, np.nan)
-        rows.append(agg[["kommun_kod", "kommun", "year", "inkomst_tkr"]])
+
+        mdf = px_csv(INCOME_URL, {
+            region["code"]: munis,
+            age["code"]: [age_code],
+            sex["code"]: sex_codes,
+            content["code"]: [median_code],
+            time["code"]: [str(year)],
+        })
+        mdims = standardize_columns(mdf)
+        mvalue = value_column(mdf, mdims)
+        mdf["inkomst_median_tkr"] = normalize_number(mdf[mvalue])
+        mdf["year"] = year
+        mdf[["kommun_kod", "kommun"]] = mdf[mdims["region"]].apply(
+            lambda x: pd.Series(split_region(x))
+        )
+        med = (
+            mdf.groupby(["kommun_kod", "year"], as_index=False)["inkomst_median_tkr"]
+            .first()
+        )
+        agg = agg.merge(med, on=["kommun_kod", "year"], how="left", validate="one_to_one")
+        rows.append(agg[[
+            "kommun_kod", "kommun", "year", "inkomst_tkr", "inkomst_median_tkr"
+        ]])
         print(f"Income {year}: {len(agg):,} municipalities")
     return pd.concat(rows, ignore_index=True)
 
 
+def get_house_prices() -> pd.DataFrame:
+    """Annual mean purchase price for permanent small houses, SCB, tkr."""
+    meta = metadata(HOUSE_PRICE_URL)
+    region = find_var(meta, "region")
+    property_type = find_var(meta, "fastighetstyp")
+    content = find_var(meta, "tabellinnehåll", "contentscode")
+    time = find_var(meta, "år", "tid")
+
+    munis = municipality_codes(region)
+    permanent_code = code_for_all_text(property_type, "permanentbostad", "ej tomträtt")
+    price_code = code_for_all_text(content, "köpeskilling", "medel")
+
+    rows = []
+    for year in AUX_YEARS:
+        df = px_csv(HOUSE_PRICE_URL, {
+            region["code"]: munis,
+            property_type["code"]: [permanent_code],
+            content["code"]: [price_code],
+            time["code"]: [str(year)],
+        })
+        dims = standardize_columns(df)
+        vcol = value_column(df, dims)
+        df["smahuspris_medel_tkr"] = normalize_number(df[vcol])
+        df["year"] = year
+        df[["kommun_kod", "kommun"]] = df[dims["region"]].apply(
+            lambda x: pd.Series(split_region(x))
+        )
+        agg = (
+            df.groupby(["kommun_kod", "kommun", "year"], as_index=False)["smahuspris_medel_tkr"]
+            .first()
+        )
+        rows.append(agg)
+        print(f"House prices {year}: {len(agg):,} municipalities")
+    return pd.concat(rows, ignore_index=True)
+
+
+def get_allmannytta_vacancy() -> pd.DataFrame:
+    """
+    Municipal vacancy in public-housing (allmännyttiga) multifamily dwellings.
+
+    SCB's published vacancy share uses the public-housing stock as denominator.
+    A second proxy is later calculated against the municipality's total dwelling
+    stock; that proxy must not be interpreted as the total municipal vacancy
+    rate because the numerator still contains only public-housing vacancies.
+    """
+    meta = metadata(VACANCY_ALLM_URL)
+    region = find_var(meta, "region")
+    apartment_type = find_var(meta, "lägenhetstyp", "lagenhetstyp")
+    content = find_var(meta, "tabellinnehåll", "contentscode")
+    time = find_var(meta, "år", "tid")
+
+    munis = municipality_codes(region)
+    total_apartment_code = require_total_code(apartment_type)
+    stock_code = code_for_text(content, "Lägenheter i flerbostadshus, allmännyttiga")
+    vacant_code = code_for_text(content, "Lediga lägenheter i flerbostadshus, allmännyttiga")
+    share_code = code_for_text(content, "Andel lediga lägenheter i flerbostadshus, allmännyttiga")
+
+    available_years = []
+    for value, label in zip(time["values"], time.get("valueTexts", time["values"])):
+        match = re.search(r"(20\d{2})", f"{value} {label}")
+        if match:
+            year = int(match.group(1))
+            if 2019 <= year <= END_YEAR:
+                available_years.append((year, str(value)))
+    available_years = sorted(dict(available_years).items())
+    if not available_years:
+        raise ValueError("No municipal allmännytta-vacancy years found for 2019-END_YEAR")
+
+    rows = []
+    for year, year_code in available_years:
+        base = {
+            region["code"]: munis,
+            apartment_type["code"]: [total_apartment_code],
+            time["code"]: [year_code],
+        }
+        measures = {}
+        for code, name in [
+            (stock_code, "allmannytta_lagenheter"),
+            (vacant_code, "lediga_allmannytta"),
+            (share_code, "lediga_allmannytta_pct"),
+        ]:
+            selections = dict(base)
+            selections[content["code"]] = [code]
+            df = px_csv(VACANCY_ALLM_URL, selections)
+            dims = standardize_columns(df)
+            vcol = value_column(df, dims)
+            df[name] = normalize_number(df[vcol])
+            df[["kommun_kod", "kommun"]] = df[dims["region"]].apply(
+                lambda x: pd.Series(split_region(x))
+            )
+            measures[name] = (
+                df.groupby(["kommun_kod", "kommun"], as_index=False)[name]
+                .first()
+            )
+
+        agg = measures["allmannytta_lagenheter"]
+        agg = agg.merge(measures["lediga_allmannytta"], on=["kommun_kod", "kommun"], how="outer")
+        agg = agg.merge(measures["lediga_allmannytta_pct"], on=["kommun_kod", "kommun"], how="outer")
+        agg["year"] = year
+        rows.append(agg)
+        print(f"Allmannytta vacancy {year}: {len(agg):,} municipalities")
+
+    return pd.concat(rows, ignore_index=True)
 
 def _norm_header(value: object) -> str:
     text = str(value or "").strip().casefold()
@@ -3420,7 +3570,7 @@ def split_region(value: str) -> tuple[str, str]:
     return s[:4], s[5:] if len(s) > 5 else s
 
 
-def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turnout: pd.DataFrame, inequality: pd.DataFrame, housing: pd.DataFrame, completed_housing: pd.DataFrame, leisure: pd.DataFrame, crime: pd.DataFrame, labor: pd.DataFrame, monthly_employment: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame, activity: pd.DataFrame, industry: pd.DataFrame, fa15: pd.DataFrame, geography: pd.DataFrame, direct_urbanity: pd.DataFrame) -> pd.DataFrame:
+def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, house_prices: pd.DataFrame, vacancy: pd.DataFrame, turnout: pd.DataFrame, inequality: pd.DataFrame, housing: pd.DataFrame, completed_housing: pd.DataFrame, leisure: pd.DataFrame, crime: pd.DataFrame, labor: pd.DataFrame, monthly_employment: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame, activity: pd.DataFrame, industry: pd.DataFrame, fa15: pd.DataFrame, geography: pd.DataFrame, direct_urbanity: pd.DataFrame) -> pd.DataFrame:
     md = standardize_columns(mig)
     mig = mig.copy()
     mig["value"] = normalize_number(mig["value"])
@@ -3510,7 +3660,18 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turn
     panel = panel.merge(pop_63_68, on=["kommun_kod", "kommun", "year"], how="left")
     panel = panel.merge(pop_70_79, on=["kommun_kod", "kommun", "year"], how="left")
     panel = panel.merge(
-        income[["kommun_kod", "year", "inkomst_tkr"]],
+        income[["kommun_kod", "year", "inkomst_tkr", "inkomst_median_tkr"]],
+        on=["kommun_kod", "year"], how="left"
+    )
+    panel = panel.merge(
+        house_prices[["kommun_kod", "year", "smahuspris_medel_tkr"]],
+        on=["kommun_kod", "year"], how="left"
+    )
+    panel = panel.merge(
+        vacancy[[
+            "kommun_kod", "year", "allmannytta_lagenheter",
+            "lediga_allmannytta", "lediga_allmannytta_pct"
+        ]],
         on=["kommun_kod", "year"], how="left"
     )
     panel = panel.merge(
@@ -3627,6 +3788,15 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turn
     panel["bostader_per_1000"] = (
         1000 * panel["bostader_totalt"] / panel["folkmangd"].replace(0, np.nan)
     )
+    panel["smahuspris_inkomstkvot_medel"] = (
+        panel["smahuspris_medel_tkr"] / panel["inkomst_tkr"].replace(0, np.nan)
+    )
+    panel["smahuspris_inkomstkvot_median"] = (
+        panel["smahuspris_medel_tkr"] / panel["inkomst_median_tkr"].replace(0, np.nan)
+    )
+    panel["lediga_allmannytta_av_total_bostadsbestand_pct"] = (
+        100 * panel["lediga_allmannytta"] / panel["bostader_totalt"].replace(0, np.nan)
+    )
     panel["fardigstallda_bostader_per_1000"] = (
         1000 * panel["fardigstallda_bostader"] / panel["folkmangd"].replace(0, np.nan)
     )
@@ -3688,6 +3858,14 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, turn
     panel["lag1_andel_20_34"] = g["andel_20_34"].shift(1)
     panel["lag1_inflyttare_medelalder"] = g["inflyttare_medelalder"].shift(1)
     panel["lag1_inkomst_tkr"] = g["inkomst_tkr"].shift(1)
+    panel["lag1_inkomst_median_tkr"] = g["inkomst_median_tkr"].shift(1)
+    panel["lag1_smahuspris_medel_tkr"] = g["smahuspris_medel_tkr"].shift(1)
+    panel["lag1_smahuspris_inkomstkvot_medel"] = g["smahuspris_inkomstkvot_medel"].shift(1)
+    panel["lag1_smahuspris_inkomstkvot_median"] = g["smahuspris_inkomstkvot_median"].shift(1)
+    panel["lag1_lediga_allmannytta_pct"] = g["lediga_allmannytta_pct"].shift(1)
+    panel["lag1_lediga_allmannytta_av_total_bostadsbestand_pct"] = (
+        g["lediga_allmannytta_av_total_bostadsbestand_pct"].shift(1)
+    )
     panel["lag1_valdeltagande_pct"] = g["valdeltagande_pct"].shift(1)
     panel["lag1_valdeltagande_gap_pp"] = g["valdeltagande_gap_pp"].shift(1)
     panel["lag1_ekonomisk_standard_gap_pp"] = g["ekonomisk_standard_gap_pp"].shift(1)
@@ -3865,6 +4043,12 @@ FEATURE_THEMES = {
     "lag1_andel_20_34": "Åldersstruktur",
     "lag1_inflyttare_medelalder": "Inflyttarprofil",
     "lag1_inkomst_tkr": "Inkomstnivå",
+    "lag1_inkomst_median_tkr": "Inkomstnivå",
+    "lag1_smahuspris_medel_tkr": "Bostadspris",
+    "lag1_smahuspris_inkomstkvot_medel": "Boendeekonomisk tillgänglighet",
+    "lag1_smahuspris_inkomstkvot_median": "Boendeekonomisk tillgänglighet",
+    "lag1_lediga_allmannytta_pct": "Bostadsvakans",
+    "lag1_lediga_allmannytta_av_total_bostadsbestand_pct": "Bostadsvakans",
     "lag1_valdeltagande_pct": "Demokratisk delaktighet",
     "lag1_valdeltagande_gap_pp": "Demokratisk ojämlikhet",
     "lag1_ekonomisk_standard_gap_pp": "Socioekonomiska klyftor",
@@ -4389,6 +4573,85 @@ def _sparse_candidate_tests(
     }
 
 
+def _paired_feature_comparison(
+    panel: pd.DataFrame,
+    target: str,
+    base_features: list[str],
+    feature_a: str,
+    feature_b: str,
+    start_year: int,
+    end_year: int,
+) -> dict:
+    """Compare two alternative measures on exactly the same observations."""
+    core = [f for f in base_features if f not in {feature_a, feature_b}]
+    cols = ["kommun_kod", "year", target] + core + [feature_a, feature_b]
+    d = (
+        panel.loc[panel["year"].between(start_year, end_year), cols]
+        .dropna()
+        .reset_index(drop=True)
+    )
+    n_obs = int(len(d))
+    n_municipalities = int(d["kommun_kod"].nunique()) if n_obs else 0
+    n_years = int(d["year"].nunique()) if n_obs else 0
+    if n_obs < 150 or n_municipalities < 80 or n_years < 2:
+        return {
+            "status": "insufficient_coverage",
+            "feature_a": feature_a,
+            "feature_b": feature_b,
+            "n_obs": n_obs,
+            "n_municipalities": n_municipalities,
+            "n_years": n_years,
+        }
+
+    y = d[target].astype(float).reset_index(drop=True)
+    out = {
+        "status": "tested",
+        "feature_a": feature_a,
+        "feature_b": feature_b,
+        "n_obs": n_obs,
+        "n_municipalities": n_municipalities,
+        "n_years": n_years,
+        "models": {},
+    }
+    for feature in [feature_a, feature_b]:
+        features = core + [feature]
+        X = _design_with_year_effects(d, features)
+        fit = sm.OLS(y, X).fit()
+        robust = sm.OLS(y, X).fit(
+            cov_type="cluster",
+            cov_kwds={"groups": d["kommun_kod"].reset_index(drop=True)},
+        )
+        names = list(robust.model.exog_names)
+        i = names.index(feature)
+        rmse = float(np.sqrt(np.mean(np.square(fit.resid))))
+        out["models"][feature] = {
+            "adjusted_r2": _finite_float(fit.rsquared_adj),
+            "aic": _finite_float(fit.aic),
+            "rmse": _finite_float(rmse),
+            "coefficient": _finite_float(np.asarray(robust.params)[i]),
+            "p_value": _finite_float(np.asarray(robust.pvalues)[i]),
+        }
+
+    a = out["models"][feature_a]
+    b = out["models"][feature_b]
+    score_a = (
+        (a["adjusted_r2"] if a["adjusted_r2"] is not None else -1e99),
+        -(a["aic"] if a["aic"] is not None else 1e99),
+    )
+    score_b = (
+        (b["adjusted_r2"] if b["adjusted_r2"] is not None else -1e99),
+        -(b["aic"] if b["aic"] is not None else 1e99),
+    )
+    out["preferred"] = feature_a if score_a >= score_b else feature_b
+    out["delta_adjusted_r2_b_minus_a"] = _finite_float(
+        (b["adjusted_r2"] or 0.0) - (a["adjusted_r2"] or 0.0)
+    )
+    out["delta_aic_a_minus_b"] = _finite_float(
+        (a["aic"] or 0.0) - (b["aic"] or 0.0)
+    )
+    return out
+
+
 def fit_models(panel: pd.DataFrame, *, demographic_blind: bool = False, output_suffix: str = "") -> dict:
     target = "inflyttning_per_1000"
     features = [
@@ -4515,7 +4778,9 @@ def fit_models(panel: pd.DataFrame, *, demographic_blind: bool = False, output_s
             "Standardfel i förklaringsmodellen är klustrade per kommun eftersom samma kommun förekommer flera år.",
             "Prognosvalideringen för teståret använder endast de föregående 1–5 åren beroende på valt analysfönster.",
             "Föregående års utflyttning per 1 000 invånare testas som ett separat historiskt dynamiktema för att se om utflödet tillför information utöver föregående års inflyttning.",
-            "Inkomst avser genomsnittlig sammanräknad förvärvsinkomst för 20–64-åringar och används laggad ett år.",
+            "Inkomstbasen innehåller både medel- och medianvärde för sammanräknad förvärvsinkomst 20–64 år. Medelvärdet ligger kvar i produktionsbasen medan medianen jämförs på identiska observationer innan ett eventuellt byte.",
+            "Småhuspris testas som föregående års genomsnittliga köpeskilling för permanentbostad (ej tomträtt) enligt SCB:s fastighetsprisstatistik. Även pris/medelinkomst och pris/medianinkomst testas som enkla tillgänglighetsproxyer.",
+            "Vakans testas med SCB:s andel lediga lägenheter i allmännyttiga flerbostadshus. Dessutom testas lediga allmännyttiga lägenheter dividerat med kommunens totala bostadsbestånd; det senare är endast en partiell vakansproxy eftersom privata lediga lägenheter saknas i täljaren.",
             "Landets lugn testas som ett gemensamt tema där andel småhus, anmälda brott per 100 000 invånare och fritidshusandel bland småhusliknande bostäder konkurrerar om att representera temat.",
             "Bostadsutbud mäts som totalt bostadsbestånd per 1 000 invånare enligt SCB BO0104T04 och används laggat ett år.",
             "Bostadsdynamik testas med både årlig förändring i bostadsbeståndet och färdigställda lägenheter i nybyggda hus per 1 000 invånare; högst en av dessa behålls inom temat.",
@@ -5447,11 +5712,13 @@ def main():
     mig = get_migration()
     pop = get_population()
     income = get_income()
+    house_prices = get_house_prices()
+    vacancy = get_allmannytta_vacancy()
     housing = get_housing()
     completed_housing = get_completed_housing()
     leisure = get_leisure_houses()
     crime = get_crime_total()
-    panel = build_panel(mig, pop, income, turnout, inequality, housing, completed_housing, leisure, crime, labor, monthly_employment, education, students, activity, industry, fa15, geography, direct_urbanity)
+    panel = build_panel(mig, pop, income, house_prices, vacancy, turnout, inequality, housing, completed_housing, leisure, crime, labor, monthly_employment, education, students, activity, industry, fa15, geography, direct_urbanity)
     panel = panel.merge(
         snowmobile_proxy,
         on=["kommun_kod", "year"],
@@ -5525,6 +5792,24 @@ def main():
         },
     }
     result["employment_seasonality_rankings"] = _employment_variation_rankings(panel)
+
+    result["housing_market_candidate_tests"] = _sparse_candidate_tests(
+        panel,
+        result["target"],
+        overall_base,
+        HOUSING_MARKET_CANDIDATE_FEATURES,
+        END_YEAR - 4,
+        END_YEAR,
+    )
+    result["income_mean_vs_median"] = _paired_feature_comparison(
+        panel,
+        result["target"],
+        overall_base,
+        "lag1_inkomst_tkr",
+        "lag1_inkomst_median_tkr",
+        END_YEAR - 4,
+        END_YEAR,
+    )
 
     result["snowmobile_proxy_candidate_tests"] = {
         "overall": _sparse_candidate_tests(
@@ -5664,6 +5949,23 @@ def main():
     }
 
     blind_base = blind_result["windows"]["5"]["explanation"]["selected_features"]
+    blind_result["housing_market_candidate_tests"] = _sparse_candidate_tests(
+        panel,
+        blind_result["target"],
+        blind_base,
+        HOUSING_MARKET_CANDIDATE_FEATURES,
+        END_YEAR - 4,
+        END_YEAR,
+    )
+    blind_result["income_mean_vs_median"] = _paired_feature_comparison(
+        panel,
+        blind_result["target"],
+        blind_base,
+        "lag1_inkomst_tkr",
+        "lag1_inkomst_median_tkr",
+        END_YEAR - 4,
+        END_YEAR,
+    )
     blind_result["snowmobile_proxy_candidate_tests"] = {
         "overall": _sparse_candidate_tests(
             panel,
