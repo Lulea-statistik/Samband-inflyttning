@@ -147,6 +147,19 @@ function wdata(){
   return model.windows?.[String(selectedWindow)];
 }
 
+function observedModelYears(){
+  const w=wdata();
+  const e=w?.explanation;
+  if(!e) return [];
+  const sampleFeatures=model.features||e.selected_features||[];
+  return [...new Set(panel
+    .filter(r=>Number(r.year)>=Number(e.start_year)&&Number(r.year)<=Number(e.end_year)
+      && Number.isFinite(Number(r[model.target||'inflyttning_per_1000']))
+      && sampleFeatures.every(f=>Number.isFinite(Number(r[f]))))
+    .map(r=>Number(r.year)))]
+    .sort((a,b)=>a-b);
+}
+
 function renderAll(){
   const w=wdata();
   if(!w) return showLoadError(new Error('Modellresultat saknas för '+selectedWindow+' års analysperiod.'));
@@ -162,8 +175,12 @@ function renderAll(){
     }
     variantText.textContent=txt;
   }
+  const observedYears=observedModelYears();
+  const observedRange=observedYears.length
+    ? observedYears[0]+'–'+observedYears[observedYears.length-1]
+    : e.start_year+'–'+e.end_year;
   document.getElementById('windowDescription').textContent=
-    (variantMeta.label || model.model_label || 'Modell')+': '+e.start_year+'–'+e.end_year+
+    (variantMeta.label || model.model_label || 'Modell')+': '+observedRange+
     ' · validering: '+v.train_start_year+'–'+v.train_end_year+' → test '+v.test_year;
   renderGeographyContext();
   renderOverview();
@@ -188,7 +205,10 @@ function renderOverview(){
   const best=Object.entries(v.models).sort((a,b)=>(b[1].r2??-Infinity)-(a[1].r2??-Infinity))[0];
   document.getElementById('cards').innerHTML=[
     metricCard('Modell',selectedModelVariant==='demographic_blind'?'Demografiskt blind':'Prognos'),
-    metricCard('Förklaringsperiod',e.start_year+'–'+e.end_year),
+    metricCard('Förklaringsperiod',(()=>{
+      const ys=observedModelYears();
+      return ys.length?ys[0]+'–'+ys[ys.length-1]:e.start_year+'–'+e.end_year;
+    })()),
     metricCard('Kommun-år',fmt0.format(e.n_obs)),
     metricCard('Kommuner',fmt0.format(e.n_municipalities)),
     metricCard('R²',fmt2.format(e.r2)),
@@ -342,6 +362,7 @@ function luleaAnalysis(){
   const e=w?.explanation;
   if(!e) return null;
   const features=e.selected_features||[];
+  const sampleFeatures=model.features||features;
   const coeffMap=new Map((e.coefficients||[]).map(d=>[d.feature,Number(d.coefficient)]));
   const themeMap=new Map();
   (e.theme_marginal_analysis?.rows||[]).forEach(row=>{
@@ -352,11 +373,12 @@ function luleaAnalysis(){
   const intercept=Number(e.intercept)||0;
 
   const out=[];
-  for(let year=e.start_year;year<=e.end_year;year++){
+  const years=observedModelYears();
+  for(const year of years){
     const yearRows=panel.filter(r=>
       Number(r.year)===Number(year) &&
       Number.isFinite(Number(r.inflyttning_per_1000)) &&
-      features.every(f=>Number.isFinite(Number(r[f])))
+      sampleFeatures.every(f=>Number.isFinite(Number(r[f])))
     );
     const lu=yearRows.find(r=>String(r.kommun_kod)==='2580');
     if(!lu||!yearRows.length) continue;
