@@ -154,6 +154,8 @@ function renderAll(){
     ' · validering: '+v.train_start_year+'–'+v.train_end_year+' → test '+v.test_year;
   renderOverview();
   renderVariantComparison();
+  renderR2ContributionProfile();
+  renderPublicPage();
   renderModel();
   renderVariableMatrix();
   renderAgeModels();
@@ -233,6 +235,137 @@ function renderVariantComparison(){
     margin:{t:20,b:100},
     yaxis:{title:'Out-of-sample R²'},
     xaxis:{title:''}
+  },{responsive:true,displaylogo:false});
+}
+
+
+function variantWindow(variantId){
+  if(variantId==='demographic_blind'){
+    return rootModel.model_variants?.demographic_blind?.windows?.[String(selectedWindow)];
+  }
+  return rootModel.windows?.[String(selectedWindow)];
+}
+
+function marginalThemeMap(w){
+  const rows=w?.explanation?.theme_marginal_analysis?.rows||[];
+  return new Map(rows.map(d=>[d.theme,d]));
+}
+
+function renderR2ContributionProfile(){
+  const root=document.getElementById('r2ContributionProfile');
+  if(!root) return;
+  const fw=variantWindow('forecast');
+  const bw=variantWindow('demographic_blind');
+  if(!fw||!bw){
+    root.innerHTML='<p class="note">Bidragsdata saknas för valt analysfönster.</p>';
+    return;
+  }
+  const fm=marginalThemeMap(fw), bm=marginalThemeMap(bw);
+  const themes=[...new Set([...fm.keys(),...bm.keys()])];
+  themes.sort((a,b)=>{
+    const aa=Math.max(fm.get(a)?.delta_adjusted_r2??0,bm.get(a)?.delta_adjusted_r2??0);
+    const bb=Math.max(fm.get(b)?.delta_adjusted_r2??0,bm.get(b)?.delta_adjusted_r2??0);
+    return aa-bb;
+  });
+  Plotly.react(root,[
+    {
+      y:themes,
+      x:themes.map(t=>fm.get(t)?.delta_adjusted_r2??0),
+      type:'bar',orientation:'h',name:'Prognosmodell',
+      customdata:themes.map(t=>[(fm.get(t)?.features||[]).map(f=>labels[f]||f).join(', ')]),
+      hovertemplate:'%{y}<br>Prognosmodell: Δ justerat R²=%{x:.4f}<br>%{customdata[0]}<extra></extra>'
+    },
+    {
+      y:themes,
+      x:themes.map(t=>bm.get(t)?.delta_adjusted_r2??0),
+      type:'bar',orientation:'h',name:'Demografiskt blind',
+      customdata:themes.map(t=>[(bm.get(t)?.features||[]).map(f=>labels[f]||f).join(', ')]),
+      hovertemplate:'%{y}<br>Blind modell: Δ justerat R²=%{x:.4f}<br>%{customdata[0]}<extra></extra>'
+    }
+  ],{
+    barmode:'group',
+    margin:{t:35,l:220,b:55},
+    xaxis:{title:'Förlust i justerat R² när temat tas bort',zeroline:true},
+    yaxis:{automargin:true},
+    legend:{orientation:'h',y:1.08}
+  },{responsive:true,displaylogo:false});
+}
+
+function renderPublicPage(){
+  const fw=rootModel.windows?.['5'];
+  const bw=rootModel.model_variants?.demographic_blind?.windows?.['5'];
+  if(!fw||!bw) return;
+
+  const fr=fw.validation?.models?.ridge||{};
+  const br=bw.validation?.models?.ridge||{};
+  const diff=(fr.r2??0)-(br.r2??0);
+  const kpis=document.getElementById('publicKpis');
+  if(kpis){
+    kpis.innerHTML=[
+      '<article><span>Prognosmodell</span><strong>'+fmt(fr.r2,3)+'</strong><small>test-R² 2024</small></article>',
+      '<article><span>Demografiskt blind</span><strong>'+fmt(br.r2,3)+'</strong><small>test-R² 2024</small></article>',
+      '<article><span>Historikens prognosfördel</span><strong>+'+fmt(diff,3)+'</strong><small>skillnad i test-R²</small></article>'
+    ].join('');
+  }
+
+  Plotly.react('publicModelR2',[
+    {
+      x:['Prognosmodell','Demografiskt blind strukturmodell'],
+      y:[fr.r2,br.r2],
+      type:'bar',
+      text:[fr.r2,br.r2].map(v=>fmt(v,3)),
+      textposition:'outside',
+      hovertemplate:'%{x}<br>Test-R²=%{y:.3f}<extra></extra>'
+    }
+  ],{
+    margin:{t:20,b:90,l:65,r:30},
+    yaxis:{title:'Test-R²',range:[0,1]},
+    xaxis:{title:''},
+    showlegend:false
+  },{responsive:true,displaylogo:false});
+
+  const blindRows=(bw.explanation?.theme_marginal_analysis?.rows||[])
+    .filter(d=>(d.delta_adjusted_r2??0)>0)
+    .sort((a,b)=>(a.delta_adjusted_r2??0)-(b.delta_adjusted_r2??0))
+    .slice(-8);
+  Plotly.react('publicBlindDrivers',[{
+    y:blindRows.map(d=>d.theme),
+    x:blindRows.map(d=>d.delta_adjusted_r2),
+    type:'bar',orientation:'h',
+    text:blindRows.map(d=>fmt(d.delta_adjusted_r2,3)),
+    textposition:'outside',
+    customdata:blindRows.map(d=>[(d.features||[]).map(f=>labels[f]||f).join(', ')]),
+    hovertemplate:'%{y}<br>Δ justerat R²=%{x:.4f}<br>%{customdata[0]}<extra></extra>'
+  }],{
+    margin:{t:20,l:190,r:70,b:55},
+    xaxis:{title:'Självständigt förklaringsvärde: tapp i justerat R²'},
+    yaxis:{automargin:true},
+    showlegend:false
+  },{responsive:true,displaylogo:false});
+
+  const keys=['18_23','24_34','35_49','63_68','70_79'];
+  const fa=rootModel.age_group_models||{};
+  const ba=rootModel.model_variants?.demographic_blind?.age_group_models||{};
+  const ageLabels=keys.map(k=>(fa[k]?.label||k.replace('_','–')));
+  Plotly.react('publicAgeComparison',[
+    {
+      x:ageLabels,
+      y:keys.map(k=>fa[k]?.validation?.models?.ridge?.r2),
+      type:'bar',name:'Prognosmodell',
+      hovertemplate:'%{x}<br>Prognosmodell R²=%{y:.3f}<extra></extra>'
+    },
+    {
+      x:ageLabels,
+      y:keys.map(k=>ba[k]?.validation?.models?.ridge?.r2),
+      type:'bar',name:'Demografiskt blind',
+      hovertemplate:'%{x}<br>Blind modell R²=%{y:.3f}<extra></extra>'
+    }
+  ],{
+    barmode:'group',
+    margin:{t:25,b:65,l:65,r:30},
+    yaxis:{title:'Test-R²',range:[0,1]},
+    xaxis:{title:'Åldersgrupp'},
+    legend:{orientation:'h',y:1.12}
   },{responsive:true,displaylogo:false});
 }
 
