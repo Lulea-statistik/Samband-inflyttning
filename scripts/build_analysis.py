@@ -5323,6 +5323,11 @@ def fit_models(panel: pd.DataFrame, *, demographic_blind: bool = False, output_s
     }
     if demographic_blind:
         features = [f for f in features if f not in direct_demographic_features]
+        # Promoted after candidate, urbanity/rurality controls, 2024 holdout and
+        # expanding-window validation for 2022-2024 all improved. Keep it out of
+        # the forecast model, where it adds no material value beyond historical
+        # demographic dynamics.
+        features.append("lag1_andel_bostader_111_plus")
 
     model_df = panel.dropna(subset=[target] + features).copy()
     test_year = int(model_df["year"].max())
@@ -5403,7 +5408,7 @@ def fit_models(panel: pd.DataFrame, *, demographic_blind: bool = False, output_s
         "features": features,
         "windows": windows,
         "notes": [
-            ("Den demografiskt blinda modellen förbjuder historisk inflyttning, utflyttning, befolkningstillväxt, åldersstruktur och inflyttarnas tidigare medelålder som förklaringsvariabler. Kommunstorlek samt bostads- och arbetsmarknadsvariabler är tillåtna strukturella kontroller." if demographic_blind else "Prognosmodellen får använda historiska demografiska variabler när de förbättrar prognosförmågan."),
+            ("Den demografiskt blinda modellen förbjuder historisk inflyttning, utflyttning, befolkningstillväxt, åldersstruktur och inflyttarnas tidigare medelålder som förklaringsvariabler. Kommunstorlek samt bostads- och arbetsmarknadsvariabler är tillåtna strukturella kontroller. Andel bostäder minst 111 m² ingår nu som strukturell produktionsvariabel efter att ha förbättrat samtliga möjliga expanding-window-holdoutår 2022–2024 även med småhusandel och urbanitetskontroller." if demographic_blind else "Prognosmodellen får använda historiska demografiska variabler när de förbättrar prognosförmågan."),
             "Förklaringsmodellen använder kommun-år och som standard de fem senaste observerade åren.",
             "Årseffekter ingår i förklaringsmodellen för att fånga gemensamma nationella årsvariationer.",
             "Standardfel i förklaringsmodellen är klustrade per kommun eftersom samma kommun förekommer flera år.",
@@ -5414,7 +5419,7 @@ def fit_models(panel: pd.DataFrame, *, demographic_blind: bool = False, output_s
             "Vakans testas med SCB:s andel lediga lägenheter i allmännyttiga flerbostadshus. Dessutom testas lediga allmännyttiga lägenheter dividerat med kommunens totala bostadsbestånd; det senare är endast en partiell vakansproxy eftersom privata lediga lägenheter saknas i täljaren.",
             "Landets lugn testas som ett gemensamt tema där andel småhus, anmälda brott per 100 000 invånare och fritidshusandel bland småhusliknande bostäder konkurrerar om att representera temat.",
             "Bostadsutbud mäts som totalt bostadsbestånd per 1 000 invånare enligt SCB BO0104T04 och används laggat ett år.",
-            "Bostadsstorlek testas separat som kandidattema från SCB:s bostadsareatabell: andel bostäder minst 111 m², andel bostäder minst 141 m² samt andel småhus minst 111 m². Nämnarna exkluderar poster där bostadsarea saknas och måtten används laggade ett år. Kandidater som ser starka ut robusthetstestas dessutom med nordlighet, kommunstorlek, tätortsgrad, bebyggd mark, havsandel och småhusandel hållna konstanta. För den demografiskt blinda modellen krävs även expanding-window holdout över flera testår innan eventuell produktionsstatus.",
+            "Bostadsstorlek hämtas från SCB:s bostadsareatabell. Andel bostäder minst 111 m² har efter kandidatprovning, urbanitets-/småhuskontroller och expanding-window-validering 2022–2024 fått produktionsstatus i den demografiskt blinda huvudmodellen. Måttet används laggat ett år och ska tolkas som strukturell kommunegenskap, inte som kausal bostadseffekt. Andel minst 141 m² och andel småhus minst 111 m² ligger kvar som kandidatmått. Prognosmodellen använder ingen bostadsstorleksvariabel eftersom marginalbidraget där är försumbart.",
             "Bostadsdynamik testas med både årlig förändring i bostadsbeståndet och färdigställda lägenheter i nybyggda hus per 1 000 invånare; högst en av dessa behålls inom temat.",
             "Upplåtelseform testas med andel hyresrätt respektive bostadsrätt av bostadsbeståndet; högst en representant behålls inom temat.",
             "Andel småhus avser lägenheter i småhus dividerat med samtliga lägenheter i småhus, flerbostadshus, övriga hus och specialbostäder enligt SCB BO0104T04 och används laggad ett år.",
