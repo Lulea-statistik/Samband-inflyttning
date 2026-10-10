@@ -63,3 +63,7 @@ main{padding:24px 28px;max-width:1500px;margin:auto}.page{display:none}.page.act
   .public-hero{padding:30px 24px}
   .public-chart-card{padding:20px}
 }
+
+.lulea-method{border-left:5px solid #8aa7bf}
+#luleaOverview .cards .card .value{font-size:30px}
+#luleaOverview .chart{min-height:430px}
