@@ -139,6 +139,8 @@ SNOWMOBILE_PROXY_FEATURES = [
 HOUSING_MARKET_CANDIDATE_FEATURES = [
     "lag1_inkomst_median_tkr",
     "lag1_smahuspris_medel_tkr",
+    "lag1_log_smahuspris_medel",
+    "lag1_smahuspris_forandring_pct",
     "lag1_smahuspris_inkomstkvot_medel",
     "lag1_smahuspris_inkomstkvot_median",
     "lag1_lediga_allmannytta_pct",
@@ -3788,6 +3790,12 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel["bostader_per_1000"] = (
         1000 * panel["bostader_totalt"] / panel["folkmangd"].replace(0, np.nan)
     )
+    panel["log_smahuspris_medel"] = np.log(
+        panel["smahuspris_medel_tkr"].where(panel["smahuspris_medel_tkr"] > 0)
+    )
+    panel["smahuspris_forandring_pct"] = (
+        100 * panel.groupby("kommun_kod")["smahuspris_medel_tkr"].pct_change(fill_method=None)
+    )
     panel["smahuspris_inkomstkvot_medel"] = (
         panel["smahuspris_medel_tkr"] / panel["inkomst_tkr"].replace(0, np.nan)
     )
@@ -3860,6 +3868,8 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel["lag1_inkomst_tkr"] = g["inkomst_tkr"].shift(1)
     panel["lag1_inkomst_median_tkr"] = g["inkomst_median_tkr"].shift(1)
     panel["lag1_smahuspris_medel_tkr"] = g["smahuspris_medel_tkr"].shift(1)
+    panel["lag1_log_smahuspris_medel"] = g["log_smahuspris_medel"].shift(1)
+    panel["lag1_smahuspris_forandring_pct"] = g["smahuspris_forandring_pct"].shift(1)
     panel["lag1_smahuspris_inkomstkvot_medel"] = g["smahuspris_inkomstkvot_medel"].shift(1)
     panel["lag1_smahuspris_inkomstkvot_median"] = g["smahuspris_inkomstkvot_median"].shift(1)
     panel["lag1_lediga_allmannytta_pct"] = g["lediga_allmannytta_pct"].shift(1)
@@ -4045,6 +4055,8 @@ FEATURE_THEMES = {
     "lag1_inkomst_tkr": "Inkomstnivå",
     "lag1_inkomst_median_tkr": "Inkomstnivå",
     "lag1_smahuspris_medel_tkr": "Bostadspris",
+    "lag1_log_smahuspris_medel": "Bostadspris",
+    "lag1_smahuspris_forandring_pct": "Bostadsprisdynamik",
     "lag1_smahuspris_inkomstkvot_medel": "Boendeekonomisk tillgänglighet",
     "lag1_smahuspris_inkomstkvot_median": "Boendeekonomisk tillgänglighet",
     "lag1_lediga_allmannytta_pct": "Bostadsvakans",
@@ -4652,6 +4664,170 @@ def _paired_feature_comparison(
     return out
 
 
+def _housing_market_coverage(panel: pd.DataFrame) -> dict:
+    """Compact coverage diagnostics for the new housing-market sources."""
+    specs = {
+        "mean_income": "inkomst_tkr",
+        "median_income": "inkomst_median_tkr",
+        "mean_small_house_price": "smahuspris_medel_tkr",
+        "allmannytta_vacancy_share": "lediga_allmannytta_pct",
+        "allmannytta_vacant_units": "lediga_allmannytta",
+    }
+    out = {}
+    for name, col in specs.items():
+        d = panel.loc[panel[col].notna(), ["kommun_kod", "year"]].copy()
+        out[name] = {
+            "n_obs": int(len(d)),
+            "n_municipalities": int(d["kommun_kod"].nunique()) if len(d) else 0,
+            "years": sorted(int(x) for x in d["year"].dropna().unique().tolist()),
+            "obs_by_year": {
+                str(int(y)): int(n)
+                for y, n in d.groupby("year").size().items()
+            },
+        }
+    return out
+
+
+def _housing_market_residual_tests(
+    panel: pd.DataFrame,
+    target: str,
+    base_features: list[str],
+    start_year: int,
+    end_year: int,
+) -> dict:
+    """
+    Test whether house-price candidates add information beyond geography and
+    urban structure, then compare baseline versus candidate in a strict final-
+    year holdout. This guards against treating house prices as a disguised
+    latitude/urbanity proxy or rewarding in-sample fit only.
+    """
+    candidates = [
+        "lag1_smahuspris_medel_tkr",
+        "lag1_log_smahuspris_medel",
+        "lag1_smahuspris_forandring_pct",
+        "lag1_smahuspris_inkomstkvot_medel",
+        "lag1_smahuspris_inkomstkvot_median",
+    ]
+    forced_controls = [
+        "geo_northing_100km",
+        "lag1_log_folkmangd",
+        "lag1_tatortsgrad_pct",
+        "lag1_bebyggd_anlagd_andel_land_pct",
+        "geo_havsandel_10pp",
+    ]
+    needed = list(dict.fromkeys(
+        ["kommun_kod", "year", target, "kommun_centroid_northing_km",
+         "havsandel_pct", "lag1_log_folkmangd", "lag1_tatortsgrad_pct",
+         "lag1_bebyggd_anlagd_andel_land_pct"]
+        + candidates + list(base_features)
+    ))
+    d = (
+        panel.loc[panel["year"].between(start_year, end_year), needed]
+        .dropna()
+        .reset_index(drop=True)
+    )
+    if d.empty:
+        return {"status": "insufficient_coverage", "rows": []}
+
+    northing_center_km = float(
+        panel[["kommun_kod", "kommun_centroid_northing_km"]]
+        .drop_duplicates("kommun_kod")["kommun_centroid_northing_km"]
+        .dropna()
+        .median()
+    )
+    d["geo_northing_100km"] = (
+        d["kommun_centroid_northing_km"] - northing_center_km
+    ) / 100.0
+    d["geo_havsandel_10pp"] = d["havsandel_pct"] / 10.0
+
+    base_core = [
+        f for f in base_features
+        if f not in {
+            "lag1_log_folkmangd",
+            "lag1_tatortsgrad_pct",
+            "lag1_bebyggd_anlagd_andel_land_pct",
+        }
+        and f not in candidates
+    ]
+    controls = list(dict.fromkeys(base_core + forced_controls))
+    y = d[target].astype(float).reset_index(drop=True)
+    fit_controls = sm.OLS(y, _design_with_year_effects(d, controls)).fit()
+    rmse_controls = float(np.sqrt(np.mean(np.square(fit_controls.resid))))
+
+    rows = []
+    for candidate in candidates:
+        features = controls + [candidate]
+        fit = sm.OLS(y, _design_with_year_effects(d, features)).fit()
+        robust = sm.OLS(y, _design_with_year_effects(d, features)).fit(
+            cov_type="cluster",
+            cov_kwds={"groups": d["kommun_kod"].reset_index(drop=True)},
+        )
+        names = list(robust.model.exog_names)
+        i = names.index(candidate)
+        rmse = float(np.sqrt(np.mean(np.square(fit.resid))))
+
+        train = d[d["year"] < end_year].copy()
+        test = d[d["year"] == end_year].copy()
+        holdout = {
+            "test_year": end_year,
+            "n_train": int(len(train)),
+            "n_test": int(len(test)),
+        }
+        if len(train) >= 150 and len(test) >= 80:
+            base_model = LinearRegression().fit(train[controls], train[target])
+            full_model = LinearRegression().fit(train[features], train[target])
+            y_test = test[target].to_numpy(dtype=float)
+            base_pred = base_model.predict(test[controls])
+            full_pred = full_model.predict(test[features])
+            holdout.update({
+                "base_rmse": _finite_float(np.sqrt(mean_squared_error(y_test, base_pred))),
+                "full_rmse": _finite_float(np.sqrt(mean_squared_error(y_test, full_pred))),
+                "delta_rmse": _finite_float(
+                    np.sqrt(mean_squared_error(y_test, base_pred))
+                    - np.sqrt(mean_squared_error(y_test, full_pred))
+                ),
+                "base_r2": _finite_float(r2_score(y_test, base_pred)),
+                "full_r2": _finite_float(r2_score(y_test, full_pred)),
+                "delta_r2": _finite_float(
+                    r2_score(y_test, full_pred) - r2_score(y_test, base_pred)
+                ),
+            })
+        else:
+            holdout["status"] = "insufficient_coverage"
+
+        rows.append({
+            "feature": candidate,
+            "n_obs": int(len(d)),
+            "n_municipalities": int(d["kommun_kod"].nunique()),
+            "n_years": int(d["year"].nunique()),
+            "coefficient_after_controls": _finite_float(np.asarray(robust.params)[i]),
+            "p_value_after_controls": _finite_float(np.asarray(robust.pvalues)[i]),
+            "delta_adjusted_r2_after_controls": _finite_float(
+                fit.rsquared_adj - fit_controls.rsquared_adj
+            ),
+            "delta_aic_after_controls": _finite_float(
+                fit_controls.aic - fit.aic
+            ),
+            "delta_rmse_after_controls": _finite_float(
+                rmse_controls - rmse
+            ),
+            "holdout": holdout,
+        })
+
+    return {
+        "status": "tested",
+        "rule": (
+            "same observations; baseline plus northing, log population, SCB "
+            "urban-area share, built/developed land share and sea share held "
+            "constant; separate final-year holdout without year fixed effects"
+        ),
+        "start_year": start_year,
+        "end_year": end_year,
+        "forced_controls": forced_controls,
+        "rows": rows,
+    }
+
+
 def fit_models(panel: pd.DataFrame, *, demographic_blind: bool = False, output_suffix: str = "") -> dict:
     target = "inflyttning_per_1000"
     features = [
@@ -4779,7 +4955,7 @@ def fit_models(panel: pd.DataFrame, *, demographic_blind: bool = False, output_s
             "Prognosvalideringen för teståret använder endast de föregående 1–5 åren beroende på valt analysfönster.",
             "Föregående års utflyttning per 1 000 invånare testas som ett separat historiskt dynamiktema för att se om utflödet tillför information utöver föregående års inflyttning.",
             "Inkomstbasen innehåller både medel- och medianvärde för sammanräknad förvärvsinkomst 20–64 år. Medelvärdet ligger kvar i produktionsbasen medan medianen jämförs på identiska observationer innan ett eventuellt byte.",
-            "Småhuspris testas som föregående års genomsnittliga köpeskilling för permanentbostad (ej tomträtt) enligt SCB:s fastighetsprisstatistik. Även pris/medelinkomst och pris/medianinkomst testas som enkla tillgänglighetsproxyer.",
+            "Småhuspris testas som föregående års genomsnittliga köpeskilling för permanentbostad (ej tomträtt) enligt SCB:s fastighetsprisstatistik. Nivå, logaritmerad nivå, årlig prisförändring samt pris/medelinkomst och pris/medianinkomst testas separat. Stark prisnivå i den blinda modellen robusthetstestas dessutom mot nordlighet, urbanitet, bebyggd mark, havsandel och ett separat 2024-holdout.",
             "Vakans testas med SCB:s andel lediga lägenheter i allmännyttiga flerbostadshus. Dessutom testas lediga allmännyttiga lägenheter dividerat med kommunens totala bostadsbestånd; det senare är endast en partiell vakansproxy eftersom privata lediga lägenheter saknas i täljaren.",
             "Landets lugn testas som ett gemensamt tema där andel småhus, anmälda brott per 100 000 invånare och fritidshusandel bland småhusliknande bostäder konkurrerar om att representera temat.",
             "Bostadsutbud mäts som totalt bostadsbestånd per 1 000 invånare enligt SCB BO0104T04 och används laggat ett år.",
@@ -5810,6 +5986,14 @@ def main():
         END_YEAR - 4,
         END_YEAR,
     )
+    result["housing_market_coverage"] = _housing_market_coverage(panel)
+    result["housing_market_residual_tests"] = _housing_market_residual_tests(
+        panel,
+        result["target"],
+        overall_base,
+        END_YEAR - 4,
+        END_YEAR,
+    )
 
     result["snowmobile_proxy_candidate_tests"] = {
         "overall": _sparse_candidate_tests(
@@ -5963,6 +6147,14 @@ def main():
         blind_base,
         "lag1_inkomst_tkr",
         "lag1_inkomst_median_tkr",
+        END_YEAR - 4,
+        END_YEAR,
+    )
+    blind_result["housing_market_coverage"] = result["housing_market_coverage"]
+    blind_result["housing_market_residual_tests"] = _housing_market_residual_tests(
+        panel,
+        blind_result["target"],
+        blind_base,
         END_YEAR - 4,
         END_YEAR,
     )
