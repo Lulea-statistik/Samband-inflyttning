@@ -154,8 +154,8 @@ function observedModelYears(){
   const sampleFeatures=model.features||e.selected_features||[];
   return [...new Set(panel
     .filter(r=>Number(r.year)>=Number(e.start_year)&&Number(r.year)<=Number(e.end_year)
-      && Number.isFinite(Number(r[model.target||'inflyttning_per_1000']))
-      && sampleFeatures.every(f=>Number.isFinite(Number(r[f]))))
+      && Number.isFinite(r[model.target||'inflyttning_per_1000'])
+      && sampleFeatures.every(f=>Number.isFinite(r[f])))
     .map(r=>Number(r.year)))]
     .sort((a,b)=>a-b);
 }
@@ -377,8 +377,8 @@ function luleaAnalysis(){
   for(const year of years){
     const yearRows=panel.filter(r=>
       Number(r.year)===Number(year) &&
-      Number.isFinite(Number(r.inflyttning_per_1000)) &&
-      sampleFeatures.every(f=>Number.isFinite(Number(r[f])))
+      Number.isFinite(r.inflyttning_per_1000) &&
+      sampleFeatures.every(f=>Number.isFinite(r[f]))
     );
     const lu=yearRows.find(r=>String(r.kommun_kod)==='2580');
     if(!lu||!yearRows.length) continue;
