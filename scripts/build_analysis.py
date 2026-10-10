@@ -5221,6 +5221,140 @@ def _snowmobile_proxy_diagnostics(panel: pd.DataFrame) -> dict:
     }
 
 
+
+def _snowmobile_proxy_residual_tests(
+    panel: pd.DataFrame,
+    target: str,
+    base_features: list[str],
+    start_year: int,
+    end_year: int,
+) -> dict:
+    """
+    Test whether snowmobile share contains information beyond geometric
+    northing and urban structure, rather than merely restating latitude.
+    A second nested comparison also holds sea share constant.
+    """
+    forced_controls = [
+        "geo_northing_100km",
+        "lag1_log_folkmangd",
+        "lag1_tatortsgrad_pct",
+        "lag1_bebyggd_anlagd_andel_land_pct",
+    ]
+    proxy_features = [
+        "lag1_snoskoterandel_alla_fordon_pct",
+        "lag1_snoskoterandel_exkl_dragfordon_pct",
+    ]
+    needed = list(dict.fromkeys(
+        ["kommun_kod", "year", target, "kommun_centroid_northing_km",
+         "havsandel_pct",
+         "lag1_log_folkmangd", "lag1_tatortsgrad_pct",
+         "lag1_bebyggd_anlagd_andel_land_pct"]
+        + proxy_features + list(base_features)
+    ))
+    d = (
+        panel.loc[panel["year"].between(start_year, end_year), needed]
+        .dropna()
+        .reset_index(drop=True)
+    )
+    northing_center_km = float(
+        panel[["kommun_kod", "kommun_centroid_northing_km"]]
+        .drop_duplicates("kommun_kod")["kommun_centroid_northing_km"]
+        .dropna()
+        .median()
+    )
+    d["geo_northing_100km"] = (
+        d["kommun_centroid_northing_km"] - northing_center_km
+    ) / 100.0
+    d["geo_havsandel_10pp"] = d["havsandel_pct"] / 10.0
+
+    base_core = [
+        f for f in base_features
+        if f not in {
+            "lag1_log_folkmangd",
+            "lag1_tatortsgrad_pct",
+            "lag1_bebyggd_anlagd_andel_land_pct",
+        }
+        and f not in proxy_features
+    ]
+    controls = list(dict.fromkeys(base_core + forced_controls))
+    controls_plus_sea = controls + ["geo_havsandel_10pp"]
+
+    y = d[target].astype(float).reset_index(drop=True)
+    fit_controls = sm.OLS(
+        y, _design_with_year_effects(d, controls)
+    ).fit()
+    fit_controls_sea = sm.OLS(
+        y, _design_with_year_effects(d, controls_plus_sea)
+    ).fit()
+
+    rmse_controls = float(np.sqrt(np.mean(np.square(fit_controls.resid))))
+    rmse_controls_sea = float(np.sqrt(np.mean(np.square(fit_controls_sea.resid))))
+
+    rows = []
+    for proxy in proxy_features:
+        fit_proxy = sm.OLS(
+            y, _design_with_year_effects(d, controls + [proxy])
+        ).fit()
+        fit_proxy_sea = sm.OLS(
+            y, _design_with_year_effects(d, controls_plus_sea + [proxy])
+        ).fit()
+        robust = sm.OLS(
+            y, _design_with_year_effects(d, controls_plus_sea + [proxy])
+        ).fit(
+            cov_type="cluster",
+            cov_kwds={"groups": d["kommun_kod"].reset_index(drop=True)},
+        )
+
+        names = list(robust.model.exog_names)
+        i = names.index(proxy)
+        conf = np.asarray(robust.conf_int())
+        params = np.asarray(robust.params)
+        pvals = np.asarray(robust.pvalues)
+        rmse_proxy = float(np.sqrt(np.mean(np.square(fit_proxy.resid))))
+        rmse_proxy_sea = float(np.sqrt(np.mean(np.square(fit_proxy_sea.resid))))
+
+        rows.append({
+            "feature": proxy,
+            "n_obs": int(len(d)),
+            "n_municipalities": int(d["kommun_kod"].nunique()),
+            "n_years": int(d["year"].nunique()),
+            "coefficient_after_northing_urbanity_and_sea": _finite_float(params[i]),
+            "p_value_after_northing_urbanity_and_sea": _finite_float(pvals[i]),
+            "ci_low": _finite_float(conf[i, 0]),
+            "ci_high": _finite_float(conf[i, 1]),
+            "delta_adjusted_r2_beyond_northing_urbanity": _finite_float(
+                fit_proxy.rsquared_adj - fit_controls.rsquared_adj
+            ),
+            "delta_aic_beyond_northing_urbanity": _finite_float(
+                fit_controls.aic - fit_proxy.aic
+            ),
+            "delta_rmse_beyond_northing_urbanity": _finite_float(
+                rmse_controls - rmse_proxy
+            ),
+            "delta_adjusted_r2_beyond_northing_urbanity_and_sea": _finite_float(
+                fit_proxy_sea.rsquared_adj - fit_controls_sea.rsquared_adj
+            ),
+            "delta_aic_beyond_northing_urbanity_and_sea": _finite_float(
+                fit_controls_sea.aic - fit_proxy_sea.aic
+            ),
+            "delta_rmse_beyond_northing_urbanity_and_sea": _finite_float(
+                rmse_controls_sea - rmse_proxy_sea
+            ),
+        })
+
+    return {
+        "rule": (
+            "same observations; baseline plus northing, log population, SCB "
+            "urban-area share and built/developed land share are held constant; "
+            "a second comparison additionally holds sea share constant"
+        ),
+        "start_year": start_year,
+        "end_year": end_year,
+        "forced_controls": forced_controls,
+        "rows": rows,
+    }
+
+
 def _geography_rankings(panel: pd.DataFrame) -> dict:
     """Simple source-QA rankings for the static geography candidate variables."""
     cols = [
@@ -5378,6 +5512,23 @@ def main():
         },
     }
     result["snowmobile_proxy_diagnostics"] = _snowmobile_proxy_diagnostics(panel)
+
+    result["snowmobile_proxy_residual_tests"] = {
+        "overall": _snowmobile_proxy_residual_tests(
+            panel, result["target"], overall_base, END_YEAR - 4, END_YEAR
+        ),
+        "age_groups": {
+            key: _snowmobile_proxy_residual_tests(
+                panel,
+                model["target"],
+                model["explanation"]["selected_features"],
+                END_YEAR - 4,
+                END_YEAR,
+            )
+            for key, model in age_models.items()
+            if "error" not in model
+        },
+    }
 
     result["geography_candidate_tests"] = {
         "overall": _sparse_candidate_tests(
