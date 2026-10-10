@@ -158,6 +158,12 @@ HOUSING_SIZE_CANDIDATE_FEATURES = [
     "lag1_andel_bostader_141_plus",
     "lag1_andel_smahus_111_plus",
 ]
+HOUSING_SIZE_EXTREME_CANDIDATE_FEATURES = [
+    "lag1_andel_bostader_70_max",
+    "lag1_andel_flerbostad_70_max",
+    "lag1_andel_bostader_151_plus",
+    "lag1_andel_smahus_151_plus",
+]
 OUT = Path("docs/data")
 OUT.mkdir(parents=True, exist_ok=True)
 
@@ -2040,13 +2046,29 @@ def _housing_area_lower_bound(label: object) -> float:
     return float(nums[0])
 
 
+def _housing_area_upper_bound(label: object) -> float:
+    """Return upper bound of an SCB dwelling-area class; inf for open top class."""
+    text = str(label).lower().replace("–", "-").replace("−", "-").strip()
+    if "uppgift saknas" in text:
+        return np.nan
+    nums = re.findall(r"\d+", text)
+    if not nums:
+        return np.nan
+    if text.startswith("<"):
+        return float(nums[0]) - 1.0
+    if text.startswith(">"):
+        return np.inf
+    return float(nums[-1])
+
+
 def get_housing_area() -> pd.DataFrame:
     """
     Large-dwelling availability by municipality from SCB BO0104T5/BO0104AE.
 
-    Shares are calculated among dwellings with known area. Three candidate
-    measures are retained: all dwellings >=111 m2, all dwellings >=141 m2,
-    and small-house dwellings >=111 m2.
+    Shares are calculated among dwellings with known area. Existing large-
+    dwelling measures are retained and the SCB class boundaries are also used
+    for two new tails: small dwellings <=70 m2 and very large dwellings
+    >=151 m2. Type-specific variants help distinguish size from house type.
     """
     url, meta = resolve_housing_area_url()
     region = find_var(meta, "region")
@@ -2100,12 +2122,15 @@ def get_housing_area() -> pd.DataFrame:
             lambda x: pd.Series(split_region(x))
         )
         df["_area_lower"] = df[dims["housing_area"]].map(_housing_area_lower_bound)
-        df["_known_area"] = df["_area_lower"].notna()
+        df["_area_upper"] = df[dims["housing_area"]].map(_housing_area_upper_bound)
+        df["_known_area"] = df["_area_lower"].notna() & df["_area_upper"].notna()
         df["_large111"] = df["_known_area"] & (df["_area_lower"] >= 111)
         df["_large141"] = df["_known_area"] & (df["_area_lower"] >= 141)
-        df["_small"] = df[dims["house_type"]].astype(str).str.lower().str.contains(
-            "småhus", regex=False
-        )
+        df["_small70"] = df["_known_area"] & (df["_area_upper"] <= 70)
+        df["_large151"] = df["_known_area"] & (df["_area_lower"] >= 151)
+        house_type_text = df[dims["house_type"]].astype(str).str.lower()
+        df["_small"] = house_type_text.str.contains("småhus", regex=False)
+        df["_multi"] = house_type_text.str.contains("flerbostadshus", regex=False)
 
         key = ["kommun_kod", "kommun", "year"]
         known = (
@@ -2128,12 +2153,41 @@ def get_housing_area() -> pd.DataFrame:
             df[df["_large111"] & df["_small"]].groupby(key, as_index=False)["value"].sum()
             .rename(columns={"value": "smahus_111_plus"})
         )
+        multi_known = (
+            df[df["_known_area"] & df["_multi"]].groupby(key, as_index=False)["value"].sum()
+            .rename(columns={"value": "flerbostad_area_kand"})
+        )
+        small70 = (
+            df[df["_small70"]].groupby(key, as_index=False)["value"].sum()
+            .rename(columns={"value": "bostader_70_max"})
+        )
+        multi70 = (
+            df[df["_small70"] & df["_multi"]].groupby(key, as_index=False)["value"].sum()
+            .rename(columns={"value": "flerbostad_70_max"})
+        )
+        large151 = (
+            df[df["_large151"]].groupby(key, as_index=False)["value"].sum()
+            .rename(columns={"value": "bostader_151_plus"})
+        )
+        small151 = (
+            df[df["_large151"] & df["_small"]].groupby(key, as_index=False)["value"].sum()
+            .rename(columns={"value": "smahus_151_plus"})
+        )
 
         agg = known.merge(large111, on=key, how="left")
         agg = agg.merge(large141, on=key, how="left")
         agg = agg.merge(small_known, on=key, how="left")
         agg = agg.merge(small111, on=key, how="left")
-        for col in ["bostader_111_plus", "bostader_141_plus", "smahus_111_plus"]:
+        agg = agg.merge(multi_known, on=key, how="left")
+        agg = agg.merge(small70, on=key, how="left")
+        agg = agg.merge(multi70, on=key, how="left")
+        agg = agg.merge(large151, on=key, how="left")
+        agg = agg.merge(small151, on=key, how="left")
+        for col in [
+            "bostader_111_plus", "bostader_141_plus", "smahus_111_plus",
+            "bostader_70_max", "flerbostad_70_max",
+            "bostader_151_plus", "smahus_151_plus",
+        ]:
             agg[col] = agg[col].fillna(0)
         agg["andel_bostader_111_plus"] = (
             100 * agg["bostader_111_plus"] / agg["bostader_area_kand"].replace(0, np.nan)
@@ -2144,10 +2198,24 @@ def get_housing_area() -> pd.DataFrame:
         agg["andel_smahus_111_plus"] = (
             100 * agg["smahus_111_plus"] / agg["smahus_area_kand"].replace(0, np.nan)
         )
+        agg["andel_bostader_70_max"] = (
+            100 * agg["bostader_70_max"] / agg["bostader_area_kand"].replace(0, np.nan)
+        )
+        agg["andel_flerbostad_70_max"] = (
+            100 * agg["flerbostad_70_max"] / agg["flerbostad_area_kand"].replace(0, np.nan)
+        )
+        agg["andel_bostader_151_plus"] = (
+            100 * agg["bostader_151_plus"] / agg["bostader_area_kand"].replace(0, np.nan)
+        )
+        agg["andel_smahus_151_plus"] = (
+            100 * agg["smahus_151_plus"] / agg["smahus_area_kand"].replace(0, np.nan)
+        )
         rows.append(agg[[
             "kommun_kod", "kommun", "year",
             "andel_bostader_111_plus", "andel_bostader_141_plus",
-            "andel_smahus_111_plus",
+            "andel_smahus_111_plus", "andel_bostader_70_max",
+            "andel_flerbostad_70_max", "andel_bostader_151_plus",
+            "andel_smahus_151_plus",
         ]])
         print(f"Housing area {year}: {len(agg):,} municipalities")
 
@@ -3866,7 +3934,9 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel = panel.merge(
         housing_area[[
             "kommun_kod", "year", "andel_bostader_111_plus",
-            "andel_bostader_141_plus", "andel_smahus_111_plus"
+            "andel_bostader_141_plus", "andel_smahus_111_plus",
+            "andel_bostader_70_max", "andel_flerbostad_70_max",
+            "andel_bostader_151_plus", "andel_smahus_151_plus"
         ]],
         on=["kommun_kod", "year"], how="left"
     )
@@ -4067,6 +4137,10 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel["lag1_andel_bostader_111_plus"] = g["andel_bostader_111_plus"].shift(1)
     panel["lag1_andel_bostader_141_plus"] = g["andel_bostader_141_plus"].shift(1)
     panel["lag1_andel_smahus_111_plus"] = g["andel_smahus_111_plus"].shift(1)
+    panel["lag1_andel_bostader_70_max"] = g["andel_bostader_70_max"].shift(1)
+    panel["lag1_andel_flerbostad_70_max"] = g["andel_flerbostad_70_max"].shift(1)
+    panel["lag1_andel_bostader_151_plus"] = g["andel_bostader_151_plus"].shift(1)
+    panel["lag1_andel_smahus_151_plus"] = g["andel_smahus_151_plus"].shift(1)
     panel["lag1_fritidshusandel_bland_smahus"] = g["fritidshusandel_bland_smahus"].shift(1)
     panel["lag1_brott_per_100000"] = g["brott_per_100000"].shift(1)
     panel["lag1_sysselsattningsgrad"] = g["sysselsattningsgrad"].shift(1)
@@ -4255,6 +4329,10 @@ FEATURE_THEMES = {
     "lag1_andel_bostader_111_plus": "Bostadsstorlek",
     "lag1_andel_bostader_141_plus": "Bostadsstorlek",
     "lag1_andel_smahus_111_plus": "Bostadsstorlek",
+    "lag1_andel_bostader_70_max": "Små bostäder",
+    "lag1_andel_flerbostad_70_max": "Små bostäder",
+    "lag1_andel_bostader_151_plus": "Mycket stora bostäder",
+    "lag1_andel_smahus_151_plus": "Mycket stora bostäder",
     "lag1_fritidshusandel_bland_smahus": "Landets lugn",
     "lag1_brott_per_100000": "Landets lugn",
     "lag1_sysselsattningsgrad": "Arbetsmarknad",
@@ -5419,7 +5497,7 @@ def fit_models(panel: pd.DataFrame, *, demographic_blind: bool = False, output_s
             "Vakans testas med SCB:s andel lediga lägenheter i allmännyttiga flerbostadshus. Dessutom testas lediga allmännyttiga lägenheter dividerat med kommunens totala bostadsbestånd; det senare är endast en partiell vakansproxy eftersom privata lediga lägenheter saknas i täljaren.",
             "Landets lugn testas som ett gemensamt tema där andel småhus, anmälda brott per 100 000 invånare och fritidshusandel bland småhusliknande bostäder konkurrerar om att representera temat.",
             "Bostadsutbud mäts som totalt bostadsbestånd per 1 000 invånare enligt SCB BO0104T04 och används laggat ett år.",
-            "Bostadsstorlek hämtas från SCB:s bostadsareatabell. Andel bostäder minst 111 m² har efter kandidatprovning, urbanitets-/småhuskontroller och expanding-window-validering 2022–2024 fått produktionsstatus i den demografiskt blinda huvudmodellen. Måttet används laggat ett år och ska tolkas som strukturell kommunegenskap, inte som kausal bostadseffekt. Andel minst 141 m² och andel småhus minst 111 m² ligger kvar som kandidatmått. Prognosmodellen använder ingen bostadsstorleksvariabel eftersom marginalbidraget där är försumbart.",
+            "Bostadsstorlek hämtas från SCB:s bostadsareatabell. Andel bostäder minst 111 m² har efter kandidatprovning, urbanitets-/småhuskontroller och expanding-window-validering 2022–2024 fått produktionsstatus i den demografiskt blinda huvudmodellen. Måttet används laggat ett år och ska tolkas som strukturell kommunegenskap, inte som kausal bostadseffekt. Andel minst 141 m² och andel småhus minst 111 m² ligger kvar som kandidatmått. Prognosmodellen använder ingen bostadsstorleksvariabel eftersom marginalbidraget där är försumbart. Som kompletterande kandidatspår testas även SCB:s klassgränser för små bostäder (högst 70 m²) och mycket stora bostäder (minst 151 m²), både totalt och med hustypsspecifika varianter. Dessa ligger utanför produktion tills de visat eget informationsvärde utöver den etablerade minst-111-m²-signalen.",
             "Bostadsdynamik testas med både årlig förändring i bostadsbeståndet och färdigställda lägenheter i nybyggda hus per 1 000 invånare; högst en av dessa behålls inom temat.",
             "Upplåtelseform testas med andel hyresrätt respektive bostadsrätt av bostadsbeståndet; högst en representant behålls inom temat.",
             "Andel småhus avser lägenheter i småhus dividerat med samtliga lägenheter i småhus, flerbostadshus, övriga hus och specialbostäder enligt SCB BO0104T04 och används laggad ett år.",
@@ -6498,6 +6576,28 @@ def main():
             if "error" not in model
         },
     }
+    result["housing_size_extreme_candidate_tests"] = {
+        "overall": _sparse_candidate_tests(
+            panel,
+            result["target"],
+            overall_base,
+            HOUSING_SIZE_EXTREME_CANDIDATE_FEATURES,
+            END_YEAR - 4,
+            END_YEAR,
+        ),
+        "age_groups": {
+            key: _sparse_candidate_tests(
+                panel,
+                model["target"],
+                model["explanation"]["selected_features"],
+                HOUSING_SIZE_EXTREME_CANDIDATE_FEATURES,
+                END_YEAR - 4,
+                END_YEAR,
+            )
+            for key, model in age_models.items()
+            if "error" not in model
+        },
+    }
 
     result["snowmobile_proxy_candidate_tests"] = {
         "overall": _sparse_candidate_tests(
@@ -6715,6 +6815,28 @@ def main():
                 panel,
                 model["target"],
                 model["explanation"]["selected_features"],
+            )
+            for key, model in blind_age_models.items()
+            if "error" not in model
+        },
+    }
+    blind_result["housing_size_extreme_candidate_tests"] = {
+        "overall": _sparse_candidate_tests(
+            panel,
+            blind_result["target"],
+            blind_base,
+            HOUSING_SIZE_EXTREME_CANDIDATE_FEATURES,
+            END_YEAR - 4,
+            END_YEAR,
+        ),
+        "age_groups": {
+            key: _sparse_candidate_tests(
+                panel,
+                model["target"],
+                model["explanation"]["selected_features"],
+                HOUSING_SIZE_EXTREME_CANDIDATE_FEATURES,
+                END_YEAR - 4,
+                END_YEAR,
             )
             for key, model in blind_age_models.items()
             if "error" not in model
