@@ -26939,7 +26939,9 @@
     "Standardfel i förklaringsmodellen är klustrade per kommun eftersom samma kommun förekommer flera år.",
     "Prognosvalideringen för teståret använder endast de föregående 1–5 åren beroende på valt analysfönster.",
     "Föregående års utflyttning per 1 000 invånare testas som ett separat historiskt dynamiktema för att se om utflödet tillför information utöver föregående års inflyttning.",
-    "Inkomst avser genomsnittlig sammanräknad förvärvsinkomst för 20–64-åringar och används laggad ett år.",
+    "Inkomstbasen innehåller både medel- och medianvärde för sammanräknad förvärvsinkomst 20–64 år. Medelvärdet ligger kvar i produktionsbasen medan medianen jämförs på identiska observationer innan ett eventuellt byte.",
+    "Småhuspris testas som föregående års genomsnittliga köpeskilling för permanentbostad (ej tomträtt) enligt SCB:s fastighetsprisstatistik. Även pris/medelinkomst och pris/medianinkomst testas som enkla tillgänglighetsproxyer.",
+    "Vakans testas med SCB:s andel lediga lägenheter i allmännyttiga flerbostadshus. Dessutom testas lediga allmännyttiga lägenheter dividerat med kommunens totala bostadsbestånd; det senare är endast en partiell vakansproxy eftersom privata lediga lägenheter saknas i täljaren.",
     "Landets lugn testas som ett gemensamt tema där andel småhus, anmälda brott per 100 000 invånare och fritidshusandel bland småhusliknande bostäder konkurrerar om att representera temat.",
     "Bostadsutbud mäts som totalt bostadsbestånd per 1 000 invånare enligt SCB BO0104T04 och används laggat ett år.",
     "Bostadsdynamik testas med både årlig förändring i bostadsbeståndet och färdigställda lägenheter i nybyggda hus per 1 000 invånare; högst en av dessa behålls inom temat.",
@@ -54149,6 +54151,131 @@
       ]
     }
   },
+  "housing_market_candidate_tests": {
+    "rule": "one candidate at a time versus the same baseline and same observations",
+    "start_year": 2020,
+    "end_year": 2024,
+    "rows": [
+      {
+        "feature": "lag1_inkomst_median_tkr",
+        "status": "tested",
+        "n_obs": 1160,
+        "n_municipalities": 290,
+        "n_years": 4,
+        "coefficient": -0.005517434036547732,
+        "standardized_coefficient": -0.011097352411402066,
+        "p_value": 0.5422294159848825,
+        "base_adjusted_r2": 0.9168806797329582,
+        "full_adjusted_r2": 0.9168264736068285,
+        "delta_adjusted_r2": -5.420612612971887e-05,
+        "base_aic": 6958.031681739834,
+        "full_aic": 6959.769936828495,
+        "delta_aic": -1.7382550886604804,
+        "base_rmse": 4.772983945650343,
+        "full_rmse": 4.772445482810516,
+        "delta_rmse": 0.0005384628398266145
+      },
+      {
+        "feature": "lag1_smahuspris_medel_tkr",
+        "status": "tested",
+        "n_obs": 1160,
+        "n_municipalities": 290,
+        "n_years": 4,
+        "coefficient": -9.589815892283658e-05,
+        "standardized_coefficient": -0.011314660290833846,
+        "p_value": 0.599044378162964,
+        "base_adjusted_r2": 0.9168806797329582,
+        "full_adjusted_r2": 0.9168220787648564,
+        "delta_adjusted_r2": -5.8600968101729656e-05,
+        "base_aic": 6958.031681739834,
+        "full_aic": 6959.831228951423,
+        "delta_aic": -1.7995472115890152,
+        "base_rmse": 4.772983945650343,
+        "full_rmse": 4.772571567801547,
+        "delta_rmse": 0.0004123778487956642
+      },
+      {
+        "feature": "lag1_smahuspris_inkomstkvot_medel",
+        "status": "tested",
+        "n_obs": 1160,
+        "n_municipalities": 290,
+        "n_years": 4,
+        "coefficient": 0.10559011692240822,
+        "standardized_coefficient": 0.026084285024551276,
+        "p_value": 0.3232002078963203,
+        "base_adjusted_r2": 0.9168806797329582,
+        "full_adjusted_r2": 0.9168741704860643,
+        "delta_adjusted_r2": -6.509246893826592e-06,
+        "base_aic": 6958.031681739834,
+        "full_aic": 6959.104529784325,
+        "delta_aic": -1.0728480444904562,
+        "base_rmse": 4.772983945650343,
+        "full_rmse": 4.771076877861926,
+        "delta_rmse": 0.0019070677884167608
+      },
+      {
+        "feature": "lag1_smahuspris_inkomstkvot_median",
+        "status": "tested",
+        "n_obs": 1160,
+        "n_municipalities": 290,
+        "n_years": 4,
+        "coefficient": 0.040822315433795275,
+        "standardized_coefficient": 0.01138272704619113,
+        "p_value": 0.6455350335857809,
+        "base_adjusted_r2": 0.9168806797329582,
+        "full_adjusted_r2": 0.9168210011614848,
+        "delta_adjusted_r2": -5.9678571473376074e-05,
+        "base_aic": 6958.031681739834,
+        "full_aic": 6959.846257119902,
+        "delta_aic": -1.8145753800672537,
+        "base_rmse": 4.772983945650343,
+        "full_rmse": 4.77260248299202,
+        "delta_rmse": 0.00038146265832317283
+      },
+      {
+        "feature": "lag1_lediga_allmannytta_pct",
+        "status": "insufficient_coverage",
+        "n_obs": 290,
+        "n_municipalities": 290,
+        "n_years": 1
+      },
+      {
+        "feature": "lag1_lediga_allmannytta_av_total_bostadsbestand_pct",
+        "status": "insufficient_coverage",
+        "n_obs": 290,
+        "n_municipalities": 290,
+        "n_years": 1
+      }
+    ],
+    "winner": "lag1_smahuspris_inkomstkvot_medel"
+  },
+  "income_mean_vs_median": {
+    "status": "tested",
+    "feature_a": "lag1_inkomst_tkr",
+    "feature_b": "lag1_inkomst_median_tkr",
+    "n_obs": 1160,
+    "n_municipalities": 290,
+    "n_years": 4,
+    "models": {
+      "lag1_inkomst_tkr": {
+        "adjusted_r2": 0.91682380852385,
+        "aic": 6959.807105466889,
+        "rmse": 4.772521942604204,
+        "coefficient": -0.0030452392313216736,
+        "p_value": 0.5272505634970394
+      },
+      "lag1_inkomst_median_tkr": {
+        "adjusted_r2": 0.9168264736068285,
+        "aic": 6959.769936828495,
+        "rmse": 4.772445482810516,
+        "coefficient": -0.005517434036547732,
+        "p_value": 0.5422294159848825
+      }
+    },
+    "preferred": "lag1_inkomst_median_tkr",
+    "delta_adjusted_r2_b_minus_a": 2.6650829784147234e-06,
+    "delta_aic_a_minus_b": 0.03716863839417783
+  },
   "snowmobile_proxy_candidate_tests": {
     "overall": {
       "rule": "one candidate at a time versus the same baseline and same observations",
@@ -79211,7 +79338,9 @@
         "Standardfel i förklaringsmodellen är klustrade per kommun eftersom samma kommun förekommer flera år.",
         "Prognosvalideringen för teståret använder endast de föregående 1–5 åren beroende på valt analysfönster.",
         "Föregående års utflyttning per 1 000 invånare testas som ett separat historiskt dynamiktema för att se om utflödet tillför information utöver föregående års inflyttning.",
-        "Inkomst avser genomsnittlig sammanräknad förvärvsinkomst för 20–64-åringar och används laggad ett år.",
+        "Inkomstbasen innehåller både medel- och medianvärde för sammanräknad förvärvsinkomst 20–64 år. Medelvärdet ligger kvar i produktionsbasen medan medianen jämförs på identiska observationer innan ett eventuellt byte.",
+        "Småhuspris testas som föregående års genomsnittliga köpeskilling för permanentbostad (ej tomträtt) enligt SCB:s fastighetsprisstatistik. Även pris/medelinkomst och pris/medianinkomst testas som enkla tillgänglighetsproxyer.",
+        "Vakans testas med SCB:s andel lediga lägenheter i allmännyttiga flerbostadshus. Dessutom testas lediga allmännyttiga lägenheter dividerat med kommunens totala bostadsbestånd; det senare är endast en partiell vakansproxy eftersom privata lediga lägenheter saknas i täljaren.",
         "Landets lugn testas som ett gemensamt tema där andel småhus, anmälda brott per 100 000 invånare och fritidshusandel bland småhusliknande bostäder konkurrerar om att representera temat.",
         "Bostadsutbud mäts som totalt bostadsbestånd per 1 000 invånare enligt SCB BO0104T04 och används laggat ett år.",
         "Bostadsdynamik testas med både årlig förändring i bostadsbeståndet och färdigställda lägenheter i nybyggda hus per 1 000 invånare; högst en av dessa behålls inom temat.",
@@ -97880,6 +98009,131 @@
             }
           }
         }
+      },
+      "housing_market_candidate_tests": {
+        "rule": "one candidate at a time versus the same baseline and same observations",
+        "start_year": 2020,
+        "end_year": 2024,
+        "rows": [
+          {
+            "feature": "lag1_inkomst_median_tkr",
+            "status": "tested",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient": -0.05232287603594273,
+            "standardized_coefficient": -0.10523830293262035,
+            "p_value": 0.5271496237192341,
+            "base_adjusted_r2": 0.63057404900172,
+            "full_adjusted_r2": 0.6307611092644478,
+            "delta_adjusted_r2": 0.00018706026272785614,
+            "base_aic": 8687.389631278722,
+            "full_aic": 8687.785014192668,
+            "delta_aic": -0.3953829139463778,
+            "base_rmse": 10.0668379723756,
+            "full_rmse": 10.059877698547096,
+            "delta_rmse": 0.006960273828504171
+          },
+          {
+            "feature": "lag1_smahuspris_medel_tkr",
+            "status": "tested",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient": 0.007986202856510836,
+            "standardized_coefficient": 0.9422618051282414,
+            "p_value": 5.749139024554869e-09,
+            "base_adjusted_r2": 0.63057404900172,
+            "full_adjusted_r2": 0.704870983126489,
+            "delta_adjusted_r2": 0.07429693412476901,
+            "base_aic": 8687.389631278722,
+            "full_aic": 8427.908788705205,
+            "delta_aic": 259.4808425735173,
+            "base_rmse": 10.0668379723756,
+            "full_rmse": 8.993835452793192,
+            "delta_rmse": 1.073002519582408
+          },
+          {
+            "feature": "lag1_smahuspris_inkomstkvot_medel",
+            "status": "tested",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient": 2.9814395118478854,
+            "standardized_coefficient": 0.7365151235474697,
+            "p_value": 1.6701468113871012e-08,
+            "base_adjusted_r2": 0.63057404900172,
+            "full_adjusted_r2": 0.7015542394947448,
+            "delta_adjusted_r2": 0.07098019049302484,
+            "base_aic": 8687.389631278722,
+            "full_aic": 8440.872488655865,
+            "delta_aic": 246.51714262285714,
+            "base_rmse": 10.0668379723756,
+            "full_rmse": 9.044231893380424,
+            "delta_rmse": 1.0226060789951763
+          },
+          {
+            "feature": "lag1_smahuspris_inkomstkvot_median",
+            "status": "tested",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient": 2.802133665743568,
+            "standardized_coefficient": 0.7813354613809229,
+            "p_value": 4.846509685241473e-09,
+            "base_adjusted_r2": 0.63057404900172,
+            "full_adjusted_r2": 0.7005909406765776,
+            "delta_adjusted_r2": 0.07001689167485758,
+            "base_aic": 8687.389631278722,
+            "full_aic": 8444.610612223725,
+            "delta_aic": 242.77901905499675,
+            "base_rmse": 10.0668379723756,
+            "full_rmse": 9.058816250336378,
+            "delta_rmse": 1.0080217220392225
+          },
+          {
+            "feature": "lag1_lediga_allmannytta_pct",
+            "status": "insufficient_coverage",
+            "n_obs": 290,
+            "n_municipalities": 290,
+            "n_years": 1
+          },
+          {
+            "feature": "lag1_lediga_allmannytta_av_total_bostadsbestand_pct",
+            "status": "insufficient_coverage",
+            "n_obs": 290,
+            "n_municipalities": 290,
+            "n_years": 1
+          }
+        ],
+        "winner": "lag1_smahuspris_medel_tkr"
+      },
+      "income_mean_vs_median": {
+        "status": "tested",
+        "feature_a": "lag1_inkomst_tkr",
+        "feature_b": "lag1_inkomst_median_tkr",
+        "n_obs": 1160,
+        "n_municipalities": 290,
+        "n_years": 4,
+        "models": {
+          "lag1_inkomst_tkr": {
+            "adjusted_r2": 0.63057404900172,
+            "aic": 8687.389631278724,
+            "rmse": 10.066837972375602,
+            "coefficient": -0.05826455507699577,
+            "p_value": 0.02498388828414613
+          },
+          "lag1_inkomst_median_tkr": {
+            "adjusted_r2": 0.6305038738897719,
+            "aic": 8687.609960681853,
+            "rmse": 10.067794061051211,
+            "coefficient": -0.09956527783889314,
+            "p_value": 0.015887600876146594
+          }
+        },
+        "preferred": "lag1_inkomst_tkr",
+        "delta_adjusted_r2_b_minus_a": -7.017511194806758e-05,
+        "delta_aic_a_minus_b": -0.22032940312965366
       },
       "snowmobile_proxy_candidate_tests": {
         "overall": {
