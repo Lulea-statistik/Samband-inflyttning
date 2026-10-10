@@ -54619,6 +54619,280 @@
       }
     ]
   },
+  "snowmobile_proxy_residual_tests": {
+    "overall": {
+      "rule": "same observations; baseline plus northing, log population, SCB urban-area share and built/developed land share are held constant; a second comparison additionally holds sea share constant",
+      "start_year": 2020,
+      "end_year": 2024,
+      "forced_controls": [
+        "geo_northing_100km",
+        "lag1_log_folkmangd",
+        "lag1_tatortsgrad_pct",
+        "lag1_bebyggd_anlagd_andel_land_pct"
+      ],
+      "rows": [
+        {
+          "feature": "lag1_snoskoterandel_alla_fordon_pct",
+          "n_obs": 1160,
+          "n_municipalities": 290,
+          "n_years": 4,
+          "coefficient_after_northing_urbanity_and_sea": 0.08485223217622888,
+          "p_value_after_northing_urbanity_and_sea": 0.09517963570589999,
+          "ci_low": -0.01481140999131203,
+          "ci_high": 0.1845158743437698,
+          "delta_adjusted_r2_beyond_northing_urbanity": 9.798514274272918e-05,
+          "delta_aic_beyond_northing_urbanity": 0.3888443278865452,
+          "delta_rmse_beyond_northing_urbanity": 0.004905809965254804,
+          "delta_adjusted_r2_beyond_northing_urbanity_and_sea": 9.352020832131824e-05,
+          "delta_aic_beyond_northing_urbanity_and_sea": 0.3263240764299553,
+          "delta_rmse_beyond_northing_urbanity_and_sea": 0.004777281293794289
+        },
+        {
+          "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+          "n_obs": 1160,
+          "n_municipalities": 290,
+          "n_years": 4,
+          "coefficient_after_northing_urbanity_and_sea": 0.0847973213868146,
+          "p_value_after_northing_urbanity_and_sea": 0.09517212679021872,
+          "ci_low": -0.01479956469276257,
+          "ci_high": 0.1843942074663918,
+          "delta_adjusted_r2_beyond_northing_urbanity": 9.794508483906839e-05,
+          "delta_aic_beyond_northing_urbanity": 0.3882846694523323,
+          "delta_rmse_beyond_northing_urbanity": 0.004904661223603668,
+          "delta_adjusted_r2_beyond_northing_urbanity_and_sea": 9.348416140952942e-05,
+          "delta_aic_beyond_northing_urbanity_and_sea": 0.3258208849483708,
+          "delta_rmse_beyond_northing_urbanity_and_sea": 0.004776248470156119
+        }
+      ]
+    },
+    "age_groups": {
+      "18_23": {
+        "rule": "same observations; baseline plus northing, log population, SCB urban-area share and built/developed land share are held constant; a second comparison additionally holds sea share constant",
+        "start_year": 2020,
+        "end_year": 2024,
+        "forced_controls": [
+          "geo_northing_100km",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct",
+          "lag1_bebyggd_anlagd_andel_land_pct"
+        ],
+        "rows": [
+          {
+            "feature": "lag1_snoskoterandel_alla_fordon_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient_after_northing_urbanity_and_sea": 0.006940325030073425,
+            "p_value_after_northing_urbanity_and_sea": 0.9771991253275134,
+            "ci_low": -0.4690052930462728,
+            "ci_high": 0.48288594310641964,
+            "delta_adjusted_r2_beyond_northing_urbanity": -0.00020185007507833586,
+            "delta_aic_beyond_northing_urbanity": -1.9973959768540226,
+            "delta_rmse_beyond_northing_urbanity": 2.072796850427494e-05,
+            "delta_adjusted_r2_beyond_northing_urbanity_and_sea": -0.000202141757085883,
+            "delta_aic_beyond_northing_urbanity_and_sea": -1.9989340747561073,
+            "delta_rmse_beyond_northing_urbanity_and_sea": 8.47699239159283e-06
+          },
+          {
+            "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient_after_northing_urbanity_and_sea": 0.0069036513269170475,
+            "p_value_after_northing_urbanity_and_sea": 0.977307610533288,
+            "ci_low": -0.4687909383048808,
+            "ci_high": 0.4825982409587149,
+            "delta_adjusted_r2_beyond_northing_urbanity": -0.0002018494002937743,
+            "delta_aic_beyond_northing_urbanity": -1.9973925689191674,
+            "delta_rmse_beyond_northing_urbanity": 2.075509557641908e-05,
+            "delta_adjusted_r2_beyond_northing_urbanity_and_sea": -0.0002021437352615063,
+            "delta_aic_beyond_northing_urbanity_and_sea": -1.9989440747867775,
+            "delta_rmse_beyond_northing_urbanity_and_sea": 8.397465073528565e-06
+          }
+        ]
+      },
+      "24_34": {
+        "rule": "same observations; baseline plus northing, log population, SCB urban-area share and built/developed land share are held constant; a second comparison additionally holds sea share constant",
+        "start_year": 2020,
+        "end_year": 2024,
+        "forced_controls": [
+          "geo_northing_100km",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct",
+          "lag1_bebyggd_anlagd_andel_land_pct"
+        ],
+        "rows": [
+          {
+            "feature": "lag1_snoskoterandel_alla_fordon_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient_after_northing_urbanity_and_sea": 0.24618266212797615,
+            "p_value_after_northing_urbanity_and_sea": 0.1827120002463658,
+            "ci_low": -0.11593880834382561,
+            "ci_high": 0.6083041325997779,
+            "delta_adjusted_r2_beyond_northing_urbanity": 0.00010587342037071679,
+            "delta_aic_beyond_northing_urbanity": 0.08677839691154077,
+            "delta_rmse_beyond_northing_urbanity": 0.013162438717417402,
+            "delta_adjusted_r2_beyond_northing_urbanity_and_sea": 8.73725821228799e-05,
+            "delta_aic_beyond_northing_urbanity_and_sea": -0.09741622954425111,
+            "delta_rmse_beyond_northing_urbanity_and_sea": 0.011986091246560804
+          },
+          {
+            "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient_after_northing_urbanity_and_sea": 0.24615729015972332,
+            "p_value_after_northing_urbanity_and_sea": 0.18231906166465062,
+            "ci_low": -0.1156017511802161,
+            "ci_high": 0.6079163314996627,
+            "delta_adjusted_r2_beyond_northing_urbanity": 0.0001060263911853987,
+            "delta_aic_beyond_northing_urbanity": 0.08832075540340156,
+            "delta_rmse_beyond_northing_urbanity": 0.013172162827826739,
+            "delta_adjusted_r2_beyond_northing_urbanity_and_sea": 8.756581037239197e-05,
+            "delta_aic_beyond_northing_urbanity_and_sea": -0.09546511259031831,
+            "delta_rmse_beyond_northing_urbanity_and_sea": 0.011998378047483271
+          }
+        ]
+      },
+      "35_49": {
+        "rule": "same observations; baseline plus northing, log population, SCB urban-area share and built/developed land share are held constant; a second comparison additionally holds sea share constant",
+        "start_year": 2020,
+        "end_year": 2024,
+        "forced_controls": [
+          "geo_northing_100km",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct",
+          "lag1_bebyggd_anlagd_andel_land_pct"
+        ],
+        "rows": [
+          {
+            "feature": "lag1_snoskoterandel_alla_fordon_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient_after_northing_urbanity_and_sea": 0.04295699539652892,
+            "p_value_after_northing_urbanity_and_sea": 0.706204674748425,
+            "ci_low": -0.18039446804526404,
+            "ci_high": 0.2663084588383219,
+            "delta_adjusted_r2_beyond_northing_urbanity": -0.00011655220962292212,
+            "delta_aic_beyond_northing_urbanity": -1.7140883798992945,
+            "delta_rmse_beyond_northing_urbanity": 0.0009578516057340281,
+            "delta_adjusted_r2_beyond_northing_urbanity_and_sea": -0.00013155237195716651,
+            "delta_aic_beyond_northing_urbanity_and_sea": -1.8104519991347843,
+            "delta_rmse_beyond_northing_urbanity_and_sea": 0.0006338408840642629
+          },
+          {
+            "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient_after_northing_urbanity_and_sea": 0.04281995367823027,
+            "p_value_after_northing_urbanity_and_sea": 0.7068433337920809,
+            "ci_low": -0.18032761612683917,
+            "ci_high": 0.2659675234832997,
+            "delta_adjusted_r2_beyond_northing_urbanity": -0.00011676933923143729,
+            "delta_aic_beyond_northing_urbanity": -1.7154617988680911,
+            "delta_rmse_beyond_northing_urbanity": 0.000953250705308939,
+            "delta_adjusted_r2_beyond_northing_urbanity_and_sea": -0.00013170796094885695,
+            "delta_aic_beyond_northing_urbanity_and_sea": -1.8114388969288484,
+            "delta_rmse_beyond_northing_urbanity_and_sea": 0.0006305408716800187
+          }
+        ]
+      },
+      "63_68": {
+        "rule": "same observations; baseline plus northing, log population, SCB urban-area share and built/developed land share are held constant; a second comparison additionally holds sea share constant",
+        "start_year": 2020,
+        "end_year": 2024,
+        "forced_controls": [
+          "geo_northing_100km",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct",
+          "lag1_bebyggd_anlagd_andel_land_pct"
+        ],
+        "rows": [
+          {
+            "feature": "lag1_snoskoterandel_alla_fordon_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient_after_northing_urbanity_and_sea": 0.023406990493360938,
+            "p_value_after_northing_urbanity_and_sea": 0.8432771356598755,
+            "ci_low": -0.20864192827824385,
+            "ci_high": 0.2554559092649657,
+            "delta_adjusted_r2_beyond_northing_urbanity": -0.00035362465122834585,
+            "delta_aic_beyond_northing_urbanity": -1.9657736184790338,
+            "delta_rmse_beyond_northing_urbanity": 9.959141180004849e-05,
+            "delta_adjusted_r2_beyond_northing_urbanity_and_sea": -0.00033530023515659924,
+            "delta_aic_beyond_northing_urbanity_and_sea": -1.9244152456813026,
+            "delta_rmse_beyond_northing_urbanity_and_sea": 0.0002185922557336184
+          },
+          {
+            "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient_after_northing_urbanity_and_sea": 0.023611394190936982,
+            "p_value_after_northing_urbanity_and_sea": 0.8418203420253727,
+            "ci_low": -0.20827969670268248,
+            "ci_high": 0.2555024850845565,
+            "delta_adjusted_r2_beyond_northing_urbanity": -0.00035325642201078367,
+            "delta_aic_beyond_northing_urbanity": -1.9647459281795818,
+            "delta_rmse_beyond_northing_urbanity": 0.00010258174690758182,
+            "delta_adjusted_r2_beyond_northing_urbanity_and_sea": -0.0003347979892016628,
+            "delta_aic_beyond_northing_urbanity_and_sea": -1.922997474513977,
+            "delta_rmse_beyond_northing_urbanity_and_sea": 0.00022269240340566654
+          }
+        ]
+      },
+      "70_79": {
+        "rule": "same observations; baseline plus northing, log population, SCB urban-area share and built/developed land share are held constant; a second comparison additionally holds sea share constant",
+        "start_year": 2020,
+        "end_year": 2024,
+        "forced_controls": [
+          "geo_northing_100km",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct",
+          "lag1_bebyggd_anlagd_andel_land_pct"
+        ],
+        "rows": [
+          {
+            "feature": "lag1_snoskoterandel_alla_fordon_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient_after_northing_urbanity_and_sea": 0.028605155322429368,
+            "p_value_after_northing_urbanity_and_sea": 0.6095969203760614,
+            "ci_low": -0.08118666635963295,
+            "ci_high": 0.1383969770044917,
+            "delta_adjusted_r2_beyond_northing_urbanity": -0.00028720211541521934,
+            "delta_aic_beyond_northing_urbanity": -1.611381163887927,
+            "delta_rmse_beyond_northing_urbanity": 0.0007556834294888404,
+            "delta_adjusted_r2_beyond_northing_urbanity_and_sea": -0.00031683184651210006,
+            "delta_aic_beyond_northing_urbanity_and_sea": -1.6795939981602714,
+            "delta_rmse_beyond_northing_urbanity_and_sea": 0.000620902868702089
+          },
+          {
+            "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient_after_northing_urbanity_and_sea": 0.02869275365024284,
+            "p_value_after_northing_urbanity_and_sea": 0.6083321438214977,
+            "ci_low": -0.08104701116818341,
+            "ci_high": 0.13843251846866908,
+            "delta_adjusted_r2_beyond_northing_urbanity": -0.00028599442997445657,
+            "delta_aic_beyond_northing_urbanity": -1.6087353700149833,
+            "delta_rmse_beyond_northing_urbanity": 0.0007608278378636868,
+            "delta_adjusted_r2_beyond_northing_urbanity_and_sea": -0.00031577571667462667,
+            "delta_aic_beyond_northing_urbanity_and_sea": -1.6772663825877316,
+            "delta_rmse_beyond_northing_urbanity_and_sea": 0.000625413154584642
+          }
+        ]
+      }
+    }
+  },
   "geography_candidate_tests": {
     "overall": {
       "rule": "one candidate at a time versus the same baseline and same observations",
