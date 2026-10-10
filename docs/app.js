@@ -9,8 +9,9 @@ function fmt(value,digits=2){
     maximumFractionDigits:digits
   }).format(n);
 }
-let panel=[], model={}, predictions=[], diagnostics=[], qq=[];
+let panel=[], rootModel={}, model={}, predictions=[], diagnostics=[], qq=[];
 let selectedWindow=5;
+let selectedModelVariant='forecast';
 
 const labels={
   lag1_inflyttning_per_1000:'Inflyttning föregående år per 1 000',
@@ -68,12 +69,14 @@ async function load(){
       if(!r.ok) throw new Error('Analysdata saknas ännu ('+r.status+' '+r.url.split('/').pop()+'). GitHub Actions måste slutföras först.');
     }
     const [mText,pText,prText,dText,qText]=await Promise.all(responses.map(r=>r.text()));
-    model=JSON.parse(mText);
+    rootModel=JSON.parse(mText);
+    model=rootModel;
     panel=d3.csvParse(pText,d3.autoType);
     predictions=d3.csvParse(prText,d3.autoType);
     diagnostics=d3.csvParse(dText,d3.autoType);
     qq=d3.csvParse(qText,d3.autoType);
     selectedWindow=Number(model.default_window||5);
+    initModelVariantSelector();
     initWindowSelector();
     const mm=document.getElementById('matrixMetric');
     if(mm) mm.addEventListener('change',renderVariableMatrix);
@@ -102,6 +105,22 @@ function initTabs(){
   }));
 }
 
+function initModelVariantSelector(){
+  const s=document.getElementById('modelVariantSelect');
+  if(!s) return;
+  s.value=selectedModelVariant;
+  s.addEventListener('change',()=>{
+    selectedModelVariant=s.value;
+    model = selectedModelVariant==='demographic_blind'
+      ? (rootModel.model_variants?.demographic_blind || rootModel)
+      : rootModel;
+    selectedWindow=Number(model.default_window||5);
+    const ws=document.getElementById('windowSelect');
+    if(ws) ws.value=String(selectedWindow);
+    renderAll();
+  });
+}
+
 function initWindowSelector(){
   const s=document.getElementById('windowSelect');
   s.value=String(selectedWindow);
@@ -119,8 +138,19 @@ function renderAll(){
   const w=wdata();
   if(!w) return showLoadError(new Error('Modellresultat saknas för '+selectedWindow+' års analysperiod.'));
   const e=w.explanation, v=w.validation;
+  const variantMeta = rootModel.model_variant_metadata?.[selectedModelVariant] || {};
+  const variantTitle=document.getElementById('variantPurposeTitle');
+  const variantText=document.getElementById('variantPurposeText');
+  if(variantTitle) variantTitle.textContent=variantMeta.label || model.model_label || 'Modell';
+  if(variantText){
+    let txt=variantMeta.purpose || '';
+    if(selectedModelVariant==='demographic_blind'){
+      txt += ' Kommunstorlek är tillåten som strukturell kontroll. Bostads- och arbetsmarknadsförändringar får ingå men ska tolkas som samband, inte säkra orsakseffekter.';
+    }
+    variantText.textContent=txt;
+  }
   document.getElementById('windowDescription').textContent=
-    'Förklaringsmodell: '+e.start_year+'–'+e.end_year+
+    (variantMeta.label || model.model_label || 'Modell')+': '+e.start_year+'–'+e.end_year+
     ' · validering: '+v.train_start_year+'–'+v.train_end_year+' → test '+v.test_year;
   renderOverview();
   renderModel();
@@ -139,6 +169,7 @@ function renderOverview(){
   const w=wdata(), e=w.explanation, v=w.validation;
   const best=Object.entries(v.models).sort((a,b)=>(b[1].r2??-Infinity)-(a[1].r2??-Infinity))[0];
   document.getElementById('cards').innerHTML=[
+    metricCard('Modell',selectedModelVariant==='demographic_blind'?'Demografiskt blind':'Prognos'),
     metricCard('Förklaringsperiod',e.start_year+'–'+e.end_year),
     metricCard('Kommun-år',fmt0.format(e.n_obs)),
     metricCard('Kommuner',fmt0.format(e.n_municipalities)),
