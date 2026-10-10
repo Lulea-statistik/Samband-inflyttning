@@ -16,6 +16,7 @@
   </div>
 </header>
 <nav>
+  <button class="tab splash-tab" data-page="public">För allmänheten</button>
   <button class="tab active" data-page="overview">Översikt</button>
   <button class="tab" data-page="relationships">Samband</button>
   <button class="tab" data-page="model">Multipel regression</button>
@@ -45,6 +46,64 @@
     <span id="windowDescription" class="note"></span>
   </div>
 
+  <section id="public" class="page public-page">
+    <section class="public-hero">
+      <div class="eyebrow">Inflyttning till svenska kommuner</div>
+      <h2>Två frågor kräver två olika modeller</h2>
+      <p>En modell försöker <strong>förutsäga nästa års inflyttning så träffsäkert som möjligt</strong>. Den andra försöker förstå <strong>vilka strukturella egenskaper som hänger ihop med inflyttning</strong> utan att använda tidigare migration eller befolkningstillväxt som genväg.</p>
+    </section>
+
+    <section class="public-kpis" id="publicKpis"></section>
+
+    <section class="public-split">
+      <article class="public-story">
+        <div class="story-number">1</div>
+        <h3>Prognosmodellen minns historiken</h3>
+        <p>Den får använda tidigare inflyttning, utflyttning och annan demografisk information när det förbättrar prognosen. Det gör den mer träffsäker, men mindre lämpad för att svara på frågan <em>varför</em> kommuner skiljer sig åt.</p>
+      </article>
+      <article class="public-story">
+        <div class="story-number">2</div>
+        <h3>Strukturmodellen förbjuder genvägen</h3>
+        <p>Den får inte använda tidigare migration, tidigare befolkningstillväxt, åldersstruktur eller inflyttarnas tidigare profil. Däremot får kommunstorlek, bostäder, arbetsmarknad, utbildning och andra strukturella egenskaper finnas med.</p>
+      </article>
+    </section>
+
+    <section class="public-chart-card">
+      <div class="public-chart-copy">
+        <div class="eyebrow">Hur mycket variation fångas?</div>
+        <h3>Historisk demografi ger en stor prognosfördel</h3>
+        <p>Test-R² visar hur väl modellerna fångar variationen i ett år som inte användes när modellen skattades. Det är inte samma sak som “procent rätt”.</p>
+      </div>
+      <div id="publicModelR2" class="chart public-chart"></div>
+    </section>
+
+    <section class="public-chart-card">
+      <div class="public-chart-copy">
+        <div class="eyebrow">Vad träder fram utan demografisk historik?</div>
+        <h3>Bostäder, kommunstorlek och humankapital blir tydligare</h3>
+        <p>Här visas de teman där strukturmodellen tappar mest justerat R² när temat tas bort. Ett större tapp betyder mer självständigt förklaringsvärde inom modellen.</p>
+      </div>
+      <div id="publicBlindDrivers" class="chart public-chart tall"></div>
+    </section>
+
+    <section class="public-chart-card">
+      <div class="public-chart-copy">
+        <div class="eyebrow">Olika livsfaser</div>
+        <h3>Historik betyder mest för yngre – struktur relativt mer för äldre</h3>
+        <p>Åldersdiagrammet jämför modellerna i samma testår. För de äldre grupperna står den strukturella modellen relativt starkare än för yngre inflyttare.</p>
+      </div>
+      <div id="publicAgeComparison" class="chart public-chart"></div>
+    </section>
+
+    <section class="public-takeaway">
+      <div>
+        <div class="eyebrow">Kort slutsats</div>
+        <h3>Den bästa prognosen är inte automatiskt den bästa förklaringen.</h3>
+      </div>
+      <p>Prognosmodellen är bäst när frågan är <strong>vad händer nästa år?</strong> Strukturmodellen är bättre när frågan är <strong>vilka kommunegenskaper är förknippade med hög inflyttning?</strong> Sambanden ska fortfarande inte tolkas som säkra orsakseffekter.</p>
+    </section>
+  </section>
+
   <section id="overview" class="page active">
     <h2>Översikt</h2>
     <p class="lead">Rapporten skiljer nu på två modeller. <strong>Prognosmodellen</strong> får använda historisk demografi om det förbättrar träffsäkerheten. <strong>Den demografiskt blinda strukturmodellen</strong> förbjuder historisk migration, befolkningstillväxt, åldersstruktur och inflyttarprofil som förklaringsvariabler, men tillåter kommunstorlek samt strukturella bostads-, arbetsmarknads-, ekonomiska och geografiska variabler.</p>
@@ -54,6 +113,11 @@
       <h3>Direkt jämförelse mellan modellspåren</h3>
       <p class="note">Samma testår används. Prognosmodellen får använda historisk demografi; strukturmodellen får inte göra det. Skillnaden visar hur mycket prediktiv information som finns i historisk demografi jämfört med enbart strukturella variabler.</p>
       <div id="variantComparison" class="chart"></div>
+    </div>
+    <div class="panel">
+      <h3>Vilka teman bär modellernas förklaringsvärde?</h3>
+      <p class="note">Staplarna visar hur mycket <strong>justerat R² minskar</strong> när ett tema tas bort ur modellen. Det är ett borttagnings-test av självständigt förklaringsvärde. Bidragen är inte additiva eftersom teman överlappar och samvarierar.</p>
+      <div id="r2ContributionProfile" class="chart tall"></div>
     </div>
     <div class="panel"><h3>Prognosvalidering på nästa år</h3><div id="modelCompare" class="chart"></div></div>
   </section>
