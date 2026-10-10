@@ -12,6 +12,7 @@ function fmt(value,digits=2){
 let panel=[], rootModel={}, model={}, predictions=[], diagnostics=[], qq=[];
 let selectedWindow=5;
 let selectedModelVariant='forecast';
+let selectedGeography='sweden';
 
 const labels={
   lag1_inflyttning_per_1000:'Inflyttning föregående år per 1 000',
@@ -76,6 +77,7 @@ async function load(){
     diagnostics=d3.csvParse(dText,d3.autoType);
     qq=d3.csvParse(qText,d3.autoType);
     selectedWindow=Number(model.default_window||5);
+    initGeographySelector();
     initModelVariantSelector();
     initWindowSelector();
     const mm=document.getElementById('matrixMetric');
@@ -103,6 +105,16 @@ function initTabs(){
     document.getElementById(b.dataset.page).classList.add('active');
     setTimeout(()=>window.dispatchEvent(new Event('resize')),20);
   }));
+}
+
+function initGeographySelector(){
+  const s=document.getElementById('geographySelect');
+  if(!s) return;
+  s.value=selectedGeography;
+  s.addEventListener('change',()=>{
+    selectedGeography=s.value;
+    renderAll();
+  });
 }
 
 function initModelVariantSelector(){
@@ -152,9 +164,11 @@ function renderAll(){
   document.getElementById('windowDescription').textContent=
     (variantMeta.label || model.model_label || 'Modell')+': '+e.start_year+'–'+e.end_year+
     ' · validering: '+v.train_start_year+'–'+v.train_end_year+' → test '+v.test_year;
+  renderGeographyContext();
   renderOverview();
   renderVariantComparison();
   renderR2ContributionProfile();
+  renderLuleaView();
   renderPublicPage();
   renderModel();
   renderVariableMatrix();
@@ -291,7 +305,239 @@ function renderR2ContributionProfile(){
   },{responsive:true,displaylogo:false});
 }
 
+
+function renderGeographyContext(){
+  const sw=document.getElementById('swedenOverview');
+  const lu=document.getElementById('luleaOverview');
+  if(sw) sw.hidden=selectedGeography!=='sweden';
+  if(lu) lu.hidden=selectedGeography!=='lulea';
+
+  const lead=document.querySelector('#overview > .lead');
+  if(lead){
+    lead.innerHTML=selectedGeography==='lulea'
+      ? 'Luleå-vyn använder <strong>Sverigemodellen som referens</strong> och bryter ned varför Luleå avviker från genomsnittet bland svenska kommuner, samt hur den modellberäknade avvikelsen förändras över tid.'
+      : 'Rapporten skiljer nu på två modeller. <strong>Prognosmodellen</strong> får använda historisk demografi om det förbättrar träffsäkerheten. <strong>Den demografiskt blinda strukturmodellen</strong> förbjuder historisk migration, befolkningstillväxt, åldersstruktur och inflyttarprofil som förklaringsvariabler, men tillåter kommunstorlek samt strukturella bostads-, arbetsmarknads-, ekonomiska och geografiska variabler.';
+  }
+
+  const technicalNote=document.getElementById('windowDescription');
+  if(technicalNote && selectedGeography==='lulea'){
+    technicalNote.textContent+=' · Luleå-vyn använder denna nationella modell som referens';
+  }
+}
+
+function meanFinite(rows,key){
+  const vals=rows.map(r=>Number(r[key])).filter(Number.isFinite);
+  return vals.length ? vals.reduce((a,b)=>a+b,0)/vals.length : NaN;
+}
+
+function luleaAnalysis(){
+  const w=wdata();
+  const e=w?.explanation;
+  if(!e) return null;
+  const features=e.selected_features||[];
+  const coeffMap=new Map((e.coefficients||[]).map(d=>[d.feature,Number(d.coefficient)]));
+  const themeMap=new Map();
+  (e.theme_marginal_analysis?.rows||[]).forEach(row=>{
+    (row.features||[]).forEach(f=>themeMap.set(f,row.theme));
+  });
+  features.forEach(f=>{ if(!themeMap.has(f)) themeMap.set(f,labels[f]||f); });
+  const yearEffects=new Map((e.year_effect_coefficients||[]).map(d=>[Number(d.year),Number(d.coefficient)]));
+  const intercept=Number(e.intercept)||0;
+
+  const out=[];
+  for(let year=e.start_year;year<=e.end_year;year++){
+    const yearRows=panel.filter(r=>
+      Number(r.year)===Number(year) &&
+      Number.isFinite(Number(r.inflyttning_per_1000)) &&
+      features.every(f=>Number.isFinite(Number(r[f])))
+    );
+    const lu=yearRows.find(r=>String(r.kommun_kod)==='2580');
+    if(!lu||!yearRows.length) continue;
+
+    const means={};
+    features.forEach(f=>means[f]=meanFinite(yearRows,f));
+    const nationalMean=meanFinite(yearRows,'inflyttning_per_1000');
+    let predictedLulea=intercept+(yearEffects.get(Number(year))||0);
+    let predictedMean=intercept+(yearEffects.get(Number(year))||0);
+    const byTheme={};
+
+    features.forEach(f=>{
+      const beta=coeffMap.get(f)||0;
+      const xv=Number(lu[f]);
+      const xm=Number(means[f]);
+      predictedLulea+=beta*xv;
+      predictedMean+=beta*xm;
+      const contribution=beta*(xv-xm);
+      const theme=themeMap.get(f)||f;
+      byTheme[theme]=(byTheme[theme]||0)+contribution;
+    });
+
+    out.push({
+      year:Number(year),
+      actual:Number(lu.inflyttning_per_1000),
+      nationalMean,
+      actualGap:Number(lu.inflyttning_per_1000)-nationalMean,
+      predictedLulea,
+      predictedMean,
+      predictedGap:predictedLulea-predictedMean,
+      byTheme
+    });
+  }
+  return {rows:out,features,explanation:e};
+}
+
+function renderLuleaView(){
+  if(selectedGeography!=='lulea') return;
+  const a=luleaAnalysis();
+  if(!a||!a.rows.length) return;
+  const rows=a.rows;
+  const first=rows[0], last=rows[rows.length-1];
+
+  const cards=document.getElementById('luleaCards');
+  if(cards){
+    cards.innerHTML=[
+      metricCard('Luleå '+last.year,fmt(last.actual,1),'inflyttade per 1 000'),
+      metricCard('Sverigemedel '+last.year,fmt(last.nationalMean,1),'kommunmedel per 1 000'),
+      metricCard('Faktiskt gap',((last.actualGap>=0?'+':'')+fmt(last.actualGap,1)),'Luleå minus kommunmedel'),
+      metricCard('Modellberäknat gap',((last.predictedGap>=0?'+':'')+fmt(last.predictedGap,1)),'utifrån vald modell')
+    ].join('');
+  }
+
+  Plotly.react('luleaDevelopmentChart',[
+    {
+      x:rows.map(d=>d.year),y:rows.map(d=>d.actual),
+      mode:'lines+markers',type:'scatter',name:'Luleå – faktisk',
+      hovertemplate:'%{x}<br>Luleå faktisk=%{y:.1f}<extra></extra>'
+    },
+    {
+      x:rows.map(d=>d.year),y:rows.map(d=>d.nationalMean),
+      mode:'lines+markers',type:'scatter',name:'Sverige – kommunmedel',
+      hovertemplate:'%{x}<br>Kommunmedel=%{y:.1f}<extra></extra>'
+    },
+    {
+      x:rows.map(d=>d.year),y:rows.map(d=>d.predictedLulea),
+      mode:'lines+markers',type:'scatter',name:'Luleå – modellskattad',
+      line:{dash:'dash'},
+      hovertemplate:'%{x}<br>Modellskattad Luleå=%{y:.1f}<extra></extra>'
+    }
+  ],{
+    margin:{t:25,b:55,l:70,r:30},
+    xaxis:{title:'År',dtick:1},
+    yaxis:{title:'Inflyttade per 1 000'},
+    legend:{orientation:'h',y:1.12}
+  },{responsive:true,displaylogo:false});
+
+  const latestContrib=Object.entries(last.byTheme)
+    .map(([theme,value])=>({theme,value}))
+    .filter(d=>Math.abs(d.value)>1e-9)
+    .sort((a,b)=>a.value-b.value);
+  Plotly.react('luleaLatestContributions',[{
+    y:latestContrib.map(d=>d.theme),
+    x:latestContrib.map(d=>d.value),
+    type:'bar',orientation:'h',
+    text:latestContrib.map(d=>(d.value>=0?'+':'')+fmt(d.value,2)),
+    textposition:'outside',
+    hovertemplate:'%{y}<br>Bidrag till Luleå–Sverige-gapet=%{x:.2f} per 1 000<extra></extra>'
+  }],{
+    margin:{t:25,l:210,r:75,b:55},
+    xaxis:{title:'Bidrag till modellberäknat gap, inflyttade per 1 000',zeroline:true},
+    yaxis:{automargin:true},
+    showlegend:false
+  },{responsive:true,displaylogo:false});
+
+  const themes=[...new Set([...Object.keys(first.byTheme),...Object.keys(last.byTheme)])];
+  const changes=themes.map(theme=>({
+    theme,
+    value:(last.byTheme[theme]||0)-(first.byTheme[theme]||0)
+  })).sort((a,b)=>a.value-b.value);
+  const changeRoot=document.getElementById('luleaContributionChange');
+  if(rows.length<2){
+    changeRoot.innerHTML='<p class="note">Välj minst två års analysperiod för att visa förändringen över tid.</p>';
+  }else{
+    Plotly.react(changeRoot,[{
+      y:changes.map(d=>d.theme),
+      x:changes.map(d=>d.value),
+      type:'bar',orientation:'h',
+      text:changes.map(d=>(d.value>=0?'+':'')+fmt(d.value,2)),
+      textposition:'outside',
+      hovertemplate:'%{y}<br>Förändrat modellbidrag=%{x:.2f} per 1 000<extra></extra>'
+    }],{
+      margin:{t:25,l:210,r:75,b:55},
+      xaxis:{title:'Förändring i bidrag från '+first.year+' till '+last.year,zeroline:true},
+      yaxis:{automargin:true},
+      showlegend:false
+    },{responsive:true,displaylogo:false});
+  }
+}
+
 function renderPublicPage(){
+  if(selectedGeography==='lulea'){
+    const a=luleaAnalysis();
+    if(!a||!a.rows.length) return;
+    const rows=a.rows, first=rows[0], last=rows[rows.length-1];
+    const eyebrow=document.getElementById('publicEyebrow');
+    const title=document.getElementById('publicHeroTitle');
+    const txt=document.getElementById('publicHeroText');
+    if(eyebrow) eyebrow.textContent='Luleås inflyttning i ett Sverigeperspektiv';
+    if(title) title.textContent='Varför utvecklas Luleås inflyttning som den gör?';
+    if(txt) txt.innerHTML='Samma modell som används för Sveriges kommuner används här som <strong>referensram för Luleå</strong>. Vi jämför Luleås egenskaper med genomsnittskommunen och ser vilka teman som drar den modellberäknade skillnaden uppåt eller nedåt.';
+
+    const kpis=document.getElementById('publicKpis');
+    if(kpis) kpis.innerHTML=[
+      '<article><span>Luleå '+last.year+'</span><strong>'+fmt(last.actual,1)+'</strong><small>inflyttade per 1 000</small></article>',
+      '<article><span>Kommunmedel '+last.year+'</span><strong>'+fmt(last.nationalMean,1)+'</strong><small>inflyttade per 1 000</small></article>',
+      '<article><span>Modellberäknat gap</span><strong>'+(last.predictedGap>=0?'+':'')+fmt(last.predictedGap,1)+'</strong><small>Luleå minus kommunmedel</small></article>'
+    ].join('');
+
+    Plotly.react('publicModelR2',[
+      {x:rows.map(d=>d.year),y:rows.map(d=>d.actual),mode:'lines+markers',type:'scatter',name:'Luleå'},
+      {x:rows.map(d=>d.year),y:rows.map(d=>d.nationalMean),mode:'lines+markers',type:'scatter',name:'Kommunmedel'},
+      {x:rows.map(d=>d.year),y:rows.map(d=>d.predictedLulea),mode:'lines+markers',type:'scatter',name:'Modellskattad Luleå',line:{dash:'dash'}}
+    ],{
+      margin:{t:20,b:55,l:65,r:30},
+      yaxis:{title:'Inflyttade per 1 000'},
+      xaxis:{title:'År',dtick:1},
+      legend:{orientation:'h',y:1.12}
+    },{responsive:true,displaylogo:false});
+
+    const contrib=Object.entries(last.byTheme)
+      .map(([theme,value])=>({theme,value}))
+      .sort((a,b)=>a.value-b.value);
+    Plotly.react('publicBlindDrivers',[{
+      y:contrib.map(d=>d.theme),x:contrib.map(d=>d.value),
+      type:'bar',orientation:'h',
+      text:contrib.map(d=>(d.value>=0?'+':'')+fmt(d.value,2)),
+      textposition:'outside',
+      hovertemplate:'%{y}<br>Bidrag=%{x:.2f} per 1 000<extra></extra>'
+    }],{
+      margin:{t:20,l:190,r:70,b:55},
+      xaxis:{title:'Bidrag till Luleå–Sverige-gapet',zeroline:true},
+      yaxis:{automargin:true},showlegend:false
+    },{responsive:true,displaylogo:false});
+
+    const themes=[...new Set([...Object.keys(first.byTheme),...Object.keys(last.byTheme)])];
+    const changes=themes.map(theme=>({theme,value:(last.byTheme[theme]||0)-(first.byTheme[theme]||0)})).sort((a,b)=>a.value-b.value);
+    Plotly.react('publicAgeComparison',[{
+      y:changes.map(d=>d.theme),x:changes.map(d=>d.value),
+      type:'bar',orientation:'h',
+      text:changes.map(d=>(d.value>=0?'+':'')+fmt(d.value,2)),
+      textposition:'outside',
+      hovertemplate:'%{y}<br>Förändrat bidrag=%{x:.2f} per 1 000<extra></extra>'
+    }],{
+      margin:{t:20,l:190,r:70,b:55},
+      xaxis:{title:'Förändrat bidrag '+first.year+'–'+last.year,zeroline:true},
+      yaxis:{automargin:true},showlegend:false
+    },{responsive:true,displaylogo:false});
+    return;
+  }
+
+  const eyebrow=document.getElementById('publicEyebrow');
+  const title=document.getElementById('publicHeroTitle');
+  const txt=document.getElementById('publicHeroText');
+  if(eyebrow) eyebrow.textContent='Inflyttning till svenska kommuner';
+  if(title) title.textContent='Två frågor kräver två olika modeller';
+  if(txt) txt.innerHTML='En modell försöker <strong>förutsäga nästa års inflyttning så träffsäkert som möjligt</strong>. Den andra försöker förstå <strong>vilka strukturella egenskaper som hänger ihop med inflyttning</strong> utan att använda tidigare migration eller befolkningstillväxt som genväg.';
+
   const fw=rootModel.windows?.['5'];
   const bw=rootModel.model_variants?.demographic_blind?.windows?.['5'];
   if(!fw||!bw) return;
