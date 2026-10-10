@@ -5361,6 +5361,276 @@ def _housing_size_rolling_holdout_tests(
     }
 
 
+def _housing_size_extreme_residual_tests(
+    panel: pd.DataFrame,
+    target: str,
+    base_features: list[str],
+    start_year: int,
+    end_year: int,
+) -> dict:
+    """
+    Robustness test for the small/very-large dwelling tails.
+
+    The established >=111 m2 production signal is forced into the baseline, so
+    these candidates must add information beyond it as well as beyond geography,
+    urbanity and small-house share.
+    """
+    candidates = list(HOUSING_SIZE_EXTREME_CANDIDATE_FEATURES)
+    forced_controls = [
+        "geo_northing_100km",
+        "lag1_log_folkmangd",
+        "lag1_tatortsgrad_pct",
+        "lag1_bebyggd_anlagd_andel_land_pct",
+        "geo_havsandel_10pp",
+        "lag1_andel_smahus",
+        "lag1_andel_bostader_111_plus",
+    ]
+    needed = list(dict.fromkeys(
+        ["kommun_kod", "year", target, "kommun_centroid_northing_km",
+         "havsandel_pct", "lag1_log_folkmangd", "lag1_tatortsgrad_pct",
+         "lag1_bebyggd_anlagd_andel_land_pct", "lag1_andel_smahus",
+         "lag1_andel_bostader_111_plus"]
+        + candidates + list(base_features)
+    ))
+    d = (
+        panel.loc[panel["year"].between(start_year, end_year), needed]
+        .dropna()
+        .reset_index(drop=True)
+    )
+    if d.empty:
+        return {"status": "insufficient_coverage", "rows": []}
+
+    northing_center_km = float(
+        panel[["kommun_kod", "kommun_centroid_northing_km"]]
+        .drop_duplicates("kommun_kod")["kommun_centroid_northing_km"]
+        .dropna()
+        .median()
+    )
+    d["geo_northing_100km"] = (
+        d["kommun_centroid_northing_km"] - northing_center_km
+    ) / 100.0
+    d["geo_havsandel_10pp"] = d["havsandel_pct"] / 10.0
+
+    base_core = [
+        f for f in base_features
+        if f not in {
+            "lag1_log_folkmangd",
+            "lag1_tatortsgrad_pct",
+            "lag1_bebyggd_anlagd_andel_land_pct",
+            "lag1_andel_smahus",
+            "lag1_andel_bostader_111_plus",
+        }
+        and f not in candidates
+    ]
+    controls = list(dict.fromkeys(base_core + forced_controls))
+    y = d[target].astype(float).reset_index(drop=True)
+    fit_controls = sm.OLS(y, _design_with_year_effects(d, controls)).fit()
+    rmse_controls = float(np.sqrt(np.mean(np.square(fit_controls.resid))))
+
+    rows = []
+    for candidate in candidates:
+        features = controls + [candidate]
+        fit = sm.OLS(y, _design_with_year_effects(d, features)).fit()
+        robust = sm.OLS(y, _design_with_year_effects(d, features)).fit(
+            cov_type="cluster",
+            cov_kwds={"groups": d["kommun_kod"].reset_index(drop=True)},
+        )
+        names = list(robust.model.exog_names)
+        i = names.index(candidate)
+        rmse = float(np.sqrt(np.mean(np.square(fit.resid))))
+
+        train = d[d["year"] < end_year].copy()
+        test = d[d["year"] == end_year].copy()
+        holdout = {
+            "test_year": end_year,
+            "n_train": int(len(train)),
+            "n_test": int(len(test)),
+        }
+        if len(train) >= 150 and len(test) >= 80:
+            base_model = LinearRegression().fit(train[controls], train[target])
+            full_model = LinearRegression().fit(train[features], train[target])
+            y_test = test[target].to_numpy(dtype=float)
+            base_pred = base_model.predict(test[controls])
+            full_pred = full_model.predict(test[features])
+            base_rmse = float(np.sqrt(mean_squared_error(y_test, base_pred)))
+            full_rmse = float(np.sqrt(mean_squared_error(y_test, full_pred)))
+            holdout.update({
+                "base_rmse": _finite_float(base_rmse),
+                "full_rmse": _finite_float(full_rmse),
+                "delta_rmse": _finite_float(base_rmse - full_rmse),
+                "base_r2": _finite_float(r2_score(y_test, base_pred)),
+                "full_r2": _finite_float(r2_score(y_test, full_pred)),
+                "delta_r2": _finite_float(
+                    r2_score(y_test, full_pred) - r2_score(y_test, base_pred)
+                ),
+            })
+        else:
+            holdout["status"] = "insufficient_coverage"
+
+        rows.append({
+            "feature": candidate,
+            "n_obs": int(len(d)),
+            "n_municipalities": int(d["kommun_kod"].nunique()),
+            "n_years": int(d["year"].nunique()),
+            "coefficient_after_controls": _finite_float(np.asarray(robust.params)[i]),
+            "p_value_after_controls": _finite_float(np.asarray(robust.pvalues)[i]),
+            "delta_adjusted_r2_after_controls": _finite_float(
+                fit.rsquared_adj - fit_controls.rsquared_adj
+            ),
+            "delta_aic_after_controls": _finite_float(
+                fit_controls.aic - fit.aic
+            ),
+            "delta_rmse_after_controls": _finite_float(
+                rmse_controls - rmse
+            ),
+            "holdout": holdout,
+        })
+
+    return {
+        "status": "tested",
+        "rule": (
+            "same observations; baseline plus established >=111 m2 signal, "
+            "northing, log population, SCB urban-area share, built/developed "
+            "land share, sea share and small-house share held constant; "
+            "separate final-year holdout"
+        ),
+        "start_year": start_year,
+        "end_year": end_year,
+        "forced_controls": forced_controls,
+        "rows": rows,
+    }
+
+
+def _housing_size_extreme_rolling_holdout_tests(
+    panel: pd.DataFrame,
+    target: str,
+    base_features: list[str],
+    first_test_year: int = 2021,
+    last_test_year: int = END_YEAR,
+) -> dict:
+    """Expanding-window validation for the small/very-large dwelling tails."""
+    candidates = list(HOUSING_SIZE_EXTREME_CANDIDATE_FEATURES)
+    forced_controls = [
+        "geo_northing_100km",
+        "lag1_log_folkmangd",
+        "lag1_tatortsgrad_pct",
+        "lag1_bebyggd_anlagd_andel_land_pct",
+        "geo_havsandel_10pp",
+        "lag1_andel_smahus",
+        "lag1_andel_bostader_111_plus",
+    ]
+    needed = list(dict.fromkeys(
+        ["kommun_kod", "year", target, "kommun_centroid_northing_km",
+         "havsandel_pct", "lag1_log_folkmangd", "lag1_tatortsgrad_pct",
+         "lag1_bebyggd_anlagd_andel_land_pct", "lag1_andel_smahus",
+         "lag1_andel_bostader_111_plus"]
+        + candidates + list(base_features)
+    ))
+    d = panel.loc[
+        panel["year"].between(first_test_year - 2, last_test_year),
+        needed,
+    ].dropna().reset_index(drop=True)
+    if d.empty:
+        return {"status": "insufficient_coverage", "rows": []}
+
+    northing_center_km = float(
+        panel[["kommun_kod", "kommun_centroid_northing_km"]]
+        .drop_duplicates("kommun_kod")["kommun_centroid_northing_km"]
+        .dropna()
+        .median()
+    )
+    d["geo_northing_100km"] = (
+        d["kommun_centroid_northing_km"] - northing_center_km
+    ) / 100.0
+    d["geo_havsandel_10pp"] = d["havsandel_pct"] / 10.0
+
+    base_core = [
+        f for f in base_features
+        if f not in {
+            "lag1_log_folkmangd",
+            "lag1_tatortsgrad_pct",
+            "lag1_bebyggd_anlagd_andel_land_pct",
+            "lag1_andel_smahus",
+            "lag1_andel_bostader_111_plus",
+        }
+        and f not in candidates
+    ]
+    controls = list(dict.fromkeys(base_core + forced_controls))
+
+    rows = []
+    for candidate in candidates:
+        features = controls + [candidate]
+        yearly = []
+        for test_year in range(first_test_year, last_test_year + 1):
+            train = d[d["year"] < test_year].copy()
+            test = d[d["year"] == test_year].copy()
+            if len(train) < 150 or len(test) < 80:
+                yearly.append({
+                    "test_year": test_year,
+                    "status": "insufficient_coverage",
+                    "n_train": int(len(train)),
+                    "n_test": int(len(test)),
+                })
+                continue
+
+            base_model = LinearRegression().fit(train[controls], train[target])
+            full_model = LinearRegression().fit(train[features], train[target])
+            y_test = test[target].to_numpy(dtype=float)
+            base_pred = base_model.predict(test[controls])
+            full_pred = full_model.predict(test[features])
+            base_rmse = float(np.sqrt(mean_squared_error(y_test, base_pred)))
+            full_rmse = float(np.sqrt(mean_squared_error(y_test, full_pred)))
+            base_r2 = float(r2_score(y_test, base_pred))
+            full_r2 = float(r2_score(y_test, full_pred))
+            yearly.append({
+                "test_year": test_year,
+                "status": "tested",
+                "n_train": int(len(train)),
+                "n_test": int(len(test)),
+                "base_rmse": _finite_float(base_rmse),
+                "full_rmse": _finite_float(full_rmse),
+                "delta_rmse": _finite_float(base_rmse - full_rmse),
+                "base_r2": _finite_float(base_r2),
+                "full_r2": _finite_float(full_r2),
+                "delta_r2": _finite_float(full_r2 - base_r2),
+            })
+
+        tested = [r for r in yearly if r.get("status") == "tested"]
+        rows.append({
+            "feature": candidate,
+            "yearly": yearly,
+            "tested_years": int(len(tested)),
+            "years_improved_rmse": int(sum((r["delta_rmse"] or 0) > 0 for r in tested)),
+            "years_improved_r2": int(sum((r["delta_r2"] or 0) > 0 for r in tested)),
+            "mean_delta_rmse": _finite_float(
+                np.mean([r["delta_rmse"] for r in tested]) if tested else np.nan
+            ),
+            "mean_delta_r2": _finite_float(
+                np.mean([r["delta_r2"] for r in tested]) if tested else np.nan
+            ),
+            "median_delta_rmse": _finite_float(
+                np.median([r["delta_rmse"] for r in tested]) if tested else np.nan
+            ),
+            "median_delta_r2": _finite_float(
+                np.median([r["delta_r2"] for r in tested]) if tested else np.nan
+            ),
+        })
+
+    return {
+        "status": "tested",
+        "rule": (
+            "expanding-window holdout; each test year is predicted only from "
+            "earlier years; established >=111 m2 signal plus northing, log "
+            "population, SCB urban-area share, built/developed land share, sea "
+            "share and small-house share held constant"
+        ),
+        "first_test_year": first_test_year,
+        "last_test_year": last_test_year,
+        "forced_controls": forced_controls,
+        "rows": rows,
+    }
+
+
 def fit_models(panel: pd.DataFrame, *, demographic_blind: bool = False, output_suffix: str = "") -> dict:
     target = "inflyttning_per_1000"
     features = [
@@ -5497,7 +5767,7 @@ def fit_models(panel: pd.DataFrame, *, demographic_blind: bool = False, output_s
             "Vakans testas med SCB:s andel lediga lägenheter i allmännyttiga flerbostadshus. Dessutom testas lediga allmännyttiga lägenheter dividerat med kommunens totala bostadsbestånd; det senare är endast en partiell vakansproxy eftersom privata lediga lägenheter saknas i täljaren.",
             "Landets lugn testas som ett gemensamt tema där andel småhus, anmälda brott per 100 000 invånare och fritidshusandel bland småhusliknande bostäder konkurrerar om att representera temat.",
             "Bostadsutbud mäts som totalt bostadsbestånd per 1 000 invånare enligt SCB BO0104T04 och används laggat ett år.",
-            "Bostadsstorlek hämtas från SCB:s bostadsareatabell. Andel bostäder minst 111 m² har efter kandidatprovning, urbanitets-/småhuskontroller och expanding-window-validering 2022–2024 fått produktionsstatus i den demografiskt blinda huvudmodellen. Måttet används laggat ett år och ska tolkas som strukturell kommunegenskap, inte som kausal bostadseffekt. Andel minst 141 m² och andel småhus minst 111 m² ligger kvar som kandidatmått. Prognosmodellen använder ingen bostadsstorleksvariabel eftersom marginalbidraget där är försumbart. Som kompletterande kandidatspår testas även SCB:s klassgränser för små bostäder (högst 70 m²) och mycket stora bostäder (minst 151 m²), både totalt och med hustypsspecifika varianter. Dessa ligger utanför produktion tills de visat eget informationsvärde utöver den etablerade minst-111-m²-signalen.",
+            "Bostadsstorlek hämtas från SCB:s bostadsareatabell. Andel bostäder minst 111 m² har efter kandidatprovning, urbanitets-/småhuskontroller och expanding-window-validering 2022–2024 fått produktionsstatus i den demografiskt blinda huvudmodellen. Måttet används laggat ett år och ska tolkas som strukturell kommunegenskap, inte som kausal bostadseffekt. Andel minst 141 m² och andel småhus minst 111 m² ligger kvar som kandidatmått. Prognosmodellen använder ingen bostadsstorleksvariabel eftersom marginalbidraget där är försumbart. Som kompletterande kandidatspår testas även SCB:s klassgränser för små bostäder (högst 70 m²) och mycket stora bostäder (minst 151 m²), både totalt och med hustypsspecifika varianter. I den blinda modellfamiljen robusthetstestas dessa nu med den etablerade minst-111-m²-signalen tvingad in som kontroll, tillsammans med geografi/urbanitet/småhusandel och expanding-window-holdout. De ligger kvar utanför produktion tills den kontrollen är godkänd.",
             "Bostadsdynamik testas med både årlig förändring i bostadsbeståndet och färdigställda lägenheter i nybyggda hus per 1 000 invånare; högst en av dessa behålls inom temat.",
             "Upplåtelseform testas med andel hyresrätt respektive bostadsrätt av bostadsbeståndet; högst en representant behålls inom temat.",
             "Andel småhus avser lägenheter i småhus dividerat med samtliga lägenheter i småhus, flerbostadshus, övriga hus och specialbostäder enligt SCB BO0104T04 och används laggad ett år.",
@@ -6837,6 +7107,42 @@ def main():
                 HOUSING_SIZE_EXTREME_CANDIDATE_FEATURES,
                 END_YEAR - 4,
                 END_YEAR,
+            )
+            for key, model in blind_age_models.items()
+            if "error" not in model
+        },
+    }
+    blind_result["housing_size_extreme_residual_tests"] = {
+        "overall": _housing_size_extreme_residual_tests(
+            panel,
+            blind_result["target"],
+            blind_base,
+            END_YEAR - 4,
+            END_YEAR,
+        ),
+        "age_groups": {
+            key: _housing_size_extreme_residual_tests(
+                panel,
+                model["target"],
+                model["explanation"]["selected_features"],
+                END_YEAR - 4,
+                END_YEAR,
+            )
+            for key, model in blind_age_models.items()
+            if "error" not in model
+        },
+    }
+    blind_result["housing_size_extreme_rolling_holdout_tests"] = {
+        "overall": _housing_size_extreme_rolling_holdout_tests(
+            panel,
+            blind_result["target"],
+            blind_base,
+        ),
+        "age_groups": {
+            key: _housing_size_extreme_rolling_holdout_tests(
+                panel,
+                model["target"],
+                model["explanation"]["selected_features"],
             )
             for key, model in blind_age_models.items()
             if "error" not in model
