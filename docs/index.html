@@ -27,6 +27,12 @@
 </nav>
 <main>
   <div class="global-controls">
+    <label>Modell
+      <select id="modelVariantSelect">
+        <option value="forecast" selected>Prognosmodell</option>
+        <option value="demographic_blind">Demografiskt blind strukturmodell</option>
+      </select>
+    </label>
     <label>Analysperiod
       <select id="windowSelect">
         <option value="1">1 år</option>
@@ -41,7 +47,8 @@
 
   <section id="overview" class="page active">
     <h2>Översikt</h2>
-    <p class="lead">Syftet är att undersöka hur väl observerbara kommunegenskaper kan förklara variationen i <strong>inflyttade per 1 000 invånare</strong>. Varje observation är en kommun ett visst år.</p>
+    <p class="lead">Rapporten skiljer nu på två modeller. <strong>Prognosmodellen</strong> får använda historisk demografi om det förbättrar träffsäkerheten. <strong>Den demografiskt blinda strukturmodellen</strong> förbjuder historisk migration, befolkningstillväxt, åldersstruktur och inflyttarprofil som förklaringsvariabler, men tillåter kommunstorlek samt strukturella bostads-, arbetsmarknads-, ekonomiska och geografiska variabler.</p>
+    <div class="panel"><h3 id="variantPurposeTitle">Prognosmodell</h3><p id="variantPurposeText" class="note"></p></div>
     <div id="cards" class="cards"></div>
     <div class="panel"><h3>Prognosvalidering på nästa år</h3><div id="modelCompare" class="chart"></div></div>
   </section>
@@ -57,7 +64,7 @@
 
   <section id="model" class="page">
     <h2>Multipel regression</h2>
-    <p class="lead">Förklaringsmodellen skattas på upp till fem års kommun-år och innehåller årseffekter. Osäkerheten beräknas med standardfel klustrade per kommun.</p>
+    <p class="lead">Den valda modellvarianten skattas på upp till fem års kommun-år och innehåller årseffekter. Osäkerheten beräknas med standardfel klustrade per kommun. Modellvalet ovan styr hela sidan, inklusive åldersgrupper, regressionsekvationer och validering.</p>
     <div class="cards" id="regressionCards"></div>
     <div class="panel"><h3>Variabelurval</h3><div id="selectionSummary"></div></div>
     <div class="panel">
