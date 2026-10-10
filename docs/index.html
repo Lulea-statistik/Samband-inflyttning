@@ -50,6 +50,7 @@
       </select>
     </label>
     <span id="windowDescription" class="note"></span>
+    <span id="geographyMethodNote" class="note"></span>
   </div>
 
   <section id="public" class="page public-page">
@@ -76,27 +77,27 @@
 
     <section class="public-chart-card">
       <div class="public-chart-copy">
-        <div class="eyebrow">Hur mycket variation fångas?</div>
-        <h3>Historisk demografi ger en stor prognosfördel</h3>
-        <p>Test-R² visar hur väl modellerna fångar variationen i ett år som inte användes när modellen skattades. Det är inte samma sak som “procent rätt”.</p>
+        <div class="eyebrow" id="publicChart1Eyebrow">Hur mycket variation fångas?</div>
+        <h3 id="publicChart1Title">Historisk demografi ger en stor prognosfördel</h3>
+        <p id="publicChart1Text">Test-R² visar hur väl modellerna fångar variationen i ett år som inte användes när modellen skattades. Det är inte samma sak som “procent rätt”.</p>
       </div>
       <div id="publicModelR2" class="chart public-chart"></div>
     </section>
 
     <section class="public-chart-card">
       <div class="public-chart-copy">
-        <div class="eyebrow">Vad träder fram utan demografisk historik?</div>
-        <h3>Bostäder, kommunstorlek och humankapital blir tydligare</h3>
-        <p>Här visas de teman där strukturmodellen tappar mest justerat R² när temat tas bort. Ett större tapp betyder mer självständigt förklaringsvärde inom modellen.</p>
+        <div class="eyebrow" id="publicChart2Eyebrow">Vad träder fram utan demografisk historik?</div>
+        <h3 id="publicChart2Title">Bostäder, kommunstorlek och humankapital blir tydligare</h3>
+        <p id="publicChart2Text">Här visas de teman där strukturmodellen tappar mest justerat R² när temat tas bort. Ett större tapp betyder mer självständigt förklaringsvärde inom modellen.</p>
       </div>
       <div id="publicBlindDrivers" class="chart public-chart tall"></div>
     </section>
 
     <section class="public-chart-card">
       <div class="public-chart-copy">
-        <div class="eyebrow">Olika livsfaser</div>
-        <h3>Historik betyder mest för yngre – struktur relativt mer för äldre</h3>
-        <p>Åldersdiagrammet jämför modellerna i samma testår. För de äldre grupperna står den strukturella modellen relativt starkare än för yngre inflyttare.</p>
+        <div class="eyebrow" id="publicChart3Eyebrow">Olika livsfaser</div>
+        <h3 id="publicChart3Title">Historik betyder mest för yngre – struktur relativt mer för äldre</h3>
+        <p id="publicChart3Text">Åldersdiagrammet jämför modellerna i samma testår. För de äldre grupperna står den strukturella modellen relativt starkare än för yngre inflyttare.</p>
       </div>
       <div id="publicAgeComparison" class="chart public-chart"></div>
     </section>
