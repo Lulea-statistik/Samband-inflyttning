@@ -168,6 +168,9 @@ LEISURE_INTENSITY_GEOGRAPHIC_FEATURES = [
     "lag1_fritidshus_per_1000_inv",
     "lag1_log_fritidshus_per_1000_inv",
 ]
+MODEL3_EXTRA_CANDIDATE_FEATURES = [
+    "lag1_log_fritidshus_per_1000_inv",
+]
 HOUSING_SIZE_EXTREME_CANDIDATE_FEATURES = [
     "lag1_andel_bostader_70_max",
     "lag1_andel_flerbostad_70_max",
@@ -6250,7 +6253,13 @@ def fit_geographic_robust_model(panel: pd.DataFrame, baseline_result: dict) -> d
     eligible_features = [
         f for f in sample_features if f not in LOOKAHEAD_ONLY_FEATURES
     ]
-    model_df = panel.dropna(subset=[target] + sample_features).copy()
+    model3_extra_features = [
+        f for f in MODEL3_EXTRA_CANDIDATE_FEATURES
+        if f in panel.columns
+    ]
+    model_df = panel.dropna(
+        subset=[target] + sample_features + model3_extra_features
+    ).copy()
     train = model_df[
         model_df["year"].between(train_start, test_year - 1)
     ].copy()
@@ -6268,10 +6277,16 @@ def fit_geographic_robust_model(panel: pd.DataFrame, baseline_result: dict) -> d
     baseline_features = list(standard_selection["selected"])
     feature_sets = {
         "forecast_selected": baseline_features,
+        "forecast_plus_leisure_intensity": list(dict.fromkeys(
+            baseline_features + model3_extra_features
+        )),
         "thematic_balanced": list(standard_selection.get("thematic_selected", [])),
         "backward_aic": list(standard_selection.get("backward_aic_selected", [])),
         "elastic_net": list(standard_selection.get("elastic_net_selected", [])),
         "all_eligible": eligible_features,
+        "all_eligible_plus_model3_candidates": list(dict.fromkeys(
+            eligible_features + model3_extra_features
+        )),
     }
     # Remove duplicate feature sets while keeping their first, clearest label.
     deduped = {}
@@ -6371,6 +6386,7 @@ def fit_geographic_robust_model(panel: pd.DataFrame, baseline_result: dict) -> d
         "n_train": int(len(train)),
         "n_test": int(len(test)),
         "baseline_feature_set": baseline_features,
+        "model3_extra_candidate_features": model3_extra_features,
         "selected_feature_set": robust_features,
         "added_features_vs_forecast_selection": added_features,
         "removed_features_vs_forecast_selection": removed_features,
@@ -6651,7 +6667,7 @@ def _geographic_candidate_rolling_holdouts(
                 .reset_index(drop=True)
             )
             if (
-                len(selection_train) < 300
+                len(selection_train) < 250
                 or selection_train["kommun_kod"].nunique() < 150
             ):
                 year_rows.append({
@@ -6694,7 +6710,7 @@ def _geographic_candidate_rolling_holdouts(
             test = d[d["year"] == test_year].copy()
 
             if (
-                len(train) < 300
+                len(train) < 250
                 or len(test) < 150
                 or train["kommun_kod"].nunique() < 150
             ):
@@ -6754,6 +6770,8 @@ def _geographic_candidate_rolling_holdouts(
             year_rows.append({
                 "test_year": test_year,
                 "status": "tested",
+                "history_years_available": sorted(int(y) for y in train["year"].unique()),
+                "limited_history": bool(train["year"].nunique() < 2),
                 "n_train": int(len(train)),
                 "n_test": int(len(test)),
                 "baseline_features": base_features,
