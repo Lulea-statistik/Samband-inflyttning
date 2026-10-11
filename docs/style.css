@@ -270,3 +270,96 @@ main{padding:24px 28px;max-width:1500px;margin:auto}.page{display:none}.page.act
     grid-template-columns:1fr;
   }
 }
+
+
+/* Method & data: glossary and variable dictionary */
+.method-glossary-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+  margin:18px 0 28px;
+}
+.method-glossary-card{
+  background:#f8fafc;
+  border:1px solid #dde5ed;
+  border-radius:13px;
+  padding:18px 20px;
+}
+.method-glossary-card h4{
+  margin:0 0 13px;
+  font-size:18px;
+  color:#22364b;
+}
+.method-glossary-card .terms{
+  display:grid;
+  grid-template-columns:minmax(145px,190px) minmax(0,1fr);
+  gap:9px 14px;
+  margin:0;
+}
+.method-glossary-card .terms dt{
+  font-weight:800;
+  color:#2e4359;
+}
+.method-glossary-card .terms dd{
+  margin:0;
+  color:#526276;
+  line-height:1.48;
+}
+.variable-dictionary-tools{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:18px;
+  margin:14px 0 10px;
+}
+.variable-dictionary-tools label{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  font-weight:700;
+  min-width:min(520px,100%);
+}
+.variable-dictionary-tools input{
+  width:100%;
+  border:1px solid #cfd9e3;
+  border-radius:9px;
+  padding:10px 12px;
+  background:#fff;
+  font:inherit;
+}
+.variable-dictionary-wrap{
+  max-height:760px;
+  overflow:auto;
+  border:1px solid #dde5ed;
+  border-radius:12px;
+}
+.variable-dictionary-table{
+  min-width:1000px;
+}
+.variable-dictionary-table thead th{
+  position:sticky;
+  top:0;
+  z-index:2;
+  background:#f4f7fa;
+}
+.variable-dictionary-table td{
+  vertical-align:top;
+  line-height:1.45;
+}
+.variable-dictionary-table td:nth-child(1){min-width:245px}
+.variable-dictionary-table td:nth-child(2){min-width:170px}
+.variable-dictionary-table td:nth-child(3){min-width:420px}
+.variable-dictionary-table td:nth-child(4){min-width:180px}
+.variable-code{
+  margin-top:5px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:11px;
+  color:#7a8797;
+  word-break:break-all;
+}
+@media(max-width:900px){
+  .method-glossary-grid{grid-template-columns:1fr}
+  .method-glossary-card .terms{grid-template-columns:1fr}
+  .method-glossary-card .terms dd{margin-bottom:6px}
+  .variable-dictionary-tools{align-items:stretch;flex-direction:column}
+}
