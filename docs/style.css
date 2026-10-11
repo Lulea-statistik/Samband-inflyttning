@@ -101,3 +101,172 @@ main{padding:24px 28px;max-width:1500px;margin:auto}.page{display:none}.page.act
 .geo-verdict h3{margin-top:0}
 .geo-verdict-pass{border-left-color:#4d8a62;background:#f7fbf8}
 .geo-verdict-fail{border-left-color:#b85c54;background:#fff9f8}
+
+
+/* Testlogg: visual path from early test to model decision */
+.test-flow-panel{
+  margin:0 0 24px;
+  border-left:5px solid #7f9db8;
+}
+.test-flow-panel h3{
+  margin:6px 0 8px;
+  font-size:26px;
+}
+.test-flow-track{
+  display:grid;
+  grid-template-columns:minmax(190px,1fr) 34px minmax(190px,1fr) 34px minmax(190px,1fr) 34px minmax(190px,1fr) 34px minmax(190px,1fr);
+  align-items:stretch;
+  gap:8px;
+  margin-top:20px;
+}
+.test-flow-step{
+  position:relative;
+  background:#f8fafc;
+  border:1px solid #dce4ec;
+  border-radius:13px;
+  padding:17px 16px 16px;
+  min-height:170px;
+  box-shadow:0 1px 0 rgba(30,55,80,.03);
+}
+.test-flow-step::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:14px;
+  right:14px;
+  height:4px;
+  border-radius:0 0 6px 6px;
+  background:#8fa7bb;
+}
+.test-flow-step:nth-of-type(3)::before{background:#d9a441}
+.test-flow-step:nth-of-type(5)::before{background:#879eb2}
+.test-flow-step:nth-of-type(7)::before{background:#6e8ca5}
+.test-flow-step-decision::before{background:#4f718d}
+.test-flow-kicker{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-weight:800;
+  color:#718096;
+  margin-bottom:9px;
+}
+.test-flow-title{
+  font-weight:800;
+  font-size:17px;
+  line-height:1.2;
+  color:#1f3145;
+  margin-bottom:8px;
+}
+.test-flow-text{
+  color:#516174;
+  line-height:1.48;
+  font-size:14px;
+}
+.test-flow-arrow{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  font-weight:800;
+  color:#91a1b1;
+}
+.test-flow-outcome-arrow{
+  text-align:center;
+  font-size:29px;
+  line-height:1;
+  color:#91a1b1;
+  margin:11px 0 8px;
+}
+.test-flow-outcomes{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+.test-flow-outcome{
+  border:1px solid #dce4ec;
+  border-radius:12px;
+  padding:15px 16px 13px;
+}
+.test-flow-outcome p{
+  color:#4d5d70;
+  line-height:1.45;
+  font-size:14px;
+  margin:9px 0 0;
+}
+.outcome-badge{
+  display:inline-block;
+  border-radius:999px;
+  padding:5px 10px;
+  font-size:12px;
+  font-weight:800;
+}
+.outcome-selected{
+  background:#f3faf5;
+  border-color:#c9e6d2;
+}
+.outcome-selected .outcome-badge{
+  background:#e3f3e8;
+  color:#245d3a;
+}
+.outcome-diagnostic{
+  background:#fffaf0;
+  border-color:#eed8a8;
+}
+.outcome-diagnostic .outcome-badge{
+  background:#fff0cb;
+  color:#76520e;
+}
+.outcome-rejected{
+  background:#f7f9fb;
+  border-color:#d9e0e7;
+}
+.outcome-rejected .outcome-badge{
+  background:#e9eef3;
+  color:#526175;
+}
+.test-flow-legend{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px 18px;
+  margin-top:15px;
+  padding-top:13px;
+  border-top:1px solid #e5eaf0;
+  color:#617083;
+  font-size:12px;
+}
+@media(max-width:1180px){
+  .test-flow-track{
+    display:flex;
+    overflow-x:auto;
+    padding-bottom:8px;
+    scroll-snap-type:x proximity;
+  }
+  .test-flow-step{
+    flex:0 0 235px;
+    scroll-snap-align:start;
+  }
+  .test-flow-arrow{
+    flex:0 0 28px;
+  }
+}
+@media(max-width:700px){
+  .test-flow-track{
+    display:grid;
+    grid-template-columns:1fr;
+    overflow:visible;
+  }
+  .test-flow-step{
+    min-height:auto;
+  }
+  .test-flow-arrow{
+    transform:rotate(90deg);
+    height:24px;
+  }
+  .test-flow-outcomes{
+    grid-template-columns:1fr;
+  }
+  .test-flow-legend{
+    display:grid;
+    grid-template-columns:1fr;
+  }
+}
