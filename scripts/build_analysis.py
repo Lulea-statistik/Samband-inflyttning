@@ -139,9 +139,23 @@ KOLADA_GENDER_GAP_SPECS = {
         "label": "Kvinnors mediannettoinkomst som andel av mäns (%)",
     },
 }
+KOLADA_GYMNASIUM_PROGRAM_SPECS = {
+    "gymnasium_hogskoleforberedande_pct": {
+        "id": "N17802",
+        "label": "Gymnasieelever på högskoleförberedande program, hemkommun, andel (%)",
+    },
+    "gymnasium_yrkesprogram_pct": {
+        "id": "N17801",
+        "label": "Gymnasieelever på yrkesprogram, hemkommun, andel (%)",
+    },
+}
 GENDER_GAP_LAG_FEATURES = [
     "lag1_kvinnors_lonesumma_dagbef_pct",
     "lag1_kvinnors_mediannettoinkomst_andel_pct",
+]
+GYMNASIUM_PROGRAM_LAG_FEATURES = [
+    "lag1_gymnasium_hogskoleforberedande_pct",
+    "lag1_gymnasium_yrkesprogram_pct",
 ]
 REGIONAL_CENTRE_ACCESS_FEATURES = [
     "lag1_regional_centre_distance_km",
@@ -1223,6 +1237,41 @@ def get_kolada_gender_gap() -> pd.DataFrame:
                 columns=["kommun_kod", "year", column]
             ))
 
+    out = frames[0]
+    for frame in frames[1:]:
+        out = out.merge(frame, on=["kommun_kod", "year"], how="outer")
+    return out
+
+
+def get_kolada_gymnasium_programs() -> pd.DataFrame:
+    """Optional home-municipality gymnasium-program candidates from Kolada."""
+    frames = []
+    for column, spec in KOLADA_GYMNASIUM_PROGRAM_SPECS.items():
+        try:
+            rows = []
+            kpi_id = str(spec["id"])
+            for year in AUX_YEARS:
+                data = _kolada_year_rows(kpi_id, year)
+                for item in data:
+                    code = str(item.get("municipality", "")).strip()
+                    if not re.fullmatch(r"\d{4}", code):
+                        continue
+                    value = _kolada_total_value(item.get("values", []))
+                    if np.isfinite(value):
+                        rows.append({"kommun_kod": code, "year": int(year), column: float(value)})
+                print(
+                    f"Kolada gymnasium {kpi_id} {year}: "
+                    f"{sum(r['year']==year for r in rows)} municipalities; {spec['label']}"
+                )
+            frame = pd.DataFrame(rows)
+            if frame.empty:
+                frame = pd.DataFrame(columns=["kommun_kod", "year", column])
+            else:
+                frame = frame.groupby(["kommun_kod", "year"], as_index=False)[column].mean()
+            frames.append(frame)
+        except Exception as exc:
+            print(f"WARNING: optional Kolada gymnasium candidate {column} unavailable: {exc}")
+            frames.append(pd.DataFrame(columns=["kommun_kod", "year", column]))
     out = frames[0]
     for frame in frames[1:]:
         out = out.merge(frame, on=["kommun_kod", "year"], how="outer")
@@ -4266,7 +4315,7 @@ def split_region(value: str) -> tuple[str, str]:
     return s[:4], s[5:] if len(s) > 5 else s
 
 
-def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, house_prices: pd.DataFrame, vacancy: pd.DataFrame, turnout: pd.DataFrame, inequality: pd.DataFrame, housing: pd.DataFrame, housing_area: pd.DataFrame, completed_housing: pd.DataFrame, leisure: pd.DataFrame, crime: pd.DataFrame, labor: pd.DataFrame, monthly_employment: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame, activity: pd.DataFrame, gender_gap: pd.DataFrame, industry: pd.DataFrame, fa15: pd.DataFrame, geography: pd.DataFrame, direct_urbanity: pd.DataFrame) -> pd.DataFrame:
+def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, house_prices: pd.DataFrame, vacancy: pd.DataFrame, turnout: pd.DataFrame, inequality: pd.DataFrame, housing: pd.DataFrame, housing_area: pd.DataFrame, completed_housing: pd.DataFrame, leisure: pd.DataFrame, crime: pd.DataFrame, labor: pd.DataFrame, monthly_employment: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame, activity: pd.DataFrame, gender_gap: pd.DataFrame, gymnasium_programs: pd.DataFrame, industry: pd.DataFrame, fa15: pd.DataFrame, geography: pd.DataFrame, direct_urbanity: pd.DataFrame) -> pd.DataFrame:
     md = standardize_columns(mig)
     mig = mig.copy()
     mig["value"] = normalize_number(mig["value"])
@@ -4459,6 +4508,14 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
             "kommun_kod", "year",
             "kvinnors_lonesumma_dagbef_pct",
             "kvinnors_mediannettoinkomst_andel_pct",
+        ]],
+        on=["kommun_kod", "year"], how="left"
+    )
+    panel = panel.merge(
+        gymnasium_programs[[
+            "kommun_kod", "year",
+            "gymnasium_hogskoleforberedande_pct",
+            "gymnasium_yrkesprogram_pct",
         ]],
         on=["kommun_kod", "year"], how="left"
     )
@@ -4687,6 +4744,8 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel["lag1_kolada_utbetalt_lok_stod_kr_per_inv"] = g["kolada_utbetalt_lok_stod_kr_per_inv"].shift(1)
     panel["lag1_kvinnors_lonesumma_dagbef_pct"] = g["kvinnors_lonesumma_dagbef_pct"].shift(1)
     panel["lag1_kvinnors_mediannettoinkomst_andel_pct"] = g["kvinnors_mediannettoinkomst_andel_pct"].shift(1)
+    panel["lag1_gymnasium_hogskoleforberedande_pct"] = g["gymnasium_hogskoleforberedande_pct"].shift(1)
+    panel["lag1_gymnasium_yrkesprogram_pct"] = g["gymnasium_yrkesprogram_pct"].shift(1)
     panel["lag1_regional_centre_distance_km"] = g["regional_centre_distance_km"].shift(1)
     panel["lag1_log_regional_centre_distance_km"] = g["log_regional_centre_distance_km"].shift(1)
     panel["lag1_andel_industri_bc"] = g["andel_industri_bc"].shift(1)
@@ -4894,6 +4953,8 @@ FEATURE_THEMES = {
     "lag1_log_regional_centre_distance_km": "Tillgänglighet till regionalt centrum",
     "lag1_kvinnors_lonesumma_dagbef_pct": "Ekonomisk jämställdhet",
     "lag1_kvinnors_mediannettoinkomst_andel_pct": "Ekonomisk jämställdhet",
+    "lag1_gymnasium_hogskoleforberedande_pct": "Gymnasieinriktning – utbildnings- och arbetsmarknadskultur",
+    "lag1_gymnasium_yrkesprogram_pct": "Gymnasieinriktning – utbildnings- och arbetsmarknadskultur",
 }
 
 
@@ -8648,6 +8709,7 @@ def main():
     students = get_students()
     activity = get_kolada_activity()
     gender_gap = get_kolada_gender_gap()
+    gymnasium_programs = get_kolada_gymnasium_programs()
     industry = get_industry_structure()
     fa15 = get_fa15_membership()
     geography = get_geography()
@@ -8664,7 +8726,7 @@ def main():
     completed_housing = get_completed_housing()
     leisure = get_leisure_houses()
     crime = get_crime_total()
-    panel = build_panel(mig, pop, income, house_prices, vacancy, turnout, inequality, housing, housing_area, completed_housing, leisure, crime, labor, monthly_employment, education, students, activity, gender_gap, industry, fa15, geography, direct_urbanity)
+    panel = build_panel(mig, pop, income, house_prices, vacancy, turnout, inequality, housing, housing_area, completed_housing, leisure, crime, labor, monthly_employment, education, students, activity, gender_gap, gymnasium_programs, industry, fa15, geography, direct_urbanity)
     panel = panel.merge(
         shoreline_buildings,
         on=["kommun_kod", "year"],
@@ -8793,6 +8855,27 @@ def main():
             result,
             GENDER_GAP_LAG_FEATURES,
         ),
+    }
+
+    result["gymnasium_program_candidate_tests"] = {
+        "metadata": {
+            "source": "Kolada N17802/N17801; underlying source SCB and Skolverket",
+            "theme": "Gymnasieinriktning – utbildnings- och arbetsmarknadskultur",
+            "interpretation": "Ambiguous proxy for local labour-market structure, parental education and broader education/social-capital culture; not causal.",
+            "home_municipality": True,
+        },
+        "overall": _sparse_candidate_tests(
+            panel, result["target"], overall_base,
+            GYMNASIUM_PROGRAM_LAG_FEATURES, END_YEAR - 4, END_YEAR,
+        ),
+        "age_groups": {
+            key: _sparse_candidate_tests(
+                panel, model["target"], model["explanation"]["selected_features"],
+                GYMNASIUM_PROGRAM_LAG_FEATURES, END_YEAR - 4, END_YEAR,
+            )
+            for key, model in age_models.items()
+            if key in {"18_23", "24_34", "35_49"} and "error" not in model
+        },
     }
 
     result["activity_candidate_tests"] = {
@@ -9393,6 +9476,22 @@ def main():
             )
             for key, model in blind_age_models.items()
             if "error" not in model
+        },
+    }
+
+    blind_result["gymnasium_program_candidate_tests"] = {
+        "metadata": result["gymnasium_program_candidate_tests"]["metadata"],
+        "overall": _sparse_candidate_tests(
+            panel, blind_result["target"], blind_base,
+            GYMNASIUM_PROGRAM_LAG_FEATURES, END_YEAR - 4, END_YEAR,
+        ),
+        "age_groups": {
+            key: _sparse_candidate_tests(
+                panel, model["target"], model["explanation"]["selected_features"],
+                GYMNASIUM_PROGRAM_LAG_FEATURES, END_YEAR - 4, END_YEAR,
+            )
+            for key, model in blind_age_models.items()
+            if key in {"18_23", "24_34", "35_49"} and "error" not in model
         },
     }
 

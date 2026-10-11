@@ -62,6 +62,8 @@ const labels={
   lag1_log_regional_centre_distance_km:'Avstånd till regionalt centrum-proxy (log), föregående år',
   lag1_kvinnors_lonesumma_dagbef_pct:'Kvinnors andel av männens lönesumma, dagbefolkning, föregående år (%)',
   lag1_kvinnors_mediannettoinkomst_andel_pct:'Kvinnors mediannettoinkomst som andel av mäns, föregående år (%)',
+  lag1_gymnasium_hogskoleforberedande_pct:'Gymnasieelever på högskoleförberedande program, hemkommun, föregående år (%)',
+  lag1_gymnasium_yrkesprogram_pct:'Gymnasieelever på yrkesprogram, hemkommun, föregående år (%)',
   lag1_inkomst_median_tkr:'Median förvärvsinkomst, föregående år (tkr)',
   lag1_lediga_allmannytta_pct:'Lediga lägenheter i allmännyttan, föregående år (%)',
   lag1_lediga_allmannytta_av_total_bostadsbestand_pct:'Lediga allmännyttiga lägenheter som andel av hela bostadsbeståndet, föregående år (%)',
@@ -132,6 +134,8 @@ const variableNotes={
   lag1_log_regional_centre_distance_km:'Log-transformerad version av avståndsproxyn till regionalt centrum.',
   lag1_kvinnors_lonesumma_dagbef_pct:'Kvinnors totala lönesumma dividerat med männens totala lönesumma för den arbetsställebaserade dagbefolkningen.',
   lag1_kvinnors_mediannettoinkomst_andel_pct:'Kvinnors disponibla mediannettoinkomst som andel av mäns. Måttet omfattar även kapitalinkomster och transfereringar och är därför inte ett rent lönegap.',
+  lag1_gymnasium_hogskoleforberedande_pct:'Andel gymnasieelever folkbokförda i kommunen på högskoleförberedande program. Testas som proxy för både utbildnings-/socialkapitalkultur och lokal arbetsmarknadsstruktur; inte kausalt.',
+  lag1_gymnasium_yrkesprogram_pct:'Andel gymnasieelever folkbokförda i kommunen på yrkesprogram. Testas som proxy för både lokal yrkes-/arbetsmarknadsstruktur och utbildningskultur; inte kausalt.',
   lag1_naturpraglad_mark_andel_land_pct:'Bred naturproxy baserad på skogsmark, öppen myrmark och övrig mark som andel av landarealen.',
   lag1_bebyggd_anlagd_andel_land_pct:'Bebyggd och anlagd mark dividerat med kommunens landareal.',
   lag1_log_befolkningstathet_land:'Log-transformerad folkmängd per kvadratkilometer landareal.',
@@ -162,7 +166,7 @@ function variableGroup(key){
   if(/valdeltagande/.test(key)) return 'Demokrati';
   if(/bostad|smahus|fritidshus|hyresratt|bostadsratt|lediga_allmannytta/.test(key)) return 'Bostäder och bostadsmarknad';
   if(/brott/.test(key)) return 'Trygghet';
-  if(/syssels|arbetslos|eftergymnasial|studerande|industri|hotell|kultur|fa_|regional_centre/.test(key)) return 'Arbetsmarknad, utbildning och näringsliv';
+  if(/syssels|arbetslos|eftergymnasial|studerande|gymnasium|industri|hotell|kultur|fa_|regional_centre/.test(key)) return 'Arbetsmarknad, utbildning och näringsliv';
   if(/kolada_/.test(key)) return 'Föreningsliv';
   if(/strand|havsandel|kust|centroid|northing|tatort|befolkningstathet|bebyggd|skogsmark|naturpraglad|snoskoter|^geo_/.test(key)) return 'Geografi, mark och miljö';
   return 'Övriga variabler';
@@ -171,6 +175,7 @@ function variableGroup(key){
 function variableSource(key){
   if(/brott/.test(key)) return 'Brå';
   if(/valdeltagande/.test(key)) return 'Valmyndigheten';
+  if(/gymnasium_/.test(key)) return 'Kolada / SCB / Skolverket';
   if(/kolada_|kvinnors_/.test(key)) return 'Kolada / SCB';
   if(/fa_|regional_centre/.test(key)) return 'SCB + Tillväxtverket FA15';
   if(/centroid|^geo_/.test(key)) return 'SCB-kommungränser via swemaps + härledd beräkning';
@@ -1378,6 +1383,43 @@ function renderStructuralCandidatePanel(data, summaryId, chartId, titleMap){
   },{responsive:true,displaylogo:false});
 }
 
+function renderGymnasiumCandidatePanel(){
+  const summary=document.getElementById('gymnasiumProgramTestSummary');
+  const chart=document.getElementById('gymnasiumProgramTestChart');
+  if(!summary||!chart) return;
+  const data=model.gymnasium_program_candidate_tests;
+  const overall=(data?.overall?.rows||[]).filter(r=>r.status==='tested');
+  const ages=['18_23','24_34','35_49'];
+  const ageLabels={overall:'Totalt','18_23':'18–23 år','24_34':'24–34 år','35_49':'35–49 år'};
+  const titleMap={
+    lag1_gymnasium_hogskoleforberedande_pct:'Högskoleförberedande program',
+    lag1_gymnasium_yrkesprogram_pct:'Yrkesprogram'
+  };
+  if(!overall.length){
+    summary.textContent='Resultatet visas efter nästa slutförda analyskörning.';
+    chart.innerHTML='';
+    return;
+  }
+  const groups=[['overall',overall],...ages.map(k=>[k,(data?.age_groups?.[k]?.rows||[]).filter(r=>r.status==='tested')])];
+  const features=[...new Set(groups.flatMap(([,rows])=>rows.map(r=>r.feature)))];
+  const get=(rows,f)=>rows.find(r=>r.feature===f);
+  const best=overall.slice().sort((x,y)=>(y.delta_adjusted_r2??-Infinity)-(x.delta_adjusted_r2??-Infinity))[0];
+  const variant=selectedModelVariant==='demographic_blind'?'den demografiskt blinda strukturmodellen':'prognosmodellen';
+  summary.innerHTML='<strong>'+titleMap[best.feature]+':</strong> största marginalbidraget i '+variant+
+    ' (Δ justerat R² '+fmt(best.delta_adjusted_r2,4)+'). Tolkning: dubbel proxy för lokal arbetsmarknadsstruktur och utbildnings-/socialkapitalkultur, inte kausal effekt.';
+  Plotly.react(chart,features.map(f=>({
+    x:groups.map(([k])=>ageLabels[k]),
+    y:groups.map(([,rows])=>get(rows,f)?.delta_adjusted_r2),
+    type:'bar',name:titleMap[f]||labels[f]||f,
+    customdata:groups.map(([,rows])=>[get(rows,f)?.p_value,get(rows,f)?.n_obs]),
+    hovertemplate:'%{x}<br>Δ justerat R²=%{y:.4f}<br>p=%{customdata[0]:.4f}<br>n=%{customdata[1]}<extra>%{fullData.name}</extra>'
+  })),{
+    barmode:'group',margin:{t:30,b:70,l:70,r:30},
+    yaxis:{title:'Marginalt Δ justerat R²'},
+    legend:{orientation:'h',y:1.16}
+  },{responsive:true,displaylogo:false});
+}
+
 function renderQueuedStructuralTests(){
   renderStructuralCandidatePanel(
     rootModel.regional_centre_access_candidate_tests,
@@ -1397,6 +1439,7 @@ function renderQueuedStructuralTests(){
       lag1_kvinnors_mediannettoinkomst_andel_pct:'Kvinnors mediannettoinkomst / mäns'
     }
   );
+  renderGymnasiumCandidatePanel();
 }
 
 
