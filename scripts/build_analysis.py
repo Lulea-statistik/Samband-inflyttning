@@ -6590,6 +6590,253 @@ def _geographic_candidate_tests(
     }
 
 
+
+def _geographic_candidate_rolling_holdouts(
+    panel: pd.DataFrame,
+    baseline_result: dict,
+    candidates: list[str],
+    holdout_years: list[int] | None = None,
+) -> dict:
+    """
+    Multi-year geographic robustness check.
+
+    Each holdout year is treated as genuinely unseen. Baseline feature selection,
+    ridge tuning and candidate tuning use only data from years before that
+    holdout. Baseline and candidate are finally compared on identical
+    municipalities in the holdout year.
+    """
+    target = baseline_result["target"]
+    window = int(baseline_result.get("default_window", 5))
+    holdout_years = holdout_years or [2022, 2023, 2024]
+    eligible_pool = [
+        f for f in baseline_result.get("features", [])
+        if f not in LOOKAHEAD_ONLY_FEATURES
+    ]
+    alphas = [float(x) for x in np.logspace(-3, 3, 13)]
+
+    def best_group_cv(dtrain: pd.DataFrame, features: list[str]) -> dict | None:
+        tested = []
+        for alpha in alphas:
+            cv = _geographic_group_cv(dtrain, features, target, alpha)
+            if cv.get("status") != "tested":
+                continue
+            tested.append({
+                "alpha": alpha,
+                "objective": cv.get("objective"),
+                **cv.get("metrics", {}),
+            })
+        if not tested:
+            return None
+        return min(
+            tested,
+            key=lambda r: float("inf") if r.get("objective") is None else r["objective"],
+        )
+
+    candidate_results = []
+    for candidate in candidates:
+        year_rows = []
+
+        for test_year in holdout_years:
+            train_start = test_year - window
+
+            # Re-run baseline feature selection using only information available
+            # before this particular holdout year.
+            selection_cols = ["kommun_kod", "kommun", "year", target] + eligible_pool
+            selection_train = (
+                panel.loc[
+                    panel["year"].between(train_start, test_year - 1),
+                    list(dict.fromkeys(selection_cols)),
+                ]
+                .dropna()
+                .reset_index(drop=True)
+            )
+            if (
+                len(selection_train) < 300
+                or selection_train["kommun_kod"].nunique() < 150
+            ):
+                year_rows.append({
+                    "test_year": test_year,
+                    "status": "insufficient_selection_coverage",
+                    "n_train": int(len(selection_train)),
+                    "n_municipalities_train": int(
+                        selection_train["kommun_kod"].nunique()
+                    ),
+                })
+                continue
+
+            selection = _select_features(
+                selection_train,
+                eligible_pool,
+                target,
+            )
+            base_features = list(selection["selected"])
+            if not base_features:
+                year_rows.append({
+                    "test_year": test_year,
+                    "status": "no_baseline_features",
+                })
+                continue
+
+            needed = (
+                ["kommun_kod", "kommun", "year", target]
+                + base_features
+                + [candidate]
+            )
+            d = (
+                panel.loc[
+                    panel["year"].between(train_start, test_year),
+                    list(dict.fromkeys(needed)),
+                ]
+                .dropna()
+                .reset_index(drop=True)
+            )
+            train = d[d["year"] < test_year].copy()
+            test = d[d["year"] == test_year].copy()
+
+            if (
+                len(train) < 300
+                or len(test) < 150
+                or train["kommun_kod"].nunique() < 150
+            ):
+                year_rows.append({
+                    "test_year": test_year,
+                    "status": "insufficient_candidate_coverage",
+                    "n_train": int(len(train)),
+                    "n_test": int(len(test)),
+                    "n_municipalities_train": int(
+                        train["kommun_kod"].nunique()
+                    ),
+                })
+                continue
+
+            base_cv = best_group_cv(train, base_features)
+            full_features = base_features + [candidate]
+            full_cv = best_group_cv(train, full_features)
+            if not base_cv or not full_cv:
+                year_rows.append({
+                    "test_year": test_year,
+                    "status": "insufficient_cv",
+                })
+                continue
+
+            base_model = make_pipeline(
+                StandardScaler(), Ridge(alpha=float(base_cv["alpha"]))
+            )
+            full_model = make_pipeline(
+                StandardScaler(), Ridge(alpha=float(full_cv["alpha"]))
+            )
+            base_model.fit(train[base_features], train[target])
+            full_model.fit(train[full_features], train[target])
+
+            y_test = test[target].to_numpy(dtype=float)
+            base_pred = base_model.predict(test[base_features])
+            full_pred = full_model.predict(test[full_features])
+            base_hold = _geographic_error_metrics(y_test, base_pred)
+            full_hold = _geographic_error_metrics(y_test, full_pred)
+            base_obj = _geographic_robust_objective(base_hold)
+            full_obj = _geographic_robust_objective(full_hold)
+
+            municipality_errors = []
+            for idx, row in test.reset_index(drop=True).iterrows():
+                observed = float(row[target])
+                bpred = float(base_pred[idx])
+                fpred = float(full_pred[idx])
+                babs = abs(observed - bpred)
+                fabs = abs(observed - fpred)
+                municipality_errors.append({
+                    "kommun_kod": str(row["kommun_kod"]),
+                    "kommun": str(row["kommun"]),
+                    "baseline_abs_error": _finite_float(babs),
+                    "candidate_abs_error": _finite_float(fabs),
+                    "delta_abs_error": _finite_float(babs - fabs),
+                })
+
+            year_rows.append({
+                "test_year": test_year,
+                "status": "tested",
+                "n_train": int(len(train)),
+                "n_test": int(len(test)),
+                "baseline_features": base_features,
+                "cv": {
+                    "baseline": base_cv,
+                    "with_candidate": full_cv,
+                    "delta_objective": _finite_float(
+                        (base_cv.get("objective") or np.nan)
+                        - (full_cv.get("objective") or np.nan)
+                    ),
+                },
+                "holdout": {
+                    "baseline": base_hold,
+                    "with_candidate": full_hold,
+                    "delta_objective": _finite_float(base_obj - full_obj),
+                    "delta": {
+                        "r2": _finite_float(
+                            (full_hold.get("r2") or np.nan)
+                            - (base_hold.get("r2") or np.nan)
+                        ),
+                        "rmse": _finite_float(
+                            (base_hold.get("rmse") or np.nan)
+                            - (full_hold.get("rmse") or np.nan)
+                        ),
+                        "p90_abs_error": _finite_float(
+                            (base_hold.get("p90_abs_error") or np.nan)
+                            - (full_hold.get("p90_abs_error") or np.nan)
+                        ),
+                        "p90_p10_abs_error_gap": _finite_float(
+                            (base_hold.get("p90_p10_abs_error_gap") or np.nan)
+                            - (full_hold.get("p90_p10_abs_error_gap") or np.nan)
+                        ),
+                        "worst_decile_mae": _finite_float(
+                            (base_hold.get("worst_decile_mae") or np.nan)
+                            - (full_hold.get("worst_decile_mae") or np.nan)
+                        ),
+                    },
+                },
+                "municipality_errors": municipality_errors,
+            })
+
+        tested = [r for r in year_rows if r.get("status") == "tested"]
+        summary = {
+            "n_tested_years": len(tested),
+            "years_with_better_holdout_objective": int(sum(
+                1 for r in tested
+                if (r.get("holdout", {}).get("delta_objective") or 0) > 0
+            )),
+            "years_with_better_rmse": int(sum(
+                1 for r in tested
+                if (r.get("holdout", {}).get("delta", {}).get("rmse") or 0) > 0
+            )),
+            "years_with_better_p90": int(sum(
+                1 for r in tested
+                if (r.get("holdout", {}).get("delta", {}).get("p90_abs_error") or 0) > 0
+            )),
+            "years_with_better_tail_spread": int(sum(
+                1 for r in tested
+                if (r.get("holdout", {}).get("delta", {}).get("p90_p10_abs_error_gap") or 0) > 0
+            )),
+            "years_with_better_worst_decile": int(sum(
+                1 for r in tested
+                if (r.get("holdout", {}).get("delta", {}).get("worst_decile_mae") or 0) > 0
+            )),
+        }
+        candidate_results.append({
+            "feature": candidate,
+            "summary": summary,
+            "years": year_rows,
+        })
+
+    return {
+        "status": "tested",
+        "holdout_years": holdout_years,
+        "rule": (
+            "feature selection and ridge tuning repeated independently before "
+            "each holdout year; candidate and baseline evaluated on identical "
+            "municipalities; no later-year information used"
+        ),
+        "candidates": candidate_results,
+    }
+
+
 def fit_models(panel: pd.DataFrame, *, demographic_blind: bool = False, output_suffix: str = "") -> dict:
     target = "inflyttning_per_1000"
     features = [
@@ -8281,6 +8528,12 @@ def main():
         panel,
         result,
         LEISURE_INTENSITY_GEOGRAPHIC_FEATURES,
+    )
+    result["leisure_intensity_rolling_holdouts"] = _geographic_candidate_rolling_holdouts(
+        panel,
+        result,
+        LEISURE_INTENSITY_GEOGRAPHIC_FEATURES,
+        holdout_years=[2022, 2023, 2024],
     )
 
     overall_base = result["windows"]["5"]["explanation"]["selected_features"]
