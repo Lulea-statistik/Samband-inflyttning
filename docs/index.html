@@ -291,6 +291,17 @@
 
       <article class="test-summary-card">
         <div class="test-summary-head">
+          <span class="test-run">#119</span>
+          <span class="test-status status-keep">Modell 3-kandidat</span>
+        </div>
+        <h3>Fritidshusintensitet – flerårig validering</h3>
+        <p>Den råa varianten förbättrade RMSE och sämsta decilens MAE både 2023 och 2024, men det sammansatta geografiska objektivet förbättrades bara 2024. Den log-transformerade varianten var stabilare: det geografiska objektivet förbättrades både 2023 och 2024, liksom RMSE och sämsta decilens MAE.</p>
+        <p>För log-varianten förbättrades även P90 och P90–P10 tydligt 2023, medan dessa två mått försämrades svagt 2024. 2022 kunde inte bedömas i #119 eftersom det fullständiga träningsurvalet blev för kort.</p>
+        <p class="test-decision"><strong>Beslut:</strong> log(fritidshus per 1 000 invånare) går vidare som explicit kandidat endast i Modell 3. Den vanliga prognosmodellen ändras inte. Nästa körning testar samtidigt 2022 med kortare, tydligt markerad historik för att få ett tredje holdoutår.</p>
+      </article>
+
+      <article class="test-summary-card">
+        <div class="test-summary-head">
           <span class="test-run">Tidigare test</span>
           <span class="test-status status-reject">Ej vald</span>
         </div>
