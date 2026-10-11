@@ -67,3 +67,20 @@ main{padding:24px 28px;max-width:1500px;margin:auto}.page{display:none}.page.act
 .lulea-method{border-left:5px solid #8aa7bf}
 #luleaOverview .cards .card .value{font-size:30px}
 #luleaOverview .chart{min-height:430px}
+
+
+.testlog-hero{background:#fff;border:1px solid #dde4eb;border-radius:16px;padding:30px;margin:6px 0 22px}
+.testlog-hero h2{font-size:clamp(30px,4vw,48px);line-height:1.08;margin:8px 0 12px}
+.test-summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:20px 0 24px}
+.test-summary-card{background:#fff;border:1px solid #dde4eb;border-radius:14px;padding:22px;display:flex;flex-direction:column;min-height:265px}
+.test-summary-card h3{font-size:23px;line-height:1.15;margin:12px 0 10px}
+.test-summary-card p{line-height:1.55;color:#4b5c72;margin:6px 0}
+.test-summary-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.test-run{font-size:12px;font-weight:800;letter-spacing:.06em;color:#64748b;text-transform:uppercase}
+.test-status{font-size:12px;font-weight:800;border-radius:999px;padding:5px 9px;white-space:nowrap}
+.status-keep{background:#e8f5ed;color:#24613d}
+.status-diagnostic{background:#fff4dc;color:#7a5410}
+.status-reject{background:#eef2f6;color:#526175}
+.test-decision{margin-top:auto!important;padding-top:10px;border-top:1px solid #edf1f5}
+.testlog-note{border-left:5px solid #8aa7bf}
+@media(max-width:820px){.test-summary-grid{grid-template-columns:1fr}.testlog-hero{padding:24px}}
