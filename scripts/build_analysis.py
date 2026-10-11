@@ -160,6 +160,10 @@ HOUSING_SIZE_CANDIDATE_FEATURES = [
     "lag1_andel_bostader_141_plus",
     "lag1_andel_smahus_111_plus",
 ]
+HOUSING_TURNOVER_CANDIDATE_FEATURES = [
+    "lag1_smahusforsaljningar_per_1000_smahus",
+    "lag1_smahusforsaljningar_per_1000_inv",
+]
 HOUSING_SIZE_EXTREME_CANDIDATE_FEATURES = [
     "lag1_andel_bostader_70_max",
     "lag1_andel_flerbostad_70_max",
@@ -750,6 +754,7 @@ def get_house_prices() -> pd.DataFrame:
     munis = municipality_codes(region)
     permanent_code = code_for_all_text(property_type, "permanentbostad", "ej tomträtt")
     price_code = code_for_all_text(content, "köpeskilling", "medel")
+    count_code = code_for_text(content, "antal")
 
     rows = []
     for year in AUX_YEARS:
@@ -770,8 +775,32 @@ def get_house_prices() -> pd.DataFrame:
             df.groupby(["kommun_kod", "kommun", "year"], as_index=False)["smahuspris_medel_tkr"]
             .first()
         )
+
+        count_df = px_csv(HOUSE_PRICE_URL, {
+            region["code"]: munis,
+            property_type["code"]: [permanent_code],
+            content["code"]: [count_code],
+            time["code"]: [str(year)],
+        })
+        count_dims = standardize_columns(count_df)
+        count_vcol = value_column(count_df, count_dims)
+        count_df["smahusforsaljningar_antal"] = normalize_number(count_df[count_vcol])
+        count_df["year"] = year
+        count_df[["kommun_kod", "kommun"]] = count_df[count_dims["region"]].apply(
+            lambda x: pd.Series(split_region(x))
+        )
+        count_agg = (
+            count_df.groupby(["kommun_kod", "kommun", "year"], as_index=False)["smahusforsaljningar_antal"]
+            .first()
+        )
+        agg = agg.merge(
+            count_agg,
+            on=["kommun_kod", "kommun", "year"],
+            how="outer",
+            validate="one_to_one",
+        )
         rows.append(agg)
-        print(f"House prices {year}: {len(agg):,} municipalities")
+        print(f"House prices/transactions {year}: {len(agg):,} municipalities")
     return pd.concat(rows, ignore_index=True)
 
 
@@ -4173,7 +4202,7 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
         on=["kommun_kod", "year"], how="left"
     )
     panel = panel.merge(
-        house_prices[["kommun_kod", "year", "smahuspris_medel_tkr"]],
+        house_prices[["kommun_kod", "year", "smahuspris_medel_tkr", "smahusforsaljningar_antal"]],
         on=["kommun_kod", "year"], how="left"
     )
     panel = panel.merge(
@@ -4308,6 +4337,14 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel["bostader_per_1000"] = (
         1000 * panel["bostader_totalt"] / panel["folkmangd"].replace(0, np.nan)
     )
+    panel["smahusforsaljningar_per_1000_smahus"] = (
+        1000 * panel["smahusforsaljningar_antal"]
+        / panel["bostader_smahus"].replace(0, np.nan)
+    )
+    panel["smahusforsaljningar_per_1000_inv"] = (
+        1000 * panel["smahusforsaljningar_antal"]
+        / panel["folkmangd"].replace(0, np.nan)
+    )
     panel["log_smahuspris_medel"] = np.log(
         panel["smahuspris_medel_tkr"].where(panel["smahuspris_medel_tkr"] > 0)
     )
@@ -4394,6 +4431,12 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel["lag1_smahuspris_forandring_pct"] = g["smahuspris_forandring_pct"].shift(1)
     panel["lag1_smahuspris_inkomstkvot_medel"] = g["smahuspris_inkomstkvot_medel"].shift(1)
     panel["lag1_smahuspris_inkomstkvot_median"] = g["smahuspris_inkomstkvot_median"].shift(1)
+    panel["lag1_smahusforsaljningar_per_1000_smahus"] = (
+        g["smahusforsaljningar_per_1000_smahus"].shift(1)
+    )
+    panel["lag1_smahusforsaljningar_per_1000_inv"] = (
+        g["smahusforsaljningar_per_1000_inv"].shift(1)
+    )
     panel["lag1_lediga_allmannytta_pct"] = g["lediga_allmannytta_pct"].shift(1)
     panel["lag1_lediga_allmannytta_av_total_bostadsbestand_pct"] = (
         g["lediga_allmannytta_av_total_bostadsbestand_pct"].shift(1)
@@ -4588,6 +4631,8 @@ FEATURE_THEMES = {
     "lag1_smahuspris_forandring_pct": "Bostadsprisdynamik",
     "lag1_smahuspris_inkomstkvot_medel": "Boendeekonomisk tillgänglighet",
     "lag1_smahuspris_inkomstkvot_median": "Boendeekonomisk tillgänglighet",
+    "lag1_smahusforsaljningar_per_1000_smahus": "Bostadsomsättning",
+    "lag1_smahusforsaljningar_per_1000_inv": "Bostadsomsättning",
     "lag1_lediga_allmannytta_pct": "Bostadsvakans",
     "lag1_lediga_allmannytta_av_total_bostadsbestand_pct": "Bostadsvakans",
     "lag1_valdeltagande_pct": "Demokratisk delaktighet",
@@ -6357,6 +6402,156 @@ def fit_geographic_robust_model(panel: pd.DataFrame, baseline_result: dict) -> d
     }
 
 
+
+def _geographic_candidate_tests(
+    panel: pd.DataFrame,
+    baseline_result: dict,
+    candidates: list[str],
+) -> dict:
+    """
+    Test new structural candidates specifically against geographic forecast error.
+
+    Ridge strength is selected without seeing the final holdout year. For each
+    candidate, the baseline and baseline+candidate models are tuned separately
+    with municipality-blocked CV on the training years, then evaluated on the
+    untouched final test year.
+    """
+    target = baseline_result["target"]
+    window = int(baseline_result.get("default_window", 5))
+    test_year = int(baseline_result["test_year"])
+    train_start = test_year - window
+    base_features = list(
+        baseline_result["windows"][str(window)]["validation"]["selected_features"]
+    )
+    alphas = [float(x) for x in np.logspace(-3, 3, 13)]
+    rows = []
+
+    def best_cv(dtrain: pd.DataFrame, features: list[str]) -> dict | None:
+        tested = []
+        for alpha in alphas:
+            cv = _geographic_group_cv(dtrain, features, target, alpha)
+            if cv.get("status") != "tested":
+                continue
+            tested.append({
+                "alpha": alpha,
+                "objective": cv.get("objective"),
+                **cv.get("metrics", {}),
+            })
+        if not tested:
+            return None
+        return min(
+            tested,
+            key=lambda r: float("inf") if r.get("objective") is None else r["objective"],
+        )
+
+    for candidate in candidates:
+        needed = ["kommun_kod", "kommun", "year", target] + base_features + [candidate]
+        d = (
+            panel.loc[
+                panel["year"].between(train_start, test_year),
+                list(dict.fromkeys(needed)),
+            ]
+            .dropna()
+            .reset_index(drop=True)
+        )
+        train = d[d["year"] < test_year].copy()
+        test = d[d["year"] == test_year].copy()
+        if (
+            len(train) < 300
+            or len(test) < 150
+            or train["kommun_kod"].nunique() < 150
+        ):
+            rows.append({
+                "feature": candidate,
+                "status": "insufficient_coverage",
+                "n_train": int(len(train)),
+                "n_test": int(len(test)),
+                "n_municipalities_train": int(train["kommun_kod"].nunique()),
+            })
+            continue
+
+        base_cv = best_cv(train, base_features)
+        full_features = base_features + [candidate]
+        full_cv = best_cv(train, full_features)
+        if not base_cv or not full_cv:
+            rows.append({
+                "feature": candidate,
+                "status": "insufficient_cv",
+                "n_train": int(len(train)),
+                "n_test": int(len(test)),
+            })
+            continue
+
+        base_model = make_pipeline(
+            StandardScaler(), Ridge(alpha=float(base_cv["alpha"]))
+        )
+        full_model = make_pipeline(
+            StandardScaler(), Ridge(alpha=float(full_cv["alpha"]))
+        )
+        base_model.fit(train[base_features], train[target])
+        full_model.fit(train[full_features], train[target])
+
+        y_test = test[target].to_numpy(dtype=float)
+        base_pred = base_model.predict(test[base_features])
+        full_pred = full_model.predict(test[full_features])
+        base_hold = _geographic_error_metrics(y_test, base_pred)
+        full_hold = _geographic_error_metrics(y_test, full_pred)
+
+        rows.append({
+            "feature": candidate,
+            "status": "tested",
+            "n_train": int(len(train)),
+            "n_test": int(len(test)),
+            "n_municipalities_train": int(train["kommun_kod"].nunique()),
+            "cv": {
+                "baseline": base_cv,
+                "with_candidate": full_cv,
+                "delta_objective": _finite_float(
+                    (base_cv.get("objective") or np.nan)
+                    - (full_cv.get("objective") or np.nan)
+                ),
+            },
+            "holdout": {
+                "test_year": test_year,
+                "baseline": base_hold,
+                "with_candidate": full_hold,
+                "delta": {
+                    "r2": _finite_float(
+                        (full_hold.get("r2") or np.nan)
+                        - (base_hold.get("r2") or np.nan)
+                    ),
+                    "rmse": _finite_float(
+                        (base_hold.get("rmse") or np.nan)
+                        - (full_hold.get("rmse") or np.nan)
+                    ),
+                    "p90_abs_error": _finite_float(
+                        (base_hold.get("p90_abs_error") or np.nan)
+                        - (full_hold.get("p90_abs_error") or np.nan)
+                    ),
+                    "p90_p10_abs_error_gap": _finite_float(
+                        (base_hold.get("p90_p10_abs_error_gap") or np.nan)
+                        - (full_hold.get("p90_p10_abs_error_gap") or np.nan)
+                    ),
+                    "worst_decile_mae": _finite_float(
+                        (base_hold.get("worst_decile_mae") or np.nan)
+                        - (full_hold.get("worst_decile_mae") or np.nan)
+                    ),
+                },
+            },
+        })
+
+    return {
+        "status": "tested",
+        "test_year": test_year,
+        "baseline_features": base_features,
+        "selection": (
+            "ridge alpha selected separately for baseline and candidate model "
+            "using municipality-blocked CV on training years; final holdout is untouched"
+        ),
+        "rows": rows,
+    }
+
+
 def fit_models(panel: pd.DataFrame, *, demographic_blind: bool = False, output_suffix: str = "") -> dict:
     target = "inflyttning_per_1000"
     features = [
@@ -8039,6 +8234,11 @@ def main():
     # Third model track: optimise the error distribution across municipalities
     # without sacrificing more than a small amount of average temporal accuracy.
     result["geographic_robust_model"] = fit_geographic_robust_model(panel, result)
+    result["housing_turnover_geographic_candidate_tests"] = _geographic_candidate_tests(
+        panel,
+        result,
+        HOUSING_TURNOVER_CANDIDATE_FEATURES,
+    )
 
     overall_base = result["windows"]["5"]["explanation"]["selected_features"]
     result["activity_candidate_tests"] = {
