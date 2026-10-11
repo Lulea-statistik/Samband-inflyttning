@@ -98,6 +98,7 @@ MONTHLY_EMPLOYMENT_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0
 AREA_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/MI/MI0802/Areal2012NN"
 TATORTSGRAD_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/MI/MI0810/MI0810A/TatortGrad"
 LAND_USE_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/MI/MI0803/MI0803A/MarkanvN"
+SHORELINE_BUILDINGS_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/MI/MI0812/MI0812S/MI0812T01"
 VEHICLE_TRAFFIC_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/TK/TK1001/TK1001A/FordonTrafik"
 MUNICIPAL_GEOPARQUET_URL = "https://raw.githubusercontent.com/stefur/swemaps/main/src/swemaps/data/kommun.parquet"
 GEOGRAPHY_CRS = "EPSG:3006"
@@ -168,6 +169,13 @@ LAND_NATURE_CANDIDATE_FEATURES = [
     "lag1_skogsmark_andel_land_pct",
     "lag1_naturpraglad_mark_andel_land_pct",
 ]
+SHORELINE_CANDIDATE_FEATURES = [
+    "lag1_strand_hav_bostader_per_1000",
+    "lag1_strand_hav_bostader_tatort_per_1000",
+    "lag1_strand_hav_bostader_tatort_andel_pct",
+    "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+]
+SHORELINE_COMPARATOR_FEATURE = "lag1_strand_inland_bostader_per_1000"
 OUT = Path("docs/data")
 OUT.mkdir(parents=True, exist_ok=True)
 
@@ -274,6 +282,7 @@ def preflight_sources() -> None:
         "municipal_area": AREA_URL,
         "urban_area_share": TATORTSGRAD_URL,
         "land_use": LAND_USE_URL,
+        "shoreline_buildings": SHORELINE_BUILDINGS_URL,
         "vehicles_by_municipality": VEHICLE_TRAFFIC_URL,
         "education": EDUCATION_URL,
         "students": STUDENT_URL,
@@ -3624,6 +3633,225 @@ def get_land_use_urbanity() -> pd.DataFrame:
 
 
 
+def get_shoreline_buildings() -> pd.DataFrame:
+    """
+    SCB residential buildings within 100 metres of shoreline, split by sea vs
+    inland water and by area type. These are stock measures, not construction
+    flows. The series is used only as a structural candidate proxy because SCB
+    notes a shoreline-method break between 2021 and 2022 and possible local
+    register-quality revisions.
+    """
+    meta = metadata(SHORELINE_BUILDINGS_URL)
+    region = find_var(meta, "region")
+    building_type = find_var(meta, "byggnadstyp")
+    shore_type = find_var(meta, "strandtyp")
+    area_type = find_var(meta, "typ av område", "områdestyp")
+    time_var = find_var(meta, "år", "tid")
+    content = next(
+        (
+            v for v in meta.get("variables", [])
+            if "contentscode" in str(v.get("code", "")).casefold()
+            or "tabellinnehåll" in str(v.get("text", "")).casefold()
+        ),
+        None,
+    )
+
+    munis = municipality_codes(region)
+    residence_code = code_for_text(building_type, "bostad")
+    sea_code = code_for_text(shore_type, "hav")
+    inland_code = code_for_text(shore_type, "inlandsvatten")
+    urban_code = code_for_text(area_type, "inom tätort")
+    protected_code = code_for_text(area_type, "inom formellt skyddad natur")
+    total_area_code = require_total_code(area_type)
+    years = [
+        str(v) for v in time_var.get("values", [])
+        if re.search(r"(?:19|20)\\d{2}", str(v))
+        and 2018 <= int(re.search(r"(?:19|20)\\d{2}", str(v)).group(0)) <= END_YEAR
+    ]
+    if not years:
+        raise ValueError("No usable years in SCB shoreline-buildings table")
+
+    selections = {
+        region["code"]: munis,
+        building_type["code"]: [residence_code],
+        shore_type["code"]: [sea_code, inland_code],
+        area_type["code"]: [total_area_code, urban_code, protected_code],
+        time_var["code"]: years,
+    }
+    if content is not None:
+        selections[content["code"]] = aggregate_codes(content)
+
+    df = px_csv(SHORELINE_BUILDINGS_URL, selections)
+    dims = standardize_columns(df)
+    region_col = dims.get("region")
+    building_col = next(
+        (c for c in df.columns if "byggnadstyp" in str(c).casefold()),
+        None,
+    )
+    shore_col = next(
+        (c for c in df.columns if "strandtyp" in str(c).casefold()),
+        None,
+    )
+    area_col = next(
+        (
+            c for c in df.columns
+            if "typ av område" in str(c).casefold()
+            or "områdestyp" in str(c).casefold()
+        ),
+        None,
+    )
+    if None in {region_col, building_col, shore_col, area_col}:
+        raise ValueError(
+            f"Could not identify shoreline table dimensions: {list(df.columns)}"
+        )
+
+    year_col = dims.get("year")
+    if year_col is not None:
+        dim_cols = {region_col, building_col, shore_col, area_col, year_col}
+        value_cols = [c for c in df.columns if c not in dim_cols]
+        if not value_cols:
+            raise ValueError(
+                f"No shoreline value column found: {list(df.columns)}"
+            )
+        value_col = value_cols[-1]
+        work = df[
+            [region_col, building_col, shore_col, area_col, year_col, value_col]
+        ].copy()
+        work["year"] = pd.to_numeric(
+            work[year_col].astype(str).str.extract(r"((?:19|20)\\d{2})")[0],
+            errors="coerce",
+        )
+        work["antal"] = normalize_number(work[value_col])
+    else:
+        dim_cols = {region_col, building_col, shore_col, area_col}
+        year_value_cols = [
+            c for c in df.columns
+            if c not in dim_cols and re.search(r"(?:19|20)\\d{2}", str(c))
+        ]
+        if not year_value_cols:
+            raise ValueError(
+                f"No year-valued shoreline columns found: {list(df.columns)}"
+            )
+        work = df[
+            [region_col, building_col, shore_col, area_col] + year_value_cols
+        ].melt(
+            id_vars=[region_col, building_col, shore_col, area_col],
+            value_vars=year_value_cols,
+            var_name="measure_year",
+            value_name="raw_value",
+        )
+        work["year"] = pd.to_numeric(
+            work["measure_year"].astype(str).str.extract(r"((?:19|20)\\d{2})")[0],
+            errors="coerce",
+        )
+        work["antal"] = normalize_number(work["raw_value"])
+
+    work[["kommun_kod", "kommun_strand"]] = work[region_col].apply(
+        lambda x: pd.Series(split_region(x))
+    )
+    work["kommun_kod"] = work["kommun_kod"].astype(str).str.zfill(4)
+    work = work.dropna(subset=["year"])
+    work["year"] = work["year"].astype(int)
+
+    if not work[building_col].astype(str).str.strip().str.casefold().eq("bostad").all():
+        raise ValueError(
+            "Unexpected non-residential category in shoreline-buildings query"
+        )
+
+    def shore_kind(value: object) -> str | None:
+        t = str(value).strip().casefold()
+        if t == "hav":
+            return "sea"
+        if "inlandsvatten" in t:
+            return "inland"
+        return None
+
+    def area_kind(value: object) -> str | None:
+        t = str(value).strip().casefold()
+        if t == "totalt":
+            return "total"
+        if "inom tätort" in t:
+            return "urban"
+        if "formellt skyddad natur" in t:
+            return "protected"
+        return None
+
+    work["shore_kind"] = work[shore_col].map(shore_kind)
+    work["area_kind"] = work[area_col].map(area_kind)
+    unknown_shore = sorted(
+        work.loc[work["shore_kind"].isna(), shore_col].astype(str).unique().tolist()
+    )
+    unknown_area = sorted(
+        work.loc[work["area_kind"].isna(), area_col].astype(str).unique().tolist()
+    )
+    if unknown_shore or unknown_area:
+        raise ValueError(
+            f"Unrecognized shoreline classes: shore={unknown_shore}, area={unknown_area}"
+        )
+
+    grouped = (
+        work.groupby(
+            ["kommun_kod", "year", "shore_kind", "area_kind"]
+        )["antal"]
+        .sum(min_count=1)
+        .reset_index()
+    )
+
+    def combo(shore: str, area: str, name: str) -> pd.DataFrame:
+        return (
+            grouped[
+                (grouped["shore_kind"] == shore)
+                & (grouped["area_kind"] == area)
+            ][["kommun_kod", "year", "antal"]]
+            .rename(columns={"antal": name})
+        )
+
+    out = combo("sea", "total", "strand_hav_bostader")
+    out = out.merge(
+        combo("sea", "urban", "strand_hav_bostader_tatort"),
+        on=["kommun_kod", "year"],
+        how="outer",
+        validate="one_to_one",
+    )
+    out = out.merge(
+        combo("sea", "protected", "strand_hav_bostader_skyddad_natur"),
+        on=["kommun_kod", "year"],
+        how="outer",
+        validate="one_to_one",
+    )
+    out = out.merge(
+        combo("inland", "total", "strand_inland_bostader"),
+        on=["kommun_kod", "year"],
+        how="outer",
+        validate="one_to_one",
+    )
+
+    coverage = (
+        out.dropna(subset=["strand_hav_bostader"])
+        .groupby("year")["kommun_kod"]
+        .nunique()
+        .to_dict()
+    )
+    if min(coverage.values(), default=0) < 285:
+        raise ValueError(
+            f"Shoreline-buildings municipality coverage too low: {coverage}"
+        )
+    if (out[[
+        "strand_hav_bostader",
+        "strand_hav_bostader_tatort",
+        "strand_hav_bostader_skyddad_natur",
+        "strand_inland_bostader",
+    ]].dropna() < 0).any().any():
+        raise ValueError("Negative shoreline-building counts; check SCB parsing")
+
+    print(
+        "Shoreline residential buildings: "
+        f"years={sorted(out['year'].unique().tolist())}; "
+        f"municipalities/latest={coverage.get(int(out['year'].max()), 0)}"
+    )
+    return out
+
+
 def get_snowmobile_proxy() -> pd.DataFrame:
     """
     Municipality-year snowmobile share from SCB vehicles in traffic.
@@ -4370,6 +4598,11 @@ FEATURE_THEMES = {
     "lag1_andel_smahus_151_plus": "Mycket stora bostäder",
     "lag1_skogsmark_andel_land_pct": "Natur och friluftsliv",
     "lag1_naturpraglad_mark_andel_land_pct": "Natur och friluftsliv",
+    "lag1_strand_hav_bostader_per_1000": "Strandnära boendemiljö",
+    "lag1_strand_hav_bostader_tatort_per_1000": "Strandnära boendemiljö",
+    "lag1_strand_hav_bostader_tatort_andel_pct": "Strandnära boendemiljö",
+    "lag1_strand_hav_bostader_skyddad_natur_per_1000": "Strandnära boendemiljö",
+    "lag1_strand_inland_bostader_per_1000": "Strandnära boendemiljö",
     "lag1_fritidshusandel_bland_smahus": "Landets lugn",
     "lag1_brott_per_100000": "Landets lugn",
     "lag1_sysselsattningsgrad": "Arbetsmarknad",
@@ -6804,6 +7037,189 @@ def _land_nature_residual_tests(
     }
 
 
+def _shoreline_residual_tests(
+    panel: pd.DataFrame,
+    target: str,
+    base_features: list[str],
+    start_year: int,
+    end_year: int,
+) -> dict:
+    """
+    Test whether sea-near residential buildings add information beyond general
+    water proximity, coast geometry and urban structure. Inland shoreline
+    residential buildings are included as a comparator/control so a sea result
+    is less likely to be merely a generic 'lots of shoreline' signal.
+    """
+    candidates = list(SHORELINE_CANDIDATE_FEATURES)
+    forced_controls = [
+        "geo_northing_100km",
+        "lag1_log_folkmangd",
+        "lag1_tatortsgrad_pct",
+        "lag1_bebyggd_anlagd_andel_land_pct",
+        "geo_havsandel_10pp",
+        "lag1_andel_smahus",
+        SHORELINE_COMPARATOR_FEATURE,
+    ]
+    rows = []
+
+    northing_center_km = float(
+        panel[["kommun_kod", "kommun_centroid_northing_km"]]
+        .drop_duplicates("kommun_kod")["kommun_centroid_northing_km"]
+        .dropna()
+        .median()
+    )
+
+    for candidate in candidates:
+        needed = list(dict.fromkeys(
+            [
+                "kommun_kod", "year", target, "kommun_centroid_northing_km",
+                "havsandel_pct", "lag1_log_folkmangd",
+                "lag1_tatortsgrad_pct",
+                "lag1_bebyggd_anlagd_andel_land_pct",
+                "lag1_andel_smahus", SHORELINE_COMPARATOR_FEATURE, candidate,
+            ]
+            + list(base_features)
+        ))
+        d = (
+            panel.loc[panel["year"].between(start_year, end_year), needed]
+            .dropna()
+            .reset_index(drop=True)
+        )
+        if (
+            len(d) < 150
+            or d["kommun_kod"].nunique() < 80
+            or d["year"].nunique() < 2
+        ):
+            rows.append({
+                "feature": candidate,
+                "status": "insufficient_coverage",
+                "n_obs": int(len(d)),
+                "n_municipalities": int(d["kommun_kod"].nunique()),
+                "n_years": int(d["year"].nunique()),
+            })
+            continue
+
+        d["geo_northing_100km"] = (
+            d["kommun_centroid_northing_km"] - northing_center_km
+        ) / 100.0
+        d["geo_havsandel_10pp"] = d["havsandel_pct"] / 10.0
+
+        base_core = [
+            f for f in base_features
+            if f not in {
+                "lag1_log_folkmangd",
+                "lag1_tatortsgrad_pct",
+                "lag1_bebyggd_anlagd_andel_land_pct",
+                "lag1_andel_smahus",
+                SHORELINE_COMPARATOR_FEATURE,
+            }
+            and f not in candidates
+        ]
+        controls = list(dict.fromkeys(base_core + forced_controls))
+        y = d[target].astype(float).reset_index(drop=True)
+
+        fit_controls = sm.OLS(
+            y, _design_with_year_effects(d, controls)
+        ).fit()
+        full_features = controls + [candidate]
+        fit_full = sm.OLS(
+            y, _design_with_year_effects(d, full_features)
+        ).fit()
+        robust = sm.OLS(
+            y, _design_with_year_effects(d, full_features)
+        ).fit(
+            cov_type="cluster",
+            cov_kwds={"groups": d["kommun_kod"].reset_index(drop=True)},
+        )
+        names = list(robust.model.exog_names)
+        i = names.index(candidate)
+        base_rmse = float(np.sqrt(np.mean(np.square(fit_controls.resid))))
+        full_rmse = float(np.sqrt(np.mean(np.square(fit_full.resid))))
+
+        train = d[d["year"] < end_year].copy()
+        test = d[d["year"] == end_year].copy()
+        holdout = {
+            "test_year": end_year,
+            "n_train": int(len(train)),
+            "n_test": int(len(test)),
+        }
+        if len(train) >= 150 and len(test) >= 80:
+            base_model = LinearRegression().fit(train[controls], train[target])
+            full_model = LinearRegression().fit(
+                train[full_features], train[target]
+            )
+            y_test = test[target].to_numpy(dtype=float)
+            base_pred = base_model.predict(test[controls])
+            full_pred = full_model.predict(test[full_features])
+            base_test_rmse = float(
+                np.sqrt(mean_squared_error(y_test, base_pred))
+            )
+            full_test_rmse = float(
+                np.sqrt(mean_squared_error(y_test, full_pred))
+            )
+            holdout.update({
+                "base_rmse": _finite_float(base_test_rmse),
+                "full_rmse": _finite_float(full_test_rmse),
+                "delta_rmse": _finite_float(
+                    base_test_rmse - full_test_rmse
+                ),
+                "base_r2": _finite_float(r2_score(y_test, base_pred)),
+                "full_r2": _finite_float(r2_score(y_test, full_pred)),
+                "delta_r2": _finite_float(
+                    r2_score(y_test, full_pred)
+                    - r2_score(y_test, base_pred)
+                ),
+            })
+        else:
+            holdout["status"] = "insufficient_coverage"
+
+        rows.append({
+            "feature": candidate,
+            "status": "tested",
+            "n_obs": int(len(d)),
+            "n_municipalities": int(d["kommun_kod"].nunique()),
+            "n_years": int(d["year"].nunique()),
+            "coefficient_after_controls": _finite_float(
+                np.asarray(robust.params)[i]
+            ),
+            "p_value_after_controls": _finite_float(
+                np.asarray(robust.pvalues)[i]
+            ),
+            "delta_adjusted_r2_after_controls": _finite_float(
+                fit_full.rsquared_adj - fit_controls.rsquared_adj
+            ),
+            "delta_aic_after_controls": _finite_float(
+                fit_controls.aic - fit_full.aic
+            ),
+            "delta_rmse_after_controls": _finite_float(
+                base_rmse - full_rmse
+            ),
+            "holdout": holdout,
+        })
+
+    return {
+        "status": "tested",
+        "rule": (
+            "candidate tested after baseline plus northing, log population, "
+            "SCB urban-area share, built/developed land share, sea share, "
+            "small-house share and inland shoreline residential buildings"
+        ),
+        "start_year": start_year,
+        "end_year": end_year,
+        "forced_controls": forced_controls,
+        "source": (
+            "SCB MI0812T01: residential buildings within 100 metres of "
+            "shoreline, split by sea/inland water and area type"
+        ),
+        "limitations": (
+            "structural stock proxy only; SCB notes a shoreline-method break "
+            "between 2021 and 2022, changing urban/protected-area boundaries "
+            "and possible local building-register quality revisions"
+        ),
+        "rows": rows,
+    }
+
+
 def _geography_rankings(panel: pd.DataFrame) -> dict:
     """Simple source-QA rankings for the static geography candidate variables."""
     cols = [
@@ -6862,6 +7278,7 @@ def main():
     fa15 = get_fa15_membership()
     geography = get_geography()
     direct_urbanity = get_direct_urbanity()
+    shoreline_buildings = get_shoreline_buildings()
     snowmobile_proxy = get_snowmobile_proxy()
     mig = get_migration()
     pop = get_population()
@@ -6874,6 +7291,49 @@ def main():
     leisure = get_leisure_houses()
     crime = get_crime_total()
     panel = build_panel(mig, pop, income, house_prices, vacancy, turnout, inequality, housing, housing_area, completed_housing, leisure, crime, labor, monthly_employment, education, students, activity, industry, fa15, geography, direct_urbanity)
+    panel = panel.merge(
+        shoreline_buildings,
+        on=["kommun_kod", "year"],
+        how="left",
+        validate="many_to_one",
+    )
+    panel["strand_hav_bostader_per_1000"] = (
+        1000 * panel["strand_hav_bostader"]
+        / panel["folkmangd"].replace(0, np.nan)
+    )
+    panel["strand_hav_bostader_tatort_per_1000"] = (
+        1000 * panel["strand_hav_bostader_tatort"]
+        / panel["folkmangd"].replace(0, np.nan)
+    )
+    panel["strand_hav_bostader_skyddad_natur_per_1000"] = (
+        1000 * panel["strand_hav_bostader_skyddad_natur"]
+        / panel["folkmangd"].replace(0, np.nan)
+    )
+    panel["strand_inland_bostader_per_1000"] = (
+        1000 * panel["strand_inland_bostader"]
+        / panel["folkmangd"].replace(0, np.nan)
+    )
+    panel["strand_hav_bostader_tatort_andel_pct"] = (
+        100 * panel["strand_hav_bostader_tatort"]
+        / panel["strand_hav_bostader"].replace(0, np.nan)
+    )
+    shoreline_g = panel.groupby("kommun_kod", group_keys=False)
+    panel["lag1_strand_hav_bostader_per_1000"] = (
+        shoreline_g["strand_hav_bostader_per_1000"].shift(1)
+    )
+    panel["lag1_strand_hav_bostader_tatort_per_1000"] = (
+        shoreline_g["strand_hav_bostader_tatort_per_1000"].shift(1)
+    )
+    panel["lag1_strand_hav_bostader_tatort_andel_pct"] = (
+        shoreline_g["strand_hav_bostader_tatort_andel_pct"].shift(1)
+    )
+    panel["lag1_strand_hav_bostader_skyddad_natur_per_1000"] = (
+        shoreline_g["strand_hav_bostader_skyddad_natur_per_1000"].shift(1)
+    )
+    panel["lag1_strand_inland_bostader_per_1000"] = (
+        shoreline_g["strand_inland_bostader_per_1000"].shift(1)
+    )
+
     panel = panel.merge(
         snowmobile_proxy,
         on=["kommun_kod", "year"],
@@ -7077,6 +7537,45 @@ def main():
         },
     }
 
+    result["shoreline_candidate_tests"] = {
+        "overall": _sparse_candidate_tests(
+            panel,
+            result["target"],
+            overall_base,
+            SHORELINE_CANDIDATE_FEATURES,
+            END_YEAR - 4,
+            END_YEAR,
+        ),
+        "age_groups": {
+            key: _sparse_candidate_tests(
+                panel,
+                model["target"],
+                model["explanation"]["selected_features"],
+                SHORELINE_CANDIDATE_FEATURES,
+                END_YEAR - 4,
+                END_YEAR,
+            )
+            for key, model in age_models.items()
+            if "error" not in model
+        },
+    }
+    result["shoreline_residual_tests"] = {
+        "overall": _shoreline_residual_tests(
+            panel, result["target"], overall_base, END_YEAR - 4, END_YEAR
+        ),
+        "age_groups": {
+            key: _shoreline_residual_tests(
+                panel,
+                model["target"],
+                model["explanation"]["selected_features"],
+                END_YEAR - 4,
+                END_YEAR,
+            )
+            for key, model in age_models.items()
+            if "error" not in model
+        },
+    }
+
     result["snowmobile_proxy_candidate_tests"] = {
         "overall": _sparse_candidate_tests(
             panel,
@@ -7214,6 +7713,14 @@ def main():
             "SCB total forest share of total land area",
             "SCB total forest + open mire + other land share of total land area (coarse nature-dominated land proxy)",
         ],
+        "shoreline_candidates": [
+            "SCB residential buildings within 100 m of sea shoreline per 1,000 residents",
+            "SCB sea-shore residential buildings within urban areas per 1,000 residents",
+            "share of sea-shore residential buildings located within urban areas",
+            "SCB sea-shore residential buildings within formally protected nature per 1,000 residents",
+        ],
+        "shoreline_comparator": "SCB residential buildings within 100 m of inland-water shoreline per 1,000 residents",
+        "shoreline_interpretation": "candidate structural proxy only; do not interpret annual change across the 2021/2022 shoreline-method break",
         "snowmobile_proxy": "SCB snowmobiles as share of published vehicle stock; exact and denominator-robust variants, lagged one year",
         "production_status": "candidate_only",
     }
@@ -7388,6 +7895,45 @@ def main():
         ),
         "age_groups": {
             key: _land_nature_residual_tests(
+                panel,
+                model["target"],
+                model["explanation"]["selected_features"],
+                END_YEAR - 4,
+                END_YEAR,
+            )
+            for key, model in blind_age_models.items()
+            if "error" not in model
+        },
+    }
+
+    blind_result["shoreline_candidate_tests"] = {
+        "overall": _sparse_candidate_tests(
+            panel,
+            blind_result["target"],
+            blind_base,
+            SHORELINE_CANDIDATE_FEATURES,
+            END_YEAR - 4,
+            END_YEAR,
+        ),
+        "age_groups": {
+            key: _sparse_candidate_tests(
+                panel,
+                model["target"],
+                model["explanation"]["selected_features"],
+                SHORELINE_CANDIDATE_FEATURES,
+                END_YEAR - 4,
+                END_YEAR,
+            )
+            for key, model in blind_age_models.items()
+            if "error" not in model
+        },
+    }
+    blind_result["shoreline_residual_tests"] = {
+        "overall": _shoreline_residual_tests(
+            panel, blind_result["target"], blind_base, END_YEAR - 4, END_YEAR
+        ),
+        "age_groups": {
+            key: _shoreline_residual_tests(
                 panel,
                 model["target"],
                 model["explanation"]["selected_features"],
