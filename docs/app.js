@@ -778,7 +778,8 @@ function renderGeographicRobustness(){
   Plotly.react(tail,[
     {x:rows.map((_,i)=>i+1),y:rows.map(x=>x.baseline_abs_error),
       mode:'lines',name:'Vanlig prognosmodell',
-      hovertemplate:'Rang %{x}<br>Absolutfel=%{y:.2f}<extra></extra>'},
+      customdata:rows.map(x=>x.kommun),
+      hovertemplate:'%{customdata}<br>Rang %{x}<br>Absolutfel=%{y:.2f}<extra></extra>'},
     {x:rows.map((_,i)=>i+1),y:rows.map(x=>x.robust_abs_error),
       mode:'lines',name:'Modell 3',
       customdata:rows.map(x=>x.kommun),
