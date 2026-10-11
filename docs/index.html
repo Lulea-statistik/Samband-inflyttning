@@ -18,6 +18,7 @@
 <nav>
   <button class="tab splash-tab" data-page="public">För allmänheten</button>
   <button class="tab active" data-page="overview">Översikt</button>
+  <button class="tab" data-page="geographic">Geografisk robusthet</button>
   <button class="tab" data-page="tests">Testlogg</button>
   <button class="tab" data-page="relationships">Samband</button>
   <button class="tab" data-page="model">Multipel regression</button>
@@ -57,8 +58,8 @@
   <section id="public" class="page public-page">
     <section class="public-hero">
       <div class="eyebrow" id="publicEyebrow">Inflyttning till svenska kommuner</div>
-      <h2 id="publicHeroTitle">Två frågor kräver två olika modeller</h2>
-      <p id="publicHeroText">En modell försöker <strong>förutsäga nästa års inflyttning så träffsäkert som möjligt</strong>. Den andra försöker förstå <strong>vilka strukturella egenskaper som hänger ihop med inflyttning</strong> utan att använda tidigare migration eller befolkningstillväxt som genväg.</p>
+      <h2 id="publicHeroTitle">Tre frågor kräver tre olika modeller</h2>
+      <p id="publicHeroText">En modell försöker <strong>förutsäga nästa års inflyttning så träffsäkert som möjligt</strong>. En andra försöker förstå <strong>vilka strukturella egenskaper som hänger ihop med inflyttning</strong>. Modell 3 frågar om prognosen fungerar <strong>jämnt mellan olika kommuner</strong> och försöker minska den geografiska svansen av stora prognosfel.</p>
     </section>
 
     <section class="public-kpis" id="publicKpis"></section>
@@ -73,6 +74,11 @@
         <div class="story-number">2</div>
         <h3>Strukturmodellen förbjuder genvägen</h3>
         <p>Den får inte använda tidigare migration, tidigare befolkningstillväxt, åldersstruktur eller inflyttarnas tidigare profil. Däremot får kommunstorlek, bostäder, arbetsmarknad, utbildning och andra strukturella egenskaper finnas med.</p>
+      </article>
+      <article class="public-story">
+        <div class="story-number">3</div>
+        <h3>Robusthetsmodellen tittar på kommunerna i svansen</h3>
+        <p>Den utgår från prognosspåret men väljer modell efter både genomsnittligt fel och hur stora felen är bland de sämst predikterade kommunerna. Målet är inte att göra alla kommuner lika, utan att undvika att hög total träffsäkerhet döljer tydliga geografiska missar.</p>
       </article>
     </section>
 
@@ -106,9 +112,9 @@
     <section class="public-takeaway">
       <div>
         <div class="eyebrow">Kort slutsats</div>
-        <h3>Den bästa prognosen är inte automatiskt den bästa förklaringen.</h3>
+        <h3>Den bästa genomsnittsprognosen är inte automatiskt den mest geografiskt robusta.</h3>
       </div>
-      <p>Prognosmodellen är bäst när frågan är <strong>vad händer nästa år?</strong> Strukturmodellen är bättre när frågan är <strong>vilka kommunegenskaper är förknippade med hög inflyttning?</strong> Sambanden ska fortfarande inte tolkas som säkra orsakseffekter.</p>
+      <p>Prognosmodellen är bäst när frågan är <strong>vad händer nästa år?</strong> Strukturmodellen är bättre när frågan är <strong>vilka kommunegenskaper är förknippade med hög inflyttning?</strong> Den geografiskt robusta modellen frågar <strong>för vilka kommuner fungerar prognosen sämre – och går den skillnaden att minska?</strong> Sambanden ska fortfarande inte tolkas som säkra orsakseffekter.</p>
     </section>
   </section>
 
@@ -240,6 +246,15 @@
         <p>Måttet är samtidigt starkt skevt: många kommuner har noll och ett fåtal kustkommuner ligger mycket högt. SCB anger dessutom ett metodbrott i strandlinjen mellan 2021 och 2022.</p>
         <p class="test-decision"><strong>Beslut:</strong> behåll som lovande åldersspecifik diagnostik, men ge inte produktionsstatus förrän signalen klarar robusthetstest för kusturval, log-transformering och extremvärden.</p>
       </article>
+      <article class="test-summary-card">
+        <div class="test-summary-head">
+          <span class="test-run">#114</span>
+          <span class="test-status status-diagnostic">Robusthetstest klart</span>
+        </div>
+        <h3>Är strand-signalen beroende av extremkommuner?</h3>
+        <p id="shorelineRun114Text">Resultatet läses direkt från den senaste modellkörningen och jämför råvärden med log-transformering, 99:e-percentils winsorering, exkludering av de tre högsta kommunerna samt kustkommuner separat.</p>
+        <p class="test-decision" id="shorelineRun114Decision"><strong>Beslut:</strong> inväntar sammanvägning av robusthetsvarianterna.</p>
+      </article>
 
       <article class="test-summary-card">
         <div class="test-summary-head">
@@ -263,10 +278,15 @@
 
   <section id="overview" class="page active">
     <h2>Översikt</h2>
-    <p class="lead">Rapporten skiljer nu på två modeller. <strong>Prognosmodellen</strong> får använda historisk demografi om det förbättrar träffsäkerheten. <strong>Den demografiskt blinda strukturmodellen</strong> förbjuder historisk migration, befolkningstillväxt, åldersstruktur och inflyttarprofil som förklaringsvariabler, men tillåter kommunstorlek samt strukturella bostads-, arbetsmarknads-, ekonomiska och geografiska variabler.</p>
+    <p class="lead">Rapporten skiljer nu på tre modellspår. <strong>Prognosmodellen</strong> maximerar träffsäkerheten, <strong>den demografiskt blinda strukturmodellen</strong> söker strukturella samband utan historisk demografi som genväg och <strong>den geografiskt robusta prognosmodellen</strong> försöker behålla hög precision samtidigt som stora prognosfel koncentrerade till vissa kommuner minskar.</p>
     <div id="swedenOverview">
       <div class="panel"><h3 id="variantPurposeTitle">Prognosmodell</h3><p id="variantPurposeText" class="note"></p></div>
       <div id="cards" class="cards"></div>
+      <div class="panel geo-overview-callout">
+        <h3>Tre modellspår – tre olika optimeringsproblem</h3>
+        <p class="note">Modell 3 ska inte vinna genom högsta möjliga R². Den får väljas om den minskar den geografiska svansen av stora kommunfel utan att rolling-origin-RMSE blir mer än 3 % sämre än den vanliga prognosmodellens.</p>
+        <div id="threeModelComparison" class="chart"></div>
+      </div>
       <div class="panel">
         <h3>Direkt jämförelse mellan modellspåren</h3>
         <p class="note">Samma testår används. Prognosmodellen får använda historisk demografi; strukturmodellen får inte göra det. Skillnaden visar hur mycket prediktiv information som finns i historisk demografi jämfört med enbart strukturella variabler.</p>
@@ -302,6 +322,62 @@
         <p class="note">Diagrammet visar hur varje temas modellbidrag till Luleå–Sverige-gapet har förändrats från periodens första till sista år.</p>
         <div id="luleaContributionChange" class="chart tall"></div>
       </div>
+    </div>
+  </section>
+
+
+  <section id="geographic" class="page">
+    <div class="testlog-hero geo-hero">
+      <div class="eyebrow">Modell 3</div>
+      <h2>Geografiskt robust prognosmodell</h2>
+      <p class="lead">En hög nationell prognosprecision kan dölja att vissa kommuntyper återkommande får stora fel. Modell 3 optimerar därför inte bara genomsnittlig RMSE utan väger också in 90:e-percentilen för absolutfel och spridningen P90–P10. Maxfelet används som diagnostik men inte som optimeringsmål, eftersom en enda extremkommun annars skulle kunna styra hela modellen.</p>
+    </div>
+
+    <div id="geoRobustCards" class="cards"></div>
+
+    <div class="panel">
+      <h3>Vanlig prognosmodell mot Modell 3</h3>
+      <p class="note">Alla staplar utom R² mäts i inflyttade per 1 000 invånare. Lägre är bättre. Jämförelsen görs på samma kommuner och samma testår.</p>
+      <div id="geoRobustComparison" class="chart"></div>
+    </div>
+
+    <div class="panel">
+      <h3>Hur fördelas prognosfelen mellan kommunerna?</h3>
+      <p class="note">Kommunerna sorteras efter Modell 3:s absoluta fel. Diagrammet visar om svansen av stora fel faktiskt krymper eller bara flyttas mellan kommuner.</p>
+      <div id="geoRobustTail" class="chart tall"></div>
+    </div>
+
+    <div class="panel">
+      <h3>Kommuner med störst kvarvarande fel</h3>
+      <p class="note">Positiv förändring betyder att Modell 3 minskar absolutfelet jämfört med den vanliga prognosmodellen.</p>
+      <div id="geoRobustWorstTable" class="table-wrap"></div>
+    </div>
+
+    <div class="panel">
+      <h3>Vilka variabler valde den geografiska optimeringen?</h3>
+      <div id="geoRobustSelection"></div>
+    </div>
+
+    <div class="panel shoreline-robust-panel">
+      <div class="eyebrow">Robusthetstest #114</div>
+      <h3>Strandnära bostäder i skyddad natur – håller 35–49-signalen?</h3>
+      <p id="shorelineRobustnessSummary" class="lead">Resultatet läses från den senaste modellkörningen.</p>
+      <div id="shorelineRobustnessChart" class="chart"></div>
+      <div id="shorelineRobustnessTable" class="table-wrap"></div>
+    </div>
+
+    <div class="panel">
+      <h3>Nästa variabler att testa för geografiska missar</h3>
+      <p class="note">Prioriteringen bygger på att variablerna ska kunna förklara kommuner som avviker från medelkommunen, inte bara höja nationellt R².</p>
+      <ol class="candidate-list">
+        <li><strong>Turismintensitet och gästnätter per invånare</strong> – kan fånga säsongs- och attraktivitetskommuner som Gotland och delar av västkusten bättre än allmän urbanitet.</li>
+        <li><strong>Fritidshus per invånare och andel av hela bostads-/husbeståndet</strong> – bredare än nuvarande fritidshusandel bland småhus och mer direkt relevant för kommuner med stor säsongsbefolkning.</li>
+        <li><strong>Tillgänglighet till regionalt centrum</strong> – restid/avstånd snarare än bara arbetsplatser inom FA-regionen; kan skilja perifera kommuner från kommuner nära en stark kärna.</li>
+        <li><strong>Ö-/färjeberoende och fysisk tillgänglighet</strong> – en generell strukturindikator för kommuner där vatten eller färjelänkar påverkar vardagsrörlighet och bostadsmarknad.</li>
+        <li><strong>Besöksnäringens sysselsättningsandel och säsongsvariation</strong> – prövas separat från total månadsvariation i sysselsättning.</li>
+        <li><strong>Bostadsomsättning</strong> – antal småhus-/bostadsaffärer per 1 000 bostäder eller invånare, för att skilja attraktivitet/marknadsrörlighet från prisnivå.</li>
+        <li><strong>Natur- och rekreationskvalitet nära bebyggelse</strong> – exempelvis skyddad natur eller kust/strand inom ett definierat avstånd från bostäder i stället för andel av hela kommunens yta.</li>
+      </ol>
     </div>
   </section>
 
@@ -432,6 +508,11 @@
       <h3>Snöskoterandel – beteendebaserad klimatproxy</h3>
       <p>Som separat kandidat testas SCB:s kommunvisa bestånd av fordon i trafik. Huvudmåttet följer den föreslagna definitionen: <strong>snöskotrar dividerat med summan av alla publicerade fordonsslag</strong>. Eftersom SCB anger att <em>dragfordon</em> är en därav-post som redan ingår i lätt och tung lastbil beräknas även en robusthetsvariant där dragfordon exkluderas ur nämnaren. Måtten laggas ett år och används endast som kandidatdiagnostik. Innan något migrationssamband tolkas jämförs snöskoterandelen med nordlighet, havsandel, tätortsgrad och andel bebyggd/anlagd mark för att bedöma om den faktiskt fungerar som proxy för nordligt/kallt klimat snarare än en ren urbanitetsmarkör. Som nästa robusthetssteg testas om snöskoterandelen tillför förklaringsvärde när <strong>nordlighet, kommunstorlek, tätortsgrad och bebyggd/anlagd mark hålls konstanta samtidigt</strong>, samt i en ännu striktare variant där även havsandel hålls konstant.</p>
 
+
+      <h3>Geografiskt robust prognosmodell</h3>
+      <p>Modell 3 använder samma slutliga testår som prognosmodellen men ett annat modellurval. Eftersom varje kommun bara har en observation i ett enskilt holdoutår används inte “R² per kommun”. I stället jämförs fördelningen av <strong>absoluta prognosfel</strong> mellan kommunerna. Urvalsobjektivet är RMSE + 0,35 × P90(absolutfel) + 0,25 × [P90−P10](absolutfel). Kandidatmodellen får samtidigt inte ha mer än 3 procent sämre rolling-origin-RMSE än den vanliga prognosmodellens feature-set under träningsperioden. Maxfelet redovisas men ingår inte i objektivet eftersom en enda extrem kommun annars kan dominera modellvalet.</p>
+      <p>Feature-set och ridge-styrka väljs endast på träningsåren genom rolling-origin-validering. Det slutliga teståret används först efter att konfigurationen är låst. Modell 3 är fortfarande en prognosmodell och ska inte tolkas kausalt.</p>
+
       <h3>Multipel linjär regression</h3>
       <p>OLS används som tolkningsbar grundmodell. När flera år ingår läggs årseffekter till för att fånga nationella skillnader mellan år. Eftersom samma kommun återkommer flera gånger används standardfel klustrade per kommun.</p>
       <p>Förklaringsvariabler sållas automatiskt i fyra steg. Elastic Net används för att dämpa svaga eller redundanta variabler, backward-AIC prövar deras inkrementella modellbidrag och därefter grupperas variablerna i kvalitativt skilda teman, exempelvis historisk flyttdynamik, kommunstorlek, befolkningsdynamik, åldersstruktur, bostäder, arbetsmarknad och humankapital. Om flera variabler beskriver samma tema behålls högst en representant. Tidsbaserad rolling-origin-korsvalidering används först när minst tre giltiga tidsfoldar finns; med färre foldar får den inte reducera modellen. Alla strukturella förklaringsvariabler avser föregående år för att tydliggöra tidsordningen mot årets inflyttning.</p>
@@ -462,6 +543,6 @@
     </div>
   </section>
 </main>
-<script src="app.js?v=20261008-8"></script>
+<script src="app.js?v=20261011-1"></script>
 </body>
 </html>
