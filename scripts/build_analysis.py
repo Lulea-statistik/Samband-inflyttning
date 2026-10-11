@@ -3718,7 +3718,7 @@ def get_shoreline_buildings() -> pd.DataFrame:
             [region_col, building_col, shore_col, area_col, year_col, value_col]
         ].copy()
         work["year"] = pd.to_numeric(
-            work[year_col].astype(str).str.extract(r"((?:19|20)\\d{2})")[0],
+            work[year_col].astype(str).str.extract(r"((?:19|20)\d{2})")[0],
             errors="coerce",
         )
         work["antal"] = normalize_number(work[value_col])
@@ -3741,7 +3741,7 @@ def get_shoreline_buildings() -> pd.DataFrame:
             value_name="raw_value",
         )
         work["year"] = pd.to_numeric(
-            work["measure_year"].astype(str).str.extract(r"((?:19|20)\\d{2})")[0],
+            work["measure_year"].astype(str).str.extract(r"((?:19|20)\d{2})")[0],
             errors="coerce",
         )
         work["antal"] = normalize_number(work["raw_value"])
@@ -3826,15 +3826,23 @@ def get_shoreline_buildings() -> pd.DataFrame:
         validate="one_to_one",
     )
 
-    coverage = (
+    sea_coverage = (
         out.dropna(subset=["strand_hav_bostader"])
         .groupby("year")["kommun_kod"]
         .nunique()
         .to_dict()
     )
-    if min(coverage.values(), default=0) < 285:
+    all_coverage = out.groupby("year")["kommun_kod"].nunique().to_dict()
+    # A sea-specific series cannot cover all 290 municipalities. Validate that
+    # it covers a plausible number of coastal municipalities, while the
+    # combined sea/inland query still has near-national municipality coverage.
+    if (
+        max(sea_coverage.values(), default=0) < 70
+        or min(all_coverage.values(), default=0) < 285
+    ):
         raise ValueError(
-            f"Shoreline-buildings municipality coverage too low: {coverage}"
+            "Shoreline-buildings coverage implausible: "
+            f"sea={sea_coverage}; all={all_coverage}"
         )
     if (out[[
         "strand_hav_bostader",
@@ -3847,7 +3855,8 @@ def get_shoreline_buildings() -> pd.DataFrame:
     print(
         "Shoreline residential buildings: "
         f"years={sorted(out['year'].unique().tolist())}; "
-        f"municipalities/latest={coverage.get(int(out['year'].max()), 0)}"
+        f"sea municipalities/latest={sea_coverage.get(int(out['year'].max()), 0)}; "
+        f"all municipalities/latest={all_coverage.get(int(out['year'].max()), 0)}"
     )
     return out
 
@@ -7297,6 +7306,15 @@ def main():
         how="left",
         validate="many_to_one",
     )
+    for col in [
+        "strand_hav_bostader",
+        "strand_hav_bostader_tatort",
+        "strand_hav_bostader_skyddad_natur",
+    ]:
+        panel.loc[
+            panel["kustkommun_hav"].eq(0) & panel[col].isna(),
+            col,
+        ] = 0.0
     panel["strand_hav_bostader_per_1000"] = (
         1000 * panel["strand_hav_bostader"]
         / panel["folkmangd"].replace(0, np.nan)
