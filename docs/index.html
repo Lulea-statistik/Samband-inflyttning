@@ -341,6 +341,11 @@
         <p class="note">Staplarna visar hur mycket <strong>justerat R² minskar</strong> när ett tema tas bort ur modellen. Det är ett borttagnings-test av självständigt förklaringsvärde. Bidragen är inte additiva eftersom teman överlappar och samvarierar.</p>
         <div id="r2ContributionProfile" class="chart tall"></div>
       </div>
+      <div class="panel">
+        <h3>Hur stor andel av modellens totala förklaringsvärde bär varje tema?</h3>
+        <p class="note">Samma borttagningstest uttryckt som <strong>andel av respektive modells totala justerade R²</strong>. Exempel: om modellen har justerat R² = 0,80 och ett tema ger ett tapp på 0,04 motsvarar det 5 % av modellens totala justerade R². Andelarna ska inte summeras till 100 %, eftersom teman överlappar och samvarierar.</p>
+        <div id="r2ContributionShare" class="chart tall"></div>
+      </div>
       <div class="panel"><h3>Prognosvalidering på nästa år</h3><div id="modelCompare" class="chart"></div></div>
     </div>
 
@@ -609,6 +614,6 @@
     </div>
   </section>
 </main>
-<script src="app.js?v=20261011-6"></script>
+<script src="app.js?v=20261011-7"></script>
 </body>
 </html>
