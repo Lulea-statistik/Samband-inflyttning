@@ -52832,6 +52832,17 @@
       }
     }
   },
+  "geographic_robust_model": {
+    "status": "insufficient_temporal_validation",
+    "test_year": 2024,
+    "n_train": 870,
+    "n_test": 290,
+    "configuration": {
+      "status": "insufficient_temporal_validation",
+      "selected": null,
+      "candidates": []
+    }
+  },
   "activity_candidate_tests": {
     "overall": {
       "rule": "one candidate at a time versus the same baseline and same observations",
@@ -111529,6 +111540,11 @@
       "purpose": "Identifiera strukturella samband utan historisk migration, befolkningstillväxt, åldersstruktur eller inflyttarprofil som genväg.",
       "allowed_demographic_control": "Kommunstorlek (log folkmängd) är tillåten som strukturell kontroll.",
       "allowed_endogenous_structures": "Bostads- och arbetsmarknadsförändringar får ingå men ska tolkas som samband, inte säkra orsakseffekter."
+    },
+    "geographic_robust": {
+      "label": "Geografiskt robust prognosmodell",
+      "purpose": "Bevara hög prognosprecision men minska den geografiska spridningen i prognosfel mellan kommuner.",
+      "selection_metric": "RMSE + 0.35*P90 absolutfel + 0.25*(P90-P10 absolutfel), med 3 procent RMSE-skyddsräcke."
     }
   }
 }
