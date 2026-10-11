@@ -164,6 +164,10 @@ HOUSING_TURNOVER_CANDIDATE_FEATURES = [
     "lag1_smahusforsaljningar_per_1000_smahus",
     "lag1_smahusforsaljningar_per_1000_inv",
 ]
+LEISURE_INTENSITY_GEOGRAPHIC_FEATURES = [
+    "lag1_fritidshus_per_1000_inv",
+    "lag1_log_fritidshus_per_1000_inv",
+]
 HOUSING_SIZE_EXTREME_CANDIDATE_FEATURES = [
     "lag1_andel_bostader_70_max",
     "lag1_andel_flerbostad_70_max",
@@ -4248,6 +4252,12 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
         100 * panel["fritidshus"] /
         (panel["fritidshus"] + panel["bostader_smahus"]).replace(0, np.nan)
     )
+    panel["fritidshus_per_1000_inv"] = (
+        1000 * panel["fritidshus"] / panel["folkmangd"].replace(0, np.nan)
+    )
+    panel["log_fritidshus_per_1000_inv"] = np.log1p(
+        panel["fritidshus_per_1000_inv"].clip(lower=0)
+    )
     panel["kommun_nyckel"] = panel["kommun"].map(_normalize_place_name)
     panel = panel.merge(
         crime[["kommun_nyckel", "year", "brott_per_100000"]],
@@ -4458,6 +4468,8 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel["lag1_andel_bostader_151_plus"] = g["andel_bostader_151_plus"].shift(1)
     panel["lag1_andel_smahus_151_plus"] = g["andel_smahus_151_plus"].shift(1)
     panel["lag1_fritidshusandel_bland_smahus"] = g["fritidshusandel_bland_smahus"].shift(1)
+    panel["lag1_fritidshus_per_1000_inv"] = g["fritidshus_per_1000_inv"].shift(1)
+    panel["lag1_log_fritidshus_per_1000_inv"] = g["log_fritidshus_per_1000_inv"].shift(1)
     panel["lag1_brott_per_100000"] = g["brott_per_100000"].shift(1)
     panel["lag1_sysselsattningsgrad"] = g["sysselsattningsgrad"].shift(1)
     panel["lag1_arbetsloshet"] = g["arbetsloshet"].shift(1)
@@ -4659,6 +4671,8 @@ FEATURE_THEMES = {
     "lag1_strand_hav_bostader_skyddad_natur_per_1000": "Strandnära boendemiljö",
     "lag1_strand_inland_bostader_per_1000": "Strandnära boendemiljö",
     "lag1_fritidshusandel_bland_smahus": "Landets lugn",
+    "lag1_fritidshus_per_1000_inv": "Fritidshusintensitet",
+    "lag1_log_fritidshus_per_1000_inv": "Fritidshusintensitet",
     "lag1_brott_per_100000": "Landets lugn",
     "lag1_sysselsattningsgrad": "Arbetsmarknad",
     "lag1_arbetsloshet": "Arbetsmarknad",
@@ -6497,6 +6511,29 @@ def _geographic_candidate_tests(
         base_hold = _geographic_error_metrics(y_test, base_pred)
         full_hold = _geographic_error_metrics(y_test, full_pred)
 
+        municipality_errors = []
+        for idx, row in test.reset_index(drop=True).iterrows():
+            observed = float(row[target])
+            bpred = float(base_pred[idx])
+            fpred = float(full_pred[idx])
+            babs = abs(observed - bpred)
+            fabs = abs(observed - fpred)
+            municipality_errors.append({
+                "kommun_kod": str(row["kommun_kod"]),
+                "kommun": str(row["kommun"]),
+                "observed": _finite_float(observed),
+                "baseline_prediction": _finite_float(bpred),
+                "candidate_prediction": _finite_float(fpred),
+                "baseline_abs_error": _finite_float(babs),
+                "candidate_abs_error": _finite_float(fabs),
+                "delta_abs_error": _finite_float(babs - fabs),
+            })
+        municipality_errors.sort(
+            key=lambda r: (
+                -1e18 if r["delta_abs_error"] is None else -r["delta_abs_error"]
+            )
+        )
+
         rows.append({
             "feature": candidate,
             "status": "tested",
@@ -6511,6 +6548,7 @@ def _geographic_candidate_tests(
                     - (full_cv.get("objective") or np.nan)
                 ),
             },
+            "municipality_errors": municipality_errors,
             "holdout": {
                 "test_year": test_year,
                 "baseline": base_hold,
@@ -8238,6 +8276,11 @@ def main():
         panel,
         result,
         HOUSING_TURNOVER_CANDIDATE_FEATURES,
+    )
+    result["leisure_intensity_geographic_candidate_tests"] = _geographic_candidate_tests(
+        panel,
+        result,
+        LEISURE_INTENSITY_GEOGRAPHIC_FEATURES,
     )
 
     overall_base = result["windows"]["5"]["explanation"]["selected_features"]
