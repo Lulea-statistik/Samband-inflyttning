@@ -23,6 +23,7 @@ from sklearn.linear_model import LinearRegression, Ridge, RidgeCV, ElasticNetCV
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import make_pipeline
+from sklearn.model_selection import GroupKFold
 import statsmodels.api as sm
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 from scipy.stats import norm
@@ -6036,6 +6037,66 @@ def _geographic_temporal_cv(
     }
 
 
+
+def _geographic_group_cv(
+    d: pd.DataFrame,
+    features: list[str],
+    target: str,
+    alpha: float,
+    n_splits: int = 5,
+) -> dict:
+    """
+    Geographic cross-validation fallback.
+
+    Entire municipalities are held out together, across all available training
+    years. This directly tests transfer to municipalities that the model has not
+    seen and avoids leaking the same municipality between train and validation.
+    """
+    cols = ["kommun_kod", "kommun", "year", target] + list(features)
+    work = d[cols].dropna().copy()
+    n_groups = int(work["kommun_kod"].nunique())
+    folds = min(int(n_splits), n_groups)
+    if folds < 3 or len(work) < max(150, len(features) * 8):
+        return {
+            "status": "insufficient_geographic_folds",
+            "folds": 0,
+            "metrics": {},
+            "objective": None,
+        }
+
+    frames = []
+    splitter = GroupKFold(n_splits=folds)
+    X = work[features]
+    y = work[target]
+    groups = work["kommun_kod"].astype(str)
+
+    for fold_id, (train_idx, valid_idx) in enumerate(
+        splitter.split(X, y, groups=groups), start=1
+    ):
+        train = work.iloc[train_idx].copy()
+        valid = work.iloc[valid_idx].copy()
+        ridge = make_pipeline(StandardScaler(), Ridge(alpha=float(alpha)))
+        ridge.fit(train[features], train[target])
+        pred = ridge.predict(valid[features])
+
+        fold = valid[["kommun_kod", "kommun", "year", target]].copy()
+        fold["prediction"] = pred
+        fold["fold"] = fold_id
+        frames.append(fold)
+
+    pooled = pd.concat(frames, ignore_index=True)
+    m = _geographic_error_metrics(pooled[target], pooled["prediction"])
+    return {
+        "status": "tested",
+        "method": "municipality_group_kfold",
+        "folds": folds,
+        "n_predictions": int(len(pooled)),
+        "n_municipalities": n_groups,
+        "metrics": m,
+        "objective": _finite_float(_geographic_robust_objective(m)),
+    }
+
+
 def _best_geographic_config(
     train: pd.DataFrame,
     target: str,
@@ -6056,13 +6117,20 @@ def _best_geographic_config(
         if not features:
             continue
         for alpha in alphas:
-            cv = _geographic_temporal_cv(train, features, target, alpha)
+            temporal = _geographic_temporal_cv(train, features, target, alpha)
+            if temporal.get("status") == "tested" and temporal.get("folds", 0) >= 2:
+                cv = temporal
+                cv_method = "rolling_origin"
+            else:
+                cv = _geographic_group_cv(train, features, target, alpha)
+                cv_method = "municipality_group_kfold"
             if cv.get("status") != "tested":
                 continue
             rows.append({
                 "feature_set": set_name,
                 "features": list(features),
                 "alpha": alpha,
+                "cv_method": cv_method,
                 "folds": cv.get("folds"),
                 "validation_years": cv.get("validation_years", []),
                 "objective": cv.get("objective"),
@@ -6095,7 +6163,7 @@ def _best_geographic_config(
     )
     return {
         "status": "tested",
-        "rmse_guardrail": "candidate rolling-origin RMSE <= 103% of baseline RMSE",
+        "rmse_guardrail": "candidate CV RMSE <= 103% of baseline RMSE",
         "baseline_cv": baseline_best,
         "selected": selected,
         "candidates": rows,
@@ -6275,8 +6343,10 @@ def fit_geographic_robust_model(panel: pd.DataFrame, baseline_result: dict) -> d
                 "(P90(abs error) - P10(abs error))"
             ),
             "rmse_guardrail": (
-                "Rolling-origin RMSE may be at most 3% worse than the ordinary "
-                "forecast feature set during model selection."
+                "Cross-validated RMSE may be at most 3% worse than the ordinary "
+                "forecast feature set during model selection. When at least two "
+                "rolling-origin folds are unavailable, whole municipalities are "
+                "held out with grouped cross-validation instead."
             ),
             "important_note": (
                 "The objective does not minimize max-minus-min error because one "
