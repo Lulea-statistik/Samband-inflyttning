@@ -125,6 +125,28 @@ KOLADA_ACTIVITY_SPECS = {
         "search": "Utbetalt LOK-Stöd till idrottsföreningar",
     },
 }
+KOLADA_GENDER_GAP_SPECS = {
+    "kvinnors_lonesumma_dagbef_pct": {
+        "id": None,
+        "search": "Kvinnors",
+        "required_terms": ["lönesumma", "dagbefolkning", "andel"],
+        "label": "Kvinnors andel av männens lönesumma, dagbefolkning (%)",
+    },
+    "kvinnors_mediannettoinkomst_andel_pct": {
+        "id": "N00952",
+        "search": "Kvinnors mediannettoinkomst",
+        "required_terms": ["mediannettoinkomst", "andel"],
+        "label": "Kvinnors mediannettoinkomst som andel av mäns (%)",
+    },
+}
+GENDER_GAP_LAG_FEATURES = [
+    "lag1_kvinnors_lonesumma_dagbef_pct",
+    "lag1_kvinnors_mediannettoinkomst_andel_pct",
+]
+REGIONAL_CENTRE_ACCESS_FEATURES = [
+    "lag1_regional_centre_distance_km",
+    "lag1_log_regional_centre_distance_km",
+]
 ACTIVITY_LAG_FEATURES = [
     "lag1_kolada_lok_foreningar_per_10000",
     "lag1_kolada_flickdominerade_idrottsforeningar_andel",
@@ -1089,6 +1111,124 @@ def get_kolada_activity() -> pd.DataFrame:
     except Exception as exc:
         print(f"WARNING: live Kolada candidate refresh failed: {exc}")
         return _existing_kolada_activity_fallback()
+
+
+def _resolve_kolada_fuzzy_kpi(spec: dict) -> tuple[str, str]:
+    """
+    Resolve a Kolada KPI across old/replaced IDs by semantic title terms and
+    actual municipality coverage over the modelling years.
+    """
+    if spec.get("id"):
+        return str(spec["id"]), str(spec.get("label") or spec["id"])
+
+    payload = _kolada_json(
+        "/kpi",
+        {"title": spec.get("search", "Kvinnors"), "per_page": 5000},
+    )
+    required = [_norm_header(x) for x in spec.get("required_terms", [])]
+    candidates = []
+    for item in payload.get("values", []):
+        title = str(item.get("title") or "")
+        norm = _norm_header(title)
+        if all(term in norm for term in required):
+            candidates.append(item)
+
+    if not candidates:
+        raise RuntimeError(
+            f"No Kolada KPI matched required terms {spec.get('required_terms')}"
+        )
+
+    scored = []
+    for item in candidates:
+        kpi_id = str(item["id"])
+        coverage = 0
+        years_with_data = 0
+        for year in AUX_YEARS:
+            try:
+                rows = _kolada_year_rows(kpi_id, year)
+                n = sum(
+                    np.isfinite(_kolada_total_value(row.get("values", [])))
+                    for row in rows
+                    if re.fullmatch(r"\d{4}", str(row.get("municipality", "")))
+                )
+                coverage += n
+                if n >= 150:
+                    years_with_data += 1
+            except Exception:
+                pass
+        scored.append((
+            years_with_data,
+            coverage,
+            kpi_id,
+            str(item.get("title") or ""),
+        ))
+
+    scored.sort(reverse=True)
+    years_with_data, coverage, kpi_id, title = scored[0]
+    if coverage == 0:
+        raise RuntimeError(
+            f"Kolada gender-gap candidates had no usable municipality data: {scored}"
+        )
+    print(
+        f"Resolved Kolada gender KPI {kpi_id}: {title}; "
+        f"years>=150 municipalities={years_with_data}, observations={coverage}"
+    )
+    return kpi_id, title
+
+
+def get_kolada_gender_gap() -> pd.DataFrame:
+    """
+    Optional structural gender-gap candidates from Kolada/SCB.
+
+    The two indicators are kept separate: wage-sum share for workplace-based
+    employment is an earnings/labour-market measure, while median net income
+    also contains capital income and transfers.
+    """
+    frames = []
+    for column, spec in KOLADA_GENDER_GAP_SPECS.items():
+        try:
+            kpi_id, title = _resolve_kolada_fuzzy_kpi(spec)
+            rows = []
+            for year in AUX_YEARS:
+                data = _kolada_year_rows(kpi_id, year)
+                for item in data:
+                    code = str(item.get("municipality", "")).strip()
+                    if not re.fullmatch(r"\d{4}", code):
+                        continue
+                    value = _kolada_total_value(item.get("values", []))
+                    if np.isfinite(value):
+                        rows.append({
+                            "kommun_kod": code,
+                            "year": int(year),
+                            column: float(value),
+                        })
+                print(
+                    f"Kolada gender {kpi_id} {year}: "
+                    f"{sum(r['year']==year for r in rows)} municipalities; {title}"
+                )
+            frame = pd.DataFrame(rows)
+            if frame.empty:
+                frame = pd.DataFrame(columns=["kommun_kod", "year", column])
+            else:
+                frame = (
+                    frame.groupby(["kommun_kod", "year"], as_index=False)[column]
+                    .mean()
+                )
+            frames.append(frame)
+        except Exception as exc:
+            print(
+                f"WARNING: optional Kolada gender candidate {column} unavailable: {exc}"
+            )
+            frames.append(pd.DataFrame(
+                columns=["kommun_kod", "year", column]
+            ))
+
+    out = frames[0]
+    for frame in frames[1:]:
+        out = out.merge(frame, on=["kommun_kod", "year"], how="outer")
+    return out
+
+
 def _code_digits(value: object) -> str:
     text = str(value or "").strip()
     # Excel often turns codes such as 0114 into numeric 114.0.
@@ -3305,9 +3445,9 @@ def get_municipal_area_geography() -> pd.DataFrame:
     ]]
 
 
-def get_municipal_centroid_northing(valid_codes: set[str]) -> pd.DataFrame:
+def get_municipal_centroids(valid_codes: set[str]) -> pd.DataFrame:
     """
-    Area-weighted municipality-polygon centroid northing in SWEREF 99 TM.
+    Area-weighted municipality-polygon centroid coordinates in SWEREF 99 TM.
     The source is the SCB-derived swemaps GeoParquet. Its CRS is verified from
     GeoParquet metadata before the full geometry is reprojected to EPSG:3006.
     Geometry is used only for coarse north-south position, not area measures.
@@ -3395,16 +3535,24 @@ def get_municipal_centroid_northing(valid_codes: set[str]) -> pd.DataFrame:
         total_area = sum(part.area for part in parts)
         if total_area <= 0:
             continue
+        easting_m = (
+            sum(part.centroid.x * part.area for part in parts) / total_area
+        )
         northing_m = (
             sum(part.centroid.y * part.area for part in parts) / total_area
         )
 
+        if not np.isfinite(easting_m) or not (100_000 < easting_m < 1_000_000):
+            raise ValueError(
+                f"Implausible {GEOGRAPHY_CRS} easting for municipality {code}: {easting_m}"
+            )
         if not np.isfinite(northing_m) or not (5_000_000 < northing_m < 8_500_000):
             raise ValueError(
                 f"Implausible {GEOGRAPHY_CRS} northing for municipality {code}: {northing_m}"
             )
         rows.append({
             "kommun_kod": code,
+            "kommun_centroid_easting_km": float(easting_m) / 1000.0,
             "kommun_centroid_northing_km": float(northing_m) / 1000.0,
         })
 
@@ -3417,7 +3565,7 @@ def get_municipal_centroid_northing(valid_codes: set[str]) -> pd.DataFrame:
         )
 
     print(
-        f"Municipal centroid northing: {out['kommun_kod'].nunique()} municipalities; "
+        f"Municipal centroids: {out['kommun_kod'].nunique()} municipalities; "
         f"source CRS={source_crs}, display/analysis CRS={GEOGRAPHY_CRS}"
     )
     return out
@@ -3426,11 +3574,14 @@ def get_municipal_centroid_northing(valid_codes: set[str]) -> pd.DataFrame:
 def get_geography() -> pd.DataFrame:
     area = get_municipal_area_geography()
     valid_codes = set(area["kommun_kod"].astype(str))
-    centroid = get_municipal_centroid_northing(valid_codes)
+    centroid = get_municipal_centroids(valid_codes)
     geo = area.merge(centroid, on="kommun_kod", how="left")
-    missing = int(geo["kommun_centroid_northing_km"].isna().sum())
+    missing = int(
+        geo[["kommun_centroid_easting_km", "kommun_centroid_northing_km"]]
+        .isna().any(axis=1).sum()
+    )
     if missing:
-        raise ValueError(f"Missing centroid northing for {missing} municipalities")
+        raise ValueError(f"Missing centroid coordinates for {missing} municipalities")
     return geo
 
 
@@ -4115,7 +4266,7 @@ def split_region(value: str) -> tuple[str, str]:
     return s[:4], s[5:] if len(s) > 5 else s
 
 
-def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, house_prices: pd.DataFrame, vacancy: pd.DataFrame, turnout: pd.DataFrame, inequality: pd.DataFrame, housing: pd.DataFrame, housing_area: pd.DataFrame, completed_housing: pd.DataFrame, leisure: pd.DataFrame, crime: pd.DataFrame, labor: pd.DataFrame, monthly_employment: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame, activity: pd.DataFrame, industry: pd.DataFrame, fa15: pd.DataFrame, geography: pd.DataFrame, direct_urbanity: pd.DataFrame) -> pd.DataFrame:
+def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, house_prices: pd.DataFrame, vacancy: pd.DataFrame, turnout: pd.DataFrame, inequality: pd.DataFrame, housing: pd.DataFrame, housing_area: pd.DataFrame, completed_housing: pd.DataFrame, leisure: pd.DataFrame, crime: pd.DataFrame, labor: pd.DataFrame, monthly_employment: pd.DataFrame, education: pd.DataFrame, students: pd.DataFrame, activity: pd.DataFrame, gender_gap: pd.DataFrame, industry: pd.DataFrame, fa15: pd.DataFrame, geography: pd.DataFrame, direct_urbanity: pd.DataFrame) -> pd.DataFrame:
     md = standardize_columns(mig)
     mig = mig.copy()
     mig["value"] = normalize_number(mig["value"])
@@ -4304,6 +4455,14 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
         on=["kommun_kod", "year"], how="left"
     )
     panel = panel.merge(
+        gender_gap[[
+            "kommun_kod", "year",
+            "kvinnors_lonesumma_dagbef_pct",
+            "kvinnors_mediannettoinkomst_andel_pct",
+        ]],
+        on=["kommun_kod", "year"], how="left"
+    )
+    panel = panel.merge(
         industry[[
             "kommun_kod", "year",
             "sysselsatta_totalt",
@@ -4320,7 +4479,8 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel = panel.merge(
         geography[[
             "kommun_kod", "totalareal_km2", "landareal_km2", "hav_km2", "havsandel_pct",
-            "kustkommun_hav", "geografi_areal_ar", "kommun_centroid_northing_km",
+            "kustkommun_hav", "geografi_areal_ar",
+            "kommun_centroid_easting_km", "kommun_centroid_northing_km",
         ]],
         on="kommun_kod", how="left"
     )
@@ -4344,6 +4504,46 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel["log_externa_fa_jobb_per_1000"] = np.log1p(panel["externa_fa_jobb_per_1000"])
     panel["andel_fa_arbetsplatser_i_egen_kommun"] = (
         100 * panel["sysselsatta_totalt"] / fa_jobs.replace(0, np.nan)
+    )
+
+    # Regional-centre accessibility proxy. Within each FA15 region and year,
+    # define the centre as the municipality with the largest workplace-based
+    # employment. Distance is straight-line centroid distance in verified
+    # EPSG:3006. The value is lagged below before entering candidate tests.
+    centre_idx = (
+        panel.dropna(subset=["fa15_id", "year", "sysselsatta_totalt"])
+        .groupby(["fa15_id", "year"])["sysselsatta_totalt"]
+        .idxmax()
+    )
+    centres = panel.loc[
+        centre_idx,
+        [
+            "fa15_id", "year", "kommun_kod",
+            "kommun_centroid_easting_km", "kommun_centroid_northing_km",
+        ],
+    ].rename(columns={
+        "kommun_kod": "regional_centre_kommun_kod",
+        "kommun_centroid_easting_km": "regional_centre_easting_km",
+        "kommun_centroid_northing_km": "regional_centre_northing_km",
+    })
+    panel = panel.merge(
+        centres,
+        on=["fa15_id", "year"],
+        how="left",
+        validate="many_to_one",
+    )
+    panel["regional_centre_distance_km"] = np.sqrt(
+        (
+            panel["kommun_centroid_easting_km"]
+            - panel["regional_centre_easting_km"]
+        ) ** 2
+        + (
+            panel["kommun_centroid_northing_km"]
+            - panel["regional_centre_northing_km"]
+        ) ** 2
+    )
+    panel["log_regional_centre_distance_km"] = np.log1p(
+        panel["regional_centre_distance_km"].clip(lower=0)
     )
 
     panel["andel_20_34"] = 100 * panel["bef_20_34"] / panel["folkmangd"]
@@ -4485,6 +4685,10 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel["lag1_kolada_lok_foreningar_per_10000"] = g["kolada_lok_foreningar_per_10000"].shift(1)
     panel["lag1_kolada_flickdominerade_idrottsforeningar_andel"] = g["kolada_flickdominerade_idrottsforeningar_andel"].shift(1)
     panel["lag1_kolada_utbetalt_lok_stod_kr_per_inv"] = g["kolada_utbetalt_lok_stod_kr_per_inv"].shift(1)
+    panel["lag1_kvinnors_lonesumma_dagbef_pct"] = g["kvinnors_lonesumma_dagbef_pct"].shift(1)
+    panel["lag1_kvinnors_mediannettoinkomst_andel_pct"] = g["kvinnors_mediannettoinkomst_andel_pct"].shift(1)
+    panel["lag1_regional_centre_distance_km"] = g["regional_centre_distance_km"].shift(1)
+    panel["lag1_log_regional_centre_distance_km"] = g["log_regional_centre_distance_km"].shift(1)
     panel["lag1_andel_industri_bc"] = g["andel_industri_bc"].shift(1)
     panel["lag1_andel_hotell_restaurang_i"] = g["andel_hotell_restaurang_i"].shift(1)
     panel["lag1_andel_kultur_service_rstu"] = g["andel_kultur_service_rstu"].shift(1)
@@ -4686,6 +4890,10 @@ FEATURE_THEMES = {
     "lag1_andel_kultur_service_rstu": "Näringslivsprofil",
     "lag1_log_externa_fa_jobb_per_1000": "Regional arbetsmarknadsaccess",
     "lag1_andel_fa_arbetsplatser_i_egen_kommun": "Regional arbetsmotor",
+    "lag1_regional_centre_distance_km": "Tillgänglighet till regionalt centrum",
+    "lag1_log_regional_centre_distance_km": "Tillgänglighet till regionalt centrum",
+    "lag1_kvinnors_lonesumma_dagbef_pct": "Ekonomisk jämställdhet",
+    "lag1_kvinnors_mediannettoinkomst_andel_pct": "Ekonomisk jämställdhet",
 }
 
 
@@ -8439,6 +8647,7 @@ def main():
     education = get_education()
     students = get_students()
     activity = get_kolada_activity()
+    gender_gap = get_kolada_gender_gap()
     industry = get_industry_structure()
     fa15 = get_fa15_membership()
     geography = get_geography()
@@ -8455,7 +8664,7 @@ def main():
     completed_housing = get_completed_housing()
     leisure = get_leisure_houses()
     crime = get_crime_total()
-    panel = build_panel(mig, pop, income, house_prices, vacancy, turnout, inequality, housing, housing_area, completed_housing, leisure, crime, labor, monthly_employment, education, students, activity, industry, fa15, geography, direct_urbanity)
+    panel = build_panel(mig, pop, income, house_prices, vacancy, turnout, inequality, housing, housing_area, completed_housing, leisure, crime, labor, monthly_employment, education, students, activity, gender_gap, industry, fa15, geography, direct_urbanity)
     panel = panel.merge(
         shoreline_buildings,
         on=["kommun_kod", "year"],
@@ -8555,6 +8764,37 @@ def main():
     )
 
     overall_base = result["windows"]["5"]["explanation"]["selected_features"]
+    result["regional_centre_access_candidate_tests"] = {
+        "overall": _sparse_candidate_tests(
+            panel,
+            result["target"],
+            overall_base,
+            REGIONAL_CENTRE_ACCESS_FEATURES,
+            END_YEAR - 4,
+            END_YEAR,
+        ),
+        "geographic": _geographic_candidate_tests(
+            panel,
+            result,
+            REGIONAL_CENTRE_ACCESS_FEATURES,
+        ),
+    }
+    result["gender_gap_candidate_tests"] = {
+        "overall": _sparse_candidate_tests(
+            panel,
+            result["target"],
+            overall_base,
+            GENDER_GAP_LAG_FEATURES,
+            END_YEAR - 4,
+            END_YEAR,
+        ),
+        "geographic": _geographic_candidate_tests(
+            panel,
+            result,
+            GENDER_GAP_LAG_FEATURES,
+        ),
+    }
+
     result["activity_candidate_tests"] = {
         "overall": _sparse_candidate_tests(
             panel,
