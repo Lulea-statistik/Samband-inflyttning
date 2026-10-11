@@ -185,6 +185,9 @@ function renderAll(){
   renderGeographyContext();
   renderOverview();
   renderVariantComparison();
+  renderThreeModelComparison();
+  renderGeographicRobustness();
+  renderShorelineRobustness();
   renderR2ContributionProfile();
   renderLuleaView();
   renderPublicPage();
@@ -337,7 +340,7 @@ function renderGeographyContext(){
   if(lead){
     lead.innerHTML=selectedGeography==='lulea'
       ? 'Luleå-vyn använder <strong>Sverigemodellen som referens</strong> och bryter ned varför Luleå avviker från genomsnittet bland svenska kommuner, samt hur den modellberäknade avvikelsen förändras över tid.'
-      : 'Rapporten skiljer nu på två modeller. <strong>Prognosmodellen</strong> får använda historisk demografi om det förbättrar träffsäkerheten. <strong>Den demografiskt blinda strukturmodellen</strong> förbjuder historisk migration, befolkningstillväxt, åldersstruktur och inflyttarprofil som förklaringsvariabler, men tillåter kommunstorlek samt strukturella bostads-, arbetsmarknads-, ekonomiska och geografiska variabler.';
+      : 'Rapporten skiljer nu på tre modellspår. <strong>Prognosmodellen</strong> maximerar träffsäkerheten, <strong>den demografiskt blinda strukturmodellen</strong> söker strukturella samband utan historisk demografi som genväg och <strong>den geografiskt robusta prognosmodellen</strong> försöker minska stora prognosfel som koncentreras till vissa kommuner.';
   }
 
   const technicalNote=document.getElementById('windowDescription');
@@ -576,8 +579,8 @@ function renderPublicPage(){
   const title=document.getElementById('publicHeroTitle');
   const txt=document.getElementById('publicHeroText');
   if(eyebrow) eyebrow.textContent='Inflyttning till svenska kommuner';
-  if(title) title.textContent='Två frågor kräver två olika modeller';
-  if(txt) txt.innerHTML='En modell försöker <strong>förutsäga nästa års inflyttning så träffsäkert som möjligt</strong>. Den andra försöker förstå <strong>vilka strukturella egenskaper som hänger ihop med inflyttning</strong> utan att använda tidigare migration eller befolkningstillväxt som genväg.';
+  if(title) title.textContent='Tre frågor kräver tre olika modeller';
+  if(txt) txt.innerHTML='En modell försöker <strong>förutsäga nästa års inflyttning så träffsäkert som möjligt</strong>. En andra försöker förstå <strong>vilka strukturella egenskaper som hänger ihop med inflyttning</strong>. Modell 3 frågar om prognosen fungerar <strong>jämnt mellan olika kommuner</strong> och försöker minska svansen av stora geografiska prognosfel.';
   const e1=document.getElementById('publicChart1Eyebrow'), t1=document.getElementById('publicChart1Title'), p1=document.getElementById('publicChart1Text');
   const e2=document.getElementById('publicChart2Eyebrow'), t2=document.getElementById('publicChart2Title'), p2=document.getElementById('publicChart2Text');
   const e3=document.getElementById('publicChart3Eyebrow'), t3=document.getElementById('publicChart3Title'), p3=document.getElementById('publicChart3Text');
@@ -666,6 +669,212 @@ function renderPublicPage(){
     xaxis:{title:'Åldersgrupp'},
     legend:{orientation:'h',y:1.12}
   },{responsive:true,displaylogo:false});
+}
+
+
+
+function geographicRobustModel(){
+  return rootModel.geographic_robust_model || null;
+}
+
+function renderThreeModelComparison(){
+  const root=document.getElementById('threeModelComparison');
+  if(!root) return;
+  const fw=rootModel.windows?.['5'];
+  const bw=rootModel.model_variants?.demographic_blind?.windows?.['5'];
+  const gw=geographicRobustModel();
+  if(!fw||!bw||!gw||gw.status!=='tested'){
+    root.innerHTML='<p class="note">Modell 3 byggs i den senaste analyskörningen. Diagrammet visas när resultatet finns i model.json.</p>';
+    return;
+  }
+  const fr=fw.validation?.models?.ridge||{};
+  const br=bw.validation?.models?.ridge||{};
+  const gr=gw.robust_metrics||{};
+  Plotly.react(root,[
+    {
+      x:['Prognosmodell','Demografiskt blind','Geografiskt robust'],
+      y:[fr.r2,br.r2,gr.r2],
+      type:'bar',
+      text:[fr.r2,br.r2,gr.r2].map(v=>fmt(v,3)),
+      textposition:'outside',
+      hovertemplate:'%{x}<br>Test-R²=%{y:.3f}<extra></extra>'
+    }
+  ],{
+    margin:{t:25,b:80,l:65,r:30},
+    yaxis:{title:'Test-R²'},
+    xaxis:{title:''},
+    showlegend:false
+  },{responsive:true,displaylogo:false});
+}
+
+function renderGeographicRobustness(){
+  const g=geographicRobustModel();
+  const cards=document.getElementById('geoRobustCards');
+  const chart=document.getElementById('geoRobustComparison');
+  const tail=document.getElementById('geoRobustTail');
+  const table=document.getElementById('geoRobustWorstTable');
+  const selection=document.getElementById('geoRobustSelection');
+  if(!cards||!chart||!tail||!table||!selection) return;
+
+  if(!g||g.status!=='tested'){
+    cards.innerHTML=metricCard('Status','Byggs','Modell 3 finns efter nästa slutförda analyskörning');
+    chart.innerHTML='<p class="note">Resultat saknas ännu.</p>';
+    tail.innerHTML='';
+    table.innerHTML='';
+    selection.innerHTML='';
+    return;
+  }
+
+  const b=g.baseline_metrics||{}, r=g.robust_metrics||{}, d=g.delta||{};
+  const signed=v=>Number.isFinite(Number(v)) ? ((Number(v)>=0?'+':'')+fmt(v,2)) : '–';
+  cards.innerHTML=[
+    metricCard('Testår',String(g.test_year||'–'),'samma holdoutår som prognosmodellen'),
+    metricCard('RMSE',fmt(r.rmse,2),signed(d.rmse)+' jämfört med baslinjen'),
+    metricCard('P90 absolutfel',fmt(r.p90_abs_error,2),signed(d.p90_abs_error)+' förbättring'),
+    metricCard('P90–P10',fmt(r.p90_p10_abs_error_gap,2),signed(d.p90_p10_abs_error_gap)+' förbättring'),
+    metricCard('Sämsta decilens MAE',fmt(r.worst_decile_mae,2),signed(d.worst_decile_mae)+' förbättring')
+  ].join('');
+
+  const metrics=[
+    {label:'RMSE',b:b.rmse,r:r.rmse},
+    {label:'Median absolutfel',b:b.median_abs_error,r:r.median_abs_error},
+    {label:'P90 absolutfel',b:b.p90_abs_error,r:r.p90_abs_error},
+    {label:'P90–P10',b:b.p90_p10_abs_error_gap,r:r.p90_p10_abs_error_gap},
+    {label:'Sämsta decilens MAE',b:b.worst_decile_mae,r:r.worst_decile_mae}
+  ];
+  Plotly.react(chart,[
+    {x:metrics.map(x=>x.label),y:metrics.map(x=>x.b),type:'bar',name:'Vanlig prognosmodell',
+      hovertemplate:'%{x}<br>%{y:.2f}<extra>Vanlig prognosmodell</extra>'},
+    {x:metrics.map(x=>x.label),y:metrics.map(x=>x.r),type:'bar',name:'Modell 3',
+      hovertemplate:'%{x}<br>%{y:.2f}<extra>Modell 3</extra>'}
+  ],{
+    barmode:'group',margin:{t:30,b:80,l:65,r:30},
+    yaxis:{title:'Fel, inflyttade per 1 000'},
+    legend:{orientation:'h',y:1.13}
+  },{responsive:true,displaylogo:false});
+
+  const rows=(g.municipality_errors||[]).slice().sort((a,b)=>
+    Number(a.robust_abs_error)-Number(b.robust_abs_error)
+  );
+  Plotly.react(tail,[
+    {x:rows.map((_,i)=>i+1),y:rows.map(x=>x.baseline_abs_error),
+      mode:'lines',name:'Vanlig prognosmodell',
+      hovertemplate:'Rang %{x}<br>Absolutfel=%{y:.2f}<extra></extra>'},
+    {x:rows.map((_,i)=>i+1),y:rows.map(x=>x.robust_abs_error),
+      mode:'lines',name:'Modell 3',
+      customdata:rows.map(x=>x.kommun),
+      hovertemplate:'%{customdata}<br>Rang %{x}<br>Absolutfel=%{y:.2f}<extra></extra>'}
+  ],{
+    margin:{t:30,b:60,l:65,r:30},
+    xaxis:{title:'Kommuner sorterade från lägst till högst fel i Modell 3'},
+    yaxis:{title:'Absolut prognosfel per 1 000'},
+    legend:{orientation:'h',y:1.12}
+  },{responsive:true,displaylogo:false});
+
+  const worst=(g.municipality_errors||[]).slice(0,20);
+  table.innerHTML='<table class="metric-table"><thead><tr>'+
+    '<th>Kommun</th><th>Observerat</th><th>Vanlig prognos</th><th>Modell 3</th>'+
+    '<th>Absolutfel bas</th><th>Absolutfel Modell 3</th><th>Förbättring</th>'+
+    '</tr></thead><tbody>'+
+    worst.map(x=>'<tr>'+
+      '<td>'+x.kommun+'</td>'+
+      '<td>'+fmt(x.observed,1)+'</td>'+
+      '<td>'+fmt(x.baseline_prediction,1)+'</td>'+
+      '<td>'+fmt(x.robust_prediction,1)+'</td>'+
+      '<td>'+fmt(x.baseline_abs_error,2)+'</td>'+
+      '<td>'+fmt(x.robust_abs_error,2)+'</td>'+
+      '<td>'+signed(x.delta_abs_error)+'</td>'+
+    '</tr>').join('')+'</tbody></table>';
+
+  const added=g.added_features_vs_forecast_selection||[];
+  const removed=g.removed_features_vs_forecast_selection||[];
+  const fs=g.selected_feature_set||[];
+  const cfg=g.selection?.selected||{};
+  selection.innerHTML=
+    '<p><strong>Valt feature-set:</strong> '+(cfg.feature_set||'–')+
+    ' · <strong>ridge α:</strong> '+fmt(g.selected_alpha,3)+
+    ' · <strong>rolling-origin-foldar:</strong> '+(cfg.folds??'–')+'</p>'+
+    '<p><strong>Valda variabler:</strong> '+(fs.length?fs.map(x=>labels[x]||x).join('; '):'–')+'</p>'+
+    '<p><strong>Tillkom jämfört med vanlig prognosmodell:</strong> '+(added.length?added.map(x=>labels[x]||x).join('; '):'inga')+'</p>'+
+    '<p><strong>Togs bort:</strong> '+(removed.length?removed.map(x=>labels[x]||x).join('; '):'inga')+'</p>'+
+    '<p class="note">Urvalsmål: '+(g.objective?.formula||'–')+'. '+(g.objective?.rmse_guardrail||'')+'</p>';
+}
+
+function shorelineRobustRows(){
+  const blind=rootModel.model_variants?.demographic_blind;
+  const age=blind?.shoreline_protected_robustness_tests?.age_groups?.['35_49'];
+  return age?.rows||[];
+}
+
+function renderShorelineRobustness(){
+  const rows=shorelineRobustRows().filter(r=>r.status==='tested');
+  const summary=document.getElementById('shorelineRobustnessSummary');
+  const chart=document.getElementById('shorelineRobustnessChart');
+  const table=document.getElementById('shorelineRobustnessTable');
+  const logText=document.getElementById('shorelineRun114Text');
+  const logDecision=document.getElementById('shorelineRun114Decision');
+  if(!summary||!chart||!table) return;
+
+  if(!rows.length){
+    summary.textContent='Robusthetsresultatet från #114 saknas i den laddade modellfilen.';
+    chart.innerHTML='';
+    table.innerHTML='';
+    return;
+  }
+
+  const labelsMap={
+    raw_all:'Råvärde – alla',
+    log1p_all:'Log-transformerad – alla',
+    winsor99_all:'Winsor 99 % – alla',
+    exclude_top3_all:'Exkl. tre högsta',
+    coastal_only_raw:'Endast kust – rå',
+    coastal_only_log1p:'Endast kust – log'
+  };
+  const positive=rows.filter(r=>Number(r.holdout?.delta_r2)>0);
+  const stable=positive.length>=Math.ceil(rows.length/2);
+  const raw=rows.find(r=>r.variant==='raw_all');
+  const excl=rows.find(r=>r.variant==='exclude_top3_all');
+  const coast=rows.find(r=>r.variant==='coastal_only_raw');
+
+  const pieces=[];
+  if(raw?.holdout?.delta_r2!=null) pieces.push('råvärdet ΔR² '+(Number(raw.holdout.delta_r2)>=0?'+':'')+fmt(raw.holdout.delta_r2,4));
+  if(excl?.holdout?.delta_r2!=null) pieces.push('utan de tre högsta '+(Number(excl.holdout.delta_r2)>=0?'+':'')+fmt(excl.holdout.delta_r2,4));
+  if(coast?.holdout?.delta_r2!=null) pieces.push('endast kust '+(Number(coast.holdout.delta_r2)>=0?'+':'')+fmt(coast.holdout.delta_r2,4));
+  summary.innerHTML='<strong>35–49 år:</strong> '+pieces.join(' · ')+'. '+
+    (stable
+      ? 'Signalen är positiv i en majoritet av de testade holdout-varianterna, vilket talar emot att den enbart orsakas av de allra högsta kommunerna.'
+      : 'Signalen är inte positiv i en majoritet av robusthetsvarianterna. Den bör därför fortsatt behandlas som lokal/åldersspecifik diagnostik snarare än generell produktionssignal.');
+
+  Plotly.react(chart,[{
+    x:rows.map(r=>labelsMap[r.variant]||r.variant),
+    y:rows.map(r=>r.holdout?.delta_r2),
+    type:'bar',
+    customdata:rows.map(r=>[r.p_value,r.delta_adjusted_r2,r.n_municipalities]),
+    hovertemplate:'%{x}<br>Holdout ΔR²=%{y:.4f}<br>p=%{customdata[0]:.4f}<br>Δ justerat R²=%{customdata[1]:.4f}<br>Kommuner=%{customdata[2]}<extra></extra>'
+  }],{
+    margin:{t:25,b:100,l:70,r:30},
+    yaxis:{title:'Förändring i holdout-R²'},
+    xaxis:{title:''},
+    shapes:[{type:'line',x0:-.5,x1:rows.length-.5,y0:0,y1:0,line:{dash:'dash'}}],
+    showlegend:false
+  },{responsive:true,displaylogo:false});
+
+  table.innerHTML='<table class="metric-table"><thead><tr>'+
+    '<th>Variant</th><th>Kommuner</th><th>p-värde</th><th>Δ just. R²</th><th>Holdout ΔR²</th><th>Holdout ΔRMSE</th>'+
+    '</tr></thead><tbody>'+
+    rows.map(r=>'<tr><td>'+(labelsMap[r.variant]||r.variant)+'</td>'+
+      '<td>'+r.n_municipalities+'</td>'+
+      '<td>'+fmt(r.p_value,4)+'</td>'+
+      '<td>'+fmt(r.delta_adjusted_r2,4)+'</td>'+
+      '<td>'+fmt(r.holdout?.delta_r2,4)+'</td>'+
+      '<td>'+fmt(r.holdout?.delta_rmse,3)+'</td></tr>').join('')+
+    '</tbody></table>';
+
+  if(logText) logText.innerHTML='För 35–49 år testades sex varianter. '+pieces.join(' · ')+'.';
+  if(logDecision) logDecision.innerHTML='<strong>Beslut:</strong> '+
+    (stable
+      ? 'signalen överlever flera robusthetsvarianter, men ligger kvar som åldersspecifik/lokal signal och blir i första hand kandidat för Modell 3 snarare än generell strukturvariabel.'
+      : 'signalen är känslig för urval/transformering och får inte generell produktionsstatus. Den kan fortfarande användas som diagnostik för geografiskt avvikande kommuntyper.');
 }
 
 
