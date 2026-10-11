@@ -14,10 +14,11 @@ Primära utfallsvariabler:
 - invandring
 - på sikt: inflyttning per åldersgrupp
 
-Modellerna ska skilja mellan:
+Rapporten skiljer mellan tre huvudsakliga modellspår:
 
-1. **Förklaringsmodell** – beskriver samband i historiska data.
-2. **Prognosmodell** – använder endast information som rimligen var känd före utfallsåret, normalt variabler laggade minst ett år.
+1. **Prognosmodell** – maximerar prognosprecision och får använda historisk demografi när den är tillgänglig före utfallsåret.
+2. **Demografiskt blind strukturmodell** – söker strukturella samband utan tidigare migration, befolkningstillväxt, åldersstruktur eller inflyttarprofil som genväg.
+3. **Geografiskt robust prognosmodell** – försöker behålla hög genomsnittlig prognosprecision samtidigt som stora prognosfel som koncentreras till vissa kommuner minskar. Modellurvalet väger därför även in P90 för absolutfel och P90–P10-spridningen.
 
 ## Första kandidatvariabler
 
@@ -121,7 +122,14 @@ Bekräftade kandidater i Statistikdatabasen:
    - faktisk och predikterad inflyttning över tid
    - vilka faktorer som bidrar mest till modellens skattning
 
-6. **Metod & data**
+6. **Geografisk robusthet**
+   - vanlig prognosmodell mot Modell 3
+   - P90-fel och P90–P10-spridning
+   - sämsta decilens kommunfel
+   - kommunvis förbättring/försämring
+   - robusthetstest för lokalt viktiga variabler
+
+7. **Metod & data**
    - definitioner
    - datakällor
    - metodbrott
