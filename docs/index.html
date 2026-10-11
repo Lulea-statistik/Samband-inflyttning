@@ -280,6 +280,17 @@
 
       <article class="test-summary-card">
         <div class="test-summary-head">
+          <span class="test-run">#118</span>
+          <span class="test-status status-diagnostic">Lovande – kräver fler holdoutår</span>
+        </div>
+        <h3>Fritidshusintensitet</h3>
+        <p>Fritidshus per 1 000 invånare förbättrade 2024-holdout på samtliga fyra geografiska huvudmått: R² ökade med cirka +0,0037, RMSE förbättrades med cirka 0,084, P90-absolutfelet med cirka 0,274, P90–P10-spridningen med cirka 0,250 och sämsta decilens MAE med cirka 0,120.</p>
+        <p>Den log-transformerade varianten förbättrade R² mer (+0,0053), RMSE och sämsta decilen, och var marginellt bättre i kommunblockerad CV, men försämrade P90 och P90–P10 något i 2024-holdout. Kommunmönstret visar tydliga förbättringar i flera fritids-/turismpräglade kommuner, men inte konsekvent i alla.</p>
+        <p class="test-decision"><strong>Beslut:</strong> ingen produktionsstatus ännu. Båda varianterna går vidare till ett helt omräknat flerårigt holdouttest 2022–2024 där feature-urval och ridge-tuning görs om före varje testår.</p>
+      </article>
+
+      <article class="test-summary-card">
+        <div class="test-summary-head">
           <span class="test-run">Tidigare test</span>
           <span class="test-status status-reject">Ej vald</span>
         </div>
@@ -405,6 +416,10 @@
       <div id="leisureIntensitySummary" class="lead">Resultatet visas efter nästa slutförda analyskörning.</div>
       <div id="leisureIntensityChart" class="chart"></div>
       <div id="leisureIntensityMunicipalities" class="table-wrap"></div>
+      <h4>Flerårig holdout 2022–2024</h4>
+      <p class="note">För varje testår görs variabelurval och ridge-tuning om från början med endast tidigare år. Det minskar risken att ett enskilt ovanligt år avgör beslutet.</p>
+      <div id="leisureRollingChart" class="chart"></div>
+      <div id="leisureRollingTable" class="table-wrap"></div>
     </div>
 
     <div class="panel">
@@ -584,6 +599,6 @@
     </div>
   </section>
 </main>
-<script src="app.js?v=20261011-3"></script>
+<script src="app.js?v=20261011-4"></script>
 </body>
 </html>
