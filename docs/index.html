@@ -258,6 +258,17 @@
 
       <article class="test-summary-card">
         <div class="test-summary-head">
+          <span class="test-run">#115–116</span>
+          <span class="test-status status-reject">Ej produktionsmodell</span>
+        </div>
+        <h3>Modell 3 – geografiskt robust prognos</h3>
+        <p>Den kommunblockerade korsvalideringen föredrog en bredare ridge-modell och förbättrade det sammansatta geografiska urvalsmåttet. I det helt separata teståret 2024 gick resultatet däremot åt motsatt håll: R² sjönk från cirka 0,885 till 0,870, RMSE ökade från cirka 5,13 till 5,45 och P90-absolutfelet ökade från cirka 8,52 till 9,22. Även sämsta decilens genomsnittliga absolutfel blev större.</p>
+        <p>132 kommuner förbättrades men 158 försämrades. Kramfors, Orust, Gotland och Luleå förbättrades inte av den första Modell 3-versionen.</p>
+        <p class="test-decision"><strong>Beslut:</strong> Modell 3 behålls som metod- och diagnossida men får inte produktionsstatus. Nästa steg är att tillföra struktursignaler för kommuntyper som huvudmodellen missar, inte att optimera hårdare på samma variabeluppsättning.</p>
+      </article>
+
+      <article class="test-summary-card">
+        <div class="test-summary-head">
           <span class="test-run">Tidigare test</span>
           <span class="test-status status-reject">Ej vald</span>
         </div>
@@ -334,6 +345,7 @@
     </div>
 
     <div id="geoRobustCards" class="cards"></div>
+    <div id="geoRobustVerdict" class="panel geo-verdict"></div>
 
     <div class="panel">
       <h3>Vanlig prognosmodell mot Modell 3</h3>
