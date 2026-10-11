@@ -164,6 +164,10 @@ HOUSING_SIZE_EXTREME_CANDIDATE_FEATURES = [
     "lag1_andel_bostader_151_plus",
     "lag1_andel_smahus_151_plus",
 ]
+LAND_NATURE_CANDIDATE_FEATURES = [
+    "lag1_skogsmark_andel_land_pct",
+    "lag1_naturpraglad_mark_andel_land_pct",
+]
 OUT = Path("docs/data")
 OUT.mkdir(parents=True, exist_ok=True)
 
@@ -3489,13 +3493,18 @@ def get_land_use_urbanity() -> pd.DataFrame:
 
     built_code = code_for_text(land_class, "bebyggd och anlagd mark")
     total_land_code = code_for_text(land_class, "total landareal")
+    forest_code = code_for_text(land_class, "skogsmark")
+    mire_code = code_for_text(land_class, "öppen myrmark")
+    other_code = code_for_text(land_class, "övrig mark")
     munis = municipality_codes(region)
     years = _metadata_year_values(time_var, END_YEAR)
     measure_codes = aggregate_codes(content)
 
     df = px_csv(LAND_USE_URL, {
         region["code"]: munis,
-        land_class["code"]: [built_code, total_land_code],
+        land_class["code"]: [
+            built_code, total_land_code, forest_code, mire_code, other_code
+        ],
         content["code"]: measure_codes,
         time_var["code"]: years,
     })
@@ -3547,6 +3556,12 @@ def get_land_use_urbanity() -> pd.DataFrame:
             return "built"
         if "total landareal" in text:
             return "total_land"
+        if text.strip() == "skogsmark":
+            return "forest"
+        if "öppen myrmark" in text:
+            return "open_mire"
+        if text.strip() == "övrig mark":
+            return "other_land"
         return None
 
     work["kind"] = work[class_col].map(kind)
@@ -3569,28 +3584,42 @@ def get_land_use_urbanity() -> pd.DataFrame:
         )
         .reset_index()
     )
-    if "built" not in pivot.columns or "total_land" not in pivot.columns:
+    required = {"built", "total_land", "forest", "open_mire", "other_land"}
+    missing_required = sorted(required - set(pivot.columns))
+    if missing_required:
         raise ValueError(
-            f"MarkanvN response lacks built/total land values: {list(pivot.columns)}"
+            f"MarkanvN response lacks required land-use values {missing_required}: "
+            f"{list(pivot.columns)}"
         )
 
-    pivot["bebyggd_anlagd_andel_land_pct"] = (
-        100 * pivot["built"] / pivot["total_land"].replace(0, np.nan)
+    denom = pivot["total_land"].replace(0, np.nan)
+    pivot["bebyggd_anlagd_andel_land_pct"] = 100 * pivot["built"] / denom
+    pivot["skogsmark_andel_land_pct"] = 100 * pivot["forest"] / denom
+    pivot["naturpraglad_mark_andel_land_pct"] = (
+        100 * (
+            pivot["forest"] + pivot["open_mire"] + pivot["other_land"]
+        ) / denom
     )
     if pivot["kommun_kod"].nunique() < 285:
         raise ValueError(
             f"MarkanvN covers only {pivot['kommun_kod'].nunique()} municipalities"
         )
-    if not pivot["bebyggd_anlagd_andel_land_pct"].dropna().between(0, 100.0001).all():
-        raise ValueError("Built/developed land share outside 0-100%; check SCB parsing")
+    for col in [
+        "bebyggd_anlagd_andel_land_pct",
+        "skogsmark_andel_land_pct",
+        "naturpraglad_mark_andel_land_pct",
+    ]:
+        if not pivot[col].dropna().between(0, 100.0001).all():
+            raise ValueError(f"{col} outside 0-100%; check SCB parsing")
 
     print(
-        "Built/developed land share: "
+        "Land-use structure: "
         f"{pivot['kommun_kod'].nunique()} municipalities, "
         f"measurement years={sorted(pivot['year'].unique().tolist())}"
     )
     return pivot[[
-        "kommun_kod", "year", "bebyggd_anlagd_andel_land_pct"
+        "kommun_kod", "year", "bebyggd_anlagd_andel_land_pct",
+        "skogsmark_andel_land_pct", "naturpraglad_mark_andel_land_pct",
     ]]
 
 
@@ -4019,6 +4048,8 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
         direct_urbanity[[
             "kommun_kod", "year", "tatortsgrad_pct",
             "bebyggd_anlagd_andel_land_pct",
+            "skogsmark_andel_land_pct",
+            "naturpraglad_mark_andel_land_pct",
         ]],
         on=["kommun_kod", "year"], how="left"
     )
@@ -4088,6 +4119,8 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     sparse_urbanity_cols = [
         "tatortsgrad_pct",
         "bebyggd_anlagd_andel_land_pct",
+        "skogsmark_andel_land_pct",
+        "naturpraglad_mark_andel_land_pct",
     ]
     panel[sparse_urbanity_cols] = (
         panel.groupby("kommun_kod", group_keys=False)[sparse_urbanity_cols].ffill()
@@ -4111,6 +4144,8 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel["lag1_log_befolkningstathet_land"] = g["log_befolkningstathet_land"].shift(1)
     panel["lag1_tatortsgrad_pct"] = g["tatortsgrad_pct"].shift(1)
     panel["lag1_bebyggd_anlagd_andel_land_pct"] = g["bebyggd_anlagd_andel_land_pct"].shift(1)
+    panel["lag1_skogsmark_andel_land_pct"] = g["skogsmark_andel_land_pct"].shift(1)
+    panel["lag1_naturpraglad_mark_andel_land_pct"] = g["naturpraglad_mark_andel_land_pct"].shift(1)
     panel["lag1_befolkningstillvaxt_pct"] = g["befolkningstillvaxt_pct"].shift(1)
     panel["lag1_andel_20_34"] = g["andel_20_34"].shift(1)
     panel["lag1_inflyttare_medelalder"] = g["inflyttare_medelalder"].shift(1)
@@ -4333,6 +4368,8 @@ FEATURE_THEMES = {
     "lag1_andel_flerbostad_70_max": "Små bostäder",
     "lag1_andel_bostader_151_plus": "Mycket stora bostäder",
     "lag1_andel_smahus_151_plus": "Mycket stora bostäder",
+    "lag1_skogsmark_andel_land_pct": "Natur och friluftsliv",
+    "lag1_naturpraglad_mark_andel_land_pct": "Natur och friluftsliv",
     "lag1_fritidshusandel_bland_smahus": "Landets lugn",
     "lag1_brott_per_100000": "Landets lugn",
     "lag1_sysselsattningsgrad": "Arbetsmarknad",
@@ -6635,6 +6672,138 @@ def _snowmobile_proxy_residual_tests(
     }
 
 
+def _land_nature_residual_tests(
+    panel: pd.DataFrame,
+    target: str,
+    base_features: list[str],
+    start_year: int,
+    end_year: int,
+) -> dict:
+    """Test land-nature proxies beyond geography and urban structure."""
+    candidates = list(LAND_NATURE_CANDIDATE_FEATURES)
+    forced_controls = [
+        "geo_northing_100km",
+        "lag1_log_folkmangd",
+        "lag1_tatortsgrad_pct",
+        "lag1_bebyggd_anlagd_andel_land_pct",
+        "geo_havsandel_10pp",
+        "lag1_andel_smahus",
+    ]
+    needed = list(dict.fromkeys(
+        ["kommun_kod", "year", target, "kommun_centroid_northing_km",
+         "havsandel_pct", "lag1_log_folkmangd", "lag1_tatortsgrad_pct",
+         "lag1_bebyggd_anlagd_andel_land_pct", "lag1_andel_smahus"]
+        + candidates + list(base_features)
+    ))
+    d = (
+        panel.loc[panel["year"].between(start_year, end_year), needed]
+        .dropna()
+        .reset_index(drop=True)
+    )
+    if d.empty:
+        return {"status": "insufficient_coverage", "rows": []}
+
+    northing_center_km = float(
+        panel[["kommun_kod", "kommun_centroid_northing_km"]]
+        .drop_duplicates("kommun_kod")["kommun_centroid_northing_km"]
+        .dropna()
+        .median()
+    )
+    d["geo_northing_100km"] = (
+        d["kommun_centroid_northing_km"] - northing_center_km
+    ) / 100.0
+    d["geo_havsandel_10pp"] = d["havsandel_pct"] / 10.0
+
+    base_core = [
+        f for f in base_features
+        if f not in {
+            "lag1_log_folkmangd",
+            "lag1_tatortsgrad_pct",
+            "lag1_bebyggd_anlagd_andel_land_pct",
+            "lag1_andel_smahus",
+        }
+        and f not in candidates
+    ]
+    controls = list(dict.fromkeys(base_core + forced_controls))
+    y = d[target].astype(float).reset_index(drop=True)
+    fit_controls = sm.OLS(y, _design_with_year_effects(d, controls)).fit()
+    rmse_controls = float(np.sqrt(np.mean(np.square(fit_controls.resid))))
+
+    rows = []
+    for candidate in candidates:
+        features = controls + [candidate]
+        fit = sm.OLS(y, _design_with_year_effects(d, features)).fit()
+        robust = sm.OLS(y, _design_with_year_effects(d, features)).fit(
+            cov_type="cluster",
+            cov_kwds={"groups": d["kommun_kod"].reset_index(drop=True)},
+        )
+        names = list(robust.model.exog_names)
+        i = names.index(candidate)
+        rmse = float(np.sqrt(np.mean(np.square(fit.resid))))
+
+        train = d[d["year"] < end_year].copy()
+        test = d[d["year"] == end_year].copy()
+        holdout = {
+            "test_year": end_year,
+            "n_train": int(len(train)),
+            "n_test": int(len(test)),
+        }
+        if len(train) >= 150 and len(test) >= 80:
+            base_model = LinearRegression().fit(train[controls], train[target])
+            full_model = LinearRegression().fit(train[features], train[target])
+            y_test = test[target].to_numpy(dtype=float)
+            base_pred = base_model.predict(test[controls])
+            full_pred = full_model.predict(test[features])
+            base_rmse = float(np.sqrt(mean_squared_error(y_test, base_pred)))
+            full_rmse = float(np.sqrt(mean_squared_error(y_test, full_pred)))
+            holdout.update({
+                "base_rmse": _finite_float(base_rmse),
+                "full_rmse": _finite_float(full_rmse),
+                "delta_rmse": _finite_float(base_rmse - full_rmse),
+                "base_r2": _finite_float(r2_score(y_test, base_pred)),
+                "full_r2": _finite_float(r2_score(y_test, full_pred)),
+                "delta_r2": _finite_float(
+                    r2_score(y_test, full_pred) - r2_score(y_test, base_pred)
+                ),
+            })
+        else:
+            holdout["status"] = "insufficient_coverage"
+
+        rows.append({
+            "feature": candidate,
+            "n_obs": int(len(d)),
+            "n_municipalities": int(d["kommun_kod"].nunique()),
+            "n_years": int(d["year"].nunique()),
+            "coefficient_after_controls": _finite_float(np.asarray(robust.params)[i]),
+            "p_value_after_controls": _finite_float(np.asarray(robust.pvalues)[i]),
+            "delta_adjusted_r2_after_controls": _finite_float(
+                fit.rsquared_adj - fit_controls.rsquared_adj
+            ),
+            "delta_aic_after_controls": _finite_float(
+                fit_controls.aic - fit.aic
+            ),
+            "delta_rmse_after_controls": _finite_float(
+                rmse_controls - rmse
+            ),
+            "holdout": holdout,
+        })
+
+    return {
+        "status": "tested",
+        "rule": (
+            "same observations; baseline plus northing, log population, SCB "
+            "urban-area share, built/developed land share, sea share and "
+            "small-house share held constant; separate final-year holdout"
+        ),
+        "start_year": start_year,
+        "end_year": end_year,
+        "forced_controls": forced_controls,
+        "source": "SCB MarkanvN; land-use measurement values forward-filled only from observed measurement years",
+        "interpretation": "coarse municipality land-cover proxy, not direct distance or accessibility to nature",
+        "rows": rows,
+    }
+
+
 def _geography_rankings(panel: pd.DataFrame) -> dict:
     """Simple source-QA rankings for the static geography candidate variables."""
     cols = [
@@ -6869,6 +7038,45 @@ def main():
         },
     }
 
+    result["land_nature_candidate_tests"] = {
+        "overall": _sparse_candidate_tests(
+            panel,
+            result["target"],
+            overall_base,
+            LAND_NATURE_CANDIDATE_FEATURES,
+            END_YEAR - 4,
+            END_YEAR,
+        ),
+        "age_groups": {
+            key: _sparse_candidate_tests(
+                panel,
+                model["target"],
+                model["explanation"]["selected_features"],
+                LAND_NATURE_CANDIDATE_FEATURES,
+                END_YEAR - 4,
+                END_YEAR,
+            )
+            for key, model in age_models.items()
+            if "error" not in model
+        },
+    }
+    result["land_nature_residual_tests"] = {
+        "overall": _land_nature_residual_tests(
+            panel, result["target"], overall_base, END_YEAR - 4, END_YEAR
+        ),
+        "age_groups": {
+            key: _land_nature_residual_tests(
+                panel,
+                model["target"],
+                model["explanation"]["selected_features"],
+                END_YEAR - 4,
+                END_YEAR,
+            )
+            for key, model in age_models.items()
+            if "error" not in model
+        },
+    }
+
     result["snowmobile_proxy_candidate_tests"] = {
         "overall": _sparse_candidate_tests(
             panel,
@@ -7001,6 +7209,10 @@ def main():
         "direct_urbanity_controls": [
             "SCB tätortsgrad (population share in statistical urban areas)",
             "SCB built/developed land share of total land area in MarkanvN",
+        ],
+        "land_nature_candidates": [
+            "SCB forest share of total land area",
+            "SCB forest + open mire + other land share of total land area (coarse nature-dominated land proxy)",
         ],
         "snowmobile_proxy": "SCB snowmobiles as share of published vehicle stock; exact and denominator-robust variants, lagged one year",
         "production_status": "candidate_only",
@@ -7148,6 +7360,45 @@ def main():
             if "error" not in model
         },
     }
+    blind_result["land_nature_candidate_tests"] = {
+        "overall": _sparse_candidate_tests(
+            panel,
+            blind_result["target"],
+            blind_base,
+            LAND_NATURE_CANDIDATE_FEATURES,
+            END_YEAR - 4,
+            END_YEAR,
+        ),
+        "age_groups": {
+            key: _sparse_candidate_tests(
+                panel,
+                model["target"],
+                model["explanation"]["selected_features"],
+                LAND_NATURE_CANDIDATE_FEATURES,
+                END_YEAR - 4,
+                END_YEAR,
+            )
+            for key, model in blind_age_models.items()
+            if "error" not in model
+        },
+    }
+    blind_result["land_nature_residual_tests"] = {
+        "overall": _land_nature_residual_tests(
+            panel, blind_result["target"], blind_base, END_YEAR - 4, END_YEAR
+        ),
+        "age_groups": {
+            key: _land_nature_residual_tests(
+                panel,
+                model["target"],
+                model["explanation"]["selected_features"],
+                END_YEAR - 4,
+                END_YEAR,
+            )
+            for key, model in blind_age_models.items()
+            if "error" not in model
+        },
+    }
+
     blind_result["snowmobile_proxy_candidate_tests"] = {
         "overall": _sparse_candidate_tests(
             panel,
