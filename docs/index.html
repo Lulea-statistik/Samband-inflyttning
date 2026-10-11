@@ -18,6 +18,7 @@
 <nav>
   <button class="tab splash-tab" data-page="public">För allmänheten</button>
   <button class="tab active" data-page="overview">Översikt</button>
+  <button class="tab" data-page="tests">Testlogg</button>
   <button class="tab" data-page="relationships">Samband</button>
   <button class="tab" data-page="model">Multipel regression</button>
   <button class="tab" data-page="ages">Åldersgrupper</button>
@@ -109,6 +110,61 @@
       </div>
       <p>Prognosmodellen är bäst när frågan är <strong>vad händer nästa år?</strong> Strukturmodellen är bättre när frågan är <strong>vilka kommunegenskaper är förknippade med hög inflyttning?</strong> Sambanden ska fortfarande inte tolkas som säkra orsakseffekter.</p>
     </section>
+  </section>
+
+  <section id="tests" class="page testlog-page">
+    <div class="testlog-hero">
+      <div class="eyebrow">Forsknings- och testlogg</div>
+      <h2>Vad har vi testat – och vad blev beslutet?</h2>
+      <p class="lead">Här sammanfattas större kandidattester i några rader. Statusen visar om en variabel har fått plats i den demografiskt blinda strukturmodellen, ligger kvar som diagnostik eller har fallit i valideringen. Sambanden ska inte tolkas som säkra orsakseffekter.</p>
+    </div>
+
+    <div class="test-summary-grid">
+      <article class="test-summary-card">
+        <div class="test-summary-head">
+          <span class="test-run">#101–102</span>
+          <span class="test-status status-diagnostic">Diagnostik</span>
+        </div>
+        <h3>Bostadspris, inkomstkvot och vakans</h3>
+        <p>Småhuspris och pris i relation till inkomst såg starka ut i historiska data, även efter kontroll för nordlighet och urbanitet. I 2024 års holdout försämrades prognosen tydligt. Vakans i allmännyttan hade för gles tidsserie för ett robust femårstest.</p>
+        <p class="test-decision"><strong>Beslut:</strong> ingen av variablerna förs in i produktionsmodellen.</p>
+      </article>
+
+      <article class="test-summary-card">
+        <div class="test-summary-head">
+          <span class="test-run">#103–106</span>
+          <span class="test-status status-keep">Behåll</span>
+        </div>
+        <h3>Andel bostäder minst 111 m²</h3>
+        <p>Andelen bostäder på minst 111 m² gav eget informationsvärde utöver småhusandel, nordlighet, tätortsgrad, bebyggd mark och havsandel. I expanding-window-test förbättrades RMSE och R² samtliga tre testår 2022–2024 och signalen var stabilare än ≥141 m² och ett småhusspecifikt ≥111 m²-mått.</p>
+        <p class="test-decision"><strong>Beslut:</strong> ≥111 m² ingår som bostadsstorlekssignal i den demografiskt blinda strukturmodellen.</p>
+      </article>
+
+      <article class="test-summary-card">
+        <div class="test-summary-head">
+          <span class="test-run">#107–108</span>
+          <span class="test-status status-diagnostic">Diagnostik</span>
+        </div>
+        <h3>Små bostäder ≤70 m² och mycket stora ≥151 m²</h3>
+        <p>Små bostäder gav inget stabilt extra bidrag. Mycket stora småhus hade den starkaste nya signalen och förbättrade två av tre rolling-holdout-år, men försämrade 2024. Effekten var särskilt stark för 18–23-åringar, vilket också gör proxyförklaring möjlig.</p>
+        <p class="test-decision"><strong>Beslut:</strong> behåll ≥111 m² oförändrat; ytterlighetsmåtten stannar som diagnostik.</p>
+      </article>
+
+      <article class="test-summary-card">
+        <div class="test-summary-head">
+          <span class="test-run">Tidigare test</span>
+          <span class="test-status status-reject">Ej vald</span>
+        </div>
+        <h3>Snöskoterandel som klimat-/nordlighetsproxy</h3>
+        <p>Snöskoterandel hade vissa mönster i yngre åldrar, men gav i totalmodellen i princip inget eget bidrag när nordlighet, tätortsgrad, bebyggd mark och havsandel hölls konstanta.</p>
+        <p class="test-decision"><strong>Beslut:</strong> används inte som produktionssignal.</p>
+      </article>
+    </div>
+
+    <div class="panel testlog-note">
+      <h3>Så används sidan</h3>
+      <p>Nya större kandidattester läggs till här efter validering. Målet är att skilja på <strong>intressant historiskt samband</strong> och <strong>stabilt informationsvärde utanför träningsdata</strong>, så att ett starkt enskilt resultat inte automatiskt blir en modellvariabel.</p>
+    </div>
   </section>
 
   <section id="overview" class="page active">
