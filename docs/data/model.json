@@ -95636,6 +95636,200 @@
       ]
     }
   },
+  "gymnasium_program_candidate_tests": {
+    "metadata": {
+      "source": "Kolada N17802/N17801; underlying source SCB and Skolverket",
+      "theme": "Gymnasieinriktning – utbildnings- och arbetsmarknadskultur",
+      "interpretation": "Ambiguous proxy for local labour-market structure, parental education and broader education/social-capital culture; not causal.",
+      "home_municipality": true
+    },
+    "overall": {
+      "rule": "one candidate at a time versus the same baseline and same observations",
+      "start_year": 2020,
+      "end_year": 2024,
+      "rows": [
+        {
+          "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+          "status": "tested",
+          "n_obs": 1160,
+          "n_municipalities": 290,
+          "n_years": 4,
+          "coefficient": 0.02638568076497999,
+          "standardized_coefficient": 0.0195899125822423,
+          "p_value": 0.3381726617663925,
+          "base_adjusted_r2": 0.9168806797329582,
+          "full_adjusted_r2": 0.9168656099388162,
+          "delta_adjusted_r2": -1.5069794142008597e-05,
+          "base_aic": 6958.031681739834,
+          "full_aic": 6959.223983912823,
+          "delta_aic": -1.1923021729890024,
+          "base_rmse": 4.772983945650343,
+          "full_rmse": 4.771322541440844,
+          "delta_rmse": 0.0016614042094991177
+        },
+        {
+          "feature": "lag1_gymnasium_yrkesprogram_pct",
+          "status": "tested",
+          "n_obs": 1160,
+          "n_municipalities": 290,
+          "n_years": 4,
+          "coefficient": 0.03733620465016075,
+          "standardized_coefficient": 0.0247212376796943,
+          "p_value": 0.15236730606936708,
+          "base_adjusted_r2": 0.9168806797329582,
+          "full_adjusted_r2": 0.9169288021137878,
+          "delta_adjusted_r2": 4.8122380829629385e-05,
+          "base_aic": 6958.031681739834,
+          "full_aic": 6958.3419085577825,
+          "delta_aic": -0.3102268179482053,
+          "base_rmse": 4.772983945650343,
+          "full_rmse": 4.769508806075138,
+          "delta_rmse": 0.003475139575204622
+        }
+      ],
+      "winner": "lag1_gymnasium_yrkesprogram_pct"
+    },
+    "age_groups": {
+      "18_23": {
+        "rule": "one candidate at a time versus the same baseline and same observations",
+        "start_year": 2020,
+        "end_year": 2024,
+        "rows": [
+          {
+            "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+            "status": "tested",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient": 0.12170623142950207,
+            "standardized_coefficient": 0.03872008732926978,
+            "p_value": 0.2749504457069494,
+            "base_adjusted_r2": 0.7694014428274463,
+            "full_adjusted_r2": 0.7694211798392381,
+            "delta_adjusted_r2": 1.9737011791809422e-05,
+            "base_aic": 10109.732545149414,
+            "full_aic": 10110.613475805916,
+            "delta_aic": -0.8809306565017323,
+            "base_rmse": 18.536454153325543,
+            "full_rmse": 18.52751511217269,
+            "delta_rmse": 0.008939041152853378
+          },
+          {
+            "feature": "lag1_gymnasium_yrkesprogram_pct",
+            "status": "tested",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient": 0.04981413342225436,
+            "standardized_coefficient": 0.014133572150287358,
+            "p_value": 0.6553715517516052,
+            "base_adjusted_r2": 0.7694014428274463,
+            "full_adjusted_r2": 0.7692384730825512,
+            "delta_adjusted_r2": -0.00016296974489504734,
+            "base_aic": 10109.732545149414,
+            "full_aic": 10111.532276210777,
+            "delta_aic": -1.7997310613627633,
+            "base_rmse": 18.536454153325543,
+            "full_rmse": 18.534854103421686,
+            "delta_rmse": 0.0016000499038568705
+          }
+        ],
+        "winner": "lag1_gymnasium_hogskoleforberedande_pct"
+      },
+      "24_34": {
+        "rule": "one candidate at a time versus the same baseline and same observations",
+        "start_year": 2020,
+        "end_year": 2024,
+        "rows": [
+          {
+            "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+            "status": "tested",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient": 0.1873190540703593,
+            "standardized_coefficient": 0.05332133589407112,
+            "p_value": 0.03765006929550917,
+            "base_adjusted_r2": 0.8843051860989166,
+            "full_adjusted_r2": 0.8846324663566423,
+            "delta_adjusted_r2": 0.0003272802577256595,
+            "base_aic": 9564.750604536675,
+            "full_aic": 9562.447420879182,
+            "delta_aic": 2.303183657493719,
+            "base_rmse": 14.693709631709298,
+            "full_rmse": 14.666480697445627,
+            "delta_rmse": 0.02722893426367179
+          },
+          {
+            "feature": "lag1_gymnasium_yrkesprogram_pct",
+            "status": "tested",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient": 0.03593874006855191,
+            "standardized_coefficient": 0.009123421940584648,
+            "p_value": 0.6419529677723168,
+            "base_adjusted_r2": 0.8843051860989166,
+            "full_adjusted_r2": 0.8842206184977102,
+            "delta_adjusted_r2": -8.456760120645335e-05,
+            "base_aic": 9564.750604536675,
+            "full_aic": 9566.58110375026,
+            "delta_aic": -1.8304992135854263,
+            "base_rmse": 14.693709631709298,
+            "full_rmse": 14.69263613845161,
+            "delta_rmse": 0.0010734932576887957
+          }
+        ],
+        "winner": "lag1_gymnasium_hogskoleforberedande_pct"
+      },
+      "35_49": {
+        "rule": "one candidate at a time versus the same baseline and same observations",
+        "start_year": 2020,
+        "end_year": 2024,
+        "rows": [
+          {
+            "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+            "status": "tested",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient": 0.028008590937669237,
+            "standardized_coefficient": 0.01891107371268096,
+            "p_value": 0.5985645303934704,
+            "base_adjusted_r2": 0.8148247496970796,
+            "full_adjusted_r2": 0.8147144983297065,
+            "delta_adjusted_r2": -0.00011025136737308205,
+            "base_aic": 8110.46467536007,
+            "full_aic": 8112.134443871348,
+            "delta_aic": -1.6697685112776526,
+            "base_rmse": 7.823435864026259,
+            "full_rmse": 7.822322346350119,
+            "delta_rmse": 0.0011135176761403187
+          },
+          {
+            "feature": "lag1_gymnasium_yrkesprogram_pct",
+            "status": "tested",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient": 0.04623034516666409,
+            "standardized_coefficient": 0.027837351294501846,
+            "p_value": 0.33694245498967035,
+            "base_adjusted_r2": 0.8148247496970796,
+            "full_adjusted_r2": 0.8148136581601553,
+            "delta_adjusted_r2": -1.1091536924356937e-05,
+            "base_aic": 8110.46467536007,
+            "full_aic": 8111.513476809572,
+            "delta_aic": -1.048801449502207,
+            "base_rmse": 7.823435864026259,
+            "full_rmse": 7.820228917677902,
+            "delta_rmse": 0.003206946348357498
+          }
+        ],
+        "winner": "lag1_gymnasium_yrkesprogram_pct"
+      }
+    }
+  },
   "activity_candidate_tests": {
     "overall": {
       "rule": "one candidate at a time versus the same baseline and same observations",
@@ -153559,6 +153753,200 @@
                 }
               }
             ]
+          }
+        }
+      },
+      "gymnasium_program_candidate_tests": {
+        "metadata": {
+          "source": "Kolada N17802/N17801; underlying source SCB and Skolverket",
+          "theme": "Gymnasieinriktning – utbildnings- och arbetsmarknadskultur",
+          "interpretation": "Ambiguous proxy for local labour-market structure, parental education and broader education/social-capital culture; not causal.",
+          "home_municipality": true
+        },
+        "overall": {
+          "rule": "one candidate at a time versus the same baseline and same observations",
+          "start_year": 2020,
+          "end_year": 2024,
+          "rows": [
+            {
+              "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+              "status": "tested",
+              "n_obs": 1160,
+              "n_municipalities": 290,
+              "n_years": 4,
+              "coefficient": 0.2224773126555149,
+              "standardized_coefficient": 0.16517713320621352,
+              "p_value": 0.039658498108687074,
+              "base_adjusted_r2": 0.6447926588494158,
+              "full_adjusted_r2": 0.6486760766135369,
+              "delta_adjusted_r2": 0.0038834177641210443,
+              "base_aic": 8642.844112795872,
+              "full_aic": 8631.074216848128,
+              "delta_aic": 11.769895947743862,
+              "base_rmse": 9.866882320271683,
+              "full_rmse": 9.808492864736317,
+              "delta_rmse": 0.0583894555353659
+            },
+            {
+              "feature": "lag1_gymnasium_yrkesprogram_pct",
+              "status": "tested",
+              "n_obs": 1160,
+              "n_municipalities": 290,
+              "n_years": 4,
+              "coefficient": -0.21292516215534152,
+              "standardized_coefficient": -0.14098309110288704,
+              "p_value": 0.03291047113090282,
+              "base_adjusted_r2": 0.6447926588494158,
+              "full_adjusted_r2": 0.6486936437057866,
+              "delta_adjusted_r2": 0.003900984856370804,
+              "base_aic": 8642.844112795872,
+              "full_aic": 8631.016212439257,
+              "delta_aic": 11.827900356614919,
+              "base_rmse": 9.866882320271683,
+              "full_rmse": 9.808247636840473,
+              "delta_rmse": 0.05863468343120992
+            }
+          ],
+          "winner": "lag1_gymnasium_yrkesprogram_pct"
+        },
+        "age_groups": {
+          "18_23": {
+            "rule": "one candidate at a time versus the same baseline and same observations",
+            "start_year": 2020,
+            "end_year": 2024,
+            "rows": [
+              {
+                "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+                "status": "tested",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient": 0.15709754373095855,
+                "standardized_coefficient": 0.04997961518511032,
+                "p_value": 0.575997138948986,
+                "base_adjusted_r2": 0.4629473588661024,
+                "full_adjusted_r2": 0.4628671385832178,
+                "delta_adjusted_r2": -8.022028288456884e-05,
+                "base_aic": 11086.487334381709,
+                "full_aic": 11087.644385408143,
+                "delta_aic": -1.1570510264336917,
+                "base_rmse": 28.337968801556812,
+                "full_rmse": 28.32767435215867,
+                "delta_rmse": 0.010294449398141836
+              },
+              {
+                "feature": "lag1_gymnasium_yrkesprogram_pct",
+                "status": "tested",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient": -0.17609656856422418,
+                "standardized_coefficient": -0.04996320092780311,
+                "p_value": 0.5165688654072733,
+                "base_adjusted_r2": 0.4629473588661024,
+                "full_adjusted_r2": 0.46301203278794356,
+                "delta_adjusted_r2": 6.467392184117404e-05,
+                "base_aic": 11086.487334381709,
+                "full_aic": 11087.331427547124,
+                "delta_aic": -0.8440931654149608,
+                "base_rmse": 28.337968801556812,
+                "full_rmse": 28.323853330412962,
+                "delta_rmse": 0.01411547114384959
+              }
+            ],
+            "winner": "lag1_gymnasium_yrkesprogram_pct"
+          },
+          "24_34": {
+            "rule": "one candidate at a time versus the same baseline and same observations",
+            "start_year": 2020,
+            "end_year": 2024,
+            "rows": [
+              {
+                "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+                "status": "tested",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient": 0.6950544020306032,
+                "standardized_coefficient": 0.1978508241954174,
+                "p_value": 0.004936910715908719,
+                "base_adjusted_r2": 0.7052499412233377,
+                "full_adjusted_r2": 0.7110713412982652,
+                "delta_adjusted_r2": 0.005821400074927485,
+                "base_aic": 10649.550042532712,
+                "full_aic": 10627.393337906178,
+                "delta_aic": 22.15670462653361,
+                "base_rmse": 23.453164925973645,
+                "full_rmse": 23.210228797774608,
+                "delta_rmse": 0.24293612819903743
+              },
+              {
+                "feature": "lag1_gymnasium_yrkesprogram_pct",
+                "status": "tested",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient": -0.5302486855578759,
+                "standardized_coefficient": -0.13460912882747644,
+                "p_value": 0.014865047914551701,
+                "base_adjusted_r2": 0.7052499412233377,
+                "full_adjusted_r2": 0.7088895866268308,
+                "delta_adjusted_r2": 0.0036396454034930414,
+                "base_aic": 10649.550042532712,
+                "full_aic": 10636.119809884676,
+                "delta_aic": 13.430232648035599,
+                "base_rmse": 23.453164925973645,
+                "full_rmse": 23.29769638989199,
+                "delta_rmse": 0.15546853608165634
+              }
+            ],
+            "winner": "lag1_gymnasium_hogskoleforberedande_pct"
+          },
+          "35_49": {
+            "rule": "one candidate at a time versus the same baseline and same observations",
+            "start_year": 2020,
+            "end_year": 2024,
+            "rows": [
+              {
+                "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+                "status": "tested",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient": 0.3030831156980652,
+                "standardized_coefficient": 0.2046381824344672,
+                "p_value": 0.014518315860490965,
+                "base_adjusted_r2": 0.5626260326416352,
+                "full_adjusted_r2": 0.5686923606196028,
+                "delta_adjusted_r2": 0.006066327977967578,
+                "base_aic": 9103.54208878017,
+                "full_aic": 9088.323301414594,
+                "delta_aic": 15.218787365576645,
+                "base_rmse": 12.044675703489187,
+                "full_rmse": 11.95561235010134,
+                "delta_rmse": 0.08906335338784643
+              },
+              {
+                "feature": "lag1_gymnasium_yrkesprogram_pct",
+                "status": "tested",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient": -0.2957275979639342,
+                "standardized_coefficient": -0.17807076720546305,
+                "p_value": 0.009718709001356447,
+                "base_adjusted_r2": 0.5626260326416352,
+                "full_adjusted_r2": 0.5688098859745063,
+                "delta_adjusted_r2": 0.006183853332871081,
+                "base_aic": 9103.54208878017,
+                "full_aic": 9088.007174417176,
+                "delta_aic": 15.534914362993732,
+                "base_rmse": 12.044675703489187,
+                "full_rmse": 11.953983369779635,
+                "delta_rmse": 0.09069233370955132
+              }
+            ],
+            "winner": "lag1_gymnasium_yrkesprogram_pct"
           }
         }
       },
