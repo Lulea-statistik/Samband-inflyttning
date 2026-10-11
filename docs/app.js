@@ -465,17 +465,28 @@ function renderLuleaView(){
     legend:{orientation:'h',y:1.12}
   },{responsive:true,displaylogo:false});
 
+  const themeVariables=new Map(
+    (a.explanation?.theme_marginal_analysis?.rows||[]).map(r=>[
+      r.theme,
+      (r.features||[]).map(f=>labels[f]||f).join('; ')
+    ])
+  );
   const latestContrib=Object.entries(last.byTheme)
-    .map(([theme,value])=>({theme,value}))
+    .map(([theme,value])=>({
+      theme,
+      value,
+      variableDescription:themeVariables.get(theme)||theme
+    }))
     .filter(d=>Math.abs(d.value)>1e-9)
     .sort((a,b)=>a.value-b.value);
   Plotly.react('luleaLatestContributions',[{
     y:latestContrib.map(d=>d.theme),
     x:latestContrib.map(d=>d.value),
+    customdata:latestContrib.map(d=>d.variableDescription),
     type:'bar',orientation:'h',
     text:latestContrib.map(d=>(d.value>=0?'+':'')+fmt(d.value,2)),
     textposition:'outside',
-    hovertemplate:'%{y}<br>Bidrag till Luleå–Sverige-gapet=%{x:.2f} per 1 000<extra></extra>'
+    hovertemplate:'%{y}<br>Bidrag till Luleå–Sverige-gapet=%{x:.2f} per 1 000<br>Variabel i modellen: %{customdata}<extra></extra>'
   }],{
     margin:{t:25,l:210,r:75,b:55},
     xaxis:{title:'Bidrag till modellberäknat gap, inflyttade per 1 000',zeroline:true},
