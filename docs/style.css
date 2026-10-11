@@ -84,3 +84,15 @@ main{padding:24px 28px;max-width:1500px;margin:auto}.page{display:none}.page.act
 .test-decision{margin-top:auto!important;padding-top:10px;border-top:1px solid #edf1f5}
 .testlog-note{border-left:5px solid #8aa7bf}
 @media(max-width:820px){.test-summary-grid{grid-template-columns:1fr}.testlog-hero{padding:24px}}
+
+
+.geo-overview-callout{border-left:5px solid #6f8fa8}
+.geo-hero{border-left:6px solid #6f8fa8}
+.shoreline-robust-panel{border-left:5px solid #b38a3d}
+.candidate-list{line-height:1.55;padding-left:24px}
+.candidate-list li{margin:10px 0;color:#405066}
+#geoRobustSelection p{line-height:1.5}
+#geoRobustWorstTable .metric-table{min-width:980px}
+@media(max-width:900px){
+  #geoRobustComparison,#geoRobustTail,#shorelineRobustnessChart{height:460px}
+}
