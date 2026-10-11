@@ -122,6 +122,76 @@
     <div class="test-summary-grid">
       <article class="test-summary-card">
         <div class="test-summary-head">
+          <span class="test-run">#35–59</span>
+          <span class="test-status status-diagnostic">Tidiga strukturtest</span>
+        </div>
+        <h3>Småhus, studenter, näringsliv och regional arbetsmarknad</h3>
+        <p>De första strukturspåren testade bland annat småhusandel, studentandel, utbildning, näringslivsprofil, externa jobb i FA-regionen, fritidshusandel, brott och den egna kommunens andel av FA-regionens arbetsplatser. Flera variabler valdes periodvis av modellurvalet, men effekterna var små eller instabila när historisk inflyttning samtidigt fanns med.</p>
+        <p class="test-decision"><strong>Beslut:</strong> använd dessa som strukturkandidater/teman, men tolka inte de tidiga koefficienterna som etablerade drivare.</p>
+      </article>
+
+      <article class="test-summary-card">
+        <div class="test-summary-head">
+          <span class="test-run">#77</span>
+          <span class="test-status status-diagnostic">Förklarande</span>
+        </div>
+        <h3>Valdeltagande och socioekonomiska klyftor</h3>
+        <p>Riksdagsvaldeltagande, skillnaden mellan kommunens högsta och lägsta valdistrikt samt DeSO-spridning i låg ekonomisk standard gav små och statistiskt osäkra koefficienter i huvudmodellen. Valdeltagandevariablerna interpoleras mellan valår och får därför inte användas i strikt prognosvalidering när ett senare valår behövs för interpolationen.</p>
+        <p class="test-decision"><strong>Beslut:</strong> behåll som förklarande samhällsindikatorer, inte som prognossignaler.</p>
+      </article>
+
+      <article class="test-summary-card">
+        <div class="test-summary-head">
+          <span class="test-run">#78–79</span>
+          <span class="test-status status-keep">Modellprincip</span>
+        </div>
+        <h3>Bostadsutbud och historisk utflyttning</h3>
+        <p>Bostadsbestånd per 1 000 och upplåtelseform tillförde vissa strukturella skillnader men inget starkt enskilt genombrott. Däremot blev föregående års utflyttning en stark positiv prediktor (p≈5,3×10⁻⁸), vilket visar hur mycket migrationshistorik kan förbättra prognosen.</p>
+        <p class="test-decision"><strong>Beslut:</strong> historisk utflyttning hör hemma i prognosmodellen men ska vara förbjuden i den demografiskt blinda strukturmodellen.</p>
+      </article>
+
+      <article class="test-summary-card">
+        <div class="test-summary-head">
+          <span class="test-run">#81</span>
+          <span class="test-status status-reject">Ej vald</span>
+        </div>
+        <h3>Föreningsliv och LOK-stöd från Kolada</h3>
+        <p>Antal LOK-stödsföreningar, andel flickdominerade idrottsföreningar och utbetalt LOK-stöd gav i totalmodellen praktiskt taget inget extra förklaringsvärde. Flickdominerade föreningar hade ett svagt signalspår för 18–23 år, men Δ justerat R² var bara cirka 0,0011.</p>
+        <p class="test-decision"><strong>Beslut:</strong> inget av LOK-måtten får produktionsstatus.</p>
+      </article>
+
+      <article class="test-summary-card">
+        <div class="test-summary-head">
+          <span class="test-run">#85–86</span>
+          <span class="test-status status-diagnostic">Diagnostik</span>
+        </div>
+        <h3>Sysselsättningstillväxt och säsongsvariation</h3>
+        <p>Förändring i sysselsatta efter bostadens belägenhet var starkast i totalmodellen (p≈0,005; Δ justerat R²≈0,0013). Säsongsvariation gav tydligare signaler i vissa livsfaser, särskilt 18–23, 35–49 och 70–79 år. Efter validering var effekterna dock för små/instabila för generell produktionsstatus.</p>
+        <p class="test-decision"><strong>Beslut:</strong> behåll som kandidatdiagnostik och livsfasinformation, inte som generell huvudsignal.</p>
+      </article>
+
+      <article class="test-summary-card">
+        <div class="test-summary-head">
+          <span class="test-run">#91–97</span>
+          <span class="test-status status-diagnostic">Åldersspecifikt</span>
+        </div>
+        <h3>Nordlighet, kust och havsandel</h3>
+        <p>När nordlighet, kommunstorlek, tätortsgrad och bebyggd/anlagd mark hölls konstanta gav kust/havsandel i princip inget eget bidrag för total inflyttning. Däremot fanns små men tydliga åldersskillnader: havsandel var positiv för 63–68 och 70–79 år och negativ i vissa yngre/familjegrupper.</p>
+        <p class="test-decision"><strong>Beslut:</strong> ingen generell kusteffekt; behåll som geografisk kontroll och åldersspecifik diagnostik.</p>
+      </article>
+
+      <article class="test-summary-card">
+        <div class="test-summary-head">
+          <span class="test-run">#98–100</span>
+          <span class="test-status status-keep">Modellupplägg</span>
+        </div>
+        <h3>Snöskoterproxy och separation av modellerna</h3>
+        <p>Snöskoterandelen såg först svagt positiv ut, men efter kontroll för nordlighet, kommunstorlek, tätortsgrad, bebyggd mark och havsandel återstod nästan inget självständigt bidrag (Δ justerat R² ungefär +0,00009). Därefter separerades prognosmodellen från den demografiskt blinda strukturmodellen.</p>
+        <p class="test-decision"><strong>Beslut:</strong> snöskoterandel stannar som proxy/diagnostik; modellspåren hålls strikt separerade.</p>
+      </article>
+
+      <article class="test-summary-card">
+        <div class="test-summary-head">
           <span class="test-run">#101–102</span>
           <span class="test-status status-diagnostic">Diagnostik</span>
         </div>
