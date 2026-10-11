@@ -3665,8 +3665,8 @@ def get_shoreline_buildings() -> pd.DataFrame:
     total_area_code = require_total_code(area_type)
     years = [
         str(v) for v in time_var.get("values", [])
-        if re.search(r"(?:19|20)\\d{2}", str(v))
-        and 2018 <= int(re.search(r"(?:19|20)\\d{2}", str(v)).group(0)) <= END_YEAR
+        if re.search(r"(?:19|20)\d{2}", str(v))
+        and 2018 <= int(re.search(r"(?:19|20)\d{2}", str(v)).group(0)) <= END_YEAR
     ]
     if not years:
         raise ValueError("No usable years in SCB shoreline-buildings table")
@@ -3726,7 +3726,7 @@ def get_shoreline_buildings() -> pd.DataFrame:
         dim_cols = {region_col, building_col, shore_col, area_col}
         year_value_cols = [
             c for c in df.columns
-            if c not in dim_cols and re.search(r"(?:19|20)\\d{2}", str(c))
+            if c not in dim_cols and re.search(r"(?:19|20)\d{2}", str(c))
         ]
         if not year_value_cols:
             raise ValueError(
