@@ -754,10 +754,14 @@ function renderLuleaView(){
 
 function renderPublicPage(){
   if(selectedGeography==='lulea'){
+    const geoSection=document.getElementById('publicGeoRobustSection');
+    if(geoSection) geoSection.style.display='none';
     const a=luleaAnalysis();
     if(!a||!a.rows.length) return;
     const rows=a.rows, first=rows[0], last=rows[rows.length-1];
-    const eyebrow=document.getElementById('publicEyebrow');
+    const geoSection=document.getElementById('publicGeoRobustSection');
+  if(geoSection) geoSection.style.display='';
+  const eyebrow=document.getElementById('publicEyebrow');
     const title=document.getElementById('publicHeroTitle');
     const txt=document.getElementById('publicHeroText');
     if(eyebrow) eyebrow.textContent='Luleås inflyttning i ett Sverigeperspektiv';
@@ -919,8 +923,72 @@ function renderPublicPage(){
     xaxis:{title:'Åldersgrupp'},
     legend:{orientation:'h',y:1.12}
   },{responsive:true,displaylogo:false});
+
+  renderPublicGeographicRobustness();
 }
 
+
+
+function renderPublicGeographicRobustness(){
+  const section=document.getElementById('publicGeoRobustSection');
+  const summary=document.getElementById('publicGeoRobustSummary');
+  const examples=document.getElementById('publicGeoRobustExamples');
+  const chart=document.getElementById('publicGeoRobustChart');
+  if(!section||!summary||!examples||!chart) return;
+
+  const g=geographicRobustModel();
+  const rows=(g?.municipality_errors||[]).filter(r=>
+    Number.isFinite(Number(r.robust_prediction)) &&
+    Number.isFinite(Number(r.observed)) &&
+    Number.isFinite(Number(r.robust_abs_error))
+  );
+  if(!g||g.status!=='tested'||!rows.length){
+    summary.innerHTML='<article><span>Status</span><strong>Väntar</strong><small>resultat saknas</small></article>';
+    examples.textContent='';
+    chart.innerHTML='';
+    return;
+  }
+
+  const signedRows=rows.map(r=>({
+    ...r,
+    signed_error:Number(r.robust_prediction)-Number(r.observed)
+  }));
+  const easy=signedRows.slice().sort((x,y)=>Number(x.robust_abs_error)-Number(y.robust_abs_error)).slice(0,5);
+  const under=signedRows.filter(r=>r.signed_error<0).sort((x,y)=>x.signed_error-y.signed_error).slice(0,5);
+  const over=signedRows.filter(r=>r.signed_error>0).sort((x,y)=>y.signed_error-x.signed_error).slice(0,5);
+  const worst=signedRows.slice().sort((x,y)=>Number(y.robust_abs_error)-Number(x.robust_abs_error))[0];
+
+  summary.innerHTML=[
+    '<article><span>Närmast utfallet</span><strong>'+easy[0].kommun+'</strong><small>fel '+fmt(easy[0].robust_abs_error,2)+' per 1 000</small></article>',
+    '<article><span>Störst underskattning</span><strong>'+under[0].kommun+'</strong><small>'+fmt(Math.abs(under[0].signed_error),1)+' per 1 000 för lågt</small></article>',
+    '<article><span>Störst överskattning</span><strong>'+over[0].kommun+'</strong><small>'+fmt(over[0].signed_error,1)+' per 1 000 för högt</small></article>'
+  ].join('');
+
+  examples.innerHTML=
+    '<strong>Nära träff:</strong> '+easy.map(r=>r.kommun).join(', ')+'. '+
+    '<strong>Svårast i teståret:</strong> '+worst.kommun+' hade ett absolutfel på '+fmt(worst.robust_abs_error,1)+' per 1 000. '+
+    'Mönstret visar också att de största missarna oftare är <strong>underskattningar</strong> än överskattningar i 2024 års test – alltså kommuner där den faktiska inflyttningen blev högre än modellens förväntan.';
+
+  const display=[
+    ...under.slice().reverse().map(r=>({kommun:r.kommun,value:r.signed_error,typ:'Underskattning'})),
+    ...over.map(r=>({kommun:r.kommun,value:r.signed_error,typ:'Överskattning'}))
+  ];
+  Plotly.react(chart,[{
+    y:display.map(r=>r.kommun),
+    x:display.map(r=>r.value),
+    type:'bar',orientation:'h',
+    customdata:display.map(r=>r.typ),
+    text:display.map(r=>(r.value>0?'+':'')+fmt(r.value,1)),
+    textposition:'outside',
+    hovertemplate:'%{y}<br>%{customdata}<br>Prognos minus utfall=%{x:.2f} per 1 000<extra></extra>'
+  }],{
+    margin:{t:25,l:120,r:70,b:65},
+    xaxis:{title:'Prognos minus faktiskt utfall, per 1 000',zeroline:true},
+    yaxis:{automargin:true},
+    showlegend:false,
+    shapes:[{type:'line',x0:0,x1:0,y0:-0.5,y1:display.length-0.5,line:{dash:'dash'}}]
+  },{responsive:true,displaylogo:false});
+}
 
 
 function geographicRobustModel(){
