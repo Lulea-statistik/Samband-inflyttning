@@ -284,7 +284,7 @@
       <div id="cards" class="cards"></div>
       <div class="panel geo-overview-callout">
         <h3>Tre modellspår – tre olika optimeringsproblem</h3>
-        <p class="note">Modell 3 ska inte vinna genom högsta möjliga R². Den får väljas om den minskar den geografiska svansen av stora kommunfel utan att rolling-origin-RMSE blir mer än 3 % sämre än den vanliga prognosmodellens.</p>
+        <p class="note">Modell 3 ska inte vinna genom högsta möjliga R². Den får väljas om den minskar den geografiska svansen av stora kommunfel utan att korsvaliderad RMSE blir mer än 3 % sämre än den vanliga prognosmodellens.</p>
         <div id="threeModelComparison" class="chart"></div>
       </div>
       <div class="panel">
@@ -511,7 +511,7 @@
 
       <h3>Geografiskt robust prognosmodell</h3>
       <p>Modell 3 använder samma slutliga testår som prognosmodellen men ett annat modellurval. Eftersom varje kommun bara har en observation i ett enskilt holdoutår används inte “R² per kommun”. I stället jämförs fördelningen av <strong>absoluta prognosfel</strong> mellan kommunerna. Urvalsobjektivet är RMSE + 0,35 × P90(absolutfel) + 0,25 × [P90−P10](absolutfel). Kandidatmodellen får samtidigt inte ha mer än 3 procent sämre rolling-origin-RMSE än den vanliga prognosmodellens feature-set under träningsperioden. Maxfelet redovisas men ingår inte i objektivet eftersom en enda extrem kommun annars kan dominera modellvalet.</p>
-      <p>Feature-set och ridge-styrka väljs endast på träningsåren genom rolling-origin-validering. Det slutliga teståret används först efter att konfigurationen är låst. Modell 3 är fortfarande en prognosmodell och ska inte tolkas kausalt.</p>
+      <p>Feature-set och ridge-styrka väljs endast på träningsåren. Om minst två tidsmässiga rolling-origin-foldar finns används de; annars används kommunblockerad korsvalidering där hela kommuner hålls utanför träningen. Det senare prövar direkt om modellen kan överföras till geografier den inte sett. Det slutliga teståret används först efter att konfigurationen är låst. Modell 3 är fortfarande en prognosmodell och ska inte tolkas kausalt.</p>
 
       <h3>Multipel linjär regression</h3>
       <p>OLS används som tolkningsbar grundmodell. När flera år ingår läggs årseffekter till för att fånga nationella skillnader mellan år. Eftersom samma kommun återkommer flera gånger används standardfel klustrade per kommun.</p>
