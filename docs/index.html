@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Vad förklarar inflyttning till svenska kommuner?</title>
-  <link rel="stylesheet" href="style.css?v=20261011-1">
+  <link rel="stylesheet" href="style.css?v=20261011-2">
   <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/d3-dsv@3"></script>
 </head>
@@ -685,20 +685,130 @@
       <h3>Variabelmatris</h3>
       <p>Variabelmatrisen testar kandidaterna två och två. <strong>Korrelation</strong> visar hur nära variablerna samvarierar. <strong>Gemensamt justerat R²</strong> visar förklaringsgraden när ett par används tillsammans med årseffekter. <strong>Extra förklaringsvärde</strong> är skillnaden mellan parets justerade R² och den starkaste variabelns justerade R² ensam. Ett lågt extra värde trots höga enskilda samband tyder på att variablerna till stor del representerar samma underliggande förklaring.</p>
 
-      <h3>Begrepp och diagnostik</h3>
-      <dl class="terms">
-        <dt>R²</dt><dd>Andelen av variationen i responsvariabeln som modellen förklarar.</dd>
-        <dt>Justerat R²</dt><dd>Justerar R² för antalet förklaringsvariabler och är därför bättre vid jämförelse mellan modeller med olika komplexitet.</dd>
-        <dt>Regressionskoefficient</dt><dd>Den skattade förändringen i responsvariabeln när en förklaringsvariabel ändras, givet övriga variabler.</dd>
-        <dt>Konfidensintervall</dt><dd>Visar osäkerheten kring en skattad koefficient. Här används 95 % intervall.</dd>
-        <dt>Residual</dt><dd>Skillnaden mellan observerat och modellens skattade värde.</dd>
-        <dt>VIF</dt><dd>Variance Inflation Factor används för att upptäcka multikollinearitet mellan förklaringsvariabler.</dd>
-        <dt>Heteroskedasticitet</dt><dd>Residualernas spridning varierar systematiskt med de skattade värdena eller andra variabler.</dd>
-        <dt>Endogenitet</dt><dd>En förklaringsvariabel samvarierar med sådant som ligger i feltermen, vilket kan göra koefficienten missvisande.</dd>
-      </dl>
+      <h3>Statistiskt lexikon</h3>
+      <p class="note">Begreppen nedan används på flera sidor i rapporten. De är samlade här för att samma ord ska betyda samma sak oavsett om du tittar på översikten, regressionen, valideringen, åldersgrupperna eller Modell 3.</p>
+
+      <div class="method-glossary-grid">
+        <section class="method-glossary-card">
+          <h4>Grundbegrepp och förklaringsgrad</h4>
+          <dl class="terms">
+            <dt>Observation</dt><dd>En rad i analysen. Här är en observation normalt en kommun ett visst år.</dd>
+            <dt>Responsvariabel</dt><dd>Det utfall modellen försöker förklara eller prognostisera. Här: inflyttade per 1 000 invånare.</dd>
+            <dt>Förklaringsvariabel / feature</dt><dd>Ett mått som används för att förklara eller förutsäga responsvariabeln.</dd>
+            <dt>R²</dt><dd>Andelen av variationen i responsvariabeln som modellen förklarar i det dataurval där R² beräknas.</dd>
+            <dt>Justerat R²</dt><dd>R² justerat för antal variabler. Det straffar onödig modellkomplexitet och är därför bättre än vanligt R² när modeller med olika antal variabler jämförs.</dd>
+            <dt>Test-R² / out-of-sample R²</dt><dd>R² beräknat på data som inte användes när modellen skattades. Det är ett mått på generalisering, inte “procent rätt”.</dd>
+            <dt>Δ justerat R²</dt><dd>Förändringen i justerat R² mellan två modeller. På temasidan används ofta tappet när ett tema tas bort; större positivt tapp betyder mer självständigt förklaringsvärde.</dd>
+            <dt>Gemensamt justerat R²</dt><dd>Justerat R² när två kandidater används tillsammans med övriga kontroller.</dd>
+            <dt>Extra förklaringsvärde</dt><dd>Hur mycket mer justerat R² ett variabelpar ger jämfört med den starkaste av de två variablerna ensam.</dd>
+          </dl>
+        </section>
+
+        <section class="method-glossary-card">
+          <h4>Fel- och prognosmått</h4>
+          <dl class="terms">
+            <dt>Residual</dt><dd>Observerat värde minus modellens skattade värde.</dd>
+            <dt>Absolutfel</dt><dd>Residualens storlek utan hänsyn till tecken. Ett fel på −5 och +5 räknas båda som 5.</dd>
+            <dt>RMSE</dt><dd>Root Mean Squared Error. Kvadrerar felen innan medelvärdet tas och väger därför stora fel extra tungt. Lägre är bättre.</dd>
+            <dt>MAE</dt><dd>Mean Absolute Error. Genomsnittligt absolutfel. Mindre känsligt för extrema fel än RMSE. Lägre är bättre.</dd>
+            <dt>P90-absolutfel</dt><dd>90:e percentilen av kommunernas absolutfel. 90 % av kommunerna har ett fel som är högst detta värde.</dd>
+            <dt>P95-absolutfel</dt><dd>Samma princip som P90 men vid 95:e percentilen.</dd>
+            <dt>P90–P10</dt><dd>Skillnaden mellan 90:e och 10:e percentilen för absolutfel. Används som ett mått på hur ojämnt prognosfelen är fördelade mellan kommuner.</dd>
+            <dt>Sämsta decilens MAE</dt><dd>Genomsnittligt absolutfel bland de 10 % kommuner som har störst prognosfel.</dd>
+            <dt>Maxfel</dt><dd>Det största enskilda absolutfelet. Redovisas diagnostiskt men används inte som Modell 3:s huvudmål eftersom en enda kommun annars kan dominera modellvalet.</dd>
+          </dl>
+        </section>
+
+        <section class="method-glossary-card">
+          <h4>Regression och statistisk osäkerhet</h4>
+          <dl class="terms">
+            <dt>OLS</dt><dd>Ordinary Least Squares, vanlig linjär regression som väljer koefficienter så att summan av kvadrerade residualer blir så liten som möjligt.</dd>
+            <dt>Regressionskoefficient</dt><dd>Skattad förändring i responsvariabeln när en förklaringsvariabel ökar en enhet, givet övriga variabler i modellen.</dd>
+            <dt>Standardiserad koefficient</dt><dd>Koefficient efter omskalning av variablerna till jämförbara standardavvikelseenheter. Används för att jämföra relativ styrka mellan variabler med olika enheter.</dd>
+            <dt>Standardfel</dt><dd>Skattad osäkerhet kring en koefficient.</dd>
+            <dt>Klustrade standardfel</dt><dd>Standardfel som tillåter att observationer från samma kommun hänger ihop över tid. Här klustras standardfelen per kommun.</dd>
+            <dt>Konfidensintervall</dt><dd>Intervall som beskriver osäkerheten kring en skattad parameter. Rapporten använder normalt 95 % intervall.</dd>
+            <dt>p-värde</dt><dd>Ett mått på hur förenligt det observerade resultatet är med en nollhypotes om ingen effekt, givet modellens antaganden. Ett lågt p-värde är inte bevis för kausalitet och används inte ensamt för modellval.</dd>
+            <dt>Årseffekt</dt><dd>Separat interceptjustering för varje år som fångar nationella nivåskillnader mellan år.</dd>
+            <dt>Interaktion</dt><dd>En produktterm som testar om sambandet för en variabel förändras beroende på nivån i en annan variabel. Interaktioner ska tolkas tillsammans med sina huvudtermer.</dd>
+          </dl>
+        </section>
+
+        <section class="method-glossary-card">
+          <h4>Modellurval och komplexitet</h4>
+          <dl class="terms">
+            <dt>Ridge-regression</dt><dd>Linjär regression med en straffterm som krymper koefficienter och kan göra prognosen stabilare när variabler överlappar.</dd>
+            <dt>Ridge α</dt><dd>Styrkan på ridge-straffet. Högre α innebär starkare krympning av koefficienterna.</dd>
+            <dt>Elastic Net</dt><dd>Regressionsmetod som kombinerar ridge- och lasso-straff. Den används här som ett urvalssteg för att dämpa svaga eller redundanta variabler.</dd>
+            <dt>Backward-AIC</dt><dd>Stegvis modellurval där variabler tas bort om den enklare modellen får bättre AIC.</dd>
+            <dt>AIC</dt><dd>Akaike Information Criterion. Balanserar modellpassning mot komplexitet. Lägre AIC föredras vid jämförelse på samma data.</dd>
+            <dt>BIC</dt><dd>Bayesian Information Criterion. Liknar AIC men straffar komplexitet hårdare. Lägre BIC föredras vid jämförelse på samma data.</dd>
+            <dt>Feature-set</dt><dd>Den uppsättning förklaringsvariabler som en viss modellkandidat använder.</dd>
+            <dt>Tematiskt balanserad modell</dt><dd>Urval där närliggande variabler grupperas i teman och högst en representant per tema normalt får gå vidare.</dd>
+            <dt>Borttagningstest / tematapp</dt><dd>Modellen skattas om efter att ett helt tema tagits bort. Skillnaden i justerat R², AIC eller RMSE används för att bedöma temat som helhet.</dd>
+          </dl>
+        </section>
+
+        <section class="method-glossary-card">
+          <h4>Validering</h4>
+          <dl class="terms">
+            <dt>Träningsdata</dt><dd>De år eller kommuner som används för att skatta modellen och välja parametrar.</dd>
+            <dt>Testdata / holdout</dt><dd>Data som hålls helt utanför skattningen och används först efter att modellen är bestämd.</dd>
+            <dt>Holdoutår</dt><dd>Ett helt år som inte används i träningen och därefter används för ett slutligt prognostest.</dd>
+            <dt>Korsvalidering (CV)</dt><dd>Upprepad uppdelning av data i tränings- och valideringsdelar för att bedöma hur väl modellen generaliserar.</dd>
+            <dt>Fold</dt><dd>En enskild delning i korsvalideringen.</dd>
+            <dt>Rolling-origin</dt><dd>Tidsbaserad validering där modellen tränas på tidigare år och testas på nästa år, varefter träningsfönstret flyttas fram.</dd>
+            <dt>Expanding window</dt><dd>Variant av rolling-origin där träningsperioden växer när senare testår nås.</dd>
+            <dt>Kommunblockerad korsvalidering / GroupKFold</dt><dd>Hela kommuner hålls utanför träningen i varje fold. Det testar om modellen kan överföras till kommuner den inte sett.</dd>
+            <dt>Överanpassning</dt><dd>När en modell passar träningsdata mycket bra men tappar tydligt på nya data.</dd>
+            <dt>Benchmark / naiv modell</dt><dd>En enkel referensmodell som mer avancerade modeller jämförs mot.</dd>
+          </dl>
+        </section>
+
+        <section class="method-glossary-card">
+          <h4>Diagnostik och databehandling</h4>
+          <dl class="terms">
+            <dt>Korrelation</dt><dd>Mått på samvariation mellan två variabler. Hög korrelation innebär inte automatiskt att den ena orsakar den andra.</dd>
+            <dt>Multikollinearitet</dt><dd>När flera förklaringsvariabler innehåller nästan samma information, vilket kan göra enskilda koefficienter instabila.</dd>
+            <dt>VIF</dt><dd>Variance Inflation Factor. Diagnostik för multikollinearitet; högre värden betyder större överlappning med övriga variabler.</dd>
+            <dt>Q–Q-plot</dt><dd>Diagram som jämför residualernas fördelning med en normalfördelning. Systematiska avvikelser visar att residualerna inte är normalfördelade.</dd>
+            <dt>Heteroskedasticitet</dt><dd>Residualernas spridning varierar systematiskt med modellens nivå eller andra variabler.</dd>
+            <dt>Endogenitet</dt><dd>En förklaringsvariabel samvarierar med sådant som ligger i feltermen, vilket kan göra koefficienten missvisande som kausal effekt.</dd>
+            <dt>Laggad variabel / lag 1</dt><dd>Föregående års värde används för att tydliggöra tidsordningen och undvika att samma års utfall används som förklaring.</dd>
+            <dt>Log-transformering</dt><dd>Omskalning med logaritm för att dämpa mycket stora värden och ofta göra starkt skeva fördelningar mer hanterliga.</dd>
+            <dt>Winsorisering</dt><dd>Extremvärden kapas vid en vald percentil i stället för att observationerna tas bort. I rapportens robusthetstest används bland annat 99:e percentilen.</dd>
+            <dt>Interpolation</dt><dd>Värden mellan två observerade tidpunkter uppskattas utifrån en definierad regel, här exempelvis linjärt mellan valår.</dd>
+            <dt>Proxy</dt><dd>Ett observerbart mått som används som ungefärlig indikator för ett mer svårmätt fenomen, exempelvis snöskoterandel som klimat-/nordlighetsproxy.</dd>
+            <dt>Procent</dt><dd>Andel av en helhet, exempelvis 60 %.</dd>
+            <dt>Procentenhet</dt><dd>Skillnaden mellan två procenttal. En ökning från 60 till 65 % är +5 procentenheter men cirka +8,3 % relativt.</dd>
+          </dl>
+        </section>
+      </div>
+
+      <h3>Variabelordlista</h3>
+      <p class="note">Tabellen samlar de variabler och kandidatmått som förekommer i rapportens modellresultat, testlogg och geografiska robusthetstester. Intern variabelkod visas för spårbarhet. Sök på exempelvis “bostad”, “strand”, “FA”, “inkomst” eller “snöskoter”.</p>
+      <div class="variable-dictionary-tools">
+        <label for="variableDictionarySearch">Sök variabel
+          <input id="variableDictionarySearch" type="search" placeholder="Sök namn, tema, källa eller intern kod">
+        </label>
+        <span id="variableDictionaryCount" class="note"></span>
+      </div>
+      <div class="table-wrap variable-dictionary-wrap">
+        <table class="metric-table variable-dictionary-table">
+          <thead>
+            <tr>
+              <th>Variabel</th>
+              <th>Tema</th>
+              <th>Definition och tolkning</th>
+              <th>Källa / beräkning</th>
+            </tr>
+          </thead>
+          <tbody id="variableDictionaryBody"></tbody>
+        </table>
+      </div>
 
       <h3>Modellbedömning</h3>
-      <p>Rapporten visar R², justerat R², AIC, BIC, VIF, residualdiagram och Q–Q-plot. R² ska inte användas ensamt eftersom det normalt inte minskar när fler variabler läggs till. Prognosdelen jämför dessutom modellerna mot ett helt separat testår med out-of-sample R², RMSE och MAE.</p>
+      <p>Rapporten visar bland annat R², justerat R², AIC, BIC, VIF, residualdiagram, Q–Q-plot samt prognosmåtten test-R², RMSE och MAE. Inget enskilt mått används som ensamt beslutskriterium. För prognosmodeller krävs dessutom validering på data som inte användes i skattningen.</p>
 
       <h3>Data</h3>
       <p>Källa: SCB Statistikdatabasen. Rapporten använder flyttnings- och befolkningsdata, sammanräknad förvärvsinkomst, bostadsbestånd efter hustyp, arbetsmarknadsstatus samt utbildningsnivå på kommunnivå. Inkomstvariabeln avser genomsnittlig förvärvsinkomst för 20–64-åringar. Andel småhus beräknas som bostadslägenheter i småhus dividerat med totalt bostadsbestånd.</p>
@@ -708,6 +818,6 @@
     </div>
   </section>
 </main>
-<script src="app.js?v=20261011-8"></script>
+<script src="app.js?v=20261011-9"></script>
 </body>
 </html>
