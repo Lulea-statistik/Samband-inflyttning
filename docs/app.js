@@ -36,6 +36,8 @@ const labels={
   lag1_andel_hyresratt:'Andel hyresrätt föregående år (%)',
   lag1_andel_bostadsratt:'Andel bostadsrätt föregående år (%)',
   lag1_andel_smahus:'Andel småhus föregående år (%)',
+  lag1_smahusforsaljningar_per_1000_smahus:'Försålda permanenta småhus per 1 000 småhus, föregående år',
+  lag1_smahusforsaljningar_per_1000_inv:'Försålda permanenta småhus per 1 000 invånare, föregående år',
   lag1_fritidshusandel_bland_smahus:'Fritidshusandel bland småhusliknande bostäder, föregående år (%)',
   lag1_brott_per_100000:'Anmälda brott per 100 000 invånare, föregående år',
   lag1_sysselsattningsgrad:'Sysselsättningsgrad 20–64 år, föregående år (%)',
@@ -188,6 +190,7 @@ function renderAll(){
   renderThreeModelComparison();
   renderGeographicRobustness();
   renderShorelineRobustness();
+  renderHousingTurnoverCandidate();
   renderR2ContributionProfile();
   renderLuleaView();
   renderPublicPage();
@@ -889,6 +892,75 @@ function renderShorelineRobustness(){
     (stable
       ? 'signalen överlever flera robusthetsvarianter, men ligger kvar som åldersspecifik/lokal signal och blir i första hand kandidat för Modell 3 snarare än generell strukturvariabel.'
       : 'signalen är känslig för urval/transformering och får inte generell produktionsstatus. Den kan fortfarande användas som diagnostik för geografiskt avvikande kommuntyper.');
+}
+
+
+
+function renderHousingTurnoverCandidate(){
+  const data=rootModel.housing_turnover_geographic_candidate_tests;
+  const summary=document.getElementById('housingTurnoverSummary');
+  const chart=document.getElementById('housingTurnoverChart');
+  const table=document.getElementById('housingTurnoverTable');
+  if(!summary||!chart||!table) return;
+
+  const rows=(data?.rows||[]).filter(r=>r.status==='tested');
+  if(!rows.length){
+    summary.textContent='Resultatet finns efter nästa slutförda analyskörning.';
+    chart.innerHTML='';
+    table.innerHTML='';
+    return;
+  }
+
+  const labelMap={
+    lag1_smahusforsaljningar_per_1000_smahus:'Försäljningar / 1 000 småhus',
+    lag1_smahusforsaljningar_per_1000_inv:'Försäljningar / 1 000 invånare'
+  };
+  const score=r=>{
+    const d=r.holdout?.delta||{};
+    return [d.rmse,d.p90_abs_error,d.p90_p10_abs_error_gap,d.worst_decile_mae]
+      .filter(v=>Number.isFinite(Number(v))&&Number(v)>0).length;
+  };
+  const best=rows.slice().sort((a,b)=>score(b)-score(a))[0];
+  const positives=score(best);
+  summary.innerHTML='<strong>'+(labelMap[best.feature]||best.feature)+':</strong> '+
+    (positives>=3
+      ? 'förbättrar minst tre av fyra geografiska huvudmått i 2024-holdout och är därför en lovande kandidat för fortsatt validering.'
+      : 'ger inte en tillräckligt bred förbättring av den geografiska felprofilen i 2024-holdout och bör tills vidare stanna som diagnostik.');
+
+  const metrics=[
+    {key:'rmse',label:'RMSE'},
+    {key:'p90_abs_error',label:'P90 absolutfel'},
+    {key:'p90_p10_abs_error_gap',label:'P90–P10'},
+    {key:'worst_decile_mae',label:'Sämsta decilens MAE'}
+  ];
+  Plotly.react(chart,rows.map(r=>({
+    x:metrics.map(m=>m.label),
+    y:metrics.map(m=>r.holdout?.delta?.[m.key]),
+    type:'bar',
+    name:labelMap[r.feature]||r.feature,
+    hovertemplate:'%{x}<br>Förbättring=%{y:.3f}<extra>%{fullData.name}</extra>'
+  })),{
+    barmode:'group',
+    margin:{t:30,b:75,l:70,r:30},
+    yaxis:{title:'Positivt värde = lägre fel än basmodellen'},
+    legend:{orientation:'h',y:1.15},
+    shapes:[{type:'line',xref:'paper',x0:0,x1:1,y0:0,y1:0,line:{dash:'dash'}}]
+  },{responsive:true,displaylogo:false});
+
+  table.innerHTML='<table class="metric-table"><thead><tr>'+
+    '<th>Mått</th><th>CV Δ objektiv</th><th>Holdout ΔR²</th><th>ΔRMSE</th>'+
+    '<th>ΔP90</th><th>ΔP90–P10</th><th>Δ sämsta decil</th>'+
+    '</tr></thead><tbody>'+
+    rows.map(r=>{
+      const d=r.holdout?.delta||{};
+      return '<tr><td>'+(labelMap[r.feature]||r.feature)+'</td>'+
+        '<td>'+fmt(r.cv?.delta_objective,3)+'</td>'+
+        '<td>'+fmt(d.r2,4)+'</td>'+
+        '<td>'+fmt(d.rmse,3)+'</td>'+
+        '<td>'+fmt(d.p90_abs_error,3)+'</td>'+
+        '<td>'+fmt(d.p90_p10_abs_error_gap,3)+'</td>'+
+        '<td>'+fmt(d.worst_decile_mae,3)+'</td></tr>';
+    }).join('')+'</tbody></table>';
 }
 
 
