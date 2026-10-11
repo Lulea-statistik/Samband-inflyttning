@@ -333,6 +333,49 @@ function renderR2ContributionProfile(){
     yaxis:{automargin:true},
     legend:{orientation:'h',y:1.08}
   },{responsive:true,displaylogo:false});
+
+  const shareRoot=document.getElementById('r2ContributionShare');
+  if(shareRoot){
+    const fTotal=Number(fw.explanation?.adjusted_r2);
+    const bTotal=Number(bw.explanation?.adjusted_r2);
+    const fShare=t=>Number.isFinite(fTotal)&&Math.abs(fTotal)>1e-12
+      ? 100*(fm.get(t)?.delta_adjusted_r2??0)/fTotal
+      : null;
+    const bShare=t=>Number.isFinite(bTotal)&&Math.abs(bTotal)>1e-12
+      ? 100*(bm.get(t)?.delta_adjusted_r2??0)/bTotal
+      : null;
+
+    Plotly.react(shareRoot,[
+      {
+        y:themes,
+        x:themes.map(fShare),
+        type:'bar',orientation:'h',name:'Prognosmodell',
+        customdata:themes.map(t=>[
+          fm.get(t)?.delta_adjusted_r2??0,
+          fTotal,
+          (fm.get(t)?.features||[]).map(f=>labels[f]||f).join(', ')
+        ]),
+        hovertemplate:'%{y}<br>Andel av totalt justerat R²=%{x:.1f}%<br>Δ justerat R²=%{customdata[0]:.4f}<br>Totalt justerat R²=%{customdata[1]:.3f}<br>%{customdata[2]}<extra></extra>'
+      },
+      {
+        y:themes,
+        x:themes.map(bShare),
+        type:'bar',orientation:'h',name:'Demografiskt blind',
+        customdata:themes.map(t=>[
+          bm.get(t)?.delta_adjusted_r2??0,
+          bTotal,
+          (bm.get(t)?.features||[]).map(f=>labels[f]||f).join(', ')
+        ]),
+        hovertemplate:'%{y}<br>Andel av totalt justerat R²=%{x:.1f}%<br>Δ justerat R²=%{customdata[0]:.4f}<br>Totalt justerat R²=%{customdata[1]:.3f}<br>%{customdata[2]}<extra></extra>'
+      }
+    ],{
+      barmode:'group',
+      margin:{t:35,l:220,b:55},
+      xaxis:{title:'Andel av modellens totala justerade R² (%)',ticksuffix:' %',zeroline:true},
+      yaxis:{automargin:true},
+      legend:{orientation:'h',y:1.08}
+    },{responsive:true,displaylogo:false});
+  }
 }
 
 
