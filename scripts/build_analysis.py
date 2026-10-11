@@ -7229,6 +7229,217 @@ def _shoreline_residual_tests(
     }
 
 
+
+def _shoreline_protected_robustness_tests(
+    panel: pd.DataFrame,
+    target: str,
+    base_features: list[str],
+    start_year: int,
+    end_year: int,
+) -> dict:
+    """
+    Robustness tests for the strongest shoreline candidate: residential
+    buildings within 100 m of sea shoreline and within formally protected
+    nature. The goal is to determine whether the signal is driven by a few
+    high-value coastal municipalities or by the inland/coastal split itself.
+    """
+    source_feature = "lag1_strand_hav_bostader_skyddad_natur_per_1000"
+    forced_controls = [
+        "geo_northing_100km",
+        "lag1_log_folkmangd",
+        "lag1_tatortsgrad_pct",
+        "lag1_bebyggd_anlagd_andel_land_pct",
+        "geo_havsandel_10pp",
+        "lag1_andel_smahus",
+        SHORELINE_COMPARATOR_FEATURE,
+    ]
+    needed = list(dict.fromkeys(
+        [
+            "kommun_kod", "year", target, "kommun_centroid_northing_km",
+            "havsandel_pct", "kustkommun_hav", "lag1_log_folkmangd",
+            "lag1_tatortsgrad_pct",
+            "lag1_bebyggd_anlagd_andel_land_pct", "lag1_andel_smahus",
+            SHORELINE_COMPARATOR_FEATURE, source_feature,
+        ]
+        + list(base_features)
+    ))
+    d0 = (
+        panel.loc[panel["year"].between(start_year, end_year), needed]
+        .dropna()
+        .reset_index(drop=True)
+    )
+    if d0.empty:
+        return {"status": "insufficient_coverage", "rows": []}
+
+    northing_center_km = float(
+        panel[["kommun_kod", "kommun_centroid_northing_km"]]
+        .drop_duplicates("kommun_kod")["kommun_centroid_northing_km"]
+        .dropna()
+        .median()
+    )
+    d0["geo_northing_100km"] = (
+        d0["kommun_centroid_northing_km"] - northing_center_km
+    ) / 100.0
+    d0["geo_havsandel_10pp"] = d0["havsandel_pct"] / 10.0
+
+    base_core = [
+        f for f in base_features
+        if f not in {
+            "lag1_log_folkmangd",
+            "lag1_tatortsgrad_pct",
+            "lag1_bebyggd_anlagd_andel_land_pct",
+            "lag1_andel_smahus",
+            SHORELINE_COMPARATOR_FEATURE,
+            source_feature,
+        }
+        and f not in SHORELINE_CANDIDATE_FEATURES
+    ]
+    controls = list(dict.fromkeys(base_core + forced_controls))
+
+    # Identify the municipalities with the highest average protected-shore
+    # values using training years only, so the exclusion rule does not inspect
+    # the holdout year.
+    train_rank = (
+        d0.loc[d0["year"] < end_year]
+        .groupby("kommun_kod")[source_feature]
+        .mean()
+        .sort_values(ascending=False)
+    )
+    top3_municipalities = train_rank.head(3).index.astype(str).tolist()
+
+    specs = [
+        {"name": "raw_all", "sample": "all", "transform": "raw"},
+        {"name": "log1p_all", "sample": "all", "transform": "log1p"},
+        {"name": "winsor99_all", "sample": "all", "transform": "winsor99"},
+        {"name": "exclude_top3_all", "sample": "exclude_top3", "transform": "raw"},
+        {"name": "coastal_only_raw", "sample": "coastal", "transform": "raw"},
+        {"name": "coastal_only_log1p", "sample": "coastal", "transform": "log1p"},
+    ]
+
+    rows = []
+    for spec in specs:
+        d = d0.copy()
+        if spec["sample"] == "coastal":
+            d = d[d["kustkommun_hav"].eq(1)].copy()
+        elif spec["sample"] == "exclude_top3":
+            d = d[~d["kommun_kod"].astype(str).isin(top3_municipalities)].copy()
+
+        if len(d) < 150 or d["kommun_kod"].nunique() < 60 or d["year"].nunique() < 2:
+            rows.append({
+                "variant": spec["name"],
+                "status": "insufficient_coverage",
+                "n_obs": int(len(d)),
+                "n_municipalities": int(d["kommun_kod"].nunique()),
+                "n_years": int(d["year"].nunique()),
+            })
+            continue
+
+        candidate = "shoreline_protected_variant"
+        if spec["transform"] == "raw":
+            d[candidate] = d[source_feature].astype(float)
+        elif spec["transform"] == "log1p":
+            d[candidate] = np.log1p(d[source_feature].clip(lower=0).astype(float))
+        elif spec["transform"] == "winsor99":
+            threshold = float(d[source_feature].quantile(0.99))
+            d[candidate] = d[source_feature].clip(upper=threshold).astype(float)
+        else:
+            raise ValueError(f"Unknown shoreline robustness transform {spec['transform']}")
+
+        y = d[target].astype(float).reset_index(drop=True)
+        X_base = _design_with_year_effects(d, controls)
+        X_full = _design_with_year_effects(d, controls + [candidate])
+        fit_base = sm.OLS(y, X_base).fit()
+        fit_full = sm.OLS(y, X_full).fit()
+        robust = sm.OLS(y, X_full).fit(
+            cov_type="cluster",
+            cov_kwds={"groups": d["kommun_kod"].reset_index(drop=True)},
+        )
+        names = list(robust.model.exog_names)
+        i = names.index(candidate)
+        base_rmse = float(np.sqrt(np.mean(np.square(fit_base.resid))))
+        full_rmse = float(np.sqrt(np.mean(np.square(fit_full.resid))))
+
+        train = d[d["year"] < end_year].copy()
+        test = d[d["year"] == end_year].copy()
+        holdout = {
+            "test_year": end_year,
+            "n_train": int(len(train)),
+            "n_test": int(len(test)),
+        }
+        if len(train) >= 150 and len(test) >= 60:
+            train_candidate = train[source_feature].astype(float)
+            test_candidate = test[source_feature].astype(float)
+            if spec["transform"] == "log1p":
+                train[candidate] = np.log1p(train_candidate.clip(lower=0))
+                test[candidate] = np.log1p(test_candidate.clip(lower=0))
+            elif spec["transform"] == "winsor99":
+                train_threshold = float(train_candidate.quantile(0.99))
+                train[candidate] = train_candidate.clip(upper=train_threshold)
+                test[candidate] = test_candidate.clip(upper=train_threshold)
+                holdout["winsor_threshold_training"] = _finite_float(train_threshold)
+            else:
+                train[candidate] = train_candidate
+                test[candidate] = test_candidate
+
+            base_model = LinearRegression().fit(train[controls], train[target])
+            full_model = LinearRegression().fit(
+                train[controls + [candidate]], train[target]
+            )
+            y_test = test[target].to_numpy(dtype=float)
+            base_pred = base_model.predict(test[controls])
+            full_pred = full_model.predict(test[controls + [candidate]])
+            base_test_rmse = float(np.sqrt(mean_squared_error(y_test, base_pred)))
+            full_test_rmse = float(np.sqrt(mean_squared_error(y_test, full_pred)))
+            holdout.update({
+                "base_rmse": _finite_float(base_test_rmse),
+                "full_rmse": _finite_float(full_test_rmse),
+                "delta_rmse": _finite_float(base_test_rmse - full_test_rmse),
+                "base_r2": _finite_float(r2_score(y_test, base_pred)),
+                "full_r2": _finite_float(r2_score(y_test, full_pred)),
+                "delta_r2": _finite_float(
+                    r2_score(y_test, full_pred) - r2_score(y_test, base_pred)
+                ),
+            })
+        else:
+            holdout["status"] = "insufficient_coverage"
+
+        row = {
+            "variant": spec["name"],
+            "status": "tested",
+            "n_obs": int(len(d)),
+            "n_municipalities": int(d["kommun_kod"].nunique()),
+            "n_years": int(d["year"].nunique()),
+            "coefficient": _finite_float(np.asarray(robust.params)[i]),
+            "p_value": _finite_float(np.asarray(robust.pvalues)[i]),
+            "delta_adjusted_r2": _finite_float(
+                fit_full.rsquared_adj - fit_base.rsquared_adj
+            ),
+            "delta_aic": _finite_float(fit_base.aic - fit_full.aic),
+            "delta_rmse": _finite_float(base_rmse - full_rmse),
+            "holdout": holdout,
+        }
+        if spec["transform"] == "winsor99":
+            row["winsor_threshold_full_sample"] = _finite_float(
+                float(d[source_feature].quantile(0.99))
+            )
+        rows.append(row)
+
+    return {
+        "status": "tested",
+        "source_feature": source_feature,
+        "rule": (
+            "same residual-control set as shoreline candidate test; robustness "
+            "variants test log1p transformation, 99th-percentile winsorisation, "
+            "removal of the three highest training municipalities and coastal-only samples"
+        ),
+        "top3_training_municipalities_excluded_variant": top3_municipalities,
+        "start_year": start_year,
+        "end_year": end_year,
+        "rows": rows,
+    }
+
+
+
 def _geography_rankings(panel: pd.DataFrame) -> dict:
     """Simple source-QA rankings for the static geography candidate variables."""
     cols = [
@@ -7952,6 +8163,23 @@ def main():
         ),
         "age_groups": {
             key: _shoreline_residual_tests(
+                panel,
+                model["target"],
+                model["explanation"]["selected_features"],
+                END_YEAR - 4,
+                END_YEAR,
+            )
+            for key, model in blind_age_models.items()
+            if "error" not in model
+        },
+    }
+
+    blind_result["shoreline_protected_robustness_tests"] = {
+        "overall": _shoreline_protected_robustness_tests(
+            panel, blind_result["target"], blind_base, END_YEAR - 4, END_YEAR
+        ),
+        "age_groups": {
+            key: _shoreline_protected_robustness_tests(
                 panel,
                 model["target"],
                 model["explanation"]["selected_features"],
