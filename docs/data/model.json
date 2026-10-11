@@ -55934,6 +55934,662 @@
       }
     }
   },
+  "land_nature_candidate_tests": {
+    "overall": {
+      "rule": "one candidate at a time versus the same baseline and same observations",
+      "start_year": 2020,
+      "end_year": 2024,
+      "rows": [
+        {
+          "feature": "lag1_skogsmark_andel_land_pct",
+          "status": "tested",
+          "n_obs": 1160,
+          "n_municipalities": 290,
+          "n_years": 4,
+          "coefficient": -0.011484678198874245,
+          "standardized_coefficient": -0.015638865623151005,
+          "p_value": 0.1101424702249862,
+          "base_adjusted_r2": 0.9168806797329582,
+          "full_adjusted_r2": 0.916938192334757,
+          "delta_adjusted_r2": 5.75126017988703e-05,
+          "base_aic": 6958.031681739834,
+          "full_aic": 6958.210776802239,
+          "delta_aic": -0.17909506240448536,
+          "base_rmse": 4.772983945650343,
+          "full_rmse": 4.769239230045972,
+          "delta_rmse": 0.0037447156043706187
+        },
+        {
+          "feature": "lag1_naturpraglad_mark_andel_land_pct",
+          "status": "tested",
+          "n_obs": 1160,
+          "n_municipalities": 290,
+          "n_years": 4,
+          "coefficient": -0.015954038780761716,
+          "standardized_coefficient": -0.020829718445348706,
+          "p_value": 0.032456662476884286,
+          "base_adjusted_r2": 0.9168806797329582,
+          "full_adjusted_r2": 0.9170199023825152,
+          "delta_adjusted_r2": 0.0001392226495570137,
+          "base_aic": 6958.031681739834,
+          "full_aic": 6957.0690931665395,
+          "delta_aic": 0.9625885732948518,
+          "base_rmse": 4.772983945650343,
+          "full_rmse": 4.766892840883573,
+          "delta_rmse": 0.006091104766769995
+        }
+      ],
+      "winner": "lag1_naturpraglad_mark_andel_land_pct"
+    },
+    "age_groups": {
+      "18_23": {
+        "rule": "one candidate at a time versus the same baseline and same observations",
+        "start_year": 2020,
+        "end_year": 2024,
+        "rows": [
+          {
+            "feature": "lag1_skogsmark_andel_land_pct",
+            "status": "tested",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient": -0.05408884036492443,
+            "standardized_coefficient": -0.031561192683474376,
+            "p_value": 0.09178177806308097,
+            "base_adjusted_r2": 0.7694014428274462,
+            "full_adjusted_r2": 0.7696986713472156,
+            "delta_adjusted_r2": 0.00029722851976943243,
+            "base_aic": 10109.732545149414,
+            "full_aic": 10109.216625935169,
+            "delta_aic": 0.515919214245514,
+            "base_rmse": 18.53645415332554,
+            "full_rmse": 18.516363229605766,
+            "delta_rmse": 0.020090923719774167
+          },
+          {
+            "feature": "lag1_naturpraglad_mark_andel_land_pct",
+            "status": "tested",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient": -0.08780036737302921,
+            "standardized_coefficient": -0.04912113670909734,
+            "p_value": 0.008972183140095511,
+            "base_adjusted_r2": 0.7694014428274462,
+            "full_adjusted_r2": 0.7703183358571526,
+            "delta_adjusted_r2": 0.0009168930297064337,
+            "base_aic": 10109.732545149414,
+            "full_aic": 10106.09124400749,
+            "delta_aic": 3.6413011419244867,
+            "base_rmse": 18.53645415332554,
+            "full_rmse": 18.49143575360727,
+            "delta_rmse": 0.04501839971826982
+          }
+        ],
+        "winner": "lag1_naturpraglad_mark_andel_land_pct"
+      },
+      "24_34": {
+        "rule": "one candidate at a time versus the same baseline and same observations",
+        "start_year": 2020,
+        "end_year": 2024,
+        "rows": [
+          {
+            "feature": "lag1_skogsmark_andel_land_pct",
+            "status": "tested",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient": -0.030155096532297303,
+            "standardized_coefficient": -0.01574352621078721,
+            "p_value": 0.24634499505723595,
+            "base_adjusted_r2": 0.8843051860989166,
+            "full_adjusted_r2": 0.8843350313308437,
+            "delta_adjusted_r2": 2.9845231927061455e-05,
+            "base_aic": 9564.750604536675,
+            "full_aic": 9565.434228510941,
+            "delta_aic": -0.6836239742660837,
+            "base_rmse": 14.693709631709298,
+            "full_rmse": 14.685374734881586,
+            "delta_rmse": 0.008334896827712157
+          },
+          {
+            "feature": "lag1_naturpraglad_mark_andel_land_pct",
+            "status": "tested",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient": -0.03695578464278244,
+            "standardized_coefficient": -0.018499076787374266,
+            "p_value": 0.17136193827571056,
+            "base_adjusted_r2": 0.8843051860989166,
+            "full_adjusted_r2": 0.8843712451770734,
+            "delta_adjusted_r2": 6.605907815682155e-05,
+            "base_aic": 9564.750604536675,
+            "full_aic": 9565.070984222808,
+            "delta_aic": -0.3203796861325827,
+            "base_rmse": 14.693709631709298,
+            "full_rmse": 14.683075613799968,
+            "delta_rmse": 0.010634017909330495
+          }
+        ],
+        "winner": "lag1_naturpraglad_mark_andel_land_pct"
+      },
+      "35_49": {
+        "rule": "one candidate at a time versus the same baseline and same observations",
+        "start_year": 2020,
+        "end_year": 2024,
+        "rows": [
+          {
+            "feature": "lag1_skogsmark_andel_land_pct",
+            "status": "tested",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient": 0.011968215151718638,
+            "standardized_coefficient": 0.014820966903213955,
+            "p_value": 0.3301621718257324,
+            "base_adjusted_r2": 0.8148247496970796,
+            "full_adjusted_r2": 0.8147777397074972,
+            "delta_adjusted_r2": -4.700998958240277e-05,
+            "base_aic": 8110.46467536007,
+            "full_aic": 8111.7384467750335,
+            "delta_aic": -1.2737714149634485,
+            "base_rmse": 7.823435864026259,
+            "full_rmse": 7.820987280579868,
+            "delta_rmse": 0.002448583446390984
+          },
+          {
+            "feature": "lag1_naturpraglad_mark_andel_land_pct",
+            "status": "tested",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient": 0.014228104098166123,
+            "standardized_coefficient": 0.016893534481378644,
+            "p_value": 0.27151000162595385,
+            "base_adjusted_r2": 0.8148247496970796,
+            "full_adjusted_r2": 0.8147975367327576,
+            "delta_adjusted_r2": -2.7212964322065325e-05,
+            "base_aic": 8110.46467536007,
+            "full_aic": 8111.614456404718,
+            "delta_aic": -1.1497810446480798,
+            "base_rmse": 7.823435864026259,
+            "full_rmse": 7.820569305926203,
+            "delta_rmse": 0.0028665581000559825
+          }
+        ],
+        "winner": "lag1_naturpraglad_mark_andel_land_pct"
+      },
+      "63_68": {
+        "rule": "one candidate at a time versus the same baseline and same observations",
+        "start_year": 2020,
+        "end_year": 2024,
+        "rows": [
+          {
+            "feature": "lag1_skogsmark_andel_land_pct",
+            "status": "tested",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient": -0.04696447363472066,
+            "standardized_coefficient": -0.10089084632007479,
+            "p_value": 0.00041261529089691134,
+            "base_adjusted_r2": 0.5797002492509358,
+            "full_adjusted_r2": 0.5847924276889647,
+            "delta_adjusted_r2": 0.005092178438028894,
+            "base_aic": 7780.339693059576,
+            "full_aic": 7767.181790368249,
+            "delta_aic": 13.157902691327763,
+            "base_rmse": 6.803347583716656,
+            "full_rmse": 6.759042270274744,
+            "delta_rmse": 0.04430531344191202
+          },
+          {
+            "feature": "lag1_naturpraglad_mark_andel_land_pct",
+            "status": "tested",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient": -0.06631405970087043,
+            "standardized_coefficient": -0.13658853935816112,
+            "p_value": 1.6127647311649608e-06,
+            "base_adjusted_r2": 0.5797002492509358,
+            "full_adjusted_r2": 0.5886490880678257,
+            "delta_adjusted_r2": 0.008948838816889904,
+            "base_aic": 7780.339693059576,
+            "full_aic": 7756.356764454631,
+            "delta_aic": 23.9829286049453,
+            "base_rmse": 6.803347583716656,
+            "full_rmse": 6.727578315004624,
+            "delta_rmse": 0.07576926871203149
+          }
+        ],
+        "winner": "lag1_naturpraglad_mark_andel_land_pct"
+      },
+      "70_79": {
+        "rule": "one candidate at a time versus the same baseline and same observations",
+        "start_year": 2020,
+        "end_year": 2024,
+        "rows": [
+          {
+            "feature": "lag1_skogsmark_andel_land_pct",
+            "status": "tested",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient": -0.022512623395318176,
+            "standardized_coefficient": -0.08183167364572352,
+            "p_value": 0.00430031724096587,
+            "base_adjusted_r2": 0.4706000279804421,
+            "full_adjusted_r2": 0.4744918351061851,
+            "delta_adjusted_r2": 0.0038918071257429965,
+            "base_aic": 6823.921236271455,
+            "full_aic": 6816.347735962963,
+            "delta_aic": 7.57350030849193,
+            "base_rmse": 4.520459842830152,
+            "full_rmse": 4.501844560196708,
+            "delta_rmse": 0.018615282633444252
+          },
+          {
+            "feature": "lag1_naturpraglad_mark_andel_land_pct",
+            "status": "tested",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient": -0.03045349144723567,
+            "standardized_coefficient": -0.10613503253298794,
+            "p_value": 0.00044896928017171343,
+            "base_adjusted_r2": 0.4706000279804421,
+            "full_adjusted_r2": 0.4776368040769263,
+            "delta_adjusted_r2": 0.007036776096484232,
+            "base_aic": 6823.921236271455,
+            "full_aic": 6809.384715316606,
+            "delta_aic": 14.536520954849038,
+            "base_rmse": 4.520459842830152,
+            "full_rmse": 4.488353420721266,
+            "delta_rmse": 0.03210642210888626
+          }
+        ],
+        "winner": "lag1_naturpraglad_mark_andel_land_pct"
+      }
+    }
+  },
+  "land_nature_residual_tests": {
+    "overall": {
+      "status": "tested",
+      "rule": "same observations; baseline plus northing, log population, SCB urban-area share, built/developed land share, sea share and small-house share held constant; separate final-year holdout",
+      "start_year": 2020,
+      "end_year": 2024,
+      "forced_controls": [
+        "geo_northing_100km",
+        "lag1_log_folkmangd",
+        "lag1_tatortsgrad_pct",
+        "lag1_bebyggd_anlagd_andel_land_pct",
+        "geo_havsandel_10pp",
+        "lag1_andel_smahus"
+      ],
+      "source": "SCB MarkanvN; land-use measurement values forward-filled only from observed measurement years",
+      "interpretation": "coarse municipality land-cover proxy, not direct distance or accessibility to nature",
+      "rows": [
+        {
+          "feature": "lag1_skogsmark_andel_land_pct",
+          "n_obs": 1160,
+          "n_municipalities": 290,
+          "n_years": 4,
+          "coefficient_after_controls": -0.016881535943481626,
+          "p_value_after_controls": 0.026388376922898527,
+          "delta_adjusted_r2_after_controls": 0.00014499084990471367,
+          "delta_aic_after_controls": 1.0461507583531784,
+          "delta_rmse_after_controls": 0.006251456769630792,
+          "holdout": {
+            "test_year": 2024,
+            "n_train": 870,
+            "n_test": 290,
+            "base_rmse": 5.515416877124699,
+            "full_rmse": 5.511403447635706,
+            "delta_rmse": 0.004013429488993303,
+            "base_r2": 0.8672119962249301,
+            "full_r2": 0.8674051788619753,
+            "delta_r2": 0.00019318263704526384
+          }
+        },
+        {
+          "feature": "lag1_naturpraglad_mark_andel_land_pct",
+          "n_obs": 1160,
+          "n_municipalities": 290,
+          "n_years": 4,
+          "coefficient_after_controls": -0.027887966431991616,
+          "p_value_after_controls": 0.0008199223305775624,
+          "delta_adjusted_r2_after_controls": 0.0004145166581138726,
+          "delta_aic_after_controls": 4.817397309453554,
+          "delta_rmse_after_controls": 0.013979627129585559,
+          "holdout": {
+            "test_year": 2024,
+            "n_train": 870,
+            "n_test": 290,
+            "base_rmse": 5.515416877124699,
+            "full_rmse": 5.482869233740026,
+            "delta_rmse": 0.03254764338467275,
+            "base_r2": 0.8672119962249301,
+            "full_r2": 0.8687745922559961,
+            "delta_r2": 0.0015625960310660103
+          }
+        }
+      ]
+    },
+    "age_groups": {
+      "18_23": {
+        "status": "tested",
+        "rule": "same observations; baseline plus northing, log population, SCB urban-area share, built/developed land share, sea share and small-house share held constant; separate final-year holdout",
+        "start_year": 2020,
+        "end_year": 2024,
+        "forced_controls": [
+          "geo_northing_100km",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct",
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "geo_havsandel_10pp",
+          "lag1_andel_smahus"
+        ],
+        "source": "SCB MarkanvN; land-use measurement values forward-filled only from observed measurement years",
+        "interpretation": "coarse municipality land-cover proxy, not direct distance or accessibility to nature",
+        "rows": [
+          {
+            "feature": "lag1_skogsmark_andel_land_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient_after_controls": -0.024418433376951678,
+            "p_value_after_controls": 0.49879216194227216,
+            "delta_adjusted_r2_after_controls": -0.00012289397467979413,
+            "delta_aic_after_controls": -1.5968212905409018,
+            "delta_rmse_after_controls": 0.0032060336821473356,
+            "holdout": {
+              "test_year": 2024,
+              "n_train": 870,
+              "n_test": 290,
+              "base_rmse": 19.14989839324488,
+              "full_rmse": 19.159609836444982,
+              "delta_rmse": -0.009711443200103531,
+              "base_r2": 0.7364027265646362,
+              "full_r2": 0.7361353038351093,
+              "delta_r2": -0.000267422729526956
+            }
+          },
+          {
+            "feature": "lag1_naturpraglad_mark_andel_land_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient_after_controls": -0.05632288717540818,
+            "p_value_after_controls": 0.15013694068271663,
+            "delta_adjusted_r2_after_controls": 0.00016060512158788676,
+            "delta_aic_after_controls": -0.1635203876721789,
+            "delta_rmse_after_controls": 0.014598978146253216,
+            "holdout": {
+              "test_year": 2024,
+              "n_train": 870,
+              "n_test": 290,
+              "base_rmse": 19.14989839324488,
+              "full_rmse": 19.117823458693067,
+              "delta_rmse": 0.03207493455181165,
+              "base_r2": 0.7364027265646362,
+              "full_r2": 0.7372850063995614,
+              "delta_r2": 0.0008822798349251704
+            }
+          }
+        ]
+      },
+      "24_34": {
+        "status": "tested",
+        "rule": "same observations; baseline plus northing, log population, SCB urban-area share, built/developed land share, sea share and small-house share held constant; separate final-year holdout",
+        "start_year": 2020,
+        "end_year": 2024,
+        "forced_controls": [
+          "geo_northing_100km",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct",
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "geo_havsandel_10pp",
+          "lag1_andel_smahus"
+        ],
+        "source": "SCB MarkanvN; land-use measurement values forward-filled only from observed measurement years",
+        "interpretation": "coarse municipality land-cover proxy, not direct distance or accessibility to nature",
+        "rows": [
+          {
+            "feature": "lag1_skogsmark_andel_land_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient_after_controls": -0.06111239230943538,
+            "p_value_after_controls": 0.03206501495319487,
+            "delta_adjusted_r2_after_controls": 0.0003166378112057222,
+            "delta_aic_after_controls": 2.2183380564856634,
+            "delta_rmse_after_controls": 0.026560355176815875,
+            "holdout": {
+              "test_year": 2024,
+              "n_train": 870,
+              "n_test": 290,
+              "base_rmse": 15.515273822572011,
+              "full_rmse": 15.439903334096858,
+              "delta_rmse": 0.07537048847515315,
+              "base_r2": 0.8575388575018832,
+              "full_r2": 0.8589195982993543,
+              "delta_r2": 0.0013807407974710806
+            }
+          },
+          {
+            "feature": "lag1_naturpraglad_mark_andel_land_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient_after_controls": -0.08333312198167381,
+            "p_value_after_controls": 0.005806231661855111,
+            "delta_adjusted_r2_after_controls": 0.0005590341978836122,
+            "delta_aic_after_controls": 4.67152881527727,
+            "delta_rmse_after_controls": 0.04198443756251713,
+            "holdout": {
+              "test_year": 2024,
+              "n_train": 870,
+              "n_test": 290,
+              "base_rmse": 15.515273822572011,
+              "full_rmse": 15.395194414895196,
+              "delta_rmse": 0.12007940767681546,
+              "base_r2": 0.8575388575018832,
+              "full_r2": 0.8597354609169151,
+              "delta_r2": 0.002196603415031917
+            }
+          }
+        ]
+      },
+      "35_49": {
+        "status": "tested",
+        "rule": "same observations; baseline plus northing, log population, SCB urban-area share, built/developed land share, sea share and small-house share held constant; separate final-year holdout",
+        "start_year": 2020,
+        "end_year": 2024,
+        "forced_controls": [
+          "geo_northing_100km",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct",
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "geo_havsandel_10pp",
+          "lag1_andel_smahus"
+        ],
+        "source": "SCB MarkanvN; land-use measurement values forward-filled only from observed measurement years",
+        "interpretation": "coarse municipality land-cover proxy, not direct distance or accessibility to nature",
+        "rows": [
+          {
+            "feature": "lag1_skogsmark_andel_land_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient_after_controls": -0.011327520131068154,
+            "p_value_after_controls": 0.38419483672019994,
+            "delta_adjusted_r2_after_controls": -8.204903799846619e-05,
+            "delta_aic_after_controls": -1.4959533856490452,
+            "delta_rmse_after_controls": 0.001683929137451301,
+            "holdout": {
+              "test_year": 2024,
+              "n_train": 870,
+              "n_test": 290,
+              "base_rmse": 8.943724168644426,
+              "full_rmse": 8.934822180903103,
+              "delta_rmse": 0.008901987741323225,
+              "base_r2": 0.7272360289993751,
+              "full_r2": 0.7277787409782177,
+              "delta_r2": 0.0005427119788425916
+            }
+          },
+          {
+            "feature": "lag1_naturpraglad_mark_andel_land_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient_after_controls": -0.01730977912574701,
+            "p_value_after_controls": 0.22711200685051158,
+            "delta_adjusted_r2_after_controls": -6.652626405201367e-06,
+            "delta_aic_after_controls": -1.017075559901059,
+            "delta_rmse_after_controls": 0.0032834350052164396,
+            "holdout": {
+              "test_year": 2024,
+              "n_train": 870,
+              "n_test": 290,
+              "base_rmse": 8.943724168644426,
+              "full_rmse": 8.92516187386433,
+              "delta_rmse": 0.018562294780096522,
+              "base_r2": 0.7272360289993751,
+              "full_r2": 0.7283670726219378,
+              "delta_r2": 0.0011310436225626663
+            }
+          }
+        ]
+      },
+      "63_68": {
+        "status": "tested",
+        "rule": "same observations; baseline plus northing, log population, SCB urban-area share, built/developed land share, sea share and small-house share held constant; separate final-year holdout",
+        "start_year": 2020,
+        "end_year": 2024,
+        "forced_controls": [
+          "geo_northing_100km",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct",
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "geo_havsandel_10pp",
+          "lag1_andel_smahus"
+        ],
+        "source": "SCB MarkanvN; land-use measurement values forward-filled only from observed measurement years",
+        "interpretation": "coarse municipality land-cover proxy, not direct distance or accessibility to nature",
+        "rows": [
+          {
+            "feature": "lag1_skogsmark_andel_land_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient_after_controls": -0.023909952963453378,
+            "p_value_after_controls": 0.11505271673840799,
+            "delta_adjusted_r2_after_controls": 0.0007163220027834871,
+            "delta_aic_after_controls": 1.048518324095312,
+            "delta_rmse_after_controls": 0.008807606885694597,
+            "holdout": {
+              "test_year": 2024,
+              "n_train": 870,
+              "n_test": 290,
+              "base_rmse": 6.736151663698573,
+              "full_rmse": 6.748907301154211,
+              "delta_rmse": -0.012755637455637903,
+              "base_r2": 0.5243547306814349,
+              "full_r2": 0.5225516528027883,
+              "delta_r2": -0.0018030778786466417
+            }
+          },
+          {
+            "feature": "lag1_naturpraglad_mark_andel_land_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient_after_controls": -0.04352268658483233,
+            "p_value_after_controls": 0.0056635995474594355,
+            "delta_adjusted_r2_after_controls": 0.0027190740166551652,
+            "delta_aic_after_controls": 6.7294027497009665,
+            "delta_rmse_after_controls": 0.025189650937821995,
+            "holdout": {
+              "test_year": 2024,
+              "n_train": 870,
+              "n_test": 290,
+              "base_rmse": 6.736151663698573,
+              "full_rmse": 6.720475110436096,
+              "delta_rmse": 0.015676553262476745,
+              "base_r2": 0.5243547306814349,
+              "full_r2": 0.526566023512073,
+              "delta_r2": 0.002211292830638145
+            }
+          }
+        ]
+      },
+      "70_79": {
+        "status": "tested",
+        "rule": "same observations; baseline plus northing, log population, SCB urban-area share, built/developed land share, sea share and small-house share held constant; separate final-year holdout",
+        "start_year": 2020,
+        "end_year": 2024,
+        "forced_controls": [
+          "geo_northing_100km",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct",
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "geo_havsandel_10pp",
+          "lag1_andel_smahus"
+        ],
+        "source": "SCB MarkanvN; land-use measurement values forward-filled only from observed measurement years",
+        "interpretation": "coarse municipality land-cover proxy, not direct distance or accessibility to nature",
+        "rows": [
+          {
+            "feature": "lag1_skogsmark_andel_land_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient_after_controls": -0.021467932036106373,
+            "p_value_after_controls": 0.020380814169179414,
+            "delta_adjusted_r2_after_controls": 0.0022299232413742764,
+            "delta_aic_after_controls": 3.9464566316182754,
+            "delta_rmse_after_controls": 0.011505897212954252,
+            "holdout": {
+              "test_year": 2024,
+              "n_train": 870,
+              "n_test": 290,
+              "base_rmse": 5.116512626951516,
+              "full_rmse": 5.118673464281156,
+              "delta_rmse": -0.0021608373296402306,
+              "base_r2": 0.38514102342753753,
+              "full_r2": 0.38462157165271105,
+              "delta_r2": -0.0005194517748264849
+            }
+          },
+          {
+            "feature": "lag1_naturpraglad_mark_andel_land_pct",
+            "n_obs": 1160,
+            "n_municipalities": 290,
+            "n_years": 4,
+            "coefficient_after_controls": -0.03260175700594893,
+            "p_value_after_controls": 0.0008846849932297058,
+            "delta_adjusted_r2_after_controls": 0.0054626852915824475,
+            "delta_aic_after_controls": 11.126114463713748,
+            "delta_rmse_after_controls": 0.025358693836821544,
+            "holdout": {
+              "test_year": 2024,
+              "n_train": 870,
+              "n_test": 290,
+              "base_rmse": 5.116512626951516,
+              "full_rmse": 5.097162402042235,
+              "delta_rmse": 0.019350224909280733,
+              "base_r2": 0.38514102342753753,
+              "full_r2": 0.3897829201142178,
+              "delta_r2": 0.004641896686680247
+            }
+          }
+        ]
+      }
+    }
+  },
   "snowmobile_proxy_candidate_tests": {
     "overall": {
       "rule": "one candidate at a time versus the same baseline and same observations",
@@ -60521,6 +61177,10 @@
     "direct_urbanity_controls": [
       "SCB tätortsgrad (population share in statistical urban areas)",
       "SCB built/developed land share of total land area in MarkanvN"
+    ],
+    "land_nature_candidates": [
+      "SCB total forest share of total land area",
+      "SCB total forest + open mire + other land share of total land area (coarse nature-dominated land proxy)"
     ],
     "snowmobile_proxy": "SCB snowmobiles as share of published vehicle stock; exact and denominator-robust variants, lagged one year",
     "production_status": "candidate_only"
@@ -106145,6 +106805,662 @@
                 "mean_delta_r2": 0.00047461092072268823,
                 "median_delta_rmse": 0.002077387788302687,
                 "median_delta_r2": 0.0005286133945253679
+              }
+            ]
+          }
+        }
+      },
+      "land_nature_candidate_tests": {
+        "overall": {
+          "rule": "one candidate at a time versus the same baseline and same observations",
+          "start_year": 2020,
+          "end_year": 2024,
+          "rows": [
+            {
+              "feature": "lag1_skogsmark_andel_land_pct",
+              "status": "tested",
+              "n_obs": 1160,
+              "n_municipalities": 290,
+              "n_years": 4,
+              "coefficient": -0.11394311641588264,
+              "standardized_coefficient": -0.15515812071127166,
+              "p_value": 0.00018542604740797285,
+              "base_adjusted_r2": 0.6447926588494157,
+              "full_adjusted_r2": 0.659435558215181,
+              "delta_adjusted_r2": 0.014642899365765238,
+              "base_aic": 8642.844112795872,
+              "full_aic": 8594.993237526556,
+              "delta_aic": 47.85087526931602,
+              "base_rmse": 9.866882320271685,
+              "full_rmse": 9.657129810129195,
+              "delta_rmse": 0.20975251014248997
+            },
+            {
+              "feature": "lag1_naturpraglad_mark_andel_land_pct",
+              "status": "tested",
+              "n_obs": 1160,
+              "n_municipalities": 290,
+              "n_years": 4,
+              "coefficient": -0.10667934644585866,
+              "standardized_coefficient": -0.13928139331594092,
+              "p_value": 0.0006816333257457751,
+              "base_adjusted_r2": 0.6447926588494157,
+              "full_adjusted_r2": 0.6557073898133652,
+              "delta_adjusted_r2": 0.01091473096394946,
+              "base_aic": 8642.844112795872,
+              "full_aic": 8607.622787163662,
+              "delta_aic": 35.22132563221021,
+              "base_rmse": 9.866882320271685,
+              "full_rmse": 9.70984436997543,
+              "delta_rmse": 0.1570379502962549
+            }
+          ],
+          "winner": "lag1_skogsmark_andel_land_pct"
+        },
+        "age_groups": {
+          "18_23": {
+            "rule": "one candidate at a time versus the same baseline and same observations",
+            "start_year": 2020,
+            "end_year": 2024,
+            "rows": [
+              {
+                "feature": "lag1_skogsmark_andel_land_pct",
+                "status": "tested",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient": -0.24063270266715042,
+                "standardized_coefficient": -0.14041075836686123,
+                "p_value": 0.004193026873385776,
+                "base_adjusted_r2": 0.4629473588661024,
+                "full_adjusted_r2": 0.4745513929229319,
+                "delta_adjusted_r2": 0.011604034056829526,
+                "base_aic": 11086.487334381709,
+                "full_aic": 11062.132400199382,
+                "delta_aic": 24.35493418232727,
+                "base_rmse": 28.337968801556812,
+                "full_rmse": 28.017874283625233,
+                "delta_rmse": 0.3200945179315795
+              },
+              {
+                "feature": "lag1_naturpraglad_mark_andel_land_pct",
+                "status": "tested",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient": -0.23451290999892305,
+                "standardized_coefficient": -0.13120150925067708,
+                "p_value": 0.004080443310195922,
+                "base_adjusted_r2": 0.4629473588661024,
+                "full_adjusted_r2": 0.47261707748078974,
+                "delta_adjusted_r2": 0.00966971861468735,
+                "base_aic": 11086.487334381709,
+                "full_aic": 11066.39482656953,
+                "delta_aic": 20.092507812178155,
+                "base_rmse": 28.337968801556812,
+                "full_rmse": 28.069397516190225,
+                "delta_rmse": 0.2685712853665869
+              }
+            ],
+            "winner": "lag1_skogsmark_andel_land_pct"
+          },
+          "24_34": {
+            "rule": "one candidate at a time versus the same baseline and same observations",
+            "start_year": 2020,
+            "end_year": 2024,
+            "rows": [
+              {
+                "feature": "lag1_skogsmark_andel_land_pct",
+                "status": "tested",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient": -0.21572621946773038,
+                "standardized_coefficient": -0.11262744216078649,
+                "p_value": 0.0023652980489496235,
+                "base_adjusted_r2": 0.7052499412233378,
+                "full_adjusted_r2": 0.7128670116872866,
+                "delta_adjusted_r2": 0.007617070463948772,
+                "base_aic": 10649.550042532712,
+                "full_aic": 10620.16152718383,
+                "delta_aic": 29.38851534888272,
+                "base_rmse": 23.453164925973645,
+                "full_rmse": 23.137991451921305,
+                "delta_rmse": 0.3151734740523402
+              },
+              {
+                "feature": "lag1_naturpraglad_mark_andel_land_pct",
+                "status": "tested",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient": -0.18355774972724268,
+                "standardized_coefficient": -0.09188409717029428,
+                "p_value": 0.012251496017274714,
+                "base_adjusted_r2": 0.7052499412233378,
+                "full_adjusted_r2": 0.7099514355602046,
+                "delta_adjusted_r2": 0.0047014943368667295,
+                "base_aic": 10649.550042532712,
+                "full_aic": 10631.880879814187,
+                "delta_aic": 17.669162718524603,
+                "base_rmse": 23.453164925973645,
+                "full_rmse": 23.255167450344228,
+                "delta_rmse": 0.1979974756294176
+              }
+            ],
+            "winner": "lag1_skogsmark_andel_land_pct"
+          },
+          "35_49": {
+            "rule": "one candidate at a time versus the same baseline and same observations",
+            "start_year": 2020,
+            "end_year": 2024,
+            "rows": [
+              {
+                "feature": "lag1_skogsmark_andel_land_pct",
+                "status": "tested",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient": -0.07004206933471957,
+                "standardized_coefficient": -0.0867373437294387,
+                "p_value": 0.03619812648671273,
+                "base_adjusted_r2": 0.5626260326416352,
+                "full_adjusted_r2": 0.5668747811358404,
+                "delta_adjusted_r2": 0.004248748494205201,
+                "base_aic": 9103.54208878017,
+                "full_aic": 9093.20140221365,
+                "delta_aic": 10.340686566520162,
+                "base_rmse": 12.044675703489188,
+                "full_rmse": 11.980777021890937,
+                "delta_rmse": 0.06389868159825163
+              },
+              {
+                "feature": "lag1_naturpraglad_mark_andel_land_pct",
+                "status": "tested",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient": -0.040395798846387616,
+                "standardized_coefficient": -0.047963369961725524,
+                "p_value": 0.20790787964146806,
+                "base_adjusted_r2": 0.5626260326416352,
+                "full_adjusted_r2": 0.563591984253451,
+                "delta_adjusted_r2": 0.0009659516118157851,
+                "base_aic": 9103.54208878017,
+                "full_aic": 9101.960268061579,
+                "delta_aic": 1.5818207185911888,
+                "base_rmse": 12.044675703489188,
+                "full_rmse": 12.026094417711807,
+                "delta_rmse": 0.018581285777381495
+              }
+            ],
+            "winner": "lag1_skogsmark_andel_land_pct"
+          },
+          "63_68": {
+            "rule": "one candidate at a time versus the same baseline and same observations",
+            "start_year": 2020,
+            "end_year": 2024,
+            "rows": [
+              {
+                "feature": "lag1_skogsmark_andel_land_pct",
+                "status": "tested",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient": -0.11194032625066852,
+                "standardized_coefficient": -0.24047441350275883,
+                "p_value": 6.879684384617006e-09,
+                "base_adjusted_r2": 0.462983060471326,
+                "full_adjusted_r2": 0.49602678847774406,
+                "delta_adjusted_r2": 0.03304372800641808,
+                "base_aic": 8063.6281190308855,
+                "full_aic": 7990.943453546877,
+                "delta_aic": 72.68466548400829,
+                "base_rmse": 7.69356243592592,
+                "full_rmse": 7.449837840196112,
+                "delta_rmse": 0.24372459572980798
+              },
+              {
+                "feature": "lag1_naturpraglad_mark_andel_land_pct",
+                "status": "tested",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient": -0.13573611483624334,
+                "standardized_coefficient": -0.27957868583622164,
+                "p_value": 1.1338639847337655e-12,
+                "base_adjusted_r2": 0.462983060471326,
+                "full_adjusted_r2": 0.504348942621818,
+                "delta_adjusted_r2": 0.04136588215049197,
+                "base_aic": 8063.6281190308855,
+                "full_aic": 7971.628352562617,
+                "delta_aic": 91.99976646826872,
+                "base_rmse": 7.69356243592592,
+                "full_rmse": 7.388071877010488,
+                "delta_rmse": 0.305490558915432
+              }
+            ],
+            "winner": "lag1_naturpraglad_mark_andel_land_pct"
+          },
+          "70_79": {
+            "rule": "one candidate at a time versus the same baseline and same observations",
+            "start_year": 2020,
+            "end_year": 2024,
+            "rows": [
+              {
+                "feature": "lag1_skogsmark_andel_land_pct",
+                "status": "tested",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient": -0.06152004137010755,
+                "standardized_coefficient": -0.22362067093064789,
+                "p_value": 2.3433114394503032e-07,
+                "base_adjusted_r2": 0.37367314078272296,
+                "full_adjusted_r2": 0.4021053552514816,
+                "delta_adjusted_r2": 0.028432214468758654,
+                "base_aic": 7021.90392183382,
+                "full_aic": 6968.9957585133525,
+                "delta_aic": 52.90816332046779,
+                "base_rmse": 4.910446533604167,
+                "full_rmse": 4.795593951560246,
+                "delta_rmse": 0.11485258204392146
+              },
+              {
+                "feature": "lag1_naturpraglad_mark_andel_land_pct",
+                "status": "tested",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient": -0.08419961302847989,
+                "standardized_coefficient": -0.29344841078489525,
+                "p_value": 1.8396809573018505e-11,
+                "base_adjusted_r2": 0.37367314078272296,
+                "full_adjusted_r2": 0.4192146555872769,
+                "delta_adjusted_r2": 0.04554151480455393,
+                "base_aic": 7021.90392183382,
+                "full_aic": 6935.317096483739,
+                "delta_aic": 86.5868253500812,
+                "base_rmse": 4.910446533604167,
+                "full_rmse": 4.726480782333805,
+                "delta_rmse": 0.18396575127036208
+              }
+            ],
+            "winner": "lag1_naturpraglad_mark_andel_land_pct"
+          }
+        }
+      },
+      "land_nature_residual_tests": {
+        "overall": {
+          "status": "tested",
+          "rule": "same observations; baseline plus northing, log population, SCB urban-area share, built/developed land share, sea share and small-house share held constant; separate final-year holdout",
+          "start_year": 2020,
+          "end_year": 2024,
+          "forced_controls": [
+            "geo_northing_100km",
+            "lag1_log_folkmangd",
+            "lag1_tatortsgrad_pct",
+            "lag1_bebyggd_anlagd_andel_land_pct",
+            "geo_havsandel_10pp",
+            "lag1_andel_smahus"
+          ],
+          "source": "SCB MarkanvN; land-use measurement values forward-filled only from observed measurement years",
+          "interpretation": "coarse municipality land-cover proxy, not direct distance or accessibility to nature",
+          "rows": [
+            {
+              "feature": "lag1_skogsmark_andel_land_pct",
+              "n_obs": 1160,
+              "n_municipalities": 290,
+              "n_years": 4,
+              "coefficient_after_controls": -0.05878653422396124,
+              "p_value_after_controls": 0.053607572256911803,
+              "delta_adjusted_r2_after_controls": 0.0026120713268931173,
+              "delta_aic_after_controls": 9.294713556633724,
+              "delta_rmse_after_controls": 0.043685471661015995,
+              "holdout": {
+                "test_year": 2024,
+                "n_train": 870,
+                "n_test": 290,
+                "base_rmse": 9.178104857877727,
+                "full_rmse": 9.124450378592835,
+                "delta_rmse": 0.05365447928489253,
+                "base_r2": 0.6322876766182931,
+                "full_r2": 0.6365743447797731,
+                "delta_r2": 0.004286668161480045
+              }
+            },
+            {
+              "feature": "lag1_naturpraglad_mark_andel_land_pct",
+              "n_obs": 1160,
+              "n_municipalities": 290,
+              "n_years": 4,
+              "coefficient_after_controls": -0.061591066499571814,
+              "p_value_after_controls": 0.05024044178329191,
+              "delta_adjusted_r2_after_controls": 0.002598593353438816,
+              "delta_aic_after_controls": 9.241471209814335,
+              "delta_rmse_after_controls": 0.04348004046705789,
+              "holdout": {
+                "test_year": 2024,
+                "n_train": 870,
+                "n_test": 290,
+                "base_rmse": 9.178104857877727,
+                "full_rmse": 9.109074494413806,
+                "delta_rmse": 0.06903036346392177,
+                "base_r2": 0.6322876766182931,
+                "full_r2": 0.637798151651532,
+                "delta_r2": 0.005510475033238871
+              }
+            }
+          ]
+        },
+        "age_groups": {
+          "18_23": {
+            "status": "tested",
+            "rule": "same observations; baseline plus northing, log population, SCB urban-area share, built/developed land share, sea share and small-house share held constant; separate final-year holdout",
+            "start_year": 2020,
+            "end_year": 2024,
+            "forced_controls": [
+              "geo_northing_100km",
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_bebyggd_anlagd_andel_land_pct",
+              "geo_havsandel_10pp",
+              "lag1_andel_smahus"
+            ],
+            "source": "SCB MarkanvN; land-use measurement values forward-filled only from observed measurement years",
+            "interpretation": "coarse municipality land-cover proxy, not direct distance or accessibility to nature",
+            "rows": [
+              {
+                "feature": "lag1_skogsmark_andel_land_pct",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient_after_controls": -0.05422961083304408,
+                "p_value_after_controls": 0.5628785609310062,
+                "delta_adjusted_r2_after_controls": 4.1087895550351305e-06,
+                "delta_aic_after_controls": -0.9692690505034989,
+                "delta_rmse_after_controls": 0.011800475062866411,
+                "holdout": {
+                  "test_year": 2024,
+                  "n_train": 870,
+                  "n_test": 290,
+                  "base_rmse": 26.874063832175494,
+                  "full_rmse": 26.841938623040775,
+                  "delta_rmse": 0.03212520913471906,
+                  "base_r2": 0.48087176019259303,
+                  "full_r2": 0.4821121483590811,
+                  "delta_r2": 0.0012403881664880823
+                }
+              },
+              {
+                "feature": "lag1_naturpraglad_mark_andel_land_pct",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient_after_controls": -0.07234543173818045,
+                "p_value_after_controls": 0.45316277660593673,
+                "delta_adjusted_r2_after_controls": 0.0002380371644947754,
+                "delta_aic_after_controls": -0.3967505770342541,
+                "delta_rmse_after_controls": 0.01835277268656199,
+                "holdout": {
+                  "test_year": 2024,
+                  "n_train": 870,
+                  "n_test": 290,
+                  "base_rmse": 26.874063832175494,
+                  "full_rmse": 26.817941358089872,
+                  "delta_rmse": 0.05612247408562254,
+                  "base_r2": 0.48087176019259303,
+                  "full_r2": 0.4830377399689152,
+                  "delta_r2": 0.0021659797763221578
+                }
+              }
+            ]
+          },
+          "24_34": {
+            "status": "tested",
+            "rule": "same observations; baseline plus northing, log population, SCB urban-area share, built/developed land share, sea share and small-house share held constant; separate final-year holdout",
+            "start_year": 2020,
+            "end_year": 2024,
+            "forced_controls": [
+              "geo_northing_100km",
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_bebyggd_anlagd_andel_land_pct",
+              "geo_havsandel_10pp",
+              "lag1_andel_smahus"
+            ],
+            "source": "SCB MarkanvN; land-use measurement values forward-filled only from observed measurement years",
+            "interpretation": "coarse municipality land-cover proxy, not direct distance or accessibility to nature",
+            "rows": [
+              {
+                "feature": "lag1_skogsmark_andel_land_pct",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient_after_controls": -0.13790169723325435,
+                "p_value_after_controls": 0.05920707191246715,
+                "delta_adjusted_r2_after_controls": 0.00209515306633401,
+                "delta_aic_after_controls": 8.473763250054617,
+                "delta_rmse_after_controls": 0.09869178327667427,
+                "holdout": {
+                  "test_year": 2024,
+                  "n_train": 870,
+                  "n_test": 290,
+                  "base_rmse": 21.502605022411537,
+                  "full_rmse": 21.33188687357974,
+                  "delta_rmse": 0.1707181488317957,
+                  "base_r2": 0.7263725339611053,
+                  "full_r2": 0.7307001711693766,
+                  "delta_r2": 0.004327637208271229
+                }
+              },
+              {
+                "feature": "lag1_naturpraglad_mark_andel_land_pct",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient_after_controls": -0.14021635153160047,
+                "p_value_after_controls": 0.06174058631034665,
+                "delta_adjusted_r2_after_controls": 0.0019780143212230206,
+                "delta_aic_after_controls": 7.943208920300094,
+                "delta_rmse_after_controls": 0.09370320174245705,
+                "holdout": {
+                  "test_year": 2024,
+                  "n_train": 870,
+                  "n_test": 290,
+                  "base_rmse": 21.502605022411537,
+                  "full_rmse": 21.31581971695288,
+                  "delta_rmse": 0.18678530545865613,
+                  "base_r2": 0.7263725339611053,
+                  "full_r2": 0.7311056911360976,
+                  "delta_r2": 0.004733157174992231
+                }
+              }
+            ]
+          },
+          "35_49": {
+            "status": "tested",
+            "rule": "same observations; baseline plus northing, log population, SCB urban-area share, built/developed land share, sea share and small-house share held constant; separate final-year holdout",
+            "start_year": 2020,
+            "end_year": 2024,
+            "forced_controls": [
+              "geo_northing_100km",
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_bebyggd_anlagd_andel_land_pct",
+              "geo_havsandel_10pp",
+              "lag1_andel_smahus"
+            ],
+            "source": "SCB MarkanvN; land-use measurement values forward-filled only from observed measurement years",
+            "interpretation": "coarse municipality land-cover proxy, not direct distance or accessibility to nature",
+            "rows": [
+              {
+                "feature": "lag1_skogsmark_andel_land_pct",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient_after_controls": -0.013149677811803989,
+                "p_value_after_controls": 0.7010655952715851,
+                "delta_adjusted_r2_after_controls": -0.00022584449449580823,
+                "delta_aic_after_controls": -1.656901831522191,
+                "delta_rmse_after_controls": 0.0016714545882248188,
+                "holdout": {
+                  "test_year": 2024,
+                  "n_train": 870,
+                  "n_test": 290,
+                  "base_rmse": 11.431993586795949,
+                  "full_rmse": 11.444050217789247,
+                  "delta_rmse": -0.012056630993297901,
+                  "base_r2": 0.5543497492746097,
+                  "full_r2": 0.5534092529570682,
+                  "delta_r2": -0.0009404963175414505
+                }
+              },
+              {
+                "feature": "lag1_naturpraglad_mark_andel_land_pct",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient_after_controls": -0.001317631510261985,
+                "p_value_after_controls": 0.9700588509920652,
+                "delta_adjusted_r2_after_controls": -0.0003391964139759507,
+                "delta_aic_after_controls": -1.996831527680115,
+                "delta_rmse_after_controls": 1.5436822685899187e-05,
+                "holdout": {
+                  "test_year": 2024,
+                  "n_train": 870,
+                  "n_test": 290,
+                  "base_rmse": 11.431993586795949,
+                  "full_rmse": 11.461343150667997,
+                  "delta_rmse": -0.029349563872047568,
+                  "base_r2": 0.5543497492746097,
+                  "full_r2": 0.5520585600436818,
+                  "delta_r2": -0.002291189230927859
+                }
+              }
+            ]
+          },
+          "63_68": {
+            "status": "tested",
+            "rule": "same observations; baseline plus northing, log population, SCB urban-area share, built/developed land share, sea share and small-house share held constant; separate final-year holdout",
+            "start_year": 2020,
+            "end_year": 2024,
+            "forced_controls": [
+              "geo_northing_100km",
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_bebyggd_anlagd_andel_land_pct",
+              "geo_havsandel_10pp",
+              "lag1_andel_smahus"
+            ],
+            "source": "SCB MarkanvN; land-use measurement values forward-filled only from observed measurement years",
+            "interpretation": "coarse municipality land-cover proxy, not direct distance or accessibility to nature",
+            "rows": [
+              {
+                "feature": "lag1_skogsmark_andel_land_pct",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient_after_controls": -0.05736287898265249,
+                "p_value_after_controls": 0.010423199596175594,
+                "delta_adjusted_r2_after_controls": 0.005640338792946675,
+                "delta_aic_after_controls": 12.40531428871327,
+                "delta_rmse_after_controls": 0.04546857486349065,
+                "holdout": {
+                  "test_year": 2024,
+                  "n_train": 870,
+                  "n_test": 290,
+                  "base_rmse": 7.477078297855388,
+                  "full_rmse": 7.443462722163634,
+                  "delta_rmse": 0.033615575691753996,
+                  "base_r2": 0.41396530910616003,
+                  "full_r2": 0.41922287340299047,
+                  "delta_r2": 0.0052575642968304415
+                }
+              },
+              {
+                "feature": "lag1_naturpraglad_mark_andel_land_pct",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient_after_controls": -0.09012762041083769,
+                "p_value_after_controls": 3.925865049032749e-05,
+                "delta_adjusted_r2_after_controls": 0.012958281268651617,
+                "delta_aic_after_controls": 30.003143040616123,
+                "delta_rmse_after_controls": 0.10063217558513671,
+                "holdout": {
+                  "test_year": 2024,
+                  "n_train": 870,
+                  "n_test": 290,
+                  "base_rmse": 7.477078297855388,
+                  "full_rmse": 7.404839118347988,
+                  "delta_rmse": 0.07223917950739978,
+                  "base_r2": 0.41396530910616003,
+                  "full_r2": 0.4252344591951528,
+                  "delta_r2": 0.011269150088992763
+                }
+              }
+            ]
+          },
+          "70_79": {
+            "status": "tested",
+            "rule": "same observations; baseline plus northing, log population, SCB urban-area share, built/developed land share, sea share and small-house share held constant; separate final-year holdout",
+            "start_year": 2020,
+            "end_year": 2024,
+            "forced_controls": [
+              "geo_northing_100km",
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_bebyggd_anlagd_andel_land_pct",
+              "geo_havsandel_10pp",
+              "lag1_andel_smahus"
+            ],
+            "source": "SCB MarkanvN; land-use measurement values forward-filled only from observed measurement years",
+            "interpretation": "coarse municipality land-cover proxy, not direct distance or accessibility to nature",
+            "rows": [
+              {
+                "feature": "lag1_skogsmark_andel_land_pct",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient_after_controls": -0.043932739467387044,
+                "p_value_after_controls": 0.0033013166202904044,
+                "delta_adjusted_r2_after_controls": 0.009669615305290868,
+                "delta_aic_after_controls": 17.820272050791573,
+                "delta_rmse_after_controls": 0.040847125595332656,
+                "holdout": {
+                  "test_year": 2024,
+                  "n_train": 870,
+                  "n_test": 290,
+                  "base_rmse": 5.433424507308552,
+                  "full_rmse": 5.394872377354711,
+                  "delta_rmse": 0.03855212995384072,
+                  "base_r2": 0.3066146014672926,
+                  "full_r2": 0.3164193384757297,
+                  "delta_r2": 0.009804737008437092
+                }
+              },
+              {
+                "feature": "lag1_naturpraglad_mark_andel_land_pct",
+                "n_obs": 1160,
+                "n_municipalities": 290,
+                "n_years": 4,
+                "coefficient_after_controls": -0.07297965643944457,
+                "p_value_after_controls": 4.397961765695691e-07,
+                "delta_adjusted_r2_after_controls": 0.024608710844890913,
+                "delta_aic_after_controls": 47.47583602580835,
+                "delta_rmse_after_controls": 0.10131558115434469,
+                "holdout": {
+                  "test_year": 2024,
+                  "n_train": 870,
+                  "n_test": 290,
+                  "base_rmse": 5.433424507308552,
+                  "full_rmse": 5.35144186565736,
+                  "delta_rmse": 0.08198264165119173,
+                  "base_r2": 0.3066146014672926,
+                  "full_r2": 0.32738113912175515,
+                  "delta_r2": 0.02076653765446257
+                }
               }
             ]
           }
