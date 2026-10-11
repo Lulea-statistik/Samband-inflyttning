@@ -39,6 +39,8 @@ const labels={
   lag1_smahusforsaljningar_per_1000_smahus:'Försålda permanenta småhus per 1 000 småhus, föregående år',
   lag1_smahusforsaljningar_per_1000_inv:'Försålda permanenta småhus per 1 000 invånare, föregående år',
   lag1_fritidshusandel_bland_smahus:'Fritidshusandel bland småhusliknande bostäder, föregående år (%)',
+  lag1_fritidshus_per_1000_inv:'Fritidshus per 1 000 invånare, föregående år',
+  lag1_log_fritidshus_per_1000_inv:'Fritidshus per 1 000 invånare (log), föregående år',
   lag1_brott_per_100000:'Anmälda brott per 100 000 invånare, föregående år',
   lag1_sysselsattningsgrad:'Sysselsättningsgrad 20–64 år, föregående år (%)',
   lag1_arbetsloshet:'Arbetslöshet 20–64 år, föregående år (%)',
@@ -191,6 +193,7 @@ function renderAll(){
   renderGeographicRobustness();
   renderShorelineRobustness();
   renderHousingTurnoverCandidate();
+  renderLeisureIntensityCandidate();
   renderR2ContributionProfile();
   renderLuleaView();
   renderPublicPage();
@@ -961,6 +964,76 @@ function renderHousingTurnoverCandidate(){
         '<td>'+fmt(d.p90_p10_abs_error_gap,3)+'</td>'+
         '<td>'+fmt(d.worst_decile_mae,3)+'</td></tr>';
     }).join('')+'</tbody></table>';
+}
+
+
+
+function renderLeisureIntensityCandidate(){
+  const data=rootModel.leisure_intensity_geographic_candidate_tests;
+  const summary=document.getElementById('leisureIntensitySummary');
+  const chart=document.getElementById('leisureIntensityChart');
+  const table=document.getElementById('leisureIntensityMunicipalities');
+  if(!summary||!chart||!table) return;
+
+  const rows=(data?.rows||[]).filter(r=>r.status==='tested');
+  if(!rows.length){
+    summary.textContent='Resultatet finns efter nästa slutförda analyskörning.';
+    chart.innerHTML='';
+    table.innerHTML='';
+    return;
+  }
+
+  const labelMap={
+    lag1_fritidshus_per_1000_inv:'Fritidshus / 1 000 invånare',
+    lag1_log_fritidshus_per_1000_inv:'Fritidshus / 1 000 invånare (log)'
+  };
+  const metricKeys=[
+    ['rmse','RMSE'],
+    ['p90_abs_error','P90 absolutfel'],
+    ['p90_p10_abs_error_gap','P90–P10'],
+    ['worst_decile_mae','Sämsta decilens MAE']
+  ];
+  const score=r=>metricKeys.filter(([k])=>Number(r.holdout?.delta?.[k])>0).length;
+  const best=rows.slice().sort((a,b)=>score(b)-score(a))[0];
+  const bestDelta=best?.holdout?.delta||{};
+  const nPositive=score(best);
+  summary.innerHTML='<strong>'+(labelMap[best.feature]||best.feature)+':</strong> '+
+    (nPositive>=3
+      ? 'förbättrar minst tre av fyra geografiska huvudmått i 2024-holdout. Resultatet bör därefter bedömas tillsammans med kommunmönstret nedan innan eventuell Modell-3-status.'
+      : 'ger inte en tillräckligt bred förbättring av den geografiska felprofilen i 2024-holdout och bör därför stanna som diagnostik.');
+
+  Plotly.react(chart,rows.map(r=>({
+    x:metricKeys.map(([,label])=>label),
+    y:metricKeys.map(([k])=>r.holdout?.delta?.[k]),
+    type:'bar',
+    name:labelMap[r.feature]||r.feature,
+    hovertemplate:'%{x}<br>Förbättring=%{y:.3f}<extra>%{fullData.name}</extra>'
+  })),{
+    barmode:'group',
+    margin:{t:30,b:80,l:70,r:30},
+    yaxis:{title:'Positivt värde = lägre fel än basmodellen'},
+    legend:{orientation:'h',y:1.15},
+    shapes:[{type:'line',xref:'paper',x0:0,x1:1,y0:0,y1:0,line:{dash:'dash'}}]
+  },{responsive:true,displaylogo:false});
+
+  const munis=(best?.municipality_errors||[]);
+  const improved=munis.slice().sort((a,b)=>Number(b.delta_abs_error)-Number(a.delta_abs_error)).slice(0,10);
+  const worsened=munis.slice().sort((a,b)=>Number(a.delta_abs_error)-Number(b.delta_abs_error)).slice(0,10);
+  const rowsHtml=[
+    ...improved.map(x=>({...x,direction:'Störst förbättring'})),
+    ...worsened.map(x=>({...x,direction:'Störst försämring'}))
+  ];
+  table.innerHTML='<table class="metric-table"><thead><tr>'+
+    '<th>Kommun</th><th>Grupp</th><th>Basfel</th><th>Kandidatfel</th><th>Förbättring</th>'+
+    '</tr></thead><tbody>'+
+    rowsHtml.map(x=>'<tr>'+
+      '<td>'+x.kommun+'</td>'+
+      '<td>'+x.direction+'</td>'+
+      '<td>'+fmt(x.baseline_abs_error,2)+'</td>'+
+      '<td>'+fmt(x.candidate_abs_error,2)+'</td>'+
+      '<td>'+fmt(x.delta_abs_error,2)+'</td>'+
+    '</tr>').join('')+
+    '</tbody></table>';
 }
 
 
