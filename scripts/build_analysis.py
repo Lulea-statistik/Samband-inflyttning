@@ -19,7 +19,7 @@ import pyarrow.parquet as pq
 from pyproj import Transformer
 from shapely import from_wkb
 from shapely.ops import transform as shapely_transform
-from sklearn.linear_model import LinearRegression, RidgeCV, ElasticNetCV
+from sklearn.linear_model import LinearRegression, Ridge, RidgeCV, ElasticNetCV
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import make_pipeline
@@ -5910,6 +5910,383 @@ def _housing_size_extreme_rolling_holdout_tests(
     }
 
 
+
+def _geographic_error_metrics(y_true, y_pred) -> dict:
+    """
+    Error distribution across municipalities for one holdout year.
+
+    Municipality-level R2 is not meaningful with one observation per municipality
+    in the holdout. Geographic robustness is therefore measured from the
+    distribution of absolute prediction errors across municipalities.
+    """
+    yt = np.asarray(y_true, dtype=float)
+    yp = np.asarray(y_pred, dtype=float)
+    mask = np.isfinite(yt) & np.isfinite(yp)
+    yt = yt[mask]
+    yp = yp[mask]
+    if len(yt) == 0:
+        return {
+            "r2": None,
+            "rmse": None,
+            "mae": None,
+            "median_abs_error": None,
+            "p90_abs_error": None,
+            "p95_abs_error": None,
+            "p90_p10_abs_error_gap": None,
+            "best_decile_mae": None,
+            "worst_decile_mae": None,
+            "decile_mae_gap": None,
+            "max_abs_error": None,
+            "n": 0,
+        }
+
+    abs_err = np.abs(yt - yp)
+    ordered = np.sort(abs_err)
+    k = max(1, int(math.ceil(0.10 * len(ordered))))
+    p10 = float(np.quantile(abs_err, 0.10))
+    p90 = float(np.quantile(abs_err, 0.90))
+    return {
+        "r2": _finite_float(r2_score(yt, yp)),
+        "rmse": _finite_float(math.sqrt(mean_squared_error(yt, yp))),
+        "mae": _finite_float(mean_absolute_error(yt, yp)),
+        "median_abs_error": _finite_float(np.median(abs_err)),
+        "p90_abs_error": _finite_float(p90),
+        "p95_abs_error": _finite_float(np.quantile(abs_err, 0.95)),
+        "p90_p10_abs_error_gap": _finite_float(p90 - p10),
+        "best_decile_mae": _finite_float(np.mean(ordered[:k])),
+        "worst_decile_mae": _finite_float(np.mean(ordered[-k:])),
+        "decile_mae_gap": _finite_float(np.mean(ordered[-k:]) - np.mean(ordered[:k])),
+        "max_abs_error": _finite_float(np.max(abs_err)),
+        "n": int(len(abs_err)),
+    }
+
+
+def _geographic_robust_objective(metrics_row: dict) -> float:
+    """
+    Composite loss used only for model selection.
+
+    Average RMSE remains the anchor. The 90th-percentile absolute error and the
+    P90-P10 spread add explicit pressure against a model that is very accurate
+    for the easy municipalities but systematically weak in the geographic tail.
+    """
+    rmse = metrics_row.get("rmse")
+    p90 = metrics_row.get("p90_abs_error")
+    spread = metrics_row.get("p90_p10_abs_error_gap")
+    if any(v is None for v in [rmse, p90, spread]):
+        return float("inf")
+    return float(rmse + 0.35 * p90 + 0.25 * spread)
+
+
+def _geographic_temporal_cv(
+    d: pd.DataFrame,
+    features: list[str],
+    target: str,
+    alpha: float,
+) -> dict:
+    """
+    Rolling-origin validation inside the training period.
+
+    Scores are pooled across validation years before the geographic error
+    distribution is calculated. No observation from the final holdout year is
+    used for feature-set or alpha selection.
+    """
+    cols = ["kommun_kod", "kommun", "year", target] + list(features)
+    work = d[cols].dropna().copy()
+    years = sorted(int(y) for y in work["year"].unique())
+    rows = []
+
+    if len(years) < 4:
+        return {
+            "status": "insufficient_temporal_folds",
+            "folds": 0,
+            "metrics": {},
+            "objective": None,
+        }
+
+    for valid_year in years[2:]:
+        train = work[work["year"] < valid_year].copy()
+        valid = work[work["year"] == valid_year].copy()
+        if len(train) < max(60, len(features) * 6) or len(valid) < 60:
+            continue
+
+        ridge = make_pipeline(StandardScaler(), Ridge(alpha=float(alpha)))
+        ridge.fit(train[features], train[target])
+        pred = ridge.predict(valid[features])
+        fold = valid[["kommun_kod", "kommun", "year", target]].copy()
+        fold["prediction"] = pred
+        rows.append(fold)
+
+    if not rows:
+        return {
+            "status": "insufficient_temporal_folds",
+            "folds": 0,
+            "metrics": {},
+            "objective": None,
+        }
+
+    pooled = pd.concat(rows, ignore_index=True)
+    m = _geographic_error_metrics(pooled[target], pooled["prediction"])
+    return {
+        "status": "tested",
+        "folds": int(pooled["year"].nunique()),
+        "validation_years": sorted(int(y) for y in pooled["year"].unique()),
+        "n_predictions": int(len(pooled)),
+        "metrics": m,
+        "objective": _finite_float(_geographic_robust_objective(m)),
+    }
+
+
+def _best_geographic_config(
+    train: pd.DataFrame,
+    target: str,
+    feature_sets: dict[str, list[str]],
+    baseline_set_name: str,
+) -> dict:
+    """
+    Compare regularised models with different feature-set philosophies.
+
+    A candidate may win the geographic objective only if its rolling-origin
+    RMSE is no more than 3% worse than the baseline feature set. This prevents
+    tail-error reduction from being bought by a large loss of average accuracy.
+    """
+    alphas = [float(x) for x in np.logspace(-3, 3, 13)]
+    rows = []
+
+    for set_name, features in feature_sets.items():
+        if not features:
+            continue
+        for alpha in alphas:
+            cv = _geographic_temporal_cv(train, features, target, alpha)
+            if cv.get("status") != "tested":
+                continue
+            rows.append({
+                "feature_set": set_name,
+                "features": list(features),
+                "alpha": alpha,
+                "folds": cv.get("folds"),
+                "validation_years": cv.get("validation_years", []),
+                "objective": cv.get("objective"),
+                **cv.get("metrics", {}),
+            })
+
+    baseline_rows = [r for r in rows if r["feature_set"] == baseline_set_name]
+    if not baseline_rows:
+        return {
+            "status": "insufficient_temporal_validation",
+            "selected": None,
+            "candidates": rows,
+        }
+
+    baseline_best = min(
+        baseline_rows,
+        key=lambda r: float("inf") if r.get("objective") is None else r["objective"],
+    )
+    baseline_rmse = baseline_best.get("rmse")
+    eligible = [
+        r for r in rows
+        if r.get("objective") is not None
+        and r.get("rmse") is not None
+        and baseline_rmse is not None
+        and r["rmse"] <= 1.03 * baseline_rmse
+    ]
+    selected = min(
+        eligible or [baseline_best],
+        key=lambda r: float("inf") if r.get("objective") is None else r["objective"],
+    )
+    return {
+        "status": "tested",
+        "rmse_guardrail": "candidate rolling-origin RMSE <= 103% of baseline RMSE",
+        "baseline_cv": baseline_best,
+        "selected": selected,
+        "candidates": rows,
+    }
+
+
+def fit_geographic_robust_model(panel: pd.DataFrame, baseline_result: dict) -> dict:
+    """
+    Third model track: preserve overall forecast accuracy while reducing
+    geographic inequality in forecast error.
+
+    This is a prognostic model, not a causal model. It uses only information
+    available to the ordinary forecast model and never sees the final holdout
+    year during configuration selection.
+    """
+    target = baseline_result["target"]
+    test_year = int(baseline_result["test_year"])
+    window = int(baseline_result.get("default_window", 5))
+    train_start = test_year - window
+
+    # Match the ordinary forecast model's complete-case sample so the final
+    # comparison is apples-to-apples. Look-ahead-only features are excluded from
+    # modelling even though they remain part of that legacy sample definition.
+    sample_features = list(baseline_result.get("features", []))
+    eligible_features = [
+        f for f in sample_features if f not in LOOKAHEAD_ONLY_FEATURES
+    ]
+    model_df = panel.dropna(subset=[target] + sample_features).copy()
+    train = model_df[
+        model_df["year"].between(train_start, test_year - 1)
+    ].copy()
+    test = model_df[model_df["year"] == test_year].copy()
+
+    if len(train) < 250 or len(test) < 100:
+        return {
+            "status": "insufficient_coverage",
+            "test_year": test_year,
+            "n_train": int(len(train)),
+            "n_test": int(len(test)),
+        }
+
+    standard_selection = _select_features(train, eligible_features, target)
+    baseline_features = list(standard_selection["selected"])
+    feature_sets = {
+        "forecast_selected": baseline_features,
+        "thematic_balanced": list(standard_selection.get("thematic_selected", [])),
+        "backward_aic": list(standard_selection.get("backward_aic_selected", [])),
+        "elastic_net": list(standard_selection.get("elastic_net_selected", [])),
+        "all_eligible": eligible_features,
+    }
+    # Remove duplicate feature sets while keeping their first, clearest label.
+    deduped = {}
+    seen = set()
+    for name, fs in feature_sets.items():
+        key = tuple(fs)
+        if not fs or key in seen:
+            continue
+        seen.add(key)
+        deduped[name] = fs
+    feature_sets = deduped
+
+    config = _best_geographic_config(
+        train,
+        target,
+        feature_sets,
+        "forecast_selected",
+    )
+    selected = config.get("selected")
+    if not selected:
+        return {
+            "status": "insufficient_temporal_validation",
+            "test_year": test_year,
+            "n_train": int(len(train)),
+            "n_test": int(len(test)),
+            "configuration": config,
+        }
+
+    robust_features = list(selected["features"])
+    robust_alpha = float(selected["alpha"])
+
+    # Baseline is intentionally re-fitted on exactly the same rows used by
+    # Model 3, so differences in the tail are not sample-composition artefacts.
+    baseline_ridge = make_pipeline(
+        StandardScaler(),
+        RidgeCV(alphas=np.logspace(-3, 3, 25)),
+    )
+    baseline_ridge.fit(train[baseline_features], train[target])
+    baseline_pred = baseline_ridge.predict(test[baseline_features])
+
+    robust_ridge = make_pipeline(
+        StandardScaler(),
+        Ridge(alpha=robust_alpha),
+    )
+    robust_ridge.fit(train[robust_features], train[target])
+    robust_pred = robust_ridge.predict(test[robust_features])
+
+    baseline_metrics = _geographic_error_metrics(test[target], baseline_pred)
+    robust_metrics = _geographic_error_metrics(test[target], robust_pred)
+
+    rows = test[["kommun_kod", "kommun", "year", target]].copy()
+    rows["baseline_prediction"] = baseline_pred
+    rows["robust_prediction"] = robust_pred
+    rows["baseline_abs_error"] = np.abs(
+        rows[target].to_numpy(dtype=float) - baseline_pred
+    )
+    rows["robust_abs_error"] = np.abs(
+        rows[target].to_numpy(dtype=float) - robust_pred
+    )
+    rows["delta_abs_error"] = (
+        rows["baseline_abs_error"] - rows["robust_abs_error"]
+    )
+    rows = rows.sort_values("robust_abs_error", ascending=False)
+
+    municipality_errors = []
+    for r in rows.itertuples(index=False):
+        municipality_errors.append({
+            "kommun_kod": str(r.kommun_kod),
+            "kommun": str(r.kommun),
+            "year": int(r.year),
+            "observed": _finite_float(getattr(r, target)),
+            "baseline_prediction": _finite_float(r.baseline_prediction),
+            "robust_prediction": _finite_float(r.robust_prediction),
+            "baseline_abs_error": _finite_float(r.baseline_abs_error),
+            "robust_abs_error": _finite_float(r.robust_abs_error),
+            "delta_abs_error": _finite_float(r.delta_abs_error),
+        })
+
+    added_features = [
+        f for f in robust_features if f not in baseline_features
+    ]
+    removed_features = [
+        f for f in baseline_features if f not in robust_features
+    ]
+
+    return {
+        "status": "tested",
+        "model_id": "geographic_robust",
+        "model_label": "Geografiskt robust prognosmodell",
+        "purpose": (
+            "Bevara hög genomsnittlig prognosprecision men minska den geografiska "
+            "spridningen i prognosfel mellan kommuner."
+        ),
+        "test_year": test_year,
+        "train_start_year": train_start,
+        "train_end_year": test_year - 1,
+        "n_train": int(len(train)),
+        "n_test": int(len(test)),
+        "baseline_feature_set": baseline_features,
+        "selected_feature_set": robust_features,
+        "added_features_vs_forecast_selection": added_features,
+        "removed_features_vs_forecast_selection": removed_features,
+        "selected_alpha": _finite_float(robust_alpha),
+        "selection": config,
+        "baseline_metrics": baseline_metrics,
+        "robust_metrics": robust_metrics,
+        "delta": {
+            "rmse": _finite_float(
+                (baseline_metrics.get("rmse") or np.nan)
+                - (robust_metrics.get("rmse") or np.nan)
+            ),
+            "p90_abs_error": _finite_float(
+                (baseline_metrics.get("p90_abs_error") or np.nan)
+                - (robust_metrics.get("p90_abs_error") or np.nan)
+            ),
+            "p90_p10_abs_error_gap": _finite_float(
+                (baseline_metrics.get("p90_p10_abs_error_gap") or np.nan)
+                - (robust_metrics.get("p90_p10_abs_error_gap") or np.nan)
+            ),
+            "worst_decile_mae": _finite_float(
+                (baseline_metrics.get("worst_decile_mae") or np.nan)
+                - (robust_metrics.get("worst_decile_mae") or np.nan)
+            ),
+        },
+        "objective": {
+            "formula": (
+                "RMSE + 0.35 * P90(abs error) + 0.25 * "
+                "(P90(abs error) - P10(abs error))"
+            ),
+            "rmse_guardrail": (
+                "Rolling-origin RMSE may be at most 3% worse than the ordinary "
+                "forecast feature set during model selection."
+            ),
+            "important_note": (
+                "The objective does not minimize max-minus-min error because one "
+                "single municipality would then dominate the optimisation."
+            ),
+        },
+        "municipality_errors": municipality_errors,
+    }
+
+
 def fit_models(panel: pd.DataFrame, *, demographic_blind: bool = False, output_suffix: str = "") -> dict:
     target = "inflyttning_per_1000"
     features = [
@@ -7589,6 +7966,10 @@ def main():
     blind_age_models = fit_age_group_models(panel, demographic_blind=True)
     blind_result["age_group_models"] = blind_age_models
 
+    # Third model track: optimise the error distribution across municipalities
+    # without sacrificing more than a small amount of average temporal accuracy.
+    result["geographic_robust_model"] = fit_geographic_robust_model(panel, result)
+
     overall_base = result["windows"]["5"]["explanation"]["selected_features"]
     result["activity_candidate_tests"] = {
         "overall": _sparse_candidate_tests(
@@ -8244,6 +8625,11 @@ def main():
             "purpose": "Identifiera strukturella samband utan historisk migration, befolkningstillväxt, åldersstruktur eller inflyttarprofil som genväg.",
             "allowed_demographic_control": "Kommunstorlek (log folkmängd) är tillåten som strukturell kontroll.",
             "allowed_endogenous_structures": "Bostads- och arbetsmarknadsförändringar får ingå men ska tolkas som samband, inte säkra orsakseffekter.",
+        },
+        "geographic_robust": {
+            "label": "Geografiskt robust prognosmodell",
+            "purpose": "Bevara hög prognosprecision men minska den geografiska spridningen i prognosfel mellan kommuner.",
+            "selection_metric": "RMSE + 0.35*P90 absolutfel + 0.25*(P90-P10 absolutfel), med 3 procent RMSE-skyddsräcke.",
         },
     }
 
