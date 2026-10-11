@@ -1034,6 +1034,53 @@ function renderLeisureIntensityCandidate(){
       '<td>'+fmt(x.delta_abs_error,2)+'</td>'+
     '</tr>').join('')+
     '</tbody></table>';
+
+  const rolling=rootModel.leisure_intensity_rolling_holdouts;
+  const rollingChart=document.getElementById('leisureRollingChart');
+  const rollingTable=document.getElementById('leisureRollingTable');
+  if(rollingChart&&rollingTable){
+    const candidates=rolling?.candidates||[];
+    if(!candidates.length){
+      rollingChart.innerHTML='<p class="note">Flerårstestet visas efter nästa slutförda analyskörning.</p>';
+      rollingTable.innerHTML='';
+    }else{
+      const labelsRolling={
+        lag1_fritidshus_per_1000_inv:'Fritidshus / 1 000 invånare',
+        lag1_log_fritidshus_per_1000_inv:'Log fritidshus / 1 000 invånare'
+      };
+      const traces=candidates.map(c=>({
+        x:(c.years||[]).filter(y=>y.status==='tested').map(y=>String(y.test_year)),
+        y:(c.years||[]).filter(y=>y.status==='tested').map(y=>y.holdout?.delta_objective),
+        mode:'lines+markers',
+        type:'scatter',
+        name:labelsRolling[c.feature]||c.feature,
+        hovertemplate:'Testår %{x}<br>Förbättring av geografiskt objektiv=%{y:.3f}<extra>%{fullData.name}</extra>'
+      }));
+      Plotly.react(rollingChart,traces,{
+        margin:{t:30,b:60,l:75,r:30},
+        xaxis:{title:'Holdoutår'},
+        yaxis:{title:'Positivt = bättre geografiskt objektiv'},
+        shapes:[{type:'line',xref:'paper',x0:0,x1:1,y0:0,y1:0,line:{dash:'dash'}}],
+        legend:{orientation:'h',y:1.15}
+      },{responsive:true,displaylogo:false});
+
+      rollingTable.innerHTML='<table class="metric-table"><thead><tr>'+
+        '<th>Variant</th><th>Testade år</th><th>Bättre objektiv</th><th>Bättre RMSE</th>'+
+        '<th>Bättre P90</th><th>Bättre P90–P10</th><th>Bättre sämsta decil</th>'+
+        '</tr></thead><tbody>'+
+        candidates.map(c=>{
+          const q=c.summary||{};
+          return '<tr><td>'+(labelsRolling[c.feature]||c.feature)+'</td>'+
+            '<td>'+String(q.n_tested_years??'–')+'</td>'+
+            '<td>'+String(q.years_with_better_holdout_objective??'–')+'</td>'+
+            '<td>'+String(q.years_with_better_rmse??'–')+'</td>'+
+            '<td>'+String(q.years_with_better_p90??'–')+'</td>'+
+            '<td>'+String(q.years_with_better_tail_spread??'–')+'</td>'+
+            '<td>'+String(q.years_with_better_worst_decile??'–')+'</td></tr>';
+        }).join('')+
+        '</tbody></table>';
+    }
+  }
 }
 
 
