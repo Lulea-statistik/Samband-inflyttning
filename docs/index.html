@@ -234,6 +234,9 @@
     <div class="panel testlog-note">
       <h3>Så används sidan</h3>
       <p>Nya större kandidattester läggs till här efter validering. Målet är att skilja på <strong>intressant historiskt samband</strong> och <strong>stabilt informationsvärde utanför träningsdata</strong>, så att ett starkt enskilt resultat inte automatiskt blir en modellvariabel.</p>
+      <h3>Vad krävs för att en variabel ska tas med i modellen?</h3>
+      <p>En kandidat tas inte in bara för att den har ett tydligt historiskt samband eller ett lågt p-värde. Den måste ha rimlig datatäckning och tidsordning, tillföra information utöver närliggande variabler och kontroller, och ge ett resultat som är stabilt när modellen prövas utanför de år som användes för skattningen. Variabeln ska dessutom ha en tolkning som är tillräckligt tydlig för att inte främst fungera som en okänd proxy för något annat.</p>
+      <p>Prövningen sker stegvis: <strong>1)</strong> käll- och täckningskontroll, <strong>2)</strong> enkelt kandidat- och residualtest mot relevanta kontroller, <strong>3)</strong> jämförelse med konkurrerande variabler inom samma tema, <strong>4)</strong> tidsbaserad holdout/rolling-origin-validering och <strong>5)</strong> beslut om produktionsstatus. En variabel kan därför stanna som diagnostik även om den ser stark ut i träningsdata.</p>
     </div>
   </section>
 
