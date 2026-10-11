@@ -3493,7 +3493,7 @@ def get_land_use_urbanity() -> pd.DataFrame:
 
     built_code = code_for_text(land_class, "bebyggd och anlagd mark")
     total_land_code = code_for_text(land_class, "total landareal")
-    forest_code = code_for_text(land_class, "skogsmark")
+    forest_code = code_for_text(land_class, "total skogsmark")
     mire_code = code_for_text(land_class, "öppen myrmark")
     other_code = code_for_text(land_class, "övrig mark")
     munis = municipality_codes(region)
@@ -3556,7 +3556,7 @@ def get_land_use_urbanity() -> pd.DataFrame:
             return "built"
         if "total landareal" in text:
             return "total_land"
-        if text.strip() == "skogsmark":
+        if text.strip() == "total skogsmark":
             return "forest"
         if "öppen myrmark" in text:
             return "open_mire"
@@ -7211,8 +7211,8 @@ def main():
             "SCB built/developed land share of total land area in MarkanvN",
         ],
         "land_nature_candidates": [
-            "SCB forest share of total land area",
-            "SCB forest + open mire + other land share of total land area (coarse nature-dominated land proxy)",
+            "SCB total forest share of total land area",
+            "SCB total forest + open mire + other land share of total land area (coarse nature-dominated land proxy)",
         ],
         "snowmobile_proxy": "SCB snowmobiles as share of published vehicle stock; exact and denominator-robust variants, lagged one year",
         "production_status": "candidate_only",
