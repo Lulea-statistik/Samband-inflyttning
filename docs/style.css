@@ -96,3 +96,8 @@ main{padding:24px 28px;max-width:1500px;margin:auto}.page{display:none}.page.act
 @media(max-width:900px){
   #geoRobustComparison,#geoRobustTail,#shorelineRobustnessChart{height:460px}
 }
+
+.geo-verdict{border-left:6px solid #8aa7bf}
+.geo-verdict h3{margin-top:0}
+.geo-verdict-pass{border-left-color:#4d8a62;background:#f7fbf8}
+.geo-verdict-fail{border-left-color:#b85c54;background:#fff9f8}
