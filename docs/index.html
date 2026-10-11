@@ -302,6 +302,18 @@
 
       <article class="test-summary-card">
         <div class="test-summary-head">
+          <span class="test-run">#120</span>
+          <span class="test-status status-diagnostic">Modell 3 fortfarande diagnostisk</span>
+        </div>
+        <h3>Fritidshusintensitet integrerad i Modell 3</h3>
+        <p>Modell 3 valde själv feature-setet med <strong>log(fritidshus per 1 000 invånare)</strong> i den kommunblockerade korsvalideringen. CV-objektivet förbättrades tydligt jämfört med den vanliga prognosmodellens feature-set.</p>
+        <p>I det separata 2024-holdoutet blev den fulla Modell 3 ändå sämre: RMSE ökade med cirka 0,30, P90-absolutfelet med cirka 0,68 och P90–P10-spridningen med cirka 0,67. 2022-testet med endast ett historiskt år gav dessutom sämre resultat för båda fritidshusvarianterna och väger därför lättare än 2023–2024.</p>
+        <p class="test-decision"><strong>Beslut:</strong> fritidshusintensitet behålls som en relevant geografisk signal, men Modell 3 får fortfarande inte produktionsstatus. Nästa steg är nya struktursignaler snarare än hårdare optimering av samma feature-set.</p>
+      </article>
+
+
+      <article class="test-summary-card">
+        <div class="test-summary-head">
           <span class="test-run">Tidigare test</span>
           <span class="test-status status-reject">Ej vald</span>
         </div>
@@ -439,11 +451,27 @@
     </div>
 
     <div class="panel">
+      <div class="eyebrow">Nytt strukturellt test</div>
+      <h3>Tillgänglighet till regionalt centrum</h3>
+      <p class="note">Avståndsproxy inom FA-regionen: kommunen med flest sysselsatta arbetsställen definieras som regionalt centrum för respektive år. Avståndet beräknas mellan areaviktade kommuncentroider i SWEREF 99 TM (EPSG:3006) och laggas ett år.</p>
+      <div id="regionalCentreTestSummary" class="lead">Resultatet visas efter nästa slutförda analyskörning.</div>
+      <div id="regionalCentreTestChart" class="chart"></div>
+    </div>
+
+    <div class="panel">
+      <div class="eyebrow">Nytt strukturellt test</div>
+      <h3>Kvinnors löne- och inkomstgap</h3>
+      <p class="note">Två separata mått prövas: kvinnors andel av männens lönesumma för dagbefolkningen samt kvinnors mediannettoinkomst som andel av mäns. De testas var för sig och laggas ett år.</p>
+      <div id="genderGapTestSummary" class="lead">Resultatet visas efter nästa slutförda analyskörning.</div>
+      <div id="genderGapTestChart" class="chart"></div>
+    </div>
+
+    <div class="panel">
       <h3>Nästa variabler att testa för geografiska missar</h3>
       <p class="note">Prioriteringen bygger på att variablerna ska kunna förklara kommuner som avviker från medelkommunen, inte bara höja nationellt R².</p>
       <ol class="candidate-list">
-        <li><strong>Tillgänglighet till regionalt centrum – köad efter #120</strong> – testas som faktisk restid snarare än bara arbetsplatser inom FA-regionen. Kandidater blir restid i minuter, log(restid) och en 30-minutersindikator. Måttet hålls separat från befintlig regional arbetsmarknadsaccess eftersom regionala centrum även representerar service, kultur, vård och annat utbud.</li>
-        <li><strong>Kvinnors löne-/inkomstgap – köad efter #120</strong> – primärt testas kvinnors andel av männens lönesumma för dagbefolkningen. Som separat känslighetsmått testas kvinnors mediannettoinkomst som andel av mäns mediannettoinkomst. Måtten ska inte blandas ihop: det senare omfattar även kapitalinkomster och transfereringar.</li>
+        <li><strong>Tillgänglighet till regionalt centrum – test pågår</strong> – första reproducerbara versionen använder avståndet mellan kommunens centroid och den största arbetsplatskommunen i samma FA-region. Centrumet bestäms separat för varje år och avståndet laggas ett år. Måttet är en <em>avståndsproxy</em>, inte faktisk bilrestid; ett PIPOS-restidsmått kan ersätta proxyn senare.</li>
+        <li><strong>Kvinnors löne-/inkomstgap – test pågår</strong> – kvinnors andel av männens lönesumma för dagbefolkningen testas separat från kvinnors mediannettoinkomst som andel av mäns. Kolada används som API-ingång med SCB som underliggande källa. Nettoinkomstmåttet omfattar även kapitalinkomster och transfereringar och tolkas därför inte som ett rent lönegap.</li>
         <li><strong>Turismintensitet och gästnätter per invånare</strong> – kan fånga säsongs- och attraktivitetskommuner som Gotland och delar av västkusten bättre än allmän urbanitet.</li>
         <li><strong>Ö-/färjeberoende och fysisk tillgänglighet</strong> – en generell strukturindikator för kommuner där vatten eller färjelänkar påverkar vardagsrörlighet och bostadsmarknad.</li>
         <li><strong>Besöksnäringens sysselsättningsandel och säsongsvariation</strong> – prövas separat från total månadsvariation i sysselsättning.</li>
@@ -614,6 +642,6 @@
     </div>
   </section>
 </main>
-<script src="app.js?v=20261011-7"></script>
+<script src="app.js?v=20261011-8"></script>
 </body>
 </html>
