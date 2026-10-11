@@ -729,11 +729,24 @@ function renderGeographicRobustness(){
   const signed=v=>Number.isFinite(Number(v)) ? ((Number(v)>=0?'+':'')+fmt(v,2)) : '–';
   cards.innerHTML=[
     metricCard('Testår',String(g.test_year||'–'),'samma holdoutår som prognosmodellen'),
-    metricCard('RMSE',fmt(r.rmse,2),signed(d.rmse)+' jämfört med baslinjen'),
-    metricCard('P90 absolutfel',fmt(r.p90_abs_error,2),signed(d.p90_abs_error)+' förbättring'),
-    metricCard('P90–P10',fmt(r.p90_p10_abs_error_gap,2),signed(d.p90_p10_abs_error_gap)+' förbättring'),
-    metricCard('Sämsta decilens MAE',fmt(r.worst_decile_mae,2),signed(d.worst_decile_mae)+' förbättring')
+    metricCard('RMSE',fmt(r.rmse,2),signed(d.rmse)+' förändring mot baslinjen'),
+    metricCard('P90 absolutfel',fmt(r.p90_abs_error,2),signed(d.p90_abs_error)+' förändring mot baslinjen'),
+    metricCard('P90–P10',fmt(r.p90_p10_abs_error_gap,2),signed(d.p90_p10_abs_error_gap)+' förändring mot baslinjen'),
+    metricCard('Sämsta decilens MAE',fmt(r.worst_decile_mae,2),signed(d.worst_decile_mae)+' förändring mot baslinjen')
   ].join('');
+
+  const verdict=document.getElementById('geoRobustVerdict');
+  if(verdict){
+    const core=[d.rmse,d.p90_abs_error,d.p90_p10_abs_error_gap,d.worst_decile_mae].map(Number);
+    const pass=core.every(v=>Number.isFinite(v)&&v>0);
+    const improved=(g.municipality_errors||[]).filter(x=>Number(x.delta_abs_error)>0).length;
+    const worsened=(g.municipality_errors||[]).filter(x=>Number(x.delta_abs_error)<0).length;
+    verdict.classList.toggle('geo-verdict-pass',pass);
+    verdict.classList.toggle('geo-verdict-fail',!pass);
+    verdict.innerHTML=pass
+      ? '<h3>Resultat: Modell 3 klarar holdout-testet</h3><p>Den geografiska felprofilen förbättras på samtliga huvudmått utan att baslinjen tappar oproportionerligt mycket.</p>'
+      : '<h3>Resultat: Modell 3 underkänns i 2024-holdout</h3><p>Den interna kommunblockerade korsvalideringen såg lovande ut, men det separata teståret blev sämre. '+improved+' kommuner förbättrades och '+worsened+' försämrades. Modellen behålls därför som diagnostiskt metodspår, inte som produktionsmodell.</p>';
+  }
 
   const metrics=[
     {label:'RMSE',b:b.rmse,r:r.rmse},
@@ -793,7 +806,8 @@ function renderGeographicRobustness(){
   selection.innerHTML=
     '<p><strong>Valt feature-set:</strong> '+(cfg.feature_set||'–')+
     ' · <strong>ridge α:</strong> '+fmt(g.selected_alpha,3)+
-    ' · <strong>rolling-origin-foldar:</strong> '+(cfg.folds??'–')+'</p>'+
+    ' · <strong>CV-metod:</strong> '+(cfg.cv_method==='municipality_group_kfold'?'kommunblockerad 5-fold':(cfg.cv_method||'–'))+
+    ' · <strong>foldar:</strong> '+(cfg.folds??'–')+'</p>'+
     '<p><strong>Valda variabler:</strong> '+(fs.length?fs.map(x=>labels[x]||x).join('; '):'–')+'</p>'+
     '<p><strong>Tillkom jämfört med vanlig prognosmodell:</strong> '+(added.length?added.map(x=>labels[x]||x).join('; '):'inga')+'</p>'+
     '<p><strong>Togs bort:</strong> '+(removed.length?removed.map(x=>labels[x]||x).join('; '):'inga')+'</p>'+
