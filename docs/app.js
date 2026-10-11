@@ -61,8 +61,187 @@ const labels={
   lag1_regional_centre_distance_km:'Avstånd till regionalt centrum-proxy, föregående år (km)',
   lag1_log_regional_centre_distance_km:'Avstånd till regionalt centrum-proxy (log), föregående år',
   lag1_kvinnors_lonesumma_dagbef_pct:'Kvinnors andel av männens lönesumma, dagbefolkning, föregående år (%)',
-  lag1_kvinnors_mediannettoinkomst_andel_pct:'Kvinnors mediannettoinkomst som andel av mäns, föregående år (%)'
+  lag1_kvinnors_mediannettoinkomst_andel_pct:'Kvinnors mediannettoinkomst som andel av mäns, föregående år (%)',
+  lag1_inkomst_median_tkr:'Median förvärvsinkomst, föregående år (tkr)',
+  lag1_lediga_allmannytta_pct:'Lediga lägenheter i allmännyttan, föregående år (%)',
+  lag1_lediga_allmannytta_av_total_bostadsbestand_pct:'Lediga allmännyttiga lägenheter som andel av hela bostadsbeståndet, föregående år (%)',
+  lag1_smahuspris_medel_tkr:'Genomsnittligt småhuspris, föregående år (tkr)',
+  lag1_log_smahuspris_medel:'Genomsnittligt småhuspris (log), föregående år',
+  lag1_smahuspris_forandring_pct:'Förändring i genomsnittligt småhuspris, föregående år (%)',
+  lag1_smahuspris_inkomstkvot_medel:'Småhuspris i relation till genomsnittlig inkomst, föregående år',
+  lag1_smahuspris_inkomstkvot_median:'Småhuspris i relation till medianinkomst, föregående år',
+  lag1_andel_bostader_70_max:'Andel bostäder under 70 m², föregående år (%)',
+  lag1_andel_flerbostad_70_max:'Andel bostäder under 70 m² i flerbostadshus, föregående år (%)',
+  lag1_andel_bostader_111_plus:'Andel bostäder minst 111 m², föregående år (%)',
+  lag1_andel_bostader_141_plus:'Andel bostäder minst 141 m², föregående år (%)',
+  lag1_andel_bostader_151_plus:'Andel bostäder minst 151 m², föregående år (%)',
+  lag1_andel_smahus_111_plus:'Andel småhus minst 111 m², föregående år (%)',
+  lag1_andel_smahus_151_plus:'Andel småhus minst 151 m², föregående år (%)',
+  lag1_tatortsgrad_pct:'Andel av befolkningen i statistisk tätort, föregående år (%)',
+  lag1_log_befolkningstathet_land:'Befolkningstäthet på landareal (log), föregående år',
+  lag1_bebyggd_anlagd_andel_land_pct:'Bebyggd och anlagd mark som andel av landareal, föregående år (%)',
+  lag1_skogsmark_andel_land_pct:'Skogsmark som andel av landareal, föregående år (%)',
+  lag1_naturpraglad_mark_andel_land_pct:'Naturpräglad mark som andel av landareal, föregående år (%)',
+  lag1_snoskoterandel_alla_fordon_pct:'Snöskotrar som andel av alla publicerade fordonsslag, föregående år (%)',
+  lag1_snoskoterandel_exkl_dragfordon_pct:'Snöskoterandel exklusive dragfordon i nämnaren, föregående år (%)',
+  lag1_strand_hav_bostader_per_1000:'Bostadsbyggnader inom 100 m från hav per 1 000 invånare, föregående år',
+  lag1_strand_inland_bostader_per_1000:'Bostadsbyggnader inom 100 m från inlandsvatten per 1 000 invånare, föregående år',
+  lag1_strand_hav_bostader_tatort_per_1000:'Strandnära bostadsbyggnader vid hav i tätort per 1 000 invånare, föregående år',
+  lag1_strand_hav_bostader_tatort_andel_pct:'Andel havsnära bostadsbyggnader som ligger i tätort, föregående år (%)',
+  lag1_strand_hav_bostader_skyddad_natur_per_1000:'Havsnära bostadsbyggnader i skyddad natur per 1 000 invånare, föregående år',
+  kommun_centroid_northing_km:'Kommunens areaviktade centroid – nordkoordinat i SWEREF 99 TM (km)',
+  kommun_centroid_easting_km:'Kommunens areaviktade centroid – östkoordinat i SWEREF 99 TM (km)',
+  havsandel_pct:'Havsvatten som andel av kommunens totalareal (%)',
+  kustkommun_hav:'Indikator: kommunen har havsvatten',
+  geo_northing_100km:'Nordlighet: avstånd från rikets mediancentroid i 100 km',
+  geo_havsandel_10pp:'Havsandel uttryckt i 10 procentenheters steg',
+  geo_kust_x_northing:'Interaktion: kustkommun × nordlighet',
+  geo_havsandel_x_northing:'Interaktion: havsandel × nordlighet',
+  geo_havsandel_10pp_x_lag1_tatortsgrad_pct:'Interaktion: havsandel × tätortsgrad',
+  geo_havsandel_10pp_x_lag1_log_folkmangd:'Interaktion: havsandel × kommunstorlek',
+  geo_havsandel_10pp_x_lag1_log_befolkningstathet_land:'Interaktion: havsandel × befolkningstäthet',
+  geo_havsandel_10pp_x_lag1_bebyggd_anlagd_andel_land_pct:'Interaktion: havsandel × bebyggd/anlagd mark'
 };
+
+const variableNotes={
+  lag1_inflyttning_per_1000:'Antal inflyttade till kommunen dividerat med folkmängden och multiplicerat med 1 000. Här används föregående års nivå.',
+  lag1_utflyttning_per_1000:'Antal utflyttade från kommunen per 1 000 invånare föregående år.',
+  lag1_log_folkmangd:'Naturlig logaritm av folkmängden. Transformationen gör skillnaden mellan mycket stora och små kommuner mindre extrem.',
+  lag1_befolkningstillvaxt_pct:'Årlig procentuell förändring i kommunens folkmängd.',
+  lag1_inflyttare_medelalder:'Genomsnittlig ålder bland personer som flyttade in till kommunen under föregående år.',
+  lag1_valdeltagande_pct:'Riksdagsvaldeltagande. Mellan valåren används linjär interpolation; därför används måttet inte i strikt prognosvalidering när framtida valdata skulle krävas.',
+  lag1_valdeltagande_gap_pp:'Skillnaden i procentenheter mellan kommunens valdistrikt med högst respektive lägst valdeltagande.',
+  lag1_ekonomisk_standard_gap_pp:'Skillnaden i procentenheter mellan DeSO med högst respektive lägst andel personer med låg ekonomisk standard.',
+  lag1_bostader_per_1000:'Antal bostadslägenheter i kommunens bostadsbestånd per 1 000 invånare.',
+  lag1_bostadsbestandsforandring_pct:'Procentuell förändring i bostadsbeståndets storlek jämfört med året före.',
+  lag1_fardigstallda_bostader_per_1000:'Antal färdigställda bostäder under året per 1 000 invånare.',
+  lag1_fritidshusandel_bland_smahus:'Fritidshus dividerat med fritidshus plus bostäder i småhus. Måttet är en proxy eftersom statistikens enheter inte är helt identiska.',
+  lag1_fritidshus_per_1000_inv:'Antal fritidshus dividerat med folkmängden och multiplicerat med 1 000.',
+  lag1_log_fritidshus_per_1000_inv:'Log-transformerad fritidshusintensitet. Transformationen dämpar påverkan från kommuner med mycket höga nivåer.',
+  lag1_smahusforsaljningar_per_1000_smahus:'Antal sålda permanenta småhus under året i relation till småhusbeståndet.',
+  lag1_smahusforsaljningar_per_1000_inv:'Antal sålda permanenta småhus under året i relation till kommunens folkmängd.',
+  lag1_smahuspris_inkomstkvot_medel:'Genomsnittligt småhuspris dividerat med genomsnittlig förvärvsinkomst. Används som enkel boendeekonomisk tillgänglighetsproxy.',
+  lag1_smahuspris_inkomstkvot_median:'Genomsnittligt småhuspris dividerat med median förvärvsinkomst.',
+  lag1_lediga_allmannytta_pct:'Lediga lägenheter i allmännyttan som andel av allmännyttans lägenheter.',
+  lag1_lediga_allmannytta_av_total_bostadsbestand_pct:'Lediga lägenheter i allmännyttan dividerat med hela kommunens bostadsbestånd.',
+  lag1_sysselsatta_arbetsstalle_sasongsvariation_pct:'Månadsvariation beräknad som (högsta månad − lägsta månad) / årsmedel för sysselsatta efter arbetsställets belägenhet.',
+  lag1_sysselsatta_bostad_sasongsvariation_pct:'Månadsvariation beräknad som (högsta månad − lägsta månad) / årsmedel för sysselsatta efter bostadens belägenhet.',
+  lag1_log_externa_fa_jobb_per_1000:'Antal jobb i övriga kommuner inom samma FA15-region per 1 000 invånare i den egna kommunen, log-transformerat.',
+  lag1_andel_fa_arbetsplatser_i_egen_kommun:'Den egna kommunens arbetsplatser som andel av samtliga arbetsplatser i samma FA15-region.',
+  lag1_regional_centre_distance_km:'Raklinjeavstånd mellan kommunens centroid och den kommun som har flest arbetsplatser i samma FA15-region det året. Första versionen är en avståndsproxy, inte faktisk restid.',
+  lag1_log_regional_centre_distance_km:'Log-transformerad version av avståndsproxyn till regionalt centrum.',
+  lag1_kvinnors_lonesumma_dagbef_pct:'Kvinnors totala lönesumma dividerat med männens totala lönesumma för den arbetsställebaserade dagbefolkningen.',
+  lag1_kvinnors_mediannettoinkomst_andel_pct:'Kvinnors disponibla mediannettoinkomst som andel av mäns. Måttet omfattar även kapitalinkomster och transfereringar och är därför inte ett rent lönegap.',
+  lag1_naturpraglad_mark_andel_land_pct:'Bred naturproxy baserad på skogsmark, öppen myrmark och övrig mark som andel av landarealen.',
+  lag1_bebyggd_anlagd_andel_land_pct:'Bebyggd och anlagd mark dividerat med kommunens landareal.',
+  lag1_log_befolkningstathet_land:'Log-transformerad folkmängd per kvadratkilometer landareal.',
+  lag1_snoskoterandel_alla_fordon_pct:'Snöskotrar dividerat med summan av alla publicerade fordonsslag. Används som beteendebaserad klimat-/nordlighetsproxy.',
+  lag1_snoskoterandel_exkl_dragfordon_pct:'Robusthetsvariant där dragfordon tas bort ur nämnaren eftersom dragfordon är en därav-post i fordonsstatistiken.',
+  lag1_strand_hav_bostader_per_1000:'Antal bostadsbyggnader inom 100 meter från hav enligt SCB:s strandnära bebyggelsestatistik, skalat per 1 000 invånare.',
+  lag1_strand_inland_bostader_per_1000:'Motsvarande strandmått för inlandsvatten.',
+  lag1_strand_hav_bostader_tatort_per_1000:'Havsnära bostadsbyggnader som samtidigt ligger i tätort, per 1 000 invånare.',
+  lag1_strand_hav_bostader_tatort_andel_pct:'Andel av de havsnära bostadsbyggnaderna som ligger i tätort.',
+  lag1_strand_hav_bostader_skyddad_natur_per_1000:'Havsnära bostadsbyggnader inom formellt skyddad natur, per 1 000 invånare.',
+  kommun_centroid_northing_km:'Areaviktad centroid för hela kommunpolygonen, reprojicerad till SWEREF 99 TM. Används som grov nord–syd-position.',
+  kommun_centroid_easting_km:'Areaviktad centroidens östkoordinat i SWEREF 99 TM. Används bland annat för avståndsberäkningar.',
+  havsandel_pct:'SCB:s havsvattenarea ut till territorialgränsen dividerat med kommunens totalareal.',
+  kustkommun_hav:'Binär indikator som är 1 när kommunen har positiv havsvattenarea och 0 annars.',
+  geo_northing_100km:'Centroidens northing centrerad kring rikets median och skalad så en enhet motsvarar 100 km.',
+  geo_havsandel_10pp:'Havsandel omskalad så en enhet motsvarar 10 procentenheter.',
+  geo_kust_x_northing:'Interaktion som testar om kustkommuners samband skiljer sig beroende på nordlighet.',
+  geo_havsandel_x_northing:'Interaktion som testar om sambandet för havsandel varierar med nordlighet.',
+  geo_havsandel_10pp_x_lag1_tatortsgrad_pct:'Interaktion som testar om sambandet för havsandel varierar med tätortsgrad.',
+  geo_havsandel_10pp_x_lag1_log_folkmangd:'Interaktion som testar om sambandet för havsandel varierar med kommunstorlek.',
+  geo_havsandel_10pp_x_lag1_log_befolkningstathet_land:'Interaktion som testar om sambandet för havsandel varierar med befolkningstäthet.',
+  geo_havsandel_10pp_x_lag1_bebyggd_anlagd_andel_land_pct:'Interaktion som testar om sambandet för havsandel varierar med graden av bebyggd/anlagd mark.'
+};
+
+function variableGroup(key){
+  if(/inflytt|utflytt|folkmangd|befolkningstillvaxt|andel_20_34|inflyttare_medelalder/.test(key)) return 'Demografi och migration';
+  if(/inkomst|ekonomisk_standard|kvinnors_/.test(key)) return 'Inkomst och ekonomisk jämlikhet';
+  if(/valdeltagande/.test(key)) return 'Demokrati';
+  if(/bostad|smahus|fritidshus|hyresratt|bostadsratt|lediga_allmannytta/.test(key)) return 'Bostäder och bostadsmarknad';
+  if(/brott/.test(key)) return 'Trygghet';
+  if(/syssels|arbetslos|eftergymnasial|studerande|industri|hotell|kultur|fa_|regional_centre/.test(key)) return 'Arbetsmarknad, utbildning och näringsliv';
+  if(/kolada_/.test(key)) return 'Föreningsliv';
+  if(/strand|havsandel|kust|centroid|northing|tatort|befolkningstathet|bebyggd|skogsmark|naturpraglad|snoskoter|^geo_/.test(key)) return 'Geografi, mark och miljö';
+  return 'Övriga variabler';
+}
+
+function variableSource(key){
+  if(/brott/.test(key)) return 'Brå';
+  if(/valdeltagande/.test(key)) return 'Valmyndigheten';
+  if(/kolada_|kvinnors_/.test(key)) return 'Kolada / SCB';
+  if(/fa_|regional_centre/.test(key)) return 'SCB + Tillväxtverket FA15';
+  if(/centroid|^geo_/.test(key)) return 'SCB-kommungränser via swemaps + härledd beräkning';
+  return 'SCB / härledd beräkning';
+}
+
+function genericVariableExplanation(key){
+  const label=labels[key]||key;
+  const lag=key.startsWith('lag1_')
+    ? ' Värdet avser föregående år (lag 1), så samma års utfall används inte som förklaringsinformation.'
+    : '';
+  const transform=/log/.test(key)
+    ? ' Variabeln är log-transformerad för att dämpa mycket stora skillnader.'
+    : '';
+  const interaction=key.startsWith('geo_')&&key.includes('_x_')
+    ? ' Detta är en interaktionsterm och ska tolkas tillsammans med sina huvudtermer.'
+    : '';
+  return label+'.'+lag+transform+interaction;
+}
+
+function collectReportVariableKeys(){
+  const keys=new Set(Object.keys(labels));
+  function walk(x){
+    if(Array.isArray(x)){ x.forEach(walk); return; }
+    if(x&&typeof x==='object'){ Object.values(x).forEach(walk); return; }
+    if(typeof x==='string' && (
+      x.startsWith('lag1_') || x.startsWith('geo_') ||
+      ['kommun_centroid_northing_km','kommun_centroid_easting_km','havsandel_pct','kustkommun_hav'].includes(x)
+    )) keys.add(x);
+  }
+  walk(rootModel);
+  return [...keys].filter(k=>labels[k]||variableNotes[k]).sort((a,b)=>{
+    const ga=variableGroup(a), gb=variableGroup(b);
+    return ga.localeCompare(gb,'sv') || (labels[a]||a).localeCompare(labels[b]||b,'sv');
+  });
+}
+
+function renderMethodVariableDictionary(){
+  const body=document.getElementById('variableDictionaryBody');
+  const count=document.getElementById('variableDictionaryCount');
+  const search=document.getElementById('variableDictionarySearch');
+  if(!body) return;
+  const all=collectReportVariableKeys();
+
+  function draw(){
+    const q=(search?.value||'').trim().toLocaleLowerCase('sv-SE');
+    const rows=all.filter(k=>{
+      const hay=[k,labels[k],variableGroup(k),variableSource(k),variableNotes[k]]
+        .filter(Boolean).join(' ').toLocaleLowerCase('sv-SE');
+      return !q||hay.includes(q);
+    });
+    if(count) count.textContent=rows.length+' av '+all.length+' variabler';
+    body.innerHTML=rows.map(k=>{
+      const label=labels[k]||k;
+      const explanation=variableNotes[k]||genericVariableExplanation(k);
+      return '<tr>'+
+        '<td><strong>'+label+'</strong><div class="variable-code">'+k+'</div></td>'+
+        '<td>'+variableGroup(k)+'</td>'+
+        '<td>'+explanation+'</td>'+
+        '<td>'+variableSource(k)+'</td>'+
+      '</tr>';
+    }).join('');
+  }
+
+  if(search && !search.dataset.bound){
+    search.addEventListener('input',draw);
+    search.dataset.bound='1';
+  }
+  draw();
+}
+
 
 async function load(){
   initTabs();
@@ -208,6 +387,7 @@ function renderAll(){
   renderRegressionEquations();
   renderValidation();
   renderMunicipality();
+  renderMethodVariableDictionary();
 }
 
 function metricCard(label,value,sub=''){
