@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Vad förklarar inflyttning till svenska kommuner?</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20261011-1">
   <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/d3-dsv@3"></script>
 </head>
@@ -124,6 +124,72 @@
       <h2>Vad har vi testat – och vad blev beslutet?</h2>
       <p class="lead">Här sammanfattas större kandidattester i några rader. Statusen visar om en variabel har fått plats i den demografiskt blinda strukturmodellen, ligger kvar som diagnostik eller har fallit i valideringen. Sambanden ska inte tolkas som säkra orsakseffekter.</p>
     </div>
+
+    <section class="panel test-flow-panel" aria-labelledby="test-flow-title">
+      <div class="eyebrow">Från idé till modellbeslut</div>
+      <h3 id="test-flow-title">Så rör sig ett test genom analysen</h3>
+      <p class="note">Statusorden i testkorten beskriver <strong>var i processen ett resultat befinner sig</strong> – inte hur ”bra” variabeln är. Ett tydligt historiskt samband kan till exempel vara <em>förklarande</em> utan att klara valideringen och bli modellvariabel.</p>
+
+      <div class="test-flow-track" role="list" aria-label="Testprocessens fem steg">
+        <div class="test-flow-step" role="listitem">
+          <div class="test-flow-kicker">1 · Upptäckt</div>
+          <div class="test-flow-title">Tidiga strukturtest</div>
+          <div class="test-flow-text">Vi prövar om variabeln har rimlig täckning, riktning och ett första statistiskt samband med inflyttning.</div>
+        </div>
+        <div class="test-flow-arrow" aria-hidden="true">→</div>
+
+        <div class="test-flow-step" role="listitem">
+          <div class="test-flow-kicker">2 · Historiskt stöd</div>
+          <div class="test-flow-title">Förklarande</div>
+          <div class="test-flow-text">Variabeln tillför information i historiska data eller efter relevanta kontroller. Det är ännu inte samma sak som prognosvärde.</div>
+        </div>
+        <div class="test-flow-arrow" aria-hidden="true">→</div>
+
+        <div class="test-flow-step" role="listitem">
+          <div class="test-flow-kicker">3 · Tolkning</div>
+          <div class="test-flow-title">Modellprincip</div>
+          <div class="test-flow-text">Vi bedömer om signalen representerar ett begripligt och generaliserbart tema, snarare än en tillfällig korrelation eller okänd proxy.</div>
+        </div>
+        <div class="test-flow-arrow" aria-hidden="true">→</div>
+
+        <div class="test-flow-step" role="listitem">
+          <div class="test-flow-kicker">4 · Utanför träningen</div>
+          <div class="test-flow-title">Validering</div>
+          <div class="test-flow-text">Kandidaten jämförs med konkurrerande variabler och prövas i holdout, rolling-origin eller geografisk validering.</div>
+        </div>
+        <div class="test-flow-arrow" aria-hidden="true">→</div>
+
+        <div class="test-flow-step test-flow-step-decision" role="listitem">
+          <div class="test-flow-kicker">5 · Beslut</div>
+          <div class="test-flow-title">Modellstatus</div>
+          <div class="test-flow-text">Resultatet landar i vald modell, diagnostik eller ej vald. Beslutet kan omprövas när nya år eller bättre mått tillkommer.</div>
+        </div>
+      </div>
+
+      <div class="test-flow-outcome-arrow" aria-hidden="true">↓</div>
+
+      <div class="test-flow-outcomes" aria-label="Möjliga beslut">
+        <div class="test-flow-outcome outcome-selected">
+          <div class="outcome-badge">Vald i modell</div>
+          <p>Har tillräckligt stabilt och begripligt informationsvärde för att användas i det aktuella modellspåret.</p>
+        </div>
+        <div class="test-flow-outcome outcome-diagnostic">
+          <div class="outcome-badge">Diagnostik</div>
+          <p>Hjälper oss förstå kommuntyper, felmönster eller mekanismer men används inte som produktionsvariabel.</p>
+        </div>
+        <div class="test-flow-outcome outcome-rejected">
+          <div class="outcome-badge">Ej vald</div>
+          <p>Har testats men ger inte tillräckligt stabilt, självständigt eller validerat informationsvärde för modellen.</p>
+        </div>
+      </div>
+
+      <div class="test-flow-legend">
+        <span><strong>Tidiga strukturtest</strong> = första screening</span>
+        <span><strong>Förklarande</strong> = historiskt stöd</span>
+        <span><strong>Modellprincip</strong> = metodiskt godtagbar idé</span>
+        <span><strong>Validering</strong> = test utanför skattningsdata</span>
+      </div>
+    </section>
 
     <div class="test-summary-grid">
       <article class="test-summary-card">
