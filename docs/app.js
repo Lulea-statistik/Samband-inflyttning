@@ -57,7 +57,11 @@ const labels={
   lag1_andel_hotell_restaurang_i:'Andel sysselsatta i I hotell/restaurang, föregående år (%)',
   lag1_andel_kultur_service_rstu:'Andel sysselsatta i R+S+T+U kultur/nöje/service, föregående år (%)',
   lag1_log_externa_fa_jobb_per_1000:'Regional arbetsmarknadsaccess (FA15), föregående år',
-  lag1_andel_fa_arbetsplatser_i_egen_kommun:'Regional arbetsmotor: egen andel av FA-regionens arbetsplatser, föregående år (%)'
+  lag1_andel_fa_arbetsplatser_i_egen_kommun:'Regional arbetsmotor: egen andel av FA-regionens arbetsplatser, föregående år (%)',
+  lag1_regional_centre_distance_km:'Avstånd till regionalt centrum-proxy, föregående år (km)',
+  lag1_log_regional_centre_distance_km:'Avstånd till regionalt centrum-proxy (log), föregående år',
+  lag1_kvinnors_lonesumma_dagbef_pct:'Kvinnors andel av männens lönesumma, dagbefolkning, föregående år (%)',
+  lag1_kvinnors_mediannettoinkomst_andel_pct:'Kvinnors mediannettoinkomst som andel av mäns, föregående år (%)'
 };
 
 async function load(){
@@ -194,6 +198,7 @@ function renderAll(){
   renderShorelineRobustness();
   renderHousingTurnoverCandidate();
   renderLeisureIntensityCandidate();
+  renderQueuedStructuralTests();
   renderR2ContributionProfile();
   renderLuleaView();
   renderPublicPage();
@@ -1136,6 +1141,82 @@ function renderLeisureIntensityCandidate(){
         '</tbody></table>';
     }
   }
+}
+
+
+
+function renderStructuralCandidatePanel(data, summaryId, chartId, titleMap){
+  const summary=document.getElementById(summaryId);
+  const chart=document.getElementById(chartId);
+  if(!summary||!chart) return;
+
+  const overall=(data?.overall?.rows||[]).filter(r=>r.status==='tested');
+  const geo=(data?.geographic?.rows||[]).filter(r=>r.status==='tested');
+  if(!overall.length && !geo.length){
+    summary.textContent='Resultatet visas efter nästa slutförda analyskörning.';
+    chart.innerHTML='';
+    return;
+  }
+
+  const byFeature=new Map();
+  overall.forEach(r=>byFeature.set(r.feature,{feature:r.feature,overall:r}));
+  geo.forEach(r=>{
+    const x=byFeature.get(r.feature)||{feature:r.feature};
+    x.geo=r; byFeature.set(r.feature,x);
+  });
+  const rows=[...byFeature.values()];
+  const score=r=>{
+    const d=r.geo?.holdout?.delta||{};
+    return [d.rmse,d.p90_abs_error,d.p90_p10_abs_error_gap,d.worst_decile_mae]
+      .filter(v=>Number(v)>0).length;
+  };
+  const best=rows.slice().sort((a,b)=>score(b)-score(a))[0];
+  summary.innerHTML='<strong>'+(titleMap[best.feature]||labels[best.feature]||best.feature)+':</strong> '+
+    (score(best)>=3
+      ? 'förbättrar minst tre av fyra geografiska huvudmått i 2024-holdout och är därför värd fortsatt validering.'
+      : 'ger inte en bred förbättring av den geografiska felprofilen i 2024-holdout och bör tills vidare behandlas som diagnostik.');
+
+  const metrics=[
+    ['rmse','ΔRMSE'],
+    ['p90_abs_error','ΔP90'],
+    ['p90_p10_abs_error_gap','ΔP90–P10'],
+    ['worst_decile_mae','Δ sämsta decil']
+  ];
+  Plotly.react(chart,rows.map(r=>({
+    x:metrics.map(([,l])=>l),
+    y:metrics.map(([k])=>r.geo?.holdout?.delta?.[k]),
+    type:'bar',
+    name:titleMap[r.feature]||labels[r.feature]||r.feature,
+    customdata:metrics.map(()=>[r.overall?.delta_adjusted_r2,r.overall?.p_value]),
+    hovertemplate:'%{x}: %{y:.3f}<br>Δ justerat R²=%{customdata[0]:.4f}<br>p=%{customdata[1]:.4f}<extra>%{fullData.name}</extra>'
+  })),{
+    barmode:'group',
+    margin:{t:30,b:70,l:70,r:30},
+    yaxis:{title:'Positivt = lägre geografiskt prognosfel'},
+    shapes:[{type:'line',xref:'paper',x0:0,x1:1,y0:0,y1:0,line:{dash:'dash'}}],
+    legend:{orientation:'h',y:1.16}
+  },{responsive:true,displaylogo:false});
+}
+
+function renderQueuedStructuralTests(){
+  renderStructuralCandidatePanel(
+    rootModel.regional_centre_access_candidate_tests,
+    'regionalCentreTestSummary',
+    'regionalCentreTestChart',
+    {
+      lag1_regional_centre_distance_km:'Avstånd till regionalt centrum',
+      lag1_log_regional_centre_distance_km:'Log(avstånd till regionalt centrum)'
+    }
+  );
+  renderStructuralCandidatePanel(
+    rootModel.gender_gap_candidate_tests,
+    'genderGapTestSummary',
+    'genderGapTestChart',
+    {
+      lag1_kvinnors_lonesumma_dagbef_pct:'Kvinnors andel av männens lönesumma',
+      lag1_kvinnors_mediannettoinkomst_andel_pct:'Kvinnors mediannettoinkomst / mäns'
+    }
+  );
 }
 
 
