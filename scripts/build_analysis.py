@@ -6987,6 +6987,235 @@ def _forecast_challenger_robustness_test(
     }
 
 
+def _forecast_production_candidate_test(
+    panel: pd.DataFrame,
+    target: str,
+    incumbent_features: list[str],
+    fair_result: dict,
+    robustness_result: dict,
+) -> dict:
+    """
+    Production-candidate comparison after #131-#132.
+
+    Three approaches are compared on identical rolling-origin holdouts:
+      1) incumbent production feature set,
+      2) dynamic fair re-selection inside each training fold,
+      3) a post-hoc stable challenger made from features selected in at least
+         two of the three #132 folds.
+
+    Promotion evidence comes from the dynamic fair challenger because its
+    feature selection is repeated strictly inside each training fold. The
+    stable challenger is a parsimony diagnostic only: its feature set is
+    derived from the same 2022-2024 fold results and is therefore not an
+    independent holdout test.
+
+    A municipality-cluster bootstrap resamples whole municipalities with all
+    of their holdout years together, preserving within-municipality dependence.
+    """
+    if fair_result.get("status") != "tested":
+        return {"status": "fair_reselection_not_available"}
+    if robustness_result.get("status") != "tested":
+        return {"status": "challenger_robustness_not_available"}
+
+    eligible = list(fair_result.get("eligible_pool", []))
+    period = fair_result.get("period", [END_YEAR - 3, END_YEAR])
+    start_year, end_year = int(period[0]), int(period[1])
+    incumbent = [f for f in incumbent_features if f in eligible]
+
+    freq_rows = robustness_result.get("feature_selection_frequency", [])
+    stable_features = [
+        row["feature"]
+        for row in freq_rows
+        if int(row.get("selected_folds") or 0) >= 2
+        and row.get("feature") in eligible
+    ]
+
+    cols = ["kommun_kod", "kommun", "year", target] + eligible
+    d = (
+        panel.loc[panel["year"].between(start_year, end_year), cols]
+        .dropna()
+        .reset_index(drop=True)
+    )
+    if len(d) < 300 or d["kommun_kod"].nunique() < 200:
+        return {
+            "status": "insufficient_common_sample",
+            "n_obs": int(len(d)),
+            "n_municipalities": int(d["kommun_kod"].nunique()) if len(d) else 0,
+        }
+
+    years = sorted(int(v) for v in d["year"].unique())
+    prediction_frames = []
+    fold_rows = []
+
+    def fit_predict(train: pd.DataFrame, test: pd.DataFrame, features: list[str]):
+        ridge = make_pipeline(
+            StandardScaler(),
+            RidgeCV(alphas=np.logspace(-3, 3, 25)),
+        ).fit(train[features], train[target])
+        return ridge.predict(test[features])
+
+    for holdout_year in years[1:]:
+        train = d.loc[d["year"] < holdout_year].copy().reset_index(drop=True)
+        test = d.loc[d["year"] == holdout_year].copy().reset_index(drop=True)
+        if len(train) < 200 or len(test) < 200:
+            continue
+
+        fold_selection = _select_features(train, eligible, target)
+        dynamic_features = fold_selection["selected"]
+
+        pred_inc = fit_predict(train, test, incumbent)
+        pred_dyn = fit_predict(train, test, dynamic_features)
+        pred_stable = (
+            fit_predict(train, test, stable_features)
+            if stable_features else np.full(len(test), np.nan)
+        )
+
+        frame = test[["kommun_kod", "kommun", "year", target]].copy()
+        frame["pred_incumbent"] = pred_inc
+        frame["pred_dynamic"] = pred_dyn
+        frame["pred_stable"] = pred_stable
+        prediction_frames.append(frame)
+
+        inc_geo = _geographic_error_metrics(test[target], pred_inc)
+        dyn_geo = _geographic_error_metrics(test[target], pred_dyn)
+        stable_geo = (
+            _geographic_error_metrics(test[target], pred_stable)
+            if stable_features else {}
+        )
+        fold_rows.append({
+            "holdout_year": holdout_year,
+            "n_train": int(len(train)),
+            "n_test": int(len(test)),
+            "dynamic_features": dynamic_features,
+            "stable_features": stable_features,
+            "incumbent": inc_geo,
+            "dynamic": dyn_geo,
+            "stable": stable_geo,
+        })
+
+    if not prediction_frames:
+        return {"status": "no_holdout_predictions"}
+
+    pooled = pd.concat(prediction_frames, ignore_index=True)
+
+    def pooled_metrics(pred_col: str) -> dict:
+        return _geographic_error_metrics(pooled[target], pooled[pred_col])
+
+    pooled_metrics_all = {
+        "incumbent": pooled_metrics("pred_incumbent"),
+        "dynamic": pooled_metrics("pred_dynamic"),
+        "stable": pooled_metrics("pred_stable") if stable_features else {},
+    }
+
+    metric_names = ["rmse", "mae", "p90_abs_error", "worst_decile_mae"]
+    comparisons = {}
+    for candidate_name in ["dynamic", "stable"]:
+        if candidate_name == "stable" and not stable_features:
+            continue
+        cand = pooled_metrics_all[candidate_name]
+        comparisons[candidate_name] = {
+            metric: _finite_float(
+                float(pooled_metrics_all["incumbent"][metric]) - float(cand[metric])
+            )
+            for metric in metric_names
+        }
+
+    # Municipality-cluster bootstrap. Sample municipalities with replacement
+    # and carry all their holdout years together. The same sampled clusters are
+    # used for incumbent and challenger, yielding paired uncertainty intervals.
+    rng = np.random.default_rng(42)
+    municipalities = pooled["kommun_kod"].astype(str).unique()
+    group_rows = {
+        code: pooled.loc[pooled["kommun_kod"].astype(str) == code].copy()
+        for code in municipalities
+    }
+    n_boot = 1000
+    boot = {
+        candidate: {metric: [] for metric in metric_names}
+        for candidate in ["dynamic", "stable"]
+        if candidate != "stable" or stable_features
+    }
+
+    for _ in range(n_boot):
+        sampled = rng.choice(municipalities, size=len(municipalities), replace=True)
+        sample = pd.concat(
+            [group_rows[str(code)] for code in sampled],
+            ignore_index=True,
+        )
+        inc_m = _geographic_error_metrics(
+            sample[target], sample["pred_incumbent"]
+        )
+        for candidate_name, pred_col in [
+            ("dynamic", "pred_dynamic"),
+            ("stable", "pred_stable"),
+        ]:
+            if candidate_name not in boot:
+                continue
+            cand_m = _geographic_error_metrics(sample[target], sample[pred_col])
+            for metric in metric_names:
+                if inc_m.get(metric) is None or cand_m.get(metric) is None:
+                    continue
+                boot[candidate_name][metric].append(
+                    float(inc_m[metric]) - float(cand_m[metric])
+                )
+
+    bootstrap_summary = {}
+    for candidate_name, metric_map in boot.items():
+        bootstrap_summary[candidate_name] = {}
+        for metric, values in metric_map.items():
+            arr = np.asarray(values, dtype=float)
+            bootstrap_summary[candidate_name][metric] = {
+                "n_bootstrap": int(len(arr)),
+                "mean_delta_incumbent_minus_candidate": _finite_float(np.mean(arr)),
+                "ci95_low": _finite_float(np.quantile(arr, 0.025)),
+                "ci95_high": _finite_float(np.quantile(arr, 0.975)),
+                "probability_improvement": _finite_float(np.mean(arr > 0)),
+            }
+
+    dynamic_boot = bootstrap_summary.get("dynamic", {})
+    promotion_checks = {
+        metric: bool(
+            dynamic_boot.get(metric, {}).get("ci95_low") is not None
+            and dynamic_boot[metric]["ci95_low"] > 0
+        )
+        for metric in metric_names
+    }
+
+    return {
+        "status": "tested",
+        "period": [start_year, end_year],
+        "common_sample": {
+            "n_obs": int(len(d)),
+            "n_municipalities": int(d["kommun_kod"].nunique()),
+            "n_years": int(d["year"].nunique()),
+        },
+        "models": {
+            "incumbent": incumbent,
+            "dynamic_fair_reselection": (
+                "feature selection repeated separately inside each training fold"
+            ),
+            "stable_posthoc_features": stable_features,
+        },
+        "folds": fold_rows,
+        "pooled_metrics": pooled_metrics_all,
+        "point_improvement_vs_incumbent": comparisons,
+        "municipality_cluster_bootstrap": bootstrap_summary,
+        "dynamic_promotion_checks_ci95_above_zero": promotion_checks,
+        "stable_candidate_warning": (
+            "The stable feature set was derived from #132 selection frequencies "
+            "over the same 2022-2024 folds. Its holdout scores are descriptive "
+            "and must not be treated as independent validation."
+        ),
+        "promotion_rule": (
+            "The dynamic fair-reselection challenger is eligible for production "
+            "promotion only if paired municipality-cluster bootstrap intervals "
+            "support lower RMSE and MAE, while P90 and worst-decile MAE show no "
+            "credible systematic deterioration. The stable post-hoc model is "
+            "used only to study parsimony."
+        ),
+    }
+
+
 def _paired_feature_comparison(
     panel: pd.DataFrame,
     target: str,
@@ -10482,6 +10711,14 @@ def main():
         result["target"],
         result["features"],
         result["fair_reselection_test"],
+    )
+
+    result["forecast_production_candidate_test"] = _forecast_production_candidate_test(
+        panel,
+        result["target"],
+        result["features"],
+        result["fair_reselection_test"],
+        result["forecast_challenger_robustness_test"],
     )
 
     result["activity_candidate_tests"] = {
