@@ -26,6 +26,7 @@
   <button class="tab" data-page="equations">Regressionsekvationer</button>
   <button class="tab" data-page="validation">Validering</button>
   <button class="tab" data-page="municipality">Kommunprofil</button>
+  <button class="tab" data-page="scope">Avgränsning & systematik</button>
   <button class="tab" data-page="method">Metod & data</button>
 </nav>
 <main>
@@ -654,6 +655,62 @@
     <h2>Kommunprofil</h2>
     <div class="controls"><label>Kommun <select id="municipalitySelect"></select></label></div>
     <div class="panel"><div id="municipalityChart" class="chart tall"></div></div>
+  </section>
+
+  <section id="scope" class="page">
+    <h2>Avgränsning & systematik</h2>
+    <p class="lead">Den här sidan beskriver vad regressionsanalysen kan och inte kan säga, vilka risker som finns i arbetssättet och hur modellen kan utvecklas. Syftet är att göra kritiken till en del av metoden – inte ett tillägg i efterhand.</p>
+
+    <div class="panel">
+      <h3>Vad analysen faktiskt svarar på</h3>
+      <p>Modellerna undersöker <strong>statistiska samband mellan kommunegenskaper och inflyttning</strong> samt hur väl samma information kan användas för prognos. De identifierar inte automatiskt kausala effekter. En positiv koefficient betyder därför inte att en kommun kan höja inflyttningen genom att direkt förändra just den variabeln.</p>
+      <p>Analysen är dessutom huvudsakligen ekologisk: observationerna är kommuner och år. Slutsatser om individer – till exempel varför en viss person flyttar – kan inte dras direkt från kommunnivådata.</p>
+    </div>
+
+    <div class="panel">
+      <h3>Viktigaste invändningarna</h3>
+      <table class="metric-table">
+        <thead><tr><th>Risk</th><th>Varför det spelar roll</th><th>Hur vi hanterar den</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Samband är inte orsak</strong></td><td>Omvänd kausalitet och gemensamma bakomliggande faktorer kan ge starka samband.</td><td>Resultaten benämns samband/drivkrafter i modellmening; kausala påståenden kräver annan design.</td></tr>
+          <tr><td><strong>Modellsökning och många tester</strong></td><td>Ju fler variabler som prövas, desto större risk att något ser viktigt ut av slump.</td><td>Kandidater testas stegvis, dokumenteras i testloggen och måste överleva validering och robusthetskontroller innan de kan bli produktionsvariabler.</td></tr>
+          <tr><td><strong>Multikollinearitet</strong></td><td>Kommunstorlek, utbildning, studentmiljö, bostäder och arbetsmarknad kan beskriva samma struktur.</td><td>Tematisk selektion, VIF, marginaltester och jämförelse av närliggande proxyvariabler används för att undvika dubbelräkning.</td></tr>
+          <tr><td><strong>Geografiskt beroende</strong></td><td>Närliggande kommuner delar arbetsmarknad, bostadsmarknad och regional utveckling, vilket bryter antagandet om helt oberoende observationer.</td><td>En separat geografiskt robust modell och felanalys används; spatiala modeller är en tydlig utvecklingspunkt.</td></tr>
+          <tr><td><strong>MAUP och geografisk skala</strong></td><td>Resultat kan förändras när fenomen mäts på kommun-, DeSO-, FA-region- eller annan geografisk nivå.</td><td>Kommunnivån är huvudnivå för jämförbarhet, medan regionala och inomkommunala mått används som komplement när data tillåter.</td></tr>
+          <tr><td><strong>Tidsberoende och regimskiften</strong></td><td>Ett samband från tidigare år behöver inte gälla efter exempelvis konjunktur-, utbildnings- eller industriskiften.</td><td>Rolling-origin och separata testår prioriteras framför enbart anpassning på hela historiken.</td></tr>
+          <tr><td><strong>Mätfel och proxyvariabler</strong></td><td>Flera begrepp – exempelvis attraktivitet, “landets lugn” eller regional access – mäts indirekt.</td><td>Proxyvariabler märks som sådana och alternativa operationaliseringar jämförs innan tolkning.</td></tr>
+          <tr><td><strong>Databrott och täckning</strong></td><td>Källbyten, nya definitioner och luckor kan skapa skenbara samband eller korta modellperioden.</td><td>Kandidater med svag täckning hålls utanför produktionsmodellen och käll-/definitionsbrott dokumenteras.</td></tr>
+          <tr><td><strong>Demografiskt läckage</strong></td><td>Historisk migration kan ge mycket hög träffsäkerhet men samtidigt göra modellen mindre informativ om strukturella drivkrafter.</td><td>Prognosmodellen och den demografiskt blinda strukturmodellen hålls isär.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <h3>Systematik för att ta in en ny variabel</h3>
+      <p>En kandidat går inte direkt in i huvudmodellen. Den behöver passera en kedja av kontroller:</p>
+      <ol>
+        <li><strong>Begrepp:</strong> definiera vilken mekanism variabeln ska representera och om den är drivare, kontroll eller proxy.</li>
+        <li><strong>Datakvalitet:</strong> kontrollera definition, tidsperiod, kommuncoverage, källbyten och rimliga värden.</li>
+        <li><strong>Enskilt kandidatprov:</strong> testa tecken, storlek, täckning och marginalbidrag på samma observationsurval som basmodellen.</li>
+        <li><strong>Konfounderkontroll:</strong> kontrollera om signalen kvarstår när närliggande strukturer – exempelvis utbildning, kommunstorlek, studentmiljö och näringsliv – hålls konstanta.</li>
+        <li><strong>Robusthet:</strong> jämför alternativa mått inom samma tema, tidsfönster och relevanta åldersgrupper.</li>
+        <li><strong>Validering:</strong> variabeln ska helst förbättra eller åtminstone inte försämra resultat utanför skattningsperioden.</li>
+        <li><strong>Beslut:</strong> klassificera som vald, förklarande, kandidat/proxy eller ej vald och dokumentera varför.</li>
+      </ol>
+      <p class="note">Det här innebär att en variabel kan vara substantivt intressant och statistiskt signifikant utan att för den skull tas in i produktionsmodellen.</p>
+    </div>
+
+    <div class="panel">
+      <h3>Utvecklingspotential</h3>
+      <p><strong>Hög prioritet:</strong> spatial korsvalidering eller leave-region-out, explicita spatiala fel-/lagmodeller, stabilitet för koefficienter över tid och en formell korrigering för multipla hypotesprövningar i den växande testloggen.</p>
+      <p><strong>Nästa nivå:</strong> pröva icke-linjära samband och interaktioner utan att tappa tolkbarhet, till exempel bostadsutbud × arbetsmarknad, studentmiljö × ålder och regional access × kommunstorlek. Även modeller för separata flyttströmmar – inrikes, utrikes och olika livsfaser – kan minska risken att olika mekanismer blandas ihop i ett enda totalmått.</p>
+      <p><strong>Längre sikt:</strong> kvasi-experimentella upplägg där det finns tydliga policy- eller investeringschocker, panelmodeller med kommunfasta effekter och hierarkiska modeller som samtidigt beskriver kommun, FA-region och tid.</p>
+    </div>
+
+    <div class="panel">
+      <h3>Tolkningsregel</h3>
+      <p>Starkast stöd får ett resultat när <strong>mekanismen är rimlig, datan är stabil, signalen överlever relevanta kontroller, resultatet återkommer i flera tidsfönster och det fungerar utanför skattningsurvalet</strong>. Om något av detta saknas ska slutsatsen tonas ned, även om ett enskilt R² eller p-värde ser imponerande ut.</p>
+    </div>
   </section>
 
   <section id="method" class="page">
