@@ -5941,6 +5941,202 @@ def _unemployment_suppressor_diagnostics(
     }
 
 
+def _unemployment_gap_decomposition_tests(
+    panel: pd.DataFrame,
+    target: str,
+    base_features: list[str],
+    start_year: int,
+    end_year: int,
+) -> dict:
+    """
+    Decompose the suppressor pattern between Kolada N03937 and SCB BAS
+    unemployment. The explicit gap is defined as N03937 minus BAS unemployment
+    on the original percentage-point scales.
+
+    The diagnostic compares candidate-only, BAS-only, both measures together,
+    and BAS plus the explicit gap on exactly the same complete-case sample.
+    It also tests whether the gap is largely explained by employment rate,
+    student environment, age structure and municipality size.
+    """
+    candidate = "lag1_kolada_arbetslosa_18_65_pct"
+    bas = "lag1_arbetsloshet"
+    employment = "lag1_sysselsattningsgrad"
+    explanatory_controls = [
+        "lag1_sysselsattningsgrad",
+        "lag1_andel_studerande",
+        "lag1_andel_20_34",
+        "lag1_log_folkmangd",
+        "lag1_andel_eftergymnasial",
+    ]
+    structural_controls = [
+        "lag1_log_folkmangd",
+        "lag1_andel_eftergymnasial",
+        "lag1_andel_studerande",
+        "lag1_andel_industri_bc",
+        "lag1_andel_hotell_restaurang_i",
+        "lag1_andel_kultur_service_rstu",
+        "lag1_log_externa_fa_jobb_per_1000",
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+        "lag1_regional_centre_distance_km",
+    ]
+
+    core = [f for f in base_features if f not in {candidate, bas}]
+    controls = list(dict.fromkeys(core + structural_controls))
+    needed = list(dict.fromkeys(
+        ["kommun_kod", "year", target, candidate, bas, employment]
+        + controls + explanatory_controls
+    ))
+    d = (
+        panel.loc[panel["year"].between(start_year, end_year), needed]
+        .dropna()
+        .reset_index(drop=True)
+    )
+    if len(d) < 150 or d["kommun_kod"].nunique() < 80:
+        return {
+            "status": "insufficient_coverage",
+            "n_obs": int(len(d)),
+            "n_municipalities": int(d["kommun_kod"].nunique()) if len(d) else 0,
+        }
+
+    gap = "unemployment_gap_n03937_minus_bas_pp"
+    d[gap] = d[candidate].astype(float) - d[bas].astype(float)
+
+    def fit_target(extra: list[str]) -> dict:
+        features = list(dict.fromkeys(controls + extra))
+        y = d[target].astype(float).reset_index(drop=True)
+        X = _design_with_year_effects(d, features)
+        fit = sm.OLS(y, X).fit()
+        robust = sm.OLS(y, X).fit(
+            cov_type="cluster",
+            cov_kwds={"groups": d["kommun_kod"].reset_index(drop=True)},
+        )
+        out = {
+            "features_added": extra,
+            "adjusted_r2": _finite_float(fit.rsquared_adj),
+            "aic": _finite_float(fit.aic),
+            "rmse": _finite_float(np.sqrt(np.mean(np.square(fit.resid)))),
+        }
+        names = list(robust.model.exog_names)
+        for feature in [candidate, bas, gap]:
+            if feature in names:
+                i = names.index(feature)
+                out[feature] = {
+                    "coefficient": _finite_float(np.asarray(robust.params)[i]),
+                    "p_value": _finite_float(np.asarray(robust.pvalues)[i]),
+                }
+        return out
+
+    variants = {
+        "controls_only": fit_target([]),
+        "candidate_only": fit_target([candidate]),
+        "bas_only": fit_target([bas]),
+        "candidate_plus_bas": fit_target([candidate, bas]),
+        "bas_plus_gap": fit_target([bas, gap]),
+        "gap_only": fit_target([gap]),
+    }
+
+    # Explain the gap itself. This does not claim causality; it indicates which
+    # structural dimensions account for cross-municipal variation in the
+    # difference between the two unemployment definitions.
+    y_gap = d[gap].astype(float).reset_index(drop=True)
+    X_gap = _design_with_year_effects(d, explanatory_controls)
+    gap_fit = sm.OLS(y_gap, X_gap).fit(
+        cov_type="cluster",
+        cov_kwds={"groups": d["kommun_kod"].reset_index(drop=True)},
+    )
+    gap_names = list(gap_fit.model.exog_names)
+    gap_coefficients = []
+    for feature in explanatory_controls:
+        if feature in gap_names:
+            i = gap_names.index(feature)
+            gap_coefficients.append({
+                "feature": feature,
+                "coefficient": _finite_float(np.asarray(gap_fit.params)[i]),
+                "p_value": _finite_float(np.asarray(gap_fit.pvalues)[i]),
+            })
+
+    # Partial tests: does the explicit gap add after controls when employment
+    # rate is forced in, and vice versa?
+    employment_controls = list(dict.fromkeys(controls + [employment]))
+    y = d[target].astype(float).reset_index(drop=True)
+    fit_emp = sm.OLS(y, _design_with_year_effects(d, employment_controls)).fit()
+    fit_emp_gap = sm.OLS(
+        y, _design_with_year_effects(d, employment_controls + [gap])
+    ).fit()
+    robust_emp_gap = sm.OLS(
+        y, _design_with_year_effects(d, employment_controls + [gap])
+    ).fit(
+        cov_type="cluster",
+        cov_kwds={"groups": d["kommun_kod"].reset_index(drop=True)},
+    )
+    names = list(robust_emp_gap.model.exog_names)
+    ig = names.index(gap)
+    gap_after_employment = {
+        "coefficient": _finite_float(np.asarray(robust_emp_gap.params)[ig]),
+        "p_value": _finite_float(np.asarray(robust_emp_gap.pvalues)[ig]),
+        "delta_adjusted_r2": _finite_float(
+            fit_emp_gap.rsquared_adj - fit_emp.rsquared_adj
+        ),
+        "delta_aic": _finite_float(fit_emp.aic - fit_emp_gap.aic),
+    }
+
+    annual_gap = []
+    for year in sorted(int(y) for y in d["year"].unique()):
+        da = d.loc[d["year"] == year].copy().reset_index(drop=True)
+        if len(da) < 80:
+            continue
+        y_a = da[target].astype(float).reset_index(drop=True)
+        f0 = sm.OLS(y_a, _design_with_year_effects(da, controls + [bas])).fit()
+        f1 = sm.OLS(y_a, _design_with_year_effects(da, controls + [bas, gap])).fit()
+        r1 = sm.OLS(
+            y_a, _design_with_year_effects(da, controls + [bas, gap])
+        ).fit(cov_type="HC1")
+        names = list(r1.model.exog_names)
+        ig = names.index(gap)
+        annual_gap.append({
+            "year": year,
+            "gap_coefficient": _finite_float(np.asarray(r1.params)[ig]),
+            "gap_p_value": _finite_float(np.asarray(r1.pvalues)[ig]),
+            "delta_adjusted_r2": _finite_float(
+                f1.rsquared_adj - f0.rsquared_adj
+            ),
+            "delta_aic": _finite_float(f0.aic - f1.aic),
+        })
+
+    return {
+        "status": "tested",
+        "gap_definition": "N03937 minus BAS unemployment, percentage points",
+        "n_obs": int(len(d)),
+        "n_municipalities": int(d["kommun_kod"].nunique()),
+        "years": sorted(int(y) for y in d["year"].unique()),
+        "gap_summary": {
+            "mean": _finite_float(d[gap].mean()),
+            "sd": _finite_float(d[gap].std(ddof=1)),
+            "min": _finite_float(d[gap].min()),
+            "max": _finite_float(d[gap].max()),
+            "correlation_with_employment_rate": _finite_float(
+                d[[gap, employment]].corr().iloc[0, 1]
+            ),
+        },
+        "variants": variants,
+        "gap_explanation": {
+            "features": explanatory_controls,
+            "r2": _finite_float(gap_fit.rsquared),
+            "adjusted_r2": _finite_float(gap_fit.rsquared_adj),
+            "coefficients": gap_coefficients,
+        },
+        "gap_after_forcing_employment_rate": gap_after_employment,
+        "annual_gap_tests": annual_gap,
+        "interpretation_rule": (
+            "If BAS plus the explicit gap reproduces candidate plus BAS, the "
+            "model is effectively using the definitional difference. If the "
+            "gap remains important after employment rate and related structure "
+            "are controlled, treat it as an unresolved structural composite "
+            "rather than a direct unemployment effect."
+        ),
+    }
+
+
 def _paired_feature_comparison(
     panel: pd.DataFrame,
     target: str,
@@ -9398,6 +9594,14 @@ def main():
         END_YEAR,
     )
 
+    result["unemployment_gap_decomposition_tests"] = _unemployment_gap_decomposition_tests(
+        panel,
+        result["target"],
+        overall_base,
+        END_YEAR - 4,
+        END_YEAR,
+    )
+
     result["activity_candidate_tests"] = {
         "overall": _sparse_candidate_tests(
             panel,
@@ -10040,6 +10244,14 @@ def main():
     )
 
     blind_result["unemployment_suppressor_diagnostics"] = _unemployment_suppressor_diagnostics(
+        panel,
+        blind_result["target"],
+        blind_base,
+        END_YEAR - 4,
+        END_YEAR,
+    )
+
+    blind_result["unemployment_gap_decomposition_tests"] = _unemployment_gap_decomposition_tests(
         panel,
         blind_result["target"],
         blind_base,
