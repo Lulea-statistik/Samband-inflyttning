@@ -363,3 +363,53 @@ main{padding:24px 28px;max-width:1500px;margin:auto}.page{display:none}.page.act
   .method-glossary-card .terms dd{margin-bottom:6px}
   .variable-dictionary-tools{align-items:stretch;flex-direction:column}
 }
+
+
+/* Public geographic robustness: keep the existing KPI box footprint while
+   showing both the easiest and hardest municipality side by side. */
+#publicGeoRobustSummary{
+  grid-template-columns:1fr;
+}
+#publicGeoRobustSummary .geo-easy-hard-card{
+  min-height:145px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 1px minmax(0,1fr);
+  gap:14px;
+  align-items:center;
+  padding:22px 20px;
+}
+#publicGeoRobustSummary .geo-easy-hard-item{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+#publicGeoRobustSummary .geo-easy-hard-item span{
+  font-size:12px;
+  margin:0 0 8px;
+}
+#publicGeoRobustSummary .geo-easy-hard-item strong{
+  font-size:clamp(25px,2.5vw,36px);
+  line-height:1;
+  margin:0 0 7px;
+  letter-spacing:-.02em;
+  overflow-wrap:anywhere;
+}
+#publicGeoRobustSummary .geo-easy-hard-item small{
+  font-size:12px;
+  line-height:1.25;
+}
+#publicGeoRobustSummary .geo-easy-hard-divider{
+  width:1px;
+  height:78px;
+  background:#e2e8f0;
+}
+@media(max-width:520px){
+  #publicGeoRobustSummary .geo-easy-hard-card{
+    gap:10px;
+    padding:18px 14px;
+  }
+  #publicGeoRobustSummary .geo-easy-hard-item strong{
+    font-size:clamp(21px,7vw,29px);
+  }
+}
