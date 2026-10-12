@@ -6775,6 +6775,218 @@ def _fair_reselection_test(
     }
 
 
+def _forecast_challenger_robustness_test(
+    panel: pd.DataFrame,
+    target: str,
+    incumbent_features: list[str],
+    fair_result: dict,
+) -> dict:
+    """
+    Robustness follow-up for the order-independent forecast challenger.
+
+    Repeats selection strictly inside each rolling-origin training fold and
+    compares incumbent vs challenger on identical municipalities using both
+    average and geographic-tail error metrics. It also reports feature
+    selection frequency and a municipality-blocked CV diagnostic for the
+    stable-core feature set.
+    """
+    if fair_result.get("status") != "tested":
+        return {"status": "fair_reselection_not_available"}
+
+    eligible = list(fair_result.get("eligible_pool", []))
+    period = fair_result.get("period", [END_YEAR - 3, END_YEAR])
+    start_year, end_year = int(period[0]), int(period[1])
+    incumbent = [f for f in incumbent_features if f in eligible]
+
+    cols = ["kommun_kod", "kommun", "year", target] + eligible
+    d = (
+        panel.loc[panel["year"].between(start_year, end_year), cols]
+        .dropna()
+        .reset_index(drop=True)
+    )
+    if len(d) < 300 or d["kommun_kod"].nunique() < 200:
+        return {
+            "status": "insufficient_common_sample",
+            "n_obs": int(len(d)),
+            "n_municipalities": int(d["kommun_kod"].nunique()) if len(d) else 0,
+        }
+
+    years = sorted(int(v) for v in d["year"].unique())
+    fold_rows = []
+    challenger_counts = {f: 0 for f in eligible}
+    incumbent_frames = []
+    challenger_frames = []
+
+    for holdout_year in years[1:]:
+        train = d.loc[d["year"] < holdout_year].copy().reset_index(drop=True)
+        test = d.loc[d["year"] == holdout_year].copy().reset_index(drop=True)
+        if len(train) < 200 or len(test) < 200:
+            continue
+
+        selection = _select_features(train, eligible, target)
+        challenger = selection["selected"]
+        for feature in challenger:
+            challenger_counts[feature] = challenger_counts.get(feature, 0) + 1
+
+        def predict(features: list[str]) -> tuple[np.ndarray, dict, dict]:
+            model = make_pipeline(
+                StandardScaler(),
+                RidgeCV(alphas=np.logspace(-3, 3, 25)),
+            ).fit(train[features], train[target])
+            pred = model.predict(test[features])
+            return (
+                pred,
+                _metrics(test[target], pred),
+                _geographic_error_metrics(test[target], pred),
+            )
+
+        pred_inc, inc_basic, inc_geo = predict(incumbent)
+        pred_ch, ch_basic, ch_geo = predict(challenger)
+
+        inc_frame = test[["kommun_kod", "kommun", "year", target]].copy()
+        inc_frame["prediction"] = pred_inc
+        incumbent_frames.append(inc_frame)
+
+        ch_frame = test[["kommun_kod", "kommun", "year", target]].copy()
+        ch_frame["prediction"] = pred_ch
+        challenger_frames.append(ch_frame)
+
+        fold_rows.append({
+            "holdout_year": holdout_year,
+            "n_train": int(len(train)),
+            "n_test": int(len(test)),
+            "challenger_features": challenger,
+            "incumbent": {
+                "basic": inc_basic,
+                "geographic": inc_geo,
+            },
+            "challenger": {
+                "basic": ch_basic,
+                "geographic": ch_geo,
+            },
+            "delta_incumbent_minus_challenger": {
+                key: _finite_float(
+                    float(inc_geo[key]) - float(ch_geo[key])
+                )
+                for key in [
+                    "rmse", "mae", "median_abs_error", "p90_abs_error",
+                    "p95_abs_error", "p90_p10_abs_error_gap",
+                    "worst_decile_mae", "decile_mae_gap", "max_abs_error",
+                ]
+                if inc_geo.get(key) is not None and ch_geo.get(key) is not None
+            },
+        })
+
+    tested_folds = len(fold_rows)
+    frequency_rows = []
+    for feature in eligible:
+        count = int(challenger_counts.get(feature, 0))
+        frequency_rows.append({
+            "feature": feature,
+            "theme": FEATURE_THEMES.get(feature, feature),
+            "selected_folds": count,
+            "tested_folds": tested_folds,
+            "selection_rate": _finite_float(count / tested_folds) if tested_folds else None,
+            "incumbent": feature in incumbent,
+            "late_challenger": feature in set(fair_result.get("late_challengers", [])),
+        })
+    frequency_rows.sort(
+        key=lambda x: (
+            -(x["selected_folds"] or 0),
+            0 if x["incumbent"] else 1,
+            x["feature"],
+        )
+    )
+
+    stable_core = [
+        row["feature"] for row in frequency_rows
+        if tested_folds and row["selected_folds"] >= max(2, math.ceil(0.67 * tested_folds))
+    ]
+
+    pooled = {}
+    if incumbent_frames and challenger_frames:
+        inc_all = pd.concat(incumbent_frames, ignore_index=True)
+        ch_all = pd.concat(challenger_frames, ignore_index=True)
+        inc_metrics = _geographic_error_metrics(
+            inc_all[target], inc_all["prediction"]
+        )
+        ch_metrics = _geographic_error_metrics(
+            ch_all[target], ch_all["prediction"]
+        )
+        pooled = {
+            "n_predictions": int(len(inc_all)),
+            "incumbent": inc_metrics,
+            "challenger": ch_metrics,
+            "delta_incumbent_minus_challenger": {
+                key: _finite_float(float(inc_metrics[key]) - float(ch_metrics[key]))
+                for key in [
+                    "rmse", "mae", "median_abs_error", "p90_abs_error",
+                    "p95_abs_error", "p90_p10_abs_error_gap",
+                    "worst_decile_mae", "decile_mae_gap", "max_abs_error",
+                ]
+                if inc_metrics.get(key) is not None and ch_metrics.get(key) is not None
+            },
+        }
+
+    # Independent geography-oriented diagnostic: hold municipalities out as
+    # groups across the common period. This does not replace temporal holdout,
+    # but tests whether the stable core transfers to unseen municipalities.
+    geographic_transfer = {}
+    if stable_core:
+        inc_cv = _geographic_group_cv(
+            d, incumbent, target, alpha=1.0, n_splits=5
+        )
+        core_cv = _geographic_group_cv(
+            d, stable_core, target, alpha=1.0, n_splits=5
+        )
+        geographic_transfer = {
+            "incumbent": inc_cv,
+            "stable_core": core_cv,
+            "stable_core_features": stable_core,
+        }
+
+    improvements = {}
+    metric_keys = [
+        "rmse", "mae", "median_abs_error", "p90_abs_error",
+        "p95_abs_error", "p90_p10_abs_error_gap",
+        "worst_decile_mae", "decile_mae_gap", "max_abs_error",
+    ]
+    for key in metric_keys:
+        deltas = [
+            row["delta_incumbent_minus_challenger"].get(key)
+            for row in fold_rows
+            if row["delta_incumbent_minus_challenger"].get(key) is not None
+        ]
+        improvements[key] = {
+            "years_better": int(sum(v > 0 for v in deltas)),
+            "years_worse": int(sum(v < 0 for v in deltas)),
+            "mean_delta": _finite_float(np.mean(deltas)) if deltas else None,
+        }
+
+    return {
+        "status": "tested",
+        "period": [start_year, end_year],
+        "common_sample": {
+            "n_obs": int(len(d)),
+            "n_municipalities": int(d["kommun_kod"].nunique()),
+            "n_years": int(d["year"].nunique()),
+        },
+        "folds": fold_rows,
+        "pooled_holdout": pooled,
+        "metric_stability": improvements,
+        "feature_selection_frequency": frequency_rows,
+        "stable_core_features": stable_core,
+        "geographic_transfer_cv": geographic_transfer,
+        "promotion_rule": (
+            "Promote the fair challenger only if RMSE and MAE improve in the "
+            "rolling holdouts without a systematic deterioration in P90, "
+            "worst-decile MAE or geographic error spread. Stable-core results "
+            "are diagnostic and municipality-group CV supplements, but does "
+            "not replace, temporal holdout evidence."
+        ),
+    }
+
+
 def _paired_feature_comparison(
     panel: pd.DataFrame,
     target: str,
@@ -10263,6 +10475,13 @@ def main():
         demographic_blind=False,
         start_year=END_YEAR - 3,
         end_year=END_YEAR,
+    )
+
+    result["forecast_challenger_robustness_test"] = _forecast_challenger_robustness_test(
+        panel,
+        result["target"],
+        result["features"],
+        result["fair_reselection_test"],
     )
 
     result["activity_candidate_tests"] = {
