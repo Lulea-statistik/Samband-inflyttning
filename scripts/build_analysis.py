@@ -5107,6 +5107,22 @@ FEATURE_THEMES = {
     "lag1_kolada_arbetslosa_18_65_pct": "Arbetsmarknadssvaghet",
     "lag1_kolada_langtidsarbetslosa_pct": "Strukturell arbetsmarknadssvaghet",
     "lag1_kolada_arbetslosa_18_24_pct": "Ungdomsarbetslöshet",
+    "lag1_kolada_arbetslosa_18_65_pct": "Arbetsmarknad",
+    "lag1_kolada_langtidsarbetslosa_pct": "Arbetsmarknad",
+    "lag1_kolada_arbetslosa_18_24_pct": "Arbetsmarknad",
+    "lag1_arbetskraftsdeltagande": "Arbetsmarknadsdeltagande",
+    "lag1_utanf_arbetkraften_andel_pct": "Arbetsmarknadsdeltagande",
+    "lag1_bas_studerande_andel_pct": "BAS-status",
+    "lag1_bas_pensionarer_andel_pct": "BAS-status",
+    "lag1_bas_sjuka_andel_pct": "BAS-status",
+    "lag1_bas_ovriga_andel_pct": "BAS-status",
+    "lag1_andel_bostader_111_plus": "Bostadsstorlek",
+    "lag1_andel_bostader_141_plus": "Bostadsstorlek",
+    "lag1_andel_smahus_111_plus": "Bostadsstorlek",
+    "lag1_gymnasium_hogskoleforberedande_pct": "Gymnasieinriktning",
+    "lag1_gymnasium_yrkesprogram_pct": "Gymnasieinriktning",
+    "lag1_regional_centre_distance_km": "Regional tillgänglighet",
+
 }
 
 
@@ -6556,6 +6572,205 @@ def _bas_status_composition_tests(
             "unemployment are forced into the baseline. Pairwise results are "
             "diagnostic because the BAS categories are compositional shares "
             "of a common total."
+        ),
+    }
+
+
+def _fair_reselection_test(
+    panel: pd.DataFrame,
+    target: str,
+    incumbent_features: list[str],
+    *,
+    demographic_blind: bool,
+    start_year: int,
+    end_year: int,
+) -> dict:
+    """
+    Order-independent re-selection tournament.
+
+    Incumbent production features and later challengers compete from scratch
+    under the same Elastic Net -> backward AIC -> thematic -> temporal-CV
+    pipeline. Coverage is screened first and all comparisons use one common
+    complete-case sample, preventing apparent gains caused by sample changes.
+    """
+    late_challengers = [
+        "lag1_kolada_arbetslosa_18_65_pct",
+        "lag1_kolada_langtidsarbetslosa_pct",
+        "lag1_kolada_arbetslosa_18_24_pct",
+        "lag1_arbetskraftsdeltagande",
+        "lag1_utanf_arbetkraften_andel_pct",
+        "lag1_bas_studerande_andel_pct",
+        "lag1_bas_pensionarer_andel_pct",
+        "lag1_bas_sjuka_andel_pct",
+        "lag1_bas_ovriga_andel_pct",
+        "lag1_andel_bostader_111_plus",
+        "lag1_andel_bostader_141_plus",
+        "lag1_andel_smahus_111_plus",
+        "lag1_gymnasium_hogskoleforberedande_pct",
+        "lag1_gymnasium_yrkesprogram_pct",
+        "lag1_regional_centre_distance_km",
+    ]
+    direct_demographic = {
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_befolkningstillvaxt_pct",
+        "lag1_andel_20_34",
+        "lag1_inflyttare_medelalder",
+    }
+
+    incumbent = list(dict.fromkeys(incumbent_features))
+    pool = list(dict.fromkeys(incumbent + late_challengers))
+    if demographic_blind:
+        pool = [f for f in pool if f not in direct_demographic]
+
+    period = panel.loc[panel["year"].between(start_year, end_year)].copy()
+    coverage = {}
+    eligible = []
+    min_coverage = 0.95
+    for feature in pool:
+        if feature not in period.columns:
+            coverage[feature] = {"available": False, "coverage": 0.0}
+            continue
+        cov = float(period[feature].notna().mean())
+        coverage[feature] = {"available": True, "coverage": cov}
+        if cov >= min_coverage:
+            eligible.append(feature)
+
+    incumbent_eligible = [f for f in incumbent if f in eligible]
+    challenger_eligible = [f for f in late_challengers if f in eligible]
+    cols = ["kommun_kod", "year", target] + eligible
+    d = period[cols].dropna().reset_index(drop=True)
+
+    if len(d) < 300 or d["kommun_kod"].nunique() < 200 or d["year"].nunique() < 3:
+        return {
+            "status": "insufficient_common_sample",
+            "coverage_threshold": min_coverage,
+            "coverage": coverage,
+            "eligible_features": eligible,
+            "n_obs": int(len(d)),
+            "n_municipalities": int(d["kommun_kod"].nunique()) if len(d) else 0,
+            "n_years": int(d["year"].nunique()) if len(d) else 0,
+        }
+
+    selection = _select_features(d, eligible, target)
+    selected = selection["selected"]
+
+    def in_sample_metrics(features: list[str]) -> dict:
+        fs = [f for f in features if f in d.columns]
+        y = d[target].astype(float).reset_index(drop=True)
+        X = _design_with_year_effects(d, fs)
+        fit = sm.OLS(y, X).fit()
+        return {
+            "n_features": len(fs),
+            "features": fs,
+            "adjusted_r2": _finite_float(fit.rsquared_adj),
+            "aic": _finite_float(fit.aic),
+            "rmse": _finite_float(np.sqrt(np.mean(np.square(fit.resid)))),
+        }
+
+    incumbent_metrics = in_sample_metrics(incumbent_eligible)
+    challenger_metrics = in_sample_metrics(selected)
+
+    # Rolling holdouts on the same common-sample municipalities. Re-selection
+    # is repeated inside each training fold; the holdout year is never used for
+    # selecting challenger features.
+    holdout_rows = []
+    years = sorted(int(v) for v in d["year"].unique())
+    for holdout_year in years[1:]:
+        train = d.loc[d["year"] < holdout_year].copy().reset_index(drop=True)
+        test = d.loc[d["year"] == holdout_year].copy().reset_index(drop=True)
+        if len(train) < 200 or len(test) < 200:
+            continue
+
+        fold_selection = _select_features(train, eligible, target)
+        fold_features = fold_selection["selected"]
+        inc_features = [f for f in incumbent_eligible if f in train.columns]
+
+        ytr = train[target].astype(float)
+        yte = test[target].astype(float)
+
+        def fit_predict(features: list[str]) -> dict:
+            model = make_pipeline(
+                StandardScaler(),
+                RidgeCV(alphas=np.logspace(-3, 3, 25)),
+            ).fit(train[features], ytr)
+            pred = model.predict(test[features])
+            return _metrics(yte, pred)
+
+        inc_m = fit_predict(inc_features)
+        fair_m = fit_predict(fold_features)
+        holdout_rows.append({
+            "holdout_year": holdout_year,
+            "n_train": int(len(train)),
+            "n_test": int(len(test)),
+            "incumbent_features": inc_features,
+            "fair_selected_features": fold_features,
+            "incumbent": inc_m,
+            "fair_reselection": fair_m,
+            "delta_rmse_incumbent_minus_fair": _finite_float(
+                float(inc_m["rmse"]) - float(fair_m["rmse"])
+            ),
+            "delta_mae_incumbent_minus_fair": _finite_float(
+                float(inc_m["mae"]) - float(fair_m["mae"])
+            ),
+        })
+
+    # Incumbent-removal challenge: for each selected incumbent, remove it and
+    # allow all challengers to compete again. This reveals whether a later
+    # feature can replace an early incumbent when the incumbent no longer
+    # occupies its explanatory slot.
+    replacement_tests = []
+    for incumbent_feature in incumbent_eligible:
+        if incumbent_feature not in selected and incumbent_feature not in incumbent:
+            continue
+        reduced_pool = [f for f in eligible if f != incumbent_feature]
+        if len(reduced_pool) < 2:
+            continue
+        reduced_selection = _select_features(d, reduced_pool, target)
+        replacement_selected = reduced_selection["selected"]
+        new_challengers = [
+            f for f in replacement_selected
+            if f in challenger_eligible and f not in incumbent_eligible
+        ]
+        replacement_tests.append({
+            "removed_incumbent": incumbent_feature,
+            "removed_theme": FEATURE_THEMES.get(incumbent_feature, incumbent_feature),
+            "selected_after_removal": replacement_selected,
+            "new_late_challengers_selected": new_challengers,
+        })
+
+    late_winners = [f for f in selected if f in challenger_eligible and f not in incumbent_eligible]
+    displaced_incumbents = [f for f in incumbent_eligible if f not in selected]
+
+    return {
+        "status": "tested",
+        "model": "demographic_blind" if demographic_blind else "forecast",
+        "period": [start_year, end_year],
+        "coverage_threshold": min_coverage,
+        "common_sample": {
+            "n_obs": int(len(d)),
+            "n_municipalities": int(d["kommun_kod"].nunique()),
+            "n_years": int(d["year"].nunique()),
+        },
+        "coverage": coverage,
+        "incumbent_features": incumbent_eligible,
+        "late_challengers": challenger_eligible,
+        "eligible_pool": eligible,
+        "selection": selection,
+        "fair_selected_features": selected,
+        "late_winners": late_winners,
+        "displaced_incumbents": displaced_incumbents,
+        "in_sample_comparison": {
+            "incumbent": incumbent_metrics,
+            "fair_reselection": challenger_metrics,
+        },
+        "rolling_holdouts": holdout_rows,
+        "replacement_tests": replacement_tests,
+        "rule": (
+            "Old and late variables compete from scratch on one common complete-case "
+            "sample with identical selection rules. Rolling holdouts repeat selection "
+            "inside each training fold. A late variable is not promoted solely because "
+            "it is selected in-sample."
         ),
     }
 
@@ -10041,6 +10256,15 @@ def main():
         END_YEAR,
     )
 
+    result["fair_reselection_test"] = _fair_reselection_test(
+        panel,
+        result["target"],
+        result["features"],
+        demographic_blind=False,
+        start_year=END_YEAR - 3,
+        end_year=END_YEAR,
+    )
+
     result["activity_candidate_tests"] = {
         "overall": _sparse_candidate_tests(
             panel,
@@ -10712,6 +10936,15 @@ def main():
         blind_base,
         END_YEAR - 4,
         END_YEAR,
+    )
+
+    blind_result["fair_reselection_test"] = _fair_reselection_test(
+        panel,
+        blind_result["target"],
+        blind_result["features"],
+        demographic_blind=True,
+        start_year=END_YEAR - 3,
+        end_year=END_YEAR,
     )
 
     blind_result["snowmobile_proxy_candidate_tests"] = {
