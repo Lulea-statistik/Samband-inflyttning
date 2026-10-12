@@ -149,7 +149,8 @@ KOLADA_GYMNASIUM_PROGRAM_SPECS = {
         "label": "Gymnasieelever på yrkesprogram, hemkommun, andel (%)",
     },
 }
-# Priority candidate block for the next build: unemployment indicators requested for structural testing.\nKOLADA_UNEMPLOYMENT_SPECS = {
+# Priority candidate block for the next build: unemployment indicators requested for structural testing.
+KOLADA_UNEMPLOYMENT_SPECS = {
     "kolada_arbetslosa_18_65_pct": {
         "id": None,
         "search": "Arbetslösa i befolkningen",
