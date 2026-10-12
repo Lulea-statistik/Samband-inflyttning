@@ -759,9 +759,7 @@ function renderPublicPage(){
     const a=luleaAnalysis();
     if(!a||!a.rows.length) return;
     const rows=a.rows, first=rows[0], last=rows[rows.length-1];
-    const geoSection=document.getElementById('publicGeoRobustSection');
-  if(geoSection) geoSection.style.display='';
-  const eyebrow=document.getElementById('publicEyebrow');
+    const eyebrow=document.getElementById('publicEyebrow');
     const title=document.getElementById('publicHeroTitle');
     const txt=document.getElementById('publicHeroText');
     if(eyebrow) eyebrow.textContent='Luleås inflyttning i ett Sverigeperspektiv';
@@ -829,6 +827,8 @@ function renderPublicPage(){
     return;
   }
 
+  const geoSection=document.getElementById('publicGeoRobustSection');
+  if(geoSection) geoSection.style.display='';
   const eyebrow=document.getElementById('publicEyebrow');
   const title=document.getElementById('publicHeroTitle');
   const txt=document.getElementById('publicHeroText');
