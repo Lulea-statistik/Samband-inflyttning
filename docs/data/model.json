@@ -96611,6 +96611,319 @@
     ],
     "interpretation_rule": "If BAS plus the explicit gap reproduces candidate plus BAS, the model is effectively using the definitional difference. If the gap remains important after employment rate and related structure are controlled, treat it as an unresolved structural composite rather than a direct unemployment effect."
   },
+  "labor_force_decomposition_tests": {
+    "status": "tested",
+    "source": "SCB BAS ArbStatusAr, age 20-64",
+    "n_obs": 1160,
+    "n_municipalities": 290,
+    "years": [
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "gap_correlations": {
+      "participation": 0.4838585072567751,
+      "outside_labor_force": -0.48385850725677787,
+      "outside_from_components": -0.4841866208303471
+    },
+    "outside_consistency": {
+      "correlation_direct_vs_components": 0.9998401017222687,
+      "mean_direct_minus_components_pp": -0.0007196853689633983
+    },
+    "gap_models": {
+      "participation_only": {
+        "features": [
+          "lag1_arbetskraftsdeltagande"
+        ],
+        "r2": 0.27008399989676246,
+        "adjusted_r2": 0.2675561522773574,
+        "coefficients": [
+          {
+            "feature": "lag1_arbetskraftsdeltagande",
+            "coefficient": 0.31699678118498475,
+            "p_value": 1.8857754530804936e-15
+          }
+        ]
+      },
+      "outside_only": {
+        "features": [
+          "lag1_utanf_arbetkraften_andel_pct"
+        ],
+        "r2": 0.27008399989676224,
+        "adjusted_r2": 0.2675561522773572,
+        "coefficients": [
+          {
+            "feature": "lag1_utanf_arbetkraften_andel_pct",
+            "coefficient": -0.31699678118498154,
+            "p_value": 1.885775453053065e-15
+          }
+        ]
+      },
+      "components": {
+        "features": [
+          "lag1_bas_studerande_andel_pct",
+          "lag1_bas_pensionarer_andel_pct",
+          "lag1_bas_sjuka_andel_pct",
+          "lag1_bas_ovriga_andel_pct"
+        ],
+        "r2": 0.36609969707135037,
+        "adjusted_r2": 0.3622478723139715,
+        "coefficients": [
+          {
+            "feature": "lag1_bas_studerande_andel_pct",
+            "coefficient": -0.32899289305111346,
+            "p_value": 0.009681350490877903
+          },
+          {
+            "feature": "lag1_bas_pensionarer_andel_pct",
+            "coefficient": 0.19125837551932298,
+            "p_value": 0.3139747669238421
+          },
+          {
+            "feature": "lag1_bas_sjuka_andel_pct",
+            "coefficient": -0.7052264710850487,
+            "p_value": 8.975271695010949e-35
+          },
+          {
+            "feature": "lag1_bas_ovriga_andel_pct",
+            "coefficient": -0.18796454785261607,
+            "p_value": 9.56551846889781e-06
+          }
+        ]
+      },
+      "outside_plus_components": {
+        "features": [
+          "lag1_utanf_arbetkraften_andel_pct",
+          "lag1_bas_studerande_andel_pct",
+          "lag1_bas_pensionarer_andel_pct",
+          "lag1_bas_sjuka_andel_pct",
+          "lag1_bas_ovriga_andel_pct"
+        ],
+        "r2": 0.3663230427246489,
+        "adjusted_r2": 0.36191868507199654,
+        "coefficients": [
+          {
+            "feature": "lag1_utanf_arbetkraften_andel_pct",
+            "coefficient": 0.5550927659365354,
+            "p_value": 0.5427538693405543
+          },
+          {
+            "feature": "lag1_bas_studerande_andel_pct",
+            "coefficient": -0.8832272723852979,
+            "p_value": 0.3433786919117874
+          },
+          {
+            "feature": "lag1_bas_pensionarer_andel_pct",
+            "coefficient": -0.36428008323810923,
+            "p_value": 0.6989347249382806
+          },
+          {
+            "feature": "lag1_bas_sjuka_andel_pct",
+            "coefficient": -1.2600920578137007,
+            "p_value": 0.16488956609101035
+          },
+          {
+            "feature": "lag1_bas_ovriga_andel_pct",
+            "coefficient": -0.743846539193675,
+            "p_value": 0.41434265618135946
+          }
+        ]
+      }
+    },
+    "target_variants": {
+      "controls_only": {
+        "features_added": [],
+        "adjusted_r2": 0.9159663408598272,
+        "aic": 6973.665720662147,
+        "rmse": 4.792845462981355
+      },
+      "gap_only": {
+        "features_added": [
+          "unemployment_gap_n03937_minus_bas_pp"
+        ],
+        "adjusted_r2": 0.917484477770952,
+        "aic": 6953.497084517503,
+        "rmse": 4.74726579786836,
+        "unemployment_gap_n03937_minus_bas_pp": {
+          "coefficient": 0.8458125643285823,
+          "p_value": 1.700477387177791e-06
+        }
+      },
+      "outside_labor_force_only": {
+        "features_added": [
+          "lag1_utanf_arbetkraften_andel_pct"
+        ],
+        "adjusted_r2": 0.9162817421654121,
+        "aic": 6970.283054825044,
+        "rmse": 4.7817384021285605,
+        "lag1_utanf_arbetkraften_andel_pct": {
+          "coefficient": -0.24798122378487852,
+          "p_value": 0.01440613055013337
+        }
+      },
+      "participation_only": {
+        "features_added": [
+          "lag1_arbetskraftsdeltagande"
+        ],
+        "adjusted_r2": 0.9162817421654121,
+        "aic": 6970.283054825044,
+        "rmse": 4.7817384021285605,
+        "lag1_arbetskraftsdeltagande": {
+          "coefficient": 0.2479812237848704,
+          "p_value": 0.014406130550321713
+        }
+      },
+      "components": {
+        "features_added": [
+          "lag1_bas_studerande_andel_pct",
+          "lag1_bas_pensionarer_andel_pct",
+          "lag1_bas_sjuka_andel_pct",
+          "lag1_bas_ovriga_andel_pct"
+        ],
+        "adjusted_r2": 0.9161693157670668,
+        "aic": 6974.772357337924,
+        "rmse": 4.778625725931606,
+        "lag1_bas_studerande_andel_pct": {
+          "coefficient": -0.3902608935881689,
+          "p_value": 0.4066477442064651
+        },
+        "lag1_bas_pensionarer_andel_pct": {
+          "coefficient": -0.3787343044261915,
+          "p_value": 0.5454717889659253
+        },
+        "lag1_bas_sjuka_andel_pct": {
+          "coefficient": -0.4117856489222869,
+          "p_value": 0.03797297066962542
+        },
+        "lag1_bas_ovriga_andel_pct": {
+          "coefficient": -0.15077386163386108,
+          "p_value": 0.16909440972800927
+        }
+      },
+      "outside_plus_bas": {
+        "features_added": [
+          "lag1_utanf_arbetkraften_andel_pct",
+          "lag1_arbetsloshet"
+        ],
+        "adjusted_r2": 0.9168786328008786,
+        "aic": 6962.961338737574,
+        "rmse": 4.762564014695765,
+        "lag1_utanf_arbetkraften_andel_pct": {
+          "coefficient": -0.19349789789359073,
+          "p_value": 0.05533962788160357
+        }
+      },
+      "gap_plus_outside": {
+        "features_added": [
+          "unemployment_gap_n03937_minus_bas_pp",
+          "lag1_utanf_arbetkraften_andel_pct"
+        ],
+        "adjusted_r2": 0.9176436813664965,
+        "aic": 6952.2352682736655,
+        "rmse": 4.7405960442524036,
+        "unemployment_gap_n03937_minus_bas_pp": {
+          "coefficient": 0.808257935765375,
+          "p_value": 4.509042496799342e-06
+        },
+        "lag1_utanf_arbetkraften_andel_pct": {
+          "coefficient": -0.1925839840690511,
+          "p_value": 0.05125147916451556
+        }
+      },
+      "gap_plus_components": {
+        "features_added": [
+          "unemployment_gap_n03937_minus_bas_pp",
+          "lag1_bas_studerande_andel_pct",
+          "lag1_bas_pensionarer_andel_pct",
+          "lag1_bas_sjuka_andel_pct",
+          "lag1_bas_ovriga_andel_pct"
+        ],
+        "adjusted_r2": 0.9175278002734496,
+        "aic": 6956.796183530496,
+        "rmse": 4.737656387349629,
+        "unemployment_gap_n03937_minus_bas_pp": {
+          "coefficient": 0.8436712919999905,
+          "p_value": 4.148117209772534e-06
+        },
+        "lag1_bas_studerande_andel_pct": {
+          "coefficient": -0.7601056392438154,
+          "p_value": 0.09120695602697827
+        },
+        "lag1_bas_pensionarer_andel_pct": {
+          "coefficient": -0.11834554084450799,
+          "p_value": 0.8490349339181104
+        },
+        "lag1_bas_sjuka_andel_pct": {
+          "coefficient": -0.1442809689547663,
+          "p_value": 0.4870896972236506
+        },
+        "lag1_bas_ovriga_andel_pct": {
+          "coefficient": -0.12009058463460483,
+          "p_value": 0.23322390070391386
+        }
+      }
+    },
+    "annual_tests": [
+      {
+        "year": 2021,
+        "measure": "gap",
+        "coefficient": 1.2803061256042325,
+        "p_value": 0.0005043620501500527,
+        "delta_adjusted_r2": 0.004064338103916265
+      },
+      {
+        "year": 2021,
+        "measure": "outside",
+        "coefficient": -0.760028726194045,
+        "p_value": 0.0017599325274317368,
+        "delta_adjusted_r2": 0.0030558994624633185
+      },
+      {
+        "year": 2022,
+        "measure": "gap",
+        "coefficient": 0.6177292664757789,
+        "p_value": 0.11280830683668115,
+        "delta_adjusted_r2": 0.000601595266601973
+      },
+      {
+        "year": 2022,
+        "measure": "outside",
+        "coefficient": 0.16024895594627098,
+        "p_value": 0.5265279517996355,
+        "delta_adjusted_r2": -0.00016661159486341948
+      },
+      {
+        "year": 2023,
+        "measure": "gap",
+        "coefficient": 0.3851334422531493,
+        "p_value": 0.30331762726097444,
+        "delta_adjusted_r2": -1.5877614540138474e-05
+      },
+      {
+        "year": 2023,
+        "measure": "outside",
+        "coefficient": -0.12423724683290754,
+        "p_value": 0.5677159395320188,
+        "delta_adjusted_r2": -0.00018304200418373107
+      },
+      {
+        "year": 2024,
+        "measure": "gap",
+        "coefficient": 1.095330038823185,
+        "p_value": 0.009220299705923415,
+        "delta_adjusted_r2": 0.0020058796445531213
+      },
+      {
+        "year": 2024,
+        "measure": "outside",
+        "coefficient": -0.04968778364333898,
+        "p_value": 0.7933219321279523,
+        "delta_adjusted_r2": -0.0002773772243798156
+      }
+    ],
+    "interpretation_rule": "Prefer a direct BAS labour-force-participation or outside-labour-force measure over the artificial N03937-minus-BAS gap if it explains a similar share of the gap and retains comparable incremental value for migration. Otherwise keep the gap as diagnostic only."
+  },
   "activity_candidate_tests": {
     "overall": {
       "rule": "one candidate at a time versus the same baseline and same observations",
@@ -155511,6 +155824,319 @@
           }
         ],
         "interpretation_rule": "If BAS plus the explicit gap reproduces candidate plus BAS, the model is effectively using the definitional difference. If the gap remains important after employment rate and related structure are controlled, treat it as an unresolved structural composite rather than a direct unemployment effect."
+      },
+      "labor_force_decomposition_tests": {
+        "status": "tested",
+        "source": "SCB BAS ArbStatusAr, age 20-64",
+        "n_obs": 1160,
+        "n_municipalities": 290,
+        "years": [
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "gap_correlations": {
+          "participation": 0.4838585072567751,
+          "outside_labor_force": -0.48385850725677787,
+          "outside_from_components": -0.4841866208303471
+        },
+        "outside_consistency": {
+          "correlation_direct_vs_components": 0.9998401017222687,
+          "mean_direct_minus_components_pp": -0.0007196853689633983
+        },
+        "gap_models": {
+          "participation_only": {
+            "features": [
+              "lag1_arbetskraftsdeltagande"
+            ],
+            "r2": 0.27008399989676246,
+            "adjusted_r2": 0.2675561522773574,
+            "coefficients": [
+              {
+                "feature": "lag1_arbetskraftsdeltagande",
+                "coefficient": 0.31699678118498475,
+                "p_value": 1.8857754530804936e-15
+              }
+            ]
+          },
+          "outside_only": {
+            "features": [
+              "lag1_utanf_arbetkraften_andel_pct"
+            ],
+            "r2": 0.27008399989676224,
+            "adjusted_r2": 0.2675561522773572,
+            "coefficients": [
+              {
+                "feature": "lag1_utanf_arbetkraften_andel_pct",
+                "coefficient": -0.31699678118498154,
+                "p_value": 1.885775453053065e-15
+              }
+            ]
+          },
+          "components": {
+            "features": [
+              "lag1_bas_studerande_andel_pct",
+              "lag1_bas_pensionarer_andel_pct",
+              "lag1_bas_sjuka_andel_pct",
+              "lag1_bas_ovriga_andel_pct"
+            ],
+            "r2": 0.36609969707135037,
+            "adjusted_r2": 0.3622478723139715,
+            "coefficients": [
+              {
+                "feature": "lag1_bas_studerande_andel_pct",
+                "coefficient": -0.32899289305111346,
+                "p_value": 0.009681350490877903
+              },
+              {
+                "feature": "lag1_bas_pensionarer_andel_pct",
+                "coefficient": 0.19125837551932298,
+                "p_value": 0.3139747669238421
+              },
+              {
+                "feature": "lag1_bas_sjuka_andel_pct",
+                "coefficient": -0.7052264710850487,
+                "p_value": 8.975271695010949e-35
+              },
+              {
+                "feature": "lag1_bas_ovriga_andel_pct",
+                "coefficient": -0.18796454785261607,
+                "p_value": 9.56551846889781e-06
+              }
+            ]
+          },
+          "outside_plus_components": {
+            "features": [
+              "lag1_utanf_arbetkraften_andel_pct",
+              "lag1_bas_studerande_andel_pct",
+              "lag1_bas_pensionarer_andel_pct",
+              "lag1_bas_sjuka_andel_pct",
+              "lag1_bas_ovriga_andel_pct"
+            ],
+            "r2": 0.3663230427246489,
+            "adjusted_r2": 0.36191868507199654,
+            "coefficients": [
+              {
+                "feature": "lag1_utanf_arbetkraften_andel_pct",
+                "coefficient": 0.5550927659365354,
+                "p_value": 0.5427538693405543
+              },
+              {
+                "feature": "lag1_bas_studerande_andel_pct",
+                "coefficient": -0.8832272723852979,
+                "p_value": 0.3433786919117874
+              },
+              {
+                "feature": "lag1_bas_pensionarer_andel_pct",
+                "coefficient": -0.36428008323810923,
+                "p_value": 0.6989347249382806
+              },
+              {
+                "feature": "lag1_bas_sjuka_andel_pct",
+                "coefficient": -1.2600920578137007,
+                "p_value": 0.16488956609101035
+              },
+              {
+                "feature": "lag1_bas_ovriga_andel_pct",
+                "coefficient": -0.743846539193675,
+                "p_value": 0.41434265618135946
+              }
+            ]
+          }
+        },
+        "target_variants": {
+          "controls_only": {
+            "features_added": [],
+            "adjusted_r2": 0.6467480128227228,
+            "aic": 8639.384220884522,
+            "rmse": 9.82673163035913
+          },
+          "gap_only": {
+            "features_added": [
+              "unemployment_gap_n03937_minus_bas_pp"
+            ],
+            "adjusted_r2": 0.6637912841390319,
+            "aic": 8583.002121336507,
+            "rmse": 9.582530407589559,
+            "unemployment_gap_n03937_minus_bas_pp": {
+              "coefficient": 3.146466235707396,
+              "p_value": 1.0167563982198155e-05
+            }
+          },
+          "outside_labor_force_only": {
+            "features_added": [
+              "lag1_utanf_arbetkraften_andel_pct"
+            ],
+            "adjusted_r2": 0.6518067086580577,
+            "aic": 8623.631834966993,
+            "rmse": 9.751825508339692,
+            "lag1_utanf_arbetkraften_andel_pct": {
+              "coefficient": 1.6940213663906143,
+              "p_value": 0.02999400088035551
+            }
+          },
+          "participation_only": {
+            "features_added": [
+              "lag1_arbetskraftsdeltagande"
+            ],
+            "adjusted_r2": 0.6518067086580577,
+            "aic": 8623.631834966993,
+            "rmse": 9.751825508339692,
+            "lag1_arbetskraftsdeltagande": {
+              "coefficient": -1.694021366390564,
+              "p_value": 0.029994000879227774
+            }
+          },
+          "components": {
+            "features_added": [
+              "lag1_bas_studerande_andel_pct",
+              "lag1_bas_pensionarer_andel_pct",
+              "lag1_bas_sjuka_andel_pct",
+              "lag1_bas_ovriga_andel_pct"
+            ],
+            "adjusted_r2": 0.6846634325192935,
+            "aic": 8511.58842292072,
+            "rmse": 9.268056641407986,
+            "lag1_bas_studerande_andel_pct": {
+              "coefficient": -4.2671349212137875,
+              "p_value": 0.02326976092984182
+            },
+            "lag1_bas_pensionarer_andel_pct": {
+              "coefficient": -3.437012419192816,
+              "p_value": 0.17906328285706063
+            },
+            "lag1_bas_sjuka_andel_pct": {
+              "coefficient": 0.6213308910178008,
+              "p_value": 0.5303331796321992
+            },
+            "lag1_bas_ovriga_andel_pct": {
+              "coefficient": 3.4988735997678724,
+              "p_value": 0.00027217068181042004
+            }
+          },
+          "outside_plus_bas": {
+            "features_added": [
+              "lag1_utanf_arbetkraften_andel_pct",
+              "lag1_arbetsloshet"
+            ],
+            "adjusted_r2": 0.6518730221122249,
+            "aic": 8624.389315323551,
+            "rmse": 9.746604133066707,
+            "lag1_utanf_arbetkraften_andel_pct": {
+              "coefficient": -2.8925562427746825,
+              "p_value": 0.6498750077649951
+            }
+          },
+          "gap_plus_outside": {
+            "features_added": [
+              "unemployment_gap_n03937_minus_bas_pp",
+              "lag1_utanf_arbetkraften_andel_pct"
+            ],
+            "adjusted_r2": 0.6718653168889335,
+            "aic": 8555.783262638997,
+            "rmse": 9.46260160035697,
+            "unemployment_gap_n03937_minus_bas_pp": {
+              "coefficient": 7.247122753821207,
+              "p_value": 4.431307189248934e-06
+            },
+            "lag1_utanf_arbetkraften_andel_pct": {
+              "coefficient": -4.496905816114198,
+              "p_value": 0.005575953563608702
+            }
+          },
+          "gap_plus_components": {
+            "features_added": [
+              "unemployment_gap_n03937_minus_bas_pp",
+              "lag1_bas_studerande_andel_pct",
+              "lag1_bas_pensionarer_andel_pct",
+              "lag1_bas_sjuka_andel_pct",
+              "lag1_bas_ovriga_andel_pct"
+            ],
+            "adjusted_r2": 0.6954817297341552,
+            "aic": 8472.069177841691,
+            "rmse": 9.103668751006113,
+            "unemployment_gap_n03937_minus_bas_pp": {
+              "coefficient": 5.492331963935772,
+              "p_value": 0.00024059462632083591
+            },
+            "lag1_bas_studerande_andel_pct": {
+              "coefficient": -8.304227595315007,
+              "p_value": 0.0001066022590687976
+            },
+            "lag1_bas_pensionarer_andel_pct": {
+              "coefficient": -7.617019591833868,
+              "p_value": 0.004258734302032916
+            },
+            "lag1_bas_sjuka_andel_pct": {
+              "coefficient": -3.759794374938209,
+              "p_value": 0.023294408642152566
+            },
+            "lag1_bas_ovriga_andel_pct": {
+              "coefficient": -1.455262441839536,
+              "p_value": 0.4118670301421107
+            }
+          }
+        },
+        "annual_tests": [
+          {
+            "year": 2021,
+            "measure": "gap",
+            "coefficient": 3.0692208829751246,
+            "p_value": 3.8613002687713094e-05,
+            "delta_adjusted_r2": 0.017397187410235437
+          },
+          {
+            "year": 2021,
+            "measure": "outside",
+            "coefficient": 1.9749167131861567,
+            "p_value": 0.012617913502187918,
+            "delta_adjusted_r2": 0.007097851872865157
+          },
+          {
+            "year": 2022,
+            "measure": "gap",
+            "coefficient": 3.1570184062371327,
+            "p_value": 0.0003221123841891076,
+            "delta_adjusted_r2": 0.016589676628344097
+          },
+          {
+            "year": 2022,
+            "measure": "outside",
+            "coefficient": 1.4394038103035947,
+            "p_value": 0.12878374129250475,
+            "delta_adjusted_r2": 0.002476145470509894
+          },
+          {
+            "year": 2023,
+            "measure": "gap",
+            "coefficient": 3.5008957921408252,
+            "p_value": 4.045173248081462e-05,
+            "delta_adjusted_r2": 0.018583570090430435
+          },
+          {
+            "year": 2023,
+            "measure": "outside",
+            "coefficient": 2.124690191567272,
+            "p_value": 0.02727546177831206,
+            "delta_adjusted_r2": 0.0065505580580482725
+          },
+          {
+            "year": 2024,
+            "measure": "gap",
+            "coefficient": 3.131126845020068,
+            "p_value": 0.002390313295868599,
+            "delta_adjusted_r2": 0.013485771852407069
+          },
+          {
+            "year": 2024,
+            "measure": "outside",
+            "coefficient": 1.0567479298537947,
+            "p_value": 0.27737884038500416,
+            "delta_adjusted_r2": 0.0006475451450123071
+          }
+        ],
+        "interpretation_rule": "Prefer a direct BAS labour-force-participation or outside-labour-force measure over the artificial N03937-minus-BAS gap if it explains a similar share of the gap and retains comparable incremental value for migration. Otherwise keep the gap as diagnostic only."
       },
       "snowmobile_proxy_candidate_tests": {
         "overall": {
