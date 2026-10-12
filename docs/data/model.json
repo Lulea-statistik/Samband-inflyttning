@@ -100228,6 +100228,422 @@
     },
     "promotion_rule": "Promote the fair challenger only if RMSE and MAE improve in the rolling holdouts without a systematic deterioration in P90, worst-decile MAE or geographic error spread. Stable-core results are diagnostic and municipality-group CV supplements, but does not replace, temporal holdout evidence."
   },
+  "forecast_production_candidate_test": {
+    "status": "tested",
+    "period": [
+      2021,
+      2024
+    ],
+    "common_sample": {
+      "n_obs": 1160,
+      "n_municipalities": 290,
+      "n_years": 4
+    },
+    "models": {
+      "incumbent": [
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_log_folkmangd",
+        "lag1_befolkningstillvaxt_pct",
+        "lag1_andel_20_34",
+        "lag1_inflyttare_medelalder",
+        "lag1_inkomst_tkr",
+        "lag1_valdeltagande_pct",
+        "lag1_valdeltagande_gap_pp",
+        "lag1_ekonomisk_standard_gap_pp",
+        "lag1_bostader_per_1000",
+        "lag1_bostadsbestandsforandring_pct",
+        "lag1_fardigstallda_bostader_per_1000",
+        "lag1_andel_hyresratt",
+        "lag1_andel_bostadsratt",
+        "lag1_andel_smahus",
+        "lag1_fritidshusandel_bland_smahus",
+        "lag1_brott_per_100000",
+        "lag1_sysselsattningsgrad",
+        "lag1_arbetsloshet",
+        "lag1_andel_eftergymnasial",
+        "lag1_andel_studerande",
+        "lag1_andel_industri_bc",
+        "lag1_andel_hotell_restaurang_i",
+        "lag1_andel_kultur_service_rstu",
+        "lag1_log_externa_fa_jobb_per_1000",
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun"
+      ],
+      "dynamic_fair_reselection": "feature selection repeated separately inside each training fold",
+      "stable_posthoc_features": [
+        "lag1_andel_bostadsratt",
+        "lag1_bostadsbestandsforandring_pct",
+        "lag1_inflyttning_per_1000",
+        "lag1_log_externa_fa_jobb_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_andel_20_34",
+        "lag1_andel_kultur_service_rstu",
+        "lag1_inflyttare_medelalder",
+        "lag1_valdeltagande_pct",
+        "lag1_gymnasium_hogskoleforberedande_pct",
+        "lag1_regional_centre_distance_km"
+      ]
+    },
+    "folds": [
+      {
+        "holdout_year": 2022,
+        "n_train": 290,
+        "n_test": 290,
+        "dynamic_features": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder",
+          "lag1_valdeltagande_pct",
+          "lag1_bostader_per_1000",
+          "lag1_bostadsbestandsforandring_pct",
+          "lag1_andel_bostadsratt",
+          "lag1_sysselsattningsgrad",
+          "lag1_andel_kultur_service_rstu",
+          "lag1_log_externa_fa_jobb_per_1000",
+          "lag1_bas_pensionarer_andel_pct",
+          "lag1_gymnasium_hogskoleforberedande_pct",
+          "lag1_regional_centre_distance_km"
+        ],
+        "stable_features": [
+          "lag1_andel_bostadsratt",
+          "lag1_bostadsbestandsforandring_pct",
+          "lag1_inflyttning_per_1000",
+          "lag1_log_externa_fa_jobb_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_andel_20_34",
+          "lag1_andel_kultur_service_rstu",
+          "lag1_inflyttare_medelalder",
+          "lag1_valdeltagande_pct",
+          "lag1_gymnasium_hogskoleforberedande_pct",
+          "lag1_regional_centre_distance_km"
+        ],
+        "incumbent": {
+          "r2": 0.8141293238464478,
+          "rmse": 7.227613606269359,
+          "mae": 5.5824283046699845,
+          "median_abs_error": 4.322088314219812,
+          "p90_abs_error": 12.046453732743382,
+          "p95_abs_error": 14.42162281857738,
+          "p90_p10_abs_error_gap": 11.025159697147485,
+          "best_decile_mae": 0.49656566688505055,
+          "worst_decile_mae": 15.635973965337813,
+          "decile_mae_gap": 15.139408298452762,
+          "max_abs_error": 27.90179696598672,
+          "n": 290
+        },
+        "dynamic": {
+          "r2": 0.8453446348081428,
+          "rmse": 6.592831600940974,
+          "mae": 4.873357866443867,
+          "median_abs_error": 3.5281396570718684,
+          "p90_abs_error": 11.250444413668237,
+          "p95_abs_error": 14.192386878086102,
+          "p90_p10_abs_error_gap": 10.66745797877291,
+          "best_decile_mae": 0.20614417088892867,
+          "worst_decile_mae": 14.985358405948105,
+          "decile_mae_gap": 14.779214235059177,
+          "max_abs_error": 26.069693429691213,
+          "n": 290
+        },
+        "stable": {
+          "r2": 0.8682007218222719,
+          "rmse": 6.086196967019165,
+          "mae": 4.53253832448952,
+          "median_abs_error": 3.336747378645569,
+          "p90_abs_error": 10.42871782933067,
+          "p95_abs_error": 12.672394313883359,
+          "p90_p10_abs_error_gap": 9.779674954190547,
+          "best_decile_mae": 0.3165799052955679,
+          "worst_decile_mae": 13.769436453492805,
+          "decile_mae_gap": 13.452856548197238,
+          "max_abs_error": 23.93446408559764,
+          "n": 290
+        }
+      },
+      {
+        "holdout_year": 2023,
+        "n_train": 580,
+        "n_test": 290,
+        "dynamic_features": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_inflyttare_medelalder",
+          "lag1_inkomst_tkr",
+          "lag1_valdeltagande_pct",
+          "lag1_valdeltagande_gap_pp",
+          "lag1_bostadsbestandsforandring_pct",
+          "lag1_andel_bostadsratt",
+          "lag1_fritidshusandel_bland_smahus",
+          "lag1_andel_studerande",
+          "lag1_andel_kultur_service_rstu",
+          "lag1_log_externa_fa_jobb_per_1000",
+          "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+          "lag1_kolada_arbetslosa_18_65_pct",
+          "lag1_arbetskraftsdeltagande",
+          "lag1_bas_studerande_andel_pct",
+          "lag1_gymnasium_hogskoleforberedande_pct",
+          "lag1_regional_centre_distance_km"
+        ],
+        "stable_features": [
+          "lag1_andel_bostadsratt",
+          "lag1_bostadsbestandsforandring_pct",
+          "lag1_inflyttning_per_1000",
+          "lag1_log_externa_fa_jobb_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_andel_20_34",
+          "lag1_andel_kultur_service_rstu",
+          "lag1_inflyttare_medelalder",
+          "lag1_valdeltagande_pct",
+          "lag1_gymnasium_hogskoleforberedande_pct",
+          "lag1_regional_centre_distance_km"
+        ],
+        "incumbent": {
+          "r2": 0.8881890200534208,
+          "rmse": 5.375722098643962,
+          "mae": 4.139401828671924,
+          "median_abs_error": 3.474462909200433,
+          "p90_abs_error": 7.992594667587758,
+          "p95_abs_error": 10.29409112619525,
+          "p90_p10_abs_error_gap": 7.390695625344648,
+          "best_decile_mae": 0.2253978044962684,
+          "worst_decile_mae": 11.606366032779793,
+          "decile_mae_gap": 11.380968228283525,
+          "max_abs_error": 22.827320002749566,
+          "n": 290
+        },
+        "dynamic": {
+          "r2": 0.8943658511309355,
+          "rmse": 5.225125804029376,
+          "mae": 3.924815902295971,
+          "median_abs_error": 3.059420933978103,
+          "p90_abs_error": 7.98248447309845,
+          "p95_abs_error": 9.941350284342406,
+          "p90_p10_abs_error_gap": 7.423646048956344,
+          "best_decile_mae": 0.310355684172573,
+          "worst_decile_mae": 11.546863575288672,
+          "decile_mae_gap": 11.2365078911161,
+          "max_abs_error": 23.155869090070908,
+          "n": 290
+        },
+        "stable": {
+          "r2": 0.8244543327487039,
+          "rmse": 6.735807079582963,
+          "mae": 5.666562326361311,
+          "median_abs_error": 5.176798231533411,
+          "p90_abs_error": 9.898247505641645,
+          "p95_abs_error": 12.221374867621037,
+          "p90_p10_abs_error_gap": 8.300733802952976,
+          "best_decile_mae": 0.7312085382575838,
+          "worst_decile_mae": 13.130205807971153,
+          "decile_mae_gap": 12.39899726971357,
+          "max_abs_error": 23.725789327844048,
+          "n": 290
+        }
+      },
+      {
+        "holdout_year": 2024,
+        "n_train": 870,
+        "n_test": 290,
+        "dynamic_features": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_andel_20_34",
+          "lag1_bostadsbestandsforandring_pct",
+          "lag1_andel_bostadsratt",
+          "lag1_log_externa_fa_jobb_per_1000",
+          "lag1_kolada_langtidsarbetslosa_pct",
+          "lag1_bas_sjuka_andel_pct",
+          "lag1_andel_smahus_111_plus"
+        ],
+        "stable_features": [
+          "lag1_andel_bostadsratt",
+          "lag1_bostadsbestandsforandring_pct",
+          "lag1_inflyttning_per_1000",
+          "lag1_log_externa_fa_jobb_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_andel_20_34",
+          "lag1_andel_kultur_service_rstu",
+          "lag1_inflyttare_medelalder",
+          "lag1_valdeltagande_pct",
+          "lag1_gymnasium_hogskoleforberedande_pct",
+          "lag1_regional_centre_distance_km"
+        ],
+        "incumbent": {
+          "r2": 0.8401834686007914,
+          "rmse": 6.050757851050639,
+          "mae": 4.7716440836163265,
+          "median_abs_error": 3.8850290796979294,
+          "p90_abs_error": 10.199266672747546,
+          "p95_abs_error": 11.871155538923528,
+          "p90_p10_abs_error_gap": 9.49669435059613,
+          "best_decile_mae": 0.3557362878542364,
+          "worst_decile_mae": 12.947947174532068,
+          "decile_mae_gap": 12.592210886677831,
+          "max_abs_error": 19.474677577000662,
+          "n": 290
+        },
+        "dynamic": {
+          "r2": 0.8884753620093686,
+          "rmse": 5.054571377425692,
+          "mae": 3.7773172532580084,
+          "median_abs_error": 2.806989687898433,
+          "p90_abs_error": 8.404312570218451,
+          "p95_abs_error": 11.232284364449596,
+          "p90_p10_abs_error_gap": 7.922515294201058,
+          "best_decile_mae": 0.22625978436980668,
+          "worst_decile_mae": 11.586733159741762,
+          "decile_mae_gap": 11.360473375371955,
+          "max_abs_error": 17.993750062519915,
+          "n": 290
+        },
+        "stable": {
+          "r2": 0.8875696833391732,
+          "rmse": 5.075053672332136,
+          "mae": 3.7827631041416523,
+          "median_abs_error": 2.859858459819211,
+          "p90_abs_error": 8.02434879128977,
+          "p95_abs_error": 11.018043112785207,
+          "p90_p10_abs_error_gap": 7.580971368867048,
+          "best_decile_mae": 0.17687285301897832,
+          "worst_decile_mae": 11.575613441664789,
+          "decile_mae_gap": 11.398740588645811,
+          "max_abs_error": 18.045394175223997,
+          "n": 290
+        }
+      }
+    ],
+    "pooled_metrics": {
+      "incumbent": {
+        "r2": 0.8489441678781985,
+        "rmse": 6.264940997206331,
+        "mae": 4.831158072319411,
+        "median_abs_error": 3.7734377740515406,
+        "p90_abs_error": 10.372002152843516,
+        "p95_abs_error": 12.269115071912747,
+        "p90_p10_abs_error_gap": 9.647043965740368,
+        "best_decile_mae": 0.35034735360376357,
+        "worst_decile_mae": 13.748254359942012,
+        "decile_mae_gap": 13.397907006338247,
+        "max_abs_error": 27.90179696598672,
+        "n": 870
+      },
+      "dynamic": {
+        "r2": 0.8764391232951265,
+        "rmse": 5.666158604551253,
+        "mae": 4.191830340665949,
+        "median_abs_error": 3.0850481639118463,
+        "p90_abs_error": 9.15444347320324,
+        "p95_abs_error": 11.953091645439924,
+        "p90_p10_abs_error_gap": 8.631610439368652,
+        "best_decile_mae": 0.24579559622913877,
+        "worst_decile_mae": 12.966398379255292,
+        "decile_mae_gap": 12.720602783026154,
+        "max_abs_error": 26.069693429691213,
+        "n": 870
+      },
+      "stable": {
+        "r2": 0.8612332779699651,
+        "rmse": 6.0046942834131904,
+        "mae": 4.660621251664161,
+        "median_abs_error": 3.7929909085005846,
+        "p90_abs_error": 9.675286264450891,
+        "p95_abs_error": 12.1843447373448,
+        "p90_p10_abs_error_gap": 9.013002322715623,
+        "best_decile_mae": 0.3068991363241998,
+        "worst_decile_mae": 12.905492944982209,
+        "decile_mae_gap": 12.59859380865801,
+        "max_abs_error": 23.93446408559764,
+        "n": 870
+      }
+    },
+    "point_improvement_vs_incumbent": {
+      "dynamic": {
+        "rmse": 0.5987823926550782,
+        "mae": 0.639327731653462,
+        "p90_abs_error": 1.217558679640275,
+        "worst_decile_mae": 0.7818559806867196
+      },
+      "stable": {
+        "rmse": 0.26024671379314057,
+        "mae": 0.17053682065524978,
+        "p90_abs_error": 0.6967158883926245,
+        "worst_decile_mae": 0.8427614149598028
+      }
+    },
+    "municipality_cluster_bootstrap": {
+      "dynamic": {
+        "rmse": {
+          "n_bootstrap": 1000,
+          "mean_delta_incumbent_minus_candidate": 0.5985474294365426,
+          "ci95_low": 0.48010648805176476,
+          "ci95_high": 0.7181399477856621,
+          "probability_improvement": 1.0
+        },
+        "mae": {
+          "n_bootstrap": 1000,
+          "mean_delta_incumbent_minus_candidate": 0.6382372552667025,
+          "ci95_low": 0.5329598631424309,
+          "ci95_high": 0.751541778450002,
+          "probability_improvement": 1.0
+        },
+        "p90_abs_error": {
+          "n_bootstrap": 1000,
+          "mean_delta_incumbent_minus_candidate": 1.1476720970146155,
+          "ci95_low": 0.6437733339518344,
+          "ci95_high": 1.6900234163338042,
+          "probability_improvement": 0.999
+        },
+        "worst_decile_mae": {
+          "n_bootstrap": 1000,
+          "mean_delta_incumbent_minus_candidate": 0.787860930238075,
+          "ci95_low": 0.3683372637486667,
+          "ci95_high": 1.2002205501433285,
+          "probability_improvement": 1.0
+        }
+      },
+      "stable": {
+        "rmse": {
+          "n_bootstrap": 1000,
+          "mean_delta_incumbent_minus_candidate": 0.25758763129323936,
+          "ci95_low": 0.11352036674665608,
+          "ci95_high": 0.40614362301031165,
+          "probability_improvement": 1.0
+        },
+        "mae": {
+          "n_bootstrap": 1000,
+          "mean_delta_incumbent_minus_candidate": 0.1679720941370473,
+          "ci95_low": 0.0396820076825928,
+          "ci95_high": 0.29870329315027216,
+          "probability_improvement": 0.998
+        },
+        "p90_abs_error": {
+          "n_bootstrap": 1000,
+          "mean_delta_incumbent_minus_candidate": 0.6231497453317622,
+          "ci95_low": 0.004824067565885893,
+          "ci95_high": 1.1591209112032093,
+          "probability_improvement": 0.977
+        },
+        "worst_decile_mae": {
+          "n_bootstrap": 1000,
+          "mean_delta_incumbent_minus_candidate": 0.8377283112532453,
+          "ci95_low": 0.36440006810976244,
+          "ci95_high": 1.2858083122222108,
+          "probability_improvement": 1.0
+        }
+      }
+    },
+    "dynamic_promotion_checks_ci95_above_zero": {
+      "rmse": true,
+      "mae": true,
+      "p90_abs_error": true,
+      "worst_decile_mae": true
+    },
+    "stable_candidate_warning": "The stable feature set was derived from #132 selection frequencies over the same 2022-2024 folds. Its holdout scores are descriptive and must not be treated as independent validation.",
+    "promotion_rule": "The dynamic fair-reselection challenger is eligible for production promotion only if paired municipality-cluster bootstrap intervals support lower RMSE and MAE, while P90 and worst-decile MAE show no credible systematic deterioration. The stable post-hoc model is used only to study parsimony."
+  },
   "activity_candidate_tests": {
     "overall": {
       "rule": "one candidate at a time versus the same baseline and same observations",
