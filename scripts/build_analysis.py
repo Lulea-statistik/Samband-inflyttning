@@ -2704,6 +2704,12 @@ def get_labor_market() -> pd.DataFrame:
 
     employment_rate_code = code_for_text(content, "sysselsättningsgrad")
     unemployment_rate_code = code_for_text(content, "arbetslöshet")
+    labor_force_participation_code = code_for_text(content, "arbetskraftsdeltagande")
+    students_count_code = code_for_text(content, "antal studerande")
+    pensioners_count_code = code_for_text(content, "antal pensionärer")
+    sick_count_code = code_for_text(content, "antal sjuka")
+    other_count_code = code_for_text(content, "antal övriga")
+    total_count_code = code_for_text(content, "antal totalt")
 
     def fetch_measure(year: int, measure_code: str, out_name: str) -> pd.DataFrame:
         df = px_csv(LABOR_URL, {
@@ -2746,10 +2752,45 @@ def get_labor_market() -> pd.DataFrame:
             continue
         employed = fetch_measure(year, employment_rate_code, "sysselsattningsgrad")
         unemployed = fetch_measure(year, unemployment_rate_code, "arbetsloshet")
+        participation = fetch_measure(
+            year, labor_force_participation_code, "arbetskraftsdeltagande"
+        )
+        students_count = fetch_measure(year, students_count_code, "bas_studerande_antal")
+        pensioners_count = fetch_measure(year, pensioners_count_code, "bas_pensionarer_antal")
+        sick_count = fetch_measure(year, sick_count_code, "bas_sjuka_antal")
+        other_count = fetch_measure(year, other_count_code, "bas_ovriga_antal")
+        total_count = fetch_measure(year, total_count_code, "bas_totalt_antal")
         agg = employed.merge(
             unemployed,
             on=["kommun_kod", "kommun", "year"],
             how="inner",
+        )
+        for extra in [
+            participation, students_count, pensioners_count,
+            sick_count, other_count, total_count,
+        ]:
+            agg = agg.merge(
+                extra,
+                on=["kommun_kod", "kommun", "year"],
+                how="inner",
+            )
+
+        agg["utanf_arbetkraften_andel_pct"] = (
+            100.0 - agg["arbetskraftsdeltagande"]
+        )
+        denom = agg["bas_totalt_antal"].replace(0, np.nan)
+        agg["bas_studerande_andel_pct"] = 100 * agg["bas_studerande_antal"] / denom
+        agg["bas_pensionarer_andel_pct"] = 100 * agg["bas_pensionarer_antal"] / denom
+        agg["bas_sjuka_andel_pct"] = 100 * agg["bas_sjuka_antal"] / denom
+        agg["bas_ovriga_andel_pct"] = 100 * agg["bas_ovriga_antal"] / denom
+        component_sum = (
+            agg["bas_studerande_antal"]
+            + agg["bas_pensionarer_antal"]
+            + agg["bas_sjuka_antal"]
+            + agg["bas_ovriga_antal"]
+        )
+        agg["utanf_arbetkraften_andel_fran_komponenter_pct"] = (
+            100 * component_sum / denom
         )
         rows.append(agg)
         print(f"Labor market {year}: {len(agg):,} municipalities")
@@ -4548,7 +4589,13 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
         on=["kommun_nyckel", "year"], how="left"
     )
     panel = panel.merge(
-        labor[["kommun_kod", "year", "sysselsattningsgrad", "arbetsloshet"]],
+        labor[[
+            "kommun_kod", "year", "sysselsattningsgrad", "arbetsloshet",
+            "arbetskraftsdeltagande", "utanf_arbetkraften_andel_pct",
+            "bas_studerande_andel_pct", "bas_pensionarer_andel_pct",
+            "bas_sjuka_andel_pct", "bas_ovriga_andel_pct",
+            "utanf_arbetkraften_andel_fran_komponenter_pct",
+        ]],
         on=["kommun_kod", "year"], how="left"
     )
     panel = panel.merge(
@@ -4839,6 +4886,15 @@ def build_panel(mig: pd.DataFrame, pop: pd.DataFrame, income: pd.DataFrame, hous
     panel["lag1_kolada_arbetslosa_18_65_pct"] = g["kolada_arbetslosa_18_65_pct"].shift(1)
     panel["lag1_kolada_langtidsarbetslosa_pct"] = g["kolada_langtidsarbetslosa_pct"].shift(1)
     panel["lag1_kolada_arbetslosa_18_24_pct"] = g["kolada_arbetslosa_18_24_pct"].shift(1)
+    panel["lag1_arbetskraftsdeltagande"] = g["arbetskraftsdeltagande"].shift(1)
+    panel["lag1_utanf_arbetkraften_andel_pct"] = g["utanf_arbetkraften_andel_pct"].shift(1)
+    panel["lag1_bas_studerande_andel_pct"] = g["bas_studerande_andel_pct"].shift(1)
+    panel["lag1_bas_pensionarer_andel_pct"] = g["bas_pensionarer_andel_pct"].shift(1)
+    panel["lag1_bas_sjuka_andel_pct"] = g["bas_sjuka_andel_pct"].shift(1)
+    panel["lag1_bas_ovriga_andel_pct"] = g["bas_ovriga_andel_pct"].shift(1)
+    panel["lag1_utanf_arbetkraften_andel_fran_komponenter_pct"] = g[
+        "utanf_arbetkraften_andel_fran_komponenter_pct"
+    ].shift(1)
     panel["lag1_regional_centre_distance_km"] = g["regional_centre_distance_km"].shift(1)
     panel["lag1_log_regional_centre_distance_km"] = g["log_regional_centre_distance_km"].shift(1)
     panel["lag1_andel_industri_bc"] = g["andel_industri_bc"].shift(1)
@@ -6133,6 +6189,188 @@ def _unemployment_gap_decomposition_tests(
             "gap remains important after employment rate and related structure "
             "are controlled, treat it as an unresolved structural composite "
             "rather than a direct unemployment effect."
+        ),
+    }
+
+
+def _labor_force_decomposition_tests(
+    panel: pd.DataFrame,
+    target: str,
+    base_features: list[str],
+    start_year: int,
+    end_year: int,
+) -> dict:
+    """
+    Test whether the N03937/BAS unemployment gap is mainly an interpretable
+    labour-force participation phenomenon. All models use the same complete-case
+    observations. None of these diagnostics changes the production feature pool.
+    """
+    candidate = "lag1_kolada_arbetslosa_18_65_pct"
+    bas = "lag1_arbetsloshet"
+    gap = "unemployment_gap_n03937_minus_bas_pp"
+    participation = "lag1_arbetskraftsdeltagande"
+    outside = "lag1_utanf_arbetkraften_andel_pct"
+    component_outside = "lag1_utanf_arbetkraften_andel_fran_komponenter_pct"
+    components = [
+        "lag1_bas_studerande_andel_pct",
+        "lag1_bas_pensionarer_andel_pct",
+        "lag1_bas_sjuka_andel_pct",
+        "lag1_bas_ovriga_andel_pct",
+    ]
+    structural_controls = [
+        "lag1_log_folkmangd",
+        "lag1_andel_eftergymnasial",
+        "lag1_andel_studerande",
+        "lag1_andel_industri_bc",
+        "lag1_andel_hotell_restaurang_i",
+        "lag1_andel_kultur_service_rstu",
+        "lag1_log_externa_fa_jobb_per_1000",
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+        "lag1_regional_centre_distance_km",
+    ]
+    core = [f for f in base_features if f not in {candidate, bas}]
+    controls = list(dict.fromkeys(core + structural_controls))
+    needed = list(dict.fromkeys(
+        ["kommun_kod", "year", target, candidate, bas, participation, outside,
+         component_outside] + controls + components
+    ))
+    d = (
+        panel.loc[panel["year"].between(start_year, end_year), needed]
+        .dropna()
+        .reset_index(drop=True)
+    )
+    if len(d) < 150 or d["kommun_kod"].nunique() < 80:
+        return {
+            "status": "insufficient_coverage",
+            "n_obs": int(len(d)),
+            "n_municipalities": int(d["kommun_kod"].nunique()) if len(d) else 0,
+        }
+
+    d[gap] = d[candidate].astype(float) - d[bas].astype(float)
+
+    def target_variant(extra: list[str]) -> dict:
+        features = list(dict.fromkeys(controls + extra))
+        y = d[target].astype(float).reset_index(drop=True)
+        fit = sm.OLS(y, _design_with_year_effects(d, features)).fit()
+        robust = sm.OLS(y, _design_with_year_effects(d, features)).fit(
+            cov_type="cluster",
+            cov_kwds={"groups": d["kommun_kod"].reset_index(drop=True)},
+        )
+        out = {
+            "features_added": extra,
+            "adjusted_r2": _finite_float(fit.rsquared_adj),
+            "aic": _finite_float(fit.aic),
+            "rmse": _finite_float(np.sqrt(np.mean(np.square(fit.resid)))),
+        }
+        names = list(robust.model.exog_names)
+        for feature in [gap, participation, outside, component_outside] + components:
+            if feature in names:
+                i = names.index(feature)
+                out[feature] = {
+                    "coefficient": _finite_float(np.asarray(robust.params)[i]),
+                    "p_value": _finite_float(np.asarray(robust.pvalues)[i]),
+                }
+        return out
+
+    # Gap explanation: compare direct participation/outside-labour-force measures
+    # with the explicit definitional gap.
+    gap_models = {}
+    y_gap = d[gap].astype(float).reset_index(drop=True)
+    for name, features in {
+        "participation_only": [participation],
+        "outside_only": [outside],
+        "components": components,
+        "outside_plus_components": [outside] + components,
+    }.items():
+        X = _design_with_year_effects(d, features)
+        fit = sm.OLS(y_gap, X).fit(
+            cov_type="cluster",
+            cov_kwds={"groups": d["kommun_kod"].reset_index(drop=True)},
+        )
+        gap_models[name] = {
+            "features": features,
+            "r2": _finite_float(fit.rsquared),
+            "adjusted_r2": _finite_float(fit.rsquared_adj),
+            "coefficients": [
+                {
+                    "feature": feature,
+                    "coefficient": _finite_float(
+                        np.asarray(fit.params)[list(fit.model.exog_names).index(feature)]
+                    ),
+                    "p_value": _finite_float(
+                        np.asarray(fit.pvalues)[list(fit.model.exog_names).index(feature)]
+                    ),
+                }
+                for feature in features
+                if feature in list(fit.model.exog_names)
+            ],
+        }
+
+    variants = {
+        "controls_only": target_variant([]),
+        "gap_only": target_variant([gap]),
+        "outside_labor_force_only": target_variant([outside]),
+        "participation_only": target_variant([participation]),
+        "components": target_variant(components),
+        "outside_plus_bas": target_variant([outside, bas]),
+        "gap_plus_outside": target_variant([gap, outside]),
+        "gap_plus_components": target_variant([gap] + components),
+    }
+
+    annual = []
+    for year in sorted(int(v) for v in d["year"].unique()):
+        da = d.loc[d["year"] == year].copy().reset_index(drop=True)
+        if len(da) < 80:
+            continue
+        da[gap] = da[candidate].astype(float) - da[bas].astype(float)
+        y = da[target].astype(float).reset_index(drop=True)
+        base_fit = sm.OLS(y, _design_with_year_effects(da, controls)).fit()
+        for label, feature in [("gap", gap), ("outside", outside)]:
+            full_fit = sm.OLS(
+                y, _design_with_year_effects(da, controls + [feature])
+            ).fit()
+            robust = sm.OLS(
+                y, _design_with_year_effects(da, controls + [feature])
+            ).fit(cov_type="HC1")
+            names = list(robust.model.exog_names)
+            i = names.index(feature)
+            annual.append({
+                "year": year,
+                "measure": label,
+                "coefficient": _finite_float(np.asarray(robust.params)[i]),
+                "p_value": _finite_float(np.asarray(robust.pvalues)[i]),
+                "delta_adjusted_r2": _finite_float(
+                    full_fit.rsquared_adj - base_fit.rsquared_adj
+                ),
+            })
+
+    return {
+        "status": "tested",
+        "source": "SCB BAS ArbStatusAr, age 20-64",
+        "n_obs": int(len(d)),
+        "n_municipalities": int(d["kommun_kod"].nunique()),
+        "years": sorted(int(v) for v in d["year"].unique()),
+        "gap_correlations": {
+            "participation": _finite_float(d[[gap, participation]].corr().iloc[0,1]),
+            "outside_labor_force": _finite_float(d[[gap, outside]].corr().iloc[0,1]),
+            "outside_from_components": _finite_float(d[[gap, component_outside]].corr().iloc[0,1]),
+        },
+        "outside_consistency": {
+            "correlation_direct_vs_components": _finite_float(
+                d[[outside, component_outside]].corr().iloc[0,1]
+            ),
+            "mean_direct_minus_components_pp": _finite_float(
+                (d[outside] - d[component_outside]).mean()
+            ),
+        },
+        "gap_models": gap_models,
+        "target_variants": variants,
+        "annual_tests": annual,
+        "interpretation_rule": (
+            "Prefer a direct BAS labour-force-participation or outside-labour-force "
+            "measure over the artificial N03937-minus-BAS gap if it explains a "
+            "similar share of the gap and retains comparable incremental value "
+            "for migration. Otherwise keep the gap as diagnostic only."
         ),
     }
 
@@ -9602,6 +9840,14 @@ def main():
         END_YEAR,
     )
 
+    result["labor_force_decomposition_tests"] = _labor_force_decomposition_tests(
+        panel,
+        result["target"],
+        overall_base,
+        END_YEAR - 4,
+        END_YEAR,
+    )
+
     result["activity_candidate_tests"] = {
         "overall": _sparse_candidate_tests(
             panel,
@@ -10252,6 +10498,14 @@ def main():
     )
 
     blind_result["unemployment_gap_decomposition_tests"] = _unemployment_gap_decomposition_tests(
+        panel,
+        blind_result["target"],
+        blind_base,
+        END_YEAR - 4,
+        END_YEAR,
+    )
+
+    blind_result["labor_force_decomposition_tests"] = _labor_force_decomposition_tests(
         panel,
         blind_result["target"],
         blind_base,
