@@ -6375,6 +6375,191 @@ def _labor_force_decomposition_tests(
     }
 
 
+def _bas_status_composition_tests(
+    panel: pd.DataFrame,
+    target: str,
+    base_features: list[str],
+    start_year: int,
+    end_year: int,
+) -> dict:
+    """
+    Composition-safe follow-up for BAS labour-status components.
+
+    The four BAS categories are tested one at a time and in pairs on exactly
+    the same complete-case sample. Employment rate and BAS unemployment can be
+    forced into the baseline to see whether any component retains independent
+    explanatory value. Leave-one-year-out checks temporal stability.
+    """
+    bas_unemp = "lag1_arbetsloshet"
+    employment = "lag1_sysselsattningsgrad"
+    components = [
+        "lag1_bas_studerande_andel_pct",
+        "lag1_bas_pensionarer_andel_pct",
+        "lag1_bas_sjuka_andel_pct",
+        "lag1_bas_ovriga_andel_pct",
+    ]
+    labels = {
+        "lag1_bas_studerande_andel_pct": "Studerande",
+        "lag1_bas_pensionarer_andel_pct": "Pensionärer",
+        "lag1_bas_sjuka_andel_pct": "Sjuka",
+        "lag1_bas_ovriga_andel_pct": "Övriga utanför arbetskraften",
+    }
+    structural_controls = [
+        "lag1_log_folkmangd",
+        "lag1_andel_eftergymnasial",
+        "lag1_andel_studerande",
+        "lag1_andel_industri_bc",
+        "lag1_andel_hotell_restaurang_i",
+        "lag1_andel_kultur_service_rstu",
+        "lag1_log_externa_fa_jobb_per_1000",
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+        "lag1_regional_centre_distance_km",
+    ]
+
+    core = [
+        x for x in base_features
+        if x not in set(components + [bas_unemp, employment])
+    ]
+    controls = list(dict.fromkeys(core + structural_controls))
+    needed = list(dict.fromkeys(
+        ["kommun_kod", "year", target, bas_unemp, employment]
+        + controls + components
+    ))
+    d = (
+        panel.loc[panel["year"].between(start_year, end_year), needed]
+        .dropna()
+        .reset_index(drop=True)
+    )
+    if len(d) < 150 or d["kommun_kod"].nunique() < 80:
+        return {
+            "status": "insufficient_coverage",
+            "n_obs": int(len(d)),
+            "n_municipalities": int(d["kommun_kod"].nunique()) if len(d) else 0,
+        }
+
+    def fit(extra: list[str], force_labor: bool = False) -> dict:
+        base = list(controls)
+        if force_labor:
+            base = list(dict.fromkeys(base + [employment, bas_unemp]))
+        full_features = list(dict.fromkeys(base + extra))
+        y = d[target].astype(float).reset_index(drop=True)
+        base_fit = sm.OLS(y, _design_with_year_effects(d, base)).fit()
+        full_fit = sm.OLS(y, _design_with_year_effects(d, full_features)).fit()
+        robust = sm.OLS(y, _design_with_year_effects(d, full_features)).fit(
+            cov_type="cluster",
+            cov_kwds={"groups": d["kommun_kod"].reset_index(drop=True)},
+        )
+        names = list(robust.model.exog_names)
+        out = {
+            "features_added": extra,
+            "force_employment_and_unemployment": force_labor,
+            "base_adjusted_r2": _finite_float(base_fit.rsquared_adj),
+            "full_adjusted_r2": _finite_float(full_fit.rsquared_adj),
+            "delta_adjusted_r2": _finite_float(
+                full_fit.rsquared_adj - base_fit.rsquared_adj
+            ),
+            "delta_aic": _finite_float(base_fit.aic - full_fit.aic),
+            "delta_rmse": _finite_float(
+                np.sqrt(np.mean(np.square(base_fit.resid)))
+                - np.sqrt(np.mean(np.square(full_fit.resid)))
+            ),
+        }
+        for feature in extra:
+            if feature in names:
+                i = names.index(feature)
+                out.setdefault("coefficients", []).append({
+                    "feature": feature,
+                    "label": labels.get(feature, feature),
+                    "coefficient": _finite_float(np.asarray(robust.params)[i]),
+                    "p_value": _finite_float(np.asarray(robust.pvalues)[i]),
+                })
+        return out
+
+    single = {c: fit([c], False) for c in components}
+    single_forced = {c: fit([c], True) for c in components}
+
+    pairwise = []
+    for i, first in enumerate(components):
+        for second in components[i + 1:]:
+            result = fit([first, second], True)
+            result["pair"] = [first, second]
+            result["pair_labels"] = [labels[first], labels[second]]
+            pairwise.append(result)
+
+    leave_one_year_out = {c: [] for c in components}
+    years = sorted(int(v) for v in d["year"].unique())
+    for held_out in years:
+        train = d.loc[d["year"] != held_out].copy().reset_index(drop=True)
+        if len(train) < 150 or train["kommun_kod"].nunique() < 80:
+            continue
+        for component in components:
+            base = list(dict.fromkeys(controls + [employment, bas_unemp]))
+            full = base + [component]
+            y = train[target].astype(float).reset_index(drop=True)
+            base_fit = sm.OLS(y, _design_with_year_effects(train, base)).fit()
+            robust = sm.OLS(
+                y, _design_with_year_effects(train, full)
+            ).fit(
+                cov_type="cluster",
+                cov_kwds={"groups": train["kommun_kod"].reset_index(drop=True)},
+            )
+            full_plain = sm.OLS(
+                y, _design_with_year_effects(train, full)
+            ).fit()
+            names = list(robust.model.exog_names)
+            idx = names.index(component)
+            leave_one_year_out[component].append({
+                "held_out_year": held_out,
+                "coefficient": _finite_float(np.asarray(robust.params)[idx]),
+                "p_value": _finite_float(np.asarray(robust.pvalues)[idx]),
+                "delta_adjusted_r2": _finite_float(
+                    full_plain.rsquared_adj - base_fit.rsquared_adj
+                ),
+            })
+
+    stability = {}
+    for component, rows in leave_one_year_out.items():
+        coefs = [r["coefficient"] for r in rows if r.get("coefficient") is not None]
+        stability[component] = {
+            "label": labels[component],
+            "tested_splits": len(coefs),
+            "positive_splits": sum(v > 0 for v in coefs),
+            "negative_splits": sum(v < 0 for v in coefs),
+            "same_sign_all_splits": bool(coefs) and (
+                all(v > 0 for v in coefs) or all(v < 0 for v in coefs)
+            ),
+            "significant_5pct_splits": sum(
+                (r.get("p_value") is not None and r["p_value"] < 0.05)
+                for r in rows
+            ),
+        }
+
+    corr = d[components].corr().to_dict()
+
+    return {
+        "status": "tested",
+        "source": "SCB BAS ArbStatusAr, age 20-64",
+        "n_obs": int(len(d)),
+        "n_municipalities": int(d["kommun_kod"].nunique()),
+        "years": years,
+        "component_labels": labels,
+        "component_correlations": corr,
+        "single_component_tests": single,
+        "single_component_tests_with_employment_and_unemployment": single_forced,
+        "pairwise_tests_with_employment_and_unemployment": pairwise,
+        "leave_one_year_out": leave_one_year_out,
+        "stability_summary": stability,
+        "interpretation_rule": (
+            "Promote a component only if it adds positive adjusted R2 on the "
+            "common sample, remains directionally stable when each year is "
+            "left out, and retains value after employment rate and BAS "
+            "unemployment are forced into the baseline. Pairwise results are "
+            "diagnostic because the BAS categories are compositional shares "
+            "of a common total."
+        ),
+    }
+
+
 def _paired_feature_comparison(
     panel: pd.DataFrame,
     target: str,
@@ -9848,6 +10033,14 @@ def main():
         END_YEAR,
     )
 
+    result["bas_status_composition_tests"] = _bas_status_composition_tests(
+        panel,
+        result["target"],
+        overall_base,
+        END_YEAR - 4,
+        END_YEAR,
+    )
+
     result["activity_candidate_tests"] = {
         "overall": _sparse_candidate_tests(
             panel,
@@ -10506,6 +10699,14 @@ def main():
     )
 
     blind_result["labor_force_decomposition_tests"] = _labor_force_decomposition_tests(
+        panel,
+        blind_result["target"],
+        blind_base,
+        END_YEAR - 4,
+        END_YEAR,
+    )
+
+    blind_result["bas_status_composition_tests"] = _bas_status_composition_tests(
         panel,
         blind_result["target"],
         blind_base,
