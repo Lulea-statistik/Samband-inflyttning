@@ -5781,6 +5781,166 @@ def _unemployment_robustness_tests(
     }
 
 
+def _unemployment_suppressor_diagnostics(
+    panel: pd.DataFrame,
+    target: str,
+    base_features: list[str],
+    start_year: int,
+    end_year: int,
+) -> dict:
+    """
+    Diagnose whether the strong N03937 result is a genuine incremental signal
+    or a suppressor/collinearity effect relative to the existing BAS/SCB
+    unemployment measure.
+    """
+    candidate = "lag1_kolada_arbetslosa_18_65_pct"
+    bas = "lag1_arbetsloshet"
+    structural_controls = [
+        "lag1_log_folkmangd",
+        "lag1_andel_eftergymnasial",
+        "lag1_andel_studerande",
+        "lag1_andel_industri_bc",
+        "lag1_andel_hotell_restaurang_i",
+        "lag1_andel_kultur_service_rstu",
+        "lag1_log_externa_fa_jobb_per_1000",
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+        "lag1_regional_centre_distance_km",
+    ]
+    core = [
+        f for f in base_features
+        if f not in {candidate, bas}
+    ]
+    controls = list(dict.fromkeys(core + structural_controls))
+    cols = ["kommun_kod", "year", target, candidate, bas] + controls
+    d = (
+        panel.loc[panel["year"].between(start_year, end_year), cols]
+        .dropna()
+        .reset_index(drop=True)
+    )
+    if len(d) < 150 or d["kommun_kod"].nunique() < 80:
+        return {
+            "status": "insufficient_coverage",
+            "n_obs": int(len(d)),
+            "n_municipalities": int(d["kommun_kod"].nunique()) if len(d) else 0,
+        }
+
+    def fit_variant(extra: list[str]) -> dict:
+        features = list(dict.fromkeys(controls + extra))
+        y = d[target].astype(float).reset_index(drop=True)
+        X = _design_with_year_effects(d, features)
+        fit = sm.OLS(y, X).fit()
+        robust = sm.OLS(y, X).fit(
+            cov_type="cluster",
+            cov_kwds={"groups": d["kommun_kod"].reset_index(drop=True)},
+        )
+        out = {
+            "features_added": extra,
+            "adjusted_r2": _finite_float(fit.rsquared_adj),
+            "aic": _finite_float(fit.aic),
+            "rmse": _finite_float(np.sqrt(np.mean(np.square(fit.resid)))),
+        }
+        names = list(robust.model.exog_names)
+        for feature in [candidate, bas]:
+            if feature in names:
+                i = names.index(feature)
+                out[feature] = {
+                    "coefficient": _finite_float(np.asarray(robust.params)[i]),
+                    "p_value": _finite_float(np.asarray(robust.pvalues)[i]),
+                }
+        return out
+
+    variants = {
+        "controls_only": fit_variant([]),
+        "candidate_only": fit_variant([candidate]),
+        "bas_only": fit_variant([bas]),
+        "candidate_plus_bas": fit_variant([candidate, bas]),
+    }
+
+    raw_corr = float(d[[candidate, bas]].corr().iloc[0, 1])
+    demeaned = d[[candidate, bas]].copy()
+    demeaned[candidate] = demeaned[candidate] - d.groupby("year")[candidate].transform("mean")
+    demeaned[bas] = demeaned[bas] - d.groupby("year")[bas].transform("mean")
+    within_year_corr = float(demeaned.corr().iloc[0, 1])
+
+    # Residualise each unemployment measure against the common structural
+    # controls and year effects, then inspect whether their remaining parts
+    # move together or in opposite directions.
+    Xc = _design_with_year_effects(d, controls)
+    cand_resid = sm.OLS(d[candidate].astype(float), Xc).fit().resid
+    bas_resid = sm.OLS(d[bas].astype(float), Xc).fit().resid
+    residual_corr = float(np.corrcoef(cand_resid, bas_resid)[0, 1])
+
+    loo = []
+    years = sorted(int(y) for y in d["year"].unique())
+    for held_out in years:
+        train = d.loc[d["year"] != held_out].copy().reset_index(drop=True)
+        if len(train) < 150 or train["kommun_kod"].nunique() < 80:
+            continue
+        y = train[target].astype(float).reset_index(drop=True)
+        features = controls + [candidate, bas]
+        X = _design_with_year_effects(train, features)
+        fit = sm.OLS(y, X).fit(
+            cov_type="cluster",
+            cov_kwds={"groups": train["kommun_kod"].reset_index(drop=True)},
+        )
+        names = list(fit.model.exog_names)
+        ic = names.index(candidate)
+        ib = names.index(bas)
+        loo.append({
+            "held_out_year": held_out,
+            "n_obs": int(len(train)),
+            "candidate_coefficient": _finite_float(np.asarray(fit.params)[ic]),
+            "candidate_p_value": _finite_float(np.asarray(fit.pvalues)[ic]),
+            "bas_coefficient": _finite_float(np.asarray(fit.params)[ib]),
+            "bas_p_value": _finite_float(np.asarray(fit.pvalues)[ib]),
+        })
+
+    # Trim the most extreme 2.5 percent at each tail of N03937 and refit both
+    # measures together. This is a simple influence/outlier robustness check.
+    q_low, q_high = d[candidate].quantile([0.025, 0.975]).tolist()
+    dt = d.loc[d[candidate].between(q_low, q_high)].copy().reset_index(drop=True)
+    trim_result = {"n_obs": int(len(dt)), "q_low": _finite_float(q_low), "q_high": _finite_float(q_high)}
+    if len(dt) >= 150 and dt["kommun_kod"].nunique() >= 80:
+        y = dt[target].astype(float).reset_index(drop=True)
+        features = controls + [candidate, bas]
+        fit = sm.OLS(y, _design_with_year_effects(dt, features)).fit(
+            cov_type="cluster",
+            cov_kwds={"groups": dt["kommun_kod"].reset_index(drop=True)},
+        )
+        names = list(fit.model.exog_names)
+        ic = names.index(candidate)
+        ib = names.index(bas)
+        trim_result.update({
+            "candidate_coefficient": _finite_float(np.asarray(fit.params)[ic]),
+            "candidate_p_value": _finite_float(np.asarray(fit.pvalues)[ic]),
+            "bas_coefficient": _finite_float(np.asarray(fit.params)[ib]),
+            "bas_p_value": _finite_float(np.asarray(fit.pvalues)[ib]),
+        })
+
+    return {
+        "status": "tested",
+        "candidate": candidate,
+        "comparison_measure": bas,
+        "n_obs": int(len(d)),
+        "n_municipalities": int(d["kommun_kod"].nunique()),
+        "years": years,
+        "correlations": {
+            "raw": _finite_float(raw_corr),
+            "within_year_demeaned": _finite_float(within_year_corr),
+            "after_structural_controls_and_year_effects": _finite_float(residual_corr),
+        },
+        "variants": variants,
+        "leave_one_year_out": loo,
+        "trimmed_candidate_2_5pct_each_tail": trim_result,
+        "interpretation_rule": (
+            "If N03937 becomes much stronger only when BAS unemployment is added, "
+            "while the two measures are strongly correlated and coefficients are "
+            "opposite-signed, treat this as a potential suppressor/collinearity "
+            "pattern rather than immediately promoting N03937."
+        ),
+    }
+
+
 def _paired_feature_comparison(
     panel: pd.DataFrame,
     target: str,
@@ -9230,6 +9390,14 @@ def main():
         END_YEAR,
     )
 
+    result["unemployment_suppressor_diagnostics"] = _unemployment_suppressor_diagnostics(
+        panel,
+        result["target"],
+        overall_base,
+        END_YEAR - 4,
+        END_YEAR,
+    )
+
     result["activity_candidate_tests"] = {
         "overall": _sparse_candidate_tests(
             panel,
@@ -9864,6 +10032,14 @@ def main():
     }
 
     blind_result["unemployment_robustness_tests"] = _unemployment_robustness_tests(
+        panel,
+        blind_result["target"],
+        blind_base,
+        END_YEAR - 4,
+        END_YEAR,
+    )
+
+    blind_result["unemployment_suppressor_diagnostics"] = _unemployment_suppressor_diagnostics(
         panel,
         blind_result["target"],
         blind_base,
