@@ -958,11 +958,20 @@ function renderPublicGeographicRobustness(){
   const over=signedRows.filter(r=>r.signed_error>0).sort((x,y)=>y.signed_error-x.signed_error).slice(0,5);
   const worst=signedRows.slice().sort((x,y)=>Number(y.robust_abs_error)-Number(x.robust_abs_error))[0];
 
-  summary.innerHTML=[
-    '<article><span>Närmast utfallet</span><strong>'+easy[0].kommun+'</strong><small>fel '+fmt(easy[0].robust_abs_error,2)+' per 1 000</small></article>',
-    '<article><span>Störst underskattning</span><strong>'+under[0].kommun+'</strong><small>'+fmt(Math.abs(under[0].signed_error),1)+' per 1 000 för lågt</small></article>',
-    '<article><span>Störst överskattning</span><strong>'+over[0].kommun+'</strong><small>'+fmt(over[0].signed_error,1)+' per 1 000 för högt</small></article>'
-  ].join('');
+  summary.innerHTML=
+    '<article class="geo-easy-hard-card">'+
+      '<div class="geo-easy-hard-item">'+
+        '<span>Lättast</span>'+
+        '<strong>'+easy[0].kommun+'</strong>'+
+        '<small>fel '+fmt(easy[0].robust_abs_error,2)+' per 1 000</small>'+
+      '</div>'+
+      '<div class="geo-easy-hard-divider" aria-hidden="true"></div>'+
+      '<div class="geo-easy-hard-item">'+
+        '<span>Svårast</span>'+
+        '<strong>'+worst.kommun+'</strong>'+
+        '<small>fel '+fmt(worst.robust_abs_error,1)+' per 1 000</small>'+
+      '</div>'+
+    '</article>';
 
   examples.innerHTML=
     '<strong>Nära träff:</strong> '+easy.map(r=>r.kommun).join(', ')+'. '+
