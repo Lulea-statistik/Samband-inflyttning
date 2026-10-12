@@ -5555,6 +5555,232 @@ def _sparse_candidate_tests(
     }
 
 
+def _unemployment_robustness_tests(
+    panel: pd.DataFrame,
+    target: str,
+    base_features: list[str],
+    start_year: int,
+    end_year: int,
+) -> dict:
+    """
+    Probe why the Kolada total-unemployment candidate adds explanatory value.
+
+    The staged models use one common complete-case sample so changes in fit
+    cannot be caused by changing source coverage. The candidate is then tested
+    over nested recent time windows and as separate annual cross-sections.
+    """
+    candidate = "lag1_kolada_arbetslosa_18_65_pct"
+    control_blocks = [
+        (
+            "baseline",
+            [],
+            "Current model baseline only",
+        ),
+        (
+            "human_capital_student",
+            [
+                "lag1_andel_eftergymnasial",
+                "lag1_andel_studerande",
+                "lag1_log_folkmangd",
+            ],
+            "Municipality size, tertiary education and student environment",
+        ),
+        (
+            "industry_structure",
+            [
+                "lag1_andel_industri_bc",
+                "lag1_andel_hotell_restaurang_i",
+                "lag1_andel_kultur_service_rstu",
+            ],
+            "Industry and service structure",
+        ),
+        (
+            "regional_access",
+            [
+                "lag1_log_externa_fa_jobb_per_1000",
+                "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+                "lag1_regional_centre_distance_km",
+            ],
+            "FA-region labour-market access and regional-centre distance",
+        ),
+        (
+            "existing_bas_unemployment",
+            ["lag1_arbetsloshet"],
+            "Existing BAS/SCB unemployment measure",
+        ),
+    ]
+    all_controls = []
+    for _, features, _ in control_blocks:
+        all_controls.extend(features)
+    all_controls = list(dict.fromkeys(all_controls))
+    base_core = [f for f in base_features if f != candidate]
+    all_features = list(dict.fromkeys(base_core + all_controls))
+
+    cols = ["kommun_kod", "year", target, candidate] + all_features
+    d_common = (
+        panel.loc[panel["year"].between(start_year, end_year), cols]
+        .dropna()
+        .reset_index(drop=True)
+    )
+
+    def pooled_test(d: pd.DataFrame, controls: list[str]) -> dict:
+        n_obs = int(len(d))
+        n_municipalities = int(d["kommun_kod"].nunique()) if n_obs else 0
+        n_years = int(d["year"].nunique()) if n_obs else 0
+        if n_obs < 150 or n_municipalities < 80 or n_years < 2:
+            return {
+                "status": "insufficient_coverage",
+                "n_obs": n_obs,
+                "n_municipalities": n_municipalities,
+                "n_years": n_years,
+            }
+
+        controls = list(dict.fromkeys(controls))
+        y = d[target].astype(float).reset_index(drop=True)
+        X_base = _design_with_year_effects(d, controls)
+        X_full = _design_with_year_effects(d, controls + [candidate])
+        base_fit = sm.OLS(y, X_base).fit()
+        full_fit = sm.OLS(y, X_full).fit()
+        robust = sm.OLS(y, X_full).fit(
+            cov_type="cluster",
+            cov_kwds={"groups": d["kommun_kod"].reset_index(drop=True)},
+        )
+        names = list(robust.model.exog_names)
+        i = names.index(candidate)
+        coef = float(np.asarray(robust.params)[i])
+        p_value = float(np.asarray(robust.pvalues)[i])
+        y_sd = float(np.nanstd(y, ddof=1))
+        x_sd = float(np.nanstd(d[candidate], ddof=1))
+        standardized = coef * x_sd / y_sd if y_sd > 0 and x_sd > 0 else np.nan
+        base_rmse = float(np.sqrt(np.mean(np.square(base_fit.resid))))
+        full_rmse = float(np.sqrt(np.mean(np.square(full_fit.resid))))
+        return {
+            "status": "tested",
+            "n_obs": n_obs,
+            "n_municipalities": n_municipalities,
+            "n_years": n_years,
+            "coefficient": _finite_float(coef),
+            "standardized_coefficient": _finite_float(standardized),
+            "p_value": _finite_float(p_value),
+            "base_adjusted_r2": _finite_float(base_fit.rsquared_adj),
+            "full_adjusted_r2": _finite_float(full_fit.rsquared_adj),
+            "delta_adjusted_r2": _finite_float(
+                full_fit.rsquared_adj - base_fit.rsquared_adj
+            ),
+            "delta_aic": _finite_float(base_fit.aic - full_fit.aic),
+            "delta_rmse": _finite_float(base_rmse - full_rmse),
+        }
+
+    staged = []
+    accumulated = list(base_core)
+    for block_name, block_features, description in control_blocks:
+        if block_name != "baseline":
+            accumulated = list(dict.fromkeys(accumulated + block_features))
+        row = pooled_test(d_common, accumulated)
+        row.update({
+            "block": block_name,
+            "description": description,
+            "controls_added": block_features,
+        })
+        staged.append(row)
+
+    fully_adjusted = list(dict.fromkeys(base_core + all_controls))
+    windows = []
+    for years_back in [5, 4, 3]:
+        window_start = max(start_year, end_year - years_back + 1)
+        cols_window = ["kommun_kod", "year", target, candidate] + fully_adjusted
+        dw = (
+            panel.loc[panel["year"].between(window_start, end_year), cols_window]
+            .dropna()
+            .reset_index(drop=True)
+        )
+        row = pooled_test(dw, fully_adjusted)
+        row.update({
+            "window": f"{window_start}-{end_year}",
+            "start_year": window_start,
+            "end_year": end_year,
+        })
+        windows.append(row)
+
+    annual = []
+    for year in range(start_year, end_year + 1):
+        da = d_common.loc[d_common["year"] == year].copy().reset_index(drop=True)
+        n_obs = int(len(da))
+        n_municipalities = int(da["kommun_kod"].nunique()) if n_obs else 0
+        if n_obs < 80 or n_municipalities < 80:
+            annual.append({
+                "year": year,
+                "status": "insufficient_coverage",
+                "n_obs": n_obs,
+                "n_municipalities": n_municipalities,
+            })
+            continue
+        y = da[target].astype(float).reset_index(drop=True)
+        X_base = _design_with_year_effects(da, fully_adjusted)
+        X_full = _design_with_year_effects(da, fully_adjusted + [candidate])
+        base_fit = sm.OLS(y, X_base).fit()
+        full_fit = sm.OLS(y, X_full).fit()
+        robust = sm.OLS(y, X_full).fit(cov_type="HC1")
+        names = list(robust.model.exog_names)
+        i = names.index(candidate)
+        annual.append({
+            "year": year,
+            "status": "tested",
+            "n_obs": n_obs,
+            "n_municipalities": n_municipalities,
+            "coefficient": _finite_float(np.asarray(robust.params)[i]),
+            "p_value": _finite_float(np.asarray(robust.pvalues)[i]),
+            "delta_adjusted_r2": _finite_float(
+                full_fit.rsquared_adj - base_fit.rsquared_adj
+            ),
+            "delta_aic": _finite_float(base_fit.aic - full_fit.aic),
+        })
+
+    tested_annual = [r for r in annual if r.get("status") == "tested"]
+    annual_coefficients = [
+        r.get("coefficient") for r in tested_annual
+        if r.get("coefficient") is not None
+    ]
+    sign_stability = {
+        "tested_years": len(annual_coefficients),
+        "positive_years": sum(c > 0 for c in annual_coefficients),
+        "negative_years": sum(c < 0 for c in annual_coefficients),
+        "zero_years": sum(c == 0 for c in annual_coefficients),
+        "same_sign_all_tested": (
+            bool(annual_coefficients)
+            and (
+                all(c > 0 for c in annual_coefficients)
+                or all(c < 0 for c in annual_coefficients)
+            )
+        ),
+    }
+
+    return {
+        "candidate": candidate,
+        "rule": (
+            "common complete-case sample for staged controls; candidate tested "
+            "after municipality size, tertiary education/student environment, "
+            "industry structure, FA/regional-centre access and existing BAS "
+            "unemployment; then repeated over recent time windows and annual "
+            "cross-sections"
+        ),
+        "start_year": start_year,
+        "end_year": end_year,
+        "common_sample": {
+            "n_obs": int(len(d_common)),
+            "n_municipalities": int(d_common["kommun_kod"].nunique()) if len(d_common) else 0,
+            "n_years": int(d_common["year"].nunique()) if len(d_common) else 0,
+        },
+        "controls_already_in_baseline": [
+            f for f in all_controls if f in base_core
+        ],
+        "staged_controls": staged,
+        "time_windows": windows,
+        "annual_tests": annual,
+        "annual_sign_stability": sign_stability,
+    }
+
+
 def _paired_feature_comparison(
     panel: pd.DataFrame,
     target: str,
@@ -8996,6 +9222,14 @@ def main():
         },
     }
 
+    result["unemployment_robustness_tests"] = _unemployment_robustness_tests(
+        panel,
+        result["target"],
+        overall_base,
+        END_YEAR - 4,
+        END_YEAR,
+    )
+
     result["activity_candidate_tests"] = {
         "overall": _sparse_candidate_tests(
             panel,
@@ -9628,6 +9862,14 @@ def main():
             if key in {"18_23", "24_34", "35_49"} and "error" not in model
         },
     }
+
+    blind_result["unemployment_robustness_tests"] = _unemployment_robustness_tests(
+        panel,
+        blind_result["target"],
+        blind_base,
+        END_YEAR - 4,
+        END_YEAR,
+    )
 
     blind_result["snowmobile_proxy_candidate_tests"] = {
         "overall": _sparse_candidate_tests(
