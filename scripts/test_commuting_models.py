@@ -15,6 +15,93 @@ from build_analysis import _select_features, _geographic_error_metrics
 D=Path("docs/data")
 COMM=["lag1_outcommuting_share","lag1_incommuting_share","lag1_commuting_balance_per_1000_workers","lag1_outcommuting_share_change_pp"]
 
+
+def isolated_commuting_diagnostic(d, baseline, pool, target):
+    """Paired checks: individual candidate effects at identical training/test splits.
+
+    Dynamic candidate selection is repeated inside training data for each
+    candidate. Fixed dynamic+candidate is reported separately to distinguish
+    coefficient contribution from selection effects.
+    """
+    variants = {"none": [], "out_share": [COMM[0]], "in_share": [COMM[1]],
+                "net_balance": [COMM[2]], "out_share_change": [COMM[3]],
+                "level_pair": COMM[:2], "change_and_out": [COMM[0], COMM[3]],
+                "all_four": COMM}
+    parts = []
+    tests = []
+    for year in (2023, 2024):
+        train = d.loc[d.year < year]
+        test = d.loc[d.year == year]
+        if len(train) >= 280 and len(test) >= 250:
+            tests.append((f"rolling_{year}", train, test))
+    universe = sorted(d.loc[d.year == 2024].kommun_kod.unique())
+    for fold in range(5):
+        held = {v for v in universe if int(hashlib.sha256(("validation-140:" + v).encode()).hexdigest()[:12], 16) % 5 == fold}
+        train = d.loc[d.year.lt(2024) & ~d.kommun_kod.isin(held)]
+        test = d.loc[d.year.eq(2024) & d.kommun_kod.isin(held)]
+        if len(train) < 300 or len(test) < 25:
+            raise RuntimeError("Insufficient isolated CV fold")
+        tests.append((f"geo_{fold}", train, test))
+
+    for split, train, test in tests:
+        original_selected = _select_features(train, pool, target)["selected"]
+        for variant, additions in variants.items():
+            if variant == "none":
+                selected = original_selected
+            else:
+                selected = _select_features(train, list(dict.fromkeys(pool + additions)), target)["selected"]
+            specs = {
+                "incumbent": baseline + additions,
+                "dynamic_selected": selected,
+                "dynamic_fixed_plus": list(dict.fromkeys(original_selected + additions)),
+            }
+            metrics = {}
+            predictions = {}
+            for name, feature_set in specs.items():
+                estimator = make_pipeline(StandardScaler(), RidgeCV(alphas=np.logspace(-3, 3, 25)))
+                estimator.fit(train[feature_set], train[target])
+                predictions[name] = estimator.predict(test[feature_set])
+                metrics[name] = _geographic_error_metrics(test[target], predictions[name])
+            for i, (idx, row) in enumerate(test.iterrows()):
+                parts.append({"split": split, "variant": variant, "kommun_kod": row.kommun_kod,
+                              "actual": float(row[target]),
+                              **{name: float(pred[i]) for name, pred in predictions.items()}})
+            if split.startswith("rolling"):
+                tests_year = int(split.split("_")[1])
+                print(json.dumps({"year": tests_year, "variant": variant,
+                                  "rmse": {name: round(m["rmse"], 4) for name, m in metrics.items()},
+                                  "selected_commuters": [x for x in selected if x in COMM]}, ensure_ascii=False), flush=True)
+
+    predictions = pd.DataFrame(parts)
+    report = {"status": "isolated_retrospective_complete", "models": ["incumbent", "dynamic_selected", "dynamic_fixed_plus"],
+              "candidate_groups": variants, "holdout_years": [2023, 2024],
+              "geographic_test_year": 2024, "training_selection_isolated": True,
+              "production_model_changed": False,
+              "caution": "Repeated 2022-2024 exploratory analysis; 2024 job classification break. Correlated candidate variables. Do not promote automatically.",
+              "rolling": {}, "geographic_cv_2024": {}, "lulea_2024": {}}
+    for yr in (2023, 2024):
+        report["rolling"][str(yr)] = {}
+        data = predictions.loc[predictions.split == f"rolling_{yr}"]
+        for variant in variants:
+            rows = data.loc[data.variant == variant]
+            report["rolling"][str(yr)][variant] = {
+                name: _geographic_error_metrics(rows.actual, rows[name])
+                for name in ("incumbent", "dynamic_selected", "dynamic_fixed_plus")
+            }
+    geographic = predictions.loc[predictions.split.str.startswith("geo_")]
+    for variant in variants:
+        rows = geographic.loc[geographic.variant == variant]
+        if rows.kommun_kod.nunique() != len(universe):
+            raise RuntimeError("Incomplete isolated geographic validation")
+        report["geographic_cv_2024"][variant] = {
+            name: _geographic_error_metrics(rows.actual, rows[name])
+            for name in ("incumbent", "dynamic_selected", "dynamic_fixed_plus")
+        }
+        report["lulea_2024"][variant] = rows.loc[rows.kommun_kod == "2580"].to_dict("records")
+    (D / "commuting_isolated_test.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return report
+
+
 def main():
     flows=pd.read_csv(D/"commuting_flows_2020_2024.csv",dtype={"home":str,"work":str})
     if len(flows)!=420500 or flows.duplicated(["year","home","work"]).any():
@@ -45,9 +132,7 @@ def main():
     target=model["target"]
     d=d.loc[d.year.between(2022,2024)].copy()
     # Use only commuters with at least two available time observations.
-    # Because commuting was already lagged within original years before merging
-    # to forecast years, the actual predictor date is TWO years before forecast.
-    # This is conservative and explicitly recorded.
+    # Predictors are sourced from the previous year; change uses the two preceding years.
     required=list(dict.fromkeys(baseline+pool+COMM+[target]))
     d=d.dropna(subset=required)
     rows=[]
@@ -96,6 +181,7 @@ def main():
             "coverage":{str(y):int(v) for y,v in d.groupby("year").kommun_kod.nunique().items()},
             "temporal":rows,"geographic_cv_2024":country,"lulea_cv_2024":ev.loc[ev.kommun_kod=="2580"].to_dict("records"),"production_model_changed":False}
     (D/"commuting_model_test.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n")
+    isolated_commuting_diagnostic(d, baseline, pool, target)
     print(json.dumps({"status":report["status"],"temporal":[{"year":r["year"],"status":r["status"]} for r in rows],"geographic_cv_rmse":{k:v["rmse"] for k,v in country.items()}},ensure_ascii=False))
 
 if __name__=="__main__":
