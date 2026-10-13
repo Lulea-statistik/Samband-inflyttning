@@ -153,6 +153,19 @@ def crossvalidate_all_municipalities():
     # Only municipalities represented in the target year are in the evaluation universe.
     universe = sorted(d.loc[d.year == 2024, "kommun_kod"].unique())
     folds = {code: int(hashlib.sha256(("validation-140:" + code).encode()).hexdigest()[:12], 16) % 5 for code in universe}
+    # Six-feature core from #140 is frozen for this retrospective comparison;
+    # its selection used 2024 outcomes indirectly, so not an independent test.
+    core_six = [
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_andel_20_34",
+        "lag1_bostadsbestandsforandring_pct",
+        "lag1_andel_bostadsratt",
+        "lag1_kolada_langtidsarbetslosa_pct",
+    ]
+    if any(f not in eligible for f in core_six):
+        output["reason"] = "Six-feature core not available on common sample"
+        return output
     details, selections, fold_metrics = [], Counter(), []
     for fold in range(5):
         held = {code for code in universe if folds[code] == fold}
@@ -171,12 +184,14 @@ def crossvalidate_all_municipalities():
             estimator = make_pipeline(StandardScaler(), RidgeCV(alphas=np.logspace(-3, 3, 25)))
             estimator.fit(train[features], train[target])
             return estimator.predict(test[features])
-        pi, pc = predict(incumbent), predict(chosen)
+        pi, pc, ps = predict(incumbent), predict(chosen), predict(core_six)
         actual = test[target].to_numpy(dtype=float)
         sub = test[["kommun_kod", "kommun"]].copy()
         sub["actual"] = actual
         sub["incumbent_prediction"] = pi
         sub["challenger_prediction"] = pc
+        sub["six_core_prediction"] = ps
+        sub["six_core_absolute_error"] = np.abs(actual - ps)
         sub["incumbent_absolute_error"] = np.abs(actual - pi)
         sub["challenger_absolute_error"] = np.abs(actual - pc)
         sub["improvement"] = sub["incumbent_absolute_error"] - sub["challenger_absolute_error"]
@@ -186,6 +201,7 @@ def crossvalidate_all_municipalities():
             "selected_features": chosen,
             "incumbent_rmse": _geographic_error_metrics(actual, pi)["rmse"],
             "challenger_rmse": _geographic_error_metrics(actual, pc)["rmse"],
+            "six_core_rmse": _geographic_error_metrics(actual, ps)["rmse"],
         })
     combined = pd.concat(details, ignore_index=True)
     if len(combined) != len(universe) or combined.kommun_kod.nunique() != len(universe):
@@ -193,6 +209,7 @@ def crossvalidate_all_municipalities():
         return output
     old = _geographic_error_metrics(combined.actual, combined.incumbent_prediction)
     new = _geographic_error_metrics(combined.actual, combined.challenger_prediction)
+    six = _geographic_error_metrics(combined.actual, combined.six_core_prediction)
     output.update({
         "status": "retrospective_geographic_cv_complete",
         "coverage": {"tested": int(len(combined)), "available_2024": int(len(universe)), "unique_municipalities": int(combined.kommun_kod.nunique())},
@@ -200,6 +217,10 @@ def crossvalidate_all_municipalities():
         "selection_frequency": [{"feature": feature, "selected_folds": n} for feature, n in selections.most_common()],
         "incumbent_metrics": old,
         "challenger_metrics": new,
+        "six_core_metrics": six,
+        "six_core_features": core_six,
+        "six_core_minus_dynamic": {k: six[k] - new[k] for k in ("rmse", "mae", "p90_abs_error", "worst_decile_mae")},
+        "incumbent_minus_six_core": {k: old[k] - six[k] for k in ("rmse", "mae", "p90_abs_error", "worst_decile_mae")},
         "incumbent_minus_challenger": {k: old[k] - new[k] for k in ("rmse", "mae", "p90_abs_error", "worst_decile_mae")},
         "municipalities_improved": int((combined.improvement > 0).sum()),
         "municipalities_worsened": int((combined.improvement < 0).sum()),
@@ -215,6 +236,7 @@ if __name__ == "__main__":
     report = geographical_holdout()
     cv140 = crossvalidate_all_municipalities()
     Path("docs/data/validation_140.json").write_text(json.dumps(cv140, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    Path("docs/data/validation_141.json").write_text(json.dumps({"evaluation": "#141 frozen six-feature vs dynamic vs incumbent", "status": cv140["status"], "method": "same five geographic folds as #140, retrospective", "coverage": cv140.get("coverage"), "six_core_features": cv140.get("six_core_features"), "six_core_metrics": cv140.get("six_core_metrics"), "dynamic_metrics": cv140.get("challenger_metrics"), "incumbent_metrics": cv140.get("incumbent_metrics"), "six_core_minus_dynamic": cv140.get("six_core_minus_dynamic"), "incumbent_minus_six_core": cv140.get("incumbent_minus_six_core"), "folds": cv140.get("folds"), "lulea": cv140.get("lulea"), "production_status": "unchanged; independent prospective validation still required"}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"cv140_status": cv140["status"], "coverage": cv140.get("coverage"), "deltas": cv140.get("incumbent_minus_challenger"), "lulea": cv140.get("lulea")}, ensure_ascii=False))
     OUT.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n",
                    encoding="utf-8")
