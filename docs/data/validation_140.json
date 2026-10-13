@@ -1,0 +1,529 @@
+{
+  "evaluation": "#140 five-fold geographic cross-validation",
+  "status": "retrospective_geographic_cv_complete",
+  "production_status": "incumbent_unchanged",
+  "temporal_independence": false,
+  "warning": "2024 was repeatedly consulted during earlier model development; geographic cross-validation is NOT independent future-year validation.",
+  "split_method": "stable sorted municipality codes into five folds using SHA256",
+  "test_year": 2024,
+  "coverage": {
+    "tested": 290,
+    "available_2024": 290,
+    "unique_municipalities": 290
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "municipalities": 58,
+      "selected_features": [
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_andel_20_34",
+        "lag1_bostadsbestandsforandring_pct",
+        "lag1_andel_bostadsratt",
+        "lag1_kolada_langtidsarbetslosa_pct",
+        "lag1_bas_sjuka_andel_pct",
+        "lag1_andel_smahus_111_plus",
+        "lag1_gymnasium_hogskoleforberedande_pct"
+      ],
+      "incumbent_rmse": 6.433106346414572,
+      "challenger_rmse": 5.662567560471738
+    },
+    {
+      "fold": 1,
+      "municipalities": 52,
+      "selected_features": [
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_andel_20_34",
+        "lag1_bostadsbestandsforandring_pct",
+        "lag1_andel_bostadsratt",
+        "lag1_fritidshusandel_bland_smahus",
+        "lag1_kolada_langtidsarbetslosa_pct",
+        "lag1_bas_sjuka_andel_pct",
+        "lag1_gymnasium_hogskoleforberedande_pct"
+      ],
+      "incumbent_rmse": 5.846775719568137,
+      "challenger_rmse": 4.819507816317453
+    },
+    {
+      "fold": 2,
+      "municipalities": 65,
+      "selected_features": [
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_andel_20_34",
+        "lag1_valdeltagande_pct",
+        "lag1_bostader_per_1000",
+        "lag1_bostadsbestandsforandring_pct",
+        "lag1_andel_bostadsratt",
+        "lag1_fritidshusandel_bland_smahus",
+        "lag1_andel_hotell_restaurang_i",
+        "lag1_log_externa_fa_jobb_per_1000",
+        "lag1_kolada_langtidsarbetslosa_pct",
+        "lag1_gymnasium_hogskoleforberedande_pct"
+      ],
+      "incumbent_rmse": 5.433662164009181,
+      "challenger_rmse": 4.3767969552657515
+    },
+    {
+      "fold": 3,
+      "municipalities": 64,
+      "selected_features": [
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_andel_20_34",
+        "lag1_bostadsbestandsforandring_pct",
+        "lag1_andel_bostadsratt",
+        "lag1_kolada_langtidsarbetslosa_pct",
+        "lag1_bas_pensionarer_andel_pct"
+      ],
+      "incumbent_rmse": 5.903899166882142,
+      "challenger_rmse": 5.050358511799326
+    },
+    {
+      "fold": 4,
+      "municipalities": 51,
+      "selected_features": [
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_andel_20_34",
+        "lag1_inflyttare_medelalder",
+        "lag1_valdeltagande_pct",
+        "lag1_bostadsbestandsforandring_pct",
+        "lag1_andel_bostadsratt",
+        "lag1_fritidshusandel_bland_smahus",
+        "lag1_andel_hotell_restaurang_i",
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+        "lag1_kolada_langtidsarbetslosa_pct",
+        "lag1_bas_sjuka_andel_pct",
+        "lag1_andel_smahus_111_plus"
+      ],
+      "incumbent_rmse": 6.141196059409515,
+      "challenger_rmse": 5.418641973520382
+    }
+  ],
+  "selection_frequency": [
+    {
+      "feature": "lag1_inflyttning_per_1000",
+      "selected_folds": 5
+    },
+    {
+      "feature": "lag1_utflyttning_per_1000",
+      "selected_folds": 5
+    },
+    {
+      "feature": "lag1_andel_20_34",
+      "selected_folds": 5
+    },
+    {
+      "feature": "lag1_bostadsbestandsforandring_pct",
+      "selected_folds": 5
+    },
+    {
+      "feature": "lag1_andel_bostadsratt",
+      "selected_folds": 5
+    },
+    {
+      "feature": "lag1_kolada_langtidsarbetslosa_pct",
+      "selected_folds": 5
+    },
+    {
+      "feature": "lag1_bas_sjuka_andel_pct",
+      "selected_folds": 3
+    },
+    {
+      "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+      "selected_folds": 3
+    },
+    {
+      "feature": "lag1_fritidshusandel_bland_smahus",
+      "selected_folds": 3
+    },
+    {
+      "feature": "lag1_andel_smahus_111_plus",
+      "selected_folds": 2
+    },
+    {
+      "feature": "lag1_valdeltagande_pct",
+      "selected_folds": 2
+    },
+    {
+      "feature": "lag1_andel_hotell_restaurang_i",
+      "selected_folds": 2
+    },
+    {
+      "feature": "lag1_bostader_per_1000",
+      "selected_folds": 1
+    },
+    {
+      "feature": "lag1_log_externa_fa_jobb_per_1000",
+      "selected_folds": 1
+    },
+    {
+      "feature": "lag1_bas_pensionarer_andel_pct",
+      "selected_folds": 1
+    },
+    {
+      "feature": "lag1_inflyttare_medelalder",
+      "selected_folds": 1
+    },
+    {
+      "feature": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+      "selected_folds": 1
+    }
+  ],
+  "incumbent_metrics": {
+    "r2": 0.8456946588179186,
+    "rmse": 5.9455139471942715,
+    "mae": 4.678537980036622,
+    "median_abs_error": 4.040692907158771,
+    "p90_abs_error": 9.799679348700833,
+    "p95_abs_error": 11.834980605171797,
+    "p90_p10_abs_error_gap": 9.132318459228008,
+    "best_decile_mae": 0.3302740873714443,
+    "worst_decile_mae": 12.599136991642695,
+    "decile_mae_gap": 12.26886290427125,
+    "max_abs_error": 19.488144877138225,
+    "n": 290
+  },
+  "challenger_metrics": {
+    "r2": 0.887971579116509,
+    "rmse": 5.0659748548753685,
+    "mae": 3.8037522822021637,
+    "median_abs_error": 2.8571633061474877,
+    "p90_abs_error": 8.260775420469058,
+    "p95_abs_error": 11.032046196837495,
+    "p90_p10_abs_error_gap": 7.707386325475584,
+    "best_decile_mae": 0.28446444707789575,
+    "worst_decile_mae": 11.467642771596628,
+    "decile_mae_gap": 11.183178324518732,
+    "max_abs_error": 17.333712015726014,
+    "n": 290
+  },
+  "incumbent_minus_challenger": {
+    "rmse": 0.879539092318903,
+    "mae": 0.8747856978344584,
+    "p90_abs_error": 1.5389039282317754,
+    "worst_decile_mae": 1.1314942200460667
+  },
+  "municipalities_improved": 201,
+  "municipalities_worsened": 89,
+  "lulea": [
+    {
+      "kommun_kod": "2580",
+      "kommun": "Luleå",
+      "actual": 51.74210559357147,
+      "incumbent_prediction": 43.747499140099066,
+      "challenger_prediction": 49.474424254207044,
+      "incumbent_absolute_error": 7.994606453472407,
+      "challenger_absolute_error": 2.2676813393644295,
+      "improvement": 5.726925114107978
+    }
+  ],
+  "largest_improvements": [
+    {
+      "kommun_kod": "2023",
+      "kommun": "Malung-Sälen",
+      "actual": 52.66237565827969,
+      "incumbent_prediction": 42.87973060466667,
+      "challenger_prediction": 49.8845741980103,
+      "incumbent_absolute_error": 9.782645053613024,
+      "challenger_absolute_error": 2.7778014602693943,
+      "improvement": 7.0048435933436295
+    },
+    {
+      "kommun_kod": "0184",
+      "kommun": "Solna",
+      "actual": 137.43020666985277,
+      "incumbent_prediction": 128.43952845323673,
+      "challenger_prediction": 135.0599680994344,
+      "incumbent_absolute_error": 8.990678216616033,
+      "challenger_absolute_error": 2.3702385704183655,
+      "improvement": 6.620439646197667
+    },
+    {
+      "kommun_kod": "2580",
+      "kommun": "Luleå",
+      "actual": 51.74210559357147,
+      "incumbent_prediction": 43.747499140099066,
+      "challenger_prediction": 49.474424254207044,
+      "incumbent_absolute_error": 7.994606453472407,
+      "challenger_absolute_error": 2.2676813393644295,
+      "improvement": 5.726925114107978
+    },
+    {
+      "kommun_kod": "0562",
+      "kommun": "Finspång",
+      "actual": 51.750450908754566,
+      "incumbent_prediction": 44.701685603546196,
+      "challenger_prediction": 50.300609374929564,
+      "incumbent_absolute_error": 7.04876530520837,
+      "challenger_absolute_error": 1.4498415338250012,
+      "improvement": 5.598923771383369
+    },
+    {
+      "kommun_kod": "1233",
+      "kommun": "Vellinge",
+      "actual": 54.68584726041887,
+      "incumbent_prediction": 45.992847655275554,
+      "challenger_prediction": 50.979103279265836,
+      "incumbent_absolute_error": 8.692999605143314,
+      "challenger_absolute_error": 3.706743981153032,
+      "improvement": 4.9862556239902815
+    },
+    {
+      "kommun_kod": "1860",
+      "kommun": "Laxå",
+      "actual": 63.80232343721188,
+      "incumbent_prediction": 58.0479632871342,
+      "challenger_prediction": 62.87699526834448,
+      "incumbent_absolute_error": 5.75436015007768,
+      "challenger_absolute_error": 0.9253281688674022,
+      "improvement": 4.829031981210278
+    },
+    {
+      "kommun_kod": "2181",
+      "kommun": "Sandviken",
+      "actual": 46.53284671532847,
+      "incumbent_prediction": 37.56137150825323,
+      "challenger_prediction": 42.24521073327182,
+      "incumbent_absolute_error": 8.971475207075237,
+      "challenger_absolute_error": 4.287635982056649,
+      "improvement": 4.683839225018588
+    },
+    {
+      "kommun_kod": "0482",
+      "kommun": "Flen",
+      "actual": 61.58052336935295,
+      "incumbent_prediction": 56.897990577697335,
+      "challenger_prediction": 61.65574204165799,
+      "incumbent_absolute_error": 4.682532791655618,
+      "challenger_absolute_error": 0.07521867230503432,
+      "improvement": 4.607314119350583
+    },
+    {
+      "kommun_kod": "2085",
+      "kommun": "Ludvika",
+      "actual": 57.89592250506871,
+      "incumbent_prediction": 44.34043119604512,
+      "challenger_prediction": 48.89546411466472,
+      "incumbent_absolute_error": 13.555491309023594,
+      "challenger_absolute_error": 9.000458390403992,
+      "improvement": 4.555032918619602
+    },
+    {
+      "kommun_kod": "1885",
+      "kommun": "Lindesberg",
+      "actual": 47.18897195453956,
+      "incumbent_prediction": 42.02216353191807,
+      "challenger_prediction": 46.31341936393506,
+      "incumbent_absolute_error": 5.166808422621493,
+      "challenger_absolute_error": 0.8755525906044994,
+      "improvement": 4.291255832016994
+    },
+    {
+      "kommun_kod": "2284",
+      "kommun": "Örnsköldsvik",
+      "actual": 31.43769276554299,
+      "incumbent_prediction": 24.814080304519294,
+      "challenger_prediction": 29.084161954852092,
+      "incumbent_absolute_error": 6.623612461023697,
+      "challenger_absolute_error": 2.3535308106908985,
+      "improvement": 4.2700816503327985
+    },
+    {
+      "kommun_kod": "0880",
+      "kommun": "Kalmar",
+      "actual": 59.281470070422536,
+      "incumbent_prediction": 55.048998595861335,
+      "challenger_prediction": 59.359526084742775,
+      "incumbent_absolute_error": 4.232471474561201,
+      "challenger_absolute_error": 0.07805601432023934,
+      "improvement": 4.154415460240962
+    },
+    {
+      "kommun_kod": "0884",
+      "kommun": "Vimmerby",
+      "actual": 41.34165366614665,
+      "incumbent_prediction": 37.28147545602346,
+      "challenger_prediction": 41.28428511204391,
+      "incumbent_absolute_error": 4.0601782101231905,
+      "challenger_absolute_error": 0.057368554102737335,
+      "improvement": 4.002809656020453
+    },
+    {
+      "kommun_kod": "2282",
+      "kommun": "Kramfors",
+      "actual": 53.055857298038994,
+      "incumbent_prediction": 40.64874706078451,
+      "challenger_prediction": 44.64473032481983,
+      "incumbent_absolute_error": 12.407110237254486,
+      "challenger_absolute_error": 8.411126973219162,
+      "improvement": 3.995983264035324
+    },
+    {
+      "kommun_kod": "2283",
+      "kommun": "Sollefteå",
+      "actual": 40.00869754294412,
+      "incumbent_prediction": 35.00149520561503,
+      "challenger_prediction": 38.893974345262414,
+      "incumbent_absolute_error": 5.00720233732909,
+      "challenger_absolute_error": 1.1147231976817054,
+      "improvement": 3.892479139647385
+    }
+  ],
+  "largest_deteriorations": [
+    {
+      "kommun_kod": "2583",
+      "kommun": "Haparanda",
+      "actual": 47.42651076385094,
+      "incumbent_prediction": 45.914006628555484,
+      "challenger_prediction": 41.36240424526402,
+      "incumbent_absolute_error": 1.5125041352954582,
+      "challenger_absolute_error": 6.064106518586925,
+      "improvement": -4.551602383291467
+    },
+    {
+      "kommun_kod": "0767",
+      "kommun": "Markaryd",
+      "actual": 51.519420406520425,
+      "incumbent_prediction": 56.324036139680146,
+      "challenger_prediction": 60.864184849560935,
+      "incumbent_absolute_error": 4.8046157331597215,
+      "challenger_absolute_error": 9.34476444304051,
+      "improvement": -4.540148709880789
+    },
+    {
+      "kommun_kod": "0183",
+      "kommun": "Sundbyberg",
+      "actual": 135.67544514340548,
+      "incumbent_prediction": 140.52986077238148,
+      "challenger_prediction": 145.05378568091083,
+      "incumbent_absolute_error": 4.854415628976,
+      "challenger_absolute_error": 9.378340537505352,
+      "improvement": -4.523924908529352
+    },
+    {
+      "kommun_kod": "1081",
+      "kommun": "Ronneby",
+      "actual": 39.69938415503984,
+      "incumbent_prediction": 39.66913050892392,
+      "challenger_prediction": 44.06470733343447,
+      "incumbent_absolute_error": 0.03025364611591641,
+      "challenger_absolute_error": 4.3653231783946325,
+      "improvement": -4.335069532278716
+    },
+    {
+      "kommun_kod": "1260",
+      "kommun": "Bjuv",
+      "actual": 86.6437284954645,
+      "incumbent_prediction": 88.20593845256101,
+      "challenger_prediction": 92.40514427709589,
+      "incumbent_absolute_error": 1.5622099570965133,
+      "challenger_absolute_error": 5.761415781631385,
+      "improvement": -4.199205824534872
+    },
+    {
+      "kommun_kod": "1275",
+      "kommun": "Perstorp",
+      "actual": 74.91361437456807,
+      "incumbent_prediction": 82.60154072571738,
+      "challenger_prediction": 86.46238414854126,
+      "incumbent_absolute_error": 7.687926351149315,
+      "challenger_absolute_error": 11.548769773973191,
+      "improvement": -3.8608434228238764
+    },
+    {
+      "kommun_kod": "1256",
+      "kommun": "Östra Göinge",
+      "actual": 57.08971240520818,
+      "incumbent_prediction": 57.899983426240134,
+      "challenger_prediction": 61.637135609163586,
+      "incumbent_absolute_error": 0.8102710210319515,
+      "challenger_absolute_error": 4.547423203955404,
+      "improvement": -3.7371521829234524
+    },
+    {
+      "kommun_kod": "1863",
+      "kommun": "Hällefors",
+      "actual": 48.093656067078,
+      "incumbent_prediction": 58.53133339740186,
+      "challenger_prediction": 62.15211168142271,
+      "incumbent_absolute_error": 10.437677330323858,
+      "challenger_absolute_error": 14.058455614344709,
+      "improvement": -3.620778284020851
+    },
+    {
+      "kommun_kod": "1419",
+      "kommun": "Tjörn",
+      "actual": 47.91200596569724,
+      "incumbent_prediction": 50.644303200841364,
+      "challenger_prediction": 54.17975733982189,
+      "incumbent_absolute_error": 2.7322972351441237,
+      "challenger_absolute_error": 6.26775137412465,
+      "improvement": -3.5354541389805263
+    },
+    {
+      "kommun_kod": "1230",
+      "kommun": "Staffanstorp",
+      "actual": 67.42848771197305,
+      "incumbent_prediction": 67.3367240294997,
+      "challenger_prediction": 71.03742744384554,
+      "incumbent_absolute_error": 0.0917636824733421,
+      "challenger_absolute_error": 3.6089397318724963,
+      "improvement": -3.517176049399154
+    },
+    {
+      "kommun_kod": "0140",
+      "kommun": "Nykvarn",
+      "actual": 78.43137254901961,
+      "incumbent_prediction": 82.91767753959778,
+      "challenger_prediction": 86.38417860230928,
+      "incumbent_absolute_error": 4.486304990578162,
+      "challenger_absolute_error": 7.952806053289663,
+      "improvement": -3.466501062711501
+    },
+    {
+      "kommun_kod": "1273",
+      "kommun": "Osby",
+      "actual": 49.27782497875956,
+      "incumbent_prediction": 51.95197469907786,
+      "challenger_prediction": 55.26625710714174,
+      "incumbent_absolute_error": 2.6741497203182973,
+      "challenger_absolute_error": 5.988432128382179,
+      "improvement": -3.3142824080638817
+    },
+    {
+      "kommun_kod": "0428",
+      "kommun": "Vingåker",
+      "actual": 51.42857142857143,
+      "incumbent_prediction": 55.514373977949276,
+      "challenger_prediction": 58.737907570877425,
+      "incumbent_absolute_error": 4.085802549377846,
+      "challenger_absolute_error": 7.309336142305995,
+      "improvement": -3.223533592928149
+    },
+    {
+      "kommun_kod": "1904",
+      "kommun": "Skinnskatteberg",
+      "actual": 60.38533834586466,
+      "incumbent_prediction": 61.939812727839644,
+      "challenger_prediction": 65.12106033088962,
+      "incumbent_absolute_error": 1.554474381974984,
+      "challenger_absolute_error": 4.735721985024959,
+      "improvement": -3.1812476030499752
+    },
+    {
+      "kommun_kod": "1962",
+      "kommun": "Norberg",
+      "actual": 59.24431401320616,
+      "incumbent_prediction": 60.05017240168903,
+      "challenger_prediction": 63.133771934433696,
+      "incumbent_absolute_error": 0.8058583884828749,
+      "challenger_absolute_error": 3.889457921227539,
+      "improvement": -3.083599532744664
+    }
+  ],
+  "note": "One held-out 2024 observation per municipality. Results cannot prove causal variable effects or justify deployment without unseen future outcomes."
+}
