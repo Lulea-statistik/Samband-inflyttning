@@ -37,6 +37,8 @@ jobs:
         run: python scripts/build_analysis.py --skip-preflight
       - name: Assess forecast challenger production readiness
         run: python scripts/assess_production_challenger.py
+      - name: Spatially blocked challenger validation 138
+        run: python scripts/validate_challenger_138.py
       - name: Commit generated data
         shell: bash
         run: |
