@@ -31,7 +31,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/data/commuting_model_test.json docs/data/commuting_isolated_test.json
+          git add docs/data/commuting_model_test.json docs/data/commuting_isolated_test.json docs/data/commuting_controlled_test.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Update commuter model comparison"
           git pull --rebase origin main
