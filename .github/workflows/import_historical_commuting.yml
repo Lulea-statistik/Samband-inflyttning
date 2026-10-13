@@ -1,0 +1,37 @@
+name: Import historical SCB RAMS commuting
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/import_historical_commuting.py"
+      - ".github/workflows/import_historical_commuting.yml"
+concurrency:
+  group: import-historical-commuting
+  cancel-in-progress: true
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - name: Import historical RAMS series with break metadata
+        run: python scripts/import_historical_commuting.py
+      - name: Commit historical data
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/commuting_historical_*
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Update historical RAMS commuting series"
+          git pull --rebase origin main
+          git push origin HEAD:main
