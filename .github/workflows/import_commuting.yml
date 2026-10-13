@@ -1,0 +1,44 @@
+name: Import SCB commuting flows
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/import_scb_commuting.py"
+      - ".github/workflows/import_commuting.yml"
+
+concurrency:
+  group: import-scb-commuting
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - name: Download SCB commuting matrices and verify coverage
+        run: python scripts/import_scb_commuting.py
+      - name: Commit import and metadata
+        shell: bash
+        run: |
+          if [ -z "$(git status --porcelain docs/data/commuting*)" ]; then
+            echo "No commuting file changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/commuting*
+          git commit -m "Update SCB commuting data"
+          git pull --rebase origin main
+          git push origin HEAD:main
