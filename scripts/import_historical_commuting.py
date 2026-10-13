@@ -102,7 +102,7 @@ def main():
               ],
               "warning":"Do not pool or difference across the 2018/2019 or RAMS/BAS regime boundaries without an explicit harmonization experiment. RAMS denominator is local workers + outbound commuters.",
               "production_model_changed":False}
-    (OUT/"commuting_historical_status.json").write_text(json.dumps(metadata,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+    (OUT/"commuting_historical_status.json").write_text(json.dumps(metadata,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps({"rows":len(records),"sources":provenance},ensure_ascii=False))
 
 if __name__=="__main__":main()
