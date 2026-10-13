@@ -1,0 +1,86 @@
+{
+  "status": "imported_separate_regimes",
+  "series": {
+    "RAMS_2004_2018": {
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0207/AM0207L/PendlingK",
+      "years": [
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018"
+      ],
+      "rows": 4350,
+      "metrics": {
+        "incoming": "AM0207C6",
+        "outgoing": "AM0207C8",
+        "local": "AM0207C9"
+      }
+    },
+    "RAMS_2019_2021": {
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0207/AM0207Z/PendlingKN",
+      "years": [
+        "2019",
+        "2020",
+        "2021"
+      ],
+      "rows": 870,
+      "metrics": {
+        "incoming": "00000547",
+        "outgoing": "00000548",
+        "local": "00000546"
+      }
+    }
+  },
+  "years": [
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021
+  ],
+  "total_rows": 5220,
+  "breakpoints": [
+    {
+      "from": 2011,
+      "details": "RAMS classification adjustment for older workers"
+    },
+    {
+      "from": 2019,
+      "details": "RAMS AGI methodology replaces annual employer statements"
+    },
+    {
+      "from": 2020,
+      "details": "BAS methodology begins, distinct from RAMS; 2020-21 overlap not interchangeable"
+    },
+    {
+      "from": 2024,
+      "details": "BAS classification change for self-employed"
+    }
+  ],
+  "warning": "Do not pool or difference across the 2018/2019 or RAMS/BAS regime boundaries without an explicit harmonization experiment. RAMS denominator is local workers + outbound commuters.",
+  "production_model_changed": false
+}\n
