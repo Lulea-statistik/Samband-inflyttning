@@ -58,15 +58,25 @@ def main():
             if sex: query.append({"code":sex["code"],"selection":{"filter":"item","values":[total]}})
             response=request("POST",url,json={"query":query,"response":{"format":"json"}})
             dimensions=[c["code"] for c in response["columns"] if c.get("type")!="c"]
+            content_columns=[c for c in response["columns"] if c.get("type")=="c"]
+            if len(content_columns)!=1 or content_columns[0]["code"]!=contents["code"]:
+                raise RuntimeError(f"Unexpected SCB contents columns: {response['columns']}")
+            content_order=content_columns[0].get("values",[])
+            if set(content_order)!=set(picks.values()) or len(content_order)!=3:
+                raise RuntimeError(f"Unexpected contents order: {content_order}; expected {picks}")
             mapped={}
             for ob in response["data"]:
                 dim=dict(zip(dimensions,ob["key"]))
-                key=(dim[region["code"]],dim[contents["code"]])
-                value=ob["values"][0]
-                if value in (None,"","..",".","-"):
-                    raise RuntimeError(f"SCB missing value for {regime}, {yr}, {key}")
-                if key in mapped:raise RuntimeError("Duplicate key")
-                mapped[key]=float(str(value).replace(" ","").replace(",","."))
+                if region["code"] not in dim:
+                    raise RuntimeError(f"Region dimension missing from response: {dimensions}")
+                if len(ob["values"])!=len(content_order):
+                    raise RuntimeError(f"Unexpected value count: {len(ob['values'])} != {len(content_order)}")
+                for content_code,value in zip(content_order,ob["values"]):
+                    key=(dim[region["code"]],content_code)
+                    if value in (None,"","..",".","-"):
+                        raise RuntimeError(f"SCB missing value for {regime}, {yr}, {key}")
+                    if key in mapped: raise RuntimeError(f"Duplicate key {key}")
+                    mapped[key]=float(str(value).replace(" ","").replace(",","."))
             if len(mapped)!=290*3:raise RuntimeError(f"Incomplete historical year {yr}: {len(mapped)}")
             for kommune in municipality:
                 vals={k:mapped[(kommune,v)] for k,v in picks.items()}
