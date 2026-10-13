@@ -71,7 +71,7 @@ def main():
                 estimator.fit(train[columns],train[target])
                 pred[name]=estimator.predict(test[columns])
             for idx,(_,record) in enumerate(test.iterrows()):
-                rows.append({"split":variant,"fold":fold,"year":int(record.year),
+                rows.append({"split":variant,"fold":int(fold) if fold is not None else None,"year":int(record.year),
                              "kommun_kod":record.kommun_kod,"actual":float(record[target]),
                              "rams_share":float(record.rams_share),"bas_share":float(record.bas_share),
                              **{name:float(values[idx]) for name,values in pred.items()}})
@@ -80,7 +80,7 @@ def main():
     for split,group in result.groupby("split"):
         if len(group)!=290:raise RuntimeError(f"Expected 290 test observations for {split}, got {len(group)}")
         summary[split]={"n":len(group),"scores":{key:metrics(group.actual,group[key]) for key in ("base","RAMS","BAS")},
-                         "lulea":group.loc[group.kommun_kod=="2580"].to_dict("records"),
+                         "lulea":[{**row,"fold":None if pd.isna(row["fold"]) else int(row["fold"])} for row in group.loc[group.kommun_kod=="2580"].to_dict("records")],
                          "mean_abs_rams_bas_share_gap_pp":float((group.rams_share-group.bas_share).abs().mean()),
                          "median_abs_rams_bas_share_gap_pp":float((group.rams_share-group.bas_share).abs().median())}
     report={"status":"track_b_comparison_complete",
@@ -89,7 +89,7 @@ def main():
             "training":"Geographic CV trains solely on 2021 observations of non-held municipalities; temporal holdout trains on all 2021 municipalities and tests 2022.",
             "caution":"Only 2 overlapping source years; 2022 temporal evaluation has only one earlier training year. Results are retrospective and cannot establish which methodology is universally better. 2023/24 have BAS but no paired RAMS.",
             "production_model_changed":False}
-    (D/"commuting_track_b_comparison.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    (D/"commuting_track_b_comparison.json").write_text(json.dumps(report,ensure_ascii=False,indent=2,allow_nan=False)+"\n",encoding="utf-8")
     print(json.dumps({k:{"rmse":{model:round(v["rmse"],3) for model,v in result["scores"].items()}} for k,result in summary.items()},ensure_ascii=False))
 
 if __name__=="__main__":main()
