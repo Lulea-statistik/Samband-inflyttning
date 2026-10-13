@@ -1,0 +1,455 @@
+{
+  "status": "coverage_audit_only",
+  "lag_alignment": "RAMS reference year t-1 predicts migration outcome t",
+  "periods": {
+    "pre2019_RAMS": [
+      {
+        "year": 2005,
+        "observations_with_RAMS_lag": 290,
+        "complete_incumbent_and_RAMS": 0,
+        "incumbent_features_with_250_valid": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder"
+        ]
+      },
+      {
+        "year": 2006,
+        "observations_with_RAMS_lag": 290,
+        "complete_incumbent_and_RAMS": 0,
+        "incumbent_features_with_250_valid": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder"
+        ]
+      },
+      {
+        "year": 2007,
+        "observations_with_RAMS_lag": 290,
+        "complete_incumbent_and_RAMS": 0,
+        "incumbent_features_with_250_valid": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder"
+        ]
+      },
+      {
+        "year": 2008,
+        "observations_with_RAMS_lag": 290,
+        "complete_incumbent_and_RAMS": 0,
+        "incumbent_features_with_250_valid": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder"
+        ]
+      },
+      {
+        "year": 2009,
+        "observations_with_RAMS_lag": 290,
+        "complete_incumbent_and_RAMS": 0,
+        "incumbent_features_with_250_valid": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder"
+        ]
+      },
+      {
+        "year": 2010,
+        "observations_with_RAMS_lag": 290,
+        "complete_incumbent_and_RAMS": 0,
+        "incumbent_features_with_250_valid": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder"
+        ]
+      },
+      {
+        "year": 2011,
+        "observations_with_RAMS_lag": 290,
+        "complete_incumbent_and_RAMS": 0,
+        "incumbent_features_with_250_valid": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder"
+        ]
+      },
+      {
+        "year": 2012,
+        "observations_with_RAMS_lag": 290,
+        "complete_incumbent_and_RAMS": 0,
+        "incumbent_features_with_250_valid": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder"
+        ]
+      },
+      {
+        "year": 2013,
+        "observations_with_RAMS_lag": 290,
+        "complete_incumbent_and_RAMS": 0,
+        "incumbent_features_with_250_valid": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder"
+        ]
+      },
+      {
+        "year": 2014,
+        "observations_with_RAMS_lag": 290,
+        "complete_incumbent_and_RAMS": 0,
+        "incumbent_features_with_250_valid": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder"
+        ]
+      },
+      {
+        "year": 2015,
+        "observations_with_RAMS_lag": 290,
+        "complete_incumbent_and_RAMS": 0,
+        "incumbent_features_with_250_valid": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder"
+        ]
+      },
+      {
+        "year": 2016,
+        "observations_with_RAMS_lag": 290,
+        "complete_incumbent_and_RAMS": 0,
+        "incumbent_features_with_250_valid": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder"
+        ]
+      },
+      {
+        "year": 2017,
+        "observations_with_RAMS_lag": 290,
+        "complete_incumbent_and_RAMS": 0,
+        "incumbent_features_with_250_valid": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder"
+        ]
+      },
+      {
+        "year": 2018,
+        "observations_with_RAMS_lag": 290,
+        "complete_incumbent_and_RAMS": 0,
+        "incumbent_features_with_250_valid": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder"
+        ]
+      },
+      {
+        "year": 2019,
+        "observations_with_RAMS_lag": 290,
+        "complete_incumbent_and_RAMS": 0,
+        "incumbent_features_with_250_valid": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder",
+          "lag1_inkomst_tkr",
+          "lag1_valdeltagande_pct",
+          "lag1_valdeltagande_gap_pp",
+          "lag1_ekonomisk_standard_gap_pp",
+          "lag1_bostader_per_1000",
+          "lag1_fardigstallda_bostader_per_1000",
+          "lag1_andel_hyresratt",
+          "lag1_andel_bostadsratt",
+          "lag1_andel_smahus",
+          "lag1_fritidshusandel_bland_smahus",
+          "lag1_brott_per_100000",
+          "lag1_andel_eftergymnasial",
+          "lag1_andel_studerande"
+        ]
+      }
+    ],
+    "post2019_RAMS": [
+      {
+        "year": 2020,
+        "observations_with_RAMS_lag": 290,
+        "complete_incumbent_and_RAMS": 0,
+        "incumbent_features_with_250_valid": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder",
+          "lag1_inkomst_tkr",
+          "lag1_valdeltagande_pct",
+          "lag1_valdeltagande_gap_pp",
+          "lag1_ekonomisk_standard_gap_pp",
+          "lag1_bostader_per_1000",
+          "lag1_bostadsbestandsforandring_pct",
+          "lag1_fardigstallda_bostader_per_1000",
+          "lag1_andel_hyresratt",
+          "lag1_andel_bostadsratt",
+          "lag1_andel_smahus",
+          "lag1_fritidshusandel_bland_smahus",
+          "lag1_brott_per_100000",
+          "lag1_andel_eftergymnasial",
+          "lag1_andel_studerande"
+        ]
+      },
+      {
+        "year": 2021,
+        "observations_with_RAMS_lag": 290,
+        "complete_incumbent_and_RAMS": 290,
+        "incumbent_features_with_250_valid": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder",
+          "lag1_inkomst_tkr",
+          "lag1_valdeltagande_pct",
+          "lag1_valdeltagande_gap_pp",
+          "lag1_ekonomisk_standard_gap_pp",
+          "lag1_bostader_per_1000",
+          "lag1_bostadsbestandsforandring_pct",
+          "lag1_fardigstallda_bostader_per_1000",
+          "lag1_andel_hyresratt",
+          "lag1_andel_bostadsratt",
+          "lag1_andel_smahus",
+          "lag1_fritidshusandel_bland_smahus",
+          "lag1_brott_per_100000",
+          "lag1_sysselsattningsgrad",
+          "lag1_arbetsloshet",
+          "lag1_andel_eftergymnasial",
+          "lag1_andel_studerande",
+          "lag1_andel_industri_bc",
+          "lag1_andel_hotell_restaurang_i",
+          "lag1_andel_kultur_service_rstu",
+          "lag1_log_externa_fa_jobb_per_1000",
+          "lag1_andel_fa_arbetsplatser_i_egen_kommun"
+        ]
+      },
+      {
+        "year": 2022,
+        "observations_with_RAMS_lag": 290,
+        "complete_incumbent_and_RAMS": 290,
+        "incumbent_features_with_250_valid": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder",
+          "lag1_inkomst_tkr",
+          "lag1_valdeltagande_pct",
+          "lag1_valdeltagande_gap_pp",
+          "lag1_ekonomisk_standard_gap_pp",
+          "lag1_bostader_per_1000",
+          "lag1_bostadsbestandsforandring_pct",
+          "lag1_fardigstallda_bostader_per_1000",
+          "lag1_andel_hyresratt",
+          "lag1_andel_bostadsratt",
+          "lag1_andel_smahus",
+          "lag1_fritidshusandel_bland_smahus",
+          "lag1_brott_per_100000",
+          "lag1_sysselsattningsgrad",
+          "lag1_arbetsloshet",
+          "lag1_andel_eftergymnasial",
+          "lag1_andel_studerande",
+          "lag1_andel_industri_bc",
+          "lag1_andel_hotell_restaurang_i",
+          "lag1_andel_kultur_service_rstu",
+          "lag1_log_externa_fa_jobb_per_1000",
+          "lag1_andel_fa_arbetsplatser_i_egen_kommun"
+        ]
+      }
+    ],
+    "BAS": [
+      {
+        "year": 2021,
+        "observations_with_RAMS_lag": 290,
+        "complete_incumbent_and_RAMS": 290,
+        "incumbent_features_with_250_valid": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder",
+          "lag1_inkomst_tkr",
+          "lag1_valdeltagande_pct",
+          "lag1_valdeltagande_gap_pp",
+          "lag1_ekonomisk_standard_gap_pp",
+          "lag1_bostader_per_1000",
+          "lag1_bostadsbestandsforandring_pct",
+          "lag1_fardigstallda_bostader_per_1000",
+          "lag1_andel_hyresratt",
+          "lag1_andel_bostadsratt",
+          "lag1_andel_smahus",
+          "lag1_fritidshusandel_bland_smahus",
+          "lag1_brott_per_100000",
+          "lag1_sysselsattningsgrad",
+          "lag1_arbetsloshet",
+          "lag1_andel_eftergymnasial",
+          "lag1_andel_studerande",
+          "lag1_andel_industri_bc",
+          "lag1_andel_hotell_restaurang_i",
+          "lag1_andel_kultur_service_rstu",
+          "lag1_log_externa_fa_jobb_per_1000",
+          "lag1_andel_fa_arbetsplatser_i_egen_kommun"
+        ]
+      },
+      {
+        "year": 2022,
+        "observations_with_RAMS_lag": 290,
+        "complete_incumbent_and_RAMS": 290,
+        "incumbent_features_with_250_valid": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder",
+          "lag1_inkomst_tkr",
+          "lag1_valdeltagande_pct",
+          "lag1_valdeltagande_gap_pp",
+          "lag1_ekonomisk_standard_gap_pp",
+          "lag1_bostader_per_1000",
+          "lag1_bostadsbestandsforandring_pct",
+          "lag1_fardigstallda_bostader_per_1000",
+          "lag1_andel_hyresratt",
+          "lag1_andel_bostadsratt",
+          "lag1_andel_smahus",
+          "lag1_fritidshusandel_bland_smahus",
+          "lag1_brott_per_100000",
+          "lag1_sysselsattningsgrad",
+          "lag1_arbetsloshet",
+          "lag1_andel_eftergymnasial",
+          "lag1_andel_studerande",
+          "lag1_andel_industri_bc",
+          "lag1_andel_hotell_restaurang_i",
+          "lag1_andel_kultur_service_rstu",
+          "lag1_log_externa_fa_jobb_per_1000",
+          "lag1_andel_fa_arbetsplatser_i_egen_kommun"
+        ]
+      },
+      {
+        "year": 2023,
+        "observations_with_RAMS_lag": 0,
+        "complete_incumbent_and_RAMS": 0,
+        "incumbent_features_with_250_valid": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder",
+          "lag1_inkomst_tkr",
+          "lag1_valdeltagande_pct",
+          "lag1_valdeltagande_gap_pp",
+          "lag1_ekonomisk_standard_gap_pp",
+          "lag1_bostader_per_1000",
+          "lag1_bostadsbestandsforandring_pct",
+          "lag1_fardigstallda_bostader_per_1000",
+          "lag1_andel_hyresratt",
+          "lag1_andel_bostadsratt",
+          "lag1_andel_smahus",
+          "lag1_fritidshusandel_bland_smahus",
+          "lag1_brott_per_100000",
+          "lag1_sysselsattningsgrad",
+          "lag1_arbetsloshet",
+          "lag1_andel_eftergymnasial",
+          "lag1_andel_studerande",
+          "lag1_andel_industri_bc",
+          "lag1_andel_hotell_restaurang_i",
+          "lag1_andel_kultur_service_rstu",
+          "lag1_log_externa_fa_jobb_per_1000",
+          "lag1_andel_fa_arbetsplatser_i_egen_kommun"
+        ]
+      },
+      {
+        "year": 2024,
+        "observations_with_RAMS_lag": 0,
+        "complete_incumbent_and_RAMS": 0,
+        "incumbent_features_with_250_valid": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_befolkningstillvaxt_pct",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder",
+          "lag1_inkomst_tkr",
+          "lag1_valdeltagande_pct",
+          "lag1_valdeltagande_gap_pp",
+          "lag1_ekonomisk_standard_gap_pp",
+          "lag1_bostader_per_1000",
+          "lag1_bostadsbestandsforandring_pct",
+          "lag1_fardigstallda_bostader_per_1000",
+          "lag1_andel_hyresratt",
+          "lag1_andel_bostadsratt",
+          "lag1_andel_smahus",
+          "lag1_fritidshusandel_bland_smahus",
+          "lag1_brott_per_100000",
+          "lag1_sysselsattningsgrad",
+          "lag1_arbetsloshet",
+          "lag1_andel_eftergymnasial",
+          "lag1_andel_studerande",
+          "lag1_andel_industri_bc",
+          "lag1_andel_hotell_restaurang_i",
+          "lag1_andel_kultur_service_rstu",
+          "lag1_log_externa_fa_jobb_per_1000",
+          "lag1_andel_fa_arbetsplatser_i_egen_kommun"
+        ]
+      }
+    ]
+  },
+  "incumbent_feature_count": 27,
+  "incumbent_missing_columns": [],
+  "method_breaks": "RAMS 2018/19, RAMS versus BAS 2020-21 overlap; do not pool without break controls",
+  "production_model_changed": false
+}
