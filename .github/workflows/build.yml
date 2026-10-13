@@ -39,6 +39,8 @@ jobs:
         run: python scripts/assess_production_challenger.py
       - name: Spatially blocked challenger validation 138
         run: python scripts/validate_challenger_138.py
+      - name: Final model comparison and candidate freeze 142
+        run: python scripts/final_candidate_142.py
       - name: Commit generated data
         shell: bash
         run: |
