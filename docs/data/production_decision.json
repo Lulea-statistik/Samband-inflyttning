@@ -6,20 +6,20 @@
   "candidate_test_status": "tested",
   "checks": {
     "rmse": {
-      "incumbent": 6.264940997206292,
-      "challenger": 5.666158604551229,
-      "improvement": 0.5987823926550631,
-      "ci95_low": 0.4801064880517347,
-      "ci95_high": 0.7181399477856517,
+      "incumbent": 6.264940997206278,
+      "challenger": 5.666158604551236,
+      "improvement": 0.5987823926550417,
+      "ci95_low": 0.48010648805171163,
+      "ci95_high": 0.7181399477856295,
       "credible_improvement": true,
       "no_credible_deterioration": true
     },
     "mae": {
-      "incumbent": 4.831158072319371,
-      "challenger": 4.191830340665932,
-      "improvement": 0.6393277316534389,
-      "ci95_low": 0.5329598631424104,
-      "ci95_high": 0.75154177844999,
+      "incumbent": 4.83115807231936,
+      "challenger": 4.1918303406659385,
+      "improvement": 0.6393277316534212,
+      "ci95_low": 0.5329598631423919,
+      "ci95_high": 0.7515417784499712,
       "credible_improvement": true,
       "no_credible_deterioration": true
     },
@@ -27,17 +27,17 @@
       "incumbent": 10.372002152843622,
       "challenger": 9.15444347320315,
       "improvement": 1.2175586796404723,
-      "ci95_low": 0.6437733339517687,
-      "ci95_high": 1.6900234163339314,
+      "ci95_low": 0.6437733339517665,
+      "ci95_high": 1.6900234163338848,
       "credible_improvement": true,
       "no_credible_deterioration": true
     },
     "worst_decile_mae": {
-      "incumbent": 13.748254359941978,
-      "challenger": 12.96639837925523,
-      "improvement": 0.781855980686748,
-      "ci95_low": 0.3683372637486496,
-      "ci95_high": 1.2002205501434067,
+      "incumbent": 13.748254359941951,
+      "challenger": 12.966398379255246,
+      "improvement": 0.7818559806867054,
+      "ci95_low": 0.3683372637485881,
+      "ci95_high": 1.2002205501433587,
       "credible_improvement": true,
       "no_credible_deterioration": true
     }
@@ -73,10 +73,10 @@
     {
       "holdout_year": 2024,
       "improvements": {
-        "rmse": 0.9961864736249,
-        "mae": 0.9943268303582427,
-        "p90_abs_error": 1.794954102528818,
-        "worst_decile_mae": 1.3612140147903737
+        "rmse": 0.9961864736248298,
+        "mae": 0.9943268303581894,
+        "p90_abs_error": 1.7949541025286795,
+        "worst_decile_mae": 1.361214014790212
       },
       "rmse_improved": true,
       "tail_not_worse": true

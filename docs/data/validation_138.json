@@ -1,0 +1,254 @@
+{
+  "evaluation": "#138 spatially blocked retrospective validation",
+  "status": "retrospective_diagnostic_complete",
+  "active_model": "incumbent",
+  "test_year": 2024,
+  "split": "SHA256 municipality identifier, stable 20% holdout",
+  "important_limitation": "2024 was previously used in challenger design and comparisons. Even though municipalities here are held out of model fitting, this is a retrospective sensitivity test, NOT an independent confirmatory test. Production promotion is prohibited.",
+  "sample": {
+    "training_rows": 720,
+    "test_rows": 50,
+    "training_municipalities": 240,
+    "test_municipalities": 50
+  },
+  "incumbent_features": [
+    "lag1_inflyttning_per_1000",
+    "lag1_utflyttning_per_1000",
+    "lag1_log_folkmangd",
+    "lag1_befolkningstillvaxt_pct",
+    "lag1_andel_20_34",
+    "lag1_inflyttare_medelalder",
+    "lag1_inkomst_tkr",
+    "lag1_valdeltagande_pct",
+    "lag1_valdeltagande_gap_pp",
+    "lag1_ekonomisk_standard_gap_pp",
+    "lag1_bostader_per_1000",
+    "lag1_bostadsbestandsforandring_pct",
+    "lag1_fardigstallda_bostader_per_1000",
+    "lag1_andel_hyresratt",
+    "lag1_andel_bostadsratt",
+    "lag1_andel_smahus",
+    "lag1_fritidshusandel_bland_smahus",
+    "lag1_brott_per_100000",
+    "lag1_sysselsattningsgrad",
+    "lag1_arbetsloshet",
+    "lag1_andel_eftergymnasial",
+    "lag1_andel_studerande",
+    "lag1_andel_industri_bc",
+    "lag1_andel_hotell_restaurang_i",
+    "lag1_andel_kultur_service_rstu",
+    "lag1_log_externa_fa_jobb_per_1000",
+    "lag1_andel_fa_arbetsplatser_i_egen_kommun"
+  ],
+  "challenger_features_selected_using_training_only": [
+    "lag1_inflyttning_per_1000",
+    "lag1_utflyttning_per_1000",
+    "lag1_andel_20_34",
+    "lag1_bostadsbestandsforandring_pct",
+    "lag1_andel_bostadsratt",
+    "lag1_kolada_langtidsarbetslosa_pct",
+    "lag1_bas_sjuka_andel_pct"
+  ],
+  "incumbent_metrics": {
+    "r2": 0.8201632021483104,
+    "rmse": 5.826875251804661,
+    "mae": 4.592775879722422,
+    "median_abs_error": 3.7344093579010824,
+    "p90_abs_error": 10.049183092125771,
+    "p95_abs_error": 12.340974183741663,
+    "p90_p10_abs_error_gap": 8.943650044241394,
+    "best_decile_mae": 0.5899454411329813,
+    "worst_decile_mae": 13.177104219948864,
+    "decile_mae_gap": 12.587158778815883,
+    "max_abs_error": 18.126403188517095,
+    "n": 50
+  },
+  "challenger_metrics": {
+    "r2": 0.8751453759760438,
+    "rmse": 4.8551064391487575,
+    "mae": 3.6365170116271384,
+    "median_abs_error": 2.9102084266555828,
+    "p90_abs_error": 7.1899753130029955,
+    "p95_abs_error": 9.60352938904201,
+    "p90_p10_abs_error_gap": 6.628257747217734,
+    "best_decile_mae": 0.23480775934328618,
+    "worst_decile_mae": 10.925596669738383,
+    "decile_mae_gap": 10.690788910395096,
+    "max_abs_error": 16.83869475455223,
+    "n": 50
+  },
+  "incumbent_minus_challenger": {
+    "rmse": 0.9717688126559034,
+    "mae": 0.9562588680952833,
+    "p90_abs_error": 2.8592077791227757,
+    "worst_decile_mae": 2.2515075502104818
+  },
+  "municipalities_improved": 35,
+  "municipalities_worsened": 15,
+  "largest_improvements": [
+    {
+      "kommun_kod": 2282,
+      "kommun": "Kramfors",
+      "actual": 53.055857298038994,
+      "incumbent_absolute_error": 12.46707485801803,
+      "challenger_absolute_error": 7.164738200623411,
+      "improvement": 5.302336657394619
+    },
+    {
+      "kommun_kod": 1737,
+      "kommun": "Torsby",
+      "actual": 41.33910431940641,
+      "incumbent_absolute_error": 5.059185090869086,
+      "challenger_absolute_error": 0.8661542265217648,
+      "improvement": 4.193030864347321
+    },
+    {
+      "kommun_kod": 2505,
+      "kommun": "Arvidsjaur",
+      "actual": 48.61225160124816,
+      "incumbent_absolute_error": 10.623564560465361,
+      "challenger_absolute_error": 6.614618428993481,
+      "improvement": 4.00894613147188
+    },
+    {
+      "kommun_kod": 880,
+      "kommun": "Kalmar",
+      "actual": 59.281470070422536,
+      "incumbent_absolute_error": 3.7013648251234272,
+      "challenger_absolute_error": 0.128586045839711,
+      "improvement": 3.5727787792837162
+    },
+    {
+      "kommun_kod": 883,
+      "kommun": "Västervik",
+      "actual": 38.302192224325736,
+      "incumbent_absolute_error": 5.61891639358597,
+      "challenger_absolute_error": 2.1161083000189933,
+      "improvement": 3.5028080935669763
+    },
+    {
+      "kommun_kod": 2062,
+      "kommun": "Mora",
+      "actual": 45.86173320350535,
+      "incumbent_absolute_error": 7.355905435366054,
+      "challenger_absolute_error": 3.891111135844433,
+      "improvement": 3.464794299521621
+    },
+    {
+      "kommun_kod": 685,
+      "kommun": "Vetlanda",
+      "actual": 41.33972682359779,
+      "incumbent_absolute_error": 5.06720566678635,
+      "challenger_absolute_error": 1.788280140390917,
+      "improvement": 3.278925526395433
+    },
+    {
+      "kommun_kod": 1492,
+      "kommun": "Åmål",
+      "actual": 47.707038467999325,
+      "incumbent_absolute_error": 5.874998625664318,
+      "challenger_absolute_error": 2.6441026707828,
+      "improvement": 3.230895954881518
+    },
+    {
+      "kommun_kod": 480,
+      "kommun": "Nyköping",
+      "actual": 50.716440422322776,
+      "incumbent_absolute_error": 3.8022529727611527,
+      "challenger_absolute_error": 0.5861206229068614,
+      "improvement": 3.2161323498542913
+    },
+    {
+      "kommun_kod": 1290,
+      "kommun": "Kristianstad",
+      "actual": 45.32351613239329,
+      "incumbent_absolute_error": 3.711547732360657,
+      "challenger_absolute_error": 0.5724099710929877,
+      "improvement": 3.139137761267669
+    }
+  ],
+  "largest_deteriorations": [
+    {
+      "kommun_kod": 1260,
+      "kommun": "Bjuv",
+      "actual": 86.6437284954645,
+      "incumbent_absolute_error": 1.4264773028112074,
+      "challenger_absolute_error": 6.483346523667677,
+      "improvement": -5.05686922085647
+    },
+    {
+      "kommun_kod": 1446,
+      "kommun": "Karlsborg",
+      "actual": 45.84935212871992,
+      "incumbent_absolute_error": 3.047371623506173,
+      "challenger_absolute_error": 6.3264812766256355,
+      "improvement": -3.2791096531194626
+    },
+    {
+      "kommun_kod": 2481,
+      "kommun": "Lycksele",
+      "actual": 37.71249381085988,
+      "incumbent_absolute_error": 1.4791872886604054,
+      "challenger_absolute_error": 4.103565583726827,
+      "improvement": -2.624378295066421
+    },
+    {
+      "kommun_kod": 760,
+      "kommun": "Uppvidinge",
+      "actual": 48.89085089945922,
+      "incumbent_absolute_error": 4.819338571640664,
+      "challenger_absolute_error": 7.4171093244192505,
+      "improvement": -2.5977707527785867
+    },
+    {
+      "kommun_kod": 1491,
+      "kommun": "Ulricehamn",
+      "actual": 42.30538322993796,
+      "incumbent_absolute_error": 1.5577953832188456,
+      "challenger_absolute_error": 4.125478985446961,
+      "improvement": -2.567683602228115
+    },
+    {
+      "kommun_kod": 1419,
+      "kommun": "Tjörn",
+      "actual": 47.91200596569724,
+      "incumbent_absolute_error": 3.1983378132335005,
+      "challenger_absolute_error": 5.655707252053773,
+      "improvement": -2.4573694388202725
+    },
+    {
+      "kommun_kod": 1764,
+      "kommun": "Grums",
+      "actual": 52.97645490892936,
+      "incumbent_absolute_error": 0.5737728763577437,
+      "challenger_absolute_error": 2.9501457424604993,
+      "improvement": -2.3763728661027557
+    },
+    {
+      "kommun_kod": 1276,
+      "kommun": "Klippan",
+      "actual": 68.36400587106243,
+      "incumbent_absolute_error": 0.006432579951606954,
+      "challenger_absolute_error": 1.8146699342949546,
+      "improvement": -1.8082373543433476
+    },
+    {
+      "kommun_kod": 1441,
+      "kommun": "Lerum",
+      "actual": 47.07367454670645,
+      "incumbent_absolute_error": 0.6371409783233588,
+      "challenger_absolute_error": 2.420016100643501,
+      "improvement": -1.7828751223201422
+    },
+    {
+      "kommun_kod": 2404,
+      "kommun": "Vindeln",
+      "actual": 50.39689865239063,
+      "incumbent_absolute_error": 4.440652783557283,
+      "challenger_absolute_error": 6.002095213170733,
+      "improvement": -1.5614424296134501
+    }
+  ],
+  "lulea_if_in_holdout": [],
+  "next_required_step": "Freeze the full pipeline and validate on a genuinely future unseen outcome year when comparable SCB data are available."
+}
