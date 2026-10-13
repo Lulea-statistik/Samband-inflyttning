@@ -31,7 +31,7 @@ def identify(meta):
         picks[key]=matches[0]
     if sex:
         cats=list(zip(sex["values"],sex["valueTexts"]))
-        total=next((c for c,t in cats if any(z in t.lower() for z in ("totalt","båda","samtliga"))),None)
+        total=next((c for c,t in cats if any(z in t.lower() for z in ("totalt","båda","samtliga","män och kvinnor"))),None)
         if total is None: raise RuntimeError(f"Missing total sex category: {cats}")
     else: total=None
     municipality=[str(c) for c in region["values"] if re.fullmatch(r"\\d{4}",str(c))]
