@@ -34,7 +34,7 @@ def identify(meta):
         total=next((c for c,t in cats if any(z in t.lower() for z in ("totalt","båda","samtliga","män och kvinnor"))),None)
         if total is None: raise RuntimeError(f"Missing total sex category: {cats}")
     else: total=None
-    municipality=[str(c) for c in region["values"] if re.fullmatch(r"\\d{4}",str(c))]
+    municipality=[str(c) for c in region["values"] if re.fullmatch(r"\d{4}",str(c))]
     if len(municipality)!=290: raise RuntimeError(f"Expected 290 municipalities, found {len(municipality)}")
     return region,year,contents,sex,total,municipality,picks
 
@@ -44,7 +44,7 @@ def main():
     for regime,url in SOURCES.items():
         meta=request("GET",url)
         region,year,contents,sex,total,municipality,picks=identify(meta)
-        available=sorted(v for v in year["values"] if re.fullmatch(r"20\\d{2}",str(v)))
+        available=sorted(v for v in year["values"] if re.fullmatch(r"20\d{2}",str(v)))
         expected=[str(y) for y in (range(2004,2019) if "2004" in regime else range(2019,2022))]
         if available!=expected:
             raise RuntimeError(f"Unexpected years for {regime}: {available}")
