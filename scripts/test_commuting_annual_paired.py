@@ -27,7 +27,7 @@ def source_data():
     bas.year+=1
     model=json.loads((D/"model.json").read_text())
     fair=model["fair_reselection_test"]
-    required=list(dict.fromkeys(fair["incumbent_features"]+fair["eligible_pool"]+[model["target"],"commuting"]))
+    required=list(dict.fromkeys(fair["incumbent_features"]+[model["target"],"commuting"]))
     out={}
     for source,raw,years in [("RAMS",ram,[2021,2022]),("BAS",bas,[2022,2023,2024])]:
         joined=panel.merge(raw,on=["year","kommun_kod"],how="inner",validate="one_to_one")
@@ -50,7 +50,8 @@ def run():
         for year in (sorted(d.year.unique())[1:]):
             train=d.loc[d.year<year]; test=d.loc[d.year==year]
             if len(train)<280 or len(test)!=290:raise RuntimeError(f"{source} {year} sample mismatch")
-            selected=_select_features(train,pool,target)["selected"]
+            eligible=[col for col in pool if col in train.columns and train[col].notna().all() and test[col].notna().all()]
+            selected=_select_features(train,eligible,target)["selected"]
             preds={}
             features={"incumbent":baseline,"incumbent_plus":baseline+["commuting"],
                       "dynamic":selected,"dynamic_plus":list(dict.fromkeys(selected+["commuting"]))}
@@ -61,7 +62,7 @@ def run():
             metrics={name:_geographic_error_metrics(test[target],p) for name,p in preds.items()}
             lulea=test.reset_index(drop=True).index[test.reset_index(drop=True).kommun_kod=="2580"].tolist()
             year_results[str(year)]={"training_years":sorted(int(y) for y in train.year.unique()),"n_train":len(train),
-              "n_test":len(test),"selected_dynamic":selected,"metrics":metrics,
+              "n_test":len(test),"selected_dynamic":selected,"eligible_dynamic_pool":len(eligible),"metrics":metrics,
               "lulea":[{"actual":float(test.iloc[i][target]),**{name:float(p[i]) for name,p in preds.items()}} for i in lulea]}
             print(json.dumps({"source":source,"year":int(year),"rmse":{k:round(v["rmse"],3) for k,v in metrics.items()}},ensure_ascii=False),flush=True)
         result["results"][source]=year_results
