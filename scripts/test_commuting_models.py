@@ -98,6 +98,50 @@ def isolated_commuting_diagnostic(d, baseline, pool, target):
             for name in ("incumbent", "dynamic_selected", "dynamic_fixed_plus")
         }
         report["lulea_2024"][variant] = rows.loc[rows.kommun_kod == "2580"].to_dict("records")
+    # Paired municipal bootstrap and descriptive geography/size stratification.
+    # Reuse the same 290 held-out municipal predictions; don't reinterpret
+    # subgroup comparisons as independent tests of causal mechanisms.
+    subset = geographic.loc[geographic.variant.isin(["none", "out_share"])]
+    base = subset.loc[subset.variant == "none"].set_index("kommun_kod")
+    extra = subset.loc[subset.variant == "out_share"].set_index("kommun_kod")
+    ids = sorted(set(base.index) & set(extra.index))
+    y = base.loc[ids, "actual"].to_numpy(float)
+    p0 = base.loc[ids, "dynamic_fixed_plus"].to_numpy(float)
+    p1 = extra.loc[ids, "dynamic_fixed_plus"].to_numpy(float)
+    rng = np.random.default_rng(20261013)
+    boot = []
+    for _ in range(2000):
+        idx = rng.integers(0, len(ids), len(ids))
+        boot.append(_geographic_error_metrics(y[idx], p0[idx])["rmse"] -
+                    _geographic_error_metrics(y[idx], p1[idx])["rmse"])
+    report["outcommuting_paired_bootstrap"] = {
+        "n_municipalities": len(ids),
+        "rmse_baseline": _geographic_error_metrics(y, p0)["rmse"],
+        "rmse_plus_outcommuting": _geographic_error_metrics(y, p1)["rmse"],
+        "rmse_improvement": float(_geographic_error_metrics(y, p0)["rmse"] - _geographic_error_metrics(y, p1)["rmse"]),
+        "ci95": [float(np.quantile(boot, 0.025)), float(np.quantile(boot, 0.975))],
+        "resamples": len(boot),
+        "municipalities_improved": int((np.abs(y-p1) < np.abs(y-p0)).sum()),
+        "municipalities_worsened": int((np.abs(y-p1) > np.abs(y-p0)).sum()),
+    }
+    # Descriptive municipal quartiles based on prior-year outcommuting level.
+    descriptor = d.loc[d.year == 2024, ["kommun_kod", COMM[0]]].drop_duplicates("kommun_kod").set_index("kommun_kod")
+    lev = descriptor.reindex(ids)[COMM[0]]
+    if lev.notna().all():
+        quantile = pd.qcut(lev.rank(method="first"), 4, labels=["Q1 low","Q2","Q3","Q4 high"])
+        report["outcommuting_quartiles"] = []
+        for group in quantile.cat.categories:
+            mask = (quantile == group).to_numpy()
+            before = _geographic_error_metrics(y[mask], p0[mask])
+            after = _geographic_error_metrics(y[mask], p1[mask])
+            report["outcommuting_quartiles"].append({
+                "group": str(group), "n": int(mask.sum()),
+                "mean_outcommuting_share_pct": float(lev.to_numpy()[mask].mean()),
+                "rmse_before": before["rmse"], "rmse_after": after["rmse"],
+                "rmse_improvement": before["rmse"]-after["rmse"],
+                "mae_improvement": before["mae"]-after["mae"],
+            })
+    report["outcommuting_paired_bootstrap"]["warning"] = "Exploratory repeated 2024 holdout. CI describes sampling variation, not selection bias or validation on an unseen year."
     (D / "commuting_isolated_test.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return report
 
