@@ -29,11 +29,11 @@ def main():
     c["commuting_balance_per_1000_workers"]=1000*(c.workplace_employed-c.residents_employed)/c.residents_employed.replace(0,np.nan)
     c=c.sort_values(["kommun_kod","year"])
     c["outcommuting_share_change_pp"]=c.groupby("kommun_kod").outcommuting_share.diff()
-    for base in ("outcommuting_share","incommuting_share","commuting_balance_per_1000_workers","outcommuting_share_change_pp"):
-        c["lag1_"+base]=c.groupby("kommun_kod")[base].shift(1)
-    # The lead shifts are intentional: panel[year] receives latest prior year values.
-    # Existing year t commuter aggregate is appended onto panel t+1.
-    derived=c[["kommun_kod","year"]+COMM].copy()
+    # Source-year t flows are available for forecast year t+1 only.
+    # No additional shift: use 2021 flows and 2020->2021 change for forecast 2022.
+    bases=("outcommuting_share","incommuting_share","commuting_balance_per_1000_workers","outcommuting_share_change_pp")
+    derived=c[["kommun_kod","year"]+list(bases)].copy()
+    derived=derived.rename(columns={x:"lag1_"+x for x in bases})
     derived["year"]+=1
     panel=pd.read_csv(D/"panel.csv",dtype={"kommun_kod":str},low_memory=False)
     panel["kommun_kod"]=panel.kommun_kod.str.zfill(4)
@@ -91,7 +91,7 @@ def main():
     if ev.kommun_kod.nunique()!=len(universe):raise RuntimeError("Fold predictions incomplete")
     country={k:_geographic_error_metrics(ev.actual,ev[k]) for k in ("incumbent","incumbent_plus_commuting","dynamic","dynamic_plus_commuting")}
     report={"status":"retrospective_commuting_challenger_complete","years_raw":[2020,2021,2022,2023,2024],"candidate_predictors":COMM,
-            "predictor_timing":"Commuting predictor for forecast t currently originates from t-2, due to sequential shift and year alignment; first variation predictor needs 2020 and 2021 observations.",
+            "predictor_timing":"Commuting level for forecast t originates from t-1; change predictor uses t-2 to t-1. All information is historically lagged.",
             "note":"Exploratory: 2024 repeatedly used in research; no production promotion. Monthly commuting/trips are not observed.",
             "coverage":{str(y):int(v) for y,v in d.groupby("year").kommun_kod.nunique().items()},
             "temporal":rows,"geographic_cv_2024":country,"lulea_cv_2024":ev.loc[ev.kommun_kod=="2580"].to_dict("records"),"production_model_changed":False}
