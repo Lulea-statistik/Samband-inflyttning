@@ -59,11 +59,11 @@ def main():
             response=request("POST",url,json={"query":query,"response":{"format":"json"}})
             dimensions=[c["code"] for c in response["columns"] if c.get("type")!="c"]
             content_columns=[c for c in response["columns"] if c.get("type")=="c"]
-            if len(content_columns)!=1 or content_columns[0]["code"]!=contents["code"]:
-                raise RuntimeError(f"Unexpected SCB contents columns: {response['columns']}")
-            content_order=content_columns[0].get("values",[])
-            if set(content_order)!=set(picks.values()) or len(content_order)!=3:
-                raise RuntimeError(f"Unexpected contents order: {content_order}; expected {picks}")
+            # PxWeb JSON returns one column per requested ContentsCode series.
+            # These codes are NOT part of observation keys.
+            content_order=[col["code"] for col in content_columns]
+            if len(content_order)!=3 or set(content_order)!=set(picks.values()):
+                raise RuntimeError(f"Unexpected contents columns: {content_columns}; expected {picks}")
             mapped={}
             for ob in response["data"]:
                 dim=dict(zip(dimensions,ob["key"]))
