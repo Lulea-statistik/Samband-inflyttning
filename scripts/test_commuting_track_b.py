@@ -50,7 +50,7 @@ def main():
     rows=[]
     # Geographic holdouts exclude the same municipalities in both years from fitting;
     # compare the identical held-out records, separate from temporal 2022 test.
-    for variant, held_year in [("geo_2021",2021),("geo_2022",2022),("temporal_2022",2022)]:
+    for variant, held_year in [("geo_2022",2022),("temporal_2022",2022)]:
         t=data.loc[data.year==held_year]
         universe=sorted(t.kommun_kod.unique())
         folds=range(5) if variant.startswith("geo") else [None]
@@ -60,7 +60,7 @@ def main():
                 test=t
             else:
                 held={v for v in universe if int(hashlib.sha256(("validation-140:"+v).encode()).hexdigest()[:12],16)%5==fold}
-                train=data.loc[~data.kommun_kod.isin(held)]
+                train=data.loc[data.year.lt(held_year) & ~data.kommun_kod.isin(held)]
                 test=t.loc[t.kommun_kod.isin(held)]
             if len(train)<280 or len(test)<25:raise RuntimeError(f"Inadequate {variant} fold {fold}: train={len(train)}, test={len(test)}")
             pred={}
@@ -85,7 +85,7 @@ def main():
     report={"status":"track_b_comparison_complete",
             "overlap_source_years":[2020,2021],"forecast_years":[2021,2022],
             "full_model_features":len(base),"summary":summary,
-            "training":"Geographic CV excludes test municipalities both years; temporal holdout trains on 2021 and tests 2022.",
+            "training":"Geographic CV trains solely on 2021 observations of non-held municipalities; temporal holdout trains on all 2021 municipalities and tests 2022.",
             "caution":"Only 2 overlapping source years; 2022 temporal evaluation has only one earlier training year. Results are retrospective and cannot establish which methodology is universally better. 2023/24 have BAS but no paired RAMS.",
             "production_model_changed":False}
     (D/"commuting_track_b_comparison.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
