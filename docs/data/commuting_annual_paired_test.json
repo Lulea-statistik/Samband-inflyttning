@@ -1,0 +1,282 @@
+{
+  "status": "annual_paired_comparison",
+  "features": 27,
+  "train_only_selection": true,
+  "method_regimes_separate": true,
+  "warning": "Earlier years have already been inspected; results are exploratory. A minimum of one preceding annual training cohort is needed; no 2021 forecast test.",
+  "production_model_changed": false,
+  "results": {
+    "RAMS": {
+      "2022": {
+        "training_years": [
+          2021
+        ],
+        "n_train": 290,
+        "n_test": 290,
+        "selected_dynamic": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder",
+          "lag1_valdeltagande_pct",
+          "lag1_bostader_per_1000",
+          "lag1_bostadsbestandsforandring_pct",
+          "lag1_andel_bostadsratt",
+          "lag1_sysselsattningsgrad",
+          "lag1_andel_kultur_service_rstu",
+          "lag1_log_externa_fa_jobb_per_1000",
+          "lag1_bas_pensionarer_andel_pct",
+          "lag1_gymnasium_hogskoleforberedande_pct",
+          "lag1_regional_centre_distance_km"
+        ],
+        "eligible_dynamic_pool": 42,
+        "metrics": {
+          "incumbent": {
+            "r2": 0.8141293238464504,
+            "rmse": 7.227613606269307,
+            "mae": 5.582428304669942,
+            "median_abs_error": 4.322088314219702,
+            "p90_abs_error": 12.046453732743293,
+            "p95_abs_error": 14.421622818577173,
+            "p90_p10_abs_error_gap": 11.025159697147595,
+            "best_decile_mae": 0.49656566688505593,
+            "worst_decile_mae": 15.635973965337707,
+            "decile_mae_gap": 15.13940829845265,
+            "max_abs_error": 27.90179696598655,
+            "n": 290
+          },
+          "incumbent_plus": {
+            "r2": 0.8113999159634214,
+            "rmse": 7.28048696007654,
+            "mae": 5.644830626958263,
+            "median_abs_error": 4.401646808214352,
+            "p90_abs_error": 12.180945437452086,
+            "p95_abs_error": 14.196348426924851,
+            "p90_p10_abs_error_gap": 11.23042834084446,
+            "best_decile_mae": 0.4427806649819572,
+            "worst_decile_mae": 15.580693159198582,
+            "decile_mae_gap": 15.137912494216625,
+            "max_abs_error": 27.897499611692695,
+            "n": 290
+          },
+          "dynamic": {
+            "r2": 0.8453446348081437,
+            "rmse": 6.5928316009409516,
+            "mae": 4.873357866443853,
+            "median_abs_error": 3.528139657071847,
+            "p90_abs_error": 11.25044441366803,
+            "p95_abs_error": 14.192386878086056,
+            "p90_p10_abs_error_gap": 10.667457978772722,
+            "best_decile_mae": 0.2061441708889304,
+            "worst_decile_mae": 14.985358405948059,
+            "decile_mae_gap": 14.77921423505913,
+            "max_abs_error": 26.069693429691128,
+            "n": 290
+          },
+          "dynamic_plus": {
+            "r2": 0.8472969971921412,
+            "rmse": 6.551085627661586,
+            "mae": 4.857605470581156,
+            "median_abs_error": 3.461461722184417,
+            "p90_abs_error": 11.277227960971107,
+            "p95_abs_error": 14.015821893261169,
+            "p90_p10_abs_error_gap": 10.570981365008539,
+            "best_decile_mae": 0.268961356976215,
+            "worst_decile_mae": 14.830425374323507,
+            "decile_mae_gap": 14.561464017347292,
+            "max_abs_error": 26.04350245926507,
+            "n": 290
+          }
+        },
+        "lulea": [
+          {
+            "actual": 50.72939276159709,
+            "incumbent": 55.358919651245756,
+            "incumbent_plus": 55.26592219777347,
+            "dynamic": 52.26626865401444,
+            "dynamic_plus": 51.89432370741632
+          }
+        ]
+      }
+    },
+    "BAS": {
+      "2023": {
+        "training_years": [
+          2022
+        ],
+        "n_train": 290,
+        "n_test": 290,
+        "selected_dynamic": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_inkomst_tkr",
+          "lag1_fardigstallda_bostader_per_1000",
+          "lag1_kolada_arbetslosa_18_65_pct"
+        ],
+        "eligible_dynamic_pool": 42,
+        "metrics": {
+          "incumbent": {
+            "r2": 0.8566894205732644,
+            "rmse": 6.0860246715339645,
+            "mae": 4.802247027984159,
+            "median_abs_error": 4.015324904951317,
+            "p90_abs_error": 9.272067838889669,
+            "p95_abs_error": 11.595385730510102,
+            "p90_p10_abs_error_gap": 8.258513253097238,
+            "best_decile_mae": 0.5021485557988171,
+            "worst_decile_mae": 13.010541968679524,
+            "decile_mae_gap": 12.508393412880707,
+            "max_abs_error": 22.27016631993086,
+            "n": 290
+          },
+          "incumbent_plus": {
+            "r2": 0.8498382253660492,
+            "rmse": 6.229802500395627,
+            "mae": 4.951964049523208,
+            "median_abs_error": 4.068359523354925,
+            "p90_abs_error": 9.67896322837228,
+            "p95_abs_error": 11.634250539931204,
+            "p90_p10_abs_error_gap": 8.556554352482243,
+            "best_decile_mae": 0.5691403955380486,
+            "worst_decile_mae": 13.15334737689708,
+            "decile_mae_gap": 12.584206981359031,
+            "max_abs_error": 22.18594520267085,
+            "n": 290
+          },
+          "dynamic": {
+            "r2": 0.8523490480678613,
+            "rmse": 6.1774993481651945,
+            "mae": 4.8344027188453245,
+            "median_abs_error": 4.077770687819772,
+            "p90_abs_error": 9.463454352155305,
+            "p95_abs_error": 11.865531478786382,
+            "p90_p10_abs_error_gap": 8.632510038998479,
+            "best_decile_mae": 0.34230233420869294,
+            "worst_decile_mae": 13.357966362818729,
+            "decile_mae_gap": 13.015664028610036,
+            "max_abs_error": 21.03819155240827,
+            "n": 290
+          },
+          "dynamic_plus": {
+            "r2": 0.8517577778069729,
+            "rmse": 6.189855930407074,
+            "mae": 4.799136649359484,
+            "median_abs_error": 3.970434677491699,
+            "p90_abs_error": 9.44920512459977,
+            "p95_abs_error": 11.93078168414942,
+            "p90_p10_abs_error_gap": 8.645994703741412,
+            "best_decile_mae": 0.4534781141480587,
+            "worst_decile_mae": 13.399002791325863,
+            "decile_mae_gap": 12.945524677177804,
+            "max_abs_error": 21.35752546120853,
+            "n": 290
+          }
+        },
+        "lulea": [
+          {
+            "actual": 47.73666700272205,
+            "incumbent": 49.090924518584984,
+            "incumbent_plus": 49.11817814558548,
+            "dynamic": 49.61524162024418,
+            "dynamic_plus": 48.49962032309834
+          }
+        ]
+      },
+      "2024": {
+        "training_years": [
+          2022,
+          2023
+        ],
+        "n_train": 580,
+        "n_test": 290,
+        "selected_dynamic": [
+          "lag1_inflyttning_per_1000",
+          "lag1_utflyttning_per_1000",
+          "lag1_andel_20_34",
+          "lag1_inflyttare_medelalder",
+          "lag1_inkomst_tkr",
+          "lag1_ekonomisk_standard_gap_pp",
+          "lag1_bostader_per_1000",
+          "lag1_bostadsbestandsforandring_pct",
+          "lag1_andel_bostadsratt",
+          "lag1_fritidshusandel_bland_smahus",
+          "lag1_andel_studerande",
+          "lag1_andel_hotell_restaurang_i",
+          "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+          "lag1_kolada_arbetslosa_18_65_pct",
+          "lag1_bas_studerande_andel_pct",
+          "lag1_andel_smahus_111_plus",
+          "lag1_gymnasium_yrkesprogram_pct"
+        ],
+        "eligible_dynamic_pool": 42,
+        "metrics": {
+          "incumbent": {
+            "r2": 0.8294446152800052,
+            "rmse": 6.250742958764786,
+            "mae": 4.90210452654121,
+            "median_abs_error": 4.100437853253663,
+            "p90_abs_error": 10.88129036312374,
+            "p95_abs_error": 12.653596874733557,
+            "p90_p10_abs_error_gap": 10.218920253318313,
+            "best_decile_mae": 0.3409659144281879,
+            "worst_decile_mae": 13.437336150316696,
+            "decile_mae_gap": 13.096370235888509,
+            "max_abs_error": 19.670407407968682,
+            "n": 290
+          },
+          "incumbent_plus": {
+            "r2": 0.8397255866281889,
+            "rmse": 6.059419506158527,
+            "mae": 4.740656876528902,
+            "median_abs_error": 4.010545411601022,
+            "p90_abs_error": 9.971762298217584,
+            "p95_abs_error": 12.385838911620404,
+            "p90_p10_abs_error_gap": 9.213010852383604,
+            "best_decile_mae": 0.3856436790174945,
+            "worst_decile_mae": 13.208554485403399,
+            "decile_mae_gap": 12.822910806385904,
+            "max_abs_error": 20.433404549594137,
+            "n": 290
+          },
+          "dynamic": {
+            "r2": 0.8540463838209772,
+            "rmse": 5.782376321482057,
+            "mae": 4.437467197424019,
+            "median_abs_error": 3.5342283911360504,
+            "p90_abs_error": 9.814668693122824,
+            "p95_abs_error": 12.238042708170799,
+            "p90_p10_abs_error_gap": 9.231554367049483,
+            "best_decile_mae": 0.2799084161984384,
+            "worst_decile_mae": 12.709044620125782,
+            "decile_mae_gap": 12.429136203927344,
+            "max_abs_error": 18.7445591507267,
+            "n": 290
+          },
+          "dynamic_plus": {
+            "r2": 0.8613327973875411,
+            "rmse": 5.636192268755613,
+            "mae": 4.334224777217121,
+            "median_abs_error": 3.6095041474672627,
+            "p90_abs_error": 9.62452570227506,
+            "p95_abs_error": 12.050086411285,
+            "p90_p10_abs_error_gap": 8.986177267978675,
+            "best_decile_mae": 0.2597915256639508,
+            "worst_decile_mae": 12.418778990448944,
+            "decile_mae_gap": 12.158987464784992,
+            "max_abs_error": 18.727335608707435,
+            "n": 290
+          }
+        },
+        "lulea": [
+          {
+            "actual": 51.74210559357147,
+            "incumbent": 43.998884467820666,
+            "incumbent_plus": 43.7840101255242,
+            "dynamic": 46.18500427481112,
+            "dynamic_plus": 45.64594291082881
+          }
+        ]
+      }
+    }
+  }
+}
