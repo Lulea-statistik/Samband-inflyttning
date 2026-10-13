@@ -49,7 +49,9 @@ def main():
     residence = variable(meta, ["bostadskommun"])
     workplace = variable(meta, ["arbetsställekommun", "arbetsstallekommun"])
     sex = variable(meta, ["kön", "kon"])
-    year = variable(meta, ["år", "ar"])
+    year = next((v for v in meta["variables"] if v.get("code","").lower() in {"tid","year","år"} or v.get("text","").strip().lower() in {"år","year"}), None)
+    if year is None:
+        raise RuntimeError("Cannot uniquely identify reference-year dimension")
     measure = next((v for v in meta["variables"] if v["code"].lower() in {"contentscode","contents"}), None)
     codes = [c for c in residence["values"] if re.fullmatch(r"\d{4}", str(c))]
     dest_codes = [c for c in workplace["values"] if re.fullmatch(r"\d{4}", str(c))]
