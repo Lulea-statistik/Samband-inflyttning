@@ -6,38 +6,38 @@
   "candidate_test_status": "tested",
   "checks": {
     "rmse": {
-      "incumbent": 6.264940997206292,
-      "challenger": 5.666158604551229,
-      "improvement": 0.5987823926550631,
-      "ci95_low": 0.4801064880517347,
-      "ci95_high": 0.7181399477856517,
+      "incumbent": 6.264940997206331,
+      "challenger": 5.666158604551253,
+      "improvement": 0.5987823926550782,
+      "ci95_low": 0.48010648805176476,
+      "ci95_high": 0.7181399477856621,
       "credible_improvement": true,
       "no_credible_deterioration": true
     },
     "mae": {
-      "incumbent": 4.831158072319371,
-      "challenger": 4.191830340665932,
-      "improvement": 0.6393277316534389,
-      "ci95_low": 0.5329598631424104,
-      "ci95_high": 0.75154177844999,
+      "incumbent": 4.831158072319411,
+      "challenger": 4.191830340665949,
+      "improvement": 0.639327731653462,
+      "ci95_low": 0.5329598631424309,
+      "ci95_high": 0.751541778450002,
       "credible_improvement": true,
       "no_credible_deterioration": true
     },
     "p90_abs_error": {
-      "incumbent": 10.372002152843622,
-      "challenger": 9.15444347320315,
-      "improvement": 1.2175586796404723,
-      "ci95_low": 0.6437733339517687,
-      "ci95_high": 1.6900234163339314,
+      "incumbent": 10.372002152843516,
+      "challenger": 9.15444347320324,
+      "improvement": 1.217558679640275,
+      "ci95_low": 0.6437733339518344,
+      "ci95_high": 1.6900234163338042,
       "credible_improvement": true,
       "no_credible_deterioration": true
     },
     "worst_decile_mae": {
-      "incumbent": 13.748254359941978,
-      "challenger": 12.96639837925523,
-      "improvement": 0.781855980686748,
-      "ci95_low": 0.3683372637486496,
-      "ci95_high": 1.2002205501434067,
+      "incumbent": 13.748254359942012,
+      "challenger": 12.966398379255292,
+      "improvement": 0.7818559806867196,
+      "ci95_low": 0.3683372637486667,
+      "ci95_high": 1.2002205501433285,
       "credible_improvement": true,
       "no_credible_deterioration": true
     }
@@ -51,10 +51,10 @@
     {
       "holdout_year": 2022,
       "improvements": {
-        "rmse": 0.6347820053283844,
-        "mae": 0.7090704382261155,
-        "p90_abs_error": 0.79600931907542,
-        "worst_decile_mae": 0.650615559389701
+        "rmse": 0.6347820053283852,
+        "mae": 0.7090704382261173,
+        "p90_abs_error": 0.7960093190751447,
+        "worst_decile_mae": 0.650615559389708
       },
       "rmse_improved": true,
       "tail_not_worse": true
@@ -62,10 +62,10 @@
     {
       "holdout_year": 2023,
       "improvements": {
-        "rmse": 0.1505962946145889,
-        "mae": 0.2145859263759582,
-        "p90_abs_error": 0.010110194489275415,
-        "worst_decile_mae": 0.0595024574911438
+        "rmse": 0.15059629461458623,
+        "mae": 0.2145859263759533,
+        "p90_abs_error": 0.010110194489308277,
+        "worst_decile_mae": 0.05950245749112071
       },
       "rmse_improved": true,
       "tail_not_worse": true
@@ -73,10 +73,10 @@
     {
       "holdout_year": 2024,
       "improvements": {
-        "rmse": 0.9961864736249,
-        "mae": 0.9943268303582427,
-        "p90_abs_error": 1.794954102528818,
-        "worst_decile_mae": 1.3612140147903737
+        "rmse": 0.996186473624947,
+        "mae": 0.9943268303583181,
+        "p90_abs_error": 1.7949541025290952,
+        "worst_decile_mae": 1.3612140147903062
       },
       "rmse_improved": true,
       "tail_not_worse": true

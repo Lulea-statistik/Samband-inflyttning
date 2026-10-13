@@ -1,0 +1,184 @@
+{
+  "evaluation": "#141 frozen six-feature vs dynamic vs incumbent",
+  "status": "retrospective_geographic_cv_complete",
+  "method": "same five geographic folds as #140, retrospective",
+  "coverage": {
+    "tested": 290,
+    "available_2024": 290,
+    "unique_municipalities": 290
+  },
+  "six_core_features": [
+    "lag1_inflyttning_per_1000",
+    "lag1_utflyttning_per_1000",
+    "lag1_andel_20_34",
+    "lag1_bostadsbestandsforandring_pct",
+    "lag1_andel_bostadsratt",
+    "lag1_kolada_langtidsarbetslosa_pct"
+  ],
+  "six_core_metrics": {
+    "r2": 0.8887315581222703,
+    "rmse": 5.048762319806389,
+    "mae": 3.78726743548156,
+    "median_abs_error": 2.903468985385576,
+    "p90_abs_error": 8.110385909817104,
+    "p95_abs_error": 11.280067468937032,
+    "p90_p10_abs_error_gap": 7.494713142678618,
+    "best_decile_mae": 0.3328329141707357,
+    "worst_decile_mae": 11.544943579551258,
+    "decile_mae_gap": 11.212110665380523,
+    "max_abs_error": 17.58570534822674,
+    "n": 290
+  },
+  "dynamic_metrics": {
+    "r2": 0.8879715791165089,
+    "rmse": 5.065974854875371,
+    "mae": 3.8037522822021668,
+    "median_abs_error": 2.8571633061475836,
+    "p90_abs_error": 8.26077542046893,
+    "p95_abs_error": 11.032046196837456,
+    "p90_p10_abs_error_gap": 7.707386325475561,
+    "best_decile_mae": 0.2844644470779009,
+    "worst_decile_mae": 11.467642771596639,
+    "decile_mae_gap": 11.183178324518737,
+    "max_abs_error": 17.33371201572598,
+    "n": 290
+  },
+  "incumbent_metrics": {
+    "r2": 0.8456946588179176,
+    "rmse": 5.945513947194291,
+    "mae": 4.678537980036641,
+    "median_abs_error": 4.040692907159027,
+    "p90_abs_error": 9.799679348700172,
+    "p95_abs_error": 11.834980605171534,
+    "p90_p10_abs_error_gap": 9.132318459227374,
+    "best_decile_mae": 0.3302740873714497,
+    "worst_decile_mae": 12.599136991642661,
+    "decile_mae_gap": 12.268862904271211,
+    "max_abs_error": 19.488144877137927,
+    "n": 290
+  },
+  "six_core_minus_dynamic": {
+    "rmse": -0.017212535068981794,
+    "mae": -0.016484846720606683,
+    "p90_abs_error": -0.15038951065182538,
+    "worst_decile_mae": 0.0773008079546198
+  },
+  "incumbent_minus_six_core": {
+    "rmse": 0.8967516273879017,
+    "mae": 0.8912705445550806,
+    "p90_abs_error": 1.6892934388830678,
+    "worst_decile_mae": 1.0541934120914025
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "municipalities": 58,
+      "selected_features": [
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_andel_20_34",
+        "lag1_bostadsbestandsforandring_pct",
+        "lag1_andel_bostadsratt",
+        "lag1_kolada_langtidsarbetslosa_pct",
+        "lag1_bas_sjuka_andel_pct",
+        "lag1_andel_smahus_111_plus",
+        "lag1_gymnasium_hogskoleforberedande_pct"
+      ],
+      "incumbent_rmse": 6.433106346414519,
+      "challenger_rmse": 5.66256756047173,
+      "six_core_rmse": 5.620830242362034
+    },
+    {
+      "fold": 1,
+      "municipalities": 52,
+      "selected_features": [
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_andel_20_34",
+        "lag1_bostadsbestandsforandring_pct",
+        "lag1_andel_bostadsratt",
+        "lag1_fritidshusandel_bland_smahus",
+        "lag1_kolada_langtidsarbetslosa_pct",
+        "lag1_bas_sjuka_andel_pct",
+        "lag1_gymnasium_hogskoleforberedande_pct"
+      ],
+      "incumbent_rmse": 5.846775719568299,
+      "challenger_rmse": 4.819507816317468,
+      "six_core_rmse": 4.8457821689127725
+    },
+    {
+      "fold": 2,
+      "municipalities": 65,
+      "selected_features": [
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_andel_20_34",
+        "lag1_valdeltagande_pct",
+        "lag1_bostader_per_1000",
+        "lag1_bostadsbestandsforandring_pct",
+        "lag1_andel_bostadsratt",
+        "lag1_fritidshusandel_bland_smahus",
+        "lag1_andel_hotell_restaurang_i",
+        "lag1_log_externa_fa_jobb_per_1000",
+        "lag1_kolada_langtidsarbetslosa_pct",
+        "lag1_gymnasium_hogskoleforberedande_pct"
+      ],
+      "incumbent_rmse": 5.433662164009205,
+      "challenger_rmse": 4.376796955265751,
+      "six_core_rmse": 4.327552211673933
+    },
+    {
+      "fold": 3,
+      "municipalities": 64,
+      "selected_features": [
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_andel_20_34",
+        "lag1_bostadsbestandsforandring_pct",
+        "lag1_andel_bostadsratt",
+        "lag1_kolada_langtidsarbetslosa_pct",
+        "lag1_bas_pensionarer_andel_pct"
+      ],
+      "incumbent_rmse": 5.903899166882146,
+      "challenger_rmse": 5.050358511799332,
+      "six_core_rmse": 4.976825822106094
+    },
+    {
+      "fold": 4,
+      "municipalities": 51,
+      "selected_features": [
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_andel_20_34",
+        "lag1_inflyttare_medelalder",
+        "lag1_valdeltagande_pct",
+        "lag1_bostadsbestandsforandring_pct",
+        "lag1_andel_bostadsratt",
+        "lag1_fritidshusandel_bland_smahus",
+        "lag1_andel_hotell_restaurang_i",
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+        "lag1_kolada_langtidsarbetslosa_pct",
+        "lag1_bas_sjuka_andel_pct",
+        "lag1_andel_smahus_111_plus"
+      ],
+      "incumbent_rmse": 6.141196059409494,
+      "challenger_rmse": 5.418641973520388,
+      "six_core_rmse": 5.488162680530255
+    }
+  ],
+  "lulea": [
+    {
+      "kommun_kod": "2580",
+      "kommun": "Luleå",
+      "actual": 51.74210559357147,
+      "incumbent_prediction": 43.747499140098576,
+      "challenger_prediction": 49.47442425420706,
+      "six_core_prediction": 49.4659191751399,
+      "six_core_absolute_error": 2.276186418431571,
+      "incumbent_absolute_error": 7.994606453472898,
+      "challenger_absolute_error": 2.2676813393644153,
+      "improvement": 5.726925114108482
+    }
+  ],
+  "production_status": "unchanged; independent prospective validation still required"
+}

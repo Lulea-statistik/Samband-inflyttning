@@ -50,38 +50,38 @@
     "lag1_bas_sjuka_andel_pct"
   ],
   "incumbent_metrics": {
-    "r2": 0.8201632021483104,
-    "rmse": 5.826875251804661,
-    "mae": 4.592775879722422,
-    "median_abs_error": 3.7344093579010824,
-    "p90_abs_error": 10.049183092125771,
-    "p95_abs_error": 12.340974183741663,
-    "p90_p10_abs_error_gap": 8.943650044241394,
-    "best_decile_mae": 0.5899454411329813,
-    "worst_decile_mae": 13.177104219948864,
-    "decile_mae_gap": 12.587158778815883,
-    "max_abs_error": 18.126403188517095,
+    "r2": 0.8201632021483127,
+    "rmse": 5.826875251804621,
+    "mae": 4.592775879722369,
+    "median_abs_error": 3.734409357900965,
+    "p90_abs_error": 10.049183092125636,
+    "p95_abs_error": 12.340974183741626,
+    "p90_p10_abs_error_gap": 8.943650044241412,
+    "best_decile_mae": 0.5899454411330239,
+    "worst_decile_mae": 13.177104219948877,
+    "decile_mae_gap": 12.587158778815853,
+    "max_abs_error": 18.126403188517045,
     "n": 50
   },
   "challenger_metrics": {
     "r2": 0.8751453759760438,
-    "rmse": 4.8551064391487575,
-    "mae": 3.6365170116271384,
-    "median_abs_error": 2.9102084266555828,
-    "p90_abs_error": 7.1899753130029955,
-    "p95_abs_error": 9.60352938904201,
-    "p90_p10_abs_error_gap": 6.628257747217734,
-    "best_decile_mae": 0.23480775934328618,
-    "worst_decile_mae": 10.925596669738383,
-    "decile_mae_gap": 10.690788910395096,
-    "max_abs_error": 16.83869475455223,
+    "rmse": 4.855106439148758,
+    "mae": 3.6365170116271326,
+    "median_abs_error": 2.9102084266555686,
+    "p90_abs_error": 7.189975313003041,
+    "p95_abs_error": 9.603529389042023,
+    "p90_p10_abs_error_gap": 6.628257747217804,
+    "best_decile_mae": 0.23480775934328335,
+    "worst_decile_mae": 10.925596669738386,
+    "decile_mae_gap": 10.690788910395103,
+    "max_abs_error": 16.838694754552314,
     "n": 50
   },
   "incumbent_minus_challenger": {
-    "rmse": 0.9717688126559034,
-    "mae": 0.9562588680952833,
-    "p90_abs_error": 2.8592077791227757,
-    "worst_decile_mae": 2.2515075502104818
+    "rmse": 0.9717688126558626,
+    "mae": 0.9562588680952366,
+    "p90_abs_error": 2.8592077791225954,
+    "worst_decile_mae": 2.2515075502104906
   },
   "municipalities_improved": 35,
   "municipalities_worsened": 15,
@@ -90,81 +90,81 @@
       "kommun_kod": 2282,
       "kommun": "Kramfors",
       "actual": 53.055857298038994,
-      "incumbent_absolute_error": 12.46707485801803,
-      "challenger_absolute_error": 7.164738200623411,
-      "improvement": 5.302336657394619
+      "incumbent_absolute_error": 12.46707485801808,
+      "challenger_absolute_error": 7.164738200623475,
+      "improvement": 5.302336657394605
     },
     {
       "kommun_kod": 1737,
       "kommun": "Torsby",
       "actual": 41.33910431940641,
-      "incumbent_absolute_error": 5.059185090869086,
-      "challenger_absolute_error": 0.8661542265217648,
-      "improvement": 4.193030864347321
+      "incumbent_absolute_error": 5.059185090869107,
+      "challenger_absolute_error": 0.8661542265217079,
+      "improvement": 4.193030864347399
     },
     {
       "kommun_kod": 2505,
       "kommun": "Arvidsjaur",
       "actual": 48.61225160124816,
-      "incumbent_absolute_error": 10.623564560465361,
-      "challenger_absolute_error": 6.614618428993481,
-      "improvement": 4.00894613147188
+      "incumbent_absolute_error": 10.623564560465482,
+      "challenger_absolute_error": 6.614618428993381,
+      "improvement": 4.008946131472101
     },
     {
       "kommun_kod": 880,
       "kommun": "Kalmar",
       "actual": 59.281470070422536,
-      "incumbent_absolute_error": 3.7013648251234272,
-      "challenger_absolute_error": 0.128586045839711,
-      "improvement": 3.5727787792837162
+      "incumbent_absolute_error": 3.701364825123399,
+      "challenger_absolute_error": 0.1285860458396968,
+      "improvement": 3.572778779283702
     },
     {
       "kommun_kod": 883,
       "kommun": "Västervik",
       "actual": 38.302192224325736,
-      "incumbent_absolute_error": 5.61891639358597,
+      "incumbent_absolute_error": 5.618916393585899,
       "challenger_absolute_error": 2.1161083000189933,
-      "improvement": 3.5028080935669763
+      "improvement": 3.5028080935669053
     },
     {
       "kommun_kod": 2062,
       "kommun": "Mora",
       "actual": 45.86173320350535,
-      "incumbent_absolute_error": 7.355905435366054,
-      "challenger_absolute_error": 3.891111135844433,
-      "improvement": 3.464794299521621
+      "incumbent_absolute_error": 7.355905435365997,
+      "challenger_absolute_error": 3.8911111358444472,
+      "improvement": 3.46479429952155
     },
     {
       "kommun_kod": 685,
       "kommun": "Vetlanda",
       "actual": 41.33972682359779,
-      "incumbent_absolute_error": 5.06720566678635,
-      "challenger_absolute_error": 1.788280140390917,
-      "improvement": 3.278925526395433
+      "incumbent_absolute_error": 5.06720566678618,
+      "challenger_absolute_error": 1.7882801403909454,
+      "improvement": 3.278925526395234
     },
     {
       "kommun_kod": 1492,
       "kommun": "Åmål",
       "actual": 47.707038467999325,
-      "incumbent_absolute_error": 5.874998625664318,
-      "challenger_absolute_error": 2.6441026707828,
-      "improvement": 3.230895954881518
+      "incumbent_absolute_error": 5.87499862566419,
+      "challenger_absolute_error": 2.644102670782871,
+      "improvement": 3.230895954881319
     },
     {
       "kommun_kod": 480,
       "kommun": "Nyköping",
       "actual": 50.716440422322776,
-      "incumbent_absolute_error": 3.8022529727611527,
-      "challenger_absolute_error": 0.5861206229068614,
-      "improvement": 3.2161323498542913
+      "incumbent_absolute_error": 3.802252972761103,
+      "challenger_absolute_error": 0.5861206229068685,
+      "improvement": 3.2161323498542345
     },
     {
       "kommun_kod": 1290,
       "kommun": "Kristianstad",
       "actual": 45.32351613239329,
-      "incumbent_absolute_error": 3.711547732360657,
-      "challenger_absolute_error": 0.5724099710929877,
-      "improvement": 3.139137761267669
+      "incumbent_absolute_error": 3.7115477323605788,
+      "challenger_absolute_error": 0.5724099710929664,
+      "improvement": 3.1391377612676123
     }
   ],
   "largest_deteriorations": [
@@ -172,81 +172,81 @@
       "kommun_kod": 1260,
       "kommun": "Bjuv",
       "actual": 86.6437284954645,
-      "incumbent_absolute_error": 1.4264773028112074,
-      "challenger_absolute_error": 6.483346523667677,
-      "improvement": -5.05686922085647
+      "incumbent_absolute_error": 1.426477302810838,
+      "challenger_absolute_error": 6.483346523667578,
+      "improvement": -5.05686922085674
     },
     {
       "kommun_kod": 1446,
       "kommun": "Karlsborg",
       "actual": 45.84935212871992,
-      "incumbent_absolute_error": 3.047371623506173,
-      "challenger_absolute_error": 6.3264812766256355,
-      "improvement": -3.2791096531194626
+      "incumbent_absolute_error": 3.0473716235062582,
+      "challenger_absolute_error": 6.326481276625657,
+      "improvement": -3.2791096531193986
     },
     {
       "kommun_kod": 2481,
       "kommun": "Lycksele",
       "actual": 37.71249381085988,
-      "incumbent_absolute_error": 1.4791872886604054,
-      "challenger_absolute_error": 4.103565583726827,
-      "improvement": -2.624378295066421
+      "incumbent_absolute_error": 1.4791872886604338,
+      "challenger_absolute_error": 4.103565583726848,
+      "improvement": -2.624378295066414
     },
     {
       "kommun_kod": 760,
       "kommun": "Uppvidinge",
       "actual": 48.89085089945922,
-      "incumbent_absolute_error": 4.819338571640664,
-      "challenger_absolute_error": 7.4171093244192505,
-      "improvement": -2.5977707527785867
+      "incumbent_absolute_error": 4.819338571640621,
+      "challenger_absolute_error": 7.41710932441913,
+      "improvement": -2.5977707527785086
     },
     {
       "kommun_kod": 1491,
       "kommun": "Ulricehamn",
       "actual": 42.30538322993796,
-      "incumbent_absolute_error": 1.5577953832188456,
-      "challenger_absolute_error": 4.125478985446961,
-      "improvement": -2.567683602228115
+      "incumbent_absolute_error": 1.5577953832189522,
+      "challenger_absolute_error": 4.1254789854469465,
+      "improvement": -2.5676836022279943
     },
     {
       "kommun_kod": 1419,
       "kommun": "Tjörn",
       "actual": 47.91200596569724,
-      "incumbent_absolute_error": 3.1983378132335005,
-      "challenger_absolute_error": 5.655707252053773,
-      "improvement": -2.4573694388202725
+      "incumbent_absolute_error": 3.1983378132337066,
+      "challenger_absolute_error": 5.655707252053666,
+      "improvement": -2.45736943881996
     },
     {
       "kommun_kod": 1764,
       "kommun": "Grums",
       "actual": 52.97645490892936,
-      "incumbent_absolute_error": 0.5737728763577437,
-      "challenger_absolute_error": 2.9501457424604993,
-      "improvement": -2.3763728661027557
+      "incumbent_absolute_error": 0.5737728763577579,
+      "challenger_absolute_error": 2.950145742460485,
+      "improvement": -2.3763728661027272
     },
     {
       "kommun_kod": 1276,
       "kommun": "Klippan",
       "actual": 68.36400587106243,
-      "incumbent_absolute_error": 0.006432579951606954,
-      "challenger_absolute_error": 1.8146699342949546,
-      "improvement": -1.8082373543433476
+      "incumbent_absolute_error": 0.006432579951663797,
+      "challenger_absolute_error": 1.8146699342948551,
+      "improvement": -1.8082373543431913
     },
     {
       "kommun_kod": 1441,
       "kommun": "Lerum",
       "actual": 47.07367454670645,
-      "incumbent_absolute_error": 0.6371409783233588,
-      "challenger_absolute_error": 2.420016100643501,
-      "improvement": -1.7828751223201422
+      "incumbent_absolute_error": 0.6371409783235293,
+      "challenger_absolute_error": 2.420016100643487,
+      "improvement": -1.7828751223199575
     },
     {
       "kommun_kod": 2404,
       "kommun": "Vindeln",
       "actual": 50.39689865239063,
-      "incumbent_absolute_error": 4.440652783557283,
-      "challenger_absolute_error": 6.002095213170733,
-      "improvement": -1.5614424296134501
+      "incumbent_absolute_error": 4.440652783557169,
+      "challenger_absolute_error": 6.0020952131707475,
+      "improvement": -1.561442429613578
     }
   ],
   "lulea_if_in_holdout": [],
