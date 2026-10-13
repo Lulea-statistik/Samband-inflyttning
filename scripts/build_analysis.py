@@ -3374,11 +3374,27 @@ def get_fa15_membership() -> pd.DataFrame:
     FA15 is used because the model years 2020-2024 fall inside its 2015-2025 period.
     The workbook layout is parsed defensively because presentation headers may change.
     """
-    r = session.get(FA15_XLSX_URL, timeout=60)
-    if not r.ok:
-        raise RuntimeError(
-            f"FA15 workbook download failed {r.status_code}: {r.text[:300]}"
-        )
+    # The FA15 workbook is static, but transient DNS failures can occur
+    # after the preflight succeeds. Retry connection failures and HTTP 5xx/429
+    # without silently changing the FA definition or using stale substitutes.
+    last_error = None
+    for attempt in range(1, 5):
+        try:
+            r = session.get(FA15_XLSX_URL, timeout=60)
+            if r.ok:
+                break
+            if r.status_code not in {429, 500, 502, 503, 504}:
+                raise RuntimeError(
+                    f"FA15 workbook download failed {r.status_code}: {r.text[:300]}"
+                )
+            last_error = RuntimeError(f"FA15 temporary HTTP {r.status_code}")
+        except requests.RequestException as exc:
+            last_error = exc
+        if attempt == 4:
+            raise RuntimeError("FA15 workbook unavailable after 4 attempts") from last_error
+        wait = 5 * attempt
+        print(f"FA15 retry {attempt}/4 after {last_error}; waiting {wait}s", flush=True)
+        time.sleep(wait)
 
     sheets = pd.read_excel(io.BytesIO(r.content), sheet_name=None, header=None, engine="openpyxl")
     candidates = []
