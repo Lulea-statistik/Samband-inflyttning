@@ -59,7 +59,7 @@
       "lulea": [
         {
           "split": "geo_2022",
-          "fold": 1.0,
+          "fold": 1,
           "year": 2022,
           "kommun_kod": "2580",
           "actual": 50.72939276159709,
@@ -122,7 +122,7 @@
       "lulea": [
         {
           "split": "temporal_2022",
-          "fold": NaN,
+          "fold": null,
           "year": 2022,
           "kommun_kod": "2580",
           "actual": 50.72939276159709,
