@@ -1,0 +1,190 @@
+{
+  "evaluation": "#142 final retrospective test and candidate freeze",
+  "status": "incomplete_temporal_diagnostic",
+  "active_production_model": "incumbent",
+  "frozen_candidate": "six_feature_core",
+  "features": [
+    "lag1_inflyttning_per_1000",
+    "lag1_utflyttning_per_1000",
+    "lag1_andel_20_34",
+    "lag1_bostadsbestandsforandring_pct",
+    "lag1_andel_bostadsratt",
+    "lag1_kolada_langtidsarbetslosa_pct"
+  ],
+  "independent_validation": false,
+  "warning": "Features and methods were developed using 2022-2024 results. This test is diagnostic, not independently confirmatory. No further model search is planned.",
+  "paired_bootstrap_2024_dynamic_minus_six": {
+    "rmse": {
+      "estimate": 0.017212535068981794,
+      "ci95_low": -0.06942075466651676,
+      "ci95_high": 0.10323543730564057
+    },
+    "mae": {
+      "estimate": 0.016484846720606683,
+      "ci95_low": -0.045436110306521824,
+      "ci95_high": 0.08562577434994402
+    },
+    "p90_abs_error": {
+      "estimate": 0.15038951065182538,
+      "ci95_low": -0.968754455257842,
+      "ci95_high": 0.6693688944702187
+    },
+    "worst_decile_mae": {
+      "estimate": -0.0773008079546198,
+      "ci95_low": -0.3706864874219097,
+      "ci95_high": 0.27492099413328897
+    }
+  },
+  "retrospective_temporal_rolling_origins": [
+    {
+      "year": 2022,
+      "status": "insufficient_sample",
+      "n_train": 290,
+      "n_test": 290
+    },
+    {
+      "year": 2023,
+      "status": "tested",
+      "n_train": 580,
+      "n_test": 290,
+      "dynamic_selected": [
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_log_folkmangd",
+        "lag1_befolkningstillvaxt_pct",
+        "lag1_inflyttare_medelalder",
+        "lag1_inkomst_tkr",
+        "lag1_valdeltagande_pct",
+        "lag1_valdeltagande_gap_pp",
+        "lag1_bostadsbestandsforandring_pct",
+        "lag1_andel_bostadsratt",
+        "lag1_fritidshusandel_bland_smahus",
+        "lag1_andel_studerande",
+        "lag1_andel_kultur_service_rstu",
+        "lag1_log_externa_fa_jobb_per_1000",
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+        "lag1_kolada_arbetslosa_18_65_pct",
+        "lag1_arbetskraftsdeltagande",
+        "lag1_bas_studerande_andel_pct",
+        "lag1_gymnasium_hogskoleforberedande_pct",
+        "lag1_regional_centre_distance_km"
+      ],
+      "metrics": {
+        "incumbent": {
+          "rmse": 5.375722098643922,
+          "mae": 4.139401828671898,
+          "p90_abs_error": 7.992594667587618,
+          "worst_decile_mae": 11.606366032779734
+        },
+        "six": {
+          "rmse": 6.888628666033499,
+          "mae": 5.796211716536209,
+          "p90_abs_error": 10.462967840646128,
+          "worst_decile_mae": 13.289127717855745
+        },
+        "dynamic": {
+          "rmse": 5.225125804029359,
+          "mae": 3.924815902295964,
+          "p90_abs_error": 7.98248447309856,
+          "worst_decile_mae": 11.546863575288645
+        }
+      }
+    },
+    {
+      "year": 2024,
+      "status": "tested",
+      "n_train": 870,
+      "n_test": 290,
+      "dynamic_selected": [
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_andel_20_34",
+        "lag1_bostadsbestandsforandring_pct",
+        "lag1_andel_bostadsratt",
+        "lag1_log_externa_fa_jobb_per_1000",
+        "lag1_kolada_langtidsarbetslosa_pct",
+        "lag1_bas_sjuka_andel_pct",
+        "lag1_andel_smahus_111_plus"
+      ],
+      "metrics": {
+        "incumbent": {
+          "rmse": 6.050757851050559,
+          "mae": 4.771644083616242,
+          "p90_abs_error": 10.199266672747145,
+          "worst_decile_mae": 12.947947174531993
+        },
+        "six": {
+          "rmse": 5.0585920393308355,
+          "mae": 3.7868129976510976,
+          "p90_abs_error": 8.244443628359639,
+          "worst_decile_mae": 11.587211493733847
+        },
+        "dynamic": {
+          "rmse": 5.054571377425667,
+          "mae": 3.777317253257987,
+          "p90_abs_error": 8.404312570218512,
+          "worst_decile_mae": 11.58673315974171
+        }
+      }
+    }
+  ],
+  "geographic_metrics_2024": {
+    "incumbent": {
+      "r2": 0.8456946588179176,
+      "rmse": 5.945513947194291,
+      "mae": 4.678537980036641,
+      "median_abs_error": 4.040692907159027,
+      "p90_abs_error": 9.799679348700172,
+      "p95_abs_error": 11.834980605171534,
+      "p90_p10_abs_error_gap": 9.132318459227374,
+      "best_decile_mae": 0.3302740873714497,
+      "worst_decile_mae": 12.599136991642661,
+      "decile_mae_gap": 12.268862904271211,
+      "max_abs_error": 19.488144877137927,
+      "n": 290
+    },
+    "six": {
+      "r2": 0.8887315581222703,
+      "rmse": 5.048762319806389,
+      "mae": 3.78726743548156,
+      "median_abs_error": 2.903468985385576,
+      "p90_abs_error": 8.110385909817104,
+      "p95_abs_error": 11.280067468937032,
+      "p90_p10_abs_error_gap": 7.494713142678618,
+      "best_decile_mae": 0.3328329141707357,
+      "worst_decile_mae": 11.544943579551258,
+      "decile_mae_gap": 11.212110665380523,
+      "max_abs_error": 17.58570534822674,
+      "n": 290
+    },
+    "dynamic": {
+      "r2": 0.8879715791165089,
+      "rmse": 5.065974854875371,
+      "mae": 3.8037522822021668,
+      "median_abs_error": 2.8571633061475836,
+      "p90_abs_error": 8.26077542046893,
+      "p95_abs_error": 11.032046196837456,
+      "p90_p10_abs_error_gap": 7.707386325475561,
+      "best_decile_mae": 0.2844644470779009,
+      "worst_decile_mae": 11.467642771596639,
+      "decile_mae_gap": 11.183178324518737,
+      "max_abs_error": 17.33371201572598,
+      "n": 290
+    }
+  },
+  "lulea_2024": [
+    {
+      "kommun_kod": "2580",
+      "kommun": "Luleå",
+      "actual": 51.74210559357147,
+      "incumbent_prediction": 43.747499140098576,
+      "challenger_prediction": 49.47442425420706,
+      "six_core_prediction": 49.4659191751399,
+      "six_core_absolute_error": 2.276186418431571,
+      "incumbent_absolute_error": 7.994606453472898,
+      "challenger_absolute_error": 2.2676813393644153,
+      "improvement": 5.726925114108482
+    }
+  ],
+  "decision": "Freeze six-feature core as a candidate only; retain the incumbent in production until genuinely new outcome-year testing. Tiny apparent gains versus dynamic are not sufficient proof of superiority."
+}
