@@ -1,0 +1,143 @@
+{
+  "status": "track_b_comparison_complete",
+  "overlap_source_years": [
+    2020,
+    2021
+  ],
+  "forecast_years": [
+    2021,
+    2022
+  ],
+  "full_model_features": 27,
+  "summary": {
+    "geo_2022": {
+      "n": 290,
+      "scores": {
+        "base": {
+          "r2": 0.8075671447067904,
+          "rmse": 7.354092689868911,
+          "mae": 5.5964358374225345,
+          "median_abs_error": 4.435076059234735,
+          "p90_abs_error": 11.55049958386403,
+          "p95_abs_error": 14.282838863759245,
+          "p90_p10_abs_error_gap": 10.622184086727847,
+          "best_decile_mae": 0.43179818180941426,
+          "worst_decile_mae": 16.06607290737631,
+          "decile_mae_gap": 15.634274725566895,
+          "max_abs_error": 27.86882558677202,
+          "n": 290
+        },
+        "RAMS": {
+          "r2": 0.8021096781866591,
+          "rmse": 7.457646006500688,
+          "mae": 5.699579331343125,
+          "median_abs_error": 4.565898562773818,
+          "p90_abs_error": 11.876141536416396,
+          "p95_abs_error": 14.806816696985369,
+          "p90_p10_abs_error_gap": 11.082035899166833,
+          "best_decile_mae": 0.3968225682141688,
+          "worst_decile_mae": 16.142757559813475,
+          "decile_mae_gap": 15.745934991599306,
+          "max_abs_error": 27.861356579434656,
+          "n": 290
+        },
+        "BAS": {
+          "r2": 0.8055658043667846,
+          "rmse": 7.392235792834346,
+          "mae": 5.658661353353506,
+          "median_abs_error": 4.549693930675748,
+          "p90_abs_error": 11.843634736401162,
+          "p95_abs_error": 14.835180399658805,
+          "p90_p10_abs_error_gap": 10.999958774862364,
+          "best_decile_mae": 0.400335449220504,
+          "worst_decile_mae": 15.967883560873888,
+          "decile_mae_gap": 15.567548111653384,
+          "max_abs_error": 27.873837558113323,
+          "n": 290
+        }
+      },
+      "lulea": [
+        {
+          "split": "geo_2022",
+          "fold": 1.0,
+          "year": 2022,
+          "kommun_kod": "2580",
+          "actual": 50.72939276159709,
+          "rams_share": 10.46990723186977,
+          "bas_share": 10.42555878267458,
+          "base": 54.502692346385444,
+          "RAMS": 54.46534061871494,
+          "BAS": 54.45732926047888
+        }
+      ],
+      "mean_abs_rams_bas_share_gap_pp": 0.4692108024646202,
+      "median_abs_rams_bas_share_gap_pp": 0.35640197193276
+    },
+    "temporal_2022": {
+      "n": 290,
+      "scores": {
+        "base": {
+          "r2": 0.8141293238464467,
+          "rmse": 7.227613606269382,
+          "mae": 5.582428304669985,
+          "median_abs_error": 4.322088314219762,
+          "p90_abs_error": 12.046453732743553,
+          "p95_abs_error": 14.421622818577562,
+          "p90_p10_abs_error_gap": 11.025159697147998,
+          "best_decile_mae": 0.49656566688504367,
+          "worst_decile_mae": 15.635973965337907,
+          "decile_mae_gap": 15.139408298452864,
+          "max_abs_error": 27.901796965986904,
+          "n": 290
+        },
+        "RAMS": {
+          "r2": 0.8113999159634216,
+          "rmse": 7.280486960076536,
+          "mae": 5.644830626958258,
+          "median_abs_error": 4.401646808214334,
+          "p90_abs_error": 12.180945437452289,
+          "p95_abs_error": 14.196348426924853,
+          "p90_p10_abs_error_gap": 11.230428340844746,
+          "best_decile_mae": 0.4427806649819253,
+          "worst_decile_mae": 15.5806931591986,
+          "decile_mae_gap": 15.137912494216675,
+          "max_abs_error": 27.897499611692623,
+          "n": 290
+        },
+        "BAS": {
+          "r2": 0.8108358718261466,
+          "rmse": 7.291365667427622,
+          "mae": 5.658275095759816,
+          "median_abs_error": 4.468012540239592,
+          "p90_abs_error": 12.156962113660402,
+          "p95_abs_error": 14.20391513739039,
+          "p90_p10_abs_error_gap": 11.230736372730595,
+          "best_decile_mae": 0.4407038342301681,
+          "worst_decile_mae": 15.585707900451762,
+          "decile_mae_gap": 15.145004066221594,
+          "max_abs_error": 27.92859349419338,
+          "n": 290
+        }
+      },
+      "lulea": [
+        {
+          "split": "temporal_2022",
+          "fold": NaN,
+          "year": 2022,
+          "kommun_kod": "2580",
+          "actual": 50.72939276159709,
+          "rams_share": 10.46990723186977,
+          "bas_share": 10.42555878267458,
+          "base": 55.358919651245856,
+          "RAMS": 55.26592219777355,
+          "BAS": 55.265873722081686
+        }
+      ],
+      "mean_abs_rams_bas_share_gap_pp": 0.4692108024646202,
+      "median_abs_rams_bas_share_gap_pp": 0.35640197193276
+    }
+  },
+  "training": "Geographic CV trains solely on 2021 observations of non-held municipalities; temporal holdout trains on all 2021 municipalities and tests 2022.",
+  "caution": "Only 2 overlapping source years; 2022 temporal evaluation has only one earlier training year. Results are retrospective and cannot establish which methodology is universally better. 2023/24 have BAS but no paired RAMS.",
+  "production_model_changed": false
+}
