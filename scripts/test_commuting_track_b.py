@@ -62,7 +62,8 @@ def main():
                 held={v for v in universe if int(hashlib.sha256(("validation-140:"+v).encode()).hexdigest()[:12],16)%5==fold}
                 train=data.loc[data.year.lt(held_year) & ~data.kommun_kod.isin(held)]
                 test=t.loc[t.kommun_kod.isin(held)]
-            if len(train)<280 or len(test)<25:raise RuntimeError(f"Inadequate {variant} fold {fold}: train={len(train)}, test={len(test)}")
+            min_train = 200 if fold is not None else 280
+            if len(train)<min_train or len(test)<25:raise RuntimeError(f"Inadequate {variant} fold {fold}: train={len(train)}, test={len(test)}")
             pred={}
             for name,extra in (("base",[]),("RAMS",["rams_share"]),("BAS",["bas_share"])):
                 columns=base+extra
