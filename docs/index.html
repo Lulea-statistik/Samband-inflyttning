@@ -137,6 +137,22 @@
       <p class="lead">Här sammanfattas större kandidattester i några rader. Statusen visar om en variabel har fått plats i den demografiskt blinda strukturmodellen, ligger kvar som diagnostik eller har fallit i valideringen. Sambanden ska inte tolkas som säkra orsakseffekter.</p>
     </div>
 
+    <section class="panel" aria-labelledby="queue-title">
+      <div class="eyebrow">Utvecklingskö · efter sluttest #144</div>
+      <h3 id="queue-title">Nya variabler – prioritet och datastatus</h3>
+      <p class="note">Status <strong>befintlig / omprövas</strong> betyder att måttet finns i analyskoden, inte att det har säkerställd prognosnytta. <strong>Datakälla krävs</strong> betyder att ingen färdig jämförbar tidsserie är verifierad.</p>
+      <div class="table-scroll"><table>
+      <thead><tr><th>Prioritet</th><th>Kandidat</th><th>Status</th><th>Prövning</th></tr></thead>
+      <tbody>
+      <tr><td>1</td><td>In- och utpendling, regional arbetstillgänglighet</td><td>Datakälla krävs för pendlingsflöden och restidsviktade jobb; FA-mått finns</td><td>SCB:s pendlingsmatriser; laggad nivå och förändring</td></tr>
+      <tr><td>2</td><td>Sysselsättningens årsändring och säsongsvariation, dag/natt</td><td>Befintliga kandidatmått, omprövas</td><td>Gemensamt urval och rolling-origin</td></tr>
+      <tr><td>3</td><td>Bostadsomsättning och lediga bostäder</td><td>Delvis befintliga tester; kontrollera täckning</td><td>Småhusförsäljningar och vakansgrad</td></tr>
+      <tr><td>4</td><td>Restid till regionalt arbetsmarknadscentrum</td><td>Avståndsproxy finns; restid saknas</td><td>Jämför restid med avstånd och FA-arbetsmarknad</td></tr>
+      <tr><td>5</td><td>Sociala och ekonomiska möjlighetsmått</td><td>Delvis testade</td><td>Inkomstgap, föräldrars utbildning, föreningsmått</td></tr>
+      </tbody></table></div>
+      <p class="note"><strong>Prövningsregel:</strong> samma år och kommuner, endast laggade förklarare och variabelurval inom respektive träningsperiod. Rapportera RMSE, MAE, P90 och Luleå separat. Resultat för 2022–2024 är explorativa eftersom åren redan använts i modellutvecklingen. Produktionsmodellen byts inte automatiskt.</p>
+    </section>
+
     <section class="panel test-flow-panel" aria-labelledby="test-flow-title">
       <div class="eyebrow">Från idé till modellbeslut</div>
       <h3 id="test-flow-title">Så rör sig ett test genom analysen</h3>
