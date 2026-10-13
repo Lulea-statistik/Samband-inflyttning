@@ -1,0 +1,24 @@
+{
+  "table": "ArRegPend2",
+  "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210F/ArRegPend2",
+  "years": [
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+  ],
+  "municipalities": 290,
+  "observations": 420500,
+  "missing_or_suppressed_count": 0,
+  "missing_or_suppressed_examples": [],
+  "sex_category": "1+2",
+  "method_notes": [
+    "Employed persons 15-74 by residential and work municipality, not observed trip counts.",
+    "2024 SCB adjustment to self-employed classification affects comparability.",
+    "Persons without attributable workplace may be allocated to home municipality.",
+    "Statistical disclosure control can make totals differ from sums of cells.",
+    "Raw import only. No prediction models modified."
+  ],
+  "aggregation_approved": true
+}
