@@ -149,7 +149,7 @@ def isolated_commuting_diagnostic(d, baseline, pool, target):
 
 def controlled_outcommuting_test(d, baseline, pool, target):
     """#5: Outcommuting incremental value above pre-specified regional controls."""
-    controls = ["lag1_log_folkmangd", "lag1_tatortandel_pct",
+    controls = ["lag1_log_folkmangd", "lag1_tatortsgrad_pct",
                 "lag1_log_externa_fa_jobb_per_1000",
                 "lag1_andel_fa_arbetsplatser_i_egen_kommun",
                 "lag1_regional_centre_distance_km"]
@@ -198,7 +198,7 @@ def controlled_outcommuting_test(d, baseline, pool, target):
         if split=="geographic_2024":
             out["lulea_2024"]=rows.loc[rows.kommun_kod=="2580"].to_dict("records")
             out["geographic_sample"]=int(rows.kommun_kod.nunique())
-    (D/"commuting_controlled_test.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+    (D/"commuting_controlled_test.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     return out
 
 
