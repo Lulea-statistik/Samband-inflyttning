@@ -225,6 +225,7 @@ def crossvalidate_all_municipalities():
         "municipalities_improved": int((combined.improvement > 0).sum()),
         "municipalities_worsened": int((combined.improvement < 0).sum()),
         "lulea": combined.loc[combined.kommun_kod == "2580"].to_dict("records"),
+        "paired_predictions_2024": combined.to_dict("records"),
         "largest_improvements": combined.nlargest(15, "improvement").to_dict("records"),
         "largest_deteriorations": combined.nsmallest(15, "improvement").to_dict("records"),
         "note": "One held-out 2024 observation per municipality. Results cannot prove causal variable effects or justify deployment without unseen future outcomes.",
