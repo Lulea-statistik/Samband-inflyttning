@@ -1,0 +1,1187 @@
+{
+  "status": "coverage_inventory_only",
+  "years": [
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "note": "Coverage is not evidence of predictive value. Existing model's candidate tests are separate.",
+  "existing": {
+    "regional_jobs": {
+      "lag1_log_externa_fa_jobb_per_1000": {
+        "in_panel": true,
+        "yearly_coverage": [
+          {
+            "year": 2002,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2003,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2004,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2005,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2006,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2007,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2008,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2009,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2010,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2011,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2012,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2013,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2014,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2015,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2016,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2017,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2018,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2019,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2020,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2021,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          },
+          {
+            "year": 2022,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          },
+          {
+            "year": 2023,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          },
+          {
+            "year": 2024,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          }
+        ]
+      },
+      "lag1_andel_fa_arbetsplatser_i_egen_kommun": {
+        "in_panel": true,
+        "yearly_coverage": [
+          {
+            "year": 2002,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2003,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2004,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2005,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2006,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2007,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2008,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2009,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2010,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2011,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2012,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2013,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2014,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2015,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2016,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2017,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2018,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2019,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2020,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2021,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          },
+          {
+            "year": 2022,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          },
+          {
+            "year": 2023,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          },
+          {
+            "year": 2024,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          }
+        ]
+      }
+    },
+    "employment_dynamics": {
+      "lag1_sysselsatta_arbetsstalle_forandring_pct": {
+        "in_panel": true,
+        "yearly_coverage": [
+          {
+            "year": 2002,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2003,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2004,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2005,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2006,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2007,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2008,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2009,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2010,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2011,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2012,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2013,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2014,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2015,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2016,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2017,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2018,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2019,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2020,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2021,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2022,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          },
+          {
+            "year": 2023,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          },
+          {
+            "year": 2024,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          }
+        ]
+      },
+      "lag1_sysselsatta_bostad_forandring_pct": {
+        "in_panel": true,
+        "yearly_coverage": [
+          {
+            "year": 2002,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2003,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2004,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2005,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2006,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2007,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2008,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2009,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2010,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2011,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2012,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2013,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2014,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2015,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2016,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2017,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2018,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2019,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2020,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2021,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2022,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          },
+          {
+            "year": 2023,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          },
+          {
+            "year": 2024,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          }
+        ]
+      },
+      "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct": {
+        "in_panel": true,
+        "yearly_coverage": [
+          {
+            "year": 2002,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2003,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2004,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2005,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2006,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2007,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2008,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2009,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2010,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2011,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2012,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2013,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2014,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2015,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2016,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2017,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2018,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2019,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2020,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2021,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          },
+          {
+            "year": 2022,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          },
+          {
+            "year": 2023,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          },
+          {
+            "year": 2024,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          }
+        ]
+      },
+      "lag1_sysselsatta_bostad_sasongsvariation_pct": {
+        "in_panel": true,
+        "yearly_coverage": [
+          {
+            "year": 2002,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2003,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2004,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2005,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2006,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2007,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2008,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2009,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2010,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2011,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2012,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2013,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2014,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2015,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2016,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2017,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2018,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2019,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2020,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2021,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          },
+          {
+            "year": 2022,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          },
+          {
+            "year": 2023,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          },
+          {
+            "year": 2024,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          }
+        ]
+      }
+    },
+    "housing_turnover": {
+      "lag1_smahusforsaljningar_per_1000_smahus": {
+        "in_panel": true,
+        "yearly_coverage": [
+          {
+            "year": 2002,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2003,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2004,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2005,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2006,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2007,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2008,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2009,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2010,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2011,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2012,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2013,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2014,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2015,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2016,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2017,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2018,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2019,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          },
+          {
+            "year": 2020,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          },
+          {
+            "year": 2021,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          },
+          {
+            "year": 2022,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          },
+          {
+            "year": 2023,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          },
+          {
+            "year": 2024,
+            "n_nonmissing": 290,
+            "n_total": 293,
+            "coverage": 0.9898
+          }
+        ]
+      },
+      "lag1_lediga_allmannytta_pct": {
+        "in_panel": true,
+        "yearly_coverage": [
+          {
+            "year": 2002,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2003,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2004,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2005,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2006,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2007,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2008,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2009,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2010,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2011,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2012,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2013,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2014,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2015,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2016,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2017,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2018,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2019,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2020,
+            "n_nonmissing": 293,
+            "n_total": 293,
+            "coverage": 1.0
+          },
+          {
+            "year": 2021,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2022,
+            "n_nonmissing": 293,
+            "n_total": 293,
+            "coverage": 1.0
+          },
+          {
+            "year": 2023,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          },
+          {
+            "year": 2024,
+            "n_nonmissing": 0,
+            "n_total": 293,
+            "coverage": 0.0
+          }
+        ]
+      }
+    }
+  },
+  "requires_source": {
+    "commuting_flows": "SCB kommunala pendlingsmatriser; no verified ingested panel series",
+    "travel_time_access": "Route-network / GTFS transport data; no verified ingested panel series",
+    "parent_education": "SCB/other municipality data; availability and comparability unverified"
+  },
+  "production_model_modified": false
+}
