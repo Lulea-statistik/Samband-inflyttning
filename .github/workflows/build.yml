@@ -5,7 +5,11 @@ on:
   push:
     branches: [main]
     paths:
-      - "scripts/**"
+      - "scripts/build_analysis.py"
+      - "scripts/assess_production_challenger.py"
+      - "scripts/validate_challenger_138.py"
+      - "scripts/final_candidate_142.py"
+      - "scripts/audit_variable_queue.py"
       - "requirements.txt"
       - ".github/workflows/build.yml"
   schedule:
