@@ -146,6 +146,62 @@ def isolated_commuting_diagnostic(d, baseline, pool, target):
     return report
 
 
+
+def controlled_outcommuting_test(d, baseline, pool, target):
+    """#5: Outcommuting incremental value above pre-specified regional controls."""
+    controls = ["lag1_log_folkmangd", "lag1_tatortandel_pct",
+                "lag1_log_externa_fa_jobb_per_1000",
+                "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+                "lag1_regional_centre_distance_km"]
+    available = [c for c in controls if c in d.columns and d.loc[d.year == 2024,c].notna().sum() >= 250]
+    missing = sorted(set(controls)-set(available))
+    if missing:
+        raise RuntimeError("Missing required control data: "+", ".join(missing))
+    candidate = COMM[0]
+    used = list(dict.fromkeys(baseline + available + [candidate, target]))
+    dataset = d.dropna(subset=used).copy()
+    models = {"incumbent": baseline, "controlled":list(dict.fromkeys(baseline+available)),
+              "controlled_plus_outcommuting":list(dict.fromkeys(baseline+available+[candidate]))}
+    predictions=[]
+    tests=[]
+    for yr in (2023,2024):
+        train=dataset.loc[dataset.year<yr]
+        test=dataset.loc[dataset.year==yr]
+        if len(train)<280 or len(test)<250: raise RuntimeError("Insufficient controlled temporal sample")
+        tests.append((f"rolling_{yr}",train,test))
+    universe=sorted(dataset.loc[dataset.year==2024].kommun_kod.unique())
+    for fold in range(5):
+        held={v for v in universe if int(hashlib.sha256(("validation-140:"+v).encode()).hexdigest()[:12],16)%5==fold}
+        train=dataset.loc[dataset.year.lt(2024)&~dataset.kommun_kod.isin(held)]
+        test=dataset.loc[dataset.year.eq(2024)&dataset.kommun_kod.isin(held)]
+        if len(train)<300 or len(test)<25: raise RuntimeError("Insufficient controlled geographic fold")
+        tests.append((f"geo_{fold}",train,test))
+    for split,train,test in tests:
+        result={}
+        for name,columns in models.items():
+            pipe=make_pipeline(StandardScaler(),RidgeCV(alphas=np.logspace(-3,3,25)))
+            pipe.fit(train[columns],train[target])
+            result[name]=pipe.predict(test[columns])
+        for i,(_,r) in enumerate(test.iterrows()):
+            predictions.append({"split":split,"kommun_kod":r.kommun_kod,"actual":float(r[target]),
+                                "outcommuting_share":float(r[candidate]),
+                                **{name:float(value[i]) for name,value in result.items()}})
+    p=pd.DataFrame(predictions)
+    out={"status":"retrospective_controlled_diagnostic_complete",
+         "controls":available,"sample_years":[2023,2024],
+         "models":models,"production_changed":False,
+         "note":"Same historical years previously used in development. Descriptive not causal. Controls may be correlated; no claims of independent future-year performance.",
+         "metrics":{},"lulea_2024":[]}
+    for split in ["rolling_2023","rolling_2024","geographic_2024"]:
+        rows=p.loc[p.split.str.startswith("geo_")] if split=="geographic_2024" else p.loc[p.split==split]
+        out["metrics"][split]={name:_geographic_error_metrics(rows.actual,rows[name]) for name in models}
+        if split=="geographic_2024":
+            out["lulea_2024"]=rows.loc[rows.kommun_kod=="2580"].to_dict("records")
+            out["geographic_sample"]=int(rows.kommun_kod.nunique())
+    (D/"commuting_controlled_test.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+    return out
+
+
 def main():
     flows=pd.read_csv(D/"commuting_flows_2020_2024.csv",dtype={"home":str,"work":str})
     if len(flows)!=420500 or flows.duplicated(["year","home","work"]).any():
@@ -226,6 +282,7 @@ def main():
             "temporal":rows,"geographic_cv_2024":country,"lulea_cv_2024":ev.loc[ev.kommun_kod=="2580"].to_dict("records"),"production_model_changed":False}
     (D/"commuting_model_test.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n")
     isolated_commuting_diagnostic(d, baseline, pool, target)
+    controlled_outcommuting_test(d, baseline, pool, target)
     print(json.dumps({"status":report["status"],"temporal":[{"year":r["year"],"status":r["status"]} for r in rows],"geographic_cv_rmse":{k:v["rmse"] for k,v in country.items()}},ensure_ascii=False))
 
 if __name__=="__main__":
