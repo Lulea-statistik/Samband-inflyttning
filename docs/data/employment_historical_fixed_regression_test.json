@@ -1,0 +1,299 @@
+{
+  "status": "retrospective_three_year_fixed_model_exploratory",
+  "target": "inflyttning_per_1000",
+  "base_features": [
+    "lag1_log_folkmangd",
+    "lag1_tatortsgrad_pct"
+  ],
+  "models": {
+    "base": [
+      "lag1_log_folkmangd",
+      "lag1_tatortsgrad_pct"
+    ],
+    "residence": [
+      "lag1_log_folkmangd",
+      "lag1_tatortsgrad_pct",
+      "growth_residence"
+    ],
+    "workplace": [
+      "lag1_log_folkmangd",
+      "lag1_tatortsgrad_pct",
+      "growth_workplace"
+    ],
+    "both": [
+      "lag1_log_folkmangd",
+      "lag1_tatortsgrad_pct",
+      "growth_residence",
+      "growth_workplace"
+    ]
+  },
+  "ridge_alpha": 10.0,
+  "test_years": [
+    2009,
+    2010,
+    2011,
+    2016,
+    2017,
+    2018,
+    2019,
+    2024
+  ],
+  "production_changed": false,
+  "results": {
+    "2009": {
+      "n_train": 870,
+      "n_test": 290,
+      "models": {
+        "base": {
+          "rmse": 13.357791427023836,
+          "mae": 10.111162925516647,
+          "lulea_actual": 48.24881676808654,
+          "lulea_pred": 56.77916314914903
+        },
+        "residence": {
+          "rmse": 12.716592787141021,
+          "mae": 9.26085470435723,
+          "lulea_actual": 48.24881676808654,
+          "lulea_pred": 53.30604013223279
+        },
+        "workplace": {
+          "rmse": 12.9788494818079,
+          "mae": 9.71061243901313,
+          "lulea_actual": 48.24881676808654,
+          "lulea_pred": 55.54348936589174
+        },
+        "both": {
+          "rmse": 12.771507185645213,
+          "mae": 9.311574610556695,
+          "lulea_actual": 48.24881676808654,
+          "lulea_pred": 53.35556463216382
+        }
+      },
+      "previously_inspected_holdout": false
+    },
+    "2010": {
+      "n_train": 870,
+      "n_test": 290,
+      "models": {
+        "base": {
+          "rmse": 12.451292713500955,
+          "mae": 9.372022624029404,
+          "lulea_actual": 47.87133651486964,
+          "lulea_pred": 56.49698161052103
+        },
+        "residence": {
+          "rmse": 16.258243466723094,
+          "mae": 12.5444474151963,
+          "lulea_actual": 47.87133651486964,
+          "lulea_pred": 44.88759633979489
+        },
+        "workplace": {
+          "rmse": 13.269804811852136,
+          "mae": 9.535643027437365,
+          "lulea_actual": 47.87133651486964,
+          "lulea_pred": 51.41041857042866
+        },
+        "both": {
+          "rmse": 16.281435579233023,
+          "mae": 12.552783250265112,
+          "lulea_actual": 47.87133651486964,
+          "lulea_pred": 44.922134867035865
+        }
+      },
+      "previously_inspected_holdout": false
+    },
+    "2011": {
+      "n_train": 870,
+      "n_test": 290,
+      "models": {
+        "base": {
+          "rmse": 12.748542854370601,
+          "mae": 9.570833578811852,
+          "lulea_actual": 48.7195334963588,
+          "lulea_pred": 56.087806323716464
+        },
+        "residence": {
+          "rmse": 12.759009999529248,
+          "mae": 9.883493473934404,
+          "lulea_actual": 48.7195334963588,
+          "lulea_pred": 58.16198904011601
+        },
+        "workplace": {
+          "rmse": 12.739076966502422,
+          "mae": 9.72903678694457,
+          "lulea_actual": 48.7195334963588,
+          "lulea_pred": 57.057646579382265
+        },
+        "both": {
+          "rmse": 12.756370442920343,
+          "mae": 9.885078531939401,
+          "lulea_actual": 48.7195334963588,
+          "lulea_pred": 58.28461136342093
+        }
+      },
+      "previously_inspected_holdout": false
+    },
+    "2016": {
+      "n_train": 870,
+      "n_test": 290,
+      "models": {
+        "base": {
+          "rmse": 18.603534242673714,
+          "mae": 13.273316980950487,
+          "lulea_actual": 52.63774912075029,
+          "lulea_pred": 62.01714526829233
+        },
+        "residence": {
+          "rmse": 17.829395657709007,
+          "mae": 12.761183468690396,
+          "lulea_actual": 52.63774912075029,
+          "lulea_pred": 62.024950778217395
+        },
+        "workplace": {
+          "rmse": 18.464752171133405,
+          "mae": 13.218766064287257,
+          "lulea_actual": 52.63774912075029,
+          "lulea_pred": 62.10808883919044
+        },
+        "both": {
+          "rmse": 17.862112687117058,
+          "mae": 12.797046519608857,
+          "lulea_actual": 52.63774912075029,
+          "lulea_pred": 62.047170357800255
+        }
+      },
+      "previously_inspected_holdout": false
+    },
+    "2017": {
+      "n_train": 870,
+      "n_test": 290,
+      "models": {
+        "base": {
+          "rmse": 16.68608797318313,
+          "mae": 12.440922105355442,
+          "lulea_actual": 54.04672776558668,
+          "lulea_pred": 64.0089470166602
+        },
+        "residence": {
+          "rmse": 16.273090541106324,
+          "mae": 12.72329366633774,
+          "lulea_actual": 54.04672776558668,
+          "lulea_pred": 65.62537141846693
+        },
+        "workplace": {
+          "rmse": 16.435100227723265,
+          "mae": 12.399167860747221,
+          "lulea_actual": 54.04672776558668,
+          "lulea_pred": 64.52514807550402
+        },
+        "both": {
+          "rmse": 16.275027799733987,
+          "mae": 12.718870671442888,
+          "lulea_actual": 54.04672776558668,
+          "lulea_pred": 65.60883478750449
+        }
+      },
+      "previously_inspected_holdout": false
+    },
+    "2018": {
+      "n_train": 870,
+      "n_test": 290,
+      "models": {
+        "base": {
+          "rmse": 16.447806969289243,
+          "mae": 12.829822471020266,
+          "lulea_actual": 52.39490183986021,
+          "lulea_pred": 65.11437822650043
+        },
+        "residence": {
+          "rmse": 16.215715249373908,
+          "mae": 13.014694767939096,
+          "lulea_actual": 52.39490183986021,
+          "lulea_pred": 62.0128990060669
+        },
+        "workplace": {
+          "rmse": 16.401845802083386,
+          "mae": 12.859403792707694,
+          "lulea_actual": 52.39490183986021,
+          "lulea_pred": 63.12900373018138
+        },
+        "both": {
+          "rmse": 16.216498617482884,
+          "mae": 13.01227508860491,
+          "lulea_actual": 52.39490183986021,
+          "lulea_pred": 61.946782702309626
+        }
+      },
+      "previously_inspected_holdout": false
+    },
+    "2019": {
+      "n_train": 870,
+      "n_test": 290,
+      "models": {
+        "base": {
+          "rmse": 17.5424211070641,
+          "mae": 14.016549642917413,
+          "lulea_actual": 49.19019268932847,
+          "lulea_pred": 65.13906948301585
+        },
+        "residence": {
+          "rmse": 15.848179777323631,
+          "mae": 12.241827565256438,
+          "lulea_actual": 49.19019268932847,
+          "lulea_pred": 59.87372149593928
+        },
+        "workplace": {
+          "rmse": 17.036654441315655,
+          "mae": 13.53860724459079,
+          "lulea_actual": 49.19019268932847,
+          "lulea_pred": 64.42753920139073
+        },
+        "both": {
+          "rmse": 15.870760473655704,
+          "mae": 12.250853432904103,
+          "lulea_actual": 49.19019268932847,
+          "lulea_pred": 59.707460858070675
+        }
+      },
+      "previously_inspected_holdout": false
+    },
+    "2024": {
+      "n_train": 870,
+      "n_test": 290,
+      "models": {
+        "base": {
+          "rmse": 14.18733754301163,
+          "mae": 10.997879054537604,
+          "lulea_actual": 51.74210559357147,
+          "lulea_pred": 62.90824938933749
+        },
+        "residence": {
+          "rmse": 13.940201912425817,
+          "mae": 10.730883820065085,
+          "lulea_actual": 51.74210559357147,
+          "lulea_pred": 63.08985195103265
+        },
+        "workplace": {
+          "rmse": 13.951993372682274,
+          "mae": 10.763300262864282,
+          "lulea_actual": 51.74210559357147,
+          "lulea_pred": 63.4226800408337
+        },
+        "both": {
+          "rmse": 13.915183158760861,
+          "mae": 10.725488271629606,
+          "lulea_actual": 51.74210559357147,
+          "lulea_pred": 63.40641985311252
+        }
+      },
+      "previously_inspected_holdout": true
+    }
+  },
+  "limitations": [
+    "Historical panel and BAS-calibration provenance are retrospective, not genuine publication-vintage-safe forecasting.",
+    "2024 has been repeatedly inspected; do not use it for model choice.",
+    "No tuning or feature selection on the test year. Fixed alpha and fixed controls.",
+    "Within-regime percent growth is invariant to time-constant BAS/RAMS level factors.",
+    "Tests share historical observations and are not independent confirmation."
+  ]
+}
