@@ -1,0 +1,188 @@
+{
+  "status": "employment_representation_availability",
+  "target": "inflyttning_per_1000",
+  "variables": [
+    {
+      "variable": "sysselsatta_arbetsstalle_medel",
+      "coverage": {
+        "2019": 0,
+        "2020": 290,
+        "2021": 290,
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      }
+    },
+    {
+      "variable": "sysselsatta_arbetsstalle_min",
+      "coverage": {
+        "2019": 0,
+        "2020": 290,
+        "2021": 290,
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      }
+    },
+    {
+      "variable": "sysselsatta_arbetsstalle_max",
+      "coverage": {
+        "2019": 0,
+        "2020": 290,
+        "2021": 290,
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      }
+    },
+    {
+      "variable": "sysselsatta_arbetsstalle_sasongsvariation_pct",
+      "coverage": {
+        "2019": 0,
+        "2020": 290,
+        "2021": 290,
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      }
+    },
+    {
+      "variable": "sysselsatta_arbetsstalle_forandring_pct",
+      "coverage": {
+        "2019": 0,
+        "2020": 0,
+        "2021": 290,
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      }
+    },
+    {
+      "variable": "sysselsatta_bostad_medel",
+      "coverage": {
+        "2019": 0,
+        "2020": 290,
+        "2021": 290,
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      }
+    },
+    {
+      "variable": "sysselsatta_bostad_min",
+      "coverage": {
+        "2019": 0,
+        "2020": 290,
+        "2021": 290,
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      }
+    },
+    {
+      "variable": "sysselsatta_bostad_max",
+      "coverage": {
+        "2019": 0,
+        "2020": 290,
+        "2021": 290,
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      }
+    },
+    {
+      "variable": "sysselsatta_bostad_sasongsvariation_pct",
+      "coverage": {
+        "2019": 0,
+        "2020": 290,
+        "2021": 290,
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      }
+    },
+    {
+      "variable": "sysselsatta_bostad_forandring_pct",
+      "coverage": {
+        "2019": 0,
+        "2020": 0,
+        "2021": 290,
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      }
+    },
+    {
+      "variable": "lag1_sysselsatta_arbetsstalle_forandring_pct",
+      "coverage": {
+        "2019": 0,
+        "2020": 0,
+        "2021": 0,
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      }
+    },
+    {
+      "variable": "lag1_sysselsatta_bostad_forandring_pct",
+      "coverage": {
+        "2019": 0,
+        "2020": 0,
+        "2021": 0,
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      }
+    },
+    {
+      "variable": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+      "coverage": {
+        "2019": 0,
+        "2020": 0,
+        "2021": 290,
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      }
+    },
+    {
+      "variable": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+      "coverage": {
+        "2019": 0,
+        "2020": 0,
+        "2021": 290,
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      }
+    }
+  ],
+  "growth_lag_history": {
+    "2022": {
+      "lag1_sysselsatta_bostad_forandring_pct": 290,
+      "prior_1_growth": 0,
+      "prior_2_growth": 0,
+      "prior_3_growth": 0,
+      "prior_2y_mean": 0,
+      "anomaly_2y": 0
+    },
+    "2023": {
+      "lag1_sysselsatta_bostad_forandring_pct": 290,
+      "prior_1_growth": 290,
+      "prior_2_growth": 0,
+      "prior_3_growth": 0,
+      "prior_2y_mean": 0,
+      "anomaly_2y": 0
+    },
+    "2024": {
+      "lag1_sysselsatta_bostad_forandring_pct": 290,
+      "prior_1_growth": 290,
+      "prior_2_growth": 290,
+      "prior_3_growth": 0,
+      "prior_2y_mean": 290,
+      "anomaly_2y": 290
+    }
+  },
+  "caution": "Prior growth is taken from rows for earlier forecast years and is never computed using future-year outcomes.",
+  "production_model_changed": false
+}
