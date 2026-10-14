@@ -1,0 +1,27 @@
+name: Reconcile neutral variable pool inventory
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/audit_neutral_variable_pool_reboot.py
+      - .github/workflows/audit_neutral_variable_pool_reboot.yml
+permissions:
+  contents: write
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - run: python scripts/audit_neutral_variable_pool_reboot.py
+      - name: Save inventory
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/neutral_variable_pool_reboot.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record neutral variable pool reconciliation"
+          git pull --rebase origin main
+          git push origin HEAD:main
