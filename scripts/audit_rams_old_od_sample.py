@@ -41,6 +41,7 @@ def main():
         else:
             raise RuntimeError("Ambiguous SCB gender categories: "+str(candidates))
     data={}
+    seen=set()
     def fetch(selected_home,selected_work,yr):
         query=[{"code":home["code"],"selection":{"filter":"item","values":selected_home}},
            {"code":work["code"],"selection":{"filter":"item","values":selected_work}},
@@ -60,7 +61,11 @@ def main():
             value=row["values"][0]
             if value in (None,"","..",".","-"):raise RuntimeError(f"Suppressed cell {yr} {h} {w}")
             key=(yr,h,w)
-            # Two sex categories must be summed for the same municipality pair.
+            sex_code=str(d[sex["code"]]) if sex else "all"
+            unique=key+(sex_code,)
+            if unique in seen:continue
+            seen.add(unique)
+            # Two sex categories are summed, but overlapping requests are deduplicated.
             data[key]=data.get(key,0.0)+float(str(value).replace(" ","").replace(",","."))
     for yr in YEARS:
         for a in range(0,len(chosen),6):
