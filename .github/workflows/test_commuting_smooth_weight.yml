@@ -1,0 +1,37 @@
+name: Test smoothly weighted commuting value
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/test_commuting_smooth_weight.py"
+      - ".github/workflows/test_commuting_smooth_weight.yml"
+concurrency:
+  group: commuting-smooth-weight
+  cancel-in-progress: true
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Test baseline linear job interaction and smooth gate
+        run: python scripts/test_commuting_smooth_weight.py
+      - name: Save comparison
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/commuting_smooth_weight_test.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Update smooth commuting weighting research report"
+          git pull --rebase origin main
+          git push origin HEAD:main
