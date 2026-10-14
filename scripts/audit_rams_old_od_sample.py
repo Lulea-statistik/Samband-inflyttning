@@ -31,7 +31,7 @@ def main():
     sex_mode="dimension_absent"
     if sex:
         candidates=list(zip(sex["values"],sex.get("valueTexts",[])))
-        totals=[code for code,label in candidates if any(t in label.lower() for t in ("totalt","båda","samtliga"))]
+        totals=[code for code,label in candidates if any(t in label.lower() for t in ("totalt","båda","samtliga","män och kvinnor"))]
         if len(totals)==1:
             sex_values=totals
             sex_mode="published_total"
