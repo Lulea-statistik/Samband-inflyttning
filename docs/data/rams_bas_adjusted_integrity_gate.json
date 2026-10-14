@@ -1,0 +1,960 @@
+{
+  "status": "research_gate_review",
+  "production_changed": false,
+  "checks": {
+    "records_and_uniqueness": "pass",
+    "no_cross_regime_splicing": "pass",
+    "constant_factor_within_rams": "pass",
+    "raw_values_preserved": "pass",
+    "method_break_flags": "pass"
+  },
+  "dimensions": {
+    "residence": {
+      "median_abs_overlap_ratio_drift_pct": 0.27533126120281026,
+      "p90_abs_overlap_ratio_drift_pct": 0.7566393934322457,
+      "n_ratio_drift_gt_1pct": 17,
+      "n_ratio_drift_gt_2pct": 3,
+      "factor_min": 0.9905365566219002,
+      "factor_max": 1.0295400034903404,
+      "lulea": {
+        "kommun_kod": "2580",
+        "overlap_ratio_2020": 0.9984108268826575,
+        "overlap_ratio_2021": 1.000859432269154,
+        "ratio_drift_abs_pct": 0.24525028380770753,
+        "calibration_factor": 1.001631707588956
+      },
+      "top_ratio_drift": [
+        {
+          "kommun_kod": "2403",
+          "overlap_ratio_2020": 1.0061511423550087,
+          "overlap_ratio_2021": 0.982713915298185,
+          "ratio_drift_abs_pct": 2.3293942699271097,
+          "calibration_factor": 0.9995157834476869
+        },
+        {
+          "kommun_kod": "2418",
+          "overlap_ratio_2020": 0.98645903859174,
+          "overlap_ratio_2021": 1.0081911262798635,
+          "ratio_drift_abs_pct": 2.2030400490980373,
+          "calibration_factor": 1.0006817418344174
+        },
+        {
+          "kommun_kod": "2425",
+          "overlap_ratio_2020": 0.9930374238468234,
+          "overlap_ratio_2021": 1.0131810193321618,
+          "ratio_drift_abs_pct": 2.02848301600822,
+          "calibration_factor": 1.0030027473658283
+        },
+        {
+          "kommun_kod": "1447",
+          "overlap_ratio_2020": 1.0054176072234764,
+          "overlap_ratio_2021": 0.9884802835622508,
+          "ratio_drift_abs_pct": 1.684605833390873,
+          "calibration_factor": 1.0005400788739407
+        },
+        {
+          "kommun_kod": "2518",
+          "overlap_ratio_2020": 0.9790772532188842,
+          "overlap_ratio_2021": 0.9941207910208445,
+          "ratio_drift_abs_pct": 1.536501614402952,
+          "calibration_factor": 0.9963749811486868
+        },
+        {
+          "kommun_kod": "2513",
+          "overlap_ratio_2020": 0.9866577718478986,
+          "overlap_ratio_2021": 0.972203838517538,
+          "ratio_drift_abs_pct": 1.464938881826272,
+          "calibration_factor": 0.9934736778616106
+        },
+        {
+          "kommun_kod": "2422",
+          "overlap_ratio_2020": 0.965378421900161,
+          "overlap_ratio_2021": 0.9790322580645161,
+          "ratio_drift_abs_pct": 1.4143506685678986,
+          "calibration_factor": 0.9905365566219002
+        },
+        {
+          "kommun_kod": "0513",
+          "overlap_ratio_2020": 0.9983361064891847,
+          "overlap_ratio_2021": 1.0123507616303005,
+          "ratio_drift_abs_pct": 1.4038012899684205,
+          "calibration_factor": 1.0039062288863903
+        },
+        {
+          "kommun_kod": "1760",
+          "overlap_ratio_2020": 0.997096399535424,
+          "overlap_ratio_2021": 1.0096371882086168,
+          "ratio_drift_abs_pct": 1.2577308150983235,
+          "calibration_factor": 1.0031181484745206
+        },
+        {
+          "kommun_kod": "1762",
+          "overlap_ratio_2020": 1.0107120352867045,
+          "overlap_ratio_2021": 0.9980976537729866,
+          "ratio_drift_abs_pct": 1.2480687944058766,
+          "calibration_factor": 1.0035330611870974
+        },
+        {
+          "kommun_kod": "0560",
+          "overlap_ratio_2020": 0.998070987654321,
+          "overlap_ratio_2021": 1.0098187311178248,
+          "ratio_drift_abs_pct": 1.1770448804562017,
+          "calibration_factor": 1.003350245237423
+        },
+        {
+          "kommun_kod": "1460",
+          "overlap_ratio_2020": 0.9968066814050602,
+          "overlap_ratio_2021": 1.0083743842364532,
+          "ratio_drift_abs_pct": 1.1604760528979963,
+          "calibration_factor": 1.002808807034263
+        },
+        {
+          "kommun_kod": "2506",
+          "overlap_ratio_2020": 1.0022371364653244,
+          "overlap_ratio_2021": 1.0138282387190685,
+          "ratio_drift_abs_pct": 1.156522925764203,
+          "calibration_factor": 1.0049826526979435
+        },
+        {
+          "kommun_kod": "2303",
+          "overlap_ratio_2020": 0.9910786699107867,
+          "overlap_ratio_2021": 0.9798387096774194,
+          "ratio_drift_abs_pct": 1.134113827147465,
+          "calibration_factor": 0.995919268260367
+        },
+        {
+          "kommun_kod": "0512",
+          "overlap_ratio_2020": 1.0050962627406568,
+          "overlap_ratio_2021": 0.9938097917839055,
+          "ratio_drift_abs_pct": 1.1229243780069176,
+          "calibration_factor": 1.0015526314422067
+        },
+        {
+          "kommun_kod": "2510",
+          "overlap_ratio_2020": 0.9891653290529695,
+          "overlap_ratio_2021": 0.9995959595959596,
+          "ratio_drift_abs_pct": 1.0544880857254135,
+          "calibration_factor": 0.9995171861011877
+        },
+        {
+          "kommun_kod": "2521",
+          "overlap_ratio_2020": 0.9780461031833151,
+          "overlap_ratio_2021": 0.9880174291938998,
+          "ratio_drift_abs_pct": 1.0195149265592285,
+          "calibration_factor": 0.994938821688878
+        },
+        {
+          "kommun_kod": "2463",
+          "overlap_ratio_2020": 0.985133020344288,
+          "overlap_ratio_2021": 0.9945011783189317,
+          "ratio_drift_abs_pct": 0.9509536053689205,
+          "calibration_factor": 0.9976808267035026
+        },
+        {
+          "kommun_kod": "1438",
+          "overlap_ratio_2020": 1.0204824761037778,
+          "overlap_ratio_2021": 1.0108205590622181,
+          "ratio_drift_abs_pct": 0.9467989179441028,
+          "calibration_factor": 1.0080162050909485
+        },
+        {
+          "kommun_kod": "1904",
+          "overlap_ratio_2020": 0.9973290598290598,
+          "overlap_ratio_2021": 1.0063458487572712,
+          "ratio_drift_abs_pct": 0.9040936729304505,
+          "calibration_factor": 1.002510054559006
+        }
+      ],
+      "municipalities_with_gt_1pct_drift": [
+        {
+          "kommun_kod": "0512",
+          "overlap_ratio_2020": 1.0050962627406568,
+          "overlap_ratio_2021": 0.9938097917839055,
+          "ratio_drift_abs_pct": 1.1229243780069176,
+          "calibration_factor": 1.0015526314422067
+        },
+        {
+          "kommun_kod": "0513",
+          "overlap_ratio_2020": 0.9983361064891847,
+          "overlap_ratio_2021": 1.0123507616303005,
+          "ratio_drift_abs_pct": 1.4038012899684205,
+          "calibration_factor": 1.0039062288863903
+        },
+        {
+          "kommun_kod": "0560",
+          "overlap_ratio_2020": 0.998070987654321,
+          "overlap_ratio_2021": 1.0098187311178248,
+          "ratio_drift_abs_pct": 1.1770448804562017,
+          "calibration_factor": 1.003350245237423
+        },
+        {
+          "kommun_kod": "1447",
+          "overlap_ratio_2020": 1.0054176072234764,
+          "overlap_ratio_2021": 0.9884802835622508,
+          "ratio_drift_abs_pct": 1.684605833390873,
+          "calibration_factor": 1.0005400788739407
+        },
+        {
+          "kommun_kod": "1460",
+          "overlap_ratio_2020": 0.9968066814050602,
+          "overlap_ratio_2021": 1.0083743842364532,
+          "ratio_drift_abs_pct": 1.1604760528979963,
+          "calibration_factor": 1.002808807034263
+        },
+        {
+          "kommun_kod": "1760",
+          "overlap_ratio_2020": 0.997096399535424,
+          "overlap_ratio_2021": 1.0096371882086168,
+          "ratio_drift_abs_pct": 1.2577308150983235,
+          "calibration_factor": 1.0031181484745206
+        },
+        {
+          "kommun_kod": "1762",
+          "overlap_ratio_2020": 1.0107120352867045,
+          "overlap_ratio_2021": 0.9980976537729866,
+          "ratio_drift_abs_pct": 1.2480687944058766,
+          "calibration_factor": 1.0035330611870974
+        },
+        {
+          "kommun_kod": "2303",
+          "overlap_ratio_2020": 0.9910786699107867,
+          "overlap_ratio_2021": 0.9798387096774194,
+          "ratio_drift_abs_pct": 1.134113827147465,
+          "calibration_factor": 0.995919268260367
+        },
+        {
+          "kommun_kod": "2403",
+          "overlap_ratio_2020": 1.0061511423550087,
+          "overlap_ratio_2021": 0.982713915298185,
+          "ratio_drift_abs_pct": 2.3293942699271097,
+          "calibration_factor": 0.9995157834476869
+        },
+        {
+          "kommun_kod": "2418",
+          "overlap_ratio_2020": 0.98645903859174,
+          "overlap_ratio_2021": 1.0081911262798635,
+          "ratio_drift_abs_pct": 2.2030400490980373,
+          "calibration_factor": 1.0006817418344174
+        },
+        {
+          "kommun_kod": "2422",
+          "overlap_ratio_2020": 0.965378421900161,
+          "overlap_ratio_2021": 0.9790322580645161,
+          "ratio_drift_abs_pct": 1.4143506685678986,
+          "calibration_factor": 0.9905365566219002
+        },
+        {
+          "kommun_kod": "2425",
+          "overlap_ratio_2020": 0.9930374238468234,
+          "overlap_ratio_2021": 1.0131810193321618,
+          "ratio_drift_abs_pct": 2.02848301600822,
+          "calibration_factor": 1.0030027473658283
+        },
+        {
+          "kommun_kod": "2506",
+          "overlap_ratio_2020": 1.0022371364653244,
+          "overlap_ratio_2021": 1.0138282387190685,
+          "ratio_drift_abs_pct": 1.156522925764203,
+          "calibration_factor": 1.0049826526979435
+        },
+        {
+          "kommun_kod": "2510",
+          "overlap_ratio_2020": 0.9891653290529695,
+          "overlap_ratio_2021": 0.9995959595959596,
+          "ratio_drift_abs_pct": 1.0544880857254135,
+          "calibration_factor": 0.9995171861011877
+        },
+        {
+          "kommun_kod": "2513",
+          "overlap_ratio_2020": 0.9866577718478986,
+          "overlap_ratio_2021": 0.972203838517538,
+          "ratio_drift_abs_pct": 1.464938881826272,
+          "calibration_factor": 0.9934736778616106
+        },
+        {
+          "kommun_kod": "2518",
+          "overlap_ratio_2020": 0.9790772532188842,
+          "overlap_ratio_2021": 0.9941207910208445,
+          "ratio_drift_abs_pct": 1.536501614402952,
+          "calibration_factor": 0.9963749811486868
+        },
+        {
+          "kommun_kod": "2521",
+          "overlap_ratio_2020": 0.9780461031833151,
+          "overlap_ratio_2021": 0.9880174291938998,
+          "ratio_drift_abs_pct": 1.0195149265592285,
+          "calibration_factor": 0.994938821688878
+        }
+      ]
+    },
+    "workplace": {
+      "median_abs_overlap_ratio_drift_pct": 0.5213555949108162,
+      "p90_abs_overlap_ratio_drift_pct": 1.6514748700332094,
+      "n_ratio_drift_gt_1pct": 71,
+      "n_ratio_drift_gt_2pct": 22,
+      "factor_min": 0.9692001217791351,
+      "factor_max": 1.0272586684276928,
+      "lulea": {
+        "kommun_kod": "2580",
+        "overlap_ratio_2020": 1.0009844322344323,
+        "overlap_ratio_2021": 0.999549732090594,
+        "ratio_drift_abs_pct": 0.1433289167780405,
+        "calibration_factor": 1.0019169485679909
+      },
+      "top_ratio_drift": [
+        {
+          "kommun_kod": "0183",
+          "overlap_ratio_2020": 0.997152525586002,
+          "overlap_ratio_2021": 0.9305229988856012,
+          "ratio_drift_abs_pct": 6.681979435517571,
+          "calibration_factor": 0.9869226546433708
+        },
+        {
+          "kommun_kod": "2034",
+          "overlap_ratio_2020": 1.0158353127474267,
+          "overlap_ratio_2021": 1.0817796610169492,
+          "ratio_drift_abs_pct": 6.491637713515752,
+          "calibration_factor": 1.0208872989943916
+        },
+        {
+          "kommun_kod": "1276",
+          "overlap_ratio_2020": 1.0240637450199204,
+          "overlap_ratio_2021": 1.0881798176674002,
+          "ratio_drift_abs_pct": 6.260945469388979,
+          "calibration_factor": 1.0237429140906973
+        },
+        {
+          "kommun_kod": "1447",
+          "overlap_ratio_2020": 0.9316062176165804,
+          "overlap_ratio_2021": 0.9780388151174668,
+          "ratio_drift_abs_pct": 4.984144225623521,
+          "calibration_factor": 0.9833385631828345
+        },
+        {
+          "kommun_kod": "0128",
+          "overlap_ratio_2020": 1.0248072410325175,
+          "overlap_ratio_2021": 0.9865876481597006,
+          "ratio_drift_abs_pct": 3.7294421177498482,
+          "calibration_factor": 1.0040167288496349
+        },
+        {
+          "kommun_kod": "2403",
+          "overlap_ratio_2020": 1.0312124849939976,
+          "overlap_ratio_2021": 0.9931428571428571,
+          "ratio_drift_abs_pct": 3.6917345750873243,
+          "calibration_factor": 1.0066009927235264
+        },
+        {
+          "kommun_kod": "0665",
+          "overlap_ratio_2020": 0.983249581239531,
+          "overlap_ratio_2021": 1.0172119972733469,
+          "ratio_drift_abs_pct": 3.4540992116163682,
+          "calibration_factor": 1.0018447483558834
+        },
+        {
+          "kommun_kod": "2418",
+          "overlap_ratio_2020": 0.9435426958362738,
+          "overlap_ratio_2021": 0.975,
+          "ratio_drift_abs_pct": 3.3339566192969405,
+          "calibration_factor": 0.9852322327740618
+        },
+        {
+          "kommun_kod": "1266",
+          "overlap_ratio_2020": 0.9655731795241529,
+          "overlap_ratio_2021": 0.9976622909548643,
+          "ratio_drift_abs_pct": 3.323322572663545,
+          "calibration_factor": 0.9943496551539261
+        },
+        {
+          "kommun_kod": "1473",
+          "overlap_ratio_2020": 1.0153008298755186,
+          "overlap_ratio_2021": 0.9832689832689833,
+          "ratio_drift_abs_pct": 3.1549118905440654,
+          "calibration_factor": 1.0014719583966312
+        },
+        {
+          "kommun_kod": "2425",
+          "overlap_ratio_2020": 0.9973190348525469,
+          "overlap_ratio_2021": 1.026102610261026,
+          "ratio_drift_abs_pct": 2.8860950611190095,
+          "calibration_factor": 1.0064457199192964
+        },
+        {
+          "kommun_kod": "1472",
+          "overlap_ratio_2020": 1.0386563583044521,
+          "overlap_ratio_2021": 1.009739405106607,
+          "ratio_drift_abs_pct": 2.784073189043035,
+          "calibration_factor": 1.0113968926447614
+        },
+        {
+          "kommun_kod": "0428",
+          "overlap_ratio_2020": 1.0119085934985517,
+          "overlap_ratio_2021": 1.038055644387592,
+          "ratio_drift_abs_pct": 2.5839340684557177,
+          "calibration_factor": 1.0117140025853328
+        },
+        {
+          "kommun_kod": "1466",
+          "overlap_ratio_2020": 0.9715205547300644,
+          "overlap_ratio_2021": 0.9958657587548638,
+          "ratio_drift_abs_pct": 2.50588666459699,
+          "calibration_factor": 0.995212760659732
+        },
+        {
+          "kommun_kod": "0604",
+          "overlap_ratio_2020": 0.9935532802427001,
+          "overlap_ratio_2021": 1.0162224797219004,
+          "ratio_drift_abs_pct": 2.281628970482874,
+          "calibration_factor": 1.0037403177621762
+        },
+        {
+          "kommun_kod": "1781",
+          "overlap_ratio_2020": 1.006487080813634,
+          "overlap_ratio_2021": 0.9837790442788251,
+          "ratio_drift_abs_pct": 2.256167711209156,
+          "calibration_factor": 0.9998308470609935
+        },
+        {
+          "kommun_kod": "2422",
+          "overlap_ratio_2020": 0.9636032757051866,
+          "overlap_ratio_2021": 0.985280588776449,
+          "ratio_drift_abs_pct": 2.249609732324598,
+          "calibration_factor": 0.9914641517324051
+        },
+        {
+          "kommun_kod": "0319",
+          "overlap_ratio_2020": 0.9789830508474576,
+          "overlap_ratio_2021": 1.0006811989100817,
+          "ratio_drift_abs_pct": 2.2163967030727427,
+          "calibration_factor": 0.9976990526119046
+        },
+        {
+          "kommun_kod": "2518",
+          "overlap_ratio_2020": 0.9901162790697674,
+          "overlap_ratio_2021": 1.010919540229885,
+          "ratio_drift_abs_pct": 2.101092730205645,
+          "calibration_factor": 1.0019958796274286
+        },
+        {
+          "kommun_kod": "1730",
+          "overlap_ratio_2020": 1.059491617090319,
+          "overlap_ratio_2021": 1.0379922351636162,
+          "ratio_drift_abs_pct": 2.0292168035974223,
+          "calibration_factor": 1.0210422261519718
+        }
+      ],
+      "municipalities_with_gt_1pct_drift": [
+        {
+          "kommun_kod": "0120",
+          "overlap_ratio_2020": 1.0077581380468688,
+          "overlap_ratio_2021": 0.9957733249843457,
+          "ratio_drift_abs_pct": 1.1892549025454446,
+          "calibration_factor": 1.0025100559156206
+        },
+        {
+          "kommun_kod": "0126",
+          "overlap_ratio_2020": 0.9871403754078217,
+          "overlap_ratio_2021": 0.9983997672388711,
+          "ratio_drift_abs_pct": 1.1406069604232183,
+          "calibration_factor": 0.9989000952005731
+        },
+        {
+          "kommun_kod": "0128",
+          "overlap_ratio_2020": 1.0248072410325175,
+          "overlap_ratio_2021": 0.9865876481597006,
+          "ratio_drift_abs_pct": 3.7294421177498482,
+          "calibration_factor": 1.0040167288496349
+        },
+        {
+          "kommun_kod": "0139",
+          "overlap_ratio_2020": 0.9998264491496008,
+          "overlap_ratio_2021": 1.0143666365651425,
+          "ratio_drift_abs_pct": 1.454271131545748,
+          "calibration_factor": 1.0046372866023618
+        },
+        {
+          "kommun_kod": "0140",
+          "overlap_ratio_2020": 0.9932390903503381,
+          "overlap_ratio_2021": 1.0133457479826196,
+          "ratio_drift_abs_pct": 2.0243522257253677,
+          "calibration_factor": 1.0031079394565048
+        },
+        {
+          "kommun_kod": "0162",
+          "overlap_ratio_2020": 1.0250124564025909,
+          "overlap_ratio_2021": 1.0358902882174323,
+          "ratio_drift_abs_pct": 1.0612389875747086,
+          "calibration_factor": 1.013897280357528
+        },
+        {
+          "kommun_kod": "0183",
+          "overlap_ratio_2020": 0.997152525586002,
+          "overlap_ratio_2021": 0.9305229988856012,
+          "ratio_drift_abs_pct": 6.681979435517571,
+          "calibration_factor": 0.9869226546433708
+        },
+        {
+          "kommun_kod": "0184",
+          "overlap_ratio_2020": 1.0110780455025439,
+          "overlap_ratio_2021": 1.0278437743574333,
+          "ratio_drift_abs_pct": 1.6582032346035502,
+          "calibration_factor": 1.0095497723446443
+        },
+        {
+          "kommun_kod": "0187",
+          "overlap_ratio_2020": 1.0073839662447257,
+          "overlap_ratio_2021": 1.025799418604651,
+          "ratio_drift_abs_pct": 1.8280469986606596,
+          "calibration_factor": 1.0084093731040895
+        },
+        {
+          "kommun_kod": "0191",
+          "overlap_ratio_2020": 0.9886432695229413,
+          "overlap_ratio_2021": 0.9740220624223486,
+          "ratio_drift_abs_pct": 1.478916364610272,
+          "calibration_factor": 0.9942762343870511
+        },
+        {
+          "kommun_kod": "0319",
+          "overlap_ratio_2020": 0.9789830508474576,
+          "overlap_ratio_2021": 1.0006811989100817,
+          "ratio_drift_abs_pct": 2.2163967030727427,
+          "calibration_factor": 0.9976990526119046
+        },
+        {
+          "kommun_kod": "0381",
+          "overlap_ratio_2020": 0.9850555762378344,
+          "overlap_ratio_2021": 1.0002590405139364,
+          "ratio_drift_abs_pct": 1.5434118280075015,
+          "calibration_factor": 0.9988494182851116
+        },
+        {
+          "kommun_kod": "0428",
+          "overlap_ratio_2020": 1.0119085934985517,
+          "overlap_ratio_2021": 1.038055644387592,
+          "ratio_drift_abs_pct": 2.5839340684557177,
+          "calibration_factor": 1.0117140025853328
+        },
+        {
+          "kommun_kod": "0484",
+          "overlap_ratio_2020": 0.9977946214457006,
+          "overlap_ratio_2021": 1.0090823676792984,
+          "ratio_drift_abs_pct": 1.1312695008560913,
+          "calibration_factor": 1.003180155235401
+        },
+        {
+          "kommun_kod": "0563",
+          "overlap_ratio_2020": 1.0119805316360913,
+          "overlap_ratio_2021": 1.0254681647940076,
+          "ratio_drift_abs_pct": 1.3327957145687908,
+          "calibration_factor": 1.0092627515529393
+        },
+        {
+          "kommun_kod": "0582",
+          "overlap_ratio_2020": 0.9916003536693192,
+          "overlap_ratio_2021": 1.0106660861993906,
+          "ratio_drift_abs_pct": 1.9227234499786583,
+          "calibration_factor": 1.002245812419458
+        },
+        {
+          "kommun_kod": "0604",
+          "overlap_ratio_2020": 0.9935532802427001,
+          "overlap_ratio_2021": 1.0162224797219004,
+          "ratio_drift_abs_pct": 2.281628970482874,
+          "calibration_factor": 1.0037403177621762
+        },
+        {
+          "kommun_kod": "0665",
+          "overlap_ratio_2020": 0.983249581239531,
+          "overlap_ratio_2021": 1.0172119972733469,
+          "ratio_drift_abs_pct": 3.4540992116163682,
+          "calibration_factor": 1.0018447483558834
+        },
+        {
+          "kommun_kod": "0764",
+          "overlap_ratio_2020": 1.0016541544725792,
+          "overlap_ratio_2021": 1.017568789562072,
+          "ratio_drift_abs_pct": 1.5888353298821656,
+          "calibration_factor": 1.0056380381509222
+        },
+        {
+          "kommun_kod": "0834",
+          "overlap_ratio_2020": 1.0066143034311699,
+          "overlap_ratio_2021": 0.9919549477071601,
+          "ratio_drift_abs_pct": 1.456303141535098,
+          "calibration_factor": 1.0015125278593138
+        },
+        {
+          "kommun_kod": "0861",
+          "overlap_ratio_2020": 0.9910243902439024,
+          "overlap_ratio_2021": 1.0010096930533119,
+          "ratio_drift_abs_pct": 1.0075738708057447,
+          "calibration_factor": 1.0002070293468823
+        },
+        {
+          "kommun_kod": "1230",
+          "overlap_ratio_2020": 0.9886530503270592,
+          "overlap_ratio_2021": 1.0029794149512459,
+          "ratio_drift_abs_pct": 1.4490790899241546,
+          "calibration_factor": 1.0001210387170123
+        },
+        {
+          "kommun_kod": "1261",
+          "overlap_ratio_2020": 1.0281329923273657,
+          "overlap_ratio_2021": 1.0076396807297605,
+          "ratio_drift_abs_pct": 1.993254933995925,
+          "calibration_factor": 1.0089189718911256
+        },
+        {
+          "kommun_kod": "1262",
+          "overlap_ratio_2020": 1.0397214749169172,
+          "overlap_ratio_2021": 1.0282843894899536,
+          "ratio_drift_abs_pct": 1.1000143502737147,
+          "calibration_factor": 1.0152930857234266
+        },
+        {
+          "kommun_kod": "1264",
+          "overlap_ratio_2020": 0.9977710233029382,
+          "overlap_ratio_2021": 1.0142489610132595,
+          "ratio_drift_abs_pct": 1.6514748700332094,
+          "calibration_factor": 1.004200582477274
+        },
+        {
+          "kommun_kod": "1266",
+          "overlap_ratio_2020": 0.9655731795241529,
+          "overlap_ratio_2021": 0.9976622909548643,
+          "ratio_drift_abs_pct": 3.323322572663545,
+          "calibration_factor": 0.9943496551539261
+        },
+        {
+          "kommun_kod": "1267",
+          "overlap_ratio_2020": 0.997293116782676,
+          "overlap_ratio_2021": 1.0075785582255083,
+          "ratio_drift_abs_pct": 1.031335849987003,
+          "calibration_factor": 1.0027801416296651
+        },
+        {
+          "kommun_kod": "1275",
+          "overlap_ratio_2020": 0.9916999692591454,
+          "overlap_ratio_2021": 0.978660343805572,
+          "ratio_drift_abs_pct": 1.314876057051284,
+          "calibration_factor": 0.9958360300106132
+        },
+        {
+          "kommun_kod": "1276",
+          "overlap_ratio_2020": 1.0240637450199204,
+          "overlap_ratio_2021": 1.0881798176674002,
+          "ratio_drift_abs_pct": 6.260945469388979,
+          "calibration_factor": 1.0237429140906973
+        },
+        {
+          "kommun_kod": "1401",
+          "overlap_ratio_2020": 1.0037559823105349,
+          "overlap_ratio_2021": 0.9912306689577531,
+          "ratio_drift_abs_pct": 1.2478444535842126,
+          "calibration_factor": 1.0007969028509047
+        },
+        {
+          "kommun_kod": "1430",
+          "overlap_ratio_2020": 1.0139735772357723,
+          "overlap_ratio_2021": 0.9964788732394366,
+          "ratio_drift_abs_pct": 1.7253609353439558,
+          "calibration_factor": 1.003885829434606
+        },
+        {
+          "kommun_kod": "1445",
+          "overlap_ratio_2020": 1.0155322064869803,
+          "overlap_ratio_2021": 1.0035971223021583,
+          "ratio_drift_abs_pct": 1.1752541286808582,
+          "calibration_factor": 1.0056248551689029
+        },
+        {
+          "kommun_kod": "1447",
+          "overlap_ratio_2020": 0.9316062176165804,
+          "overlap_ratio_2021": 0.9780388151174668,
+          "ratio_drift_abs_pct": 4.984144225623521,
+          "calibration_factor": 0.9833385631828345
+        },
+        {
+          "kommun_kod": "1462",
+          "overlap_ratio_2020": 0.9971764705882353,
+          "overlap_ratio_2021": 1.0127780407004259,
+          "ratio_drift_abs_pct": 1.564574633714244,
+          "calibration_factor": 1.0037894732571326
+        },
+        {
+          "kommun_kod": "1465",
+          "overlap_ratio_2020": 1.0171107308726473,
+          "overlap_ratio_2021": 1.0308889412874322,
+          "ratio_drift_abs_pct": 1.3546421246547702,
+          "calibration_factor": 1.0113498179440887
+        },
+        {
+          "kommun_kod": "1466",
+          "overlap_ratio_2020": 0.9715205547300644,
+          "overlap_ratio_2021": 0.9958657587548638,
+          "ratio_drift_abs_pct": 2.50588666459699,
+          "calibration_factor": 0.995212760659732
+        },
+        {
+          "kommun_kod": "1472",
+          "overlap_ratio_2020": 1.0386563583044521,
+          "overlap_ratio_2021": 1.009739405106607,
+          "ratio_drift_abs_pct": 2.784073189043035,
+          "calibration_factor": 1.0113968926447614
+        },
+        {
+          "kommun_kod": "1473",
+          "overlap_ratio_2020": 1.0153008298755186,
+          "overlap_ratio_2021": 0.9832689832689833,
+          "ratio_drift_abs_pct": 3.1549118905440654,
+          "calibration_factor": 1.0014719583966312
+        },
+        {
+          "kommun_kod": "1486",
+          "overlap_ratio_2020": 1.0351655855240696,
+          "overlap_ratio_2021": 1.0462002008704385,
+          "ratio_drift_abs_pct": 1.0659758690473087,
+          "calibration_factor": 1.0179121590211964
+        },
+        {
+          "kommun_kod": "1489",
+          "overlap_ratio_2020": 0.9909324837642446,
+          "overlap_ratio_2021": 0.9787633107454018,
+          "ratio_drift_abs_pct": 1.228052689585457,
+          "calibration_factor": 0.9957027956672354
+        },
+        {
+          "kommun_kod": "1496",
+          "overlap_ratio_2020": 0.9830086548759661,
+          "overlap_ratio_2021": 0.9983890568917276,
+          "ratio_drift_abs_pct": 1.5646252898660507,
+          "calibration_factor": 0.9980603620841665
+        },
+        {
+          "kommun_kod": "1497",
+          "overlap_ratio_2020": 1.0359550561797752,
+          "overlap_ratio_2021": 1.0211958241062955,
+          "ratio_drift_abs_pct": 1.4246981068760212,
+          "calibration_factor": 1.0131537730797853
+        },
+        {
+          "kommun_kod": "1730",
+          "overlap_ratio_2020": 1.059491617090319,
+          "overlap_ratio_2021": 1.0379922351636162,
+          "ratio_drift_abs_pct": 2.0292168035974223,
+          "calibration_factor": 1.0210422261519718
+        },
+        {
+          "kommun_kod": "1780",
+          "overlap_ratio_2020": 1.003959089409436,
+          "overlap_ratio_2021": 1.0145427525078288,
+          "ratio_drift_abs_pct": 1.054192666816589,
+          "calibration_factor": 1.0055013336326124
+        },
+        {
+          "kommun_kod": "1781",
+          "overlap_ratio_2020": 1.006487080813634,
+          "overlap_ratio_2021": 0.9837790442788251,
+          "ratio_drift_abs_pct": 2.256167711209156,
+          "calibration_factor": 0.9998308470609935
+        },
+        {
+          "kommun_kod": "1785",
+          "overlap_ratio_2020": 0.9965942264028543,
+          "overlap_ratio_2021": 0.9830397912589693,
+          "ratio_drift_abs_pct": 1.36007562403897,
+          "calibration_factor": 0.9977075761171201
+        },
+        {
+          "kommun_kod": "1864",
+          "overlap_ratio_2020": 0.9883507050889025,
+          "overlap_ratio_2021": 1.0,
+          "ratio_drift_abs_pct": 1.1786600496277888,
+          "calibration_factor": 0.9994650050790659
+        },
+        {
+          "kommun_kod": "1881",
+          "overlap_ratio_2020": 0.9933324261804327,
+          "overlap_ratio_2021": 1.005486417770641,
+          "ratio_drift_abs_pct": 1.2235573177594716,
+          "calibration_factor": 1.0015659267762411
+        },
+        {
+          "kommun_kod": "1904",
+          "overlap_ratio_2020": 1.0011785503830288,
+          "overlap_ratio_2021": 0.9858356940509915,
+          "ratio_drift_abs_pct": 1.5324795288680026,
+          "calibration_factor": 0.9991911809554891
+        },
+        {
+          "kommun_kod": "1961",
+          "overlap_ratio_2020": 1.0151542815409895,
+          "overlap_ratio_2021": 0.9976436469095523,
+          "ratio_drift_abs_pct": 1.7249234869852748,
+          "calibration_factor": 1.0043541434454526
+        },
+        {
+          "kommun_kod": "2034",
+          "overlap_ratio_2020": 1.0158353127474267,
+          "overlap_ratio_2021": 1.0817796610169492,
+          "ratio_drift_abs_pct": 6.491637713515752,
+          "calibration_factor": 1.0208872989943916
+        },
+        {
+          "kommun_kod": "2083",
+          "overlap_ratio_2020": 1.0068564614696676,
+          "overlap_ratio_2021": 1.019404332129964,
+          "ratio_drift_abs_pct": 1.246242254032981,
+          "calibration_factor": 1.007043392946688
+        },
+        {
+          "kommun_kod": "2085",
+          "overlap_ratio_2020": 1.0002417989844443,
+          "overlap_ratio_2021": 1.0116522018643523,
+          "ratio_drift_abs_pct": 1.1407644523047544,
+          "calibration_factor": 1.0041824414268405
+        },
+        {
+          "kommun_kod": "2132",
+          "overlap_ratio_2020": 0.9784083898827884,
+          "overlap_ratio_2021": 0.9940846824408468,
+          "ratio_drift_abs_pct": 1.6022238484623363,
+          "calibration_factor": 0.9962631967419434
+        },
+        {
+          "kommun_kod": "2303",
+          "overlap_ratio_2020": 0.9868823786620026,
+          "overlap_ratio_2021": 0.9968722073279714,
+          "ratio_drift_abs_pct": 1.0122613273846115,
+          "calibration_factor": 0.998542039358976
+        },
+        {
+          "kommun_kod": "2326",
+          "overlap_ratio_2020": 0.9743421052631579,
+          "overlap_ratio_2021": 0.9863515312916112,
+          "ratio_drift_abs_pct": 1.2325676950202036,
+          "calibration_factor": 0.993880147901204
+        },
+        {
+          "kommun_kod": "2361",
+          "overlap_ratio_2020": 0.9976856722070271,
+          "overlap_ratio_2021": 1.0084588405199093,
+          "ratio_drift_abs_pct": 1.079815879188728,
+          "calibration_factor": 1.0030342428568677
+        },
+        {
+          "kommun_kod": "2401",
+          "overlap_ratio_2020": 1.0050590219224282,
+          "overlap_ratio_2021": 1.0164141414141414,
+          "ratio_drift_abs_pct": 1.1297962849976306,
+          "calibration_factor": 1.0060923116622797
+        },
+        {
+          "kommun_kod": "2403",
+          "overlap_ratio_2020": 1.0312124849939976,
+          "overlap_ratio_2021": 0.9931428571428571,
+          "ratio_drift_abs_pct": 3.6917345750873243,
+          "calibration_factor": 1.0066009927235264
+        },
+        {
+          "kommun_kod": "2409",
+          "overlap_ratio_2020": 0.9830866807610994,
+          "overlap_ratio_2021": 0.9995824634655532,
+          "ratio_drift_abs_pct": 1.6779581116573405,
+          "calibration_factor": 0.998314698221391
+        },
+        {
+          "kommun_kod": "2418",
+          "overlap_ratio_2020": 0.9435426958362738,
+          "overlap_ratio_2021": 0.975,
+          "ratio_drift_abs_pct": 3.3339566192969405,
+          "calibration_factor": 0.9852322327740618
+        },
+        {
+          "kommun_kod": "2421",
+          "overlap_ratio_2020": 0.9827712609970675,
+          "overlap_ratio_2021": 0.9928892215568862,
+          "ratio_drift_abs_pct": 1.0295336220509377,
+          "calibration_factor": 0.9969101689635604
+        },
+        {
+          "kommun_kod": "2422",
+          "overlap_ratio_2020": 0.9636032757051866,
+          "overlap_ratio_2021": 0.985280588776449,
+          "ratio_drift_abs_pct": 2.249609732324598,
+          "calibration_factor": 0.9914641517324051
+        },
+        {
+          "kommun_kod": "2425",
+          "overlap_ratio_2020": 0.9973190348525469,
+          "overlap_ratio_2021": 1.026102610261026,
+          "ratio_drift_abs_pct": 2.8860950611190095,
+          "calibration_factor": 1.0064457199192964
+        },
+        {
+          "kommun_kod": "2462",
+          "overlap_ratio_2020": 1.0052392595179882,
+          "overlap_ratio_2021": 1.0190140845070423,
+          "ratio_drift_abs_pct": 1.3703031252141118,
+          "calibration_factor": 1.0066425943205901
+        },
+        {
+          "kommun_kod": "2463",
+          "overlap_ratio_2020": 0.9889455782312925,
+          "overlap_ratio_2021": 1.0087260034904013,
+          "ratio_drift_abs_pct": 2.0001530614541796,
+          "calibration_factor": 1.0013237083622
+        },
+        {
+          "kommun_kod": "2482",
+          "overlap_ratio_2020": 1.0085791947448892,
+          "overlap_ratio_2021": 0.9984880556395525,
+          "ratio_drift_abs_pct": 1.0005301673795874,
+          "calibration_factor": 1.0032194720508567
+        },
+        {
+          "kommun_kod": "2505",
+          "overlap_ratio_2020": 0.9974083672713809,
+          "overlap_ratio_2021": 1.0097781120722076,
+          "ratio_drift_abs_pct": 1.2401885934310686,
+          "calibration_factor": 1.0032407615544632
+        },
+        {
+          "kommun_kod": "2510",
+          "overlap_ratio_2020": 0.9881057268722467,
+          "overlap_ratio_2021": 0.9749230092388913,
+          "ratio_drift_abs_pct": 1.3341403935674068,
+          "calibration_factor": 0.9943519380572705
+        },
+        {
+          "kommun_kod": "2518",
+          "overlap_ratio_2020": 0.9901162790697674,
+          "overlap_ratio_2021": 1.010919540229885,
+          "ratio_drift_abs_pct": 2.101092730205645,
+          "calibration_factor": 1.0019958796274286
+        },
+        {
+          "kommun_kod": "2583",
+          "overlap_ratio_2020": 1.0586328815556865,
+          "overlap_ratio_2021": 1.0708454810495627,
+          "ratio_drift_abs_pct": 1.1536198909606332,
+          "calibration_factor": 1.0272586684276928
+        }
+      ]
+    }
+  },
+  "failures": [],
+  "decision": {
+    "integrity_gate": "pass",
+    "calibration_reliability_gate": "requires_review",
+    "experimental_regression_gate": "blocked_pending_source_asof_and_break_policy",
+    "production_gate": "blocked"
+  },
+  "limitations": [
+    "Two overlap years cannot establish stability for 2004-2018.",
+    "Constant factors preserve within-regime percentage growth exactly; they do not correct true methodology breaks.",
+    "Large ratio drifts warrant sensitivity analysis, not automatic suppression of municipalities.",
+    "No historical time-as-of audit, regression, model selection, or production change is included."
+  ]
+}
