@@ -1,0 +1,96 @@
+{
+  "status": "diagnostic_only",
+  "source": "neutral_geographic_nested_selection_results.json",
+  "production_changed": false,
+  "branches": {
+    "five_blind": {
+      "neutral_candidates": 51,
+      "incumbent_candidates": 14,
+      "neutral_rmse": 8.64888105033909,
+      "incumbent_rmse": 11.33631872294953,
+      "percent_change_rmse": -23.706440673460627,
+      "neutral_winning_outer_folds": 5,
+      "outer_fold_count": 5,
+      "neutral_nonzero_range": [
+        40,
+        50
+      ],
+      "neutral_nonzero_mean": 44.2,
+      "neutral_nonzero_fraction_mean": 0.8666666666666667,
+      "alpha_lower_bound_count": 5,
+      "selection_5_of_5_count": 32,
+      "caution": "Outer CV score is not an unbiased tuning target; freeze next model design before new analysis."
+    },
+    "five_forecast": {
+      "neutral_candidates": 56,
+      "incumbent_candidates": 19,
+      "neutral_rmse": 5.239361468329144,
+      "incumbent_rmse": 5.355567143700206,
+      "percent_change_rmse": -2.1698108202742983,
+      "neutral_winning_outer_folds": 5,
+      "outer_fold_count": 5,
+      "neutral_nonzero_range": [
+        37,
+        38
+      ],
+      "neutral_nonzero_mean": 37.8,
+      "neutral_nonzero_fraction_mean": 0.6749999999999999,
+      "alpha_lower_bound_count": 5,
+      "selection_5_of_5_count": 27,
+      "caution": "Outer CV score is not an unbiased tuning target; freeze next model design before new analysis."
+    },
+    "three_blind": {
+      "neutral_candidates": 73,
+      "incumbent_candidates": 22,
+      "neutral_rmse": 8.13975280953921,
+      "incumbent_rmse": 10.740321807602683,
+      "percent_change_rmse": -24.213138532056135,
+      "neutral_winning_outer_folds": 5,
+      "outer_fold_count": 5,
+      "neutral_nonzero_range": [
+        60,
+        71
+      ],
+      "neutral_nonzero_mean": 64.2,
+      "neutral_nonzero_fraction_mean": 0.8794520547945206,
+      "alpha_lower_bound_count": 5,
+      "selection_5_of_5_count": 49,
+      "caution": "Outer CV score is not an unbiased tuning target; freeze next model design before new analysis."
+    },
+    "three_forecast": {
+      "neutral_candidates": 78,
+      "incumbent_candidates": 27,
+      "neutral_rmse": 5.031188400952228,
+      "incumbent_rmse": 5.0094055512696265,
+      "percent_change_rmse": 0.4348390135248792,
+      "neutral_winning_outer_folds": 2,
+      "outer_fold_count": 5,
+      "neutral_nonzero_range": [
+        45,
+        52
+      ],
+      "neutral_nonzero_mean": 48.6,
+      "neutral_nonzero_fraction_mean": 0.6230769230769231,
+      "alpha_lower_bound_count": 5,
+      "selection_5_of_5_count": 27,
+      "caution": "Outer CV score is not an unbiased tuning target; freeze next model design before new analysis."
+    }
+  },
+  "alerts": [
+    "five_blind: most alpha values are at the weakest regularization boundary",
+    "five_blind: many available features remain active",
+    "five_forecast: most alpha values are at the weakest regularization boundary",
+    "five_forecast: many available features remain active",
+    "three_blind: most alpha values are at the weakest regularization boundary",
+    "three_blind: many available features remain active",
+    "three_forecast: most alpha values are at the weakest regularization boundary"
+  ],
+  "interpretation": [
+    "Geographic grouped CV estimates generalization to unseen municipalities, not unseen future years.",
+    "Incumbent_retrain is not an exact reconstruction of the production model.",
+    "Five-year and three-year arms use different candidate sets and cannot isolate window-length effects.",
+    "The historical 2024 outcome was not used in this nested CV.",
+    "The next hyperparameter/complexity redesign must be precommitted and tested on a separate evidence base; rerunning many grids to maximize this same observed outer-CV score invites overfitting the evaluation.",
+    "No new feature choices or production changes are made by this audit."
+  ]
+}
