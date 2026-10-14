@@ -9,7 +9,7 @@ Status: **källkod och beräkningsdefinition spårad; historiska publiceringstid
 | `lag1_fardigstallda_bostader_per_1000` | SCB BO0101, `LghReHtypUfAr`, `COMPLETED_HOUSING_URL` | 1 000 × färdigställda bostadslägenheter i nybyggda hus / folkmängd, föregående referensår. Ombyggnationer ingår inte nödvändigtvis. | Ej verifierad |
 | `lag1_bostadsbestandsforandring_pct` | SCB BO0104T04, `HOUSING_URL`, bostadsbestånd | 100 × årlig procentuell förändring i `bostader_totalt`, beräknat med `pct_change()`, därefter laggad ett år. Kräver minst två beståndsår. | Ej verifierad |
 | `lag1_smahusforsaljningar_per_1000_smahus` | SCB BO0501B, `FastprisSHRegionAr`, `HOUSE_PRICE_URL`; nämnare BO0104T04 | 1 000 × antal köp av permanentbostadsfastigheter (ej tomträtt) / antal bostäder i småhus. Olika populationsdefinitioner mellan täljare och nämnare; inte omsättningen av samtliga småhus. | Ej verifierad |
-| `lag1_log_fritidshus_per_1000_inv` | SCB BO0104T08, `LEISURE_HOUSE_URL_CANDIDATES`, samt folkmängd SCB BE0101 | Logtransformerad fritidshustäthet, 1-årslag. Kontrollera exakt loggfunktion och eventuella nollor i `build_analysis.py` vid separat definitional audit. | Ej verifierad |
+| `lag1_log_fritidshus_per_1000_inv` | SCB BO0104T08, `LEISURE_HOUSE_URL_CANDIDATES`, samt folkmängd SCB BE0101 | `np.log1p(max(0, 1 000 × fritidshus / folkmängd))`, därefter laggad ett år. Kontrollera SCB:s underliggande fritidshusdefinition. | Ej verifierad |
 
 Källornas kodreferenser: [build_analysis.py](https://github.com/Lulea-statistik/Samband-inflyttning/blob/main/scripts/build_analysis.py).
 
