@@ -1,0 +1,341 @@
+{
+  "status": "historic_rams_interaction_exploration",
+  "source": "RAMS pre-2019",
+  "historical_moderator": "ratio of jobs located in municipality to employed municipality residents, from RAMS local/incoming/outgoing counts",
+  "moderator_not_equivalent_to_modern_fa_region_share": true,
+  "historical_core_features": [
+    "lag1_inflyttning_per_1000",
+    "lag1_utflyttning_per_1000",
+    "lag1_log_folkmangd",
+    "lag1_befolkningstillvaxt_pct",
+    "lag1_andel_20_34",
+    "lag1_inflyttare_medelalder"
+  ],
+  "production_model_changed": false,
+  "results": {
+    "2015": {
+      "n_train": 580,
+      "n_test": 290,
+      "train_years": [
+        2013,
+        2014
+      ],
+      "scores": {
+        "core": {
+          "rmse": 5.963436939373566,
+          "mae": 4.46257654191437
+        },
+        "core_structure": {
+          "rmse": 5.984085866433851,
+          "mae": 4.465725028037907
+        },
+        "core_structure_linear": {
+          "rmse": 5.970644612480987,
+          "mae": 4.451205299664496
+        },
+        "core_structure_interaction": {
+          "rmse": 5.973227369748419,
+          "mae": 4.451295947484931
+        }
+      },
+      "quartiles": [
+        {
+          "group": "Q1",
+          "n": 73,
+          "rmse": {
+            "core": 6.556857912865488,
+            "core_structure": 6.548522775151483,
+            "core_structure_linear": 6.520561965205383,
+            "core_structure_interaction": 6.5462658693951665
+          }
+        },
+        {
+          "group": "Q2",
+          "n": 72,
+          "rmse": {
+            "core": 6.480732962587021,
+            "core_structure": 6.498644084710022,
+            "core_structure_linear": 6.485726197573775,
+            "core_structure_interaction": 6.493739154471463
+          }
+        },
+        {
+          "group": "Q3",
+          "n": 72,
+          "rmse": {
+            "core": 5.384844951943476,
+            "core_structure": 5.401941396945853,
+            "core_structure_linear": 5.3831066066787345,
+            "core_structure_interaction": 5.366589255872369
+          }
+        },
+        {
+          "group": "Q4",
+          "n": 73,
+          "rmse": {
+            "core": 5.315986912505309,
+            "core_structure": 5.379389095547154,
+            "core_structure_linear": 5.388013524705627,
+            "core_structure_interaction": 5.37493382448849
+          }
+        }
+      ],
+      "lulea": [
+        {
+          "actual": 48.7987593313006,
+          "job_balance": 1.1252237548699588,
+          "core": 52.966304095630925,
+          "core_structure": 52.936194766111754,
+          "core_structure_linear": 52.8899122868267,
+          "core_structure_interaction": 53.016769215720124
+        }
+      ]
+    },
+    "2016": {
+      "n_train": 870,
+      "n_test": 290,
+      "train_years": [
+        2013,
+        2014,
+        2015
+      ],
+      "scores": {
+        "core": {
+          "rmse": 7.541668930740578,
+          "mae": 5.413106260463888
+        },
+        "core_structure": {
+          "rmse": 7.528663700315827,
+          "mae": 5.408659292850261
+        },
+        "core_structure_linear": {
+          "rmse": 7.576457554974994,
+          "mae": 5.444900182397112
+        },
+        "core_structure_interaction": {
+          "rmse": 7.5757751585933875,
+          "mae": 5.446377297035324
+        }
+      },
+      "quartiles": [
+        {
+          "group": "Q1",
+          "n": 73,
+          "rmse": {
+            "core": 8.044426957250847,
+            "core_structure": 8.018867150158835,
+            "core_structure_linear": 8.085084894291759,
+            "core_structure_interaction": 8.078788440519775
+          }
+        },
+        {
+          "group": "Q2",
+          "n": 72,
+          "rmse": {
+            "core": 8.521153014177347,
+            "core_structure": 8.496209961121018,
+            "core_structure_linear": 8.544350542671584,
+            "core_structure_interaction": 8.545386281844324
+          }
+        },
+        {
+          "group": "Q3",
+          "n": 72,
+          "rmse": {
+            "core": 7.522178372289616,
+            "core_structure": 7.521673472916731,
+            "core_structure_linear": 7.573788827196634,
+            "core_structure_interaction": 7.580475641731925
+          }
+        },
+        {
+          "group": "Q4",
+          "n": 73,
+          "rmse": {
+            "core": 5.814857025191895,
+            "core_structure": 5.8198518867675215,
+            "core_structure_linear": 5.838426502508784,
+            "core_structure_interaction": 5.833568326065566
+          }
+        }
+      ],
+      "lulea": [
+        {
+          "actual": 52.63774912075029,
+          "job_balance": 1.125930941096818,
+          "core": 52.33237483356415,
+          "core_structure": 52.31848006049219,
+          "core_structure_linear": 52.09090882916782,
+          "core_structure_interaction": 52.144235742988805
+        }
+      ]
+    },
+    "2017": {
+      "n_train": 1160,
+      "n_test": 290,
+      "train_years": [
+        2013,
+        2014,
+        2015,
+        2016
+      ],
+      "scores": {
+        "core": {
+          "rmse": 9.003449297938445,
+          "mae": 6.361329113855756
+        },
+        "core_structure": {
+          "rmse": 9.039439759090216,
+          "mae": 6.411385608162541
+        },
+        "core_structure_linear": {
+          "rmse": 9.011935604139856,
+          "mae": 6.393841143074407
+        },
+        "core_structure_interaction": {
+          "rmse": 9.004934504044936,
+          "mae": 6.389117812479023
+        }
+      },
+      "quartiles": [
+        {
+          "group": "Q1",
+          "n": 73,
+          "rmse": {
+            "core": 8.869321645286323,
+            "core_structure": 8.941181479168254,
+            "core_structure_linear": 8.901982520715912,
+            "core_structure_interaction": 8.909107406054773
+          }
+        },
+        {
+          "group": "Q2",
+          "n": 72,
+          "rmse": {
+            "core": 11.150422450221512,
+            "core_structure": 11.269574724752284,
+            "core_structure_linear": 11.224393992424332,
+            "core_structure_interaction": 11.210179136819349
+          }
+        },
+        {
+          "group": "Q3",
+          "n": 72,
+          "rmse": {
+            "core": 9.106796248352408,
+            "core_structure": 9.087637698389383,
+            "core_structure_linear": 9.080889013972026,
+            "core_structure_interaction": 9.057356774465607
+          }
+        },
+        {
+          "group": "Q4",
+          "n": 73,
+          "rmse": {
+            "core": 6.239891668486641,
+            "core_structure": 6.159958564071801,
+            "core_structure_linear": 6.147802877418982,
+            "core_structure_interaction": 6.156541611256102
+          }
+        }
+      ],
+      "lulea": [
+        {
+          "actual": 54.04672776558668,
+          "job_balance": 1.1267086469052372,
+          "core": 54.33800022354368,
+          "core_structure": 54.35384791622315,
+          "core_structure_linear": 54.30537138019256,
+          "core_structure_interaction": 54.395616463696236
+        }
+      ]
+    },
+    "2018": {
+      "n_train": 1450,
+      "n_test": 290,
+      "train_years": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "scores": {
+        "core": {
+          "rmse": 10.073352936085513,
+          "mae": 7.499688682458884
+        },
+        "core_structure": {
+          "rmse": 10.08547023845189,
+          "mae": 7.512417723244649
+        },
+        "core_structure_linear": {
+          "rmse": 9.75565723946459,
+          "mae": 7.296706832461657
+        },
+        "core_structure_interaction": {
+          "rmse": 9.734743852932226,
+          "mae": 7.276662179512324
+        }
+      },
+      "quartiles": [
+        {
+          "group": "Q1",
+          "n": 73,
+          "rmse": {
+            "core": 9.866514742961606,
+            "core_structure": 9.892758886579188,
+            "core_structure_linear": 9.395902750776093,
+            "core_structure_interaction": 9.422813664334154
+          }
+        },
+        {
+          "group": "Q2",
+          "n": 72,
+          "rmse": {
+            "core": 12.464875053197535,
+            "core_structure": 12.507637828581577,
+            "core_structure_linear": 12.028085846322606,
+            "core_structure_interaction": 12.010720726742402
+          }
+        },
+        {
+          "group": "Q3",
+          "n": 72,
+          "rmse": {
+            "core": 10.298338578991947,
+            "core_structure": 10.282681734019315,
+            "core_structure_linear": 10.015918194080967,
+            "core_structure_interaction": 9.95460067300877
+          }
+        },
+        {
+          "group": "Q4",
+          "n": 73,
+          "rmse": {
+            "core": 6.921987254625309,
+            "core_structure": 6.901469888705888,
+            "core_structure_linear": 6.939995488926216,
+            "core_structure_interaction": 6.903428232900024
+          }
+        }
+      ],
+      "lulea": [
+        {
+          "actual": 52.39490183986021,
+          "job_balance": 1.1167471410419314,
+          "core": 54.549704582968474,
+          "core_structure": 54.549186737014026,
+          "core_structure_linear": 54.269405978143624,
+          "core_structure_interaction": 54.442102185911104
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Historical moderator is job balance, not the modern FA-region workplace proportion. This is a conceptual interaction test, not direct replication.",
+    "Historical models have only six common covariates, not current 27-feature incumbent.",
+    "Older RAMS source regime only (before 2019 break); no BAS pooling.",
+    "Results retrospective and exploratory."
+  ]
+}
