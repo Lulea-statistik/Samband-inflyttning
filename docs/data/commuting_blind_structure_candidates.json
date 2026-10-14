@@ -1,0 +1,167 @@
+{
+  "status": "blind_structure_environment_unemployment",
+  "regime": "BAS",
+  "years": [
+    2023,
+    2024
+  ],
+  "no_history_migration_predictors": true,
+  "fixed_structural_controls": [
+    "lag1_log_folkmangd",
+    "lag1_tatortsgrad_pct",
+    "lag1_regional_centre_distance_km"
+  ],
+  "candidates": {
+    "long_term_unemployment": "lag1_kolada_langtidsarbetslosa_pct",
+    "natural_land": "lag1_naturpraglad_mark_andel_land_pct",
+    "coastal_urban": "lag1_strand_hav_bostader_tatort_per_1000"
+  },
+  "production_model_changed": false,
+  "results": {
+    "2023": {
+      "n_train": 290,
+      "n_test": 290,
+      "selected": [
+        "lag1_log_folkmangd",
+        "lag1_inkomst_tkr",
+        "lag1_valdeltagande_pct",
+        "lag1_valdeltagande_gap_pp",
+        "lag1_ekonomisk_standard_gap_pp",
+        "lag1_bostader_per_1000",
+        "lag1_fardigstallda_bostader_per_1000",
+        "lag1_andel_bostadsratt",
+        "lag1_andel_smahus",
+        "lag1_andel_eftergymnasial",
+        "lag1_andel_studerande",
+        "lag1_andel_kultur_service_rstu",
+        "lag1_log_externa_fa_jobb_per_1000",
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+        "lag1_kolada_arbetslosa_18_65_pct",
+        "lag1_utanf_arbetkraften_andel_pct",
+        "lag1_bas_studerande_andel_pct",
+        "lag1_andel_bostader_111_plus",
+        "lag1_gymnasium_hogskoleforberedande_pct",
+        "lag1_regional_centre_distance_km",
+        "lag1_tatortsgrad_pct"
+      ],
+      "actual_controls": [
+        "lag1_log_folkmangd",
+        "lag1_tatortsgrad_pct",
+        "lag1_regional_centre_distance_km"
+      ],
+      "comparisons": {
+        "reference": {
+          "rmse": 9.42588962297392,
+          "mae": 7.075426227671117,
+          "already_selected": false,
+          "feature_count": 21,
+          "coefficient": null,
+          "lulea_prediction": 45.33832179999173,
+          "lulea_actual": 47.73666700272205
+        },
+        "long_term_unemployment": {
+          "rmse": 9.253140574043341,
+          "mae": 6.913254820009394,
+          "already_selected": false,
+          "feature_count": 22,
+          "coefficient": -2.679326418351958,
+          "lulea_prediction": 46.31606704747291,
+          "lulea_actual": 47.73666700272205
+        },
+        "natural_land": {
+          "rmse": 9.280896589683183,
+          "mae": 6.944465287697362,
+          "already_selected": false,
+          "feature_count": 22,
+          "coefficient": -1.1081973714936826,
+          "lulea_prediction": 44.280737694711554,
+          "lulea_actual": 47.73666700272205
+        },
+        "coastal_urban": {
+          "rmse": 9.209137182918498,
+          "mae": 6.8331470068628715,
+          "already_selected": false,
+          "feature_count": 22,
+          "coefficient": -1.4184465178810433,
+          "lulea_prediction": 44.014392442900984,
+          "lulea_actual": 47.73666700272205
+        }
+      }
+    },
+    "2024": {
+      "n_train": 580,
+      "n_test": 290,
+      "selected": [
+        "lag1_log_folkmangd",
+        "lag1_inkomst_tkr",
+        "lag1_valdeltagande_pct",
+        "lag1_valdeltagande_gap_pp",
+        "lag1_ekonomisk_standard_gap_pp",
+        "lag1_bostader_per_1000",
+        "lag1_fardigstallda_bostader_per_1000",
+        "lag1_andel_bostadsratt",
+        "lag1_andel_smahus",
+        "lag1_andel_eftergymnasial",
+        "lag1_andel_studerande",
+        "lag1_andel_kultur_service_rstu",
+        "lag1_log_externa_fa_jobb_per_1000",
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+        "lag1_kolada_arbetslosa_18_65_pct",
+        "lag1_utanf_arbetkraften_andel_pct",
+        "lag1_bas_pensionarer_andel_pct",
+        "lag1_andel_bostader_111_plus",
+        "lag1_gymnasium_hogskoleforberedande_pct",
+        "lag1_regional_centre_distance_km",
+        "lag1_tatortsgrad_pct"
+      ],
+      "actual_controls": [
+        "lag1_log_folkmangd",
+        "lag1_tatortsgrad_pct",
+        "lag1_regional_centre_distance_km"
+      ],
+      "comparisons": {
+        "reference": {
+          "rmse": 8.870852415376714,
+          "mae": 6.685593665041956,
+          "already_selected": false,
+          "feature_count": 21,
+          "coefficient": null,
+          "lulea_prediction": 46.222677280813514,
+          "lulea_actual": 51.74210559357147
+        },
+        "long_term_unemployment": {
+          "rmse": 8.752540612697276,
+          "mae": 6.5659964905845385,
+          "already_selected": false,
+          "feature_count": 22,
+          "coefficient": -2.575966137136089,
+          "lulea_prediction": 48.26022738456988,
+          "lulea_actual": 51.74210559357147
+        },
+        "natural_land": {
+          "rmse": 8.746158189041287,
+          "mae": 6.6120310130532705,
+          "already_selected": false,
+          "feature_count": 22,
+          "coefficient": -1.5769371005661554,
+          "lulea_prediction": 45.278876627016416,
+          "lulea_actual": 51.74210559357147
+        },
+        "coastal_urban": {
+          "rmse": 8.848220191365344,
+          "mae": 6.669274151783134,
+          "already_selected": false,
+          "feature_count": 22,
+          "coefficient": -1.1683421588721141,
+          "lulea_prediction": 45.95934632129452,
+          "lulea_actual": 51.74210559357147
+        }
+      }
+    }
+  },
+  "limitations": [
+    "This research uses a BAS-only complete sample and modified pool; not the published full-history structural model.",
+    "Already inspected years, no unseen validation.",
+    "Municipal-level conditional association is not causal."
+  ]
+}
