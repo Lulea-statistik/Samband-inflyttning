@@ -1,0 +1,157 @@
+{
+  "status": "research_only_nonlinear_lok",
+  "year": 2024,
+  "n": 290,
+  "training_years": [
+    2022,
+    2023
+  ],
+  "controls": [
+    "lag1_log_folkmangd",
+    "lag1_tatortsgrad_pct",
+    "lag1_regional_centre_distance_km",
+    "lag1_inkomst_tkr",
+    "lag1_andel_eftergymnasial",
+    "lag1_andel_studerande",
+    "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+    "lag1_kolada_arbetslosa_18_65_pct"
+  ],
+  "forms": {
+    "reference": [],
+    "long_term": [
+      "lag1_kolada_langtidsarbetslosa_pct"
+    ],
+    "linear_lok": [
+      "lag1_kolada_langtidsarbetslosa_pct",
+      "lag1_kolada_utbetalt_lok_stod_kr_per_inv"
+    ],
+    "quadratic_lok": [
+      "lag1_kolada_langtidsarbetslosa_pct",
+      "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+      "lok_quadratic"
+    ],
+    "hinge_lok": [
+      "lag1_kolada_langtidsarbetslosa_pct",
+      "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+      "lok_hinge"
+    ]
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "n_test": 58,
+      "lok_median_from_training": 39.76748925
+    },
+    {
+      "fold": 1,
+      "n_test": 52,
+      "lok_median_from_training": 38.999766395
+    },
+    {
+      "fold": 2,
+      "n_test": 65,
+      "lok_median_from_training": 38.581935175
+    },
+    {
+      "fold": 3,
+      "n_test": 64,
+      "lok_median_from_training": 39.764583915
+    },
+    {
+      "fold": 4,
+      "n_test": 51,
+      "lok_median_from_training": 38.52648331
+    }
+  ],
+  "metrics": {
+    "reference": {
+      "r2": 0.5508898081582736,
+      "rmse": 10.14320909047553,
+      "mae": 7.280867125855471,
+      "median_abs_error": 5.432866160348702,
+      "p90_abs_error": 15.694043075029564,
+      "p95_abs_error": 20.667074756575865,
+      "p90_p10_abs_error_gap": 14.341501739066654,
+      "best_decile_mae": 0.5463255822487172,
+      "worst_decile_mae": 23.237908547269125,
+      "decile_mae_gap": 22.69158296502041,
+      "max_abs_error": 61.668706206162426,
+      "n": 290
+    },
+    "long_term": {
+      "r2": 0.5800354652225237,
+      "rmse": 9.80855950079836,
+      "mae": 7.03225049799452,
+      "median_abs_error": 5.208514986023925,
+      "p90_abs_error": 15.106789176019953,
+      "p95_abs_error": 19.257376901708305,
+      "p90_p10_abs_error_gap": 13.867722188973003,
+      "best_decile_mae": 0.7341670735912849,
+      "worst_decile_mae": 22.53785089495021,
+      "decile_mae_gap": 21.803683821358927,
+      "max_abs_error": 55.96934501555643,
+      "n": 290
+    },
+    "linear_lok": {
+      "r2": 0.5997071535197692,
+      "rmse": 9.57608157857692,
+      "mae": 6.842874907034,
+      "median_abs_error": 5.065750872869476,
+      "p90_abs_error": 14.489266456183588,
+      "p95_abs_error": 19.25714368114869,
+      "p90_p10_abs_error_gap": 13.569090301688295,
+      "best_decile_mae": 0.52864726834664,
+      "worst_decile_mae": 22.001625523569135,
+      "decile_mae_gap": 21.472978255222497,
+      "max_abs_error": 57.51054332781176,
+      "n": 290
+    },
+    "quadratic_lok": {
+      "r2": 0.5965550688520442,
+      "rmse": 9.613710818272924,
+      "mae": 6.8860986751654485,
+      "median_abs_error": 5.095804015105589,
+      "p90_abs_error": 14.832033963360766,
+      "p95_abs_error": 18.918388184455964,
+      "p90_p10_abs_error_gap": 13.758021776616625,
+      "best_decile_mae": 0.5184214997985517,
+      "worst_decile_mae": 21.92301857639709,
+      "decile_mae_gap": 21.404597076598538,
+      "max_abs_error": 58.09544330165801,
+      "n": 290
+    },
+    "hinge_lok": {
+      "r2": 0.594690150056649,
+      "rmse": 9.6359048247735,
+      "mae": 6.90000728008321,
+      "median_abs_error": 5.158975372884555,
+      "p90_abs_error": 14.584189650937555,
+      "p95_abs_error": 19.3267556508229,
+      "p90_p10_abs_error_gap": 13.600163690884903,
+      "best_decile_mae": 0.5189052518184826,
+      "worst_decile_mae": 22.1077464459231,
+      "decile_mae_gap": 21.58884119410462,
+      "max_abs_error": 57.573676379834254,
+      "n": 290
+    }
+  },
+  "lulea": [
+    {
+      "code": "2580",
+      "actual": 51.74210559357147,
+      "fold": 1,
+      "reference": 46.75369057083769,
+      "long_term": 49.17431486750788,
+      "linear_lok": 47.05303884742409,
+      "quadratic_lok": 47.08074957667691,
+      "hinge_lok": 46.60225566426665
+    }
+  ],
+  "production_model_changed": false,
+  "limitations": [
+    "LOK nonlinear shapes tested on previously inspected 2024: selection bias.",
+    "Municipal income and local-job share are proxies, not validated municipal fiscal accounts or full industry structure.",
+    "This comparison does not include new external civic or financial sources.",
+    "Municipal relationships are not causal; independent future validation needed."
+  ]
+}
