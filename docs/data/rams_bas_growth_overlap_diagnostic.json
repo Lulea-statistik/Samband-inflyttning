@@ -1,0 +1,3779 @@
+{
+  "status": "separate_overlap_growth_diagnostic",
+  "years": [
+    2020,
+    2021
+  ],
+  "production_changed": false,
+  "growth": {
+    "residence": {
+      "difference_bas_minus_rams_pp": {
+        "n": 290,
+        "mean": 0.2040150779251228,
+        "median": 0.20105317728004168,
+        "p10": -0.2932322967003742,
+        "p90": 0.6559783336036462,
+        "max_abs": 2.3682857384056955
+      },
+      "n_abs_difference_gt_1pp": 17,
+      "n_abs_difference_gt_2pp": 3,
+      "lulea": {
+        "kommun_kod": "2580",
+        "rams_growth_pct": 1.4020607986876543,
+        "bas_growth_pct": 1.6507496405832711,
+        "difference_pp": 0.2486888418956168
+      },
+      "top_absolute_differences": [
+        {
+          "kommun_kod": "2403",
+          "rams_growth_pct": 1.6695957820738183,
+          "bas_growth_pct": -0.6986899563318771,
+          "difference_pp": -2.3682857384056955
+        },
+        {
+          "kommun_kod": "2418",
+          "rams_growth_pct": -0.8124576844956044,
+          "bas_growth_pct": 1.3726835964310125,
+          "difference_pp": 2.185141280926617
+        },
+        {
+          "kommun_kod": "2425",
+          "rams_growth_pct": -0.9573542210617902,
+          "bas_growth_pct": 1.0517090271691565,
+          "difference_pp": 2.0090632482309467
+        },
+        {
+          "kommun_kod": "1447",
+          "rams_growth_pct": 1.8961625282166938,
+          "bas_growth_pct": 0.17961383026492417,
+          "difference_pp": -1.7165486979517697
+        },
+        {
+          "kommun_kod": "2518",
+          "rams_growth_pct": 0.375536480686689,
+          "bas_growth_pct": 1.9178082191780854,
+          "difference_pp": 1.5422717384913964
+        },
+        {
+          "kommun_kod": "2513",
+          "rams_growth_pct": 0.8005336891260928,
+          "bas_growth_pct": -0.6761325219743042,
+          "difference_pp": -1.476666211100397
+        },
+        {
+          "kommun_kod": "0513",
+          "rams_growth_pct": 1.0399334442595665,
+          "bas_growth_pct": 2.45833333333334,
+          "difference_pp": 1.4183998890737737
+        },
+        {
+          "kommun_kod": "2422",
+          "rams_growth_pct": -0.16103059581320522,
+          "bas_growth_pct": 1.2510425354462118,
+          "difference_pp": 1.412073131259417
+        },
+        {
+          "kommun_kod": "1760",
+          "rams_growth_pct": 2.4390243902439046,
+          "bas_growth_pct": 3.72743156668609,
+          "difference_pp": 1.2884071764421856
+        },
+        {
+          "kommun_kod": "1762",
+          "rams_growth_pct": -0.6301197227473243,
+          "bas_growth_pct": -1.8703241895261846,
+          "difference_pp": -1.2402044667788603
+        },
+        {
+          "kommun_kod": "0560",
+          "rams_growth_pct": 2.1604938271605034,
+          "bas_growth_pct": 3.362968689601864,
+          "difference_pp": 1.2024748624413606
+        },
+        {
+          "kommun_kod": "2506",
+          "rams_growth_pct": 2.460850111856816,
+          "bas_growth_pct": 3.645833333333326,
+          "difference_pp": 1.18498322147651
+        },
+        {
+          "kommun_kod": "1460",
+          "rams_growth_pct": -0.2702038811102869,
+          "bas_growth_pct": 0.8871365204534243,
+          "difference_pp": 1.1573404015637112
+        },
+        {
+          "kommun_kod": "2303",
+          "rams_growth_pct": 0.5677210056772131,
+          "bas_growth_pct": -0.5728314238952592,
+          "difference_pp": -1.1405524295724723
+        },
+        {
+          "kommun_kod": "0512",
+          "rams_growth_pct": 0.6228765571913986,
+          "bas_growth_pct": -0.5070422535211283,
+          "difference_pp": -1.1299188107125269
+        },
+        {
+          "kommun_kod": "2510",
+          "rams_growth_pct": -0.6821829855537698,
+          "bas_growth_pct": 0.36511156186611604,
+          "difference_pp": 1.0472945474198858
+        },
+        {
+          "kommun_kod": "2521",
+          "rams_growth_pct": 0.7683863885839637,
+          "bas_growth_pct": 1.7957351290684542,
+          "difference_pp": 1.0273487404844905
+        },
+        {
+          "kommun_kod": "1438",
+          "rams_growth_pct": 0.9558488848429691,
+          "bas_growth_pct": 0.0,
+          "difference_pp": -0.9558488848429691
+        },
+        {
+          "kommun_kod": "2463",
+          "rams_growth_pct": -0.391236306729259,
+          "bas_growth_pct": 0.5559968228753043,
+          "difference_pp": 0.9472331296045633
+        },
+        {
+          "kommun_kod": "1904",
+          "rams_growth_pct": 1.0149572649572614,
+          "bas_growth_pct": 1.9282271023031594,
+          "difference_pp": 0.9132698373458981
+        }
+      ],
+      "paired_municipalities": [
+        {
+          "kommun_kod": "0114",
+          "rams_growth_pct": 3.49869451697129,
+          "bas_growth_pct": 3.6707597518115254,
+          "difference_pp": 0.17206523484023517
+        },
+        {
+          "kommun_kod": "0115",
+          "rams_growth_pct": 1.9617995627660756,
+          "bas_growth_pct": 2.3787687722113926,
+          "difference_pp": 0.416969209445317
+        },
+        {
+          "kommun_kod": "0117",
+          "rams_growth_pct": 5.279690189328745,
+          "bas_growth_pct": 5.5906992648316,
+          "difference_pp": 0.31100907550285495
+        },
+        {
+          "kommun_kod": "0120",
+          "rams_growth_pct": 2.9753422291315834,
+          "bas_growth_pct": 3.0754053358497124,
+          "difference_pp": 0.10006310671812901
+        },
+        {
+          "kommun_kod": "0123",
+          "rams_growth_pct": 4.573371910055335,
+          "bas_growth_pct": 4.792647728998944,
+          "difference_pp": 0.21927581894360948
+        },
+        {
+          "kommun_kod": "0125",
+          "rams_growth_pct": 1.4816925487961319,
+          "bas_growth_pct": 2.0719506137798938,
+          "difference_pp": 0.5902580649837619
+        },
+        {
+          "kommun_kod": "0126",
+          "rams_growth_pct": 2.6097464199401177,
+          "bas_growth_pct": 2.7612276122761292,
+          "difference_pp": 0.15148119233601154
+        },
+        {
+          "kommun_kod": "0127",
+          "rams_growth_pct": 3.1977077363896766,
+          "bas_growth_pct": 3.5451873622336594,
+          "difference_pp": 0.34747962584398273
+        },
+        {
+          "kommun_kod": "0128",
+          "rams_growth_pct": 3.903829470814224,
+          "bas_growth_pct": 4.285537853525989,
+          "difference_pp": 0.3817083827117651
+        },
+        {
+          "kommun_kod": "0136",
+          "rams_growth_pct": 4.719154341320597,
+          "bas_growth_pct": 5.012676722100462,
+          "difference_pp": 0.2935223807798648
+        },
+        {
+          "kommun_kod": "0138",
+          "rams_growth_pct": 1.995043370508065,
+          "bas_growth_pct": 2.0817905044022034,
+          "difference_pp": 0.08674713389413835
+        },
+        {
+          "kommun_kod": "0139",
+          "rams_growth_pct": 4.8367346938775535,
+          "bas_growth_pct": 4.998304510003382,
+          "difference_pp": 0.16156981612582832
+        },
+        {
+          "kommun_kod": "0140",
+          "rams_growth_pct": 2.0134228187919545,
+          "bas_growth_pct": 2.4486301369863073,
+          "difference_pp": 0.43520731819435277
+        },
+        {
+          "kommun_kod": "0160",
+          "rams_growth_pct": 3.655707090713589,
+          "bas_growth_pct": 3.5635056583639857,
+          "difference_pp": -0.09220143234960343
+        },
+        {
+          "kommun_kod": "0162",
+          "rams_growth_pct": 1.9656019656019597,
+          "bas_growth_pct": 2.268165395423516,
+          "difference_pp": 0.30256342982155626
+        },
+        {
+          "kommun_kod": "0163",
+          "rams_growth_pct": 3.943560057887119,
+          "bas_growth_pct": 4.275139316310406,
+          "difference_pp": 0.33157925842328684
+        },
+        {
+          "kommun_kod": "0180",
+          "rams_growth_pct": 2.3578093974901293,
+          "bas_growth_pct": 2.4787051977898322,
+          "difference_pp": 0.12089580029970293
+        },
+        {
+          "kommun_kod": "0181",
+          "rams_growth_pct": 3.49707326486417,
+          "bas_growth_pct": 3.8943273628863295,
+          "difference_pp": 0.3972540980221595
+        },
+        {
+          "kommun_kod": "0182",
+          "rams_growth_pct": 3.3184670043087117,
+          "bas_growth_pct": 3.4773149276966064,
+          "difference_pp": 0.15884792338789477
+        },
+        {
+          "kommun_kod": "0183",
+          "rams_growth_pct": 3.5989717223650297,
+          "bas_growth_pct": 3.959004593130877,
+          "difference_pp": 0.36003287076584733
+        },
+        {
+          "kommun_kod": "0184",
+          "rams_growth_pct": 3.033265927423834,
+          "bas_growth_pct": 3.1726649053084977,
+          "difference_pp": 0.13939897788466382
+        },
+        {
+          "kommun_kod": "0186",
+          "rams_growth_pct": 2.4096385542168752,
+          "bas_growth_pct": 2.6103798917110455,
+          "difference_pp": 0.20074133749417022
+        },
+        {
+          "kommun_kod": "0187",
+          "rams_growth_pct": 1.027695523427985,
+          "bas_growth_pct": 1.7841676771176207,
+          "difference_pp": 0.7564721536896357
+        },
+        {
+          "kommun_kod": "0188",
+          "rams_growth_pct": 2.581372971896867,
+          "bas_growth_pct": 2.8112449799196693,
+          "difference_pp": 0.22987200802280228
+        },
+        {
+          "kommun_kod": "0191",
+          "rams_growth_pct": 4.460456338994678,
+          "bas_growth_pct": 4.390202197238491,
+          "difference_pp": -0.0702541417561875
+        },
+        {
+          "kommun_kod": "0192",
+          "rams_growth_pct": 4.649959340578103,
+          "bas_growth_pct": 4.862594857437563,
+          "difference_pp": 0.2126355168594607
+        },
+        {
+          "kommun_kod": "0305",
+          "rams_growth_pct": 3.256283250779668,
+          "bas_growth_pct": 3.149176299262768,
+          "difference_pp": -0.10710695151689986
+        },
+        {
+          "kommun_kod": "0319",
+          "rams_growth_pct": 3.8077106139933425,
+          "bas_growth_pct": 3.696682464454981,
+          "difference_pp": -0.11102814953836138
+        },
+        {
+          "kommun_kod": "0330",
+          "rams_growth_pct": 5.446401303064241,
+          "bas_growth_pct": 5.7639524245196805,
+          "difference_pp": 0.3175511214554394
+        },
+        {
+          "kommun_kod": "0331",
+          "rams_growth_pct": 2.087371403011784,
+          "bas_growth_pct": 2.3919179913831634,
+          "difference_pp": 0.3045465883713794
+        },
+        {
+          "kommun_kod": "0360",
+          "rams_growth_pct": 1.454839361487159,
+          "bas_growth_pct": 2.011726647796208,
+          "difference_pp": 0.556887286309049
+        },
+        {
+          "kommun_kod": "0380",
+          "rams_growth_pct": 3.8417860255473446,
+          "bas_growth_pct": 3.8188876328680177,
+          "difference_pp": -0.022898392679326918
+        },
+        {
+          "kommun_kod": "0381",
+          "rams_growth_pct": 4.025096098617054,
+          "bas_growth_pct": 4.135900140646975,
+          "difference_pp": 0.11080404202992167
+        },
+        {
+          "kommun_kod": "0382",
+          "rams_growth_pct": 0.36114455042133287,
+          "bas_growth_pct": 0.3314306757503216,
+          "difference_pp": -0.029713874671011276
+        },
+        {
+          "kommun_kod": "0428",
+          "rams_growth_pct": 0.6807866868381307,
+          "bas_growth_pct": 0.22505626406601476,
+          "difference_pp": -0.45573042277211595
+        },
+        {
+          "kommun_kod": "0461",
+          "rams_growth_pct": 1.8642803877703118,
+          "bas_growth_pct": 2.5092936802973975,
+          "difference_pp": 0.6450132925270857
+        },
+        {
+          "kommun_kod": "0480",
+          "rams_growth_pct": 2.388162686395523,
+          "bas_growth_pct": 2.531597235480554,
+          "difference_pp": 0.14343454908503084
+        },
+        {
+          "kommun_kod": "0481",
+          "rams_growth_pct": 4.6687948922585765,
+          "bas_growth_pct": 4.75054661101173,
+          "difference_pp": 0.08175171875315357
+        },
+        {
+          "kommun_kod": "0482",
+          "rams_growth_pct": 0.4430186373357792,
+          "bas_growth_pct": 0.34885484604882944,
+          "difference_pp": -0.09416379128694974
+        },
+        {
+          "kommun_kod": "0483",
+          "rams_growth_pct": 2.2877940985311263,
+          "bas_growth_pct": 2.539805324566502,
+          "difference_pp": 0.25201122603537573
+        },
+        {
+          "kommun_kod": "0484",
+          "rams_growth_pct": 3.229517276639249,
+          "bas_growth_pct": 3.2840757309135604,
+          "difference_pp": 0.05455845427431161
+        },
+        {
+          "kommun_kod": "0486",
+          "rams_growth_pct": 3.8066674356903807,
+          "bas_growth_pct": 3.894018466479321,
+          "difference_pp": 0.08735103078894024
+        },
+        {
+          "kommun_kod": "0488",
+          "rams_growth_pct": 3.045387994143489,
+          "bas_growth_pct": 2.672864613596748,
+          "difference_pp": -0.37252338054674095
+        },
+        {
+          "kommun_kod": "0509",
+          "rams_growth_pct": 0.03965107057890549,
+          "bas_growth_pct": -0.23904382470119057,
+          "difference_pp": -0.27869489528009606
+        },
+        {
+          "kommun_kod": "0512",
+          "rams_growth_pct": 0.6228765571913986,
+          "bas_growth_pct": -0.5070422535211283,
+          "difference_pp": -1.1299188107125269
+        },
+        {
+          "kommun_kod": "0513",
+          "rams_growth_pct": 1.0399334442595665,
+          "bas_growth_pct": 2.45833333333334,
+          "difference_pp": 1.4183998890737737
+        },
+        {
+          "kommun_kod": "0560",
+          "rams_growth_pct": 2.1604938271605034,
+          "bas_growth_pct": 3.362968689601864,
+          "difference_pp": 1.2024748624413606
+        },
+        {
+          "kommun_kod": "0561",
+          "rams_growth_pct": 1.459449473489749,
+          "bas_growth_pct": 1.1610762992996682,
+          "difference_pp": -0.2983731741900808
+        },
+        {
+          "kommun_kod": "0562",
+          "rams_growth_pct": 1.9112765315360658,
+          "bas_growth_pct": 2.021414990493353,
+          "difference_pp": 0.11013845895728736
+        },
+        {
+          "kommun_kod": "0563",
+          "rams_growth_pct": 0.6178287731685828,
+          "bas_growth_pct": 0.6778661951075682,
+          "difference_pp": 0.060037421938985425
+        },
+        {
+          "kommun_kod": "0580",
+          "rams_growth_pct": 2.0760023711327236,
+          "bas_growth_pct": 2.167922795274113,
+          "difference_pp": 0.09192042414138957
+        },
+        {
+          "kommun_kod": "0581",
+          "rams_growth_pct": 2.8330462671497303,
+          "bas_growth_pct": 2.9114860864416725,
+          "difference_pp": 0.07843981929194221
+        },
+        {
+          "kommun_kod": "0582",
+          "rams_growth_pct": 1.2955232474449296,
+          "bas_growth_pct": 1.0022909507445554,
+          "difference_pp": -0.2932322967003742
+        },
+        {
+          "kommun_kod": "0583",
+          "rams_growth_pct": 1.5266790950773323,
+          "bas_growth_pct": 1.709917521625437,
+          "difference_pp": 0.18323842654810463
+        },
+        {
+          "kommun_kod": "0584",
+          "rams_growth_pct": 2.907673860911264,
+          "bas_growth_pct": 3.7270814547640585,
+          "difference_pp": 0.8194075938527945
+        },
+        {
+          "kommun_kod": "0586",
+          "rams_growth_pct": 3.2930205449511973,
+          "bas_growth_pct": 3.7236363636363734,
+          "difference_pp": 0.43061581868517607
+        },
+        {
+          "kommun_kod": "0604",
+          "rams_growth_pct": 1.8426440479672346,
+          "bas_growth_pct": 2.155549082435182,
+          "difference_pp": 0.3129050344679474
+        },
+        {
+          "kommun_kod": "0617",
+          "rams_growth_pct": 3.563336766220382,
+          "bas_growth_pct": 3.5383665912363638,
+          "difference_pp": -0.0249701749840181
+        },
+        {
+          "kommun_kod": "0642",
+          "rams_growth_pct": 0.808700501952031,
+          "bas_growth_pct": 1.6439119531903135,
+          "difference_pp": 0.8352114512382824
+        },
+        {
+          "kommun_kod": "0643",
+          "rams_growth_pct": 1.9457735247208952,
+          "bas_growth_pct": 2.4884351571223373,
+          "difference_pp": 0.5426616324014422
+        },
+        {
+          "kommun_kod": "0662",
+          "rams_growth_pct": 2.0184857958406965,
+          "bas_growth_pct": 2.1366646187453098,
+          "difference_pp": 0.11817882290461323
+        },
+        {
+          "kommun_kod": "0665",
+          "rams_growth_pct": 3.1922088462058795,
+          "bas_growth_pct": 3.0148048452220744,
+          "difference_pp": -0.17740400098380515
+        },
+        {
+          "kommun_kod": "0680",
+          "rams_growth_pct": 2.610610779115108,
+          "bas_growth_pct": 2.8678147251794073,
+          "difference_pp": 0.2572039460642994
+        },
+        {
+          "kommun_kod": "0682",
+          "rams_growth_pct": 3.6265904606382238,
+          "bas_growth_pct": 3.7034529451591025,
+          "difference_pp": 0.07686248452087874
+        },
+        {
+          "kommun_kod": "0683",
+          "rams_growth_pct": 1.5104050123070145,
+          "bas_growth_pct": 1.9617706237424537,
+          "difference_pp": 0.4513656114354392
+        },
+        {
+          "kommun_kod": "0684",
+          "rams_growth_pct": 1.719992602182363,
+          "bas_growth_pct": 1.9079068060906312,
+          "difference_pp": 0.18791420390826818
+        },
+        {
+          "kommun_kod": "0685",
+          "rams_growth_pct": 1.6881453010777037,
+          "bas_growth_pct": 2.2734093637454933,
+          "difference_pp": 0.5852640626677896
+        },
+        {
+          "kommun_kod": "0686",
+          "rams_growth_pct": 1.2305854241338121,
+          "bas_growth_pct": 1.5839243498817934,
+          "difference_pp": 0.3533389257479813
+        },
+        {
+          "kommun_kod": "0687",
+          "rams_growth_pct": 2.609208972845334,
+          "bas_growth_pct": 2.8054936025355026,
+          "difference_pp": 0.1962846296901688
+        },
+        {
+          "kommun_kod": "0760",
+          "rams_growth_pct": 3.1542857142857095,
+          "bas_growth_pct": 3.3515731874145027,
+          "difference_pp": 0.19728747312879324
+        },
+        {
+          "kommun_kod": "0761",
+          "rams_growth_pct": 2.1763392857142794,
+          "bas_growth_pct": 1.742256637168138,
+          "difference_pp": -0.4340826485461413
+        },
+        {
+          "kommun_kod": "0763",
+          "rams_growth_pct": -1.0189982728842861,
+          "bas_growth_pct": -0.36076275554028925,
+          "difference_pp": 0.6582355173439969
+        },
+        {
+          "kommun_kod": "0764",
+          "rams_growth_pct": 0.9285943003522146,
+          "bas_growth_pct": 0.8920038228735327,
+          "difference_pp": -0.03659047747868183
+        },
+        {
+          "kommun_kod": "0765",
+          "rams_growth_pct": 1.7778831338153278,
+          "bas_growth_pct": 2.3611770289511114,
+          "difference_pp": 0.5832938951357836
+        },
+        {
+          "kommun_kod": "0767",
+          "rams_growth_pct": 3.4009156311314515,
+          "bas_growth_pct": 3.6205016357688136,
+          "difference_pp": 0.2195860046373621
+        },
+        {
+          "kommun_kod": "0780",
+          "rams_growth_pct": 2.809147681528379,
+          "bas_growth_pct": 2.9446101958749527,
+          "difference_pp": 0.13546251434657375
+        },
+        {
+          "kommun_kod": "0781",
+          "rams_growth_pct": 1.8287853697170453,
+          "bas_growth_pct": 1.990301802127803,
+          "difference_pp": 0.16151643241075764
+        },
+        {
+          "kommun_kod": "0821",
+          "rams_growth_pct": 2.1410579345088054,
+          "bas_growth_pct": 1.6687526074259385,
+          "difference_pp": -0.472305327082867
+        },
+        {
+          "kommun_kod": "0834",
+          "rams_growth_pct": 1.4488286066584477,
+          "bas_growth_pct": 1.6388373531230682,
+          "difference_pp": 0.19000874646462051
+        },
+        {
+          "kommun_kod": "0840",
+          "rams_growth_pct": 2.5746936527605735,
+          "bas_growth_pct": 2.6312183088940566,
+          "difference_pp": 0.05652465613348312
+        },
+        {
+          "kommun_kod": "0860",
+          "rams_growth_pct": 0.16578249336869355,
+          "bas_growth_pct": 0.4458388375165212,
+          "difference_pp": 0.28005634414782765
+        },
+        {
+          "kommun_kod": "0861",
+          "rams_growth_pct": 1.633061156473925,
+          "bas_growth_pct": 2.179014415018443,
+          "difference_pp": 0.5459532585445181
+        },
+        {
+          "kommun_kod": "0862",
+          "rams_growth_pct": 2.529798102651415,
+          "bas_growth_pct": 2.260024301336583,
+          "difference_pp": -0.2697738013148321
+        },
+        {
+          "kommun_kod": "0880",
+          "rams_growth_pct": 2.638118354137764,
+          "bas_growth_pct": 3.0410776746740753,
+          "difference_pp": 0.40295932053631134
+        },
+        {
+          "kommun_kod": "0881",
+          "rams_growth_pct": 1.716738197424883,
+          "bas_growth_pct": 2.205398288347604,
+          "difference_pp": 0.4886600909227212
+        },
+        {
+          "kommun_kod": "0882",
+          "rams_growth_pct": 2.7233975371013575,
+          "bas_growth_pct": 2.6350874441220196,
+          "difference_pp": -0.0883100929793379
+        },
+        {
+          "kommun_kod": "0883",
+          "rams_growth_pct": 2.055548758105963,
+          "bas_growth_pct": 2.4061890838206645,
+          "difference_pp": 0.3506403257147017
+        },
+        {
+          "kommun_kod": "0884",
+          "rams_growth_pct": 1.059602649006619,
+          "bas_growth_pct": 0.8150387800709868,
+          "difference_pp": -0.2445638689356322
+        },
+        {
+          "kommun_kod": "0885",
+          "rams_growth_pct": 1.4219991635298967,
+          "bas_growth_pct": 1.6572267673589325,
+          "difference_pp": 0.23522760382903574
+        },
+        {
+          "kommun_kod": "0980",
+          "rams_growth_pct": 2.735773629506033,
+          "bas_growth_pct": 2.827375732276294,
+          "difference_pp": 0.09160210277026071
+        },
+        {
+          "kommun_kod": "1060",
+          "rams_growth_pct": 0.5502063273727709,
+          "bas_growth_pct": 0.6321544507090326,
+          "difference_pp": 0.08194812333626178
+        },
+        {
+          "kommun_kod": "1080",
+          "rams_growth_pct": 2.354003418141959,
+          "bas_growth_pct": 2.5168973286127994,
+          "difference_pp": 0.16289391047084045
+        },
+        {
+          "kommun_kod": "1081",
+          "rams_growth_pct": 1.399776035834277,
+          "bas_growth_pct": 1.3311015463095766,
+          "difference_pp": -0.06867448952470045
+        },
+        {
+          "kommun_kod": "1082",
+          "rams_growth_pct": 1.0129354595852513,
+          "bas_growth_pct": 1.418923528207916,
+          "difference_pp": 0.4059880686226647
+        },
+        {
+          "kommun_kod": "1083",
+          "rams_growth_pct": 2.4223602484471973,
+          "bas_growth_pct": 1.7808558001483954,
+          "difference_pp": -0.6415044482988019
+        },
+        {
+          "kommun_kod": "1214",
+          "rams_growth_pct": 3.0995343422584476,
+          "bas_growth_pct": 3.592814371257491,
+          "difference_pp": 0.49328002899904355
+        },
+        {
+          "kommun_kod": "1230",
+          "rams_growth_pct": 2.48341692282803,
+          "bas_growth_pct": 2.6848343142787945,
+          "difference_pp": 0.20141739145076443
+        },
+        {
+          "kommun_kod": "1231",
+          "rams_growth_pct": 4.625706214689274,
+          "bas_growth_pct": 4.998821032775291,
+          "difference_pp": 0.37311481808601776
+        },
+        {
+          "kommun_kod": "1233",
+          "rams_growth_pct": 2.765906932573592,
+          "bas_growth_pct": 2.8311306901615207,
+          "difference_pp": 0.06522375758792887
+        },
+        {
+          "kommun_kod": "1256",
+          "rams_growth_pct": 0.6675981990374114,
+          "bas_growth_pct": 1.1705946620883312,
+          "difference_pp": 0.5029964630509198
+        },
+        {
+          "kommun_kod": "1257",
+          "rams_growth_pct": 3.254067584480591,
+          "bas_growth_pct": 3.819517313746057,
+          "difference_pp": 0.5654497292654659
+        },
+        {
+          "kommun_kod": "1260",
+          "rams_growth_pct": 3.158045155758793,
+          "bas_growth_pct": 3.204671699188144,
+          "difference_pp": 0.04662654342935113
+        },
+        {
+          "kommun_kod": "1261",
+          "rams_growth_pct": 2.321821239166999,
+          "bas_growth_pct": 2.4327455270948706,
+          "difference_pp": 0.11092428792787157
+        },
+        {
+          "kommun_kod": "1262",
+          "rams_growth_pct": 0.13214694740550925,
+          "bas_growth_pct": -0.1486143893697056,
+          "difference_pp": -0.28076133677521486
+        },
+        {
+          "kommun_kod": "1263",
+          "rams_growth_pct": 3.533278553820862,
+          "bas_growth_pct": 3.9937995805598536,
+          "difference_pp": 0.4605210267389914
+        },
+        {
+          "kommun_kod": "1264",
+          "rams_growth_pct": 4.206276858966018,
+          "bas_growth_pct": 4.615184607384304,
+          "difference_pp": 0.4089077484182857
+        },
+        {
+          "kommun_kod": "1265",
+          "rams_growth_pct": 1.3819095477386911,
+          "bas_growth_pct": 2.0749947335159113,
+          "difference_pp": 0.6930851857772202
+        },
+        {
+          "kommun_kod": "1266",
+          "rams_growth_pct": 1.0156250000000089,
+          "bas_growth_pct": 1.7553052135184766,
+          "difference_pp": 0.7396802135184677
+        },
+        {
+          "kommun_kod": "1267",
+          "rams_growth_pct": 2.170963364993206,
+          "bas_growth_pct": 2.1305418719211877,
+          "difference_pp": -0.040421493072018144
+        },
+        {
+          "kommun_kod": "1270",
+          "rams_growth_pct": 1.0145846544070913,
+          "bas_growth_pct": 1.0879848628192912,
+          "difference_pp": 0.07340020841219985
+        },
+        {
+          "kommun_kod": "1272",
+          "rams_growth_pct": 0.47880829934385805,
+          "bas_growth_pct": 0.7278537191549805,
+          "difference_pp": 0.2490454198111225
+        },
+        {
+          "kommun_kod": "1273",
+          "rams_growth_pct": 0.8487269096355554,
+          "bas_growth_pct": 1.3384641124309926,
+          "difference_pp": 0.4897372027954372
+        },
+        {
+          "kommun_kod": "1275",
+          "rams_growth_pct": 2.4366150806717224,
+          "bas_growth_pct": 2.836411609498679,
+          "difference_pp": 0.3997965288269567
+        },
+        {
+          "kommun_kod": "1276",
+          "rams_growth_pct": 1.8056749785038795,
+          "bas_growth_pct": 2.0252853811218774,
+          "difference_pp": 0.2196104026179979
+        },
+        {
+          "kommun_kod": "1277",
+          "rams_growth_pct": 4.741744284504668,
+          "bas_growth_pct": 5.5406360424028245,
+          "difference_pp": 0.7988917578981569
+        },
+        {
+          "kommun_kod": "1278",
+          "rams_growth_pct": 3.1755113717637062,
+          "bas_growth_pct": 3.6005143591941735,
+          "difference_pp": 0.42500298743046727
+        },
+        {
+          "kommun_kod": "1280",
+          "rams_growth_pct": 4.541627231487233,
+          "bas_growth_pct": 4.601456585550001,
+          "difference_pp": 0.059829354062768125
+        },
+        {
+          "kommun_kod": "1281",
+          "rams_growth_pct": 2.8355117491607684,
+          "bas_growth_pct": 2.911065610255492,
+          "difference_pp": 0.07555386109472373
+        },
+        {
+          "kommun_kod": "1282",
+          "rams_growth_pct": 2.241575535652429,
+          "bas_growth_pct": 2.7298353197171332,
+          "difference_pp": 0.48825978406470405
+        },
+        {
+          "kommun_kod": "1283",
+          "rams_growth_pct": 2.527081104058859,
+          "bas_growth_pct": 2.6935337642207458,
+          "difference_pp": 0.16645266016188653
+        },
+        {
+          "kommun_kod": "1284",
+          "rams_growth_pct": 3.4639550264550234,
+          "bas_growth_pct": 3.7849426898656002,
+          "difference_pp": 0.32098766341057683
+        },
+        {
+          "kommun_kod": "1285",
+          "rams_growth_pct": 3.1064356435643647,
+          "bas_growth_pct": 3.319962974390611,
+          "difference_pp": 0.21352733082624642
+        },
+        {
+          "kommun_kod": "1286",
+          "rams_growth_pct": 2.636095283860773,
+          "bas_growth_pct": 3.011593606366203,
+          "difference_pp": 0.3754983225054298
+        },
+        {
+          "kommun_kod": "1287",
+          "rams_growth_pct": 1.8415599095704671,
+          "bas_growth_pct": 2.0573038985439274,
+          "difference_pp": 0.21574398897346025
+        },
+        {
+          "kommun_kod": "1290",
+          "rams_growth_pct": 1.700232769962562,
+          "bas_growth_pct": 1.687487406810395,
+          "difference_pp": -0.012745363152166789
+        },
+        {
+          "kommun_kod": "1291",
+          "rams_growth_pct": 0.8158368326334653,
+          "bas_growth_pct": 1.180398235364244,
+          "difference_pp": 0.36456140273077864
+        },
+        {
+          "kommun_kod": "1292",
+          "rams_growth_pct": 3.4643699177212106,
+          "bas_growth_pct": 3.745873798019428,
+          "difference_pp": 0.28150388029821727
+        },
+        {
+          "kommun_kod": "1293",
+          "rams_growth_pct": 1.7878126573778852,
+          "bas_growth_pct": 1.9742921952448977,
+          "difference_pp": 0.18647953786701255
+        },
+        {
+          "kommun_kod": "1315",
+          "rams_growth_pct": 2.523267838676313,
+          "bas_growth_pct": 2.6293823038397335,
+          "difference_pp": 0.10611446516342049
+        },
+        {
+          "kommun_kod": "1380",
+          "rams_growth_pct": 2.9117176908601605,
+          "bas_growth_pct": 3.3282109349725086,
+          "difference_pp": 0.4164932441123481
+        },
+        {
+          "kommun_kod": "1381",
+          "rams_growth_pct": 2.519379844961245,
+          "bas_growth_pct": 2.692649793806101,
+          "difference_pp": 0.17326994884485636
+        },
+        {
+          "kommun_kod": "1382",
+          "rams_growth_pct": 3.402705982829146,
+          "bas_growth_pct": 3.7779178674351543,
+          "difference_pp": 0.3752118846060082
+        },
+        {
+          "kommun_kod": "1383",
+          "rams_growth_pct": 3.5324420458726857,
+          "bas_growth_pct": 3.475281448849721,
+          "difference_pp": -0.05716059702296494
+        },
+        {
+          "kommun_kod": "1384",
+          "rams_growth_pct": 1.957996317102162,
+          "bas_growth_pct": 2.1510127200427887,
+          "difference_pp": 0.19301640294062672
+        },
+        {
+          "kommun_kod": "1401",
+          "rams_growth_pct": 4.086177430213889,
+          "bas_growth_pct": 4.312529086302286,
+          "difference_pp": 0.22635165608839714
+        },
+        {
+          "kommun_kod": "1402",
+          "rams_growth_pct": 1.0536495978825222,
+          "bas_growth_pct": 1.3833791069067347,
+          "difference_pp": 0.3297295090242125
+        },
+        {
+          "kommun_kod": "1407",
+          "rams_growth_pct": 0.6545338441890092,
+          "bas_growth_pct": 1.5253692999357638,
+          "difference_pp": 0.8708354557467546
+        },
+        {
+          "kommun_kod": "1415",
+          "rams_growth_pct": 3.5800748294329,
+          "bas_growth_pct": 3.3991228070175517,
+          "difference_pp": -0.18095202241534825
+        },
+        {
+          "kommun_kod": "1419",
+          "rams_growth_pct": 2.01446280991735,
+          "bas_growth_pct": 2.400726706462497,
+          "difference_pp": 0.38626389654514703
+        },
+        {
+          "kommun_kod": "1421",
+          "rams_growth_pct": 0.5596505596505486,
+          "bas_growth_pct": 0.6597031335898951,
+          "difference_pp": 0.10005257393934652
+        },
+        {
+          "kommun_kod": "1427",
+          "rams_growth_pct": 0.5246839971380979,
+          "bas_growth_pct": 0.0,
+          "difference_pp": -0.5246839971380979
+        },
+        {
+          "kommun_kod": "1430",
+          "rams_growth_pct": 2.805077805077816,
+          "bas_growth_pct": 2.559901699774736,
+          "difference_pp": -0.24517610530307987
+        },
+        {
+          "kommun_kod": "1435",
+          "rams_growth_pct": 1.8936877076412006,
+          "bas_growth_pct": 2.497519020840233,
+          "difference_pp": 0.6038313131990325
+        },
+        {
+          "kommun_kod": "1438",
+          "rams_growth_pct": 0.9558488848429691,
+          "bas_growth_pct": 0.0,
+          "difference_pp": -0.9558488848429691
+        },
+        {
+          "kommun_kod": "1439",
+          "rams_growth_pct": 0.5172971225347656,
+          "bas_growth_pct": 1.2778505897771852,
+          "difference_pp": 0.7605534672424197
+        },
+        {
+          "kommun_kod": "1440",
+          "rams_growth_pct": 2.1241932451907974,
+          "bas_growth_pct": 2.3491824844954046,
+          "difference_pp": 0.22498923930460712
+        },
+        {
+          "kommun_kod": "1441",
+          "rams_growth_pct": 2.516668231758845,
+          "bas_growth_pct": 2.723097112860895,
+          "difference_pp": 0.20642888110204982
+        },
+        {
+          "kommun_kod": "1442",
+          "rams_growth_pct": 3.210325997021357,
+          "bas_growth_pct": 3.7738985868661645,
+          "difference_pp": 0.5635725898448074
+        },
+        {
+          "kommun_kod": "1443",
+          "rams_growth_pct": 3.5826524198617316,
+          "bas_growth_pct": 4.118512292498422,
+          "difference_pp": 0.5358598726366903
+        },
+        {
+          "kommun_kod": "1444",
+          "rams_growth_pct": 0.38828097423226904,
+          "bas_growth_pct": 0.6318006318006386,
+          "difference_pp": 0.24351965756836957
+        },
+        {
+          "kommun_kod": "1445",
+          "rams_growth_pct": 0.0,
+          "bas_growth_pct": 0.6639616377720481,
+          "difference_pp": 0.6639616377720481
+        },
+        {
+          "kommun_kod": "1446",
+          "rams_growth_pct": 2.2518236600063357,
+          "bas_growth_pct": 2.6590693257359854,
+          "difference_pp": 0.4072456657296497
+        },
+        {
+          "kommun_kod": "1447",
+          "rams_growth_pct": 1.8961625282166938,
+          "bas_growth_pct": 0.17961383026492417,
+          "difference_pp": -1.7165486979517697
+        },
+        {
+          "kommun_kod": "1452",
+          "rams_growth_pct": 1.5023632680621235,
+          "bas_growth_pct": 1.4812321158054198,
+          "difference_pp": -0.0211311522567037
+        },
+        {
+          "kommun_kod": "1460",
+          "rams_growth_pct": -0.2702038811102869,
+          "bas_growth_pct": 0.8871365204534243,
+          "difference_pp": 1.1573404015637112
+        },
+        {
+          "kommun_kod": "1461",
+          "rams_growth_pct": 1.218026796589533,
+          "bas_growth_pct": 1.3645224171539905,
+          "difference_pp": 0.14649562056445742
+        },
+        {
+          "kommun_kod": "1462",
+          "rams_growth_pct": 2.547588378417065,
+          "bas_growth_pct": 2.710843373493965,
+          "difference_pp": 0.16325499507690022
+        },
+        {
+          "kommun_kod": "1463",
+          "rams_growth_pct": 2.459924220343912,
+          "bas_growth_pct": 2.4642335766423384,
+          "difference_pp": 0.004309356298426437
+        },
+        {
+          "kommun_kod": "1465",
+          "rams_growth_pct": 3.389162561576353,
+          "bas_growth_pct": 3.0003947887879967,
+          "difference_pp": -0.3887677727883565
+        },
+        {
+          "kommun_kod": "1466",
+          "rams_growth_pct": 1.5374894692502084,
+          "bas_growth_pct": 1.6186672272440639,
+          "difference_pp": 0.08117775799385551
+        },
+        {
+          "kommun_kod": "1470",
+          "rams_growth_pct": 2.1806054386865004,
+          "bas_growth_pct": 2.2230691056910556,
+          "difference_pp": 0.04246366700455528
+        },
+        {
+          "kommun_kod": "1471",
+          "rams_growth_pct": 1.2355333124804524,
+          "bas_growth_pct": 1.8915116460840986,
+          "difference_pp": 0.6559783336036462
+        },
+        {
+          "kommun_kod": "1472",
+          "rams_growth_pct": 2.9342260732571956,
+          "bas_growth_pct": 3.390827126617002,
+          "difference_pp": 0.4566010533598064
+        },
+        {
+          "kommun_kod": "1473",
+          "rams_growth_pct": 0.8538899430740043,
+          "bas_growth_pct": 0.9745661991918286,
+          "difference_pp": 0.12067625611782429
+        },
+        {
+          "kommun_kod": "1480",
+          "rams_growth_pct": 3.8179274797061735,
+          "bas_growth_pct": 4.024146254954419,
+          "difference_pp": 0.20621877524824583
+        },
+        {
+          "kommun_kod": "1481",
+          "rams_growth_pct": 1.2893090278718322,
+          "bas_growth_pct": 1.761411293595616,
+          "difference_pp": 0.4721022657237839
+        },
+        {
+          "kommun_kod": "1482",
+          "rams_growth_pct": 4.576802507836986,
+          "bas_growth_pct": 4.534655941316212,
+          "difference_pp": -0.0421465665207732
+        },
+        {
+          "kommun_kod": "1484",
+          "rams_growth_pct": 0.3660671653668679,
+          "bas_growth_pct": 0.7507987220447321,
+          "difference_pp": 0.3847315566778642
+        },
+        {
+          "kommun_kod": "1485",
+          "rams_growth_pct": 1.8381940024708943,
+          "bas_growth_pct": 2.050037341299471,
+          "difference_pp": 0.21184333882857675
+        },
+        {
+          "kommun_kod": "1486",
+          "rams_growth_pct": 4.167438414521207,
+          "bas_growth_pct": 4.216544577452197,
+          "difference_pp": 0.04910616293098968
+        },
+        {
+          "kommun_kod": "1487",
+          "rams_growth_pct": 1.7328801470998023,
+          "bas_growth_pct": 1.977118738198369,
+          "difference_pp": 0.24423859109856672
+        },
+        {
+          "kommun_kod": "1488",
+          "rams_growth_pct": 1.612072138387921,
+          "bas_growth_pct": 1.724644062821068,
+          "difference_pp": 0.1125719244331469
+        },
+        {
+          "kommun_kod": "1489",
+          "rams_growth_pct": 1.9459086654515012,
+          "bas_growth_pct": 2.0342980688909718,
+          "difference_pp": 0.08838940343947055
+        },
+        {
+          "kommun_kod": "1490",
+          "rams_growth_pct": 2.7492529204020677,
+          "bas_growth_pct": 2.8627020015493443,
+          "difference_pp": 0.11344908114727659
+        },
+        {
+          "kommun_kod": "1491",
+          "rams_growth_pct": 2.011236869961719,
+          "bas_growth_pct": 2.0529049010061584,
+          "difference_pp": 0.0416680310444395
+        },
+        {
+          "kommun_kod": "1492",
+          "rams_growth_pct": 0.11189854531890031,
+          "bas_growth_pct": -0.18552875695733162,
+          "difference_pp": -0.29742730227623193
+        },
+        {
+          "kommun_kod": "1493",
+          "rams_growth_pct": 3.067322903849523,
+          "bas_growth_pct": 3.4331756875109587,
+          "difference_pp": 0.3658527836614356
+        },
+        {
+          "kommun_kod": "1494",
+          "rams_growth_pct": 1.7676767676767735,
+          "bas_growth_pct": 1.7228426904392302,
+          "difference_pp": -0.04483407723754329
+        },
+        {
+          "kommun_kod": "1495",
+          "rams_growth_pct": 1.856200380185613,
+          "bas_growth_pct": 2.002893067764555,
+          "difference_pp": 0.14669268757894205
+        },
+        {
+          "kommun_kod": "1496",
+          "rams_growth_pct": 2.083999005928927,
+          "bas_growth_pct": 2.4254656185822565,
+          "difference_pp": 0.34146661265332945
+        },
+        {
+          "kommun_kod": "1497",
+          "rams_growth_pct": 2.1410286246218213,
+          "bas_growth_pct": 1.4994232987312506,
+          "difference_pp": -0.6416053258905707
+        },
+        {
+          "kommun_kod": "1498",
+          "rams_growth_pct": 2.124877410918602,
+          "bas_growth_pct": 2.7755102040816437,
+          "difference_pp": 0.6506327931630418
+        },
+        {
+          "kommun_kod": "1499",
+          "rams_growth_pct": 2.4910348360655643,
+          "bas_growth_pct": 2.801531589023609,
+          "difference_pp": 0.3104967529580449
+        },
+        {
+          "kommun_kod": "1715",
+          "rams_growth_pct": 0.9228039041703662,
+          "bas_growth_pct": 1.119204121513584,
+          "difference_pp": 0.19640021734321778
+        },
+        {
+          "kommun_kod": "1730",
+          "rams_growth_pct": 1.297169811320753,
+          "bas_growth_pct": 1.5715467328370591,
+          "difference_pp": 0.2743769215163061
+        },
+        {
+          "kommun_kod": "1737",
+          "rams_growth_pct": 1.2106537530266248,
+          "bas_growth_pct": 1.4345035862589617,
+          "difference_pp": 0.22384983323233687
+        },
+        {
+          "kommun_kod": "1760",
+          "rams_growth_pct": 2.4390243902439046,
+          "bas_growth_pct": 3.72743156668609,
+          "difference_pp": 1.2884071764421856
+        },
+        {
+          "kommun_kod": "1761",
+          "rams_growth_pct": 1.5482582095142972,
+          "bas_growth_pct": 1.1779293242405453,
+          "difference_pp": -0.37032888527375185
+        },
+        {
+          "kommun_kod": "1762",
+          "rams_growth_pct": -0.6301197227473243,
+          "bas_growth_pct": -1.8703241895261846,
+          "difference_pp": -1.2402044667788603
+        },
+        {
+          "kommun_kod": "1763",
+          "rams_growth_pct": 3.391790325688948,
+          "bas_growth_pct": 3.202915228231684,
+          "difference_pp": -0.18887509745726394
+        },
+        {
+          "kommun_kod": "1764",
+          "rams_growth_pct": 2.0428751576292647,
+          "bas_growth_pct": 2.044422009086322,
+          "difference_pp": 0.0015468514570571301
+        },
+        {
+          "kommun_kod": "1765",
+          "rams_growth_pct": 1.0304556904053186,
+          "bas_growth_pct": 0.5143112701252228,
+          "difference_pp": -0.5161444202800958
+        },
+        {
+          "kommun_kod": "1766",
+          "rams_growth_pct": 2.2768948655256693,
+          "bas_growth_pct": 1.7810532780592636,
+          "difference_pp": -0.4958415874664057
+        },
+        {
+          "kommun_kod": "1780",
+          "rams_growth_pct": 2.99004044709259,
+          "bas_growth_pct": 3.157917551692746,
+          "difference_pp": 0.16787710460015592
+        },
+        {
+          "kommun_kod": "1781",
+          "rams_growth_pct": 1.6350870443397225,
+          "bas_growth_pct": 2.1134916039374563,
+          "difference_pp": 0.47840455959773376
+        },
+        {
+          "kommun_kod": "1782",
+          "rams_growth_pct": 1.284490960989526,
+          "bas_growth_pct": 0.8363201911588902,
+          "difference_pp": -0.44817076983063586
+        },
+        {
+          "kommun_kod": "1783",
+          "rams_growth_pct": 2.6856240126382325,
+          "bas_growth_pct": 2.659574468085113,
+          "difference_pp": -0.026049544553119475
+        },
+        {
+          "kommun_kod": "1784",
+          "rams_growth_pct": 1.7546848381601254,
+          "bas_growth_pct": 2.398508348165107,
+          "difference_pp": 0.6438235100049816
+        },
+        {
+          "kommun_kod": "1785",
+          "rams_growth_pct": 1.63611574003939,
+          "bas_growth_pct": 1.8580060422960676,
+          "difference_pp": 0.2218903022566776
+        },
+        {
+          "kommun_kod": "1814",
+          "rams_growth_pct": 2.769157316782045,
+          "bas_growth_pct": 2.1608643457383003,
+          "difference_pp": -0.6082929710437446
+        },
+        {
+          "kommun_kod": "1860",
+          "rams_growth_pct": -1.7543859649122862,
+          "bas_growth_pct": -2.430278884462156,
+          "difference_pp": -0.6758929195498697
+        },
+        {
+          "kommun_kod": "1861",
+          "rams_growth_pct": 3.071904308821538,
+          "bas_growth_pct": 3.872375238614678,
+          "difference_pp": 0.80047092979314
+        },
+        {
+          "kommun_kod": "1862",
+          "rams_growth_pct": 1.0643564356435542,
+          "bas_growth_pct": 1.6446548716670728,
+          "difference_pp": 0.5802984360235186
+        },
+        {
+          "kommun_kod": "1863",
+          "rams_growth_pct": 0.8667388949079147,
+          "bas_growth_pct": 1.6684802321363712,
+          "difference_pp": 0.8017413372284565
+        },
+        {
+          "kommun_kod": "1864",
+          "rams_growth_pct": 3.2912781130005397,
+          "bas_growth_pct": 3.9868924085199264,
+          "difference_pp": 0.6956142955193867
+        },
+        {
+          "kommun_kod": "1880",
+          "rams_growth_pct": 2.3417831119873167,
+          "bas_growth_pct": 2.5079453730668444,
+          "difference_pp": 0.1661622610795277
+        },
+        {
+          "kommun_kod": "1881",
+          "rams_growth_pct": 3.730690760711153,
+          "bas_growth_pct": 3.8562154829958395,
+          "difference_pp": 0.1255247222846867
+        },
+        {
+          "kommun_kod": "1882",
+          "rams_growth_pct": 2.9252841438419885,
+          "bas_growth_pct": 2.9675251959686344,
+          "difference_pp": 0.04224105212664586
+        },
+        {
+          "kommun_kod": "1883",
+          "rams_growth_pct": 2.3136246786632286,
+          "bas_growth_pct": 2.4307850481016358,
+          "difference_pp": 0.11716036943840713
+        },
+        {
+          "kommun_kod": "1884",
+          "rams_growth_pct": 2.981029810298108,
+          "bas_growth_pct": 3.0391340549541956,
+          "difference_pp": 0.058104244656087545
+        },
+        {
+          "kommun_kod": "1885",
+          "rams_growth_pct": 1.1558538404176089,
+          "bas_growth_pct": 1.5006058346537454,
+          "difference_pp": 0.34475199423613656
+        },
+        {
+          "kommun_kod": "1904",
+          "rams_growth_pct": 1.0149572649572614,
+          "bas_growth_pct": 1.9282271023031594,
+          "difference_pp": 0.9132698373458981
+        },
+        {
+          "kommun_kod": "1907",
+          "rams_growth_pct": 1.447339122689817,
+          "bas_growth_pct": 1.4666666666666606,
+          "difference_pp": 0.019327543976843664
+        },
+        {
+          "kommun_kod": "1960",
+          "rams_growth_pct": 3.9624608967674613,
+          "bas_growth_pct": 3.9337474120082705,
+          "difference_pp": -0.028713484759190777
+        },
+        {
+          "kommun_kod": "1961",
+          "rams_growth_pct": 3.909632034632038,
+          "bas_growth_pct": 3.5393484381284424,
+          "difference_pp": -0.37028359650359555
+        },
+        {
+          "kommun_kod": "1962",
+          "rams_growth_pct": 0.3608660785886064,
+          "bas_growth_pct": 0.6012024048096087,
+          "difference_pp": 0.24033632622100232
+        },
+        {
+          "kommun_kod": "1980",
+          "rams_growth_pct": 2.3587791448575812,
+          "bas_growth_pct": 2.4495872242522587,
+          "difference_pp": 0.0908080793946775
+        },
+        {
+          "kommun_kod": "1981",
+          "rams_growth_pct": 0.49142327306443967,
+          "bas_growth_pct": 0.22132054592400863,
+          "difference_pp": -0.27010272714043104
+        },
+        {
+          "kommun_kod": "1982",
+          "rams_growth_pct": 1.2000716460684124,
+          "bas_growth_pct": 1.3228459063282072,
+          "difference_pp": 0.12277426025979477
+        },
+        {
+          "kommun_kod": "1983",
+          "rams_growth_pct": 2.402479979333516,
+          "bas_growth_pct": 2.5152373594300004,
+          "difference_pp": 0.11275738009648428
+        },
+        {
+          "kommun_kod": "1984",
+          "rams_growth_pct": 2.1656655074296483,
+          "bas_growth_pct": 2.49802371541501,
+          "difference_pp": 0.33235820798536153
+        },
+        {
+          "kommun_kod": "2021",
+          "rams_growth_pct": 1.4939309056956063,
+          "bas_growth_pct": 1.7884674683934731,
+          "difference_pp": 0.2945365626978669
+        },
+        {
+          "kommun_kod": "2023",
+          "rams_growth_pct": 1.7022961203483788,
+          "bas_growth_pct": 2.0444269707096563,
+          "difference_pp": 0.34213085036127744
+        },
+        {
+          "kommun_kod": "2026",
+          "rams_growth_pct": 3.0370974317162736,
+          "bas_growth_pct": 3.4329563812600883,
+          "difference_pp": 0.39585894954381473
+        },
+        {
+          "kommun_kod": "2029",
+          "rams_growth_pct": 2.7610239914220625,
+          "bas_growth_pct": 2.4976500604270147,
+          "difference_pp": -0.2633739309950478
+        },
+        {
+          "kommun_kod": "2031",
+          "rams_growth_pct": 1.9151846785225635,
+          "bas_growth_pct": 2.30513772221137,
+          "difference_pp": 0.38995304368880657
+        },
+        {
+          "kommun_kod": "2034",
+          "rams_growth_pct": 1.5475085112968134,
+          "bas_growth_pct": 1.1786600496277888,
+          "difference_pp": -0.36884846166902463
+        },
+        {
+          "kommun_kod": "2039",
+          "rams_growth_pct": 1.473684210526316,
+          "bas_growth_pct": 1.5816174276335415,
+          "difference_pp": 0.10793321710722559
+        },
+        {
+          "kommun_kod": "2061",
+          "rams_growth_pct": 1.5583350420340425,
+          "bas_growth_pct": 2.131584341053494,
+          "difference_pp": 0.5732492990194515
+        },
+        {
+          "kommun_kod": "2062",
+          "rams_growth_pct": 1.9508670520231197,
+          "bas_growth_pct": 2.030819471374623,
+          "difference_pp": 0.07995241935150332
+        },
+        {
+          "kommun_kod": "2080",
+          "rams_growth_pct": 1.7488185988755234,
+          "bas_growth_pct": 1.9760808302976107,
+          "difference_pp": 0.22726223142208735
+        },
+        {
+          "kommun_kod": "2081",
+          "rams_growth_pct": 1.2021949482679206,
+          "bas_growth_pct": 1.4484284342780818,
+          "difference_pp": 0.24623348601016115
+        },
+        {
+          "kommun_kod": "2082",
+          "rams_growth_pct": 1.2714206744057543,
+          "bas_growth_pct": 2.1307861866274758,
+          "difference_pp": 0.8593655122217214
+        },
+        {
+          "kommun_kod": "2083",
+          "rams_growth_pct": 0.3137031227719911,
+          "bas_growth_pct": 0.48124557678697055,
+          "difference_pp": 0.16754245401497947
+        },
+        {
+          "kommun_kod": "2084",
+          "rams_growth_pct": -0.05853087503657761,
+          "bas_growth_pct": 0.24397384600369776,
+          "difference_pp": 0.30250472104027537
+        },
+        {
+          "kommun_kod": "2085",
+          "rams_growth_pct": 1.5350683722981984,
+          "bas_growth_pct": 1.7764488611379914,
+          "difference_pp": 0.24138048883979302
+        },
+        {
+          "kommun_kod": "2101",
+          "rams_growth_pct": 0.4113687359760698,
+          "bas_growth_pct": 0.48165987402741806,
+          "difference_pp": 0.07029113805134823
+        },
+        {
+          "kommun_kod": "2104",
+          "rams_growth_pct": 1.5144454799627116,
+          "bas_growth_pct": 1.909641360037262,
+          "difference_pp": 0.3951958800745503
+        },
+        {
+          "kommun_kod": "2121",
+          "rams_growth_pct": 0.6901697444506638,
+          "bas_growth_pct": 1.5881913303438022,
+          "difference_pp": 0.8980215858931384
+        },
+        {
+          "kommun_kod": "2132",
+          "rams_growth_pct": 0.6126616746085833,
+          "bas_growth_pct": 0.506096158270064,
+          "difference_pp": -0.1065655163385193
+        },
+        {
+          "kommun_kod": "2161",
+          "rams_growth_pct": 0.8092090266696994,
+          "bas_growth_pct": 1.1157119852772013,
+          "difference_pp": 0.3065029586075019
+        },
+        {
+          "kommun_kod": "2180",
+          "rams_growth_pct": 2.1123438813806183,
+          "bas_growth_pct": 2.1390374331550888,
+          "difference_pp": 0.026693551774470414
+        },
+        {
+          "kommun_kod": "2181",
+          "rams_growth_pct": 1.2689199954478259,
+          "bas_growth_pct": 1.5160118101294584,
+          "difference_pp": 0.24709181468163255
+        },
+        {
+          "kommun_kod": "2182",
+          "rams_growth_pct": 0.42672961685128463,
+          "bas_growth_pct": 0.34389140271493535,
+          "difference_pp": -0.08283821413634929
+        },
+        {
+          "kommun_kod": "2183",
+          "rams_growth_pct": 1.4247625395767294,
+          "bas_growth_pct": 1.5570358034970866,
+          "difference_pp": 0.1322732639203572
+        },
+        {
+          "kommun_kod": "2184",
+          "rams_growth_pct": 2.4994306536096467,
+          "bas_growth_pct": 2.9344337459880743,
+          "difference_pp": 0.4350030923784276
+        },
+        {
+          "kommun_kod": "2260",
+          "rams_growth_pct": -0.47339945897204583,
+          "bas_growth_pct": -0.4790145985401506,
+          "difference_pp": -0.005615139568104777
+        },
+        {
+          "kommun_kod": "2262",
+          "rams_growth_pct": 1.2980937901999834,
+          "bas_growth_pct": 1.4487673793667444,
+          "difference_pp": 0.150673589166761
+        },
+        {
+          "kommun_kod": "2280",
+          "rams_growth_pct": 1.3524479307546633,
+          "bas_growth_pct": 1.382863340563989,
+          "difference_pp": 0.030415409809325666
+        },
+        {
+          "kommun_kod": "2281",
+          "rams_growth_pct": 0.3385771501713597,
+          "bas_growth_pct": 0.5094779398114646,
+          "difference_pp": 0.1709007896401049
+        },
+        {
+          "kommun_kod": "2282",
+          "rams_growth_pct": 0.5284348263714156,
+          "bas_growth_pct": 0.6730158730158697,
+          "difference_pp": 0.14458104664445415
+        },
+        {
+          "kommun_kod": "2283",
+          "rams_growth_pct": 1.3761467889908285,
+          "bas_growth_pct": 1.081659336740759,
+          "difference_pp": -0.29448745225006956
+        },
+        {
+          "kommun_kod": "2284",
+          "rams_growth_pct": 1.418385922330101,
+          "bas_growth_pct": 1.3923044909386784,
+          "difference_pp": -0.026081431391422605
+        },
+        {
+          "kommun_kod": "2303",
+          "rams_growth_pct": 0.5677210056772131,
+          "bas_growth_pct": -0.5728314238952592,
+          "difference_pp": -1.1405524295724723
+        },
+        {
+          "kommun_kod": "2305",
+          "rams_growth_pct": 2.251143158635238,
+          "bas_growth_pct": 1.5259048970901246,
+          "difference_pp": -0.7252382615451136
+        },
+        {
+          "kommun_kod": "2309",
+          "rams_growth_pct": 2.80646015356103,
+          "bas_growth_pct": 3.2532200239012043,
+          "difference_pp": 0.4467598703401743
+        },
+        {
+          "kommun_kod": "2313",
+          "rams_growth_pct": 1.708920187793428,
+          "bas_growth_pct": 1.6787485692483894,
+          "difference_pp": -0.03017161854503847
+        },
+        {
+          "kommun_kod": "2321",
+          "rams_growth_pct": 4.884966908288679,
+          "bas_growth_pct": 5.058915946582876,
+          "difference_pp": 0.1739490382941966
+        },
+        {
+          "kommun_kod": "2326",
+          "rams_growth_pct": 0.7254788160185655,
+          "bas_growth_pct": 1.1299435028248483,
+          "difference_pp": 0.4044646868062829
+        },
+        {
+          "kommun_kod": "2361",
+          "rams_growth_pct": 2.3404680936187194,
+          "bas_growth_pct": 2.7267218743688204,
+          "difference_pp": 0.386253780750101
+        },
+        {
+          "kommun_kod": "2380",
+          "rams_growth_pct": 2.513737131308025,
+          "bas_growth_pct": 2.7375201288244666,
+          "difference_pp": 0.22378299751644182
+        },
+        {
+          "kommun_kod": "2401",
+          "rams_growth_pct": 2.817328082399273,
+          "bas_growth_pct": 2.156334231805923,
+          "difference_pp": -0.6609938505933499
+        },
+        {
+          "kommun_kod": "2403",
+          "rams_growth_pct": 1.6695957820738183,
+          "bas_growth_pct": -0.6986899563318771,
+          "difference_pp": -2.3682857384056955
+        },
+        {
+          "kommun_kod": "2404",
+          "rams_growth_pct": 3.865677469738382,
+          "bas_growth_pct": 4.454865181711609,
+          "difference_pp": 0.589187711973227
+        },
+        {
+          "kommun_kod": "2409",
+          "rams_growth_pct": 1.751736635457557,
+          "bas_growth_pct": 2.2506082725060716,
+          "difference_pp": 0.49887163704851467
+        },
+        {
+          "kommun_kod": "2417",
+          "rams_growth_pct": -0.3674540682414684,
+          "bas_growth_pct": 0.0,
+          "difference_pp": 0.3674540682414684
+        },
+        {
+          "kommun_kod": "2418",
+          "rams_growth_pct": -0.8124576844956044,
+          "bas_growth_pct": 1.3726835964310125,
+          "difference_pp": 2.185141280926617
+        },
+        {
+          "kommun_kod": "2421",
+          "rams_growth_pct": -0.35373187124160266,
+          "bas_growth_pct": 0.25371511417180415,
+          "difference_pp": 0.6074469854134068
+        },
+        {
+          "kommun_kod": "2422",
+          "rams_growth_pct": -0.16103059581320522,
+          "bas_growth_pct": 1.2510425354462118,
+          "difference_pp": 1.412073131259417
+        },
+        {
+          "kommun_kod": "2425",
+          "rams_growth_pct": -0.9573542210617902,
+          "bas_growth_pct": 1.0517090271691565,
+          "difference_pp": 2.0090632482309467
+        },
+        {
+          "kommun_kod": "2460",
+          "rams_growth_pct": 2.153493699885445,
+          "bas_growth_pct": 2.5582457743261733,
+          "difference_pp": 0.40475207444072847
+        },
+        {
+          "kommun_kod": "2462",
+          "rams_growth_pct": 1.2874155133569376,
+          "bas_growth_pct": 1.3574660633484115,
+          "difference_pp": 0.07005054999147386
+        },
+        {
+          "kommun_kod": "2463",
+          "rams_growth_pct": -0.391236306729259,
+          "bas_growth_pct": 0.5559968228753043,
+          "difference_pp": 0.9472331296045633
+        },
+        {
+          "kommun_kod": "2480",
+          "rams_growth_pct": 2.496109459022211,
+          "bas_growth_pct": 2.697474476088124,
+          "difference_pp": 0.20136501706591314
+        },
+        {
+          "kommun_kod": "2481",
+          "rams_growth_pct": -0.016583747927034764,
+          "bas_growth_pct": 0.0,
+          "difference_pp": 0.016583747927034764
+        },
+        {
+          "kommun_kod": "2482",
+          "rams_growth_pct": 2.3149189918991953,
+          "bas_growth_pct": 2.472735428523376,
+          "difference_pp": 0.15781643662418077
+        },
+        {
+          "kommun_kod": "2505",
+          "rams_growth_pct": -0.5050505050505083,
+          "bas_growth_pct": 0.33967391304348116,
+          "difference_pp": 0.8447244180939895
+        },
+        {
+          "kommun_kod": "2506",
+          "rams_growth_pct": 2.460850111856816,
+          "bas_growth_pct": 3.645833333333326,
+          "difference_pp": 1.18498322147651
+        },
+        {
+          "kommun_kod": "2510",
+          "rams_growth_pct": -0.6821829855537698,
+          "bas_growth_pct": 0.36511156186611604,
+          "difference_pp": 1.0472945474198858
+        },
+        {
+          "kommun_kod": "2513",
+          "rams_growth_pct": 0.8005336891260928,
+          "bas_growth_pct": -0.6761325219743042,
+          "difference_pp": -1.476666211100397
+        },
+        {
+          "kommun_kod": "2514",
+          "rams_growth_pct": 1.2084181941615757,
+          "bas_growth_pct": 1.8371264052646108,
+          "difference_pp": 0.6287082111030351
+        },
+        {
+          "kommun_kod": "2518",
+          "rams_growth_pct": 0.375536480686689,
+          "bas_growth_pct": 1.9178082191780854,
+          "difference_pp": 1.5422717384913964
+        },
+        {
+          "kommun_kod": "2521",
+          "rams_growth_pct": 0.7683863885839637,
+          "bas_growth_pct": 1.7957351290684542,
+          "difference_pp": 1.0273487404844905
+        },
+        {
+          "kommun_kod": "2523",
+          "rams_growth_pct": 0.23003614853762677,
+          "bas_growth_pct": 0.7072604707702546,
+          "difference_pp": 0.4772243222326278
+        },
+        {
+          "kommun_kod": "2560",
+          "rams_growth_pct": 0.7230851633636792,
+          "bas_growth_pct": 1.2969467711429372,
+          "difference_pp": 0.573861607779258
+        },
+        {
+          "kommun_kod": "2580",
+          "rams_growth_pct": 1.4020607986876543,
+          "bas_growth_pct": 1.6507496405832711,
+          "difference_pp": 0.2486888418956168
+        },
+        {
+          "kommun_kod": "2581",
+          "rams_growth_pct": 1.0344495765973738,
+          "bas_growth_pct": 1.3729755861735526,
+          "difference_pp": 0.33852600957617884
+        },
+        {
+          "kommun_kod": "2582",
+          "rams_growth_pct": 0.9547229856791573,
+          "bas_growth_pct": 1.1013694659807172,
+          "difference_pp": 0.1466464803015599
+        },
+        {
+          "kommun_kod": "2583",
+          "rams_growth_pct": 1.3282732447817747,
+          "bas_growth_pct": 1.6533195556703628,
+          "difference_pp": 0.32504631088858815
+        },
+        {
+          "kommun_kod": "2584",
+          "rams_growth_pct": 1.149042464612826,
+          "bas_growth_pct": 1.5714285714285792,
+          "difference_pp": 0.42238610681575306
+        }
+      ]
+    },
+    "workplace": {
+      "difference_bas_minus_rams_pp": {
+        "n": 290,
+        "mean": 0.24497302681131816,
+        "median": 0.19719562132513024,
+        "p10": -0.7821047461064934,
+        "p90": 1.3322967270305686,
+        "max_abs": 7.175848087259573
+      },
+      "n_abs_difference_gt_1pp": 70,
+      "n_abs_difference_gt_2pp": 21,
+      "lulea": {
+        "kommun_kod": "2580",
+        "rams_growth_pct": 1.6895604395604336,
+        "bas_growth_pct": 1.543809894106074,
+        "difference_pp": -0.1457505454543595
+      },
+      "top_absolute_differences": [
+        {
+          "kommun_kod": "0183",
+          "rams_growth_pct": 7.391053152855731,
+          "bas_growth_pct": 0.21520506559615793,
+          "difference_pp": -7.175848087259573
+        },
+        {
+          "kommun_kod": "1276",
+          "rams_growth_pct": 1.3864541832669275,
+          "bas_growth_pct": 7.734204793028332,
+          "difference_pp": 6.3477506097614045
+        },
+        {
+          "kommun_kod": "2034",
+          "rams_growth_pct": -6.571654790182102,
+          "bas_growth_pct": -0.5066250974279041,
+          "difference_pp": 6.065029692754198
+        },
+        {
+          "kommun_kod": "1447",
+          "rams_growth_pct": 1.4507772020725396,
+          "bas_growth_pct": 6.507230255839813,
+          "difference_pp": 5.056453053767274
+        },
+        {
+          "kommun_kod": "0128",
+          "rams_growth_pct": 7.475695608447874,
+          "bas_growth_pct": 3.4674517500817847,
+          "difference_pp": -4.0082438583660895
+        },
+        {
+          "kommun_kod": "2403",
+          "rams_growth_pct": 5.042016806722693,
+          "bas_growth_pct": 1.1641443538998875,
+          "difference_pp": -3.877872452822806
+        },
+        {
+          "kommun_kod": "0665",
+          "rams_growth_pct": -1.70854271356784,
+          "bas_growth_pct": 1.686541737649061,
+          "difference_pp": 3.395084451216901
+        },
+        {
+          "kommun_kod": "1266",
+          "rams_growth_pct": 0.23431867339582801,
+          "bas_growth_pct": 3.5654284114243096,
+          "difference_pp": 3.3311097380284815
+        },
+        {
+          "kommun_kod": "2418",
+          "rams_growth_pct": -4.022582921665485,
+          "bas_growth_pct": -0.8227374719521285,
+          "difference_pp": 3.1998454497133566
+        },
+        {
+          "kommun_kod": "1473",
+          "rams_growth_pct": 0.7520746887966778,
+          "bas_growth_pct": -2.4265644955300147,
+          "difference_pp": -3.1786391843266926
+        },
+        {
+          "kommun_kod": "2425",
+          "rams_growth_pct": -0.7149240393208189,
+          "bas_growth_pct": 2.1505376344086002,
+          "difference_pp": 2.865461673729419
+        },
+        {
+          "kommun_kod": "1472",
+          "rams_growth_pct": 1.2796587576646257,
+          "bas_growth_pct": -1.5400410677618104,
+          "difference_pp": -2.819699825426436
+        },
+        {
+          "kommun_kod": "0428",
+          "rams_growth_pct": 0.6437077566784577,
+          "bas_growth_pct": 3.244274809160297,
+          "difference_pp": 2.600567052481839
+        },
+        {
+          "kommun_kod": "1466",
+          "rams_growth_pct": 1.8325903912828068,
+          "bas_growth_pct": 4.38439969411164,
+          "difference_pp": 2.5518093028288336
+        },
+        {
+          "kommun_kod": "1781",
+          "rams_growth_pct": 0.3188565145684441,
+          "bas_growth_pct": -1.9445051343674913,
+          "difference_pp": -2.2633616489359354
+        },
+        {
+          "kommun_kod": "0604",
+          "rams_growth_pct": -1.8202502844141044,
+          "bas_growth_pct": 0.4198473282442716,
+          "difference_pp": 2.240097612658376
+        },
+        {
+          "kommun_kod": "2422",
+          "rams_growth_pct": -1.0919017288444022,
+          "bas_growth_pct": 1.1331444759206777,
+          "difference_pp": 2.22504620476508
+        },
+        {
+          "kommun_kod": "0319",
+          "rams_growth_pct": -0.4745762711864443,
+          "bas_growth_pct": 1.7313019390581719,
+          "difference_pp": 2.205878210244616
+        },
+        {
+          "kommun_kod": "2518",
+          "rams_growth_pct": 1.1627906976744207,
+          "bas_growth_pct": 3.2883147386964184,
+          "difference_pp": 2.1255240410219978
+        },
+        {
+          "kommun_kod": "1261",
+          "rams_growth_pct": 1.953034178098112,
+          "bas_growth_pct": -0.07914970601538007,
+          "difference_pp": -2.032183884113492
+        }
+      ],
+      "paired_municipalities": [
+        {
+          "kommun_kod": "0114",
+          "rams_growth_pct": 4.253472222222232,
+          "bas_growth_pct": 5.178643115214765,
+          "difference_pp": 0.9251708929925329
+        },
+        {
+          "kommun_kod": "0115",
+          "rams_growth_pct": 2.111324376199608,
+          "bas_growth_pct": 1.4142665427893109,
+          "difference_pp": -0.6970578334102973
+        },
+        {
+          "kommun_kod": "0117",
+          "rams_growth_pct": 3.8854981518094966,
+          "bas_growth_pct": 2.9750805221223864,
+          "difference_pp": -0.9104176296871103
+        },
+        {
+          "kommun_kod": "0120",
+          "rams_growth_pct": 2.1834759657682223,
+          "bas_growth_pct": 0.9682539682539737,
+          "difference_pp": -1.2152219975142486
+        },
+        {
+          "kommun_kod": "0123",
+          "rams_growth_pct": 4.282788384170866,
+          "bas_growth_pct": 3.764765562721939,
+          "difference_pp": -0.5180228214489269
+        },
+        {
+          "kommun_kod": "0125",
+          "rams_growth_pct": 0.2564102564102555,
+          "bas_growth_pct": 0.7288115669448647,
+          "difference_pp": 0.4724013105346092
+        },
+        {
+          "kommun_kod": "0126",
+          "rams_growth_pct": 1.9405957374687421,
+          "bas_growth_pct": 3.1033372679472038,
+          "difference_pp": 1.1627415304784616
+        },
+        {
+          "kommun_kod": "0127",
+          "rams_growth_pct": 1.391433137155551,
+          "bas_growth_pct": 1.4906438312717984,
+          "difference_pp": 0.09921069411624739
+        },
+        {
+          "kommun_kod": "0128",
+          "rams_growth_pct": 7.475695608447874,
+          "bas_growth_pct": 3.4674517500817847,
+          "difference_pp": -4.0082438583660895
+        },
+        {
+          "kommun_kod": "0136",
+          "rams_growth_pct": 4.391146306633775,
+          "bas_growth_pct": 4.59532255945343,
+          "difference_pp": 0.20417625281965446
+        },
+        {
+          "kommun_kod": "0138",
+          "rams_growth_pct": 2.1060517772413245,
+          "bas_growth_pct": 1.427385892116173,
+          "difference_pp": -0.6786658851251515
+        },
+        {
+          "kommun_kod": "0139",
+          "rams_growth_pct": 5.701145435612642,
+          "bas_growth_pct": 7.2383266793959455,
+          "difference_pp": 1.5371812437833032
+        },
+        {
+          "kommun_kod": "0140",
+          "rams_growth_pct": -0.9834050399508243,
+          "bas_growth_pct": 1.0210396039604053,
+          "difference_pp": 2.0044446439112296
+        },
+        {
+          "kommun_kod": "0160",
+          "rams_growth_pct": 2.0708787559098107,
+          "bas_growth_pct": 1.7678916827853053,
+          "difference_pp": -0.30298707312450546
+        },
+        {
+          "kommun_kod": "0162",
+          "rams_growth_pct": 0.0946686596910773,
+          "bas_growth_pct": 1.1569123079914423,
+          "difference_pp": 1.062243648300365
+        },
+        {
+          "kommun_kod": "0163",
+          "rams_growth_pct": 1.8570387138855837,
+          "bas_growth_pct": 2.5659655831739903,
+          "difference_pp": 0.7089268692884065
+        },
+        {
+          "kommun_kod": "0180",
+          "rams_growth_pct": 3.965490351553558,
+          "bas_growth_pct": 4.040912212223069,
+          "difference_pp": 0.07542186066951118
+        },
+        {
+          "kommun_kod": "0181",
+          "rams_growth_pct": 3.2047199850159247,
+          "bas_growth_pct": 3.231187330147134,
+          "difference_pp": 0.026467345131209186
+        },
+        {
+          "kommun_kod": "0182",
+          "rams_growth_pct": 1.972020900050575,
+          "bas_growth_pct": 2.138515585791567,
+          "difference_pp": 0.16649468574099213
+        },
+        {
+          "kommun_kod": "0183",
+          "rams_growth_pct": 7.391053152855731,
+          "bas_growth_pct": 0.21520506559615793,
+          "difference_pp": -7.175848087259573
+        },
+        {
+          "kommun_kod": "0184",
+          "rams_growth_pct": 2.2242488240376224,
+          "bas_growth_pct": 3.9193346245869787,
+          "difference_pp": 1.6950858005493563
+        },
+        {
+          "kommun_kod": "0186",
+          "rams_growth_pct": 0.818384723485166,
+          "bas_growth_pct": 0.9180274595824267,
+          "difference_pp": 0.09964273609726071
+        },
+        {
+          "kommun_kod": "0187",
+          "rams_growth_pct": -3.234880450070321,
+          "bas_growth_pct": -1.4659685863874339,
+          "difference_pp": 1.768911863682887
+        },
+        {
+          "kommun_kod": "0188",
+          "rams_growth_pct": 1.7383193419825416,
+          "bas_growth_pct": 2.1158840308229454,
+          "difference_pp": 0.37756468884040384
+        },
+        {
+          "kommun_kod": "0191",
+          "rams_growth_pct": 0.884989364934663,
+          "bas_growth_pct": -0.6070152522186789,
+          "difference_pp": -1.4920046171533419
+        },
+        {
+          "kommun_kod": "0192",
+          "rams_growth_pct": 2.962863654645398,
+          "bas_growth_pct": 3.827623126338331,
+          "difference_pp": 0.864759471692933
+        },
+        {
+          "kommun_kod": "0305",
+          "rams_growth_pct": 4.7255602468333935,
+          "bas_growth_pct": 4.596212979446523,
+          "difference_pp": -0.12934726738687008
+        },
+        {
+          "kommun_kod": "0319",
+          "rams_growth_pct": -0.4745762711864443,
+          "bas_growth_pct": 1.7313019390581719,
+          "difference_pp": 2.205878210244616
+        },
+        {
+          "kommun_kod": "0330",
+          "rams_growth_pct": 4.659188955996552,
+          "bas_growth_pct": 4.537634408602154,
+          "difference_pp": -0.12155454739439797
+        },
+        {
+          "kommun_kod": "0331",
+          "rams_growth_pct": 0.6384531192995313,
+          "bas_growth_pct": -0.23640661938534313,
+          "difference_pp": -0.8748597386848744
+        },
+        {
+          "kommun_kod": "0360",
+          "rams_growth_pct": 0.6601531555320728,
+          "bas_growth_pct": 0.605422479599893,
+          "difference_pp": -0.05473067593217973
+        },
+        {
+          "kommun_kod": "0380",
+          "rams_growth_pct": 2.75330495182613,
+          "bas_growth_pct": 2.852252252252252,
+          "difference_pp": 0.0989473004261221
+        },
+        {
+          "kommun_kod": "0381",
+          "rams_growth_pct": 2.6538318353454216,
+          "bas_growth_pct": 4.238203217795045,
+          "difference_pp": 1.584371382449623
+        },
+        {
+          "kommun_kod": "0382",
+          "rams_growth_pct": -0.4312506268177696,
+          "bas_growth_pct": 0.009966115208293047,
+          "difference_pp": 0.44121674202606265
+        },
+        {
+          "kommun_kod": "0428",
+          "rams_growth_pct": 0.6437077566784577,
+          "bas_growth_pct": 3.244274809160297,
+          "difference_pp": 2.600567052481839
+        },
+        {
+          "kommun_kod": "0461",
+          "rams_growth_pct": 3.5558328134747352,
+          "bas_growth_pct": 3.289473684210531,
+          "difference_pp": -0.26635912926420424
+        },
+        {
+          "kommun_kod": "0480",
+          "rams_growth_pct": 0.8886714769067661,
+          "bas_growth_pct": 1.6481943478794392,
+          "difference_pp": 0.7595228709726731
+        },
+        {
+          "kommun_kod": "0481",
+          "rams_growth_pct": 4.654801486407201,
+          "bas_growth_pct": 4.605776736924283,
+          "difference_pp": -0.049024749482917684
+        },
+        {
+          "kommun_kod": "0482",
+          "rams_growth_pct": 0.6832515767344116,
+          "bas_growth_pct": 1.5392597717052814,
+          "difference_pp": 0.8560081949708698
+        },
+        {
+          "kommun_kod": "0483",
+          "rams_growth_pct": 0.658414537792984,
+          "bas_growth_pct": 1.596200778312773,
+          "difference_pp": 0.937786240519789
+        },
+        {
+          "kommun_kod": "0484",
+          "rams_growth_pct": 2.5501027749229133,
+          "bas_growth_pct": 3.710220810712217,
+          "difference_pp": 1.1601180357893037
+        },
+        {
+          "kommun_kod": "0486",
+          "rams_growth_pct": 3.585657370517925,
+          "bas_growth_pct": 3.587103308575279,
+          "difference_pp": 0.0014459380573539349
+        },
+        {
+          "kommun_kod": "0488",
+          "rams_growth_pct": 3.5544487208512665,
+          "bas_growth_pct": 3.6446469248291535,
+          "difference_pp": 0.09019820397788703
+        },
+        {
+          "kommun_kod": "0509",
+          "rams_growth_pct": 2.076124567474058,
+          "bas_growth_pct": 1.4518002322880363,
+          "difference_pp": -0.6243243351860217
+        },
+        {
+          "kommun_kod": "0512",
+          "rams_growth_pct": 0.0,
+          "bas_growth_pct": 0.40950040950040734,
+          "difference_pp": 0.40950040950040734
+        },
+        {
+          "kommun_kod": "0513",
+          "rams_growth_pct": 0.515603799185893,
+          "bas_growth_pct": 1.2719891745602174,
+          "difference_pp": 0.7563853753743244
+        },
+        {
+          "kommun_kod": "0560",
+          "rams_growth_pct": 2.715915263443791,
+          "bas_growth_pct": 1.9967620075553194,
+          "difference_pp": -0.7191532558884717
+        },
+        {
+          "kommun_kod": "0561",
+          "rams_growth_pct": 2.955939765755722,
+          "bas_growth_pct": 2.429378531073456,
+          "difference_pp": -0.5265612346822657
+        },
+        {
+          "kommun_kod": "0562",
+          "rams_growth_pct": 0.7888768366038912,
+          "bas_growth_pct": 0.9508716323296307,
+          "difference_pp": 0.1619947957257395
+        },
+        {
+          "kommun_kod": "0563",
+          "rams_growth_pct": -0.03743916136278447,
+          "bas_growth_pct": 1.294857565667784,
+          "difference_pp": 1.3322967270305686
+        },
+        {
+          "kommun_kod": "0580",
+          "rams_growth_pct": 2.286869770195832,
+          "bas_growth_pct": 3.0359473114801583,
+          "difference_pp": 0.7490775412843265
+        },
+        {
+          "kommun_kod": "0581",
+          "rams_growth_pct": 2.5593346901126024,
+          "bas_growth_pct": 2.220146258155853,
+          "difference_pp": -0.3391884319567495
+        },
+        {
+          "kommun_kod": "0582",
+          "rams_growth_pct": 1.5473032714411916,
+          "bas_growth_pct": 3.4997770842621456,
+          "difference_pp": 1.952473812820954
+        },
+        {
+          "kommun_kod": "0583",
+          "rams_growth_pct": 1.3179782469609824,
+          "bas_growth_pct": 1.8432297978187462,
+          "difference_pp": 0.5252515508577638
+        },
+        {
+          "kommun_kod": "0584",
+          "rams_growth_pct": 0.3233107015842229,
+          "bas_growth_pct": 0.09668063164678387,
+          "difference_pp": -0.22663006993743906
+        },
+        {
+          "kommun_kod": "0586",
+          "rams_growth_pct": 4.352164568621442,
+          "bas_growth_pct": 4.577137546468402,
+          "difference_pp": 0.22497297784696002
+        },
+        {
+          "kommun_kod": "0604",
+          "rams_growth_pct": -1.8202502844141044,
+          "bas_growth_pct": 0.4198473282442716,
+          "difference_pp": 2.240097612658376
+        },
+        {
+          "kommun_kod": "0617",
+          "rams_growth_pct": 4.077152265955775,
+          "bas_growth_pct": 5.069411948213998,
+          "difference_pp": 0.992259682258223
+        },
+        {
+          "kommun_kod": "0642",
+          "rams_growth_pct": -1.3095671153146582,
+          "bas_growth_pct": -0.5415162454873612,
+          "difference_pp": 0.768050869827297
+        },
+        {
+          "kommun_kod": "0643",
+          "rams_growth_pct": -0.31287605294825216,
+          "bas_growth_pct": -0.9628933771723802,
+          "difference_pp": -0.6500173242241281
+        },
+        {
+          "kommun_kod": "0662",
+          "rams_growth_pct": 2.6621968053638367,
+          "bas_growth_pct": 3.0056810675122225,
+          "difference_pp": 0.3434842621483858
+        },
+        {
+          "kommun_kod": "0665",
+          "rams_growth_pct": -1.70854271356784,
+          "bas_growth_pct": 1.686541737649061,
+          "difference_pp": 3.395084451216901
+        },
+        {
+          "kommun_kod": "0680",
+          "rams_growth_pct": 2.690438020375452,
+          "bas_growth_pct": 2.9744768199950977,
+          "difference_pp": 0.28403879961964584
+        },
+        {
+          "kommun_kod": "0682",
+          "rams_growth_pct": 3.2506222188702028,
+          "bas_growth_pct": 3.897466646679648,
+          "difference_pp": 0.6468444278094454
+        },
+        {
+          "kommun_kod": "0683",
+          "rams_growth_pct": 1.5363986814905806,
+          "bas_growth_pct": 1.9106145251396756,
+          "difference_pp": 0.374215843649095
+        },
+        {
+          "kommun_kod": "0684",
+          "rams_growth_pct": 1.0575554199715231,
+          "bas_growth_pct": 1.934432905721839,
+          "difference_pp": 0.8768774857503159
+        },
+        {
+          "kommun_kod": "0685",
+          "rams_growth_pct": 1.6874999999999973,
+          "bas_growth_pct": 2.4943837632659394,
+          "difference_pp": 0.806883763265942
+        },
+        {
+          "kommun_kod": "0686",
+          "rams_growth_pct": 1.6848264729620643,
+          "bas_growth_pct": 1.4536340852130403,
+          "difference_pp": -0.23119238774902406
+        },
+        {
+          "kommun_kod": "0687",
+          "rams_growth_pct": 2.74020933788075,
+          "bas_growth_pct": 2.3634881825590925,
+          "difference_pp": -0.3767211553216576
+        },
+        {
+          "kommun_kod": "0760",
+          "rams_growth_pct": 2.2456279809220936,
+          "bas_growth_pct": 2.9066295042803114,
+          "difference_pp": 0.6610015233582178
+        },
+        {
+          "kommun_kod": "0761",
+          "rams_growth_pct": 1.2186115214180226,
+          "bas_growth_pct": 1.1025358324145529,
+          "difference_pp": -0.11607568900346976
+        },
+        {
+          "kommun_kod": "0763",
+          "rams_growth_pct": 1.2441156691324728,
+          "bas_growth_pct": 1.2380793039986626,
+          "difference_pp": -0.006036365133810229
+        },
+        {
+          "kommun_kod": "0764",
+          "rams_growth_pct": -1.5014632904949754,
+          "bas_growth_pct": 0.06351626016261047,
+          "difference_pp": 1.5649795506575859
+        },
+        {
+          "kommun_kod": "0765",
+          "rams_growth_pct": 2.246402246402246,
+          "bas_growth_pct": 2.2881113547525977,
+          "difference_pp": 0.0417091083503518
+        },
+        {
+          "kommun_kod": "0767",
+          "rams_growth_pct": 4.899541769474802,
+          "bas_growth_pct": 5.587188612099636,
+          "difference_pp": 0.6876468426248339
+        },
+        {
+          "kommun_kod": "0780",
+          "rams_growth_pct": 3.398403380121473,
+          "bas_growth_pct": 3.197090266055791,
+          "difference_pp": -0.20131311406568209
+        },
+        {
+          "kommun_kod": "0781",
+          "rams_growth_pct": 3.350246231905696,
+          "bas_growth_pct": 3.7090086694308244,
+          "difference_pp": 0.3587624375251286
+        },
+        {
+          "kommun_kod": "0821",
+          "rams_growth_pct": -0.32555615843733454,
+          "bas_growth_pct": 0.5464480874316946,
+          "difference_pp": 0.8720042458690291
+        },
+        {
+          "kommun_kod": "0834",
+          "rams_growth_pct": 2.769739561802398,
+          "bas_growth_pct": 1.2731006160164204,
+          "difference_pp": -1.4966389457859774
+        },
+        {
+          "kommun_kod": "0840",
+          "rams_growth_pct": 4.559895346664167,
+          "bas_growth_pct": 5.447761194029854,
+          "difference_pp": 0.8878658473656875
+        },
+        {
+          "kommun_kod": "0860",
+          "rams_growth_pct": 0.036231884057968955,
+          "bas_growth_pct": -0.4862236628849326,
+          "difference_pp": -0.5224555469429015
+        },
+        {
+          "kommun_kod": "0861",
+          "rams_growth_pct": -3.375609756097564,
+          "bas_growth_pct": -2.4020476471746433,
+          "difference_pp": 0.9735621089229207
+        },
+        {
+          "kommun_kod": "0862",
+          "rams_growth_pct": 3.342366757000903,
+          "bas_growth_pct": 3.4288292352808503,
+          "difference_pp": 0.08646247827994724
+        },
+        {
+          "kommun_kod": "0880",
+          "rams_growth_pct": 2.3915372254954548,
+          "bas_growth_pct": 2.585747763101831,
+          "difference_pp": 0.1942105376063763
+        },
+        {
+          "kommun_kod": "0881",
+          "rams_growth_pct": 1.43378191422463,
+          "bas_growth_pct": 1.428923380142888,
+          "difference_pp": -0.004858534081741972
+        },
+        {
+          "kommun_kod": "0882",
+          "rams_growth_pct": 2.1434695627322142,
+          "bas_growth_pct": 2.7017543859649162,
+          "difference_pp": 0.558284823232702
+        },
+        {
+          "kommun_kod": "0883",
+          "rams_growth_pct": 1.5954011109675648,
+          "bas_growth_pct": 1.9507515190278157,
+          "difference_pp": 0.355350408060251
+        },
+        {
+          "kommun_kod": "0884",
+          "rams_growth_pct": 1.6106531388712764,
+          "bas_growth_pct": 1.6517285531369996,
+          "difference_pp": 0.041075414265723253
+        },
+        {
+          "kommun_kod": "0885",
+          "rams_growth_pct": 2.662508994962831,
+          "bas_growth_pct": 3.1734496124030898,
+          "difference_pp": 0.5109406174402586
+        },
+        {
+          "kommun_kod": "0980",
+          "rams_growth_pct": 2.4659985683607832,
+          "bas_growth_pct": 2.578203113840871,
+          "difference_pp": 0.11220454548008796
+        },
+        {
+          "kommun_kod": "1060",
+          "rams_growth_pct": -1.6939890710382488,
+          "bas_growth_pct": -2.116689280868389,
+          "difference_pp": -0.4227002098301402
+        },
+        {
+          "kommun_kod": "1080",
+          "rams_growth_pct": 2.1815360744763312,
+          "bas_growth_pct": 2.136222910216712,
+          "difference_pp": -0.0453131642596194
+        },
+        {
+          "kommun_kod": "1081",
+          "rams_growth_pct": -0.027058717416794664,
+          "bas_growth_pct": -0.42330901558137457,
+          "difference_pp": -0.3962502981645799
+        },
+        {
+          "kommun_kod": "1082",
+          "rams_growth_pct": 1.381501182033107,
+          "bas_growth_pct": 1.464311994113321,
+          "difference_pp": 0.08281081208021401
+        },
+        {
+          "kommun_kod": "1083",
+          "rams_growth_pct": 3.7689597058372826,
+          "bas_growth_pct": 3.0923146884947794,
+          "difference_pp": -0.6766450173425032
+        },
+        {
+          "kommun_kod": "1214",
+          "rams_growth_pct": 3.0856871587942036,
+          "bas_growth_pct": 3.0346820809248554,
+          "difference_pp": -0.05100507786934827
+        },
+        {
+          "kommun_kod": "1230",
+          "rams_growth_pct": -1.4283807235349055,
+          "bas_growth_pct": 0.0,
+          "difference_pp": 1.4283807235349055
+        },
+        {
+          "kommun_kod": "1231",
+          "rams_growth_pct": 1.7621145374449254,
+          "bas_growth_pct": 1.9821605550049526,
+          "difference_pp": 0.22004601756002717
+        },
+        {
+          "kommun_kod": "1233",
+          "rams_growth_pct": 2.7754147171416443,
+          "bas_growth_pct": 2.7147909298939066,
+          "difference_pp": -0.06062378724773776
+        },
+        {
+          "kommun_kod": "1256",
+          "rams_growth_pct": -0.1701765581791137,
+          "bas_growth_pct": 0.34490191851692664,
+          "difference_pp": 0.5150784766960403
+        },
+        {
+          "kommun_kod": "1257",
+          "rams_growth_pct": 1.6528925619834656,
+          "bas_growth_pct": 2.3035577169183474,
+          "difference_pp": 0.6506651549348819
+        },
+        {
+          "kommun_kod": "1260",
+          "rams_growth_pct": 9.974119052359143,
+          "bas_growth_pct": 10.535609181871685,
+          "difference_pp": 0.5614901295125421
+        },
+        {
+          "kommun_kod": "1261",
+          "rams_growth_pct": 1.953034178098112,
+          "bas_growth_pct": -0.07914970601538007,
+          "difference_pp": -2.032183884113492
+        },
+        {
+          "kommun_kod": "1262",
+          "rams_growth_pct": 2.3896186105396344,
+          "bas_growth_pct": 1.2633181126331827,
+          "difference_pp": -1.1263004979064517
+        },
+        {
+          "kommun_kod": "1263",
+          "rams_growth_pct": 2.5651988029072204,
+          "bas_growth_pct": 3.4942002004868966,
+          "difference_pp": 0.9290013975796763
+        },
+        {
+          "kommun_kod": "1264",
+          "rams_growth_pct": 2.3910840932117594,
+          "bas_growth_pct": 4.08204711616571,
+          "difference_pp": 1.6909630229539507
+        },
+        {
+          "kommun_kod": "1265",
+          "rams_growth_pct": -0.09203865623561569,
+          "bas_growth_pct": -0.061283897655894926,
+          "difference_pp": 0.030754758579720765
+        },
+        {
+          "kommun_kod": "1266",
+          "rams_growth_pct": 0.23431867339582801,
+          "bas_growth_pct": 3.5654284114243096,
+          "difference_pp": 3.3311097380284815
+        },
+        {
+          "kommun_kod": "1267",
+          "rams_growth_pct": 4.601701469450892,
+          "bas_growth_pct": 5.680496316401706,
+          "difference_pp": 1.0787948469508146
+        },
+        {
+          "kommun_kod": "1270",
+          "rams_growth_pct": 2.2852789944772356,
+          "bas_growth_pct": 2.3955538520505915,
+          "difference_pp": 0.11027485757335587
+        },
+        {
+          "kommun_kod": "1272",
+          "rams_growth_pct": 1.6793893129771087,
+          "bas_growth_pct": 0.817907877744295,
+          "difference_pp": -0.8614814352328137
+        },
+        {
+          "kommun_kod": "1273",
+          "rams_growth_pct": 0.8112724167378405,
+          "bas_growth_pct": 0.8086826984464723,
+          "difference_pp": -0.002589718291368115
+        },
+        {
+          "kommun_kod": "1275",
+          "rams_growth_pct": 3.719643406086681,
+          "bas_growth_pct": 2.3558586484810906,
+          "difference_pp": -1.3637847576055906
+        },
+        {
+          "kommun_kod": "1276",
+          "rams_growth_pct": 1.3864541832669275,
+          "bas_growth_pct": 7.734204793028332,
+          "difference_pp": 6.3477506097614045
+        },
+        {
+          "kommun_kod": "1277",
+          "rams_growth_pct": 1.6759776536312776,
+          "bas_growth_pct": 0.8938729075247842,
+          "difference_pp": -0.7821047461064934
+        },
+        {
+          "kommun_kod": "1278",
+          "rams_growth_pct": 3.8638985005767124,
+          "bas_growth_pct": 3.20204023802777,
+          "difference_pp": -0.6618582625489422
+        },
+        {
+          "kommun_kod": "1280",
+          "rams_growth_pct": 4.427939616140186,
+          "bas_growth_pct": 4.706731221700533,
+          "difference_pp": 0.27879160556034677
+        },
+        {
+          "kommun_kod": "1281",
+          "rams_growth_pct": 2.0231797439728583,
+          "bas_growth_pct": 2.3096937754353286,
+          "difference_pp": 0.28651403146247034
+        },
+        {
+          "kommun_kod": "1282",
+          "rams_growth_pct": 1.875910282551696,
+          "bas_growth_pct": 2.02538949798039,
+          "difference_pp": 0.1494792154286939
+        },
+        {
+          "kommun_kod": "1283",
+          "rams_growth_pct": 2.0399484364825193,
+          "bas_growth_pct": 2.2401291415264035,
+          "difference_pp": 0.2001807050438842
+        },
+        {
+          "kommun_kod": "1284",
+          "rams_growth_pct": 1.5168539325842723,
+          "bas_growth_pct": 1.4539400665926738,
+          "difference_pp": -0.06291386599159843
+        },
+        {
+          "kommun_kod": "1285",
+          "rams_growth_pct": 0.252437325905297,
+          "bas_growth_pct": 0.8500252482747106,
+          "difference_pp": 0.5975879223694136
+        },
+        {
+          "kommun_kod": "1286",
+          "rams_growth_pct": 2.617386927446619,
+          "bas_growth_pct": 3.203876473566214,
+          "difference_pp": 0.5864895461195951
+        },
+        {
+          "kommun_kod": "1287",
+          "rams_growth_pct": 1.4833393049086263,
+          "bas_growth_pct": 1.620584263273872,
+          "difference_pp": 0.13724495836524575
+        },
+        {
+          "kommun_kod": "1290",
+          "rams_growth_pct": 1.3185847190682054,
+          "bas_growth_pct": 2.1360355762921834,
+          "difference_pp": 0.817450857223978
+        },
+        {
+          "kommun_kod": "1291",
+          "rams_growth_pct": 0.6163934426229423,
+          "bas_growth_pct": 1.255722694571615,
+          "difference_pp": 0.6393292519486726
+        },
+        {
+          "kommun_kod": "1292",
+          "rams_growth_pct": 4.589307606204351,
+          "bas_growth_pct": 3.8843626806833065,
+          "difference_pp": -0.7049449255210449
+        },
+        {
+          "kommun_kod": "1293",
+          "rams_growth_pct": 2.285380747126431,
+          "bas_growth_pct": 2.386430279243923,
+          "difference_pp": 0.10104953211749201
+        },
+        {
+          "kommun_kod": "1315",
+          "rams_growth_pct": 0.5982905982905962,
+          "bas_growth_pct": 0.753498385360607,
+          "difference_pp": 0.15520778707001082
+        },
+        {
+          "kommun_kod": "1380",
+          "rams_growth_pct": 3.353587286749238,
+          "bas_growth_pct": 3.2861848478976885,
+          "difference_pp": -0.06740243885154928
+        },
+        {
+          "kommun_kod": "1381",
+          "rams_growth_pct": 2.097827250347861,
+          "bas_growth_pct": 2.3894475078386934,
+          "difference_pp": 0.2916202574908322
+        },
+        {
+          "kommun_kod": "1382",
+          "rams_growth_pct": 2.571210093672338,
+          "bas_growth_pct": 3.590896050492498,
+          "difference_pp": 1.01968595682016
+        },
+        {
+          "kommun_kod": "1383",
+          "rams_growth_pct": 1.891591161977435,
+          "bas_growth_pct": 2.225197653659783,
+          "difference_pp": 0.3336064916823478
+        },
+        {
+          "kommun_kod": "1384",
+          "rams_growth_pct": 1.7893660531697275,
+          "bas_growth_pct": 1.0316715965658974,
+          "difference_pp": -0.7576944566038302
+        },
+        {
+          "kommun_kod": "1401",
+          "rams_growth_pct": 2.241473314351494,
+          "bas_growth_pct": 0.9656587603355637,
+          "difference_pp": -1.2758145540159305
+        },
+        {
+          "kommun_kod": "1402",
+          "rams_growth_pct": 0.8147789609551426,
+          "bas_growth_pct": 0.4024144869215318,
+          "difference_pp": -0.41236447403361076
+        },
+        {
+          "kommun_kod": "1407",
+          "rams_growth_pct": 1.9962736225711986,
+          "bas_growth_pct": 1.6183764030279324,
+          "difference_pp": -0.37789721954326616
+        },
+        {
+          "kommun_kod": "1415",
+          "rams_growth_pct": 0.9322419281491579,
+          "bas_growth_pct": 0.7458188940786536,
+          "difference_pp": -0.1864230340705042
+        },
+        {
+          "kommun_kod": "1419",
+          "rams_growth_pct": -0.0980007840062691,
+          "bas_growth_pct": 0.0,
+          "difference_pp": 0.0980007840062691
+        },
+        {
+          "kommun_kod": "1421",
+          "rams_growth_pct": 1.4428626394767274,
+          "bas_growth_pct": 1.9293845263361087,
+          "difference_pp": 0.48652188685938125
+        },
+        {
+          "kommun_kod": "1427",
+          "rams_growth_pct": 0.9715994020926821,
+          "bas_growth_pct": 1.1656746031746046,
+          "difference_pp": 0.19407520108192244
+        },
+        {
+          "kommun_kod": "1430",
+          "rams_growth_pct": 1.0162601626016343,
+          "bas_growth_pct": -0.7266349285893314,
+          "difference_pp": -1.7428950911909658
+        },
+        {
+          "kommun_kod": "1435",
+          "rams_growth_pct": 1.7821054565496874,
+          "bas_growth_pct": 2.0626017731138147,
+          "difference_pp": 0.2804963165641272
+        },
+        {
+          "kommun_kod": "1438",
+          "rams_growth_pct": -2.690972222222221,
+          "bas_growth_pct": -2.786112301757393,
+          "difference_pp": -0.095140079535172
+        },
+        {
+          "kommun_kod": "1439",
+          "rams_growth_pct": 0.0877192982456032,
+          "bas_growth_pct": 0.8144796380090469,
+          "difference_pp": 0.7267603397634437
+        },
+        {
+          "kommun_kod": "1440",
+          "rams_growth_pct": 3.506243996157532,
+          "bas_growth_pct": 4.2319749216300995,
+          "difference_pp": 0.7257309254725675
+        },
+        {
+          "kommun_kod": "1441",
+          "rams_growth_pct": 3.4270813931830846,
+          "bas_growth_pct": 3.019604199572612,
+          "difference_pp": -0.40747719361047263
+        },
+        {
+          "kommun_kod": "1442",
+          "rams_growth_pct": 3.039459651617493,
+          "bas_growth_pct": 3.7418468932372217,
+          "difference_pp": 0.7023872416197285
+        },
+        {
+          "kommun_kod": "1443",
+          "rams_growth_pct": 0.9807355516637584,
+          "bas_growth_pct": 1.4814814814814836,
+          "difference_pp": 0.5007459298177253
+        },
+        {
+          "kommun_kod": "1444",
+          "rams_growth_pct": 1.8867924528301883,
+          "bas_growth_pct": 2.7621483375959155,
+          "difference_pp": 0.8753558847657272
+        },
+        {
+          "kommun_kod": "1445",
+          "rams_growth_pct": 1.59890360895385,
+          "bas_growth_pct": 0.4048582995951344,
+          "difference_pp": -1.1940453093587156
+        },
+        {
+          "kommun_kod": "1446",
+          "rams_growth_pct": -6.239844003899897,
+          "bas_growth_pct": -6.961005478569127,
+          "difference_pp": -0.7211614746692296
+        },
+        {
+          "kommun_kod": "1447",
+          "rams_growth_pct": 1.4507772020725396,
+          "bas_growth_pct": 6.507230255839813,
+          "difference_pp": 5.056453053767274
+        },
+        {
+          "kommun_kod": "1452",
+          "rams_growth_pct": -0.34918523445294225,
+          "bas_growth_pct": -1.1406844106463865,
+          "difference_pp": -0.7914991761934442
+        },
+        {
+          "kommun_kod": "1460",
+          "rams_growth_pct": -1.1990407673860948,
+          "bas_growth_pct": -0.4537855266300461,
+          "difference_pp": 0.7452552407560487
+        },
+        {
+          "kommun_kod": "1461",
+          "rams_growth_pct": 1.2044737596788035,
+          "bas_growth_pct": 1.6881258941344734,
+          "difference_pp": 0.4836521344556699
+        },
+        {
+          "kommun_kod": "1462",
+          "rams_growth_pct": -0.5647058823529449,
+          "bas_growth_pct": 0.9910335063709308,
+          "difference_pp": 1.5557393887238757
+        },
+        {
+          "kommun_kod": "1463",
+          "rams_growth_pct": 0.19094597820032977,
+          "bas_growth_pct": -0.2361460957178818,
+          "difference_pp": -0.4270920739182116
+        },
+        {
+          "kommun_kod": "1465",
+          "rams_growth_pct": 3.666585186995852,
+          "bas_growth_pct": 5.070896419130011,
+          "difference_pp": 1.4043112321341589
+        },
+        {
+          "kommun_kod": "1466",
+          "rams_growth_pct": 1.8325903912828068,
+          "bas_growth_pct": 4.38439969411164,
+          "difference_pp": 2.5518093028288336
+        },
+        {
+          "kommun_kod": "1470",
+          "rams_growth_pct": 1.5299877600979173,
+          "bas_growth_pct": 2.0325700991796314,
+          "difference_pp": 0.5025823390817141
+        },
+        {
+          "kommun_kod": "1471",
+          "rams_growth_pct": 3.2410320956576477,
+          "bas_growth_pct": 3.5101164929491,
+          "difference_pp": 0.2690843972914525
+        },
+        {
+          "kommun_kod": "1472",
+          "rams_growth_pct": 1.2796587576646257,
+          "bas_growth_pct": -1.5400410677618104,
+          "difference_pp": -2.819699825426436
+        },
+        {
+          "kommun_kod": "1473",
+          "rams_growth_pct": 0.7520746887966778,
+          "bas_growth_pct": -2.4265644955300147,
+          "difference_pp": -3.1786391843266926
+        },
+        {
+          "kommun_kod": "1480",
+          "rams_growth_pct": 3.9452925391555427,
+          "bas_growth_pct": 4.212315408191691,
+          "difference_pp": 0.2670228690361487
+        },
+        {
+          "kommun_kod": "1481",
+          "rams_growth_pct": 3.354666291581676,
+          "bas_growth_pct": 3.826050595860342,
+          "difference_pp": 0.47138430427866584
+        },
+        {
+          "kommun_kod": "1482",
+          "rams_growth_pct": 1.7657507052554644,
+          "bas_growth_pct": 1.2467157797125372,
+          "difference_pp": -0.5190349255429272
+        },
+        {
+          "kommun_kod": "1484",
+          "rams_growth_pct": -1.4567124648237062,
+          "bas_growth_pct": -1.2916045702930923,
+          "difference_pp": 0.16510789453061392
+        },
+        {
+          "kommun_kod": "1485",
+          "rams_growth_pct": 1.6105189449933777,
+          "bas_growth_pct": 1.278602892449232,
+          "difference_pp": -0.3319160525441456
+        },
+        {
+          "kommun_kod": "1486",
+          "rams_growth_pct": 1.980198019801982,
+          "bas_growth_pct": 3.0672823218997447,
+          "difference_pp": 1.0870843020977627
+        },
+        {
+          "kommun_kod": "1487",
+          "rams_growth_pct": 3.6964435732287804,
+          "bas_growth_pct": 3.36211132168176,
+          "difference_pp": -0.3343322515470204
+        },
+        {
+          "kommun_kod": "1488",
+          "rams_growth_pct": -0.40554817162525847,
+          "bas_growth_pct": -0.12116724445491167,
+          "difference_pp": 0.2843809271703468
+        },
+        {
+          "kommun_kod": "1489",
+          "rams_growth_pct": 1.2621002328146114,
+          "bas_growth_pct": 0.018548287374797745,
+          "difference_pp": -1.2435519454398136
+        },
+        {
+          "kommun_kod": "1490",
+          "rams_growth_pct": 3.7090933703340268,
+          "bas_growth_pct": 3.3350142881156453,
+          "difference_pp": -0.3740790822183815
+        },
+        {
+          "kommun_kod": "1491",
+          "rams_growth_pct": 1.1428003577462098,
+          "bas_growth_pct": 0.1871736774702093,
+          "difference_pp": -0.9556266802760005
+        },
+        {
+          "kommun_kod": "1492",
+          "rams_growth_pct": 0.5309373085562674,
+          "bas_growth_pct": -0.06064281382656134,
+          "difference_pp": -0.5915801223828288
+        },
+        {
+          "kommun_kod": "1493",
+          "rams_growth_pct": 3.6107396358399324,
+          "bas_growth_pct": 3.5323632714500786,
+          "difference_pp": -0.07837636438985385
+        },
+        {
+          "kommun_kod": "1494",
+          "rams_growth_pct": 2.096978660469051,
+          "bas_growth_pct": 1.5085310029130161,
+          "difference_pp": -0.5884476575560349
+        },
+        {
+          "kommun_kod": "1495",
+          "rams_growth_pct": 0.40997229916897027,
+          "bas_growth_pct": 0.762178283441961,
+          "difference_pp": 0.35220598427299077
+        },
+        {
+          "kommun_kod": "1496",
+          "rams_growth_pct": 2.419891741685243,
+          "bas_growth_pct": 4.022379269729104,
+          "difference_pp": 1.602487528043861
+        },
+        {
+          "kommun_kod": "1497",
+          "rams_growth_pct": 1.476725521669331,
+          "bas_growth_pct": 0.030988534242326615,
+          "difference_pp": -1.4457369874270043
+        },
+        {
+          "kommun_kod": "1498",
+          "rams_growth_pct": 4.675686430561088,
+          "bas_growth_pct": 4.793158313444712,
+          "difference_pp": 0.11747188288362409
+        },
+        {
+          "kommun_kod": "1499",
+          "rams_growth_pct": 0.04312203536007697,
+          "bas_growth_pct": -0.3354986080376876,
+          "difference_pp": -0.3786206433977646
+        },
+        {
+          "kommun_kod": "1715",
+          "rams_growth_pct": -2.4197790636507066,
+          "bas_growth_pct": -2.7520508070918215,
+          "difference_pp": -0.3322717434411149
+        },
+        {
+          "kommun_kod": "1730",
+          "rams_growth_pct": -2.487831260140616,
+          "bas_growth_pct": -4.466564573762122,
+          "difference_pp": -1.9787333136215062
+        },
+        {
+          "kommun_kod": "1737",
+          "rams_growth_pct": 0.2812939521800173,
+          "bas_growth_pct": 1.0638297872340496,
+          "difference_pp": 0.7825358350540323
+        },
+        {
+          "kommun_kod": "1760",
+          "rams_growth_pct": -0.5016722408026753,
+          "bas_growth_pct": -0.7550335570469802,
+          "difference_pp": -0.2533613162443049
+        },
+        {
+          "kommun_kod": "1761",
+          "rams_growth_pct": 1.7082490447291487,
+          "bas_growth_pct": 2.0777479892761352,
+          "difference_pp": 0.3694989445469865
+        },
+        {
+          "kommun_kod": "1762",
+          "rams_growth_pct": -0.7912355447352359,
+          "bas_growth_pct": -1.0296789824348895,
+          "difference_pp": -0.2384434376996536
+        },
+        {
+          "kommun_kod": "1763",
+          "rams_growth_pct": 3.0000000000000027,
+          "bas_growth_pct": 2.9126213592232997,
+          "difference_pp": -0.08737864077670299
+        },
+        {
+          "kommun_kod": "1764",
+          "rams_growth_pct": 1.6559829059829,
+          "bas_growth_pct": 2.3790213571235563,
+          "difference_pp": 0.7230384511406562
+        },
+        {
+          "kommun_kod": "1765",
+          "rams_growth_pct": 0.4079782411604782,
+          "bas_growth_pct": -0.04425757911041828,
+          "difference_pp": -0.4522358202708965
+        },
+        {
+          "kommun_kod": "1766",
+          "rams_growth_pct": 1.3970334598137235,
+          "bas_growth_pct": 1.2811634349030543,
+          "difference_pp": -0.11587002491066922
+        },
+        {
+          "kommun_kod": "1780",
+          "rams_growth_pct": 3.6016716155284234,
+          "bas_growth_pct": 4.693832840398726,
+          "difference_pp": 1.0921612248703028
+        },
+        {
+          "kommun_kod": "1781",
+          "rams_growth_pct": 0.3188565145684441,
+          "bas_growth_pct": -1.9445051343674913,
+          "difference_pp": -2.2633616489359354
+        },
+        {
+          "kommun_kod": "1782",
+          "rams_growth_pct": 1.068322981366454,
+          "bas_growth_pct": 1.4221556886227615,
+          "difference_pp": 0.35383270725630744
+        },
+        {
+          "kommun_kod": "1783",
+          "rams_growth_pct": 1.0563380281690238,
+          "bas_growth_pct": 0.43041606886657924,
+          "difference_pp": -0.6259219593024445
+        },
+        {
+          "kommun_kod": "1784",
+          "rams_growth_pct": 1.9678642354215459,
+          "bas_growth_pct": 2.7960674664020857,
+          "difference_pp": 0.8282032309805398
+        },
+        {
+          "kommun_kod": "1785",
+          "rams_growth_pct": -0.5514109633473874,
+          "bas_growth_pct": -1.9039869812855992,
+          "difference_pp": -1.3525760179382118
+        },
+        {
+          "kommun_kod": "1814",
+          "rams_growth_pct": 1.0383386581469756,
+          "bas_growth_pct": 0.6002400960384069,
+          "difference_pp": -0.4380985621085687
+        },
+        {
+          "kommun_kod": "1860",
+          "rams_growth_pct": 0.8997429305912519,
+          "bas_growth_pct": 1.4248704663212486,
+          "difference_pp": 0.5251275357299967
+        },
+        {
+          "kommun_kod": "1861",
+          "rams_growth_pct": 2.651274895344402,
+          "bas_growth_pct": 2.135502732935035,
+          "difference_pp": -0.515772162409367
+        },
+        {
+          "kommun_kod": "1862",
+          "rams_growth_pct": -1.1675824175824134,
+          "bas_growth_pct": -0.5584642233856907,
+          "difference_pp": 0.6091181941967228
+        },
+        {
+          "kommun_kod": "1863",
+          "rams_growth_pct": 0.03649635036495624,
+          "bas_growth_pct": 0.689154878491105,
+          "difference_pp": 0.6526585281261488
+        },
+        {
+          "kommun_kod": "1864",
+          "rams_growth_pct": -0.3678724708767622,
+          "bas_growth_pct": 0.8064516129032251,
+          "difference_pp": 1.1743240837799873
+        },
+        {
+          "kommun_kod": "1880",
+          "rams_growth_pct": 3.0245586921349377,
+          "bas_growth_pct": 2.8949584887498547,
+          "difference_pp": -0.12960020338508293
+        },
+        {
+          "kommun_kod": "1881",
+          "rams_growth_pct": 1.6873043951558087,
+          "bas_growth_pct": 2.9315068493150687,
+          "difference_pp": 1.24420245415926
+        },
+        {
+          "kommun_kod": "1882",
+          "rams_growth_pct": 2.812568666227211,
+          "bas_growth_pct": 2.7667984189723382,
+          "difference_pp": -0.045770247254872665
+        },
+        {
+          "kommun_kod": "1883",
+          "rams_growth_pct": 2.3453729142933755,
+          "bas_growth_pct": 2.477899812483253,
+          "difference_pp": 0.1325268981898775
+        },
+        {
+          "kommun_kod": "1884",
+          "rams_growth_pct": 2.0857142857142907,
+          "bas_growth_pct": 2.359965880011372,
+          "difference_pp": 0.27425159429708135
+        },
+        {
+          "kommun_kod": "1885",
+          "rams_growth_pct": 0.513516132157732,
+          "bas_growth_pct": 0.7748934521503381,
+          "difference_pp": 0.26137731999260616
+        },
+        {
+          "kommun_kod": "1904",
+          "rams_growth_pct": 4.007071302298182,
+          "bas_growth_pct": 2.413184226015308,
+          "difference_pp": -1.5938870762828738
+        },
+        {
+          "kommun_kod": "1907",
+          "rams_growth_pct": 2.5677101653183154,
+          "bas_growth_pct": 2.517985611510798,
+          "difference_pp": -0.0497245538075175
+        },
+        {
+          "kommun_kod": "1960",
+          "rams_growth_pct": 3.0186030186030166,
+          "bas_growth_pct": 2.950364456785848,
+          "difference_pp": -0.06823856181716881
+        },
+        {
+          "kommun_kod": "1961",
+          "rams_growth_pct": 0.7303268212525138,
+          "bas_growth_pct": -1.0071942446043147,
+          "difference_pp": -1.7375210658568285
+        },
+        {
+          "kommun_kod": "1962",
+          "rams_growth_pct": -0.16501650165016146,
+          "bas_growth_pct": -0.8662696264212233,
+          "difference_pp": -0.7012531247710618
+        },
+        {
+          "kommun_kod": "1980",
+          "rams_growth_pct": 3.256387478288536,
+          "bas_growth_pct": 3.439712564725772,
+          "difference_pp": 0.183325086437236
+        },
+        {
+          "kommun_kod": "1981",
+          "rams_growth_pct": 0.22967386311438798,
+          "bas_growth_pct": 0.591715976331364,
+          "difference_pp": 0.362042113216976
+        },
+        {
+          "kommun_kod": "1982",
+          "rams_growth_pct": 0.09433962264151496,
+          "bas_growth_pct": -0.3102218085931474,
+          "difference_pp": -0.40456143123466237
+        },
+        {
+          "kommun_kod": "1983",
+          "rams_growth_pct": 0.2941176470588225,
+          "bas_growth_pct": 0.9714332757059463,
+          "difference_pp": 0.6773156286471238
+        },
+        {
+          "kommun_kod": "1984",
+          "rams_growth_pct": 0.5536879572869191,
+          "bas_growth_pct": 1.379310344827589,
+          "difference_pp": 0.8256223875406699
+        },
+        {
+          "kommun_kod": "2021",
+          "rams_growth_pct": 3.2352941176470695,
+          "bas_growth_pct": 3.0312802321831755,
+          "difference_pp": -0.20401388546389398
+        },
+        {
+          "kommun_kod": "2023",
+          "rams_growth_pct": 2.754982415005869,
+          "bas_growth_pct": 2.690238278247503,
+          "difference_pp": -0.06474413675836566
+        },
+        {
+          "kommun_kod": "2026",
+          "rams_growth_pct": 0.8874801901743279,
+          "bas_growth_pct": 1.5065913370998052,
+          "difference_pp": 0.6191111469254773
+        },
+        {
+          "kommun_kod": "2029",
+          "rams_growth_pct": 2.7272727272727337,
+          "bas_growth_pct": 2.654482158398608,
+          "difference_pp": -0.07279056887412594
+        },
+        {
+          "kommun_kod": "2031",
+          "rams_growth_pct": 3.0892726830454853,
+          "bas_growth_pct": 2.519379844961245,
+          "difference_pp": -0.5698928380842405
+        },
+        {
+          "kommun_kod": "2034",
+          "rams_growth_pct": -6.571654790182102,
+          "bas_growth_pct": -0.5066250974279041,
+          "difference_pp": 6.065029692754198
+        },
+        {
+          "kommun_kod": "2039",
+          "rams_growth_pct": 2.5649457415323873,
+          "bas_growth_pct": 3.039215686274499,
+          "difference_pp": 0.4742699447421117
+        },
+        {
+          "kommun_kod": "2061",
+          "rams_growth_pct": 0.03095017022594071,
+          "bas_growth_pct": 0.6485484867202018,
+          "difference_pp": 0.6175983164942611
+        },
+        {
+          "kommun_kod": "2062",
+          "rams_growth_pct": 2.007434944237918,
+          "bas_growth_pct": 1.6512915129151207,
+          "difference_pp": -0.35614343132279735
+        },
+        {
+          "kommun_kod": "2080",
+          "rams_growth_pct": 1.6516208453015935,
+          "bas_growth_pct": 1.9565510727297175,
+          "difference_pp": 0.30493022742812403
+        },
+        {
+          "kommun_kod": "2081",
+          "rams_growth_pct": 1.1702831667305125,
+          "bas_growth_pct": 1.3635571054925855,
+          "difference_pp": 0.193273938762073
+        },
+        {
+          "kommun_kod": "2082",
+          "rams_growth_pct": 1.4265734265734187,
+          "bas_growth_pct": 2.087973273942101,
+          "difference_pp": 0.6613998473686822
+        },
+        {
+          "kommun_kod": "2083",
+          "rams_growth_pct": -0.9092264122820048,
+          "bas_growth_pct": 0.3256846780162803,
+          "difference_pp": 1.2349110902982852
+        },
+        {
+          "kommun_kod": "2084",
+          "rams_growth_pct": 0.04803996925442089,
+          "bas_growth_pct": -0.5793522651723837,
+          "difference_pp": -0.6273922344268046
+        },
+        {
+          "kommun_kod": "2085",
+          "rams_growth_pct": 0.2982187474812603,
+          "bas_growth_pct": 1.4423851732473736,
+          "difference_pp": 1.1441664257661133
+        },
+        {
+          "kommun_kod": "2101",
+          "rams_growth_pct": -0.5785920925747368,
+          "bas_growth_pct": 0.3859141341051586,
+          "difference_pp": 0.9645062266798954
+        },
+        {
+          "kommun_kod": "2104",
+          "rams_growth_pct": 0.5271481286241331,
+          "bas_growth_pct": 0.5803218148245914,
+          "difference_pp": 0.05317368620045837
+        },
+        {
+          "kommun_kod": "2121",
+          "rams_growth_pct": 1.5973254086181221,
+          "bas_growth_pct": 1.642672572905135,
+          "difference_pp": 0.04534716428701291
+        },
+        {
+          "kommun_kod": "2132",
+          "rams_growth_pct": -0.9253547193090683,
+          "bas_growth_pct": 0.6620428751576313,
+          "difference_pp": 1.5873975944666996
+        },
+        {
+          "kommun_kod": "2161",
+          "rams_growth_pct": 0.26894865525672884,
+          "bas_growth_pct": -0.0364121859449007,
+          "difference_pp": -0.30536084120162954
+        },
+        {
+          "kommun_kod": "2180",
+          "rams_growth_pct": 3.2808372887414894,
+          "bas_growth_pct": 3.3326115627645203,
+          "difference_pp": 0.05177427402303092
+        },
+        {
+          "kommun_kod": "2181",
+          "rams_growth_pct": 0.16660921521314265,
+          "bas_growth_pct": 0.017203807776122737,
+          "difference_pp": -0.1494054074370199
+        },
+        {
+          "kommun_kod": "2182",
+          "rams_growth_pct": 0.40019056693663124,
+          "bas_growth_pct": 0.9103977000479047,
+          "difference_pp": 0.5102071331112734
+        },
+        {
+          "kommun_kod": "2183",
+          "rams_growth_pct": 0.84923831202941,
+          "bas_growth_pct": 1.2826105924439446,
+          "difference_pp": 0.43337228041453457
+        },
+        {
+          "kommun_kod": "2184",
+          "rams_growth_pct": 3.1418918918918903,
+          "bas_growth_pct": 3.4549271004708615,
+          "difference_pp": 0.31303520857897116
+        },
+        {
+          "kommun_kod": "2260",
+          "rams_growth_pct": -0.3468780971258689,
+          "bas_growth_pct": -1.003512293025588,
+          "difference_pp": -0.656634195899719
+        },
+        {
+          "kommun_kod": "2262",
+          "rams_growth_pct": 1.617475404368851,
+          "bas_growth_pct": 1.9326891036321125,
+          "difference_pp": 0.3152136992632615
+        },
+        {
+          "kommun_kod": "2280",
+          "rams_growth_pct": -0.07665037846124045,
+          "bas_growth_pct": 0.6129681065031978,
+          "difference_pp": 0.6896184849644382
+        },
+        {
+          "kommun_kod": "2281",
+          "rams_growth_pct": 0.7208964356738568,
+          "bas_growth_pct": 0.672384481671795,
+          "difference_pp": -0.04851195400206176
+        },
+        {
+          "kommun_kod": "2282",
+          "rams_growth_pct": -1.0777709736680907,
+          "bas_growth_pct": -0.8557608830460084,
+          "difference_pp": 0.22201009062208232
+        },
+        {
+          "kommun_kod": "2283",
+          "rams_growth_pct": 0.9068923821039965,
+          "bas_growth_pct": 0.9557652248499027,
+          "difference_pp": 0.0488728427459062
+        },
+        {
+          "kommun_kod": "2284",
+          "rams_growth_pct": 1.1755636924262847,
+          "bas_growth_pct": 0.8917977571095026,
+          "difference_pp": -0.28376593531678207
+        },
+        {
+          "kommun_kod": "2303",
+          "rams_growth_pct": -2.1425448185395712,
+          "bas_growth_pct": -1.1519716437749183,
+          "difference_pp": 0.9905731747646529
+        },
+        {
+          "kommun_kod": "2305",
+          "rams_growth_pct": 1.0243277848911658,
+          "bas_growth_pct": 1.8965517241379404,
+          "difference_pp": 0.8722239392467745
+        },
+        {
+          "kommun_kod": "2309",
+          "rams_growth_pct": 0.7544979686593178,
+          "bas_growth_pct": 1.410083059687084,
+          "difference_pp": 0.6555850910277661
+        },
+        {
+          "kommun_kod": "2313",
+          "rams_growth_pct": 0.5040713454827372,
+          "bas_growth_pct": 0.6243902439024396,
+          "difference_pp": 0.12031889841970234
+        },
+        {
+          "kommun_kod": "2321",
+          "rams_growth_pct": 5.585429314830881,
+          "bas_growth_pct": 5.736543909348435,
+          "difference_pp": 0.15111459451755405
+        },
+        {
+          "kommun_kod": "2326",
+          "rams_growth_pct": -1.1842105263157876,
+          "bas_growth_pct": 0.03376097231599928,
+          "difference_pp": 1.2179714986317869
+        },
+        {
+          "kommun_kod": "2361",
+          "rams_growth_pct": 1.9776982958131795,
+          "bas_growth_pct": 3.0788696752425126,
+          "difference_pp": 1.1011713794293332
+        },
+        {
+          "kommun_kod": "2380",
+          "rams_growth_pct": 3.065781187381922,
+          "bas_growth_pct": 2.7017013878993357,
+          "difference_pp": -0.3640797994825862
+        },
+        {
+          "kommun_kod": "2401",
+          "rams_growth_pct": 0.1686340640809414,
+          "bas_growth_pct": 1.3003355704698016,
+          "difference_pp": 1.1317015063888602
+        },
+        {
+          "kommun_kod": "2403",
+          "rams_growth_pct": 5.042016806722693,
+          "bas_growth_pct": 1.1641443538998875,
+          "difference_pp": -3.877872452822806
+        },
+        {
+          "kommun_kod": "2404",
+          "rams_growth_pct": 1.935212452671431,
+          "bas_growth_pct": 2.4706867671691723,
+          "difference_pp": 0.5354743144977414
+        },
+        {
+          "kommun_kod": "2409",
+          "rams_growth_pct": 1.2684989429175397,
+          "bas_growth_pct": 2.9677419354838808,
+          "difference_pp": 1.699242992566341
+        },
+        {
+          "kommun_kod": "2417",
+          "rams_growth_pct": 2.3217247097844007,
+          "bas_growth_pct": 2.55813953488373,
+          "difference_pp": 0.2364148250993292
+        },
+        {
+          "kommun_kod": "2418",
+          "rams_growth_pct": -4.022582921665485,
+          "bas_growth_pct": -0.8227374719521285,
+          "difference_pp": 3.1998454497133566
+        },
+        {
+          "kommun_kod": "2421",
+          "rams_growth_pct": -2.052785923753664,
+          "bas_growth_pct": -1.0443864229765065,
+          "difference_pp": 1.0083995007771573
+        },
+        {
+          "kommun_kod": "2422",
+          "rams_growth_pct": -1.0919017288444022,
+          "bas_growth_pct": 1.1331444759206777,
+          "difference_pp": 2.22504620476508
+        },
+        {
+          "kommun_kod": "2425",
+          "rams_growth_pct": -0.7149240393208189,
+          "bas_growth_pct": 2.1505376344086002,
+          "difference_pp": 2.865461673729419
+        },
+        {
+          "kommun_kod": "2460",
+          "rams_growth_pct": -0.16474464579900872,
+          "bas_growth_pct": -0.16784155756965902,
+          "difference_pp": -0.0030969117706503013
+        },
+        {
+          "kommun_kod": "2462",
+          "rams_growth_pct": -0.8033531260915105,
+          "bas_growth_pct": 0.5559416261292638,
+          "difference_pp": 1.3592947522207743
+        },
+        {
+          "kommun_kod": "2463",
+          "rams_growth_pct": -2.5510204081632626,
+          "bas_growth_pct": -0.6018916595012858,
+          "difference_pp": 1.9491287486619768
+        },
+        {
+          "kommun_kod": "2480",
+          "rams_growth_pct": 2.574416733708773,
+          "bas_growth_pct": 2.8808145047187095,
+          "difference_pp": 0.30639777100993637
+        },
+        {
+          "kommun_kod": "2481",
+          "rams_growth_pct": 0.7758074730842335,
+          "bas_growth_pct": 1.3022074003493644,
+          "difference_pp": 0.526399927265131
+        },
+        {
+          "kommun_kod": "2482",
+          "rams_growth_pct": 2.9984710345999144,
+          "bas_growth_pct": 1.9679402599590112,
+          "difference_pp": -1.0305307746409031
+        },
+        {
+          "kommun_kod": "2505",
+          "rams_growth_pct": -1.5549796371714164,
+          "bas_growth_pct": -0.33407572383074013,
+          "difference_pp": 1.2209039133406763
+        },
+        {
+          "kommun_kod": "2506",
+          "rams_growth_pct": 0.14074595355384467,
+          "bas_growth_pct": -0.41180507892930596,
+          "difference_pp": -0.5525510324831506
+        },
+        {
+          "kommun_kod": "2510",
+          "rams_growth_pct": 0.1321585903083733,
+          "bas_growth_pct": -1.2037449843958936,
+          "difference_pp": -1.335903574704267
+        },
+        {
+          "kommun_kod": "2513",
+          "rams_growth_pct": 0.8230452674897082,
+          "bas_growth_pct": 1.1813759555246772,
+          "difference_pp": 0.35833068803496904
+        },
+        {
+          "kommun_kod": "2514",
+          "rams_growth_pct": 0.14710208884967102,
+          "bas_growth_pct": 1.0118785745710568,
+          "difference_pp": 0.8647764857213858
+        },
+        {
+          "kommun_kod": "2518",
+          "rams_growth_pct": 1.1627906976744207,
+          "bas_growth_pct": 3.2883147386964184,
+          "difference_pp": 2.1255240410219978
+        },
+        {
+          "kommun_kod": "2521",
+          "rams_growth_pct": -0.2628614344723945,
+          "bas_growth_pct": 0.15600624024960652,
+          "difference_pp": 0.41886767472200104
+        },
+        {
+          "kommun_kod": "2523",
+          "rams_growth_pct": 1.0609527771999083,
+          "bas_growth_pct": 1.0341151385927505,
+          "difference_pp": -0.02683763860715782
+        },
+        {
+          "kommun_kod": "2560",
+          "rams_growth_pct": -1.2233375156838089,
+          "bas_growth_pct": -1.5403961018547574,
+          "difference_pp": -0.3170585861709485
+        },
+        {
+          "kommun_kod": "2580",
+          "rams_growth_pct": 1.6895604395604336,
+          "bas_growth_pct": 1.543809894106074,
+          "difference_pp": -0.1457505454543595
+        },
+        {
+          "kommun_kod": "2581",
+          "rams_growth_pct": 0.7190412782956068,
+          "bas_growth_pct": 1.56365949326831,
+          "difference_pp": 0.8446182149727033
+        },
+        {
+          "kommun_kod": "2582",
+          "rams_growth_pct": 1.542529748788013,
+          "bas_growth_pct": 2.53253605346464,
+          "difference_pp": 0.9900063046766272
+        },
+        {
+          "kommun_kod": "2583",
+          "rams_growth_pct": 1.0606953447259926,
+          "bas_growth_pct": 2.2265516281658737,
+          "difference_pp": 1.1658562834398811
+        },
+        {
+          "kommun_kod": "2584",
+          "rams_growth_pct": 1.9954073956766072,
+          "bas_growth_pct": 1.9260091485434616,
+          "difference_pp": -0.06939824713314557
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Comparison is limited to one common annual change (2020-2021); stability beyond the overlap cannot be inferred.",
+    "RAMS 2018/2019 method change and BAS 2024 classification change are separate and unresolved.",
+    "Close agreement does not validate historic publication availability or support automatic series splicing."
+  ]
+}
