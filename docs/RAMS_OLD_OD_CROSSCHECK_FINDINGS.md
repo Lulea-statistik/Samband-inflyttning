@@ -23,3 +23,11 @@ Differensen kan orsakas av arbetande med okänd arbetsställekommun, arbetsstäl
 5. Behåll `PendlingK`-seriens publicerade totaler för utvecklingsmått tills källornas avgränsningar dokumenterats; fortsätt separat analys av metodbrott RAMS 2019 och BAS 2020.
 
 **Inga regressionskörningar, ingen ändring av panel eller produktionsmodell.**
+
+## Källförklaring från SCB:s fotnot (2026-10-14)
+
+SCB:s [PendlingK](https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__AM__AM0207__AM0207L/PendlingK/) anger uttryckligen under **Viktiga fotnoter** att tabellen inkluderar individer med svensk arbetsgivare och **arbetsställe i utlandet**. [AM0207PendlKomA04](https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__AM__AM0207__AM0207L/AM0207PendlKomA04/) har bostadskommun och arbetsställekommun som vardera innehåller 290 svenska kommuner. Detta ger en **sannolik** förklaring till att detaljmatrisen summerar till mindre utpendling än PendlingK medan inpendlingen överensstämmer exakt.
+
+**Viktigt:** Fotnoterna visar inte ännu att *hela* differensen motsvarar utlandsplacerade arbetstagare. Dokumentera tills vidare `utpendling_RAMS_minus_summa_svenska_kommunpar` som **oidentifierad restpost, sannolikt utländska arbetsställen**. Läs inte restposten som bekräftat antal arbetstagare utomlands. Beräkning av sysselsatta efter bostadskommun bör fortsatt använda publicerad RAMS-total utan att restposten kastas bort.
+
+SCB:s äldre detaljerade tabell anger vidare ett metodbrott 2011 där arbetsmarknadsstatus för 65+ förändras; det är en separat fråga från restposten. Den nyare detaljerade tabellen anger AGI-metodbrott 2019. 
