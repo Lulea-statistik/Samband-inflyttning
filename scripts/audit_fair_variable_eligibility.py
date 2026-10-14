@@ -23,7 +23,6 @@ def main():
         "Never treat any feature as production-approved based on this audit.",
         "Strongly correlated variables are flagged for group substitution, not automatically deleted.",
         "Known 2023-2024 evaluations are exploratory, not an independent test."]}
-    }
     eligible=[]
     for v in all_candidates:
         counts={str(year):int(subset.loc[subset.year.eq(year),v].notna().sum()) if v in subset else 0 for year in years}
