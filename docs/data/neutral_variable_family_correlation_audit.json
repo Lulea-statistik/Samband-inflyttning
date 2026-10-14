@@ -1,0 +1,404 @@
+{
+  "status": "non_predictive_correlation_audit",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+  ],
+  "municipalities": 290,
+  "rows": 1450,
+  "inventory_variables": 80,
+  "in_panel": 78,
+  "not_in_panel": [
+    "lag1_sysselsatta_arbetsstalle_rams_bas_historisk_forandring_pct",
+    "lag1_sysselsatta_bostad_rams_bas_historisk_forandring_pct"
+  ],
+  "high_absolute_spearman_threshold": 0.85,
+  "high_correlation_pairs": [
+    {
+      "a": "lag1_arbetskraftsdeltagande",
+      "b": "lag1_utanf_arbetkraften_andel_pct",
+      "spearman": -1.0,
+      "n_complete_pairs": 870,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_fritidshus_per_1000_inv",
+      "b": "lag1_log_fritidshus_per_1000_inv",
+      "spearman": 1.0,
+      "n_complete_pairs": 1450,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_log_regional_centre_distance_km",
+      "b": "lag1_regional_centre_distance_km",
+      "spearman": 1.0,
+      "n_complete_pairs": 870,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_log_smahuspris_medel",
+      "b": "lag1_smahuspris_medel_tkr",
+      "spearman": 1.0,
+      "n_complete_pairs": 1450,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_snoskoterandel_alla_fordon_pct",
+      "b": "lag1_snoskoterandel_exkl_dragfordon_pct",
+      "spearman": 1.0,
+      "n_complete_pairs": 1450,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_arbetskraftsdeltagande",
+      "b": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+      "spearman": -0.99974,
+      "n_complete_pairs": 870,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+      "b": "lag1_utanf_arbetkraften_andel_pct",
+      "spearman": 0.99974,
+      "n_complete_pairs": 870,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_smahuspris_inkomstkvot_medel",
+      "b": "lag1_smahuspris_inkomstkvot_median",
+      "spearman": 0.99934,
+      "n_complete_pairs": 1450,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_log_smahuspris_medel",
+      "b": "lag1_smahuspris_inkomstkvot_median",
+      "spearman": 0.99514,
+      "n_complete_pairs": 1450,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_smahuspris_inkomstkvot_median",
+      "b": "lag1_smahuspris_medel_tkr",
+      "spearman": 0.99514,
+      "n_complete_pairs": 1450,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_log_smahuspris_medel",
+      "b": "lag1_smahuspris_inkomstkvot_medel",
+      "spearman": 0.9933,
+      "n_complete_pairs": 1450,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_smahuspris_inkomstkvot_medel",
+      "b": "lag1_smahuspris_medel_tkr",
+      "spearman": 0.9933,
+      "n_complete_pairs": 1450,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+      "b": "lag1_log_externa_fa_jobb_per_1000",
+      "spearman": -0.99268,
+      "n_complete_pairs": 870,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_andel_bostader_141_plus",
+      "b": "lag1_andel_bostader_151_plus",
+      "spearman": 0.98791,
+      "n_complete_pairs": 1450,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_fritidshus_per_1000_inv",
+      "b": "lag1_fritidshusandel_bland_smahus",
+      "spearman": 0.98054,
+      "n_complete_pairs": 1450,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_fritidshusandel_bland_smahus",
+      "b": "lag1_log_fritidshus_per_1000_inv",
+      "spearman": 0.98054,
+      "n_complete_pairs": 1450,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_arbetsloshet",
+      "b": "lag1_kolada_langtidsarbetslosa_pct",
+      "spearman": 0.96846,
+      "n_complete_pairs": 870,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_inkomst_median_tkr",
+      "b": "lag1_inkomst_tkr",
+      "spearman": 0.96233,
+      "n_complete_pairs": 1450,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_bebyggd_anlagd_andel_land_pct",
+      "b": "lag1_log_befolkningstathet_land",
+      "spearman": 0.96091,
+      "n_complete_pairs": 1450,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_strand_hav_bostader_per_1000",
+      "b": "lag1_strand_hav_bostader_tatort_per_1000",
+      "spearman": 0.95447,
+      "n_complete_pairs": 1450,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_andel_bostader_111_plus",
+      "b": "lag1_andel_bostader_141_plus",
+      "spearman": 0.94036,
+      "n_complete_pairs": 1450,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_andel_bostader_111_plus",
+      "b": "lag1_andel_bostader_70_max",
+      "spearman": -0.91562,
+      "n_complete_pairs": 1450,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_andel_bostader_111_plus",
+      "b": "lag1_andel_bostader_151_plus",
+      "spearman": 0.91307,
+      "n_complete_pairs": 1450,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_arbetskraftsdeltagande",
+      "b": "lag1_sysselsattningsgrad",
+      "spearman": 0.89904,
+      "n_complete_pairs": 870,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_sysselsattningsgrad",
+      "b": "lag1_utanf_arbetkraften_andel_pct",
+      "spearman": -0.89904,
+      "n_complete_pairs": 870,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_sysselsattningsgrad",
+      "b": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+      "spearman": -0.89884,
+      "n_complete_pairs": 870,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_strand_hav_bostader_per_1000",
+      "b": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+      "spearman": 0.89534,
+      "n_complete_pairs": 1450,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_log_befolkningstathet_land",
+      "b": "lag1_strand_inland_bostader_per_1000",
+      "spearman": -0.89012,
+      "n_complete_pairs": 1450,
+      "same_theme": false
+    },
+    {
+      "a": "lag1_arbetsloshet",
+      "b": "lag1_sysselsattningsgrad",
+      "spearman": -0.88951,
+      "n_complete_pairs": 870,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_gymnasium_hogskoleforberedande_pct",
+      "b": "lag1_gymnasium_yrkesprogram_pct",
+      "spearman": -0.88635,
+      "n_complete_pairs": 1450,
+      "same_theme": true
+    },
+    {
+      "a": "lag1_bebyggd_anlagd_andel_land_pct",
+      "b": "lag1_strand_inland_bostader_per_1000",
+      "spearman": -0.8594,
+      "n_complete_pairs": 1450,
+      "same_theme": false
+    },
+    {
+      "a": "lag1_andel_eftergymnasial",
+      "b": "lag1_log_smahuspris_medel",
+      "spearman": 0.85448,
+      "n_complete_pairs": 1450,
+      "same_theme": false
+    },
+    {
+      "a": "lag1_andel_eftergymnasial",
+      "b": "lag1_smahuspris_medel_tkr",
+      "spearman": 0.85448,
+      "n_complete_pairs": 1450,
+      "same_theme": false
+    }
+  ],
+  "high_correlation_pair_count": 33,
+  "within_year_checks": {
+    "2019": {
+      "n_communities": 290,
+      "high_full_window_pairs_available": 23,
+      "high_full_window_pairs_still_ge_0_85": 22
+    },
+    "2020": {
+      "n_communities": 290,
+      "high_full_window_pairs_available": 23,
+      "high_full_window_pairs_still_ge_0_85": 23
+    },
+    "2021": {
+      "n_communities": 290,
+      "high_full_window_pairs_available": 33,
+      "high_full_window_pairs_still_ge_0_85": 33
+    },
+    "2022": {
+      "n_communities": 290,
+      "high_full_window_pairs_available": 33,
+      "high_full_window_pairs_still_ge_0_85": 31
+    },
+    "2023": {
+      "n_communities": 290,
+      "high_full_window_pairs_available": 33,
+      "high_full_window_pairs_still_ge_0_85": 33
+    }
+  },
+  "predefined_families": [
+    {
+      "family": "sysselsatta_bostad_tillvaxt",
+      "variables": [
+        "lag1_sysselsatta_bostad_forandring_pct",
+        "lag1_sysselsatta_bostad_rams_bas_historisk_forandring_pct"
+      ],
+      "all_present_in_panel": false,
+      "status": "candidate_alternatives_not_independent",
+      "decision": "no_preference_assigned"
+    },
+    {
+      "family": "sysselsatta_arbetsstalle_tillvaxt",
+      "variables": [
+        "lag1_sysselsatta_arbetsstalle_forandring_pct",
+        "lag1_sysselsatta_arbetsstalle_rams_bas_historisk_forandring_pct"
+      ],
+      "all_present_in_panel": false,
+      "status": "candidate_alternatives_not_independent",
+      "decision": "no_preference_assigned"
+    },
+    {
+      "family": "smahuspris",
+      "variables": [
+        "lag1_smahuspris_medel_tkr",
+        "lag1_log_smahuspris_medel"
+      ],
+      "all_present_in_panel": true,
+      "status": "candidate_alternatives_not_independent",
+      "decision": "no_preference_assigned"
+    },
+    {
+      "family": "fritidshus",
+      "variables": [
+        "lag1_fritidshus_per_1000_inv",
+        "lag1_log_fritidshus_per_1000_inv"
+      ],
+      "all_present_in_panel": true,
+      "status": "candidate_alternatives_not_independent",
+      "decision": "no_preference_assigned"
+    },
+    {
+      "family": "avstand_regionalt_centrum",
+      "variables": [
+        "lag1_regional_centre_distance_km",
+        "lag1_log_regional_centre_distance_km"
+      ],
+      "all_present_in_panel": true,
+      "status": "candidate_alternatives_not_independent",
+      "decision": "no_preference_assigned"
+    },
+    {
+      "family": "arbetskraft_utanfor",
+      "variables": [
+        "lag1_utanf_arbetkraften_andel_pct",
+        "lag1_utanf_arbetkraften_andel_fran_komponenter_pct"
+      ],
+      "all_present_in_panel": true,
+      "status": "candidate_alternatives_not_independent",
+      "decision": "no_preference_assigned"
+    },
+    {
+      "family": "snoskoterandel",
+      "variables": [
+        "lag1_snoskoterandel_alla_fordon_pct",
+        "lag1_snoskoterandel_exkl_dragfordon_pct"
+      ],
+      "all_present_in_panel": true,
+      "status": "candidate_alternatives_not_independent",
+      "decision": "no_preference_assigned"
+    },
+    {
+      "family": "gymnasieinriktning",
+      "variables": [
+        "lag1_gymnasium_hogskoleforberedande_pct",
+        "lag1_gymnasium_yrkesprogram_pct"
+      ],
+      "all_present_in_panel": true,
+      "status": "candidate_alternatives_not_independent",
+      "decision": "no_preference_assigned"
+    },
+    {
+      "family": "arbetsloshet",
+      "variables": [
+        "lag1_arbetsloshet",
+        "lag1_kolada_arbetslosa_18_65_pct",
+        "lag1_kolada_arbetslosa_18_24_pct",
+        "lag1_kolada_langtidsarbetslosa_pct"
+      ],
+      "all_present_in_panel": true,
+      "status": "candidate_alternatives_not_independent",
+      "decision": "no_preference_assigned"
+    },
+    {
+      "family": "bostadsstorlekar",
+      "variables": [
+        "lag1_andel_bostader_111_plus",
+        "lag1_andel_bostader_141_plus",
+        "lag1_andel_bostader_151_plus",
+        "lag1_andel_smahus_111_plus",
+        "lag1_andel_smahus_151_plus"
+      ],
+      "all_present_in_panel": true,
+      "status": "candidate_alternatives_not_independent",
+      "decision": "no_preference_assigned"
+    }
+  ],
+  "family_covered_variable_count": 25,
+  "five_out_of_pool_demographic_features": [
+    "lag1_andel_20_34",
+    "lag1_befolkningstillvaxt_pct",
+    "lag1_inflyttare_medelalder",
+    "lag1_inflyttning_per_1000",
+    "lag1_utflyttning_per_1000"
+  ],
+  "production_changed": false,
+  "limitations": [
+    "Correlations are descriptive, not causal, and do not rank predictors by usefulness.",
+    "Pooled municipality-year correlations can be driven by municipality size and common time patterns.",
+    "Correlations in single years, alternative transformations and residualized effects require separate interpretation.",
+    "Features missing from the current panel are reported rather than silently excluded from inventory.",
+    "New historical RAMS/BAS features live in a separate research file and must not be treated as missing from the inventory.",
+    "No automatic feature selection, no outcome-based ranking and no modification of production panel."
+  ]
+}
