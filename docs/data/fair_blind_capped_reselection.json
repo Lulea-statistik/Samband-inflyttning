@@ -1,0 +1,728 @@
+{
+  "status": "research_only_capped_blind_reselection",
+  "caps": [
+    6,
+    10,
+    14
+  ],
+  "controls": [
+    "lag1_log_folkmangd",
+    "lag1_tatortsgrad_pct",
+    "lag1_regional_centre_distance_km"
+  ],
+  "data_years": [
+    2022,
+    2023,
+    2024
+  ],
+  "test_year": 2024,
+  "n_municipalities": 290,
+  "candidate_counts": {
+    "original": 22,
+    "expanded": 73
+  },
+  "results": {
+    "6": {
+      "metrics": {
+        "original": {
+          "r2": 0.3554797229528819,
+          "rmse": 12.151145331880066,
+          "mae": 9.007430733442202,
+          "median_abs_error": 6.914557218510126,
+          "p90_abs_error": 17.91311111810001,
+          "p95_abs_error": 23.465660311899654,
+          "p90_p10_abs_error_gap": 16.784622082246052,
+          "best_decile_mae": 0.5684150012917905,
+          "worst_decile_mae": 26.783676266358636,
+          "decile_mae_gap": 26.215261265066847,
+          "max_abs_error": 55.72142243366649,
+          "n": 290
+        },
+        "expanded": {
+          "r2": 0.4121898631900207,
+          "rmse": 11.604260198162056,
+          "mae": 8.300067124554197,
+          "median_abs_error": 5.893615247917076,
+          "p90_abs_error": 16.814574832124407,
+          "p95_abs_error": 23.73633817721795,
+          "p90_p10_abs_error_gap": 15.695870908315452,
+          "best_decile_mae": 0.6232278222390897,
+          "worst_decile_mae": 26.563958641671892,
+          "decile_mae_gap": 25.9407308194328,
+          "max_abs_error": 61.729471026166465,
+          "n": 290
+        }
+      },
+      "selection_frequency": {
+        "original": {
+          "lag1_log_folkmangd": 5,
+          "lag1_tatortsgrad_pct": 5,
+          "lag1_regional_centre_distance_km": 5,
+          "lag1_andel_bostadsratt": 5,
+          "lag1_ekonomisk_standard_gap_pp": 4,
+          "lag1_sysselsattningsgrad": 3,
+          "lag1_andel_eftergymnasial": 2,
+          "lag1_andel_studerande": 1
+        },
+        "expanded": {
+          "lag1_log_folkmangd": 5,
+          "lag1_tatortsgrad_pct": 5,
+          "lag1_regional_centre_distance_km": 5,
+          "lag1_log_fritidshus_per_1000_inv": 4,
+          "lag1_smahuspris_inkomstkvot_medel": 3,
+          "lag1_smahusforsaljningar_per_1000_smahus": 2,
+          "lag1_inkomst_tkr": 1,
+          "lag1_andel_smahus": 1,
+          "lag1_smahuspris_medel_tkr": 1,
+          "lag1_ekonomisk_standard_gap_pp": 1,
+          "lag1_andel_studerande": 1,
+          "lag1_bebyggd_anlagd_andel_land_pct": 1
+        }
+      },
+      "lulea": [
+        {
+          "code": "2580",
+          "actual": 51.74210559357147,
+          "original": 58.80364916631806,
+          "expanded": 50.46602033188595
+        }
+      ],
+      "folds": [
+        {
+          "fold": 0,
+          "selected": {
+            "original": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_andel_bostadsratt",
+              "lag1_ekonomisk_standard_gap_pp",
+              "lag1_sysselsattningsgrad"
+            ],
+            "expanded": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_log_fritidshus_per_1000_inv",
+              "lag1_smahuspris_inkomstkvot_medel",
+              "lag1_inkomst_tkr"
+            ]
+          },
+          "n_test": 58
+        },
+        {
+          "fold": 1,
+          "selected": {
+            "original": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_andel_bostadsratt",
+              "lag1_ekonomisk_standard_gap_pp",
+              "lag1_andel_eftergymnasial"
+            ],
+            "expanded": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_andel_smahus",
+              "lag1_log_fritidshus_per_1000_inv",
+              "lag1_smahuspris_medel_tkr"
+            ]
+          },
+          "n_test": 52
+        },
+        {
+          "fold": 2,
+          "selected": {
+            "original": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_ekonomisk_standard_gap_pp",
+              "lag1_sysselsattningsgrad",
+              "lag1_andel_bostadsratt"
+            ],
+            "expanded": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_ekonomisk_standard_gap_pp",
+              "lag1_andel_studerande",
+              "lag1_log_fritidshus_per_1000_inv"
+            ]
+          },
+          "n_test": 65
+        },
+        {
+          "fold": 3,
+          "selected": {
+            "original": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_ekonomisk_standard_gap_pp",
+              "lag1_andel_bostadsratt",
+              "lag1_andel_studerande"
+            ],
+            "expanded": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_smahuspris_inkomstkvot_medel",
+              "lag1_log_fritidshus_per_1000_inv",
+              "lag1_smahusforsaljningar_per_1000_smahus"
+            ]
+          },
+          "n_test": 64
+        },
+        {
+          "fold": 4,
+          "selected": {
+            "original": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_andel_bostadsratt",
+              "lag1_andel_eftergymnasial",
+              "lag1_sysselsattningsgrad"
+            ],
+            "expanded": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_smahuspris_inkomstkvot_medel",
+              "lag1_bebyggd_anlagd_andel_land_pct",
+              "lag1_smahusforsaljningar_per_1000_smahus"
+            ]
+          },
+          "n_test": 51
+        }
+      ]
+    },
+    "10": {
+      "metrics": {
+        "original": {
+          "r2": 0.48975539324118567,
+          "rmse": 10.81155430682936,
+          "mae": 7.608014864983814,
+          "median_abs_error": 5.402597418180566,
+          "p90_abs_error": 16.076379136449418,
+          "p95_abs_error": 21.134060755208882,
+          "p90_p10_abs_error_gap": 14.835924830271486,
+          "best_decile_mae": 0.6337557590794883,
+          "worst_decile_mae": 25.205274421311362,
+          "decile_mae_gap": 24.571518662231874,
+          "max_abs_error": 62.32130878074494,
+          "n": 290
+        },
+        "expanded": {
+          "r2": 0.32739432651606515,
+          "rmse": 12.413069466350949,
+          "mae": 8.853223262350864,
+          "median_abs_error": 6.50100943831659,
+          "p90_abs_error": 17.882934098724036,
+          "p95_abs_error": 23.937140753724787,
+          "p90_p10_abs_error_gap": 16.525837134180154,
+          "best_decile_mae": 0.6434378092202757,
+          "worst_decile_mae": 28.05536597705201,
+          "decile_mae_gap": 27.411928167831732,
+          "max_abs_error": 64.39977944688388,
+          "n": 290
+        }
+      },
+      "selection_frequency": {
+        "original": {
+          "lag1_log_folkmangd": 5,
+          "lag1_tatortsgrad_pct": 5,
+          "lag1_regional_centre_distance_km": 5,
+          "lag1_andel_bostadsratt": 5,
+          "lag1_ekonomisk_standard_gap_pp": 5,
+          "lag1_sysselsattningsgrad": 5,
+          "lag1_bostader_per_1000": 4,
+          "lag1_andel_eftergymnasial": 4,
+          "lag1_andel_studerande": 4,
+          "lag1_log_externa_fa_jobb_per_1000": 3,
+          "lag1_fardigstallda_bostader_per_1000": 3,
+          "lag1_arbetsloshet": 1,
+          "lag1_valdeltagande_pct": 1
+        },
+        "expanded": {
+          "lag1_log_folkmangd": 5,
+          "lag1_tatortsgrad_pct": 5,
+          "lag1_regional_centre_distance_km": 5,
+          "lag1_log_fritidshus_per_1000_inv": 4,
+          "lag1_inkomst_tkr": 4,
+          "lag1_smahuspris_inkomstkvot_medel": 3,
+          "lag1_smahusforsaljningar_per_1000_smahus": 3,
+          "lag1_bebyggd_anlagd_andel_land_pct": 3,
+          "lag1_andel_studerande": 3,
+          "lag1_andel_smahus": 2,
+          "lag1_strand_inland_bostader_per_1000": 2,
+          "lag1_bas_ovriga_andel_pct": 2,
+          "lag1_smahuspris_medel_tkr": 1,
+          "lag1_andel_bostader_111_plus": 1,
+          "lag1_andel_smahus_111_plus": 1,
+          "lag1_ekonomisk_standard_gap_pp": 1,
+          "lag1_fritidshus_per_1000_inv": 1,
+          "lag1_kvinnors_lonesumma_dagbef_pct": 1,
+          "lag1_sysselsatta_bostad_sasongsvariation_pct": 1,
+          "lag1_bostader_per_1000": 1,
+          "lag1_strand_hav_bostader_tatort_per_1000": 1
+        }
+      },
+      "lulea": [
+        {
+          "code": "2580",
+          "actual": 51.74210559357147,
+          "original": 50.4546372559955,
+          "expanded": 36.02562100208901
+        }
+      ],
+      "folds": [
+        {
+          "fold": 0,
+          "selected": {
+            "original": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_andel_bostadsratt",
+              "lag1_ekonomisk_standard_gap_pp",
+              "lag1_sysselsattningsgrad",
+              "lag1_bostader_per_1000",
+              "lag1_andel_eftergymnasial",
+              "lag1_andel_studerande",
+              "lag1_log_externa_fa_jobb_per_1000"
+            ],
+            "expanded": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_log_fritidshus_per_1000_inv",
+              "lag1_smahuspris_inkomstkvot_medel",
+              "lag1_inkomst_tkr",
+              "lag1_smahusforsaljningar_per_1000_smahus",
+              "lag1_andel_smahus",
+              "lag1_strand_inland_bostader_per_1000",
+              "lag1_bebyggd_anlagd_andel_land_pct"
+            ]
+          },
+          "n_test": 58
+        },
+        {
+          "fold": 1,
+          "selected": {
+            "original": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_andel_bostadsratt",
+              "lag1_ekonomisk_standard_gap_pp",
+              "lag1_andel_eftergymnasial",
+              "lag1_sysselsattningsgrad",
+              "lag1_andel_studerande",
+              "lag1_bostader_per_1000",
+              "lag1_arbetsloshet"
+            ],
+            "expanded": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_andel_smahus",
+              "lag1_log_fritidshus_per_1000_inv",
+              "lag1_smahuspris_medel_tkr",
+              "lag1_inkomst_tkr",
+              "lag1_andel_bostader_111_plus",
+              "lag1_strand_inland_bostader_per_1000",
+              "lag1_andel_smahus_111_plus"
+            ]
+          },
+          "n_test": 52
+        },
+        {
+          "fold": 2,
+          "selected": {
+            "original": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_ekonomisk_standard_gap_pp",
+              "lag1_sysselsattningsgrad",
+              "lag1_andel_bostadsratt",
+              "lag1_andel_studerande",
+              "lag1_bostader_per_1000",
+              "lag1_log_externa_fa_jobb_per_1000",
+              "lag1_fardigstallda_bostader_per_1000"
+            ],
+            "expanded": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_ekonomisk_standard_gap_pp",
+              "lag1_andel_studerande",
+              "lag1_log_fritidshus_per_1000_inv",
+              "lag1_fritidshus_per_1000_inv",
+              "lag1_kvinnors_lonesumma_dagbef_pct",
+              "lag1_sysselsatta_bostad_sasongsvariation_pct",
+              "lag1_bostader_per_1000"
+            ]
+          },
+          "n_test": 65
+        },
+        {
+          "fold": 3,
+          "selected": {
+            "original": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_ekonomisk_standard_gap_pp",
+              "lag1_andel_bostadsratt",
+              "lag1_andel_studerande",
+              "lag1_andel_eftergymnasial",
+              "lag1_log_externa_fa_jobb_per_1000",
+              "lag1_sysselsattningsgrad",
+              "lag1_fardigstallda_bostader_per_1000"
+            ],
+            "expanded": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_smahuspris_inkomstkvot_medel",
+              "lag1_log_fritidshus_per_1000_inv",
+              "lag1_smahusforsaljningar_per_1000_smahus",
+              "lag1_bebyggd_anlagd_andel_land_pct",
+              "lag1_andel_studerande",
+              "lag1_inkomst_tkr",
+              "lag1_bas_ovriga_andel_pct"
+            ]
+          },
+          "n_test": 64
+        },
+        {
+          "fold": 4,
+          "selected": {
+            "original": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_andel_bostadsratt",
+              "lag1_andel_eftergymnasial",
+              "lag1_sysselsattningsgrad",
+              "lag1_ekonomisk_standard_gap_pp",
+              "lag1_bostader_per_1000",
+              "lag1_valdeltagande_pct",
+              "lag1_fardigstallda_bostader_per_1000"
+            ],
+            "expanded": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_smahuspris_inkomstkvot_medel",
+              "lag1_bebyggd_anlagd_andel_land_pct",
+              "lag1_smahusforsaljningar_per_1000_smahus",
+              "lag1_strand_hav_bostader_tatort_per_1000",
+              "lag1_andel_studerande",
+              "lag1_bas_ovriga_andel_pct",
+              "lag1_inkomst_tkr"
+            ]
+          },
+          "n_test": 51
+        }
+      ]
+    },
+    "14": {
+      "metrics": {
+        "original": {
+          "r2": 0.5410111505269268,
+          "rmse": 10.254157651766565,
+          "mae": 7.383551579164473,
+          "median_abs_error": 5.558602392653956,
+          "p90_abs_error": 15.554282968348183,
+          "p95_abs_error": 20.029521740030887,
+          "p90_p10_abs_error_gap": 14.479635091284198,
+          "best_decile_mae": 0.6179477427153738,
+          "worst_decile_mae": 23.461392059949915,
+          "decile_mae_gap": 22.843444317234542,
+          "max_abs_error": 56.724734344841295,
+          "n": 290
+        },
+        "expanded": {
+          "r2": 0.3708178623627918,
+          "rmse": 12.005689716408698,
+          "mae": 8.6859108108807,
+          "median_abs_error": 6.6465280320753415,
+          "p90_abs_error": 17.612778056841897,
+          "p95_abs_error": 22.23807178667392,
+          "p90_p10_abs_error_gap": 16.59111425974348,
+          "best_decile_mae": 0.5661960437368685,
+          "worst_decile_mae": 26.65958233228648,
+          "decile_mae_gap": 26.09338628854961,
+          "max_abs_error": 64.08728906056695,
+          "n": 290
+        }
+      },
+      "selection_frequency": {
+        "original": {
+          "lag1_log_folkmangd": 5,
+          "lag1_tatortsgrad_pct": 5,
+          "lag1_regional_centre_distance_km": 5,
+          "lag1_andel_bostadsratt": 5,
+          "lag1_ekonomisk_standard_gap_pp": 5,
+          "lag1_sysselsattningsgrad": 5,
+          "lag1_bostader_per_1000": 5,
+          "lag1_andel_eftergymnasial": 5,
+          "lag1_andel_studerande": 5,
+          "lag1_valdeltagande_gap_pp": 5,
+          "lag1_log_externa_fa_jobb_per_1000": 4,
+          "lag1_fardigstallda_bostader_per_1000": 4,
+          "lag1_valdeltagande_pct": 3,
+          "lag1_bostadsbestandsforandring_pct": 3,
+          "lag1_arbetsloshet": 2,
+          "lag1_andel_fa_arbetsplatser_i_egen_kommun": 1,
+          "lag1_inkomst_tkr": 1,
+          "lag1_andel_smahus": 1,
+          "lag1_brott_per_100000": 1
+        },
+        "expanded": {
+          "lag1_log_folkmangd": 5,
+          "lag1_tatortsgrad_pct": 5,
+          "lag1_regional_centre_distance_km": 5,
+          "lag1_smahusforsaljningar_per_1000_smahus": 5,
+          "lag1_kolada_arbetslosa_18_65_pct": 5,
+          "lag1_log_fritidshus_per_1000_inv": 4,
+          "lag1_inkomst_tkr": 4,
+          "lag1_strand_inland_bostader_per_1000": 4,
+          "lag1_ekonomisk_standard_gap_pp": 4,
+          "lag1_smahuspris_inkomstkvot_medel": 3,
+          "lag1_bebyggd_anlagd_andel_land_pct": 3,
+          "lag1_fritidshus_per_1000_inv": 3,
+          "lag1_andel_studerande": 3,
+          "lag1_andel_smahus": 2,
+          "lag1_kolada_utbetalt_lok_stod_kr_per_inv": 2,
+          "lag1_bas_ovriga_andel_pct": 2,
+          "lag1_smahuspris_medel_tkr": 1,
+          "lag1_andel_bostader_111_plus": 1,
+          "lag1_andel_smahus_111_plus": 1,
+          "lag1_bas_studerande_andel_pct": 1,
+          "lag1_andel_bostadsratt": 1,
+          "lag1_kvinnors_lonesumma_dagbef_pct": 1,
+          "lag1_sysselsatta_bostad_sasongsvariation_pct": 1,
+          "lag1_bostader_per_1000": 1,
+          "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct": 1,
+          "lag1_strand_hav_bostader_tatort_per_1000": 1,
+          "lag1_fardigstallda_bostader_per_1000": 1
+        }
+      },
+      "lulea": [
+        {
+          "code": "2580",
+          "actual": 51.74210559357147,
+          "original": 48.24380687063531,
+          "expanded": 36.544021376993314
+        }
+      ],
+      "folds": [
+        {
+          "fold": 0,
+          "selected": {
+            "original": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_andel_bostadsratt",
+              "lag1_ekonomisk_standard_gap_pp",
+              "lag1_sysselsattningsgrad",
+              "lag1_bostader_per_1000",
+              "lag1_andel_eftergymnasial",
+              "lag1_andel_studerande",
+              "lag1_log_externa_fa_jobb_per_1000",
+              "lag1_fardigstallda_bostader_per_1000",
+              "lag1_valdeltagande_gap_pp",
+              "lag1_valdeltagande_pct",
+              "lag1_bostadsbestandsforandring_pct"
+            ],
+            "expanded": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_log_fritidshus_per_1000_inv",
+              "lag1_smahuspris_inkomstkvot_medel",
+              "lag1_inkomst_tkr",
+              "lag1_smahusforsaljningar_per_1000_smahus",
+              "lag1_andel_smahus",
+              "lag1_strand_inland_bostader_per_1000",
+              "lag1_bebyggd_anlagd_andel_land_pct",
+              "lag1_kolada_arbetslosa_18_65_pct",
+              "lag1_fritidshus_per_1000_inv",
+              "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+              "lag1_ekonomisk_standard_gap_pp"
+            ]
+          },
+          "n_test": 58
+        },
+        {
+          "fold": 1,
+          "selected": {
+            "original": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_andel_bostadsratt",
+              "lag1_ekonomisk_standard_gap_pp",
+              "lag1_andel_eftergymnasial",
+              "lag1_sysselsattningsgrad",
+              "lag1_andel_studerande",
+              "lag1_bostader_per_1000",
+              "lag1_arbetsloshet",
+              "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+              "lag1_inkomst_tkr",
+              "lag1_valdeltagande_gap_pp",
+              "lag1_andel_smahus"
+            ],
+            "expanded": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_andel_smahus",
+              "lag1_log_fritidshus_per_1000_inv",
+              "lag1_smahuspris_medel_tkr",
+              "lag1_inkomst_tkr",
+              "lag1_andel_bostader_111_plus",
+              "lag1_strand_inland_bostader_per_1000",
+              "lag1_andel_smahus_111_plus",
+              "lag1_kolada_arbetslosa_18_65_pct",
+              "lag1_bas_studerande_andel_pct",
+              "lag1_andel_bostadsratt",
+              "lag1_smahusforsaljningar_per_1000_smahus"
+            ]
+          },
+          "n_test": 52
+        },
+        {
+          "fold": 2,
+          "selected": {
+            "original": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_ekonomisk_standard_gap_pp",
+              "lag1_sysselsattningsgrad",
+              "lag1_andel_bostadsratt",
+              "lag1_andel_studerande",
+              "lag1_bostader_per_1000",
+              "lag1_log_externa_fa_jobb_per_1000",
+              "lag1_fardigstallda_bostader_per_1000",
+              "lag1_brott_per_100000",
+              "lag1_arbetsloshet",
+              "lag1_valdeltagande_gap_pp",
+              "lag1_andel_eftergymnasial"
+            ],
+            "expanded": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_ekonomisk_standard_gap_pp",
+              "lag1_andel_studerande",
+              "lag1_log_fritidshus_per_1000_inv",
+              "lag1_fritidshus_per_1000_inv",
+              "lag1_kvinnors_lonesumma_dagbef_pct",
+              "lag1_sysselsatta_bostad_sasongsvariation_pct",
+              "lag1_bostader_per_1000",
+              "lag1_kolada_arbetslosa_18_65_pct",
+              "lag1_smahusforsaljningar_per_1000_smahus",
+              "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+              "lag1_kolada_utbetalt_lok_stod_kr_per_inv"
+            ]
+          },
+          "n_test": 65
+        },
+        {
+          "fold": 3,
+          "selected": {
+            "original": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_ekonomisk_standard_gap_pp",
+              "lag1_andel_bostadsratt",
+              "lag1_andel_studerande",
+              "lag1_andel_eftergymnasial",
+              "lag1_log_externa_fa_jobb_per_1000",
+              "lag1_sysselsattningsgrad",
+              "lag1_fardigstallda_bostader_per_1000",
+              "lag1_bostader_per_1000",
+              "lag1_valdeltagande_pct",
+              "lag1_valdeltagande_gap_pp",
+              "lag1_bostadsbestandsforandring_pct"
+            ],
+            "expanded": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_smahuspris_inkomstkvot_medel",
+              "lag1_log_fritidshus_per_1000_inv",
+              "lag1_smahusforsaljningar_per_1000_smahus",
+              "lag1_bebyggd_anlagd_andel_land_pct",
+              "lag1_andel_studerande",
+              "lag1_inkomst_tkr",
+              "lag1_bas_ovriga_andel_pct",
+              "lag1_ekonomisk_standard_gap_pp",
+              "lag1_fritidshus_per_1000_inv",
+              "lag1_kolada_arbetslosa_18_65_pct",
+              "lag1_strand_inland_bostader_per_1000"
+            ]
+          },
+          "n_test": 64
+        },
+        {
+          "fold": 4,
+          "selected": {
+            "original": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_andel_bostadsratt",
+              "lag1_andel_eftergymnasial",
+              "lag1_sysselsattningsgrad",
+              "lag1_ekonomisk_standard_gap_pp",
+              "lag1_bostader_per_1000",
+              "lag1_valdeltagande_pct",
+              "lag1_fardigstallda_bostader_per_1000",
+              "lag1_valdeltagande_gap_pp",
+              "lag1_andel_studerande",
+              "lag1_log_externa_fa_jobb_per_1000",
+              "lag1_bostadsbestandsforandring_pct"
+            ],
+            "expanded": [
+              "lag1_log_folkmangd",
+              "lag1_tatortsgrad_pct",
+              "lag1_regional_centre_distance_km",
+              "lag1_smahuspris_inkomstkvot_medel",
+              "lag1_bebyggd_anlagd_andel_land_pct",
+              "lag1_smahusforsaljningar_per_1000_smahus",
+              "lag1_strand_hav_bostader_tatort_per_1000",
+              "lag1_andel_studerande",
+              "lag1_bas_ovriga_andel_pct",
+              "lag1_inkomst_tkr",
+              "lag1_strand_inland_bostader_per_1000",
+              "lag1_ekonomisk_standard_gap_pp",
+              "lag1_kolada_arbetslosa_18_65_pct",
+              "lag1_fardigstallda_bostader_per_1000"
+            ]
+          },
+          "n_test": 51
+        }
+      ]
+    }
+  },
+  "production_changed": false,
+  "limitations": [
+    "Feature count caps are exploratory and compared on repeatedly inspected 2024; choosing the best cap from this test would overfit.",
+    "Coefficient magnitudes after correlated penalized estimation are not causal variable importance.",
+    "High correlation threshold is computed on training data only.",
+    "Source definitions and actual forecast-time publication remain unverified.",
+    "A prespecified independent evaluation is required before model promotion."
+  ]
+}
