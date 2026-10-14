@@ -1,0 +1,32 @@
+name: Cross-check historical RAMS OD flows
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/audit_rams_old_od_sample.py
+      - .github/workflows/audit_rams_old_od_sample.yml
+permissions:
+  contents: write
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas requests
+      - run: python scripts/audit_rams_old_od_sample.py
+      - name: Commit diagnostic
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/rams_2004_2018_od_sample_crosscheck.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record independent RAMS intermunicipal flow crosscheck"
+          git pull --rebase origin main
+          git push origin HEAD:main
