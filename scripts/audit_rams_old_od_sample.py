@@ -27,16 +27,25 @@ def main():
     if len(origins)!=290:raise RuntimeError(f"Expected 290 municipalities, found {len(origins)}")
     chosen=[v for v in SAMPLE if v in origins]
     if len(chosen)<10:raise RuntimeError("Unexpected sample coverage")
-    total_sex=None
+    sex_values=[]
+    sex_mode="dimension_absent"
     if sex:
-        total_sex=next((code for code,label in zip(sex["values"],sex.get("valueTexts",[])) if any(t in label.lower() for t in ("totalt","båda","samtliga"))),None)
-        if total_sex is None:raise RuntimeError("Sex total not identified")
+        candidates=list(zip(sex["values"],sex.get("valueTexts",[])))
+        totals=[code for code,label in candidates if any(t in label.lower() for t in ("totalt","båda","samtliga"))]
+        if len(totals)==1:
+            sex_values=totals
+            sex_mode="published_total"
+        elif len(totals)==0 and len(candidates)==2 and all(any(t in label.lower() for t in ("män","kvinnor","man","kvinna")) for _,label in candidates):
+            sex_values=[code for code,_ in candidates]
+            sex_mode="sum_men_women"
+        else:
+            raise RuntimeError("Ambiguous SCB gender categories: "+str(candidates))
     data={}
     def fetch(selected_home,selected_work,yr):
         query=[{"code":home["code"],"selection":{"filter":"item","values":selected_home}},
            {"code":work["code"],"selection":{"filter":"item","values":selected_work}},
            {"code":year["code"],"selection":{"filter":"item","values":[yr]}}]
-        if sex:query.append({"code":sex["code"],"selection":{"filter":"item","values":[total_sex]}})
+        if sex:query.append({"code":sex["code"],"selection":{"filter":"item","values":sex_values}})
         if content:
             vals=list(zip(content["values"],content.get("valueTexts",[])))
             if len(vals)!=1:raise RuntimeError("Multiple SCB measures need explicit review: "+str(vals))
@@ -51,8 +60,8 @@ def main():
             value=row["values"][0]
             if value in (None,"","..",".","-"):raise RuntimeError(f"Suppressed cell {yr} {h} {w}")
             key=(yr,h,w)
-            if key in data:continue
-            data[key]=float(str(value).replace(" ","").replace(",","."))
+            # Two sex categories must be summed for the same municipality pair.
+            data[key]=data.get(key,0.0)+float(str(value).replace(" ","").replace(",","."))
     for yr in YEARS:
         for a in range(0,len(chosen),6):
             fetch(chosen[a:a+6],origins,yr)
@@ -62,7 +71,7 @@ def main():
     old=pd.read_csv(D/"commuting_historical_rams.csv",dtype={"kommun_kod":str})
     old.kommun_kod=old.kommun_kod.str.zfill(4)
     report={"status":"independent_sample_commuter_flow_crosscheck",
-      "source":url,"years":YEARS,"municipalities":chosen,"rows":[],
+      "sex_handling":sex_mode,"source":url,"years":YEARS,"municipalities":chosen,"rows":[],
       "production_changed":False,
       "limitations":["Commuters crossing a municipal border are not total employed persons.",
         "Only a fixed selection of 12 municipalities and 3 years is checked.",
