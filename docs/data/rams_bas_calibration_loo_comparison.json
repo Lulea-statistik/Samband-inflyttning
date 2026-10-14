@@ -1,0 +1,273 @@
+{
+  "status": "two_way_leave_one_year_out",
+  "methods": [
+    "no_adjustment",
+    "national_log_median",
+    "municipal_full",
+    "municipal_shrink_40"
+  ],
+  "results": {
+    "residence": {
+      "no_adjustment": {
+        "train_2020_test_2021": {
+          "median_abs_percent": 0.49096509724103066,
+          "mean_abs_percent": 0.6193983172517774,
+          "p90_abs_percent": 1.1653966831017382
+        },
+        "train_2021_test_2020": {
+          "median_abs_percent": 0.3536342965656414,
+          "mean_abs_percent": 0.5333645125771368,
+          "p90_abs_percent": 0.9695011108866947
+        },
+        "pooled_holdout": {
+          "median_abs_percent": 0.44319668272798096,
+          "mean_abs_percent": 0.576381414914457,
+          "p90_abs_percent": 1.070472792149868
+        }
+      },
+      "national_log_median": {
+        "train_2020_test_2021": {
+          "median_abs_percent": 0.34002046431606536,
+          "mean_abs_percent": 0.5238836758271317,
+          "p90_abs_percent": 1.0142352373676888
+        },
+        "train_2021_test_2020": {
+          "median_abs_percent": 0.33253357345232604,
+          "mean_abs_percent": 0.5450935089887343,
+          "p90_abs_percent": 1.3072759291612002
+        },
+        "pooled_holdout": {
+          "median_abs_percent": 0.3353514412911096,
+          "mean_abs_percent": 0.534488592407933,
+          "p90_abs_percent": 1.110664098061731
+        }
+      },
+      "municipal_full": {
+        "train_2020_test_2021": {
+          "median_abs_percent": 0.2750765594193516,
+          "mean_abs_percent": 0.3630469079339631,
+          "p90_abs_percent": 0.7509573542620163
+        },
+        "train_2021_test_2020": {
+          "median_abs_percent": 0.27533126120279916,
+          "mean_abs_percent": 0.3641339753994653,
+          "p90_abs_percent": 0.7566393934322457
+        },
+        "pooled_holdout": {
+          "median_abs_percent": 0.27533126120279916,
+          "mean_abs_percent": 0.36359044166671417,
+          "p90_abs_percent": 0.7566393934322457
+        }
+      },
+      "municipal_shrink_40": {
+        "train_2020_test_2021": {
+          "median_abs_percent": 0.2700294317819818,
+          "mean_abs_percent": 0.39452818924503275,
+          "p90_abs_percent": 0.838014853936131
+        },
+        "train_2021_test_2020": {
+          "median_abs_percent": 0.28764495208722374,
+          "mean_abs_percent": 0.42867505887441637,
+          "p90_abs_percent": 0.9184920432554033
+        },
+        "pooled_holdout": {
+          "median_abs_percent": 0.27759482477783815,
+          "mean_abs_percent": 0.41160162405972456,
+          "p90_abs_percent": 0.8943628681133076
+        }
+      },
+      "lulea": [
+        {
+          "train": 2020,
+          "test": 2021,
+          "method": "no_adjustment",
+          "absolute_error_percent": 0.08586942795807406,
+          "signed_error_percent": -0.08586942795807406
+        },
+        {
+          "train": 2020,
+          "test": 2021,
+          "method": "national_log_median",
+          "absolute_error_percent": 0.12226604171152733,
+          "signed_error_percent": 0.12226604171152733
+        },
+        {
+          "train": 2020,
+          "test": 2021,
+          "method": "municipal_full",
+          "absolute_error_percent": 0.24465027830581354,
+          "signed_error_percent": -0.24465027830581354
+        },
+        {
+          "train": 2020,
+          "test": 2021,
+          "method": "municipal_shrink_40",
+          "absolute_error_percent": 0.02466215823784257,
+          "signed_error_percent": -0.02466215823784257
+        },
+        {
+          "train": 2021,
+          "test": 2020,
+          "method": "no_adjustment",
+          "absolute_error_percent": 0.15917026083385188,
+          "signed_error_percent": 0.15917026083385188
+        },
+        {
+          "train": 2021,
+          "test": 2020,
+          "method": "national_log_median",
+          "absolute_error_percent": 0.5661181612679034,
+          "signed_error_percent": 0.5661181612679034
+        },
+        {
+          "train": 2021,
+          "test": 2020,
+          "method": "municipal_full",
+          "absolute_error_percent": 0.24525028380768532,
+          "signed_error_percent": 0.24525028380768532
+        },
+        {
+          "train": 2021,
+          "test": 2020,
+          "method": "municipal_shrink_40",
+          "absolute_error_percent": 0.4376479488502172,
+          "signed_error_percent": 0.4376479488502172
+        }
+      ]
+    },
+    "workplace": {
+      "no_adjustment": {
+        "train_2020_test_2021": {
+          "median_abs_percent": 0.7505682941292668,
+          "mean_abs_percent": 1.0824697897001663,
+          "p90_abs_percent": 2.2454308093994735
+        },
+        "train_2021_test_2020": {
+          "median_abs_percent": 0.6967307505858833,
+          "mean_abs_percent": 1.0414013842887946,
+          "p90_abs_percent": 2.3498288204170548
+        },
+        "pooled_holdout": {
+          "median_abs_percent": 0.7260408504624116,
+          "mean_abs_percent": 1.0619355869944804,
+          "p90_abs_percent": 2.3157894736842044
+        }
+      },
+      "national_log_median": {
+        "train_2020_test_2021": {
+          "median_abs_percent": 0.719690036503523,
+          "mean_abs_percent": 1.0363007216910567,
+          "p90_abs_percent": 2.2582226415815643
+        },
+        "train_2021_test_2020": {
+          "median_abs_percent": 0.6889429284063109,
+          "mean_abs_percent": 1.0387141947824647,
+          "p90_abs_percent": 2.1604029011481396
+        },
+        "pooled_holdout": {
+          "median_abs_percent": 0.7029267007156614,
+          "mean_abs_percent": 1.0375074582367607,
+          "p90_abs_percent": 2.185107673088116
+        }
+      },
+      "municipal_full": {
+        "train_2020_test_2021": {
+          "median_abs_percent": 0.5186917450341,
+          "mean_abs_percent": 0.780825440911734,
+          "p90_abs_percent": 1.6246442780537107
+        },
+        "train_2021_test_2020": {
+          "median_abs_percent": 0.5213555949108273,
+          "mean_abs_percent": 0.7850251047670743,
+          "p90_abs_percent": 1.6514748700332094
+        },
+        "pooled_holdout": {
+          "median_abs_percent": 0.5200390473806993,
+          "mean_abs_percent": 0.7829252728394042,
+          "p90_abs_percent": 1.6311553636028653
+        }
+      },
+      "municipal_shrink_40": {
+        "train_2020_test_2021": {
+          "median_abs_percent": 0.5608248518244652,
+          "mean_abs_percent": 0.7922045234852676,
+          "p90_abs_percent": 1.6570639855464142
+        },
+        "train_2021_test_2020": {
+          "median_abs_percent": 0.572387121246487,
+          "mean_abs_percent": 0.8250764568579313,
+          "p90_abs_percent": 1.7221793664724316
+        },
+        "pooled_holdout": {
+          "median_abs_percent": 0.5690132413769367,
+          "mean_abs_percent": 0.8086404901715994,
+          "p90_abs_percent": 1.7133411642065388
+        }
+      },
+      "lulea": [
+        {
+          "train": 2020,
+          "test": 2021,
+          "method": "no_adjustment",
+          "absolute_error_percent": 0.04504707419252796,
+          "signed_error_percent": 0.04504707419252796
+        },
+        {
+          "train": 2020,
+          "test": 2021,
+          "method": "national_log_median",
+          "absolute_error_percent": 0.27623222088704047,
+          "signed_error_percent": 0.27623222088704047
+        },
+        {
+          "train": 2020,
+          "test": 2021,
+          "method": "municipal_full",
+          "absolute_error_percent": 0.14353464342766742,
+          "signed_error_percent": 0.14353464342766742
+        },
+        {
+          "train": 2020,
+          "test": 2021,
+          "method": "municipal_shrink_40",
+          "absolute_error_percent": 0.22313210285000995,
+          "signed_error_percent": 0.22313210285000995
+        },
+        {
+          "train": 2021,
+          "test": 2020,
+          "method": "no_adjustment",
+          "absolute_error_percent": 0.09834640806898332,
+          "signed_error_percent": -0.09834640806898332
+        },
+        {
+          "train": 2021,
+          "test": 2020,
+          "method": "national_log_median",
+          "absolute_error_percent": 0.3015678865382343,
+          "signed_error_percent": 0.3015678865382343
+        },
+        {
+          "train": 2021,
+          "test": 2020,
+          "method": "municipal_full",
+          "absolute_error_percent": 0.1433289167780294,
+          "signed_error_percent": -0.1433289167780294
+        },
+        {
+          "train": 2021,
+          "test": 2020,
+          "method": "municipal_shrink_40",
+          "absolute_error_percent": 0.12337179772345941,
+          "signed_error_percent": 0.12337179772345941
+        }
+      ]
+    }
+  },
+  "important": [
+    "Only 2020 and 2021 are available in both systems; holdout is one year, not multi-year temporal validation.",
+    "Year-specific differences may combine revisions and true method effects.",
+    "No method is promoted to production by this audit."
+  ],
+  "production_changed": false
+}
