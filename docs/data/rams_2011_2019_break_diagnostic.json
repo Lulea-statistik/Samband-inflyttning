@@ -1,0 +1,730 @@
+{
+  "status": "exploratory_rams_method_break_diagnostic",
+  "source": "commuting_historical_rams.csv",
+  "source_years": [
+    2004,
+    2021
+  ],
+  "boundaries": [
+    2011,
+    2019
+  ],
+  "production_changed": false,
+  "metrics": {
+    "residence": {
+      "annual_summaries": {
+        "2005": {
+          "municipalities": 290,
+          "median_pct": -0.06486556261147136,
+          "mean_pct": -0.1418436589871352,
+          "p10_pct": -1.5693402827015812,
+          "p90_pct": 1.2177472840362393,
+          "p95_abs_pct": 2.5647734713674777
+        },
+        "2006": {
+          "municipalities": 290,
+          "median_pct": 1.8020044861334017,
+          "mean_pct": 1.841617294891141,
+          "p10_pct": 0.3768467840247225,
+          "p90_pct": 3.4129005750526913,
+          "p95_abs_pct": 4.119526695751454
+        },
+        "2007": {
+          "municipalities": 290,
+          "median_pct": 1.8444838506924466,
+          "mean_pct": 1.8936463550715366,
+          "p10_pct": 0.39119888261557323,
+          "p90_pct": 3.409381171352874,
+          "p95_abs_pct": 3.8772037577495304
+        },
+        "2008": {
+          "municipalities": 290,
+          "median_pct": -0.29450638693785947,
+          "mean_pct": -0.36419913163814105,
+          "p10_pct": -1.8815209486204743,
+          "p90_pct": 1.0037321260557424,
+          "p95_abs_pct": 2.5712116059048458
+        },
+        "2009": {
+          "municipalities": 290,
+          "median_pct": -3.7283012478331043,
+          "mean_pct": -3.7873469311102466,
+          "p10_pct": -6.107025659657392,
+          "p90_pct": -1.5013693234636447,
+          "p95_abs_pct": 6.83664533217387
+        },
+        "2010": {
+          "municipalities": 290,
+          "median_pct": 1.9740266005502605,
+          "mean_pct": 1.9664793037102997,
+          "p10_pct": 0.6999420756698305,
+          "p90_pct": 3.3133313039085732,
+          "p95_abs_pct": 3.61777357899883
+        },
+        "2011": {
+          "municipalities": 290,
+          "median_pct": 2.5767887271954337,
+          "mean_pct": 2.653416546678703,
+          "p10_pct": 1.227727828946552,
+          "p90_pct": 4.150192853287907,
+          "p95_abs_pct": 4.764032885226076
+        },
+        "2012": {
+          "municipalities": 290,
+          "median_pct": 0.4268619535988005,
+          "mean_pct": 0.47747681831764144,
+          "p10_pct": -1.1586767539062126,
+          "p90_pct": 2.092622012022567,
+          "p95_abs_pct": 2.5478386230937047
+        },
+        "2013": {
+          "municipalities": 290,
+          "median_pct": 0.2936445200810378,
+          "mean_pct": 0.2542438136408948,
+          "p10_pct": -0.9971697308182059,
+          "p90_pct": 1.4829795163404593,
+          "p95_abs_pct": 2.1267372351916602
+        },
+        "2014": {
+          "municipalities": 290,
+          "median_pct": 0.19174472852943047,
+          "mean_pct": 0.1421444912592271,
+          "p10_pct": -1.1294813736589604,
+          "p90_pct": 1.3964278370463301,
+          "p95_abs_pct": 2.0302952349885017
+        },
+        "2015": {
+          "municipalities": 290,
+          "median_pct": 1.0322920487740639,
+          "mean_pct": 0.9369443060826382,
+          "p10_pct": -0.5710833235092082,
+          "p90_pct": 2.330253109028953,
+          "p95_abs_pct": 2.700303471613854
+        },
+        "2016": {
+          "municipalities": 290,
+          "median_pct": 1.6991493936965862,
+          "mean_pct": 1.7037180620909789,
+          "p10_pct": 0.37826461476921264,
+          "p90_pct": 2.9664296552300566,
+          "p95_abs_pct": 3.2420052126734844
+        },
+        "2017": {
+          "municipalities": 290,
+          "median_pct": 1.4324003941177943,
+          "mean_pct": 1.4004521572721984,
+          "p10_pct": 0.20217501767408222,
+          "p90_pct": 2.5700856946390753,
+          "p95_abs_pct": 3.1517461290702733
+        },
+        "2018": {
+          "municipalities": 290,
+          "median_pct": 0.5460812622283928,
+          "mean_pct": 0.6004966388005208,
+          "p10_pct": -0.7611695238695004,
+          "p90_pct": 1.959948018669918,
+          "p95_abs_pct": 2.43013236438876
+        },
+        "2019": {
+          "municipalities": 290,
+          "median_pct": 1.071902400146152,
+          "mean_pct": 1.0258098718751238,
+          "p10_pct": -0.9549701897812568,
+          "p90_pct": 2.642603397899608,
+          "p95_abs_pct": 3.084300377546998
+        },
+        "2020": {
+          "municipalities": 290,
+          "median_pct": -1.5967546432062552,
+          "mean_pct": -1.6303329087230953,
+          "p10_pct": -2.9772747691076593,
+          "p90_pct": -0.15839722677431636,
+          "p95_abs_pct": 3.7365476897690146
+        },
+        "2021": {
+          "municipalities": 290,
+          "median_pct": 1.9544316845626408,
+          "mean_pct": 1.9934683981427057,
+          "p10_pct": 0.4251935287637632,
+          "p90_pct": 3.6017335961923496,
+          "p95_abs_pct": 4.130870971582915
+        }
+      },
+      "boundaries": {
+        "2011": {
+          "national_median_growth_pct": 2.5767887271954337,
+          "municipal_median_deviation_pp": 2.7977909082251395,
+          "municipal_p90_abs_deviation_pp": 5.3687983446922525,
+          "n_abs_deviation_gt_5pp": 41,
+          "top_abs_deviations": [
+            {
+              "kommun_kod": "2518",
+              "observed_growth": 7.550077041602465,
+              "pre_break_median": -3.912213740458015,
+              "deviation_pp": 11.46229078206048
+            },
+            {
+              "kommun_kod": "2326",
+              "observed_growth": 8.074915566472217,
+              "pre_break_median": -1.1532625189681345,
+              "deviation_pp": 9.228178085440351
+            },
+            {
+              "kommun_kod": "2513",
+              "observed_growth": 5.723684210526314,
+              "pre_break_median": -3.0864197530864224,
+              "deviation_pp": 8.810103963612736
+            },
+            {
+              "kommun_kod": "2521",
+              "observed_growth": 7.3987538940810005,
+              "pre_break_median": -1.3925479864508872,
+              "deviation_pp": 8.791301880531888
+            },
+            {
+              "kommun_kod": "2313",
+              "observed_growth": 5.967894239848914,
+              "pre_break_median": -2.391496899911427,
+              "deviation_pp": 8.35939113976034
+            },
+            {
+              "kommun_kod": "1060",
+              "observed_growth": 4.542083796811269,
+              "pre_break_median": -3.553983493346813,
+              "deviation_pp": 8.096067290158082
+            },
+            {
+              "kommun_kod": "2417",
+              "observed_growth": 5.324813631522907,
+              "pre_break_median": -2.3845007451564815,
+              "deviation_pp": 7.709314376679388
+            },
+            {
+              "kommun_kod": "2418",
+              "observed_growth": 4.79082321187585,
+              "pre_break_median": -2.633269107257552,
+              "deviation_pp": 7.424092319133402
+            },
+            {
+              "kommun_kod": "1762",
+              "observed_growth": 3.441295546558698,
+              "pre_break_median": -3.6182158452900848,
+              "deviation_pp": 7.059511391848783
+            },
+            {
+              "kommun_kod": "2421",
+              "observed_growth": 3.714710252600306,
+              "pre_break_median": -3.3298282509638955,
+              "deviation_pp": 7.044538503564201
+            },
+            {
+              "kommun_kod": "2309",
+              "observed_growth": 5.698421975452961,
+              "pre_break_median": -1.2503592986490397,
+              "deviation_pp": 6.948781274102
+            },
+            {
+              "kommun_kod": "1273",
+              "observed_growth": 3.9737448997693825,
+              "pre_break_median": -2.715466351829987,
+              "deviation_pp": 6.689211251599369
+            },
+            {
+              "kommun_kod": "2305",
+              "observed_growth": 4.163799036476257,
+              "pre_break_median": -2.37027546444587,
+              "deviation_pp": 6.534074500922127
+            },
+            {
+              "kommun_kod": "1737",
+              "observed_growth": 5.4869944940193704,
+              "pre_break_median": -0.9710516672773895,
+              "deviation_pp": 6.45804616129676
+            },
+            {
+              "kommun_kod": "1447",
+              "observed_growth": 3.429602888086647,
+              "pre_break_median": -2.9175475687103547,
+              "deviation_pp": 6.347150456797001
+            }
+          ],
+          "lulea": [
+            {
+              "kommun_kod": "2580",
+              "observed_growth": 2.599097693158936,
+              "pre_break_median": 0.016942930562224845,
+              "deviation_pp": 2.582154762596711
+            }
+          ]
+        },
+        "2019": {
+          "national_median_growth_pct": 1.071902400146152,
+          "municipal_median_deviation_pp": -0.2397168018379081,
+          "municipal_p90_abs_deviation_pp": 2.3306583750109144,
+          "n_abs_deviation_gt_5pp": 0,
+          "top_abs_deviations": [
+            {
+              "kommun_kod": "1231",
+              "observed_growth": 7.153671461014377,
+              "pre_break_median": 2.19155844155845,
+              "deviation_pp": 4.962113019455927
+            },
+            {
+              "kommun_kod": "2521",
+              "observed_growth": 2.391629297458886,
+              "pre_break_median": -1.8763796909492259,
+              "deviation_pp": 4.268008988408112
+            },
+            {
+              "kommun_kod": "1762",
+              "observed_growth": -1.8587360594795488,
+              "pre_break_median": 2.3285899094437346,
+              "deviation_pp": -4.187325968923283
+            },
+            {
+              "kommun_kod": "1060",
+              "observed_growth": -1.6243991380739287,
+              "pre_break_median": 2.3557942144465605,
+              "deviation_pp": -3.980193352520489
+            },
+            {
+              "kommun_kod": "2121",
+              "observed_growth": -0.958636605716312,
+              "pre_break_median": 2.494802494802495,
+              "deviation_pp": -3.453439100518807
+            },
+            {
+              "kommun_kod": "1446",
+              "observed_growth": -2.034525277435262,
+              "pre_break_median": 1.373712144864192,
+              "deviation_pp": -3.408237422299454
+            },
+            {
+              "kommun_kod": "1315",
+              "observed_growth": -1.051378694703431,
+              "pre_break_median": 2.319015930631174,
+              "deviation_pp": -3.370394625334605
+            },
+            {
+              "kommun_kod": "2321",
+              "observed_growth": -0.23999999999999577,
+              "pre_break_median": 3.0997304582210283,
+              "deviation_pp": -3.339730458221024
+            },
+            {
+              "kommun_kod": "0885",
+              "observed_growth": -2.1650326797385655,
+              "pre_break_median": 0.9601634320735464,
+              "deviation_pp": -3.125196111812112
+            },
+            {
+              "kommun_kod": "1761",
+              "observed_growth": -0.4424778761061954,
+              "pre_break_median": 2.680965147453085,
+              "deviation_pp": -3.1234430235592803
+            },
+            {
+              "kommun_kod": "1263",
+              "observed_growth": 4.403897592663353,
+              "pre_break_median": 1.2821777295591197,
+              "deviation_pp": 3.121719863104233
+            },
+            {
+              "kommun_kod": "0821",
+              "observed_growth": -1.6263387544625196,
+              "pre_break_median": 1.4829659318637223,
+              "deviation_pp": -3.109304686326242
+            },
+            {
+              "kommun_kod": "1863",
+              "observed_growth": -2.2421524663677084,
+              "pre_break_median": 0.7997218358831715,
+              "deviation_pp": -3.04187430225088
+            },
+            {
+              "kommun_kod": "1962",
+              "observed_growth": -0.9545628102329173,
+              "pre_break_median": 2.0654715510522115,
+              "deviation_pp": -3.020034361285129
+            },
+            {
+              "kommun_kod": "0563",
+              "observed_growth": -1.858108108108103,
+              "pre_break_median": 1.1278195488721776,
+              "deviation_pp": -2.9859276569802806
+            }
+          ],
+          "lulea": [
+            {
+              "kommun_kod": "2580",
+              "observed_growth": -0.6918493081506938,
+              "pre_break_median": 0.7269748630522654,
+              "deviation_pp": -1.4188241712029592
+            }
+          ]
+        }
+      }
+    },
+    "workplace": {
+      "annual_summaries": {
+        "2005": {
+          "municipalities": 290,
+          "median_pct": -0.007230166504418323,
+          "mean_pct": -0.2903625613861776,
+          "p10_pct": -3.123536353959365,
+          "p90_pct": 2.152884314666397,
+          "p95_abs_pct": 4.257878769149454
+        },
+        "2006": {
+          "municipalities": 290,
+          "median_pct": 2.0025549914820195,
+          "mean_pct": 1.990915818311946,
+          "p10_pct": -0.4688486962326665,
+          "p90_pct": 4.60538547174562,
+          "p95_abs_pct": 5.623420804223632
+        },
+        "2007": {
+          "municipalities": 290,
+          "median_pct": 1.7882402807712139,
+          "mean_pct": 1.7028972356489838,
+          "p10_pct": -0.736926989109241,
+          "p90_pct": 4.076719894287133,
+          "p95_abs_pct": 4.822953023392776
+        },
+        "2008": {
+          "municipalities": 290,
+          "median_pct": -0.49866360951857924,
+          "mean_pct": -0.5259671136879501,
+          "p10_pct": -3.3292506568230538,
+          "p90_pct": 1.935919499934198,
+          "p95_abs_pct": 4.158055269995288
+        },
+        "2009": {
+          "municipalities": 290,
+          "median_pct": -3.597736321690298,
+          "mean_pct": -3.9637264680571285,
+          "p10_pct": -7.574846993130236,
+          "p90_pct": -0.8691614066827881,
+          "p95_abs_pct": 8.722342441705685
+        },
+        "2010": {
+          "municipalities": 290,
+          "median_pct": 2.2202052533490613,
+          "mean_pct": 2.1549141248628936,
+          "p10_pct": -0.33507423136443165,
+          "p90_pct": 4.606770950345901,
+          "p95_abs_pct": 5.383072437395307
+        },
+        "2011": {
+          "municipalities": 290,
+          "median_pct": 2.72784154452963,
+          "mean_pct": 2.85390997964134,
+          "p10_pct": 0.3831110872497568,
+          "p90_pct": 5.769754584903252,
+          "p95_abs_pct": 6.82582789900705
+        },
+        "2012": {
+          "municipalities": 290,
+          "median_pct": 0.5675096991899942,
+          "mean_pct": 0.5147719097866451,
+          "p10_pct": -1.9217028158147054,
+          "p90_pct": 2.9646196753785485,
+          "p95_abs_pct": 3.6934002869440428
+        },
+        "2013": {
+          "municipalities": 290,
+          "median_pct": 0.33323614904829935,
+          "mean_pct": 0.1935532294958352,
+          "p10_pct": -2.320091842824168,
+          "p90_pct": 2.3736445783132454,
+          "p95_abs_pct": 3.615347084356811
+        },
+        "2014": {
+          "municipalities": 290,
+          "median_pct": 0.2450589769301681,
+          "mean_pct": 0.15043831599660595,
+          "p10_pct": -1.9113146638359457,
+          "p90_pct": 2.1249121497501378,
+          "p95_abs_pct": 3.516504126352405
+        },
+        "2015": {
+          "municipalities": 290,
+          "median_pct": 0.9618495316528364,
+          "mean_pct": 0.8402927941762585,
+          "p10_pct": -1.1253042844880554,
+          "p90_pct": 2.918420475429813,
+          "p95_abs_pct": 3.969800858448492
+        },
+        "2016": {
+          "municipalities": 290,
+          "median_pct": 1.8207331775087598,
+          "mean_pct": 1.796967227846768,
+          "p10_pct": -0.5366450365443675,
+          "p90_pct": 3.9240133942673494,
+          "p95_abs_pct": 4.491999757276884
+        },
+        "2017": {
+          "municipalities": 290,
+          "median_pct": 1.2701195385167008,
+          "mean_pct": 1.2491388335003024,
+          "p10_pct": -0.9801214268585834,
+          "p90_pct": 3.326464086614588,
+          "p95_abs_pct": 4.141696177401016
+        },
+        "2018": {
+          "municipalities": 290,
+          "median_pct": 0.22969340667039484,
+          "mean_pct": 0.2602525776049745,
+          "p10_pct": -1.755457453403123,
+          "p90_pct": 2.1611069685216293,
+          "p95_abs_pct": 3.339852358968275
+        },
+        "2019": {
+          "municipalities": 290,
+          "median_pct": 0.9762276145498627,
+          "mean_pct": 0.8810023988166691,
+          "p10_pct": -1.8978613496920493,
+          "p90_pct": 3.739870800294002,
+          "p95_abs_pct": 4.807760311641987
+        },
+        "2020": {
+          "municipalities": 290,
+          "median_pct": -1.4511494671802239,
+          "mean_pct": -1.441335779411257,
+          "p10_pct": -3.8782512687878232,
+          "p90_pct": 0.9887806990350237,
+          "p95_abs_pct": 4.883234776147916
+        },
+        "2021": {
+          "municipalities": 290,
+          "median_pct": 1.533193220794249,
+          "mean_pct": 1.4525817553302651,
+          "p10_pct": -0.7924473028708634,
+          "p90_pct": 3.669571025619146,
+          "p95_abs_pct": 4.5760720894112685
+        }
+      },
+      "boundaries": {
+        "2011": {
+          "national_median_growth_pct": 2.72784154452963,
+          "municipal_median_deviation_pp": 3.1707686205849406,
+          "municipal_p90_abs_deviation_pp": 7.546398071310459,
+          "n_abs_deviation_gt_5pp": 73,
+          "top_abs_deviations": [
+            {
+              "kommun_kod": "2326",
+              "observed_growth": 10.412147505422986,
+              "pre_break_median": -2.8451001053740765,
+              "deviation_pp": 13.257247610797062
+            },
+            {
+              "kommun_kod": "2422",
+              "observed_growth": 6.043956043956045,
+              "pre_break_median": -6.582506762849416,
+              "deviation_pp": 12.62646280680546
+            },
+            {
+              "kommun_kod": "2521",
+              "observed_growth": 8.615384615384624,
+              "pre_break_median": -3.7437603993344393,
+              "deviation_pp": 12.359145014719063
+            },
+            {
+              "kommun_kod": "1256",
+              "observed_growth": 3.8183015141540544,
+              "pre_break_median": -8.340954819828061,
+              "deviation_pp": 12.159256333982116
+            },
+            {
+              "kommun_kod": "2305",
+              "observed_growth": 8.432087511394704,
+              "pre_break_median": -3.687445127304656,
+              "deviation_pp": 12.11953263869936
+            },
+            {
+              "kommun_kod": "1762",
+              "observed_growth": 5.026109660574418,
+              "pre_break_median": -6.773162939297128,
+              "deviation_pp": 11.799272599871546
+            },
+            {
+              "kommun_kod": "1715",
+              "observed_growth": 8.251996450754206,
+              "pre_break_median": -2.5883662677428365,
+              "deviation_pp": 10.840362718497042
+            },
+            {
+              "kommun_kod": "1060",
+              "observed_growth": 5.542168674698789,
+              "pre_break_median": -5.276618656615961,
+              "deviation_pp": 10.818787331314748
+            },
+            {
+              "kommun_kod": "1904",
+              "observed_growth": 7.0115724982981575,
+              "pre_break_median": -3.59281437125748,
+              "deviation_pp": 10.604386869555638
+            },
+            {
+              "kommun_kod": "2409",
+              "observed_growth": 7.951598962834927,
+              "pre_break_median": -2.601040416166467,
+              "deviation_pp": 10.552639379001395
+            },
+            {
+              "kommun_kod": "1273",
+              "observed_growth": 6.3791953767503795,
+              "pre_break_median": -3.622368123160513,
+              "deviation_pp": 10.001563499910892
+            },
+            {
+              "kommun_kod": "2313",
+              "observed_growth": 6.669377795851972,
+              "pre_break_median": -2.7805362462760663,
+              "deviation_pp": 9.449914042128038
+            },
+            {
+              "kommun_kod": "2132",
+              "observed_growth": 6.408629441624369,
+              "pre_break_median": -2.954476936991257,
+              "deviation_pp": 9.363106378615626
+            },
+            {
+              "kommun_kod": "2518",
+              "observed_growth": 7.796610169491536,
+              "pre_break_median": -1.5651201788708824,
+              "deviation_pp": 9.361730348362418
+            },
+            {
+              "kommun_kod": "0139",
+              "observed_growth": 9.493670886075956,
+              "pre_break_median": 0.17170783251883037,
+              "deviation_pp": 9.321963053557125
+            }
+          ],
+          "lulea": [
+            {
+              "kommun_kod": "2580",
+              "observed_growth": 2.5079405412272937,
+              "pre_break_median": -0.19099316445516656,
+              "deviation_pp": 2.6989337056824603
+            }
+          ]
+        },
+        "2019": {
+          "national_median_growth_pct": 0.9762276145498627,
+          "municipal_median_deviation_pp": -0.20628515012008353,
+          "municipal_p90_abs_deviation_pp": 4.168211734148352,
+          "n_abs_deviation_gt_5pp": 16,
+          "top_abs_deviations": [
+            {
+              "kommun_kod": "0125",
+              "observed_growth": -7.897014279532666,
+              "pre_break_median": 3.095265390347368,
+              "deviation_pp": -10.992279669880034
+            },
+            {
+              "kommun_kod": "1962",
+              "observed_growth": -4.449999999999998,
+              "pre_break_median": 5.271481286241442,
+              "deviation_pp": -9.72148128624144
+            },
+            {
+              "kommun_kod": "1260",
+              "observed_growth": 4.785729823798124,
+              "pre_break_median": -4.764864304951311,
+              "deviation_pp": 9.550594128749434
+            },
+            {
+              "kommun_kod": "2506",
+              "observed_growth": -9.615384615384615,
+              "pre_break_median": -0.8000000000000007,
+              "deviation_pp": -8.815384615384614
+            },
+            {
+              "kommun_kod": "1060",
+              "observed_growth": -3.5419886656362753,
+              "pre_break_median": 4.407209236834686,
+              "deviation_pp": -7.949197902470962
+            },
+            {
+              "kommun_kod": "2023",
+              "observed_growth": -6.527137282724372,
+              "pre_break_median": 1.3481934208161128,
+              "deviation_pp": -7.8753307035404845
+            },
+            {
+              "kommun_kod": "0139",
+              "observed_growth": -3.0270689822450736,
+              "pre_break_median": 4.745934959349585,
+              "deviation_pp": -7.773003941594658
+            },
+            {
+              "kommun_kod": "2521",
+              "observed_growth": 6.290064102564097,
+              "pre_break_median": -1.2214983713355054,
+              "deviation_pp": 7.511562473899602
+            },
+            {
+              "kommun_kod": "1762",
+              "observed_growth": -3.1820860341779666,
+              "pre_break_median": 3.533123028391172,
+              "deviation_pp": -6.715209062569139
+            },
+            {
+              "kommun_kod": "0305",
+              "observed_growth": 7.6776098662497905,
+              "pre_break_median": 1.1943539630836053,
+              "deviation_pp": 6.483255903166185
+            },
+            {
+              "kommun_kod": "0561",
+              "observed_growth": 6.213535589264874,
+              "pre_break_median": -0.1735106998264846,
+              "deviation_pp": 6.387046289091359
+            },
+            {
+              "kommun_kod": "2321",
+              "observed_growth": -2.2218424200991294,
+              "pre_break_median": 4.163675520459442,
+              "deviation_pp": -6.385517940558572
+            },
+            {
+              "kommun_kod": "0760",
+              "observed_growth": -1.8919446069826429,
+              "pre_break_median": 3.6997661067403875,
+              "deviation_pp": -5.59171071372303
+            },
+            {
+              "kommun_kod": "1315",
+              "observed_growth": -2.8134556574923586,
+              "pre_break_median": 2.5076319232446576,
+              "deviation_pp": -5.321087580737016
+            },
+            {
+              "kommun_kod": "2361",
+              "observed_growth": -5.066771406127257,
+              "pre_break_median": 0.19584802193497453,
+              "deviation_pp": -5.262619428062232
+            }
+          ],
+          "lulea": [
+            {
+              "kommun_kod": "2580",
+              "observed_growth": -0.26114362899595234,
+              "pre_break_median": 1.0831967959220812,
+              "deviation_pp": -1.3443404249180335
+            }
+          ]
+        }
+      }
+    }
+  },
+  "limitations": [
+    "2011 and 2019 changes mix actual labour-market movement with measurement breaks: deviations do not identify a correction factor.",
+    "2019 has no duplicate measurement under both methods; do not blindly smooth it.",
+    "Older RAMS 2004-2018 imported from PendlingK summary; AM0207PendlKomA04 municipality-pair table not independently reconciled yet.",
+    "The 2020/2021 BAS-RAMS bridge was separately diagnosed; neither overlap establishes publication-time availability.",
+    "No regression or production features modified."
+  ]
+}
