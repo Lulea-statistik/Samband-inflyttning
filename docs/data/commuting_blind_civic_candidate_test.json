@@ -1,0 +1,179 @@
+{
+  "status": "blind_civic_individual_screen",
+  "source": "BAS",
+  "candidates": [
+    "lag1_kolada_lok_foreningar_per_10000",
+    "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+    "lag1_kolada_utbetalt_lok_stod_kr_per_inv"
+  ],
+  "years": [
+    2023,
+    2024
+  ],
+  "production_model_changed": false,
+  "results": {
+    "2023": {
+      "selected": [
+        "lag1_log_folkmangd",
+        "lag1_inkomst_tkr",
+        "lag1_valdeltagande_pct",
+        "lag1_valdeltagande_gap_pp",
+        "lag1_ekonomisk_standard_gap_pp",
+        "lag1_bostader_per_1000",
+        "lag1_fardigstallda_bostader_per_1000",
+        "lag1_andel_bostadsratt",
+        "lag1_andel_smahus",
+        "lag1_andel_eftergymnasial",
+        "lag1_andel_studerande",
+        "lag1_andel_kultur_service_rstu",
+        "lag1_log_externa_fa_jobb_per_1000",
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+        "lag1_kolada_arbetslosa_18_65_pct",
+        "lag1_arbetskraftsdeltagande",
+        "lag1_bas_studerande_andel_pct",
+        "lag1_andel_bostader_111_plus",
+        "lag1_gymnasium_hogskoleforberedande_pct",
+        "lag1_regional_centre_distance_km",
+        "lag1_tatortsgrad_pct"
+      ],
+      "n_train": 290,
+      "n_test": 290,
+      "comparisons": {
+        "reference": {
+          "rmse": 9.425889622973864,
+          "mae": 7.075426227671054,
+          "feature_count": 21,
+          "lulea_pred": 45.33832179999152,
+          "lulea_actual": 47.73666700272205,
+          "candidate_coefficients": {}
+        },
+        "lag1_kolada_lok_foreningar_per_10000": {
+          "rmse": 9.617293606230865,
+          "mae": 7.205090800091198,
+          "feature_count": 22,
+          "lulea_pred": 46.1858631308307,
+          "lulea_actual": 47.73666700272205,
+          "candidate_coefficients": {
+            "lag1_kolada_lok_foreningar_per_10000": -2.3816505193310675
+          }
+        },
+        "lag1_kolada_flickdominerade_idrottsforeningar_andel": {
+          "rmse": 9.383543445212585,
+          "mae": 7.018911050629544,
+          "feature_count": 22,
+          "lulea_pred": 45.32372381980956,
+          "lulea_actual": 47.73666700272205,
+          "candidate_coefficients": {
+            "lag1_kolada_flickdominerade_idrottsforeningar_andel": 0.2731798117097246
+          }
+        },
+        "lag1_kolada_utbetalt_lok_stod_kr_per_inv": {
+          "rmse": 9.227943823068149,
+          "mae": 6.788393156101212,
+          "feature_count": 22,
+          "lulea_pred": 44.215083782423214,
+          "lulea_actual": 47.73666700272205,
+          "candidate_coefficients": {
+            "lag1_kolada_utbetalt_lok_stod_kr_per_inv": -3.2417555919559318
+          }
+        },
+        "all_civic": {
+          "rmse": 9.34331025615048,
+          "mae": 6.88715265567529,
+          "feature_count": 24,
+          "lulea_pred": 45.41248691777835,
+          "lulea_actual": 47.73666700272205,
+          "candidate_coefficients": {
+            "lag1_kolada_lok_foreningar_per_10000": -1.8860660396007223,
+            "lag1_kolada_flickdominerade_idrottsforeningar_andel": 0.6392510323768996,
+            "lag1_kolada_utbetalt_lok_stod_kr_per_inv": -2.562785040824009
+          }
+        }
+      }
+    },
+    "2024": {
+      "selected": [
+        "lag1_log_folkmangd",
+        "lag1_inkomst_tkr",
+        "lag1_valdeltagande_pct",
+        "lag1_valdeltagande_gap_pp",
+        "lag1_ekonomisk_standard_gap_pp",
+        "lag1_bostader_per_1000",
+        "lag1_fardigstallda_bostader_per_1000",
+        "lag1_andel_bostadsratt",
+        "lag1_andel_smahus",
+        "lag1_andel_eftergymnasial",
+        "lag1_andel_studerande",
+        "lag1_andel_kultur_service_rstu",
+        "lag1_log_externa_fa_jobb_per_1000",
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+        "lag1_kolada_arbetslosa_18_65_pct",
+        "lag1_arbetskraftsdeltagande",
+        "lag1_bas_pensionarer_andel_pct",
+        "lag1_andel_bostader_111_plus",
+        "lag1_gymnasium_hogskoleforberedande_pct",
+        "lag1_regional_centre_distance_km",
+        "lag1_tatortsgrad_pct"
+      ],
+      "n_train": 580,
+      "n_test": 290,
+      "comparisons": {
+        "reference": {
+          "rmse": 8.870852415376714,
+          "mae": 6.685593665041954,
+          "feature_count": 21,
+          "lulea_pred": 46.22267728081346,
+          "lulea_actual": 51.74210559357147,
+          "candidate_coefficients": {}
+        },
+        "lag1_kolada_lok_foreningar_per_10000": {
+          "rmse": 8.764286532660595,
+          "mae": 6.561323646422291,
+          "feature_count": 22,
+          "lulea_pred": 46.06998842481882,
+          "lulea_actual": 51.74210559357147,
+          "candidate_coefficients": {
+            "lag1_kolada_lok_foreningar_per_10000": -1.9014117876053014
+          }
+        },
+        "lag1_kolada_flickdominerade_idrottsforeningar_andel": {
+          "rmse": 8.874053712225285,
+          "mae": 6.690142723147657,
+          "feature_count": 22,
+          "lulea_pred": 46.15471063745271,
+          "lulea_actual": 51.74210559357147,
+          "candidate_coefficients": {
+            "lag1_kolada_flickdominerade_idrottsforeningar_andel": -0.07352451743722854
+          }
+        },
+        "lag1_kolada_utbetalt_lok_stod_kr_per_inv": {
+          "rmse": 8.619324706241073,
+          "mae": 6.426128968607095,
+          "feature_count": 22,
+          "lulea_pred": 44.02392221628634,
+          "lulea_actual": 51.74210559357147,
+          "candidate_coefficients": {
+            "lag1_kolada_utbetalt_lok_stod_kr_per_inv": -3.8855587748372105
+          }
+        },
+        "all_civic": {
+          "rmse": 8.571803150814189,
+          "mae": 6.380212412398098,
+          "feature_count": 24,
+          "lulea_pred": 44.513820051654506,
+          "lulea_actual": 51.74210559357147,
+          "candidate_coefficients": {
+            "lag1_kolada_lok_foreningar_per_10000": -1.1634120561501566,
+            "lag1_kolada_flickdominerade_idrottsforeningar_andel": 0.2975374100993109,
+            "lag1_kolada_utbetalt_lok_stod_kr_per_inv": -3.3407825900707273
+          }
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Previously inspected annual outcomes: descriptive exploratory testing only.",
+    "This is a BAS 2022-24 blind candidate research subset, not a full historical structural validation.",
+    "Civic associations and support payments are not experimentally assigned; associations cannot establish causality."
+  ]
+}
