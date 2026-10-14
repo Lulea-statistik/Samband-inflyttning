@@ -1,0 +1,37 @@
+name: Stress test coastal nature unemployment geography
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/test_environment_unemployment_geographic.py"
+      - ".github/workflows/test_environment_unemployment_geographic.yml"
+concurrency:
+  group: environment-unemployment-geography
+  cancel-in-progress: true
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Evaluate municipality geographic holdouts
+        run: python scripts/test_environment_unemployment_geographic.py
+      - name: Persist research report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/commuting_environment_unemployment_geographic.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Update geography environmental unemployment stress results"
+          git pull --rebase origin main
+          git push origin HEAD:main
