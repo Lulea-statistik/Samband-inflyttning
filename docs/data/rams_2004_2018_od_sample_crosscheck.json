@@ -1,0 +1,395 @@
+{
+  "status": "independent_sample_commuter_flow_crosscheck",
+  "sex_handling": "published_total",
+  "diagonal_observations_skipped": 72,
+  "source": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0207/AM0207L/AM0207PendlKomA04",
+  "years": [
+    "2008",
+    "2011",
+    "2018"
+  ],
+  "municipalities": [
+    "0180",
+    "0380",
+    "0580",
+    "1280",
+    "1480",
+    "1780",
+    "1880",
+    "2080",
+    "2281",
+    "2380",
+    "2480",
+    "2580"
+  ],
+  "rows": [
+    {
+      "year": 2008,
+      "kommun_kod": "0180",
+      "rams_outgoing": 110486.0,
+      "od_outgoing": 109173.0,
+      "out_diff": -1313.0,
+      "rams_incoming": 261523.0,
+      "od_incoming": 261523.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2008,
+      "kommun_kod": "0380",
+      "rams_outgoing": 21836.0,
+      "od_outgoing": 21717.0,
+      "out_diff": -119.0,
+      "rams_incoming": 17385.0,
+      "od_incoming": 17385.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2008,
+      "kommun_kod": "0580",
+      "rams_outgoing": 9866.0,
+      "od_outgoing": 9784.0,
+      "out_diff": -82.0,
+      "rams_incoming": 16121.0,
+      "od_incoming": 16121.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2008,
+      "kommun_kod": "1280",
+      "rams_outgoing": 26800.0,
+      "od_outgoing": 26336.0,
+      "out_diff": -464.0,
+      "rams_incoming": 59626.0,
+      "od_incoming": 59626.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2008,
+      "kommun_kod": "1480",
+      "rams_outgoing": 44720.0,
+      "od_outgoing": 43010.0,
+      "out_diff": -1710.0,
+      "rams_incoming": 105575.0,
+      "od_incoming": 105575.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2008,
+      "kommun_kod": "1780",
+      "rams_outgoing": 7396.0,
+      "od_outgoing": 7342.0,
+      "out_diff": -54.0,
+      "rams_incoming": 14840.0,
+      "od_incoming": 14840.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2008,
+      "kommun_kod": "1880",
+      "rams_outgoing": 9843.0,
+      "od_outgoing": 9784.0,
+      "out_diff": -59.0,
+      "rams_incoming": 15454.0,
+      "od_incoming": 15454.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2008,
+      "kommun_kod": "2080",
+      "rams_outgoing": 5616.0,
+      "od_outgoing": 5590.0,
+      "out_diff": -26.0,
+      "rams_incoming": 6244.0,
+      "od_incoming": 6244.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2008,
+      "kommun_kod": "2281",
+      "rams_outgoing": 5291.0,
+      "od_outgoing": 5239.0,
+      "out_diff": -52.0,
+      "rams_incoming": 8348.0,
+      "od_incoming": 8348.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2008,
+      "kommun_kod": "2380",
+      "rams_outgoing": 3315.0,
+      "od_outgoing": 3300.0,
+      "out_diff": -15.0,
+      "rams_incoming": 6432.0,
+      "od_incoming": 6432.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2008,
+      "kommun_kod": "2480",
+      "rams_outgoing": 5229.0,
+      "od_outgoing": 5188.0,
+      "out_diff": -41.0,
+      "rams_incoming": 7220.0,
+      "od_incoming": 7220.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2008,
+      "kommun_kod": "2580",
+      "rams_outgoing": 3799.0,
+      "od_outgoing": 3772.0,
+      "out_diff": -27.0,
+      "rams_incoming": 8096.0,
+      "od_incoming": 8096.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2011,
+      "kommun_kod": "0180",
+      "rams_outgoing": 116468.0,
+      "od_outgoing": 115232.0,
+      "out_diff": -1236.0,
+      "rams_incoming": 273338.0,
+      "od_incoming": 273338.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2011,
+      "kommun_kod": "0380",
+      "rams_outgoing": 21875.0,
+      "od_outgoing": 21767.0,
+      "out_diff": -108.0,
+      "rams_incoming": 18651.0,
+      "od_incoming": 18651.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2011,
+      "kommun_kod": "0580",
+      "rams_outgoing": 10268.0,
+      "od_outgoing": 10213.0,
+      "out_diff": -55.0,
+      "rams_incoming": 16911.0,
+      "od_incoming": 16911.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2011,
+      "kommun_kod": "1280",
+      "rams_outgoing": 28359.0,
+      "od_outgoing": 28016.0,
+      "out_diff": -343.0,
+      "rams_incoming": 61870.0,
+      "od_incoming": 61870.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2011,
+      "kommun_kod": "1480",
+      "rams_outgoing": 47923.0,
+      "od_outgoing": 46396.0,
+      "out_diff": -1527.0,
+      "rams_incoming": 106392.0,
+      "od_incoming": 106392.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2011,
+      "kommun_kod": "1780",
+      "rams_outgoing": 7619.0,
+      "od_outgoing": 7566.0,
+      "out_diff": -53.0,
+      "rams_incoming": 15208.0,
+      "od_incoming": 15208.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2011,
+      "kommun_kod": "1880",
+      "rams_outgoing": 10411.0,
+      "od_outgoing": 10358.0,
+      "out_diff": -53.0,
+      "rams_incoming": 16068.0,
+      "od_incoming": 16068.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2011,
+      "kommun_kod": "2080",
+      "rams_outgoing": 6231.0,
+      "od_outgoing": 6208.0,
+      "out_diff": -23.0,
+      "rams_incoming": 6347.0,
+      "od_incoming": 6347.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2011,
+      "kommun_kod": "2281",
+      "rams_outgoing": 5082.0,
+      "od_outgoing": 5033.0,
+      "out_diff": -49.0,
+      "rams_incoming": 8051.0,
+      "od_incoming": 8051.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2011,
+      "kommun_kod": "2380",
+      "rams_outgoing": 3294.0,
+      "od_outgoing": 3284.0,
+      "out_diff": -10.0,
+      "rams_incoming": 6344.0,
+      "od_incoming": 6344.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2011,
+      "kommun_kod": "2480",
+      "rams_outgoing": 5189.0,
+      "od_outgoing": 5161.0,
+      "out_diff": -28.0,
+      "rams_incoming": 7326.0,
+      "od_incoming": 7326.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2011,
+      "kommun_kod": "2580",
+      "rams_outgoing": 3994.0,
+      "od_outgoing": 3958.0,
+      "out_diff": -36.0,
+      "rams_incoming": 8177.0,
+      "od_incoming": 8177.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2018,
+      "kommun_kod": "0180",
+      "rams_outgoing": 136363.0,
+      "od_outgoing": 135336.0,
+      "out_diff": -1027.0,
+      "rams_incoming": 317948.0,
+      "od_incoming": 317948.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2018,
+      "kommun_kod": "0380",
+      "rams_outgoing": 25882.0,
+      "od_outgoing": 25784.0,
+      "out_diff": -98.0,
+      "rams_incoming": 23136.0,
+      "od_incoming": 23136.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2018,
+      "kommun_kod": "0580",
+      "rams_outgoing": 11626.0,
+      "od_outgoing": 11562.0,
+      "out_diff": -64.0,
+      "rams_incoming": 20117.0,
+      "od_incoming": 20117.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2018,
+      "kommun_kod": "1280",
+      "rams_outgoing": 35500.0,
+      "od_outgoing": 35272.0,
+      "out_diff": -228.0,
+      "rams_incoming": 72242.0,
+      "od_incoming": 72242.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2018,
+      "kommun_kod": "1480",
+      "rams_outgoing": 53341.0,
+      "od_outgoing": 52265.0,
+      "out_diff": -1076.0,
+      "rams_incoming": 124222.0,
+      "od_incoming": 124222.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2018,
+      "kommun_kod": "1780",
+      "rams_outgoing": 9018.0,
+      "od_outgoing": 8969.0,
+      "out_diff": -49.0,
+      "rams_incoming": 17191.0,
+      "od_incoming": 17191.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2018,
+      "kommun_kod": "1880",
+      "rams_outgoing": 12873.0,
+      "od_outgoing": 12832.0,
+      "out_diff": -41.0,
+      "rams_incoming": 18242.0,
+      "od_incoming": 18242.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2018,
+      "kommun_kod": "2080",
+      "rams_outgoing": 6883.0,
+      "od_outgoing": 6867.0,
+      "out_diff": -16.0,
+      "rams_incoming": 6915.0,
+      "od_incoming": 6915.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2018,
+      "kommun_kod": "2281",
+      "rams_outgoing": 5511.0,
+      "od_outgoing": 5469.0,
+      "out_diff": -42.0,
+      "rams_incoming": 9474.0,
+      "od_incoming": 9474.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2018,
+      "kommun_kod": "2380",
+      "rams_outgoing": 3675.0,
+      "od_outgoing": 3664.0,
+      "out_diff": -11.0,
+      "rams_incoming": 7188.0,
+      "od_incoming": 7188.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2018,
+      "kommun_kod": "2480",
+      "rams_outgoing": 5854.0,
+      "od_outgoing": 5837.0,
+      "out_diff": -17.0,
+      "rams_incoming": 8640.0,
+      "od_incoming": 8640.0,
+      "in_diff": 0.0
+    },
+    {
+      "year": 2018,
+      "kommun_kod": "2580",
+      "rams_outgoing": 4147.0,
+      "od_outgoing": 4133.0,
+      "out_diff": -14.0,
+      "rams_incoming": 8963.0,
+      "od_incoming": 8963.0,
+      "in_diff": 0.0
+    }
+  ],
+  "production_changed": false,
+  "limitations": [
+    "Commuters crossing a municipal border are not total employed persons.",
+    "Only a fixed selection of 12 municipalities and 3 years is checked.",
+    "A total difference could reflect missing/unknown workplace or SCB confidentiality handling.",
+    "No historical model or series has been altered."
+  ],
+  "different_rows": 36
+}
