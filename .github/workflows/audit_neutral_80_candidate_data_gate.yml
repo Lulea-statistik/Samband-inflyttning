@@ -1,0 +1,30 @@
+name: Audit neutral 80 candidate data gate
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/audit_neutral_80_candidate_data_gate.py
+      - .github/workflows/audit_neutral_80_candidate_data_gate.yml
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install pandas numpy
+      - run: python scripts/audit_neutral_80_candidate_data_gate.py
+      - name: Commit data gate
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/neutral_80_candidate_data_gate.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record 80-variable coverage and numeric relationship audit"
+          git pull --rebase origin main
+          git push origin HEAD:main
