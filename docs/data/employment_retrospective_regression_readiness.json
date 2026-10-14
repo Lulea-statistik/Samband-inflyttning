@@ -1,0 +1,224 @@
+{
+  "status": "pre_registered_retro_coverage_only",
+  "target": "inflyttning_per_1000",
+  "years": {
+    "2006": {
+      "outcome_and_residence": 290,
+      "outcome_and_workplace": 290,
+      "both_growth_plus_outcome": 290,
+      "structural_controls_each": {
+        "lag1_log_folkmangd": 290,
+        "lag1_tatortsgrad_pct": 290
+      },
+      "both_growth_outcome_and_controls": 290,
+      "source_release_verified": false
+    },
+    "2007": {
+      "outcome_and_residence": 290,
+      "outcome_and_workplace": 290,
+      "both_growth_plus_outcome": 290,
+      "structural_controls_each": {
+        "lag1_log_folkmangd": 290,
+        "lag1_tatortsgrad_pct": 290
+      },
+      "both_growth_outcome_and_controls": 290,
+      "source_release_verified": false
+    },
+    "2008": {
+      "outcome_and_residence": 290,
+      "outcome_and_workplace": 290,
+      "both_growth_plus_outcome": 290,
+      "structural_controls_each": {
+        "lag1_log_folkmangd": 290,
+        "lag1_tatortsgrad_pct": 290
+      },
+      "both_growth_outcome_and_controls": 290,
+      "source_release_verified": false
+    },
+    "2009": {
+      "outcome_and_residence": 290,
+      "outcome_and_workplace": 290,
+      "both_growth_plus_outcome": 290,
+      "structural_controls_each": {
+        "lag1_log_folkmangd": 290,
+        "lag1_tatortsgrad_pct": 290
+      },
+      "both_growth_outcome_and_controls": 290,
+      "source_release_verified": false
+    },
+    "2010": {
+      "outcome_and_residence": 290,
+      "outcome_and_workplace": 290,
+      "both_growth_plus_outcome": 290,
+      "structural_controls_each": {
+        "lag1_log_folkmangd": 290,
+        "lag1_tatortsgrad_pct": 290
+      },
+      "both_growth_outcome_and_controls": 290,
+      "source_release_verified": false
+    },
+    "2011": {
+      "outcome_and_residence": 290,
+      "outcome_and_workplace": 290,
+      "both_growth_plus_outcome": 290,
+      "structural_controls_each": {
+        "lag1_log_folkmangd": 290,
+        "lag1_tatortsgrad_pct": 290
+      },
+      "both_growth_outcome_and_controls": 290,
+      "source_release_verified": false
+    },
+    "2013": {
+      "outcome_and_residence": 290,
+      "outcome_and_workplace": 290,
+      "both_growth_plus_outcome": 290,
+      "structural_controls_each": {
+        "lag1_log_folkmangd": 290,
+        "lag1_tatortsgrad_pct": 290
+      },
+      "both_growth_outcome_and_controls": 290,
+      "source_release_verified": false
+    },
+    "2014": {
+      "outcome_and_residence": 290,
+      "outcome_and_workplace": 290,
+      "both_growth_plus_outcome": 290,
+      "structural_controls_each": {
+        "lag1_log_folkmangd": 290,
+        "lag1_tatortsgrad_pct": 290
+      },
+      "both_growth_outcome_and_controls": 290,
+      "source_release_verified": false
+    },
+    "2015": {
+      "outcome_and_residence": 290,
+      "outcome_and_workplace": 290,
+      "both_growth_plus_outcome": 290,
+      "structural_controls_each": {
+        "lag1_log_folkmangd": 290,
+        "lag1_tatortsgrad_pct": 290
+      },
+      "both_growth_outcome_and_controls": 290,
+      "source_release_verified": false
+    },
+    "2016": {
+      "outcome_and_residence": 290,
+      "outcome_and_workplace": 290,
+      "both_growth_plus_outcome": 290,
+      "structural_controls_each": {
+        "lag1_log_folkmangd": 290,
+        "lag1_tatortsgrad_pct": 290
+      },
+      "both_growth_outcome_and_controls": 290,
+      "source_release_verified": false
+    },
+    "2017": {
+      "outcome_and_residence": 290,
+      "outcome_and_workplace": 290,
+      "both_growth_plus_outcome": 290,
+      "structural_controls_each": {
+        "lag1_log_folkmangd": 290,
+        "lag1_tatortsgrad_pct": 290
+      },
+      "both_growth_outcome_and_controls": 290,
+      "source_release_verified": false
+    },
+    "2018": {
+      "outcome_and_residence": 290,
+      "outcome_and_workplace": 290,
+      "both_growth_plus_outcome": 290,
+      "structural_controls_each": {
+        "lag1_log_folkmangd": 290,
+        "lag1_tatortsgrad_pct": 290
+      },
+      "both_growth_outcome_and_controls": 290,
+      "source_release_verified": false
+    },
+    "2019": {
+      "outcome_and_residence": 290,
+      "outcome_and_workplace": 290,
+      "both_growth_plus_outcome": 290,
+      "structural_controls_each": {
+        "lag1_log_folkmangd": 290,
+        "lag1_tatortsgrad_pct": 290
+      },
+      "both_growth_outcome_and_controls": 290,
+      "source_release_verified": false
+    },
+    "2021": {
+      "outcome_and_residence": 290,
+      "outcome_and_workplace": 290,
+      "both_growth_plus_outcome": 290,
+      "structural_controls_each": {
+        "lag1_log_folkmangd": 290,
+        "lag1_tatortsgrad_pct": 290
+      },
+      "both_growth_outcome_and_controls": 290,
+      "source_release_verified": false
+    },
+    "2022": {
+      "outcome_and_residence": 290,
+      "outcome_and_workplace": 290,
+      "both_growth_plus_outcome": 290,
+      "structural_controls_each": {
+        "lag1_log_folkmangd": 290,
+        "lag1_tatortsgrad_pct": 290
+      },
+      "both_growth_outcome_and_controls": 290,
+      "source_release_verified": false
+    },
+    "2023": {
+      "outcome_and_residence": 290,
+      "outcome_and_workplace": 290,
+      "both_growth_plus_outcome": 290,
+      "structural_controls_each": {
+        "lag1_log_folkmangd": 290,
+        "lag1_tatortsgrad_pct": 290
+      },
+      "both_growth_outcome_and_controls": 290,
+      "source_release_verified": false
+    },
+    "2024": {
+      "outcome_and_residence": 290,
+      "outcome_and_workplace": 290,
+      "both_growth_plus_outcome": 290,
+      "structural_controls_each": {
+        "lag1_log_folkmangd": 290,
+        "lag1_tatortsgrad_pct": 290
+      },
+      "both_growth_outcome_and_controls": 290,
+      "source_release_verified": false
+    }
+  },
+  "fixed_structural_controls": [
+    "lag1_log_folkmangd",
+    "lag1_tatortsgrad_pct"
+  ],
+  "excluded_short_history_control": "lag1_regional_centre_distance_km",
+  "production_changed": false,
+  "asof_gate": "blocked_until_exact_forecast_origin_and_source_vintages_defined",
+  "rules": [
+    "Use common municipality-year observations with outcomes available; no per-method sample changes.",
+    "Retrospective association analysis may use revised historic predictors if identified as such; do not claim genuine historical forecasting.",
+    "Strict forecasting must fit BAS calibration only from vintages known at each historic training origin; currently no as-of-approved rows.",
+    "An identical constant municipality correction cancels from RAMS percent growth, so corrected and uncorrected within-regime growth cannot be independent regression candidates.",
+    "Exclude method break years 2011 and 2024 and do not compute 2018-to-2019 or cross-source annual growth.",
+    "Preserve previously inspected 2023 and 2024 as exploratory; do not choose the best model by those years."
+  ],
+  "years_with_complete_train_and_test_3": [
+    2009,
+    2010,
+    2011,
+    2016,
+    2017,
+    2018,
+    2019,
+    2024
+  ],
+  "years_with_complete_train_and_test_5": [
+    2011,
+    2018,
+    2019
+  ],
+  "years_with_complete_train_and_test_10": []
+}
