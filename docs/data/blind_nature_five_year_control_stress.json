@@ -1,0 +1,990 @@
+{
+  "status": "fixed_five_year_blind_nature_controls",
+  "training_years": 5,
+  "forecast_horizon": 1,
+  "candidate": "lag1_naturpraglad_mark_andel_land_pct",
+  "control_designs": {
+    "simple": {
+      "controls": [
+        "lag1_log_folkmangd",
+        "lag1_tatortsgrad_pct"
+      ],
+      "complete_years": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "forecast_years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "forecasts": {
+        "2016": {
+          "scores": {
+            "reference": {
+              "rmse": 20.170625670589033,
+              "mae": 14.30681692607331,
+              "lulea_absolute_error": 7.093055963240367,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 19.990245385132177,
+              "mae": 14.132011279572337,
+              "lulea_absolute_error": 2.1851891959935443,
+              "coefficient": -3.5740175316464384
+            }
+          },
+          "gain_rmse": 0.18038028545685592
+        },
+        "2017": {
+          "scores": {
+            "reference": {
+              "rmse": 17.30300109390969,
+              "mae": 12.467700689758171,
+              "lulea_absolute_error": 7.610518523823885,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 16.87447754704958,
+              "mae": 12.01440319338904,
+              "lulea_absolute_error": 2.9300278891313027,
+              "coefficient": -3.404406729824239
+            }
+          },
+          "gain_rmse": 0.4285235468601094
+        },
+        "2018": {
+          "scores": {
+            "reference": {
+              "rmse": 15.913470707158085,
+              "mae": 12.099609444428928,
+              "lulea_absolute_error": 10.956793763467736,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 15.234160169718432,
+              "mae": 11.549368202671653,
+              "lulea_absolute_error": 6.229216348629514,
+              "coefficient": -3.44617061031356
+            }
+          },
+          "gain_rmse": 0.6793105374396529
+        },
+        "2019": {
+          "scores": {
+            "reference": {
+              "rmse": 17.26202431317481,
+              "mae": 13.660010769617681,
+              "lulea_absolute_error": 15.150694972685713,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 16.501347361961585,
+              "mae": 13.084765096587361,
+              "lulea_absolute_error": 9.789864447153732,
+              "coefficient": -3.9210947458095826
+            }
+          },
+          "gain_rmse": 0.7606769512132239
+        },
+        "2020": {
+          "scores": {
+            "reference": {
+              "rmse": 17.097401373530225,
+              "mae": 13.685757473627678,
+              "lulea_absolute_error": 13.281026245344478,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 16.09939238573769,
+              "mae": 12.885039469146594,
+              "lulea_absolute_error": 7.20749006764003,
+              "coefficient": -4.461954461284559
+            }
+          },
+          "gain_rmse": 0.9980089877925344
+        },
+        "2021": {
+          "scores": {
+            "reference": {
+              "rmse": 17.13252497325125,
+              "mae": 13.147062436493105,
+              "lulea_absolute_error": 12.776411002652267,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 16.155243974608176,
+              "mae": 12.129347682852652,
+              "lulea_absolute_error": 5.917719462275848,
+              "coefficient": -5.058703352936253
+            }
+          },
+          "gain_rmse": 0.9772809986430744
+        },
+        "2022": {
+          "scores": {
+            "reference": {
+              "rmse": 15.786959796345775,
+              "mae": 12.012560053756392,
+              "lulea_absolute_error": 13.278825599952548,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 14.939331168870108,
+              "mae": 11.197806500488548,
+              "lulea_absolute_error": 5.602588157096484,
+              "coefficient": -5.662059600887383
+            }
+          },
+          "gain_rmse": 0.8476286274756664
+        },
+        "2023": {
+          "scores": {
+            "reference": {
+              "rmse": 15.68009243795381,
+              "mae": 12.274334824466123,
+              "lulea_absolute_error": 15.88866846084553,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 15.028238937141618,
+              "mae": 11.67706050787253,
+              "lulea_absolute_error": 7.894593762448203,
+              "coefficient": -5.893278313640569
+            }
+          },
+          "gain_rmse": 0.6518535008121926
+        },
+        "2024": {
+          "scores": {
+            "reference": {
+              "rmse": 14.257458181988156,
+              "mae": 11.114099549623823,
+              "lulea_absolute_error": 11.019656359650561,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 13.587239297395039,
+              "mae": 10.420174021331714,
+              "lulea_absolute_error": 3.116107180558224,
+              "coefficient": -5.826240363853881
+            }
+          },
+          "gain_rmse": 0.6702188845931172
+        }
+      },
+      "summary": {
+        "n_years": 9,
+        "improved_rmse": 9,
+        "mean_rmse_gain": 0.6882091466984919,
+        "lulea_improved": 9
+      }
+    },
+    "density": {
+      "controls": [
+        "lag1_log_folkmangd",
+        "lag1_tatortsgrad_pct",
+        "lag1_log_befolkningstathet_land"
+      ],
+      "complete_years": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "forecast_years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "forecasts": {
+        "2016": {
+          "scores": {
+            "reference": {
+              "rmse": 19.29313992674067,
+              "mae": 13.497827996601115,
+              "lulea_absolute_error": 3.793544757263817,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 19.25964370000207,
+              "mae": 13.455391059066077,
+              "lulea_absolute_error": 2.832360837804373,
+              "coefficient": 1.933871957873988
+            }
+          },
+          "gain_rmse": 0.03349622673859898
+        },
+        "2017": {
+          "scores": {
+            "reference": {
+              "rmse": 15.60529356204803,
+              "mae": 10.946217548476021,
+              "lulea_absolute_error": 2.9363581928050877,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 15.586510930675203,
+              "mae": 10.975819298954246,
+              "lulea_absolute_error": 1.941581277831098,
+              "coefficient": 2.0565863000077353
+            }
+          },
+          "gain_rmse": 0.01878263137282765
+        },
+        "2018": {
+          "scores": {
+            "reference": {
+              "rmse": 13.068125124175323,
+              "mae": 9.741507178700878,
+              "lulea_absolute_error": 0.18423688713292563,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 13.030583188985391,
+              "mae": 9.826021440193983,
+              "lulea_absolute_error": 1.2852190113388389,
+              "coefficient": 2.1572969584972714
+            }
+          },
+          "gain_rmse": 0.03754193518993176
+        },
+        "2019": {
+          "scores": {
+            "reference": {
+              "rmse": 14.417226818846027,
+              "mae": 11.520604645750081,
+              "lulea_absolute_error": 3.4959320908435387,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 14.411778839128418,
+              "mae": 11.52356597066155,
+              "lulea_absolute_error": 4.54778547666109,
+              "coefficient": 2.0499553032005995
+            }
+          },
+          "gain_rmse": 0.005447979717608575
+        },
+        "2020": {
+          "scores": {
+            "reference": {
+              "rmse": 13.858960168816406,
+              "mae": 11.037581182490598,
+              "lulea_absolute_error": 0.8734852414251009,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 13.894377707829353,
+              "mae": 11.098530037422464,
+              "lulea_absolute_error": 1.782011625523097,
+              "coefficient": 1.7624198860638298
+            }
+          },
+          "gain_rmse": -0.035417539012946975
+        },
+        "2021": {
+          "scores": {
+            "reference": {
+              "rmse": 13.811473915486246,
+              "mae": 10.227536208093621,
+              "lulea_absolute_error": 0.23795805213324428,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 13.801686804952942,
+              "mae": 10.292463220075641,
+              "lulea_absolute_error": 0.4327642752071199,
+              "coefficient": 1.2926080088621816
+            }
+          },
+          "gain_rmse": 0.0097871105333045
+        },
+        "2022": {
+          "scores": {
+            "reference": {
+              "rmse": 12.89618958613809,
+              "mae": 9.632355330128293,
+              "lulea_absolute_error": 0.6798344929511444,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 12.881226121545003,
+              "mae": 9.6721754244293,
+              "lulea_absolute_error": 0.18610374841122024,
+              "coefficient": 1.0159238232989942
+            }
+          },
+          "gain_rmse": 0.014963464593087394
+        },
+        "2023": {
+          "scores": {
+            "reference": {
+              "rmse": 13.387476799177021,
+              "mae": 10.62896271838817,
+              "lulea_absolute_error": 1.5692412752476557,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 13.369681439446978,
+              "mae": 10.62284790109863,
+              "lulea_absolute_error": 2.0282129481672726,
+              "coefficient": 0.884007339372129
+            }
+          },
+          "gain_rmse": 0.017795359730042648
+        },
+        "2024": {
+          "scores": {
+            "reference": {
+              "rmse": 12.02038484802877,
+              "mae": 9.391814150535488,
+              "lulea_absolute_error": 2.970409382947132,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 12.012237268360618,
+              "mae": 9.391363601074023,
+              "lulea_absolute_error": 2.5769705011685033,
+              "coefficient": 0.7550928264730672
+            }
+          },
+          "gain_rmse": 0.008147579668152716
+        }
+      },
+      "summary": {
+        "n_years": 9,
+        "improved_rmse": 8,
+        "mean_rmse_gain": 0.01228274983673414,
+        "lulea_improved": 4
+      }
+    },
+    "built_land": {
+      "controls": [
+        "lag1_log_folkmangd",
+        "lag1_tatortsgrad_pct",
+        "lag1_bebyggd_anlagd_andel_land_pct"
+      ],
+      "complete_years": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "forecast_years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "forecasts": {
+        "2016": {
+          "scores": {
+            "reference": {
+              "rmse": 19.088434292361168,
+              "mae": 13.565498656062045,
+              "lulea_absolute_error": 3.1874525377996363,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 19.08968314865395,
+              "mae": 13.561614260393002,
+              "lulea_absolute_error": 3.6673438512650662,
+              "coefficient": -0.5771753399553035
+            }
+          },
+          "gain_rmse": -0.0012488562927828184
+        },
+        "2017": {
+          "scores": {
+            "reference": {
+              "rmse": 15.334174933096985,
+              "mae": 10.997954409691005,
+              "lulea_absolute_error": 2.4643256723619373,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 15.320763229276332,
+              "mae": 10.967106608603236,
+              "lulea_absolute_error": 2.819592381894388,
+              "coefficient": -0.4245048346000502
+            }
+          },
+          "gain_rmse": 0.013411703820652932
+        },
+        "2018": {
+          "scores": {
+            "reference": {
+              "rmse": 13.20852598689968,
+              "mae": 10.170554820812434,
+              "lulea_absolute_error": 0.5174315466011521,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 13.180862279708034,
+              "mae": 10.119241725872657,
+              "lulea_absolute_error": 0.2891877567689036,
+              "coefficient": -0.3600560259564327
+            }
+          },
+          "gain_rmse": 0.027663707191646125
+        },
+        "2019": {
+          "scores": {
+            "reference": {
+              "rmse": 14.618248902113578,
+              "mae": 11.855561097043658,
+              "lulea_absolute_error": 4.130520078722391,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 14.555918951383568,
+              "mae": 11.802530873432707,
+              "lulea_absolute_error": 3.5444380648816107,
+              "coefficient": -0.6943138696133522
+            }
+          },
+          "gain_rmse": 0.06232995073001035
+        },
+        "2020": {
+          "scores": {
+            "reference": {
+              "rmse": 14.444959947178349,
+              "mae": 11.590647858810872,
+              "lulea_absolute_error": 1.7077380641166826,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 14.29748376366001,
+              "mae": 11.461384490265988,
+              "lulea_absolute_error": 0.8304062874283602,
+              "coefficient": -1.1270905358869205
+            }
+          },
+          "gain_rmse": 0.14747618351833935
+        },
+        "2021": {
+          "scores": {
+            "reference": {
+              "rmse": 13.967915155636804,
+              "mae": 10.752523639336635,
+              "lulea_absolute_error": 0.9550978930842291,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 13.831720754184142,
+              "mae": 10.56901530910412,
+              "lulea_absolute_error": 0.4207960698491249,
+              "coefficient": -1.6965661283300388
+            }
+          },
+          "gain_rmse": 0.13619440145266282
+        },
+        "2022": {
+          "scores": {
+            "reference": {
+              "rmse": 13.105909891052029,
+              "mae": 10.046503796792713,
+              "lulea_absolute_error": 0.6467768671590051,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 12.979412335654779,
+              "mae": 9.92316925926204,
+              "lulea_absolute_error": 1.0917199967356552,
+              "coefficient": -2.1174388118664487
+            }
+          },
+          "gain_rmse": 0.1264975553972505
+        },
+        "2023": {
+          "scores": {
+            "reference": {
+              "rmse": 13.454688372731557,
+              "mae": 10.708352284421998,
+              "lulea_absolute_error": 3.1947146841179617,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 13.379789583627334,
+              "mae": 10.598973295813282,
+              "lulea_absolute_error": 1.1781432986916514,
+              "coefficient": -2.343341800175444
+            }
+          },
+          "gain_rmse": 0.07489878910422298
+        },
+        "2024": {
+          "scores": {
+            "reference": {
+              "rmse": 11.518889275417543,
+              "mae": 8.950788878484811,
+              "lulea_absolute_error": 1.4481336985509188,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 11.472495860549556,
+              "mae": 8.904700420622854,
+              "lulea_absolute_error": 3.4715556132647123,
+              "coefficient": -2.348672843190606
+            }
+          },
+          "gain_rmse": 0.046393414867987204
+        }
+      },
+      "summary": {
+        "n_years": 9,
+        "improved_rmse": 8,
+        "mean_rmse_gain": 0.07040187219888772,
+        "lulea_improved": 5
+      }
+    },
+    "density_built": {
+      "controls": [
+        "lag1_log_folkmangd",
+        "lag1_tatortsgrad_pct",
+        "lag1_log_befolkningstathet_land",
+        "lag1_bebyggd_anlagd_andel_land_pct"
+      ],
+      "complete_years": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "forecast_years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "forecasts": {
+        "2016": {
+          "scores": {
+            "reference": {
+              "rmse": 19.050786390777052,
+              "mae": 13.420003317729119,
+              "lulea_absolute_error": 4.847908018629475,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 19.035276723397363,
+              "mae": 13.390024856691046,
+              "lulea_absolute_error": 4.17811834407636,
+              "coefficient": 1.4665483980455645
+            }
+          },
+          "gain_rmse": 0.015509667379689063
+        },
+        "2017": {
+          "scores": {
+            "reference": {
+              "rmse": 15.193566549875356,
+              "mae": 10.722844520432249,
+              "lulea_absolute_error": 4.043806168923183,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 15.200800931390685,
+              "mae": 10.765128533904887,
+              "lulea_absolute_error": 3.2688715372535597,
+              "coefficient": 1.5508659920903147
+            }
+          },
+          "gain_rmse": -0.007234381515328181
+        },
+        "2018": {
+          "scores": {
+            "reference": {
+              "rmse": 12.71896092901248,
+              "mae": 9.674821881924565,
+              "lulea_absolute_error": 0.9610557064429699,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 12.706700702583808,
+              "mae": 9.74969232500893,
+              "lulea_absolute_error": 0.14799681706915635,
+              "coefficient": 1.6119641943673853
+            }
+          },
+          "gain_rmse": 0.012260226428672638
+        },
+        "2019": {
+          "scores": {
+            "reference": {
+              "rmse": 14.092584552521746,
+              "mae": 11.445547805152017,
+              "lulea_absolute_error": 2.287365558342543,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 14.106281369196285,
+              "mae": 11.475000216555623,
+              "lulea_absolute_error": 3.084644252394355,
+              "coefficient": 1.528729049294542
+            }
+          },
+          "gain_rmse": -0.013696816674539036
+        },
+        "2020": {
+          "scores": {
+            "reference": {
+              "rmse": 13.685275491437427,
+              "mae": 10.987502872837693,
+              "lulea_absolute_error": 0.34632969012422166,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 13.715616050964194,
+              "mae": 11.029238712049501,
+              "lulea_absolute_error": 0.27299004627558077,
+              "coefficient": 1.2108288567568375
+            }
+          },
+          "gain_rmse": -0.030340559526766953
+        },
+        "2021": {
+          "scores": {
+            "reference": {
+              "rmse": 13.373084754845667,
+              "mae": 10.13982134491733,
+              "lulea_absolute_error": 1.3727701246464932,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 13.377582460358555,
+              "mae": 10.16684953834009,
+              "lulea_absolute_error": 1.0248145829611133,
+              "coefficient": 0.7294615009135437
+            }
+          },
+          "gain_rmse": -0.004497705512887862
+        },
+        "2022": {
+          "scores": {
+            "reference": {
+              "rmse": 12.557709112278676,
+              "mae": 9.44526652780796,
+              "lulea_absolute_error": 1.8776161693920699,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 12.557500013793218,
+              "mae": 9.447708437342124,
+              "lulea_absolute_error": 1.7183535588856174,
+              "coefficient": 0.39602919375759704
+            }
+          },
+          "gain_rmse": 0.00020909848545791476
+        },
+        "2023": {
+          "scores": {
+            "reference": {
+              "rmse": 13.08011062408398,
+              "mae": 10.36941423668859,
+              "lulea_absolute_error": 0.3839769975301337,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 13.077180656022568,
+              "mae": 10.363709637265282,
+              "lulea_absolute_error": 0.5410618055551097,
+              "coefficient": 0.27831229262513424
+            }
+          },
+          "gain_rmse": 0.0029299680614123247
+        },
+        "2024": {
+          "scores": {
+            "reference": {
+              "rmse": 11.42408317160556,
+              "mae": 8.82765233021688,
+              "lulea_absolute_error": 4.115902199996512,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 11.432293438708081,
+              "mae": 8.838475054432626,
+              "lulea_absolute_error": 4.082367963829,
+              "coefficient": 0.1667468233805834
+            }
+          },
+          "gain_rmse": -0.008210267102521485
+        }
+      },
+      "summary": {
+        "n_years": 9,
+        "improved_rmse": 4,
+        "mean_rmse_gain": -0.0036745299974235085,
+        "lulea_improved": 7
+      }
+    },
+    "forest": {
+      "controls": [
+        "lag1_log_folkmangd",
+        "lag1_tatortsgrad_pct",
+        "lag1_skogsmark_andel_land_pct"
+      ],
+      "complete_years": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "forecast_years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "forecasts": {
+        "2016": {
+          "scores": {
+            "reference": {
+              "rmse": 20.068712373828895,
+              "mae": 14.286866373959993,
+              "lulea_absolute_error": 1.3598792551441221,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 20.076039971337885,
+              "mae": 14.279380872925268,
+              "lulea_absolute_error": 1.4464616410964268,
+              "coefficient": -0.44256349302284903
+            }
+          },
+          "gain_rmse": -0.007327597508989925
+        },
+        "2017": {
+          "scores": {
+            "reference": {
+              "rmse": 16.814444356770128,
+              "mae": 11.975640555279536,
+              "lulea_absolute_error": 2.444070724173102,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 16.82065746658193,
+              "mae": 11.970568582170394,
+              "lulea_absolute_error": 2.495457054898644,
+              "coefficient": -1.0475493270986824
+            }
+          },
+          "gain_rmse": -0.006213109811803008
+        },
+        "2018": {
+          "scores": {
+            "reference": {
+              "rmse": 15.136507398188083,
+              "mae": 11.42378210164669,
+              "lulea_absolute_error": 5.806790126070524,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 15.13140822675511,
+              "mae": 11.421292842607714,
+              "lulea_absolute_error": 5.860901711603688,
+              "coefficient": -1.1771473732487507
+            }
+          },
+          "gain_rmse": 0.0050991714329740034
+        },
+        "2019": {
+          "scores": {
+            "reference": {
+              "rmse": 16.38141443736434,
+              "mae": 12.884363940917732,
+              "lulea_absolute_error": 9.357153873708903,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 16.363903456099987,
+              "mae": 12.89957384562269,
+              "lulea_absolute_error": 9.396780361992327,
+              "coefficient": -1.418125795178426
+            }
+          },
+          "gain_rmse": 0.017510981264354797
+        },
+        "2020": {
+          "scores": {
+            "reference": {
+              "rmse": 16.018497128423878,
+              "mae": 12.737844900979432,
+              "lulea_absolute_error": 6.656839811115439,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 15.985539771341005,
+              "mae": 12.748029378982817,
+              "lulea_absolute_error": 6.701731307583977,
+              "coefficient": -1.4392971561040824
+            }
+          },
+          "gain_rmse": 0.03295735708287317
+        },
+        "2021": {
+          "scores": {
+            "reference": {
+              "rmse": 15.896127060368363,
+              "mae": 11.958703064925835,
+              "lulea_absolute_error": 5.411915427513428,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 15.914772698561675,
+              "mae": 11.982233906502673,
+              "lulea_absolute_error": 5.407760182597009,
+              "coefficient": -1.68888553095897
+            }
+          },
+          "gain_rmse": -0.018645638193312664
+        },
+        "2022": {
+          "scores": {
+            "reference": {
+              "rmse": 14.732642953701307,
+              "mae": 11.057012167594367,
+              "lulea_absolute_error": 4.779460525935654,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 14.72990386702567,
+              "mae": 11.06199651135792,
+              "lulea_absolute_error": 4.8337392235214764,
+              "coefficient": -1.3354348110907317
+            }
+          },
+          "gain_rmse": 0.002739086675637381
+        },
+        "2023": {
+          "scores": {
+            "reference": {
+              "rmse": 14.769198556880287,
+              "mae": 11.44160729596207,
+              "lulea_absolute_error": 6.972493684612793,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 14.778920133617985,
+              "mae": 11.459973332805376,
+              "lulea_absolute_error": 7.024854000543897,
+              "coefficient": -1.3056953426534257
+            }
+          },
+          "gain_rmse": -0.009721576737698356
+        },
+        "2024": {
+          "scores": {
+            "reference": {
+              "rmse": 13.160165516199168,
+              "mae": 10.166953882452667,
+              "lulea_absolute_error": 2.049868532688002,
+              "coefficient": null
+            },
+            "nature": {
+              "rmse": 13.183705538173516,
+              "mae": 10.17324309443051,
+              "lulea_absolute_error": 2.137700984107468,
+              "coefficient": -0.9980237726739922
+            }
+          },
+          "gain_rmse": -0.023540021974348235
+        }
+      },
+      "summary": {
+        "n_years": 9,
+        "improved_rmse": 4,
+        "mean_rmse_gain": -0.0007934830855903149,
+        "lulea_improved": 1
+      }
+    }
+  },
+  "production_model_changed": false,
+  "limitations": [
+    "Control blocks have different eligible forecast years; do not directly rank block RMSE unless matched on overlapping years.",
+    "Potential strong collinearity between natural land and forest or developed land shares.",
+    "Presence of a value in older periods does not verify historical comparability of its source definition.",
+    "Reduced historical benchmark, not published full model."
+  ]
+}
