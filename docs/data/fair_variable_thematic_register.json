@@ -1,0 +1,588 @@
+{
+  "status": "thematic_register_manual_review_required",
+  "production_changed": false,
+  "candidate_count": 73,
+  "themes": {
+    "bostader_och_bestand": {
+      "total": 22,
+      "original": 10,
+      "new": 12,
+      "features": [
+        "lag1_andel_bostader_111_plus",
+        "lag1_andel_bostader_141_plus",
+        "lag1_andel_bostader_151_plus",
+        "lag1_andel_bostader_70_max",
+        "lag1_andel_bostadsratt",
+        "lag1_andel_flerbostad_70_max",
+        "lag1_andel_hyresratt",
+        "lag1_andel_smahus",
+        "lag1_andel_smahus_111_plus",
+        "lag1_andel_smahus_151_plus",
+        "lag1_bostader_per_1000",
+        "lag1_bostadsbestandsforandring_pct",
+        "lag1_fardigstallda_bostader_per_1000",
+        "lag1_fritidshus_per_1000_inv",
+        "lag1_fritidshusandel_bland_smahus",
+        "lag1_log_fritidshus_per_1000_inv",
+        "lag1_smahusforsaljningar_per_1000_inv",
+        "lag1_smahusforsaljningar_per_1000_smahus",
+        "lag1_strand_hav_bostader_per_1000",
+        "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+        "lag1_strand_hav_bostader_tatort_per_1000",
+        "lag1_strand_inland_bostader_per_1000"
+      ]
+    },
+    "utbildning_och_studier": {
+      "total": 4,
+      "original": 4,
+      "new": 0,
+      "features": [
+        "lag1_andel_eftergymnasial",
+        "lag1_andel_studerande",
+        "lag1_gymnasium_hogskoleforberedande_pct",
+        "lag1_gymnasium_yrkesprogram_pct"
+      ]
+    },
+    "naringslivsstruktur": {
+      "total": 4,
+      "original": 4,
+      "new": 0,
+      "features": [
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+        "lag1_andel_hotell_restaurang_i",
+        "lag1_andel_industri_bc",
+        "lag1_log_externa_fa_jobb_per_1000"
+      ]
+    },
+    "foreningsliv_och_kultur": {
+      "total": 4,
+      "original": 1,
+      "new": 3,
+      "features": [
+        "lag1_andel_kultur_service_rstu",
+        "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+        "lag1_kolada_lok_foreningar_per_10000",
+        "lag1_kolada_utbetalt_lok_stod_kr_per_inv"
+      ]
+    },
+    "arbetsmarknad_och_aktivitet": {
+      "total": 16,
+      "original": 11,
+      "new": 5,
+      "features": [
+        "lag1_arbetskraftsdeltagande",
+        "lag1_arbetsloshet",
+        "lag1_bas_ovriga_andel_pct",
+        "lag1_bas_pensionarer_andel_pct",
+        "lag1_bas_sjuka_andel_pct",
+        "lag1_bas_studerande_andel_pct",
+        "lag1_kolada_arbetslosa_18_24_pct",
+        "lag1_kolada_arbetslosa_18_65_pct",
+        "lag1_kolada_langtidsarbetslosa_pct",
+        "lag1_sysselsatta_arbetsstalle_forandring_pct",
+        "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+        "lag1_sysselsatta_bostad_forandring_pct",
+        "lag1_sysselsatta_bostad_sasongsvariation_pct",
+        "lag1_sysselsattningsgrad",
+        "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+        "lag1_utanf_arbetkraften_andel_pct"
+      ]
+    },
+    "geografi_och_mark": {
+      "total": 10,
+      "original": 2,
+      "new": 8,
+      "features": [
+        "lag1_bebyggd_anlagd_andel_land_pct",
+        "lag1_log_befolkningstathet_land",
+        "lag1_log_folkmangd",
+        "lag1_log_regional_centre_distance_km",
+        "lag1_naturpraglad_mark_andel_land_pct",
+        "lag1_regional_centre_distance_km",
+        "lag1_skogsmark_andel_land_pct",
+        "lag1_snoskoterandel_alla_fordon_pct",
+        "lag1_snoskoterandel_exkl_dragfordon_pct",
+        "lag1_tatortsgrad_pct"
+      ]
+    },
+    "trygghet": {
+      "total": 1,
+      "original": 1,
+      "new": 0,
+      "features": [
+        "lag1_brott_per_100000"
+      ]
+    },
+    "inkomst_och_bostadsekonomi": {
+      "total": 10,
+      "original": 2,
+      "new": 8,
+      "features": [
+        "lag1_ekonomisk_standard_gap_pp",
+        "lag1_inkomst_median_tkr",
+        "lag1_inkomst_tkr",
+        "lag1_kvinnors_lonesumma_dagbef_pct",
+        "lag1_kvinnors_mediannettoinkomst_andel_pct",
+        "lag1_log_smahuspris_medel",
+        "lag1_smahuspris_forandring_pct",
+        "lag1_smahuspris_inkomstkvot_medel",
+        "lag1_smahuspris_inkomstkvot_median",
+        "lag1_smahuspris_medel_tkr"
+      ]
+    },
+    "demokrati": {
+      "total": 2,
+      "original": 2,
+      "new": 0,
+      "features": [
+        "lag1_valdeltagande_gap_pp",
+        "lag1_valdeltagande_pct"
+      ]
+    }
+  },
+  "records": [
+    {
+      "feature": "lag1_andel_bostader_111_plus",
+      "theme": "bostader_och_bestand",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_andel_bostader_141_plus",
+      "theme": "bostader_och_bestand",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_andel_bostader_151_plus",
+      "theme": "bostader_och_bestand",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_andel_bostader_70_max",
+      "theme": "bostader_och_bestand",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_andel_bostadsratt",
+      "theme": "bostader_och_bestand",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_andel_eftergymnasial",
+      "theme": "utbildning_och_studier",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+      "theme": "naringslivsstruktur",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_andel_flerbostad_70_max",
+      "theme": "bostader_och_bestand",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_andel_hotell_restaurang_i",
+      "theme": "naringslivsstruktur",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_andel_hyresratt",
+      "theme": "bostader_och_bestand",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_andel_industri_bc",
+      "theme": "naringslivsstruktur",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_andel_kultur_service_rstu",
+      "theme": "foreningsliv_och_kultur",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_andel_smahus",
+      "theme": "bostader_och_bestand",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_andel_smahus_111_plus",
+      "theme": "bostader_och_bestand",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_andel_smahus_151_plus",
+      "theme": "bostader_och_bestand",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_andel_studerande",
+      "theme": "utbildning_och_studier",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_arbetskraftsdeltagande",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_arbetsloshet",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_bas_ovriga_andel_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_bas_pensionarer_andel_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_bas_sjuka_andel_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_bas_studerande_andel_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+      "theme": "geografi_och_mark",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_bostader_per_1000",
+      "theme": "bostader_och_bestand",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_bostadsbestandsforandring_pct",
+      "theme": "bostader_och_bestand",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_brott_per_100000",
+      "theme": "trygghet",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_ekonomisk_standard_gap_pp",
+      "theme": "inkomst_och_bostadsekonomi",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_fardigstallda_bostader_per_1000",
+      "theme": "bostader_och_bestand",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_fritidshus_per_1000_inv",
+      "theme": "bostader_och_bestand",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_fritidshusandel_bland_smahus",
+      "theme": "bostader_och_bestand",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+      "theme": "utbildning_och_studier",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_gymnasium_yrkesprogram_pct",
+      "theme": "utbildning_och_studier",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_inkomst_median_tkr",
+      "theme": "inkomst_och_bostadsekonomi",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_inkomst_tkr",
+      "theme": "inkomst_och_bostadsekonomi",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_kolada_arbetslosa_18_24_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_kolada_arbetslosa_18_65_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+      "theme": "foreningsliv_och_kultur",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_kolada_langtidsarbetslosa_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_kolada_lok_foreningar_per_10000",
+      "theme": "foreningsliv_och_kultur",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+      "theme": "foreningsliv_och_kultur",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_kvinnors_lonesumma_dagbef_pct",
+      "theme": "inkomst_och_bostadsekonomi",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_kvinnors_mediannettoinkomst_andel_pct",
+      "theme": "inkomst_och_bostadsekonomi",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_log_befolkningstathet_land",
+      "theme": "geografi_och_mark",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_log_externa_fa_jobb_per_1000",
+      "theme": "naringslivsstruktur",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_log_folkmangd",
+      "theme": "geografi_och_mark",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_log_fritidshus_per_1000_inv",
+      "theme": "bostader_och_bestand",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_log_regional_centre_distance_km",
+      "theme": "geografi_och_mark",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_log_smahuspris_medel",
+      "theme": "inkomst_och_bostadsekonomi",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_naturpraglad_mark_andel_land_pct",
+      "theme": "geografi_och_mark",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_regional_centre_distance_km",
+      "theme": "geografi_och_mark",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_skogsmark_andel_land_pct",
+      "theme": "geografi_och_mark",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_smahusforsaljningar_per_1000_inv",
+      "theme": "bostader_och_bestand",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_smahusforsaljningar_per_1000_smahus",
+      "theme": "bostader_och_bestand",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_smahuspris_forandring_pct",
+      "theme": "inkomst_och_bostadsekonomi",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_smahuspris_inkomstkvot_medel",
+      "theme": "inkomst_och_bostadsekonomi",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_smahuspris_inkomstkvot_median",
+      "theme": "inkomst_och_bostadsekonomi",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_smahuspris_medel_tkr",
+      "theme": "inkomst_och_bostadsekonomi",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_snoskoterandel_alla_fordon_pct",
+      "theme": "geografi_och_mark",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+      "theme": "geografi_och_mark",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_strand_hav_bostader_per_1000",
+      "theme": "bostader_och_bestand",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+      "theme": "bostader_och_bestand",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_strand_hav_bostader_tatort_per_1000",
+      "theme": "bostader_och_bestand",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_strand_inland_bostader_per_1000",
+      "theme": "bostader_och_bestand",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_sysselsatta_arbetsstalle_forandring_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_sysselsatta_bostad_forandring_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_sysselsattningsgrad",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_tatortsgrad_pct",
+      "theme": "geografi_och_mark",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "original_candidate_pool": false,
+      "newly_discovered": true
+    },
+    {
+      "feature": "lag1_utanf_arbetkraften_andel_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_valdeltagande_gap_pp",
+      "theme": "demokrati",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    },
+    {
+      "feature": "lag1_valdeltagande_pct",
+      "theme": "demokrati",
+      "original_candidate_pool": true,
+      "newly_discovered": false
+    }
+  ],
+  "limitations": [
+    "Thematic assignments are heuristic and must be reviewed manually before use in feature selection.",
+    "Some fields span themes; grouping does not imply validity or causal meaning.",
+    "Published source timing and comparability are not yet verified."
+  ]
+}
