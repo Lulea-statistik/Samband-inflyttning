@@ -1,0 +1,360 @@
+{
+  "status": "exploratory_paired_temporal_housing_comparison",
+  "models": {
+    "structural_controls": [
+      "lag1_log_folkmangd",
+      "lag1_tatortsgrad_pct",
+      "lag1_regional_centre_distance_km"
+    ],
+    "common_base": [
+      "lag1_log_folkmangd",
+      "lag1_tatortsgrad_pct",
+      "lag1_regional_centre_distance_km",
+      "lag1_ekonomisk_standard_gap_pp",
+      "lag1_andel_studerande",
+      "lag1_kolada_utbetalt_lok_stod_kr_per_inv"
+    ],
+    "finished_housing": [
+      "lag1_log_folkmangd",
+      "lag1_tatortsgrad_pct",
+      "lag1_regional_centre_distance_km",
+      "lag1_ekonomisk_standard_gap_pp",
+      "lag1_andel_studerande",
+      "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+      "lag1_fardigstallda_bostader_per_1000"
+    ],
+    "housing_stock_change": [
+      "lag1_log_folkmangd",
+      "lag1_tatortsgrad_pct",
+      "lag1_regional_centre_distance_km",
+      "lag1_ekonomisk_standard_gap_pp",
+      "lag1_andel_studerande",
+      "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+      "lag1_bostadsbestandsforandring_pct"
+    ],
+    "house_sales": [
+      "lag1_log_folkmangd",
+      "lag1_tatortsgrad_pct",
+      "lag1_regional_centre_distance_km",
+      "lag1_ekonomisk_standard_gap_pp",
+      "lag1_andel_studerande",
+      "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+      "lag1_smahusforsaljningar_per_1000_smahus"
+    ],
+    "holiday_homes": [
+      "lag1_log_folkmangd",
+      "lag1_tatortsgrad_pct",
+      "lag1_regional_centre_distance_km",
+      "lag1_ekonomisk_standard_gap_pp",
+      "lag1_andel_studerande",
+      "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+      "lag1_log_fritidshus_per_1000_inv"
+    ]
+  },
+  "data_years": [
+    2022,
+    2023,
+    2024
+  ],
+  "results": {
+    "2023": {
+      "n_train": 290,
+      "n_test": 290,
+      "models": {
+        "structural_controls": {
+          "metrics": {
+            "r2": 0.10383859322424938,
+            "rmse": 15.219055511960025,
+            "mae": 11.562120414504816,
+            "median_abs_error": 10.121529298819226,
+            "p90_abs_error": 22.110750372112605,
+            "p95_abs_error": 26.616292005078353,
+            "p90_p10_abs_error_gap": 20.635823825606835,
+            "best_decile_mae": 0.6806805633427666,
+            "worst_decile_mae": 31.482096954593306,
+            "decile_mae_gap": 30.80141639125054,
+            "max_abs_error": 87.98239619070118,
+            "n": 290
+          },
+          "lulea": [
+            {
+              "actual": 47.73666700272205,
+              "predicted": 61.55340217032696
+            }
+          ]
+        },
+        "common_base": {
+          "metrics": {
+            "r2": 0.3037154407612218,
+            "rmse": 13.414916222515465,
+            "mae": 9.894413424573093,
+            "median_abs_error": 7.960095122589564,
+            "p90_abs_error": 19.62497934767157,
+            "p95_abs_error": 24.991996723674127,
+            "p90_p10_abs_error_gap": 17.87939976947214,
+            "best_decile_mae": 0.7650917048134811,
+            "worst_decile_mae": 28.667111655540918,
+            "decile_mae_gap": 27.902019950727436,
+            "max_abs_error": 84.61447336758329,
+            "n": 290
+          },
+          "lulea": [
+            {
+              "actual": 47.73666700272205,
+              "predicted": 59.798027488610586
+            }
+          ]
+        },
+        "finished_housing": {
+          "metrics": {
+            "r2": 0.3272321720101733,
+            "rmse": 13.186428679744342,
+            "mae": 9.812891489002899,
+            "median_abs_error": 8.570168551806415,
+            "p90_abs_error": 17.86564170190349,
+            "p95_abs_error": 23.23750104441958,
+            "p90_p10_abs_error_gap": 16.62645487982507,
+            "best_decile_mae": 0.6726192507942524,
+            "worst_decile_mae": 27.727245254784467,
+            "decile_mae_gap": 27.054626003990215,
+            "max_abs_error": 84.86014792611138,
+            "n": 290
+          },
+          "lulea": [
+            {
+              "actual": 47.73666700272205,
+              "predicted": 59.4203785026238
+            }
+          ]
+        },
+        "housing_stock_change": {
+          "metrics": {
+            "r2": 0.3757306170047209,
+            "rmse": 12.702248372922465,
+            "mae": 9.341770763621813,
+            "median_abs_error": 8.015035988533413,
+            "p90_abs_error": 17.818632344912988,
+            "p95_abs_error": 22.10340922746018,
+            "p90_p10_abs_error_gap": 16.329396897399214,
+            "best_decile_mae": 0.6890131246976781,
+            "worst_decile_mae": 26.94248457485537,
+            "decile_mae_gap": 26.253471450157694,
+            "max_abs_error": 80.92837696565758,
+            "n": 290
+          },
+          "lulea": [
+            {
+              "actual": 47.73666700272205,
+              "predicted": 58.25270620118534
+            }
+          ]
+        },
+        "house_sales": {
+          "metrics": {
+            "r2": 0.41252900904816414,
+            "rmse": 12.32218701147323,
+            "mae": 9.018309485588123,
+            "median_abs_error": 6.854959437610717,
+            "p90_abs_error": 17.828871199662878,
+            "p95_abs_error": 22.662826435013294,
+            "p90_p10_abs_error_gap": 16.083933584616794,
+            "best_decile_mae": 0.9131653249012364,
+            "worst_decile_mae": 27.336218805510622,
+            "decile_mae_gap": 26.423053480609386,
+            "max_abs_error": 79.45973351160218,
+            "n": 290
+          },
+          "lulea": [
+            {
+              "actual": 47.73666700272205,
+              "predicted": 57.1228591045239
+            }
+          ]
+        },
+        "holiday_homes": {
+          "metrics": {
+            "r2": 0.4416857041559138,
+            "rmse": 12.012515380559513,
+            "mae": 8.975723653206892,
+            "median_abs_error": 6.8330201575301,
+            "p90_abs_error": 17.235960485584183,
+            "p95_abs_error": 19.91590501701982,
+            "p90_p10_abs_error_gap": 16.109640148898087,
+            "best_decile_mae": 0.445823054210546,
+            "worst_decile_mae": 24.762784033778697,
+            "decile_mae_gap": 24.31696097956815,
+            "max_abs_error": 67.61650379677582,
+            "n": 290
+          },
+          "lulea": [
+            {
+              "actual": 47.73666700272205,
+              "predicted": 52.57083319044989
+            }
+          ]
+        }
+      },
+      "delta_rmse_vs_common_base": {
+        "structural_controls": 1.80413928944456,
+        "common_base": 0.0,
+        "finished_housing": -0.2284875427711235,
+        "housing_stock_change": -0.7126678495930001,
+        "house_sales": -1.0927292110422346,
+        "holiday_homes": -1.4024008419559522
+      }
+    },
+    "2024": {
+      "n_train": 580,
+      "n_test": 290,
+      "models": {
+        "structural_controls": {
+          "metrics": {
+            "r2": 0.16111066878265634,
+            "rmse": 13.862809594402215,
+            "mae": 10.302578601892309,
+            "median_abs_error": 8.480035251338695,
+            "p90_abs_error": 19.990245781014757,
+            "p95_abs_error": 24.020738247325884,
+            "p90_p10_abs_error_gap": 18.374118368715642,
+            "best_decile_mae": 0.7472204491251534,
+            "worst_decile_mae": 30.170540685077523,
+            "decile_mae_gap": 29.42332023595237,
+            "max_abs_error": 72.18144024587231,
+            "n": 290
+          },
+          "lulea": [
+            {
+              "actual": 51.74210559357147,
+              "predicted": 59.74034184003414
+            }
+          ]
+        },
+        "common_base": {
+          "metrics": {
+            "r2": 0.35899721362948733,
+            "rmse": 12.11794233000712,
+            "mae": 8.76244307136575,
+            "median_abs_error": 6.731058274271497,
+            "p90_abs_error": 17.687978681155336,
+            "p95_abs_error": 22.701757321999622,
+            "p90_p10_abs_error_gap": 15.974849724929795,
+            "best_decile_mae": 0.7534305593148131,
+            "worst_decile_mae": 27.53125389168364,
+            "decile_mae_gap": 26.777823332368826,
+            "max_abs_error": 67.53545172563761,
+            "n": 290
+          },
+          "lulea": [
+            {
+              "actual": 51.74210559357147,
+              "predicted": 57.04925806054914
+            }
+          ]
+        },
+        "finished_housing": {
+          "metrics": {
+            "r2": 0.38456153407072946,
+            "rmse": 11.873841328434477,
+            "mae": 8.598209577132184,
+            "median_abs_error": 6.598241890469385,
+            "p90_abs_error": 17.884878508008555,
+            "p95_abs_error": 22.115987414220406,
+            "p90_p10_abs_error_gap": 16.825967939238947,
+            "best_decile_mae": 0.5365758195121789,
+            "worst_decile_mae": 26.857158604572838,
+            "decile_mae_gap": 26.320582785060658,
+            "max_abs_error": 69.9265620510485,
+            "n": 290
+          },
+          "lulea": [
+            {
+              "actual": 51.74210559357147,
+              "predicted": 57.77276885613162
+            }
+          ]
+        },
+        "housing_stock_change": {
+          "metrics": {
+            "r2": 0.3933931479524265,
+            "rmse": 11.788337969125456,
+            "mae": 8.459993836446488,
+            "median_abs_error": 6.323552098161503,
+            "p90_abs_error": 17.644323163220076,
+            "p95_abs_error": 21.724191076769657,
+            "p90_p10_abs_error_gap": 16.512116227419703,
+            "best_decile_mae": 0.5822279505902013,
+            "worst_decile_mae": 26.672124678377497,
+            "decile_mae_gap": 26.089896727787295,
+            "max_abs_error": 70.14030316527248,
+            "n": 290
+          },
+          "lulea": [
+            {
+              "actual": 51.74210559357147,
+              "predicted": 56.391028232404004
+            }
+          ]
+        },
+        "house_sales": {
+          "metrics": {
+            "r2": 0.25233041389618194,
+            "rmse": 13.087412165572413,
+            "mae": 9.202330484378729,
+            "median_abs_error": 6.933818815674684,
+            "p90_abs_error": 18.880021898356723,
+            "p95_abs_error": 25.400618603892585,
+            "p90_p10_abs_error_gap": 17.66170496424727,
+            "best_decile_mae": 0.6492572591017991,
+            "worst_decile_mae": 30.767277950179935,
+            "decile_mae_gap": 30.118020691078137,
+            "max_abs_error": 68.26283008444918,
+            "n": 290
+          },
+          "lulea": [
+            {
+              "actual": 51.74210559357147,
+              "predicted": 52.03631471646467
+            }
+          ]
+        },
+        "holiday_homes": {
+          "metrics": {
+            "r2": 0.47214427170250617,
+            "rmse": 10.996552249650797,
+            "mae": 8.045447512145238,
+            "median_abs_error": 6.378411260606775,
+            "p90_abs_error": 16.889876946381676,
+            "p95_abs_error": 20.9723923013105,
+            "p90_p10_abs_error_gap": 15.935070197824858,
+            "best_decile_mae": 0.5298704709320701,
+            "worst_decile_mae": 24.703513949414287,
+            "decile_mae_gap": 24.173643478482216,
+            "max_abs_error": 60.29620016897424,
+            "n": 290
+          },
+          "lulea": [
+            {
+              "actual": 51.74210559357147,
+              "predicted": 48.81193578001815
+            }
+          ]
+        }
+      },
+      "delta_rmse_vs_common_base": {
+        "structural_controls": 1.7448672643950953,
+        "common_base": 0.0,
+        "finished_housing": -0.24410100157264303,
+        "housing_stock_change": -0.3296043608816639,
+        "house_sales": 0.9694698355652935,
+        "holiday_homes": -1.1213900803563224
+      }
+    }
+  },
+  "production_changed": false,
+  "limitations": [
+    "Core variables were informed by prior inspected 2024 research; 2023 and 2024 are not independent, untouched tests.",
+    "Two to three annual cohorts are inadequate to confirm temporal transportability.",
+    "Housing data release timing has not been verified for historical forecast origins.",
+    "A fixed common base and fixed ridge alpha are diagnostic choices, not an optimized forecasting model."
+  ]
+}
