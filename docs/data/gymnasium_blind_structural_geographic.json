@@ -1,0 +1,257 @@
+{
+  "research_only": true,
+  "demographically_blind": true,
+  "year": 2024,
+  "n_municipalities": 290,
+  "training_years": [
+    2022,
+    2023
+  ],
+  "kpi": {
+    "graduation": "N17445",
+    "grade_points": "N17701"
+  },
+  "candidate_lag_years": 1,
+  "fixed_controls": [
+    "lag1_log_folkmangd",
+    "lag1_tatortsgrad_pct",
+    "lag1_regional_centre_distance_km"
+  ],
+  "split": "Geographic SHA256 validation-140 five folds; same held municipalities for all models",
+  "train_only_selection": true,
+  "folds": [
+    {
+      "fold": 0,
+      "n_test": 58,
+      "selected": [
+        "lag1_log_folkmangd",
+        "lag1_inkomst_tkr",
+        "lag1_valdeltagande_pct",
+        "lag1_valdeltagande_gap_pp",
+        "lag1_ekonomisk_standard_gap_pp",
+        "lag1_bostader_per_1000",
+        "lag1_fardigstallda_bostader_per_1000",
+        "lag1_andel_bostadsratt",
+        "lag1_andel_smahus",
+        "lag1_andel_eftergymnasial",
+        "lag1_andel_studerande",
+        "lag1_andel_kultur_service_rstu",
+        "lag1_log_externa_fa_jobb_per_1000",
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+        "lag1_kolada_arbetslosa_18_65_pct",
+        "lag1_utanf_arbetkraften_andel_pct",
+        "lag1_bas_studerande_andel_pct",
+        "lag1_andel_smahus_111_plus",
+        "lag1_gymnasium_hogskoleforberedande_pct",
+        "lag1_regional_centre_distance_km"
+      ]
+    },
+    {
+      "fold": 1,
+      "n_test": 52,
+      "selected": [
+        "lag1_log_folkmangd",
+        "lag1_inkomst_tkr",
+        "lag1_valdeltagande_pct",
+        "lag1_valdeltagande_gap_pp",
+        "lag1_ekonomisk_standard_gap_pp",
+        "lag1_bostader_per_1000",
+        "lag1_fardigstallda_bostader_per_1000",
+        "lag1_andel_bostadsratt",
+        "lag1_andel_smahus",
+        "lag1_andel_eftergymnasial",
+        "lag1_andel_studerande",
+        "lag1_andel_kultur_service_rstu",
+        "lag1_log_externa_fa_jobb_per_1000",
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+        "lag1_kolada_arbetslosa_18_65_pct",
+        "lag1_utanf_arbetkraften_andel_pct",
+        "lag1_bas_sjuka_andel_pct",
+        "lag1_andel_smahus_111_plus",
+        "lag1_gymnasium_hogskoleforberedande_pct",
+        "lag1_regional_centre_distance_km"
+      ]
+    },
+    {
+      "fold": 2,
+      "n_test": 65,
+      "selected": [
+        "lag1_log_folkmangd",
+        "lag1_inkomst_tkr",
+        "lag1_valdeltagande_pct",
+        "lag1_valdeltagande_gap_pp",
+        "lag1_ekonomisk_standard_gap_pp",
+        "lag1_bostader_per_1000",
+        "lag1_fardigstallda_bostader_per_1000",
+        "lag1_andel_bostadsratt",
+        "lag1_andel_smahus",
+        "lag1_andel_eftergymnasial",
+        "lag1_andel_studerande",
+        "lag1_andel_kultur_service_rstu",
+        "lag1_log_externa_fa_jobb_per_1000",
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+        "lag1_kolada_arbetslosa_18_65_pct",
+        "lag1_arbetskraftsdeltagande",
+        "lag1_bas_studerande_andel_pct",
+        "lag1_andel_smahus_111_plus",
+        "lag1_gymnasium_yrkesprogram_pct",
+        "lag1_regional_centre_distance_km"
+      ]
+    },
+    {
+      "fold": 3,
+      "n_test": 64,
+      "selected": [
+        "lag1_log_folkmangd",
+        "lag1_inkomst_tkr",
+        "lag1_valdeltagande_pct",
+        "lag1_valdeltagande_gap_pp",
+        "lag1_ekonomisk_standard_gap_pp",
+        "lag1_bostader_per_1000",
+        "lag1_fardigstallda_bostader_per_1000",
+        "lag1_andel_bostadsratt",
+        "lag1_andel_smahus",
+        "lag1_andel_eftergymnasial",
+        "lag1_andel_studerande",
+        "lag1_andel_kultur_service_rstu",
+        "lag1_log_externa_fa_jobb_per_1000",
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+        "lag1_kolada_arbetslosa_18_65_pct",
+        "lag1_arbetskraftsdeltagande",
+        "lag1_bas_pensionarer_andel_pct",
+        "lag1_andel_bostader_111_plus",
+        "lag1_gymnasium_hogskoleforberedande_pct",
+        "lag1_regional_centre_distance_km"
+      ]
+    },
+    {
+      "fold": 4,
+      "n_test": 51,
+      "selected": [
+        "lag1_log_folkmangd",
+        "lag1_inkomst_tkr",
+        "lag1_valdeltagande_pct",
+        "lag1_valdeltagande_gap_pp",
+        "lag1_ekonomisk_standard_gap_pp",
+        "lag1_bostader_per_1000",
+        "lag1_fardigstallda_bostader_per_1000",
+        "lag1_andel_bostadsratt",
+        "lag1_andel_smahus",
+        "lag1_andel_eftergymnasial",
+        "lag1_andel_studerande",
+        "lag1_andel_kultur_service_rstu",
+        "lag1_log_externa_fa_jobb_per_1000",
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+        "lag1_kolada_arbetslosa_18_65_pct",
+        "lag1_utanf_arbetkraften_andel_pct",
+        "lag1_bas_studerande_andel_pct",
+        "lag1_andel_bostader_111_plus",
+        "lag1_gymnasium_yrkesprogram_pct",
+        "lag1_regional_centre_distance_km"
+      ]
+    }
+  ],
+  "metrics": {
+    "reference": {
+      "r2": 0.5508898081582735,
+      "rmse": 10.14320909047553,
+      "mae": 7.280867125855471,
+      "median_abs_error": 5.432866160348702,
+      "p90_abs_error": 15.694043075029564,
+      "p95_abs_error": 20.667074756575865,
+      "p90_p10_abs_error_gap": 14.341501739066654,
+      "best_decile_mae": 0.5463255822487172,
+      "worst_decile_mae": 23.237908547269125,
+      "decile_mae_gap": 22.69158296502041,
+      "max_abs_error": 61.668706206162426,
+      "n": 290
+    },
+    "graduation": {
+      "r2": 0.5481351846925107,
+      "rmse": 10.174268293179034,
+      "mae": 7.2946345082930995,
+      "median_abs_error": 5.413028870865272,
+      "p90_abs_error": 15.633059788676741,
+      "p95_abs_error": 20.708325455277315,
+      "p90_p10_abs_error_gap": 14.517033583790994,
+      "best_decile_mae": 0.5827521274631672,
+      "worst_decile_mae": 23.269450017985793,
+      "decile_mae_gap": 22.686697890522627,
+      "max_abs_error": 61.588994379203456,
+      "n": 290
+    },
+    "grade_points": {
+      "r2": 0.5490939905079765,
+      "rmse": 10.163468240150708,
+      "mae": 7.307842184425891,
+      "median_abs_error": 5.491338840733206,
+      "p90_abs_error": 15.673651250968,
+      "p95_abs_error": 20.31710062920509,
+      "p90_p10_abs_error_gap": 14.462811403187164,
+      "best_decile_mae": 0.578335064051724,
+      "worst_decile_mae": 23.26366794803679,
+      "decile_mae_gap": 22.685332883985065,
+      "max_abs_error": 61.748136865607066,
+      "n": 290
+    },
+    "both": {
+      "r2": 0.5443776334901667,
+      "rmse": 10.21648355752336,
+      "mae": 7.327065507897755,
+      "median_abs_error": 5.3408265210810235,
+      "p90_abs_error": 15.4746539053652,
+      "p95_abs_error": 20.491591337329947,
+      "p90_p10_abs_error_gap": 14.369548019616607,
+      "best_decile_mae": 0.46977561408919327,
+      "worst_decile_mae": 23.315699511942555,
+      "decile_mae_gap": 22.84592389785336,
+      "max_abs_error": 61.70605149760141,
+      "n": 290
+    }
+  },
+  "lulea": [
+    {
+      "kommun_kod": "2580",
+      "actual": 51.74210559357147,
+      "fold": 1,
+      "reference": 46.75369057083769,
+      "graduation": 46.70999474985286,
+      "grade_points": 46.583488440019416,
+      "both": 46.469584245469555
+    }
+  ],
+  "bootstrap": {
+    "graduation": {
+      "rmse_gain": -0.031059202703504596,
+      "exploratory_ci95": [
+        -0.08264434802003859,
+        0.01635736224540345
+      ],
+      "municipalities_improved": 138
+    },
+    "grade_points": {
+      "rmse_gain": -0.02025914967517828,
+      "exploratory_ci95": [
+        -0.05461881742635159,
+        0.015261553259707124
+      ],
+      "municipalities_improved": 131
+    },
+    "both": {
+      "rmse_gain": -0.07327446704782936,
+      "exploratory_ci95": [
+        -0.1399681989632337,
+        -0.0152754576772936
+      ],
+      "municipalities_improved": 127
+    }
+  },
+  "production_model_changed": false,
+  "limitations": [
+    "Only 2024 independent municipality predictions; earlier work inspected this same year.",
+    "Kolada grade-point definition and publication-date availability require independent audit.",
+    "These are municipal ecological associations and do not identify causal effects.",
+    "This is a blind BAS research subset, not the complete frozen production model.",
+    "All compared variants share identical observations, folds and reference features."
+  ]
+}
