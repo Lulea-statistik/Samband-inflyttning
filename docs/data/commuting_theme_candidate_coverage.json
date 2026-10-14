@@ -1,0 +1,265 @@
+{
+  "status": "candidate_theme_coverage_audit",
+  "test_regime": "BAS lagged 2022-2024",
+  "years": [
+    2022,
+    2023,
+    2024
+  ],
+  "n_per_year": 290,
+  "themes": {
+    "civic_associations": [
+      {
+        "feature": "lag1_kolada_lok_foreningar_per_10000",
+        "in_existing_pool": false,
+        "in_incumbent": false,
+        "present_in_panel": true,
+        "coverage": {
+          "2022": 290,
+          "2023": 290,
+          "2024": 290
+        },
+        "complete_2022_2024": true
+      },
+      {
+        "feature": "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+        "in_existing_pool": false,
+        "in_incumbent": false,
+        "present_in_panel": true,
+        "coverage": {
+          "2022": 290,
+          "2023": 290,
+          "2024": 290
+        },
+        "complete_2022_2024": true
+      },
+      {
+        "feature": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+        "in_existing_pool": false,
+        "in_incumbent": false,
+        "present_in_panel": true,
+        "coverage": {
+          "2022": 290,
+          "2023": 290,
+          "2024": 290
+        },
+        "complete_2022_2024": true
+      }
+    ],
+    "labor_dynamics": [
+      {
+        "feature": "lag1_sysselsatta_arbetsstalle_forandring_pct",
+        "in_existing_pool": false,
+        "in_incumbent": false,
+        "present_in_panel": true,
+        "coverage": {
+          "2022": 290,
+          "2023": 290,
+          "2024": 290
+        },
+        "complete_2022_2024": true
+      },
+      {
+        "feature": "lag1_sysselsatta_bostad_forandring_pct",
+        "in_existing_pool": false,
+        "in_incumbent": false,
+        "present_in_panel": true,
+        "coverage": {
+          "2022": 290,
+          "2023": 290,
+          "2024": 290
+        },
+        "complete_2022_2024": true
+      },
+      {
+        "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+        "in_existing_pool": false,
+        "in_incumbent": false,
+        "present_in_panel": true,
+        "coverage": {
+          "2022": 290,
+          "2023": 290,
+          "2024": 290
+        },
+        "complete_2022_2024": true
+      },
+      {
+        "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+        "in_existing_pool": false,
+        "in_incumbent": false,
+        "present_in_panel": true,
+        "coverage": {
+          "2022": 290,
+          "2023": 290,
+          "2024": 290
+        },
+        "complete_2022_2024": true
+      }
+    ],
+    "unemployment": [
+      {
+        "feature": "lag1_kolada_langtidsarbetslosa_pct",
+        "in_existing_pool": true,
+        "in_incumbent": false,
+        "present_in_panel": true,
+        "coverage": {
+          "2022": 290,
+          "2023": 290,
+          "2024": 290
+        },
+        "complete_2022_2024": true
+      },
+      {
+        "feature": "lag1_kolada_arbetslosa_18_24_pct",
+        "in_existing_pool": true,
+        "in_incumbent": false,
+        "present_in_panel": true,
+        "coverage": {
+          "2022": 290,
+          "2023": 290,
+          "2024": 290
+        },
+        "complete_2022_2024": true
+      }
+    ],
+    "housing_market": [
+      {
+        "feature": "lag1_smahuspris_medel_tkr",
+        "in_existing_pool": false,
+        "in_incumbent": false,
+        "present_in_panel": true,
+        "coverage": {
+          "2022": 290,
+          "2023": 290,
+          "2024": 290
+        },
+        "complete_2022_2024": true
+      },
+      {
+        "feature": "lag1_smahuspris_inkomstkvot_median",
+        "in_existing_pool": false,
+        "in_incumbent": false,
+        "present_in_panel": true,
+        "coverage": {
+          "2022": 290,
+          "2023": 290,
+          "2024": 290
+        },
+        "complete_2022_2024": true
+      },
+      {
+        "feature": "lag1_lediga_allmannytta_pct",
+        "in_existing_pool": false,
+        "in_incumbent": false,
+        "present_in_panel": true,
+        "coverage": {
+          "2022": 290,
+          "2023": 0,
+          "2024": 0
+        },
+        "complete_2022_2024": false
+      },
+      {
+        "feature": "lag1_smahusforsaljningar_per_1000_smahus",
+        "in_existing_pool": false,
+        "in_incumbent": false,
+        "present_in_panel": true,
+        "coverage": {
+          "2022": 290,
+          "2023": 290,
+          "2024": 290
+        },
+        "complete_2022_2024": true
+      }
+    ],
+    "housing_sizes": [
+      {
+        "feature": "lag1_andel_bostader_70_max",
+        "in_existing_pool": false,
+        "in_incumbent": false,
+        "present_in_panel": true,
+        "coverage": {
+          "2022": 290,
+          "2023": 290,
+          "2024": 290
+        },
+        "complete_2022_2024": true
+      },
+      {
+        "feature": "lag1_andel_bostader_151_plus",
+        "in_existing_pool": false,
+        "in_incumbent": false,
+        "present_in_panel": true,
+        "coverage": {
+          "2022": 290,
+          "2023": 290,
+          "2024": 290
+        },
+        "complete_2022_2024": true
+      },
+      {
+        "feature": "lag1_andel_smahus_151_plus",
+        "in_existing_pool": false,
+        "in_incumbent": false,
+        "present_in_panel": true,
+        "coverage": {
+          "2022": 290,
+          "2023": 290,
+          "2024": 290
+        },
+        "complete_2022_2024": true
+      }
+    ],
+    "shore_nature": [
+      {
+        "feature": "lag1_skogsmark_andel_land_pct",
+        "in_existing_pool": false,
+        "in_incumbent": false,
+        "present_in_panel": true,
+        "coverage": {
+          "2022": 290,
+          "2023": 290,
+          "2024": 290
+        },
+        "complete_2022_2024": true
+      },
+      {
+        "feature": "lag1_naturpraglad_mark_andel_land_pct",
+        "in_existing_pool": false,
+        "in_incumbent": false,
+        "present_in_panel": true,
+        "coverage": {
+          "2022": 290,
+          "2023": 290,
+          "2024": 290
+        },
+        "complete_2022_2024": true
+      },
+      {
+        "feature": "lag1_strand_hav_bostader_per_1000",
+        "in_existing_pool": false,
+        "in_incumbent": false,
+        "present_in_panel": true,
+        "coverage": {
+          "2022": 290,
+          "2023": 290,
+          "2024": 290
+        },
+        "complete_2022_2024": true
+      },
+      {
+        "feature": "lag1_strand_hav_bostader_tatort_per_1000",
+        "in_existing_pool": false,
+        "in_incumbent": false,
+        "present_in_panel": true,
+        "coverage": {
+          "2022": 290,
+          "2023": 290,
+          "2024": 290
+        },
+        "complete_2022_2024": true
+      }
+    ]
+  },
+  "production_model_changed": false
+}
