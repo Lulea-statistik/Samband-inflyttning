@@ -1,0 +1,156 @@
+{
+  "status": "rams_bas_outcommuting_overlap_and_historical_rams_test",
+  "overlap_source_years": [
+    2020,
+    2021
+  ],
+  "overlap": {
+    "2020": {
+      "n": 290,
+      "rams": {
+        "n": 290,
+        "mean": 38.40329081773415,
+        "median": 36.06983082068655,
+        "sd": 18.8531924441238,
+        "p10": 16.260408252854788,
+        "p90": 68.11589590667707
+      },
+      "bas": {
+        "n": 290,
+        "mean": 38.45180818779148,
+        "median": 36.56952214834567,
+        "sd": 18.92935102618669,
+        "p10": 15.465121113147958,
+        "p90": 67.51163255520053
+      },
+      "mean_signed_difference_rams_minus_bas": -0.04851737005732956,
+      "mean_absolute_difference": 0.4566393309935079,
+      "p95_absolute_difference": 1.200387168544204,
+      "correlation": 0.9994037443951718,
+      "n_over_2pp": 2
+    },
+    "2021": {
+      "n": 290,
+      "rams": {
+        "n": 290,
+        "mean": 39.201456706570774,
+        "median": 36.836190601578004,
+        "sd": 18.859399340331215,
+        "p10": 16.828015954265165,
+        "p90": 68.77140776384036
+      },
+      "bas": {
+        "n": 290,
+        "mean": 39.190263404748904,
+        "median": 37.157201412585955,
+        "sd": 18.95171567508391,
+        "p10": 16.279564847416175,
+        "p90": 68.37124685948022
+      },
+      "mean_signed_difference_rams_minus_bas": 0.011193301821862081,
+      "mean_absolute_difference": 0.4692108024646202,
+      "p95_absolute_difference": 1.3523882822951272,
+      "correlation": 0.9994504967900133,
+      "n_over_2pp": 4
+    }
+  },
+  "historical_rams_forecast_years": [
+    2015,
+    2016,
+    2017,
+    2018
+  ],
+  "historical_baseline_features": [
+    "lag1_inflyttning_per_1000",
+    "lag1_utflyttning_per_1000",
+    "lag1_log_folkmangd",
+    "lag1_befolkningstillvaxt_pct",
+    "lag1_andel_20_34",
+    "lag1_inflyttare_medelalder"
+  ],
+  "historical_model_is_not_current_dynamic_model": true,
+  "historical_results": {
+    "2015": {
+      "train_years": [
+        2013,
+        2014
+      ],
+      "n_test": 290,
+      "scores": {
+        "historical_core": {
+          "rmse": 5.963436939373566,
+          "mae": 4.46257654191437
+        },
+        "historical_core_plus_RAMS": {
+          "rmse": 5.986759845029068,
+          "mae": 4.481240589728499
+        }
+      }
+    },
+    "2016": {
+      "train_years": [
+        2013,
+        2014,
+        2015
+      ],
+      "n_test": 290,
+      "scores": {
+        "historical_core": {
+          "rmse": 7.541668930740589,
+          "mae": 5.4131062604638895
+        },
+        "historical_core_plus_RAMS": {
+          "rmse": 7.573017278673319,
+          "mae": 5.435759887670199
+        }
+      }
+    },
+    "2017": {
+      "train_years": [
+        2013,
+        2014,
+        2015,
+        2016
+      ],
+      "n_test": 290,
+      "scores": {
+        "historical_core": {
+          "rmse": 9.003449297938461,
+          "mae": 6.361329113855771
+        },
+        "historical_core_plus_RAMS": {
+          "rmse": 9.048055326562807,
+          "mae": 6.395724444021569
+        }
+      }
+    },
+    "2018": {
+      "train_years": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "n_test": 290,
+      "scores": {
+        "historical_core": {
+          "rmse": 10.073352936085444,
+          "mae": 7.499688682458854
+        },
+        "historical_core_plus_RAMS": {
+          "rmse": 9.87822237543953,
+          "mae": 7.3541591928768835
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Overlap tests outcommuting SHARE, not BAS versus RAMS employment-growth measures.",
+    "Six-variable historical core cannot be compared directly to 27-variable modern incumbent.",
+    "RAMS 2019 method break and 2011 age change explicitly excluded from historical forecast test.",
+    "2020-2021 overlap is insufficient to prove cross-regime comparability.",
+    "Observational historical test is retrospective, not unseen future-year validation."
+  ],
+  "production_model_changed": false
+}
