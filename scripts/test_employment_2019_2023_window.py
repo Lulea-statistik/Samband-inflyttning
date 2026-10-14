@@ -23,7 +23,8 @@ wide=wide.rename(columns={"target_year":"year"})
 d=p.loc[p.year.between(2019,2024),["year","kommun_kod",TARGET]+BASE].merge(wide,on=["year","kommun_kod"],how="left",validate="one_to_one")
 for c in [TARGET]+BASE+["residence","workplace"]:d[c]=pd.to_numeric(d[c],errors="coerce")
 if d.duplicated(["year","kommun_kod"]).any():raise RuntimeError("Panel duplicate")
-if len(d)!=6*290 or any(d.groupby("year").size()!=290):raise RuntimeError("Incomplete years")
+if len(d)!=6*290 or any(d.groupby("year").size()!=290):
+    raise RuntimeError("Incomplete years: "+str({"merged":len(d),"counts":d.groupby("year").size().to_dict(),"panel_counts":p.groupby("year").size().to_dict()}))
 if d[[TARGET]+BASE].isna().any().any():raise RuntimeError("Missing baseline values")
 if d.loc[d.year==2020,["residence","workplace"]].notna().any().any():raise RuntimeError("2020 method break unexpectedly populated")
 for c in ["residence","workplace"]:
