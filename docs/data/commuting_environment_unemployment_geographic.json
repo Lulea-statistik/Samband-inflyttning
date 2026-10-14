@@ -1,0 +1,217 @@
+{
+  "status": "geographic_environment_unemployment_stress",
+  "year": 2024,
+  "train_years": [
+    2022,
+    2023
+  ],
+  "candidates": {
+    "reference": [],
+    "coastal_urban": [
+      "lag1_strand_hav_bostader_tatort_per_1000"
+    ],
+    "natural_land": [
+      "lag1_naturpraglad_mark_andel_land_pct"
+    ],
+    "long_term_unemployment": [
+      "lag1_kolada_langtidsarbetslosa_pct"
+    ]
+  },
+  "design": "five reproducible municipality holdouts, no held municipality in training years",
+  "production_model_changed": false,
+  "folds": [
+    {
+      "fold": 0,
+      "n_test": 58,
+      "coefficients": {
+        "reference": null,
+        "coastal_urban": -0.2239007575734071,
+        "natural_land": -0.390327948672482,
+        "long_term_unemployment": -0.2754565155880364
+      }
+    },
+    {
+      "fold": 1,
+      "n_test": 52,
+      "coefficients": {
+        "reference": null,
+        "coastal_urban": -0.3967690962960701,
+        "natural_land": -0.4919941464967272,
+        "long_term_unemployment": -1.2061129227410134
+      }
+    },
+    {
+      "fold": 2,
+      "n_test": 65,
+      "coefficients": {
+        "reference": null,
+        "coastal_urban": -0.4911110939623805,
+        "natural_land": -0.32782686824356944,
+        "long_term_unemployment": 0.5079992349620985
+      }
+    },
+    {
+      "fold": 3,
+      "n_test": 64,
+      "coefficients": {
+        "reference": null,
+        "coastal_urban": -0.24401744966988792,
+        "natural_land": -0.4591058091227982,
+        "long_term_unemployment": -0.5141663064287334
+      }
+    },
+    {
+      "fold": 4,
+      "n_test": 51,
+      "coefficients": {
+        "reference": null,
+        "coastal_urban": -0.4668644755166355,
+        "natural_land": -0.20771023958180185,
+        "long_term_unemployment": -0.3828222851717098
+      }
+    }
+  ],
+  "metrics": {
+    "reference": {
+      "r2": 0.8654619908191437,
+      "rmse": 5.55164159659851,
+      "mae": 4.297990229919311,
+      "median_abs_error": 3.4823387542487865,
+      "p90_abs_error": 8.988497325338251,
+      "p95_abs_error": 11.885269660202638,
+      "p90_p10_abs_error_gap": 8.233766009812102,
+      "best_decile_mae": 0.38418723107579994,
+      "worst_decile_mae": 12.407584615787304,
+      "decile_mae_gap": 12.023397384711505,
+      "max_abs_error": 20.00599921069832,
+      "n": 290
+    },
+    "coastal_urban": {
+      "r2": 0.8655852591765141,
+      "rmse": 5.549097711154127,
+      "mae": 4.258542085893954,
+      "median_abs_error": 3.418511494273183,
+      "p90_abs_error": 8.975952528921407,
+      "p95_abs_error": 11.925703991546458,
+      "p90_p10_abs_error_gap": 8.334666776410323,
+      "best_decile_mae": 0.35754367879443427,
+      "worst_decile_mae": 12.543950582013212,
+      "decile_mae_gap": 12.186406903218778,
+      "max_abs_error": 20.014067421786294,
+      "n": 290
+    },
+    "natural_land": {
+      "r2": 0.8675974065699693,
+      "rmse": 5.507406954027605,
+      "mae": 4.252265522401003,
+      "median_abs_error": 3.38452644089789,
+      "p90_abs_error": 9.179500764293007,
+      "p95_abs_error": 11.716807156492711,
+      "p90_p10_abs_error_gap": 8.560482424727192,
+      "best_decile_mae": 0.3335010453911929,
+      "worst_decile_mae": 12.30989888626239,
+      "decile_mae_gap": 11.976397840871197,
+      "max_abs_error": 19.82223688545939,
+      "n": 290
+    },
+    "long_term_unemployment": {
+      "r2": 0.8683988247844021,
+      "rmse": 5.490713793466894,
+      "mae": 4.236497349928461,
+      "median_abs_error": 3.4608773758015445,
+      "p90_abs_error": 8.860327654631302,
+      "p95_abs_error": 11.587886727429083,
+      "p90_p10_abs_error_gap": 8.255643713153278,
+      "best_decile_mae": 0.3541609516898164,
+      "worst_decile_mae": 12.2520381912927,
+      "decile_mae_gap": 11.897877239602883,
+      "max_abs_error": 19.855868938752387,
+      "n": 290
+    }
+  },
+  "quartiles": [
+    {
+      "group": "Q1",
+      "n": 73,
+      "rmse": {
+        "reference": 5.50654070159474,
+        "coastal_urban": 5.475447908669093,
+        "natural_land": 5.541249339292372,
+        "long_term_unemployment": 5.4738251404305505
+      }
+    },
+    {
+      "group": "Q2",
+      "n": 72,
+      "rmse": {
+        "reference": 5.401959227548327,
+        "coastal_urban": 5.535510038277578,
+        "natural_land": 5.378508190952977,
+        "long_term_unemployment": 5.36421344470192
+      }
+    },
+    {
+      "group": "Q3",
+      "n": 72,
+      "rmse": {
+        "reference": 5.532719233499844,
+        "coastal_urban": 5.5141119747306035,
+        "natural_land": 5.40983485014567,
+        "long_term_unemployment": 5.438536787624078
+      }
+    },
+    {
+      "group": "Q4",
+      "n": 73,
+      "rmse": {
+        "reference": 5.757032971621593,
+        "coastal_urban": 5.66875156050139,
+        "natural_land": 5.691414941343077,
+        "long_term_unemployment": 5.678899531225881
+      }
+    }
+  ],
+  "lulea": [
+    {
+      "kommun_kod": "2580",
+      "actual": 51.74210559357147,
+      "out_share": 10.391649955302134,
+      "fold": 1,
+      "reference": 47.09195996475776,
+      "coastal_urban": 47.03934626797766,
+      "natural_land": 46.78569084031493,
+      "long_term_unemployment": 47.31655053776426
+    }
+  ],
+  "bootstrap": {
+    "coastal_urban": {
+      "rmse_gain": 0.0025438854443828873,
+      "ci95": [
+        -0.1031853281986991,
+        0.06787114098555624
+      ],
+      "n_municipalities_improved": 182
+    },
+    "natural_land": {
+      "rmse_gain": 0.04423464257090526,
+      "ci95": [
+        0.006689847180137854,
+        0.08581029960791062
+      ],
+      "n_municipalities_improved": 140
+    },
+    "long_term_unemployment": {
+      "rmse_gain": 0.06092780313161583,
+      "ci95": [
+        0.02758404908495704,
+        0.0945262498846747
+      ],
+      "n_municipalities_improved": 181
+    }
+  },
+  "limitations": [
+    "Candidates chosen from repeatedly inspected 2023/2024 data; bootstrap is exploratory, not independent confirmation.",
+    "Baseline has lagged demographic variables, so this does not establish structural causal effects.",
+    "Same geographic split as prior exploratory tests, not previously untouched geography."
+  ]
+}
