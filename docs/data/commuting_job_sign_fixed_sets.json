@@ -1,0 +1,95 @@
+{
+  "status": "fixed_feature_set_job_sign_decomposition",
+  "feature_sets": {
+    "selected_on_2022": [
+      "lag1_inflyttning_per_1000",
+      "lag1_utflyttning_per_1000",
+      "lag1_inkomst_tkr",
+      "lag1_fardigstallda_bostader_per_1000",
+      "lag1_kolada_arbetslosa_18_65_pct"
+    ],
+    "selected_on_2022_2023": [
+      "lag1_inflyttning_per_1000",
+      "lag1_utflyttning_per_1000",
+      "lag1_andel_20_34",
+      "lag1_inflyttare_medelalder",
+      "lag1_inkomst_tkr",
+      "lag1_ekonomisk_standard_gap_pp",
+      "lag1_bostader_per_1000",
+      "lag1_bostadsbestandsforandring_pct",
+      "lag1_andel_bostadsratt",
+      "lag1_fritidshusandel_bland_smahus",
+      "lag1_andel_studerande",
+      "lag1_andel_hotell_restaurang_i",
+      "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+      "lag1_kolada_arbetslosa_18_65_pct",
+      "lag1_bas_studerande_andel_pct",
+      "lag1_andel_smahus_111_plus",
+      "lag1_gymnasium_yrkesprogram_pct"
+    ]
+  },
+  "results": {
+    "train_2022": {
+      "selected_on_2022__linear_and_interaction": {
+        "feature_count": 8,
+        "job_coefficient": 0.1276394250590478,
+        "alpha": 1.7782794100389228,
+        "rmse": 6.240390924108793,
+        "mae": 4.866419338276463
+      },
+      "selected_on_2022__without_job": {
+        "feature_count": 7,
+        "job_coefficient": null,
+        "alpha": 1.7782794100389228,
+        "rmse": 6.174145340083862,
+        "mae": 4.778874511993231
+      },
+      "selected_on_2022_2023__linear_and_interaction": {
+        "feature_count": 20,
+        "job_coefficient": 0.48868633904270453,
+        "alpha": 5.62341325190349,
+        "rmse": 6.1540658617351305,
+        "mae": 4.939514637191447
+      },
+      "selected_on_2022_2023__without_job": {
+        "feature_count": 19,
+        "job_coefficient": null,
+        "alpha": 3.1622776601683795,
+        "rmse": 5.875988999735922,
+        "mae": 4.575252133726332
+      }
+    },
+    "train_2022_2023": {
+      "selected_on_2022__linear_and_interaction": {
+        "feature_count": 8,
+        "job_coefficient": -0.4251845967255026,
+        "alpha": 1.0,
+        "rmse": 5.337035602514136,
+        "mae": 4.11467105117304
+      },
+      "selected_on_2022__without_job": {
+        "feature_count": 7,
+        "job_coefficient": null,
+        "alpha": 1.0,
+        "rmse": 5.528644701129925,
+        "mae": 4.278843897268166
+      },
+      "selected_on_2022_2023__linear_and_interaction": {
+        "feature_count": 20,
+        "job_coefficient": -0.5719379300017735,
+        "alpha": 5.62341325190349,
+        "rmse": 5.342589132268128,
+        "mae": 4.022120734043011
+      },
+      "selected_on_2022_2023__without_job": {
+        "feature_count": 19,
+        "job_coefficient": null,
+        "alpha": 5.62341325190349,
+        "rmse": 5.604905182036146,
+        "mae": 4.31414105491758
+      }
+    }
+  },
+  "production_model_changed": false,
+  "limitation": "2024 feature set was selected using 2023 outcomes; applying it retroactively to 2023 is diagnostic, not valid forecast validation."
+}
