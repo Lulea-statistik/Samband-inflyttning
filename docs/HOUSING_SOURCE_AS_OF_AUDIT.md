@@ -19,6 +19,17 @@ SCB-API-tabeller:
 - BO0501 `https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0501/BO0501B/FastprisSHRegionAr`
 - BO0104T08 `https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104H/BO0104T08` (kod innehåller fallback-URL:er; verifiera faktiskt löst tabell-ID).
 
+
+## Förtydligande 2026-10-14: SCB:s två tabeller över färdigställda lägenheter
+
+Användaren har preciserat att lägenheterna ska hänföras till **det färdigställandeår som SCB anger**, inte till året som statistiken publicerades. Detta behålls som huvuddefinition.
+
+- [LghReHustypAr](https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0101__BO0101A/LghReHustypAr/): färdigställda lägenheter **och rumsenheter** i nybyggda hus, efter region, hustyp och år; längre tidsserie (från 1938; kommunnivå från 1975). Den har ingen upplåtelseformsdimension.
+- [LghReHtypUfAr](https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0101__BO0101A/LghReHtypUfAr/): färdigställda lägenheter i nybyggda hus, efter region, hustyp, upplåtelseform och år (från 1991). **Denna tabell används redan av projektets `get_completed_housing()`**: summering över hustyp och upplåtelseform.
+- **Rekommendation:** Behåll årsvariabeln efter SCB:s redovisade färdigställandeår. Jämför kommun-år mellan de två tabellerna på överlappande år som datakvalitetskontroll, med exakt samma totaldefinition; undvik summering av redan aggregerade totalposter och undvik att blanda `rumsenheter` med `lägenheter`. Avvikelse ska flaggas och utredas, inte fyllas på med den andra tabellens värde utan dokumentation.
+- SCB:s fotnot för `LghReHustypAr` anger att sent inkomna färdigställandeuppgifter kan hamna på **fel redovisningsår** i definitiv årsstatistik; för 2025 anges knappt 8 procent. Tabelltexten anger även en korrigering 2025-08-25 av Göteborgs uppgift för 2024 med −389 flerbostadslägenheter. Detta är konkret revisions-/referensårsrisk och måste dokumenteras. Källa: tabellens **Viktiga fotnoter**.
+- **Separat fråga:** när värdet för ett visst referensår blev publicerat. I prognoser gjorda vid ett historiskt datum får vi endast använda värden som då var kända. Det ändrar **inte** vilket färdigställandeår lägenheterna tillhör i den officiella serien. Historiska data är ofta senare reviderade och ska inte förväxlas med frysta realtidsversioner.
+
 ## Kontrollkrav före prognosgodkännande
 
 1. Ange prognosursprung och informationsstopp (datum) för 2023 och 2024.
