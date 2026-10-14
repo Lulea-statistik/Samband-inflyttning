@@ -1,0 +1,1449 @@
+{
+  "status": "joint_historical_window_feasibility",
+  "n_candidates": 73,
+  "controls": [
+    "lag1_log_folkmangd",
+    "lag1_tatortsgrad_pct",
+    "lag1_regional_centre_distance_km"
+  ],
+  "control_missing": [],
+  "coverage_threshold": 290,
+  "production_changed": false,
+  "windows": {
+    "3": [
+      {
+        "forecast_year": 2005,
+        "training_years": [
+          2002,
+          2003,
+          2004
+        ],
+        "eligible_count": 0,
+        "old_candidates": 0,
+        "new_candidates": 0,
+        "controls_ready": false,
+        "available_themes": {},
+        "features": []
+      },
+      {
+        "forecast_year": 2006,
+        "training_years": [
+          2003,
+          2004,
+          2005
+        ],
+        "eligible_count": 2,
+        "old_candidates": 1,
+        "new_candidates": 1,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 2
+        },
+        "features": [
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd"
+        ]
+      },
+      {
+        "forecast_year": 2007,
+        "training_years": [
+          2004,
+          2005,
+          2006
+        ],
+        "eligible_count": 2,
+        "old_candidates": 1,
+        "new_candidates": 1,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 2
+        },
+        "features": [
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd"
+        ]
+      },
+      {
+        "forecast_year": 2008,
+        "training_years": [
+          2005,
+          2006,
+          2007
+        ],
+        "eligible_count": 2,
+        "old_candidates": 1,
+        "new_candidates": 1,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 2
+        },
+        "features": [
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd"
+        ]
+      },
+      {
+        "forecast_year": 2009,
+        "training_years": [
+          2006,
+          2007,
+          2008
+        ],
+        "eligible_count": 3,
+        "old_candidates": 1,
+        "new_candidates": 2,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 3
+        },
+        "features": [
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2010,
+        "training_years": [
+          2007,
+          2008,
+          2009
+        ],
+        "eligible_count": 3,
+        "old_candidates": 1,
+        "new_candidates": 2,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 3
+        },
+        "features": [
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2011,
+        "training_years": [
+          2008,
+          2009,
+          2010
+        ],
+        "eligible_count": 3,
+        "old_candidates": 1,
+        "new_candidates": 2,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 3
+        },
+        "features": [
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2012,
+        "training_years": [
+          2009,
+          2010,
+          2011
+        ],
+        "eligible_count": 3,
+        "old_candidates": 1,
+        "new_candidates": 2,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 3
+        },
+        "features": [
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2013,
+        "training_years": [
+          2010,
+          2011,
+          2012
+        ],
+        "eligible_count": 3,
+        "old_candidates": 1,
+        "new_candidates": 2,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 3
+        },
+        "features": [
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2014,
+        "training_years": [
+          2011,
+          2012,
+          2013
+        ],
+        "eligible_count": 6,
+        "old_candidates": 1,
+        "new_candidates": 5,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 6
+        },
+        "features": [
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_naturpraglad_mark_andel_land_pct",
+          "lag1_skogsmark_andel_land_pct",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2015,
+        "training_years": [
+          2012,
+          2013,
+          2014
+        ],
+        "eligible_count": 6,
+        "old_candidates": 1,
+        "new_candidates": 5,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 6
+        },
+        "features": [
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_naturpraglad_mark_andel_land_pct",
+          "lag1_skogsmark_andel_land_pct",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2016,
+        "training_years": [
+          2013,
+          2014,
+          2015
+        ],
+        "eligible_count": 6,
+        "old_candidates": 1,
+        "new_candidates": 5,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 6
+        },
+        "features": [
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_naturpraglad_mark_andel_land_pct",
+          "lag1_skogsmark_andel_land_pct",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2017,
+        "training_years": [
+          2014,
+          2015,
+          2016
+        ],
+        "eligible_count": 6,
+        "old_candidates": 1,
+        "new_candidates": 5,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 6
+        },
+        "features": [
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_naturpraglad_mark_andel_land_pct",
+          "lag1_skogsmark_andel_land_pct",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2018,
+        "training_years": [
+          2015,
+          2016,
+          2017
+        ],
+        "eligible_count": 6,
+        "old_candidates": 1,
+        "new_candidates": 5,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 6
+        },
+        "features": [
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_naturpraglad_mark_andel_land_pct",
+          "lag1_skogsmark_andel_land_pct",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2019,
+        "training_years": [
+          2016,
+          2017,
+          2018
+        ],
+        "eligible_count": 6,
+        "old_candidates": 1,
+        "new_candidates": 5,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 6
+        },
+        "features": [
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_naturpraglad_mark_andel_land_pct",
+          "lag1_skogsmark_andel_land_pct",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2020,
+        "training_years": [
+          2017,
+          2018,
+          2019
+        ],
+        "eligible_count": 6,
+        "old_candidates": 1,
+        "new_candidates": 5,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 6
+        },
+        "features": [
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_naturpraglad_mark_andel_land_pct",
+          "lag1_skogsmark_andel_land_pct",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2021,
+        "training_years": [
+          2018,
+          2019,
+          2020
+        ],
+        "eligible_count": 6,
+        "old_candidates": 1,
+        "new_candidates": 5,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 6
+        },
+        "features": [
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_naturpraglad_mark_andel_land_pct",
+          "lag1_skogsmark_andel_land_pct",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2022,
+        "training_years": [
+          2019,
+          2020,
+          2021
+        ],
+        "eligible_count": 51,
+        "old_candidates": 22,
+        "new_candidates": 29,
+        "controls_ready": false,
+        "available_themes": {
+          "arbetsmarknad_och_aktivitet": 3,
+          "bostader_och_bestand": 21,
+          "demokrati": 2,
+          "foreningsliv_och_kultur": 3,
+          "geografi_och_mark": 8,
+          "inkomst_och_bostadsekonomi": 9,
+          "trygghet": 1,
+          "utbildning_och_studier": 4
+        },
+        "features": [
+          "lag1_andel_bostader_111_plus",
+          "lag1_andel_bostader_141_plus",
+          "lag1_andel_bostader_151_plus",
+          "lag1_andel_bostader_70_max",
+          "lag1_andel_bostadsratt",
+          "lag1_andel_eftergymnasial",
+          "lag1_andel_flerbostad_70_max",
+          "lag1_andel_hyresratt",
+          "lag1_andel_smahus",
+          "lag1_andel_smahus_111_plus",
+          "lag1_andel_smahus_151_plus",
+          "lag1_andel_studerande",
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "lag1_bostader_per_1000",
+          "lag1_brott_per_100000",
+          "lag1_ekonomisk_standard_gap_pp",
+          "lag1_fardigstallda_bostader_per_1000",
+          "lag1_fritidshus_per_1000_inv",
+          "lag1_fritidshusandel_bland_smahus",
+          "lag1_gymnasium_hogskoleforberedande_pct",
+          "lag1_gymnasium_yrkesprogram_pct",
+          "lag1_inkomst_median_tkr",
+          "lag1_inkomst_tkr",
+          "lag1_kolada_arbetslosa_18_24_pct",
+          "lag1_kolada_arbetslosa_18_65_pct",
+          "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+          "lag1_kolada_langtidsarbetslosa_pct",
+          "lag1_kolada_lok_foreningar_per_10000",
+          "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "lag1_kvinnors_lonesumma_dagbef_pct",
+          "lag1_kvinnors_mediannettoinkomst_andel_pct",
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_log_fritidshus_per_1000_inv",
+          "lag1_log_smahuspris_medel",
+          "lag1_naturpraglad_mark_andel_land_pct",
+          "lag1_skogsmark_andel_land_pct",
+          "lag1_smahusforsaljningar_per_1000_inv",
+          "lag1_smahusforsaljningar_per_1000_smahus",
+          "lag1_smahuspris_inkomstkvot_medel",
+          "lag1_smahuspris_inkomstkvot_median",
+          "lag1_smahuspris_medel_tkr",
+          "lag1_snoskoterandel_alla_fordon_pct",
+          "lag1_snoskoterandel_exkl_dragfordon_pct",
+          "lag1_strand_hav_bostader_per_1000",
+          "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+          "lag1_strand_hav_bostader_tatort_per_1000",
+          "lag1_strand_inland_bostader_per_1000",
+          "lag1_tatortsgrad_pct",
+          "lag1_valdeltagande_gap_pp",
+          "lag1_valdeltagande_pct"
+        ]
+      },
+      {
+        "forecast_year": 2023,
+        "training_years": [
+          2020,
+          2021,
+          2022
+        ],
+        "eligible_count": 53,
+        "old_candidates": 23,
+        "new_candidates": 30,
+        "controls_ready": false,
+        "available_themes": {
+          "arbetsmarknad_och_aktivitet": 3,
+          "bostader_och_bestand": 22,
+          "demokrati": 2,
+          "foreningsliv_och_kultur": 3,
+          "geografi_och_mark": 8,
+          "inkomst_och_bostadsekonomi": 10,
+          "trygghet": 1,
+          "utbildning_och_studier": 4
+        },
+        "features": [
+          "lag1_andel_bostader_111_plus",
+          "lag1_andel_bostader_141_plus",
+          "lag1_andel_bostader_151_plus",
+          "lag1_andel_bostader_70_max",
+          "lag1_andel_bostadsratt",
+          "lag1_andel_eftergymnasial",
+          "lag1_andel_flerbostad_70_max",
+          "lag1_andel_hyresratt",
+          "lag1_andel_smahus",
+          "lag1_andel_smahus_111_plus",
+          "lag1_andel_smahus_151_plus",
+          "lag1_andel_studerande",
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "lag1_bostader_per_1000",
+          "lag1_bostadsbestandsforandring_pct",
+          "lag1_brott_per_100000",
+          "lag1_ekonomisk_standard_gap_pp",
+          "lag1_fardigstallda_bostader_per_1000",
+          "lag1_fritidshus_per_1000_inv",
+          "lag1_fritidshusandel_bland_smahus",
+          "lag1_gymnasium_hogskoleforberedande_pct",
+          "lag1_gymnasium_yrkesprogram_pct",
+          "lag1_inkomst_median_tkr",
+          "lag1_inkomst_tkr",
+          "lag1_kolada_arbetslosa_18_24_pct",
+          "lag1_kolada_arbetslosa_18_65_pct",
+          "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+          "lag1_kolada_langtidsarbetslosa_pct",
+          "lag1_kolada_lok_foreningar_per_10000",
+          "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "lag1_kvinnors_lonesumma_dagbef_pct",
+          "lag1_kvinnors_mediannettoinkomst_andel_pct",
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_log_fritidshus_per_1000_inv",
+          "lag1_log_smahuspris_medel",
+          "lag1_naturpraglad_mark_andel_land_pct",
+          "lag1_skogsmark_andel_land_pct",
+          "lag1_smahusforsaljningar_per_1000_inv",
+          "lag1_smahusforsaljningar_per_1000_smahus",
+          "lag1_smahuspris_forandring_pct",
+          "lag1_smahuspris_inkomstkvot_medel",
+          "lag1_smahuspris_inkomstkvot_median",
+          "lag1_smahuspris_medel_tkr",
+          "lag1_snoskoterandel_alla_fordon_pct",
+          "lag1_snoskoterandel_exkl_dragfordon_pct",
+          "lag1_strand_hav_bostader_per_1000",
+          "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+          "lag1_strand_hav_bostader_tatort_per_1000",
+          "lag1_strand_inland_bostader_per_1000",
+          "lag1_tatortsgrad_pct",
+          "lag1_valdeltagande_gap_pp",
+          "lag1_valdeltagande_pct"
+        ]
+      },
+      {
+        "forecast_year": 2024,
+        "training_years": [
+          2021,
+          2022,
+          2023
+        ],
+        "eligible_count": 71,
+        "old_candidates": 37,
+        "new_candidates": 34,
+        "controls_ready": true,
+        "available_themes": {
+          "arbetsmarknad_och_aktivitet": 14,
+          "bostader_och_bestand": 22,
+          "demokrati": 2,
+          "foreningsliv_och_kultur": 4,
+          "geografi_och_mark": 10,
+          "inkomst_och_bostadsekonomi": 10,
+          "naringslivsstruktur": 4,
+          "trygghet": 1,
+          "utbildning_och_studier": 4
+        },
+        "features": [
+          "lag1_andel_bostader_111_plus",
+          "lag1_andel_bostader_141_plus",
+          "lag1_andel_bostader_151_plus",
+          "lag1_andel_bostader_70_max",
+          "lag1_andel_bostadsratt",
+          "lag1_andel_eftergymnasial",
+          "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+          "lag1_andel_flerbostad_70_max",
+          "lag1_andel_hotell_restaurang_i",
+          "lag1_andel_hyresratt",
+          "lag1_andel_industri_bc",
+          "lag1_andel_kultur_service_rstu",
+          "lag1_andel_smahus",
+          "lag1_andel_smahus_111_plus",
+          "lag1_andel_smahus_151_plus",
+          "lag1_andel_studerande",
+          "lag1_arbetskraftsdeltagande",
+          "lag1_arbetsloshet",
+          "lag1_bas_ovriga_andel_pct",
+          "lag1_bas_pensionarer_andel_pct",
+          "lag1_bas_sjuka_andel_pct",
+          "lag1_bas_studerande_andel_pct",
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "lag1_bostader_per_1000",
+          "lag1_bostadsbestandsforandring_pct",
+          "lag1_brott_per_100000",
+          "lag1_ekonomisk_standard_gap_pp",
+          "lag1_fardigstallda_bostader_per_1000",
+          "lag1_fritidshus_per_1000_inv",
+          "lag1_fritidshusandel_bland_smahus",
+          "lag1_gymnasium_hogskoleforberedande_pct",
+          "lag1_gymnasium_yrkesprogram_pct",
+          "lag1_inkomst_median_tkr",
+          "lag1_inkomst_tkr",
+          "lag1_kolada_arbetslosa_18_24_pct",
+          "lag1_kolada_arbetslosa_18_65_pct",
+          "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+          "lag1_kolada_langtidsarbetslosa_pct",
+          "lag1_kolada_lok_foreningar_per_10000",
+          "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "lag1_kvinnors_lonesumma_dagbef_pct",
+          "lag1_kvinnors_mediannettoinkomst_andel_pct",
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_externa_fa_jobb_per_1000",
+          "lag1_log_folkmangd",
+          "lag1_log_fritidshus_per_1000_inv",
+          "lag1_log_regional_centre_distance_km",
+          "lag1_log_smahuspris_medel",
+          "lag1_naturpraglad_mark_andel_land_pct",
+          "lag1_regional_centre_distance_km",
+          "lag1_skogsmark_andel_land_pct",
+          "lag1_smahusforsaljningar_per_1000_inv",
+          "lag1_smahusforsaljningar_per_1000_smahus",
+          "lag1_smahuspris_forandring_pct",
+          "lag1_smahuspris_inkomstkvot_medel",
+          "lag1_smahuspris_inkomstkvot_median",
+          "lag1_smahuspris_medel_tkr",
+          "lag1_snoskoterandel_alla_fordon_pct",
+          "lag1_snoskoterandel_exkl_dragfordon_pct",
+          "lag1_strand_hav_bostader_per_1000",
+          "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+          "lag1_strand_hav_bostader_tatort_per_1000",
+          "lag1_strand_inland_bostader_per_1000",
+          "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+          "lag1_sysselsatta_bostad_sasongsvariation_pct",
+          "lag1_sysselsattningsgrad",
+          "lag1_tatortsgrad_pct",
+          "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+          "lag1_utanf_arbetkraften_andel_pct",
+          "lag1_valdeltagande_gap_pp",
+          "lag1_valdeltagande_pct"
+        ]
+      }
+    ],
+    "5": [
+      {
+        "forecast_year": 2007,
+        "training_years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006
+        ],
+        "eligible_count": 0,
+        "old_candidates": 0,
+        "new_candidates": 0,
+        "controls_ready": false,
+        "available_themes": {},
+        "features": []
+      },
+      {
+        "forecast_year": 2008,
+        "training_years": [
+          2003,
+          2004,
+          2005,
+          2006,
+          2007
+        ],
+        "eligible_count": 2,
+        "old_candidates": 1,
+        "new_candidates": 1,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 2
+        },
+        "features": [
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd"
+        ]
+      },
+      {
+        "forecast_year": 2009,
+        "training_years": [
+          2004,
+          2005,
+          2006,
+          2007,
+          2008
+        ],
+        "eligible_count": 2,
+        "old_candidates": 1,
+        "new_candidates": 1,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 2
+        },
+        "features": [
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd"
+        ]
+      },
+      {
+        "forecast_year": 2010,
+        "training_years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009
+        ],
+        "eligible_count": 2,
+        "old_candidates": 1,
+        "new_candidates": 1,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 2
+        },
+        "features": [
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd"
+        ]
+      },
+      {
+        "forecast_year": 2011,
+        "training_years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "eligible_count": 3,
+        "old_candidates": 1,
+        "new_candidates": 2,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 3
+        },
+        "features": [
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2012,
+        "training_years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011
+        ],
+        "eligible_count": 3,
+        "old_candidates": 1,
+        "new_candidates": 2,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 3
+        },
+        "features": [
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2013,
+        "training_years": [
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "eligible_count": 3,
+        "old_candidates": 1,
+        "new_candidates": 2,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 3
+        },
+        "features": [
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2014,
+        "training_years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "eligible_count": 3,
+        "old_candidates": 1,
+        "new_candidates": 2,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 3
+        },
+        "features": [
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2015,
+        "training_years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "eligible_count": 3,
+        "old_candidates": 1,
+        "new_candidates": 2,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 3
+        },
+        "features": [
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2016,
+        "training_years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "eligible_count": 6,
+        "old_candidates": 1,
+        "new_candidates": 5,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 6
+        },
+        "features": [
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_naturpraglad_mark_andel_land_pct",
+          "lag1_skogsmark_andel_land_pct",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2017,
+        "training_years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "eligible_count": 6,
+        "old_candidates": 1,
+        "new_candidates": 5,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 6
+        },
+        "features": [
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_naturpraglad_mark_andel_land_pct",
+          "lag1_skogsmark_andel_land_pct",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2018,
+        "training_years": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "eligible_count": 6,
+        "old_candidates": 1,
+        "new_candidates": 5,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 6
+        },
+        "features": [
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_naturpraglad_mark_andel_land_pct",
+          "lag1_skogsmark_andel_land_pct",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2019,
+        "training_years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "eligible_count": 6,
+        "old_candidates": 1,
+        "new_candidates": 5,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 6
+        },
+        "features": [
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_naturpraglad_mark_andel_land_pct",
+          "lag1_skogsmark_andel_land_pct",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2020,
+        "training_years": [
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "eligible_count": 6,
+        "old_candidates": 1,
+        "new_candidates": 5,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 6
+        },
+        "features": [
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_naturpraglad_mark_andel_land_pct",
+          "lag1_skogsmark_andel_land_pct",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2021,
+        "training_years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "eligible_count": 6,
+        "old_candidates": 1,
+        "new_candidates": 5,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 6
+        },
+        "features": [
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_naturpraglad_mark_andel_land_pct",
+          "lag1_skogsmark_andel_land_pct",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2022,
+        "training_years": [
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "eligible_count": 6,
+        "old_candidates": 1,
+        "new_candidates": 5,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 6
+        },
+        "features": [
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_naturpraglad_mark_andel_land_pct",
+          "lag1_skogsmark_andel_land_pct",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2023,
+        "training_years": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "eligible_count": 6,
+        "old_candidates": 1,
+        "new_candidates": 5,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 6
+        },
+        "features": [
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_naturpraglad_mark_andel_land_pct",
+          "lag1_skogsmark_andel_land_pct",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2024,
+        "training_years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "eligible_count": 51,
+        "old_candidates": 22,
+        "new_candidates": 29,
+        "controls_ready": false,
+        "available_themes": {
+          "arbetsmarknad_och_aktivitet": 3,
+          "bostader_och_bestand": 21,
+          "demokrati": 2,
+          "foreningsliv_och_kultur": 3,
+          "geografi_och_mark": 8,
+          "inkomst_och_bostadsekonomi": 9,
+          "trygghet": 1,
+          "utbildning_och_studier": 4
+        },
+        "features": [
+          "lag1_andel_bostader_111_plus",
+          "lag1_andel_bostader_141_plus",
+          "lag1_andel_bostader_151_plus",
+          "lag1_andel_bostader_70_max",
+          "lag1_andel_bostadsratt",
+          "lag1_andel_eftergymnasial",
+          "lag1_andel_flerbostad_70_max",
+          "lag1_andel_hyresratt",
+          "lag1_andel_smahus",
+          "lag1_andel_smahus_111_plus",
+          "lag1_andel_smahus_151_plus",
+          "lag1_andel_studerande",
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "lag1_bostader_per_1000",
+          "lag1_brott_per_100000",
+          "lag1_ekonomisk_standard_gap_pp",
+          "lag1_fardigstallda_bostader_per_1000",
+          "lag1_fritidshus_per_1000_inv",
+          "lag1_fritidshusandel_bland_smahus",
+          "lag1_gymnasium_hogskoleforberedande_pct",
+          "lag1_gymnasium_yrkesprogram_pct",
+          "lag1_inkomst_median_tkr",
+          "lag1_inkomst_tkr",
+          "lag1_kolada_arbetslosa_18_24_pct",
+          "lag1_kolada_arbetslosa_18_65_pct",
+          "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+          "lag1_kolada_langtidsarbetslosa_pct",
+          "lag1_kolada_lok_foreningar_per_10000",
+          "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "lag1_kvinnors_lonesumma_dagbef_pct",
+          "lag1_kvinnors_mediannettoinkomst_andel_pct",
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_log_fritidshus_per_1000_inv",
+          "lag1_log_smahuspris_medel",
+          "lag1_naturpraglad_mark_andel_land_pct",
+          "lag1_skogsmark_andel_land_pct",
+          "lag1_smahusforsaljningar_per_1000_inv",
+          "lag1_smahusforsaljningar_per_1000_smahus",
+          "lag1_smahuspris_inkomstkvot_medel",
+          "lag1_smahuspris_inkomstkvot_median",
+          "lag1_smahuspris_medel_tkr",
+          "lag1_snoskoterandel_alla_fordon_pct",
+          "lag1_snoskoterandel_exkl_dragfordon_pct",
+          "lag1_strand_hav_bostader_per_1000",
+          "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+          "lag1_strand_hav_bostader_tatort_per_1000",
+          "lag1_strand_inland_bostader_per_1000",
+          "lag1_tatortsgrad_pct",
+          "lag1_valdeltagande_gap_pp",
+          "lag1_valdeltagande_pct"
+        ]
+      }
+    ],
+    "10": [
+      {
+        "forecast_year": 2012,
+        "training_years": [
+          2002,
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011
+        ],
+        "eligible_count": 0,
+        "old_candidates": 0,
+        "new_candidates": 0,
+        "controls_ready": false,
+        "available_themes": {},
+        "features": []
+      },
+      {
+        "forecast_year": 2013,
+        "training_years": [
+          2003,
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "eligible_count": 2,
+        "old_candidates": 1,
+        "new_candidates": 1,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 2
+        },
+        "features": [
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd"
+        ]
+      },
+      {
+        "forecast_year": 2014,
+        "training_years": [
+          2004,
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "eligible_count": 2,
+        "old_candidates": 1,
+        "new_candidates": 1,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 2
+        },
+        "features": [
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd"
+        ]
+      },
+      {
+        "forecast_year": 2015,
+        "training_years": [
+          2005,
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "eligible_count": 2,
+        "old_candidates": 1,
+        "new_candidates": 1,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 2
+        },
+        "features": [
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd"
+        ]
+      },
+      {
+        "forecast_year": 2016,
+        "training_years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "eligible_count": 3,
+        "old_candidates": 1,
+        "new_candidates": 2,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 3
+        },
+        "features": [
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2017,
+        "training_years": [
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "eligible_count": 3,
+        "old_candidates": 1,
+        "new_candidates": 2,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 3
+        },
+        "features": [
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2018,
+        "training_years": [
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "eligible_count": 3,
+        "old_candidates": 1,
+        "new_candidates": 2,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 3
+        },
+        "features": [
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2019,
+        "training_years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "eligible_count": 3,
+        "old_candidates": 1,
+        "new_candidates": 2,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 3
+        },
+        "features": [
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2020,
+        "training_years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "eligible_count": 3,
+        "old_candidates": 1,
+        "new_candidates": 2,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 3
+        },
+        "features": [
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2021,
+        "training_years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "eligible_count": 6,
+        "old_candidates": 1,
+        "new_candidates": 5,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 6
+        },
+        "features": [
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_naturpraglad_mark_andel_land_pct",
+          "lag1_skogsmark_andel_land_pct",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2022,
+        "training_years": [
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021
+        ],
+        "eligible_count": 6,
+        "old_candidates": 1,
+        "new_candidates": 5,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 6
+        },
+        "features": [
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_naturpraglad_mark_andel_land_pct",
+          "lag1_skogsmark_andel_land_pct",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2023,
+        "training_years": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022
+        ],
+        "eligible_count": 6,
+        "old_candidates": 1,
+        "new_candidates": 5,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 6
+        },
+        "features": [
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_naturpraglad_mark_andel_land_pct",
+          "lag1_skogsmark_andel_land_pct",
+          "lag1_tatortsgrad_pct"
+        ]
+      },
+      {
+        "forecast_year": 2024,
+        "training_years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ],
+        "eligible_count": 6,
+        "old_candidates": 1,
+        "new_candidates": 5,
+        "controls_ready": false,
+        "available_themes": {
+          "geografi_och_mark": 6
+        },
+        "features": [
+          "lag1_bebyggd_anlagd_andel_land_pct",
+          "lag1_log_befolkningstathet_land",
+          "lag1_log_folkmangd",
+          "lag1_naturpraglad_mark_andel_land_pct",
+          "lag1_skogsmark_andel_land_pct",
+          "lag1_tatortsgrad_pct"
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "Full municipality coverage in a current restated panel does not confirm historic publication timing.",
+    "Candidate availability is tested jointly on common years but not on missingness within non-290 subsets.",
+    "Control features are pre-specified and must be assessed explicitly before any modeling.",
+    "Historical 2023/2024 outcomes have already been inspected and are not pristine validation."
+  ]
+}
