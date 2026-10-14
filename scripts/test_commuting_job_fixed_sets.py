@@ -53,5 +53,5 @@ def main():
                     "rmse":float(_geographic_error_metrics(test[target],pred)["rmse"]),
                     "mae":float(_geographic_error_metrics(test[target],pred)["mae"])}
         print(json.dumps({"period":period,"models":{k:{"coef":v["job_coefficient"],"rmse":round(v["rmse"],3)} for k,v in report["results"][period].items()}},ensure_ascii=False),flush=True)
-    (D/"commuting_job_sign_fixed_sets.json").write_text(json.dumps(report,ensure_ascii=False,indent=2,allow_nan=False)+"\\n",encoding="utf-8")
+    (D/"commuting_job_sign_fixed_sets.json").write_text(json.dumps(report,ensure_ascii=False,indent=2,allow_nan=False)+"\n",encoding="utf-8")
 if __name__=="__main__":main()
