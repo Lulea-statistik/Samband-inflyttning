@@ -28,9 +28,25 @@ def main():
     for c in raw.columns:
         if "hustyp" in str(c).lower():dims["house_type"]=c
     value_cols=[c for c in raw if c not in set(dims.values())]
-    if len(value_cols)!=1:raise RuntimeError("Ambiguous value columns "+str(value_cols))
-    raw["count"]=normalize_number(raw[value_cols[0]])
-    raw["year"]=pd.to_numeric(raw[dims["time"]],errors="coerce")
+    # SCB returns a wide CSV (one value column per year) for multi-year requests.
+    if len(value_cols)>1:
+        import re
+        year_col={}
+        for col in value_cols:
+            matched=re.search(r"(?:19|20)\\d{2}$",str(col))
+            if not matched:raise RuntimeError("Unrecognized value-column year: "+str(col))
+            year_col[col]=int(matched.group())
+        if len(set(year_col.values()))!=len(value_cols):
+            raise RuntimeError("Duplicate year value columns")
+        raw=raw.melt(id_vars=[c for c in raw if c not in value_cols],
+            value_vars=value_cols,var_name="_year_source",value_name="_count_source")
+        raw["year"]=raw["_year_source"].map(year_col)
+        raw["count"]=normalize_number(raw["_count_source"])
+    elif len(value_cols)==1:
+        raw["count"]=normalize_number(raw[value_cols[0]])
+        raw["year"]=pd.to_numeric(raw[dims["time"]],errors="coerce")
+    else:raise RuntimeError("No apartment count value columns")
+    if raw["year"].isna().any():raise RuntimeError("Missing completion years")
     raw[["kommun_kod","kommun"]]=raw[dims["region"]].apply(lambda x:pd.Series(split_region(x)))
     alternative=raw.groupby(["kommun_kod","year"],as_index=False)["count"].sum(min_count=1).rename(columns={"count":"alternate"})
     # Existing series uses the exact same SCB completion-year convention.
