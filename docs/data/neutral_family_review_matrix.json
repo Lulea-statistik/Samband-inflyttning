@@ -1,0 +1,495 @@
+{
+  "status": "neutral_family_review_matrix",
+  "inventory_count": 80,
+  "blind_universe_preliminary": 75,
+  "forecast_universe_preliminary": 80,
+  "forecast_only_demographic": [
+    "lag1_andel_20_34",
+    "lag1_befolkningstillvaxt_pct",
+    "lag1_inflyttare_medelalder",
+    "lag1_inflyttning_per_1000",
+    "lag1_utflyttning_per_1000"
+  ],
+  "correlation_network_components": [
+    {
+      "members": [
+        "lag1_arbetskraftsdeltagande",
+        "lag1_arbetsloshet",
+        "lag1_kolada_langtidsarbetslosa_pct",
+        "lag1_sysselsattningsgrad",
+        "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+        "lag1_utanf_arbetkraften_andel_pct"
+      ],
+      "edge_count": 8,
+      "edges": [
+        {
+          "a": "lag1_arbetskraftsdeltagande",
+          "b": "lag1_utanf_arbetkraften_andel_pct",
+          "rho": -1.0,
+          "n": 870
+        },
+        {
+          "a": "lag1_arbetskraftsdeltagande",
+          "b": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+          "rho": -0.99974,
+          "n": 870
+        },
+        {
+          "a": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+          "b": "lag1_utanf_arbetkraften_andel_pct",
+          "rho": 0.99974,
+          "n": 870
+        },
+        {
+          "a": "lag1_arbetsloshet",
+          "b": "lag1_kolada_langtidsarbetslosa_pct",
+          "rho": 0.96846,
+          "n": 870
+        },
+        {
+          "a": "lag1_arbetskraftsdeltagande",
+          "b": "lag1_sysselsattningsgrad",
+          "rho": 0.89904,
+          "n": 870
+        },
+        {
+          "a": "lag1_sysselsattningsgrad",
+          "b": "lag1_utanf_arbetkraften_andel_pct",
+          "rho": -0.89904,
+          "n": 870
+        },
+        {
+          "a": "lag1_sysselsattningsgrad",
+          "b": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+          "rho": -0.89884,
+          "n": 870
+        },
+        {
+          "a": "lag1_arbetsloshet",
+          "b": "lag1_sysselsattningsgrad",
+          "rho": -0.88951,
+          "n": 870
+        }
+      ],
+      "review_status": "correlation_network_not_exclusion",
+      "action": "inspect definitions, transformations and incremental train-only value"
+    },
+    {
+      "members": [
+        "lag1_andel_eftergymnasial",
+        "lag1_log_smahuspris_medel",
+        "lag1_smahuspris_inkomstkvot_medel",
+        "lag1_smahuspris_inkomstkvot_median",
+        "lag1_smahuspris_medel_tkr"
+      ],
+      "edge_count": 8,
+      "edges": [
+        {
+          "a": "lag1_log_smahuspris_medel",
+          "b": "lag1_smahuspris_medel_tkr",
+          "rho": 1.0,
+          "n": 1450
+        },
+        {
+          "a": "lag1_smahuspris_inkomstkvot_medel",
+          "b": "lag1_smahuspris_inkomstkvot_median",
+          "rho": 0.99934,
+          "n": 1450
+        },
+        {
+          "a": "lag1_log_smahuspris_medel",
+          "b": "lag1_smahuspris_inkomstkvot_median",
+          "rho": 0.99514,
+          "n": 1450
+        },
+        {
+          "a": "lag1_smahuspris_inkomstkvot_median",
+          "b": "lag1_smahuspris_medel_tkr",
+          "rho": 0.99514,
+          "n": 1450
+        },
+        {
+          "a": "lag1_log_smahuspris_medel",
+          "b": "lag1_smahuspris_inkomstkvot_medel",
+          "rho": 0.9933,
+          "n": 1450
+        },
+        {
+          "a": "lag1_smahuspris_inkomstkvot_medel",
+          "b": "lag1_smahuspris_medel_tkr",
+          "rho": 0.9933,
+          "n": 1450
+        },
+        {
+          "a": "lag1_andel_eftergymnasial",
+          "b": "lag1_log_smahuspris_medel",
+          "rho": 0.85448,
+          "n": 1450
+        },
+        {
+          "a": "lag1_andel_eftergymnasial",
+          "b": "lag1_smahuspris_medel_tkr",
+          "rho": 0.85448,
+          "n": 1450
+        }
+      ],
+      "review_status": "correlation_network_not_exclusion",
+      "action": "inspect definitions, transformations and incremental train-only value"
+    },
+    {
+      "members": [
+        "lag1_andel_bostader_111_plus",
+        "lag1_andel_bostader_141_plus",
+        "lag1_andel_bostader_151_plus",
+        "lag1_andel_bostader_70_max"
+      ],
+      "edge_count": 4,
+      "edges": [
+        {
+          "a": "lag1_andel_bostader_141_plus",
+          "b": "lag1_andel_bostader_151_plus",
+          "rho": 0.98791,
+          "n": 1450
+        },
+        {
+          "a": "lag1_andel_bostader_111_plus",
+          "b": "lag1_andel_bostader_141_plus",
+          "rho": 0.94036,
+          "n": 1450
+        },
+        {
+          "a": "lag1_andel_bostader_111_plus",
+          "b": "lag1_andel_bostader_70_max",
+          "rho": -0.91562,
+          "n": 1450
+        },
+        {
+          "a": "lag1_andel_bostader_111_plus",
+          "b": "lag1_andel_bostader_151_plus",
+          "rho": 0.91307,
+          "n": 1450
+        }
+      ],
+      "review_status": "correlation_network_not_exclusion",
+      "action": "inspect definitions, transformations and incremental train-only value"
+    },
+    {
+      "members": [
+        "lag1_bebyggd_anlagd_andel_land_pct",
+        "lag1_log_befolkningstathet_land",
+        "lag1_strand_inland_bostader_per_1000"
+      ],
+      "edge_count": 3,
+      "edges": [
+        {
+          "a": "lag1_bebyggd_anlagd_andel_land_pct",
+          "b": "lag1_log_befolkningstathet_land",
+          "rho": 0.96091,
+          "n": 1450
+        },
+        {
+          "a": "lag1_log_befolkningstathet_land",
+          "b": "lag1_strand_inland_bostader_per_1000",
+          "rho": -0.89012,
+          "n": 1450
+        },
+        {
+          "a": "lag1_bebyggd_anlagd_andel_land_pct",
+          "b": "lag1_strand_inland_bostader_per_1000",
+          "rho": -0.8594,
+          "n": 1450
+        }
+      ],
+      "review_status": "correlation_network_not_exclusion",
+      "action": "inspect definitions, transformations and incremental train-only value"
+    },
+    {
+      "members": [
+        "lag1_fritidshus_per_1000_inv",
+        "lag1_fritidshusandel_bland_smahus",
+        "lag1_log_fritidshus_per_1000_inv"
+      ],
+      "edge_count": 3,
+      "edges": [
+        {
+          "a": "lag1_fritidshus_per_1000_inv",
+          "b": "lag1_log_fritidshus_per_1000_inv",
+          "rho": 1.0,
+          "n": 1450
+        },
+        {
+          "a": "lag1_fritidshus_per_1000_inv",
+          "b": "lag1_fritidshusandel_bland_smahus",
+          "rho": 0.98054,
+          "n": 1450
+        },
+        {
+          "a": "lag1_fritidshusandel_bland_smahus",
+          "b": "lag1_log_fritidshus_per_1000_inv",
+          "rho": 0.98054,
+          "n": 1450
+        }
+      ],
+      "review_status": "correlation_network_not_exclusion",
+      "action": "inspect definitions, transformations and incremental train-only value"
+    },
+    {
+      "members": [
+        "lag1_strand_hav_bostader_per_1000",
+        "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+        "lag1_strand_hav_bostader_tatort_per_1000"
+      ],
+      "edge_count": 2,
+      "edges": [
+        {
+          "a": "lag1_strand_hav_bostader_per_1000",
+          "b": "lag1_strand_hav_bostader_tatort_per_1000",
+          "rho": 0.95447,
+          "n": 1450
+        },
+        {
+          "a": "lag1_strand_hav_bostader_per_1000",
+          "b": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+          "rho": 0.89534,
+          "n": 1450
+        }
+      ],
+      "review_status": "correlation_network_not_exclusion",
+      "action": "inspect definitions, transformations and incremental train-only value"
+    },
+    {
+      "members": [
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+        "lag1_log_externa_fa_jobb_per_1000"
+      ],
+      "edge_count": 1,
+      "edges": [
+        {
+          "a": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+          "b": "lag1_log_externa_fa_jobb_per_1000",
+          "rho": -0.99268,
+          "n": 870
+        }
+      ],
+      "review_status": "correlation_network_not_exclusion",
+      "action": "inspect definitions, transformations and incremental train-only value"
+    },
+    {
+      "members": [
+        "lag1_gymnasium_hogskoleforberedande_pct",
+        "lag1_gymnasium_yrkesprogram_pct"
+      ],
+      "edge_count": 1,
+      "edges": [
+        {
+          "a": "lag1_gymnasium_hogskoleforberedande_pct",
+          "b": "lag1_gymnasium_yrkesprogram_pct",
+          "rho": -0.88635,
+          "n": 1450
+        }
+      ],
+      "review_status": "correlation_network_not_exclusion",
+      "action": "inspect definitions, transformations and incremental train-only value"
+    },
+    {
+      "members": [
+        "lag1_inkomst_median_tkr",
+        "lag1_inkomst_tkr"
+      ],
+      "edge_count": 1,
+      "edges": [
+        {
+          "a": "lag1_inkomst_median_tkr",
+          "b": "lag1_inkomst_tkr",
+          "rho": 0.96233,
+          "n": 1450
+        }
+      ],
+      "review_status": "correlation_network_not_exclusion",
+      "action": "inspect definitions, transformations and incremental train-only value"
+    },
+    {
+      "members": [
+        "lag1_log_regional_centre_distance_km",
+        "lag1_regional_centre_distance_km"
+      ],
+      "edge_count": 1,
+      "edges": [
+        {
+          "a": "lag1_log_regional_centre_distance_km",
+          "b": "lag1_regional_centre_distance_km",
+          "rho": 1.0,
+          "n": 870
+        }
+      ],
+      "review_status": "correlation_network_not_exclusion",
+      "action": "inspect definitions, transformations and incremental train-only value"
+    },
+    {
+      "members": [
+        "lag1_snoskoterandel_alla_fordon_pct",
+        "lag1_snoskoterandel_exkl_dragfordon_pct"
+      ],
+      "edge_count": 1,
+      "edges": [
+        {
+          "a": "lag1_snoskoterandel_alla_fordon_pct",
+          "b": "lag1_snoskoterandel_exkl_dragfordon_pct",
+          "rho": 1.0,
+          "n": 1450
+        }
+      ],
+      "review_status": "correlation_network_not_exclusion",
+      "action": "inspect definitions, transformations and incremental train-only value"
+    }
+  ],
+  "connected_groups_count": 11,
+  "strong_pairs_count": 33,
+  "named_candidate_families": [
+    {
+      "family": "sysselsatta_bostad_tillvaxt",
+      "members": [
+        "lag1_sysselsatta_bostad_forandring_pct",
+        "lag1_sysselsatta_bostad_rams_bas_historisk_forandring_pct"
+      ],
+      "presence": {
+        "in_panel": 1,
+        "total": 2
+      },
+      "review": "do_not_select_prior_to_common_window_testing"
+    },
+    {
+      "family": "sysselsatta_arbetsstalle_tillvaxt",
+      "members": [
+        "lag1_sysselsatta_arbetsstalle_forandring_pct",
+        "lag1_sysselsatta_arbetsstalle_rams_bas_historisk_forandring_pct"
+      ],
+      "presence": {
+        "in_panel": 1,
+        "total": 2
+      },
+      "review": "do_not_select_prior_to_common_window_testing"
+    },
+    {
+      "family": "smahuspris",
+      "members": [
+        "lag1_smahuspris_medel_tkr",
+        "lag1_log_smahuspris_medel"
+      ],
+      "presence": {
+        "in_panel": 2,
+        "total": 2
+      },
+      "review": "do_not_select_prior_to_common_window_testing"
+    },
+    {
+      "family": "fritidshus",
+      "members": [
+        "lag1_fritidshus_per_1000_inv",
+        "lag1_log_fritidshus_per_1000_inv"
+      ],
+      "presence": {
+        "in_panel": 2,
+        "total": 2
+      },
+      "review": "do_not_select_prior_to_common_window_testing"
+    },
+    {
+      "family": "avstand_regionalt_centrum",
+      "members": [
+        "lag1_regional_centre_distance_km",
+        "lag1_log_regional_centre_distance_km"
+      ],
+      "presence": {
+        "in_panel": 2,
+        "total": 2
+      },
+      "review": "do_not_select_prior_to_common_window_testing"
+    },
+    {
+      "family": "arbetskraft_utanfor",
+      "members": [
+        "lag1_utanf_arbetkraften_andel_pct",
+        "lag1_utanf_arbetkraften_andel_fran_komponenter_pct"
+      ],
+      "presence": {
+        "in_panel": 2,
+        "total": 2
+      },
+      "review": "do_not_select_prior_to_common_window_testing"
+    },
+    {
+      "family": "snoskoterandel",
+      "members": [
+        "lag1_snoskoterandel_alla_fordon_pct",
+        "lag1_snoskoterandel_exkl_dragfordon_pct"
+      ],
+      "presence": {
+        "in_panel": 2,
+        "total": 2
+      },
+      "review": "do_not_select_prior_to_common_window_testing"
+    },
+    {
+      "family": "gymnasieinriktning",
+      "members": [
+        "lag1_gymnasium_hogskoleforberedande_pct",
+        "lag1_gymnasium_yrkesprogram_pct"
+      ],
+      "presence": {
+        "in_panel": 2,
+        "total": 2
+      },
+      "review": "do_not_select_prior_to_common_window_testing"
+    },
+    {
+      "family": "arbetsloshet",
+      "members": [
+        "lag1_arbetsloshet",
+        "lag1_kolada_arbetslosa_18_65_pct",
+        "lag1_kolada_arbetslosa_18_24_pct",
+        "lag1_kolada_langtidsarbetslosa_pct"
+      ],
+      "presence": {
+        "in_panel": 4,
+        "total": 4
+      },
+      "review": "do_not_select_prior_to_common_window_testing"
+    },
+    {
+      "family": "bostadsstorlekar",
+      "members": [
+        "lag1_andel_bostader_111_plus",
+        "lag1_andel_bostader_141_plus",
+        "lag1_andel_bostader_151_plus",
+        "lag1_andel_smahus_111_plus",
+        "lag1_andel_smahus_151_plus"
+      ],
+      "presence": {
+        "in_panel": 5,
+        "total": 5
+      },
+      "review": "do_not_select_prior_to_common_window_testing"
+    }
+  ],
+  "separate_research_sources": [
+    "lag1_sysselsatta_arbetsstalle_rams_bas_historisk_forandring_pct",
+    "lag1_sysselsatta_bostad_rams_bas_historisk_forandring_pct"
+  ],
+  "within_year_high_pair_counts": {
+    "2019": 22,
+    "2020": 23,
+    "2021": 33,
+    "2022": 31,
+    "2023": 33
+  },
+  "next_gates": [
+    "Verify pairwise relationships at equal common rows, including yearwise stability and exact algebraic identity versus monotonic transformation.",
+    "Classify source definition and same-outcome risk for each candidate; forecast-only demographics never enter blind branch.",
+    "Compare alternate representations only in nested train-only tests with the same observations and evaluation years.",
+    "Resolve source-vintage availability separately from panel coverage; recent RAMS/BAS histories are not automatically approved.",
+    "Reserve repeatedly inspected 2024 as exploratory; no incumbent feature receives a selection advantage."
+  ],
+  "production_changed": false,
+  "no_variable_eliminated": true
+}
