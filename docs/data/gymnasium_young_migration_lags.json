@@ -1,0 +1,232 @@
+{
+  "status": "gymnasium_young_inmigration_fixed_window",
+  "source_kpi": {
+    "exam3": "N17445",
+    "exam4": "N17461"
+  },
+  "ages": [
+    "18-23",
+    "24-34"
+  ],
+  "forecast_years": [
+    2023,
+    2024
+  ],
+  "training_window_years": 5,
+  "training_by_forecast": {
+    "2023": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022
+    ],
+    "2024": [
+      2019,
+      2020,
+      2021,
+      2022,
+      2023
+    ]
+  },
+  "candidate_lags": [
+    1,
+    2
+  ],
+  "controls": [
+    "lag1_log_folkmangd",
+    "lag1_tatortsgrad_pct"
+  ],
+  "results": {
+    "2023": {
+      "n_train": 1450,
+      "n_test": 290,
+      "coverage": {
+        "lag1_log_folkmangd": 1740,
+        "lag1_tatortsgrad_pct": 1740,
+        "exam3_lag1": 1740,
+        "exam3_lag2": 1740,
+        "exam4_lag1": 1740,
+        "exam4_lag2": 1740,
+        "inflyttning_18_23_per_1000": 1740,
+        "inflyttning_24_34_per_1000": 1740
+      },
+      "outcomes": {
+        "inflyttning_18_23_per_1000": {
+          "reference": {
+            "rmse": 37.542993018487415,
+            "mae": 29.691717448126084,
+            "lulea_actual": 179.98163452708908,
+            "lulea_prediction": 156.8780874826665,
+            "standardized_coefficient": null
+          },
+          "exam3_lag1": {
+            "rmse": 37.31269185546395,
+            "mae": 29.389354436025535,
+            "lulea_actual": 179.98163452708908,
+            "lulea_prediction": 154.68176291668078,
+            "standardized_coefficient": -4.783553616531854
+          },
+          "exam3_lag2": {
+            "rmse": 37.29080365341932,
+            "mae": 29.4551733117585,
+            "lulea_actual": 179.98163452708908,
+            "lulea_prediction": 154.93256639726113,
+            "standardized_coefficient": -4.905485890163101
+          },
+          "exam4_lag1": {
+            "rmse": 37.36523646762764,
+            "mae": 29.579261946218473,
+            "lulea_actual": 179.98163452708908,
+            "lulea_prediction": 154.34266878789103,
+            "standardized_coefficient": -4.903714472207898
+          },
+          "exam4_lag2": {
+            "rmse": 37.40943443555234,
+            "mae": 29.679055533025842,
+            "lulea_actual": 179.98163452708908,
+            "lulea_prediction": 154.8740709923666,
+            "standardized_coefficient": -4.32178020382648
+          }
+        },
+        "inflyttning_24_34_per_1000": {
+          "reference": {
+            "rmse": 39.33651211753252,
+            "mae": 31.25288904436503,
+            "lulea_actual": 108.4436405492066,
+            "lulea_prediction": 150.8573777214896,
+            "standardized_coefficient": null
+          },
+          "exam3_lag1": {
+            "rmse": 38.81160469810342,
+            "mae": 31.081187232804098,
+            "lulea_actual": 108.4436405492066,
+            "lulea_prediction": 153.62888143367627,
+            "standardized_coefficient": 6.168945017569051
+          },
+          "exam3_lag2": {
+            "rmse": 38.89092656059214,
+            "mae": 31.051922558342167,
+            "lulea_actual": 108.4436405492066,
+            "lulea_prediction": 152.41412651296272,
+            "standardized_coefficient": 4.015931636069186
+          },
+          "exam4_lag1": {
+            "rmse": 38.79384354556204,
+            "mae": 31.005893500441605,
+            "lulea_actual": 108.4436405492066,
+            "lulea_prediction": 153.76228653587327,
+            "standardized_coefficient": 5.718599956574861
+          },
+          "exam4_lag2": {
+            "rmse": 38.605456533221684,
+            "mae": 30.72637455666966,
+            "lulea_actual": 108.4436405492066,
+            "lulea_prediction": 152.88065174033022,
+            "standardized_coefficient": 4.440634002609005
+          }
+        }
+      },
+      "status": "evaluated"
+    },
+    "2024": {
+      "n_train": 1450,
+      "n_test": 290,
+      "coverage": {
+        "lag1_log_folkmangd": 1740,
+        "lag1_tatortsgrad_pct": 1740,
+        "exam3_lag1": 1740,
+        "exam3_lag2": 1740,
+        "exam4_lag1": 1740,
+        "exam4_lag2": 1740,
+        "inflyttning_18_23_per_1000": 1740,
+        "inflyttning_24_34_per_1000": 1740
+      },
+      "outcomes": {
+        "inflyttning_18_23_per_1000": {
+          "reference": {
+            "rmse": 36.852547388467464,
+            "mae": 28.9245903239757,
+            "lulea_actual": 182.05642053337445,
+            "lulea_prediction": 155.99186693683905,
+            "standardized_coefficient": null
+          },
+          "exam3_lag1": {
+            "rmse": 36.7477808255142,
+            "mae": 28.712875486604275,
+            "lulea_actual": 182.05642053337445,
+            "lulea_prediction": 153.4603765869943,
+            "standardized_coefficient": -4.877505301684697
+          },
+          "exam3_lag2": {
+            "rmse": 36.883648534098576,
+            "mae": 28.617836798873608,
+            "lulea_actual": 182.05642053337445,
+            "lulea_prediction": 153.9218193075072,
+            "standardized_coefficient": -4.508004624228692
+          },
+          "exam4_lag1": {
+            "rmse": 37.02435452652845,
+            "mae": 28.84277252991491,
+            "lulea_actual": 182.05642053337445,
+            "lulea_prediction": 154.06337928882027,
+            "standardized_coefficient": -4.435117529030815
+          },
+          "exam4_lag2": {
+            "rmse": 37.00681708260919,
+            "mae": 28.996622514329427,
+            "lulea_actual": 182.05642053337445,
+            "lulea_prediction": 153.8476547760462,
+            "standardized_coefficient": -4.14959213685936
+          }
+        },
+        "inflyttning_24_34_per_1000": {
+          "reference": {
+            "rmse": 38.0396086756009,
+            "mae": 30.719599596942096,
+            "lulea_actual": 107.45974367400592,
+            "lulea_prediction": 149.4846006018729,
+            "standardized_coefficient": null
+          },
+          "exam3_lag1": {
+            "rmse": 37.528855579720464,
+            "mae": 30.473291828893675,
+            "lulea_actual": 107.45974367400592,
+            "lulea_prediction": 153.2020622164339,
+            "standardized_coefficient": 7.305390172112635
+          },
+          "exam3_lag2": {
+            "rmse": 37.12890249614239,
+            "mae": 29.978331330158923,
+            "lulea_actual": 107.45974367400592,
+            "lulea_prediction": 152.14903068163824,
+            "standardized_coefficient": 5.929587301317199
+          },
+          "exam4_lag1": {
+            "rmse": 36.989121899919596,
+            "mae": 29.85122732857226,
+            "lulea_actual": 107.45974367400592,
+            "lulea_prediction": 152.45243618331136,
+            "standardized_coefficient": 6.9836920851921995
+          },
+          "exam4_lag2": {
+            "rmse": 37.27057021848087,
+            "mae": 30.222054555577504,
+            "lulea_actual": 107.45974367400592,
+            "lulea_prediction": 152.56099006946326,
+            "standardized_coefficient": 6.059441616109955
+          }
+        }
+      },
+      "status": "evaluated"
+    }
+  },
+  "age_specific_outmigration_available": false,
+  "production_model_changed": false,
+  "limitations": [
+    "Age-specific outmigration is not present in the current panel; only age-specific in-migration evaluated.",
+    "Lag from Kolada label year, NOT verified years since actual graduation for individual students.",
+    "Kolada outcome-year and release-date semantics remain to be verified; these retrospective lags do not establish release-time availability.",
+    "Only two held-out years and a simplified structural baseline; no production promotion."
+  ]
+}
