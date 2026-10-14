@@ -1,0 +1,37 @@
+name: Audit fixed-window long-term unemployment
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/audit_fixed_window_long_term_unemployment.py"
+      - ".github/workflows/audit_fixed_window_long_term_unemployment.yml"
+concurrency:
+  group: fixed-window-long-term-unemployment
+  cancel-in-progress: true
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Audit availability and evaluate fixed rolling historical windows
+        run: python scripts/audit_fixed_window_long_term_unemployment.py
+      - name: Commit audit report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/fixed_window_long_term_unemployment_audit.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record fixed-window unemployment historical evaluation"
+          git pull --rebase origin main
+          git push origin HEAD:main
