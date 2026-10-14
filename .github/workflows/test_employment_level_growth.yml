@@ -1,0 +1,37 @@
+name: Compare employment level and growth challengers
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/test_employment_level_growth.py"
+      - ".github/workflows/test_employment_level_growth.yml"
+concurrency:
+  group: employment-level-growth
+  cancel-in-progress: true
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Compare lagged employment level and growth
+        run: python scripts/test_employment_level_growth.py
+      - name: Persist exploratory report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/commuting_employment_level_growth_test.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Update employment level growth research comparison"
+          git pull --rebase origin main
+          git push origin HEAD:main
