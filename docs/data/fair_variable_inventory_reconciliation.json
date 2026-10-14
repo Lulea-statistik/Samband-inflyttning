@@ -1,0 +1,591 @@
+{
+  "status": "reconciled_inventory_diagnostic",
+  "production_changed": false,
+  "original_incumbents": 27,
+  "original_candidate_pool": 42,
+  "panel_lagged_fields": 86,
+  "not_in_original_pool": 44,
+  "previously_researched_outside_pool": [
+    {
+      "feature": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+      "context": "LOK civic support",
+      "previously_researched": true,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_naturpraglad_mark_andel_land_pct",
+      "context": "Natural land",
+      "previously_researched": true,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_strand_hav_bostader_tatort_per_1000",
+      "context": "Coastal housing",
+      "previously_researched": true,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_sysselsatta_bostad_forandring_pct",
+      "context": "Employment growth",
+      "previously_researched": true,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_tatortsgrad_pct",
+      "context": "Urbanisation",
+      "previously_researched": true,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    }
+  ],
+  "other_untracked_lagged_fields": [
+    {
+      "feature": "lag1_andel_bostader_151_plus",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_andel_bostader_70_max",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_andel_flerbostad_70_max",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_andel_smahus_151_plus",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_fritidshus_per_1000_inv",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_inflyttning_18_23_per_1000",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": true,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_inflyttning_24_34_per_1000",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": true,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_inflyttning_35_49_per_1000",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": true,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_inflyttning_63_68_per_1000",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": true,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_inflyttning_70_79_per_1000",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": true,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_inkomst_median_tkr",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_kolada_lok_foreningar_per_10000",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_kvinnors_lonesumma_dagbef_pct",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_kvinnors_mediannettoinkomst_andel_pct",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_lediga_allmannytta_av_total_bostadsbestand_pct",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 0,
+        "2024": 0
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_lediga_allmannytta_pct",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 293,
+        "2023": 0,
+        "2024": 0
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_log_befolkningstathet_land",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_log_fritidshus_per_1000_inv",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_log_regional_centre_distance_km",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_log_smahuspris_medel",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_skogsmark_andel_land_pct",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_smahusforsaljningar_per_1000_inv",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_smahusforsaljningar_per_1000_smahus",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_smahuspris_forandring_pct",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_smahuspris_inkomstkvot_medel",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_smahuspris_inkomstkvot_median",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_smahuspris_medel_tkr",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_snoskoterandel_alla_fordon_pct",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_strand_hav_bostader_per_1000",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_strand_hav_bostader_tatort_andel_pct",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 85,
+        "2023": 85,
+        "2024": 85
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_strand_inland_bostader_per_1000",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_sysselsatta_arbetsstalle_forandring_pct",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    },
+    {
+      "feature": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+      "context": "Panel variable not in declared candidate pool",
+      "previously_researched": false,
+      "blind_forbidden": false,
+      "coverage": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "eligibility": "requires manual definition and source timing verification",
+      "automatically_selected": false
+    }
+  ],
+  "missing_explicit_candidates": [],
+  "caveats": [
+    "Not every lag1 panel column is scientifically admissible.",
+    "No automatic candidate promotion; source definition, forecast-time availability and coverage require verification.",
+    "A fair selection run must freeze the confirmed pool and common samples before testing.",
+    "Historical rejection and source provenance must also be reviewed manually."
+  ]
+}
