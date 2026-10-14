@@ -1,0 +1,299 @@
+{
+  "status": "blind_nature_fixed_five_year_history",
+  "target": "inflyttning_per_1000",
+  "training_window_years": 5,
+  "forecast_horizon_years": 1,
+  "model_scope": "reduced historical structural control set, not full published blind model",
+  "controls": [
+    "lag1_log_folkmangd",
+    "lag1_tatortsgrad_pct"
+  ],
+  "candidate": "lag1_naturpraglad_mark_andel_land_pct",
+  "forecast_years": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "production_model_changed": false,
+  "years": {
+    "2016": {
+      "n_train": 1450,
+      "n_test": 290,
+      "train_years": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "scores": {
+        "reference": {
+          "rmse": 20.170625670589033,
+          "mae": 14.30681692607331,
+          "lulea_pred": 59.73080508399066,
+          "lulea_actual": 52.63774912075029,
+          "nature_standardized_coefficient": null
+        },
+        "nature": {
+          "rmse": 19.990245385132177,
+          "mae": 14.132011279572337,
+          "lulea_pred": 54.82293831674384,
+          "lulea_actual": 52.63774912075029,
+          "nature_standardized_coefficient": -3.5740175316464384
+        }
+      },
+      "rmse_gain": 0.18038028545685592,
+      "mae_gain": 0.17480564650097286
+    },
+    "2017": {
+      "n_train": 1450,
+      "n_test": 290,
+      "train_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016
+      ],
+      "scores": {
+        "reference": {
+          "rmse": 17.30300109390969,
+          "mae": 12.467700689758171,
+          "lulea_pred": 61.657246289410566,
+          "lulea_actual": 54.04672776558668,
+          "nature_standardized_coefficient": null
+        },
+        "nature": {
+          "rmse": 16.87447754704958,
+          "mae": 12.01440319338904,
+          "lulea_pred": 56.976755654717984,
+          "lulea_actual": 54.04672776558668,
+          "nature_standardized_coefficient": -3.404406729824239
+        }
+      },
+      "rmse_gain": 0.4285235468601094,
+      "mae_gain": 0.45329749636913164
+    },
+    "2018": {
+      "n_train": 1450,
+      "n_test": 290,
+      "train_years": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "scores": {
+        "reference": {
+          "rmse": 15.913470707158085,
+          "mae": 12.099609444428928,
+          "lulea_pred": 63.35169560332795,
+          "lulea_actual": 52.39490183986021,
+          "nature_standardized_coefficient": null
+        },
+        "nature": {
+          "rmse": 15.234160169718432,
+          "mae": 11.549368202671653,
+          "lulea_pred": 58.624118188489724,
+          "lulea_actual": 52.39490183986021,
+          "nature_standardized_coefficient": -3.44617061031356
+        }
+      },
+      "rmse_gain": 0.6793105374396529,
+      "mae_gain": 0.5502412417572753
+    },
+    "2019": {
+      "n_train": 1450,
+      "n_test": 290,
+      "train_years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "scores": {
+        "reference": {
+          "rmse": 17.26202431317481,
+          "mae": 13.660010769617681,
+          "lulea_pred": 64.34088766201418,
+          "lulea_actual": 49.19019268932847,
+          "nature_standardized_coefficient": null
+        },
+        "nature": {
+          "rmse": 16.501347361961585,
+          "mae": 13.084765096587361,
+          "lulea_pred": 58.9800571364822,
+          "lulea_actual": 49.19019268932847,
+          "nature_standardized_coefficient": -3.9210947458095826
+        }
+      },
+      "rmse_gain": 0.7606769512132239,
+      "mae_gain": 0.5752456730303201
+    },
+    "2020": {
+      "n_train": 1450,
+      "n_test": 290,
+      "train_years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "scores": {
+        "reference": {
+          "rmse": 17.097401373530225,
+          "mae": 13.685757473627678,
+          "lulea_pred": 64.40834804447623,
+          "lulea_actual": 51.12732179913175,
+          "nature_standardized_coefficient": null
+        },
+        "nature": {
+          "rmse": 16.09939238573769,
+          "mae": 12.885039469146594,
+          "lulea_pred": 58.33481186677178,
+          "lulea_actual": 51.12732179913175,
+          "nature_standardized_coefficient": -4.461954461284559
+        }
+      },
+      "rmse_gain": 0.9980089877925344,
+      "mae_gain": 0.8007180044810838
+    },
+    "2021": {
+      "n_train": 1450,
+      "n_test": 290,
+      "train_years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "scores": {
+        "reference": {
+          "rmse": 17.13252497325125,
+          "mae": 13.147062436493105,
+          "lulea_pred": 64.0526101734081,
+          "lulea_actual": 51.27619917075583,
+          "nature_standardized_coefficient": null
+        },
+        "nature": {
+          "rmse": 16.155243974608176,
+          "mae": 12.129347682852652,
+          "lulea_pred": 57.19391863303168,
+          "lulea_actual": 51.27619917075583,
+          "nature_standardized_coefficient": -5.058703352936253
+        }
+      },
+      "rmse_gain": 0.9772809986430744,
+      "mae_gain": 1.017714753640453
+    },
+    "2022": {
+      "n_train": 1450,
+      "n_test": 290,
+      "train_years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "scores": {
+        "reference": {
+          "rmse": 15.786959796345775,
+          "mae": 12.012560053756392,
+          "lulea_pred": 64.00821836154964,
+          "lulea_actual": 50.72939276159709,
+          "nature_standardized_coefficient": null
+        },
+        "nature": {
+          "rmse": 14.939331168870108,
+          "mae": 11.197806500488548,
+          "lulea_pred": 56.331980918693574,
+          "lulea_actual": 50.72939276159709,
+          "nature_standardized_coefficient": -5.662059600887383
+        }
+      },
+      "rmse_gain": 0.8476286274756664,
+      "mae_gain": 0.8147535532678436
+    },
+    "2023": {
+      "n_train": 1450,
+      "n_test": 290,
+      "train_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "scores": {
+        "reference": {
+          "rmse": 15.68009243795381,
+          "mae": 12.274334824466123,
+          "lulea_pred": 63.62533546356758,
+          "lulea_actual": 47.73666700272205,
+          "nature_standardized_coefficient": null
+        },
+        "nature": {
+          "rmse": 15.028238937141618,
+          "mae": 11.67706050787253,
+          "lulea_pred": 55.63126076517025,
+          "lulea_actual": 47.73666700272205,
+          "nature_standardized_coefficient": -5.893278313640569
+        }
+      },
+      "rmse_gain": 0.6518535008121926,
+      "mae_gain": 0.5972743165935928
+    },
+    "2024": {
+      "n_train": 1450,
+      "n_test": 290,
+      "train_years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "scores": {
+        "reference": {
+          "rmse": 14.257458181988156,
+          "mae": 11.114099549623823,
+          "lulea_pred": 62.761761953222035,
+          "lulea_actual": 51.74210559357147,
+          "nature_standardized_coefficient": null
+        },
+        "nature": {
+          "rmse": 13.587239297395039,
+          "mae": 10.420174021331714,
+          "lulea_pred": 54.8582127741297,
+          "lulea_actual": 51.74210559357147,
+          "nature_standardized_coefficient": -5.826240363853881
+        }
+      },
+      "rmse_gain": 0.6702188845931172,
+      "mae_gain": 0.6939255282921089
+    }
+  },
+  "summary": {
+    "n_forecast_years": 9,
+    "years_improved": 9,
+    "mean_annual_rmse_gain": 0.6882091466984919,
+    "median_annual_rmse_gain": 0.6793105374396529,
+    "lulea_years_improved": 9
+  },
+  "limitations": [
+    "Natural land share historical definition and values must be independently checked for method continuity.",
+    "Two-control model is deliberately simplified and cannot warrant production promotion.",
+    "All years were historically available; results are retrospective research, not unseen future validation."
+  ]
+}
