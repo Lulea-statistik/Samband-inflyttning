@@ -158,7 +158,34 @@
         "foreningsliv_och_kultur",
         "utbildning_och_studier",
         "arbetsmarknad_och_aktivitet"
-      ]
+      ],
+      "replacement_details": {
+        "bostader_och_bestand": {
+          "removed": "lag1_smahusforsaljningar_per_1000_smahus",
+          "replacement": "lag1_fardigstallda_bostader_per_1000",
+          "training_residual_abs_corr": 0.31750257863253417
+        },
+        "inkomst_och_bostadsekonomi": {
+          "removed": "lag1_ekonomisk_standard_gap_pp",
+          "replacement": "lag1_inkomst_tkr",
+          "training_residual_abs_corr": 0.07660714873716856
+        },
+        "foreningsliv_och_kultur": {
+          "removed": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "replacement": "lag1_andel_kultur_service_rstu",
+          "training_residual_abs_corr": 0.02817065172050808
+        },
+        "utbildning_och_studier": {
+          "removed": "lag1_andel_studerande",
+          "replacement": "lag1_andel_eftergymnasial",
+          "training_residual_abs_corr": 0.20908866321835515
+        },
+        "arbetsmarknad_och_aktivitet": {
+          "removed": "lag1_kolada_arbetslosa_18_65_pct",
+          "replacement": "lag1_arbetsloshet",
+          "training_residual_abs_corr": 0.07489602335367179
+        }
+      }
     },
     {
       "fold": 1,
@@ -194,7 +221,44 @@
         "utbildning_och_studier",
         "naringslivsstruktur",
         "demokrati"
-      ]
+      ],
+      "replacement_details": {
+        "bostader_och_bestand": {
+          "removed": "lag1_log_fritidshus_per_1000_inv",
+          "replacement": "lag1_bostadsbestandsforandring_pct",
+          "training_residual_abs_corr": 0.30794778620719915
+        },
+        "foreningsliv_och_kultur": {
+          "removed": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "replacement": "lag1_andel_kultur_service_rstu",
+          "training_residual_abs_corr": 0.08156784880809778
+        },
+        "inkomst_och_bostadsekonomi": {
+          "removed": "lag1_ekonomisk_standard_gap_pp",
+          "replacement": "lag1_inkomst_tkr",
+          "training_residual_abs_corr": 0.03607322279111602
+        },
+        "arbetsmarknad_och_aktivitet": {
+          "removed": "lag1_kolada_arbetslosa_18_65_pct",
+          "replacement": "lag1_arbetsloshet",
+          "training_residual_abs_corr": 0.03921863834531366
+        },
+        "utbildning_och_studier": {
+          "removed": "lag1_andel_studerande",
+          "replacement": "lag1_andel_eftergymnasial",
+          "training_residual_abs_corr": 0.15255934494216541
+        },
+        "naringslivsstruktur": {
+          "removed": "lag1_log_externa_fa_jobb_per_1000",
+          "replacement": "lag1_andel_hotell_restaurang_i",
+          "training_residual_abs_corr": 0.1845073351421792
+        },
+        "demokrati": {
+          "removed": "lag1_valdeltagande_gap_pp",
+          "replacement": "lag1_valdeltagande_pct",
+          "training_residual_abs_corr": 0.024118011310704932
+        }
+      }
     },
     {
       "fold": 2,
@@ -230,7 +294,44 @@
         "arbetsmarknad_och_aktivitet",
         "naringslivsstruktur",
         "demokrati"
-      ]
+      ],
+      "replacement_details": {
+        "inkomst_och_bostadsekonomi": {
+          "removed": "lag1_ekonomisk_standard_gap_pp",
+          "replacement": "lag1_inkomst_tkr",
+          "training_residual_abs_corr": 0.13994508713128798
+        },
+        "utbildning_och_studier": {
+          "removed": "lag1_andel_studerande",
+          "replacement": "lag1_andel_eftergymnasial",
+          "training_residual_abs_corr": 0.19050680369996625
+        },
+        "foreningsliv_och_kultur": {
+          "removed": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "replacement": "lag1_andel_kultur_service_rstu",
+          "training_residual_abs_corr": 0.08040095843224354
+        },
+        "bostader_och_bestand": {
+          "removed": "lag1_log_fritidshus_per_1000_inv",
+          "replacement": "lag1_fardigstallda_bostader_per_1000",
+          "training_residual_abs_corr": 0.3354293957117459
+        },
+        "arbetsmarknad_och_aktivitet": {
+          "removed": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+          "replacement": "lag1_arbetsloshet",
+          "training_residual_abs_corr": 0.07738671893613999
+        },
+        "naringslivsstruktur": {
+          "removed": "lag1_log_externa_fa_jobb_per_1000",
+          "replacement": "lag1_andel_hotell_restaurang_i",
+          "training_residual_abs_corr": 0.25406670205318704
+        },
+        "demokrati": {
+          "removed": "lag1_valdeltagande_gap_pp",
+          "replacement": "lag1_valdeltagande_pct",
+          "training_residual_abs_corr": 0.04218945663871058
+        }
+      }
     },
     {
       "fold": 3,
@@ -260,7 +361,34 @@
         "foreningsliv_och_kultur",
         "arbetsmarknad_och_aktivitet",
         "utbildning_och_studier"
-      ]
+      ],
+      "replacement_details": {
+        "inkomst_och_bostadsekonomi": {
+          "removed": "lag1_ekonomisk_standard_gap_pp",
+          "replacement": "lag1_inkomst_tkr",
+          "training_residual_abs_corr": 0.0649827972702651
+        },
+        "bostader_och_bestand": {
+          "removed": "lag1_smahusforsaljningar_per_1000_smahus",
+          "replacement": "lag1_fardigstallda_bostader_per_1000",
+          "training_residual_abs_corr": 0.30808615431374103
+        },
+        "foreningsliv_och_kultur": {
+          "removed": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "replacement": "lag1_andel_kultur_service_rstu",
+          "training_residual_abs_corr": 0.023063882013061802
+        },
+        "arbetsmarknad_och_aktivitet": {
+          "removed": "lag1_kolada_arbetslosa_18_65_pct",
+          "replacement": "lag1_arbetsloshet",
+          "training_residual_abs_corr": 0.06319594863422233
+        },
+        "utbildning_och_studier": {
+          "removed": "lag1_andel_studerande",
+          "replacement": "lag1_andel_eftergymnasial",
+          "training_residual_abs_corr": 0.17945410678224477
+        }
+      }
     },
     {
       "fold": 4,
@@ -296,11 +424,49 @@
         "naringslivsstruktur",
         "utbildning_och_studier",
         "demokrati"
-      ]
+      ],
+      "replacement_details": {
+        "bostader_och_bestand": {
+          "removed": "lag1_smahusforsaljningar_per_1000_smahus",
+          "replacement": "lag1_fardigstallda_bostader_per_1000",
+          "training_residual_abs_corr": 0.3017015291175363
+        },
+        "inkomst_och_bostadsekonomi": {
+          "removed": "lag1_ekonomisk_standard_gap_pp",
+          "replacement": "lag1_inkomst_tkr",
+          "training_residual_abs_corr": 0.07400423279669383
+        },
+        "foreningsliv_och_kultur": {
+          "removed": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "replacement": "lag1_andel_kultur_service_rstu",
+          "training_residual_abs_corr": 0.08859941196315696
+        },
+        "arbetsmarknad_och_aktivitet": {
+          "removed": "lag1_kolada_arbetslosa_18_65_pct",
+          "replacement": "lag1_arbetsloshet",
+          "training_residual_abs_corr": 0.06118436806837177
+        },
+        "naringslivsstruktur": {
+          "removed": "lag1_log_externa_fa_jobb_per_1000",
+          "replacement": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+          "training_residual_abs_corr": 0.1675804433719228
+        },
+        "utbildning_och_studier": {
+          "removed": "lag1_andel_studerande",
+          "replacement": "lag1_andel_eftergymnasial",
+          "training_residual_abs_corr": 0.20458003676044723
+        },
+        "demokrati": {
+          "removed": "lag1_valdeltagande_gap_pp",
+          "replacement": "lag1_valdeltagande_pct",
+          "training_residual_abs_corr": 0.10126261535087192
+        }
+      }
     }
   ],
   "limitations": [
     "No re-selection after ablation; comparisons evaluate contributions conditional on selected features.",
+    "Replacement details record training-only selection and are not 2024 validation of the replacement choice.",
     "The selected model and 2024 folds come from earlier exploratory research, not an independent confirmation.",
     "Subset sample sizes differ because a theme can be absent in some folds: compare only matching-row errors.",
     "Replacement choices are ranked using training-only residual association and not a full nested refit.",
