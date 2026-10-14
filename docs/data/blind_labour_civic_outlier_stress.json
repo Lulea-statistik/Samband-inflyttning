@@ -1,0 +1,302 @@
+{
+  "research_only": true,
+  "demographically_blind": true,
+  "year": 2024,
+  "n": 290,
+  "folds": [
+    {
+      "fold": 0,
+      "n_test": 58,
+      "n_features": 21
+    },
+    {
+      "fold": 1,
+      "n_test": 52,
+      "n_features": 21
+    },
+    {
+      "fold": 2,
+      "n_test": 65,
+      "n_features": 21
+    },
+    {
+      "fold": 3,
+      "n_test": 64,
+      "n_features": 21
+    },
+    {
+      "fold": 4,
+      "n_test": 51,
+      "n_features": 21
+    }
+  ],
+  "reference_is_identical_across_comparisons": true,
+  "metrics": {
+    "reference": {
+      "rmse": 10.14320909047553,
+      "mae": 7.280867125855471
+    },
+    "long_term": {
+      "rmse": 9.80855950079836,
+      "mae": 7.03225049799452
+    },
+    "civic": {
+      "rmse": 9.877953822415506,
+      "mae": 7.073713998564351
+    },
+    "both": {
+      "rmse": 9.57608157857692,
+      "mae": 6.842874907034
+    }
+  },
+  "winsorized_metrics": {
+    "reference": {
+      "rmse": 10.14320909047553,
+      "mae": 7.280867125855471
+    },
+    "long_term": {
+      "rmse": 9.873500232311414,
+      "mae": 7.040425104183468
+    },
+    "civic": {
+      "rmse": 9.891022421758533,
+      "mae": 7.067393622223332
+    },
+    "both": {
+      "rmse": 9.60015093041858,
+      "mae": 6.860633732113994
+    }
+  },
+  "diagnostics": {
+    "exclude_0_largest_reference_errors": {
+      "n": 290,
+      "gain": {
+        "long_term": 0.33464958967716996,
+        "civic": 0.26525526806002553,
+        "both": 0.5671275118986099
+      }
+    },
+    "exclude_1_largest_reference_errors": {
+      "n": 289,
+      "gain": {
+        "long_term": 0.23361802728196324,
+        "civic": 0.30485186847733736,
+        "both": 0.5148135723757292
+      }
+    },
+    "exclude_3_largest_reference_errors": {
+      "n": 287,
+      "gain": {
+        "long_term": 0.243697363758967,
+        "civic": 0.2641909469315529,
+        "both": 0.4932740856841633
+      }
+    },
+    "exclude_5_largest_reference_errors": {
+      "n": 285,
+      "gain": {
+        "long_term": 0.2251058513615387,
+        "civic": 0.2444589569743929,
+        "both": 0.44792626787824297
+      }
+    },
+    "exclude_10_largest_reference_errors": {
+      "n": 280,
+      "gain": {
+        "long_term": 0.24751663477728503,
+        "civic": 0.2433947321714225,
+        "both": 0.4686499206251913
+      }
+    },
+    "long_quartiles": {
+      "Q1": {
+        "n": 73,
+        "gain": {
+          "long_term": 0.5162446767719224,
+          "civic": 0.16137065684828578,
+          "both": 0.6166969652314656
+        }
+      },
+      "Q2": {
+        "n": 72,
+        "gain": {
+          "long_term": 0.1508964878911403,
+          "civic": 0.45343056447896046,
+          "both": 0.6036168852589965
+        }
+      },
+      "Q3": {
+        "n": 72,
+        "gain": {
+          "long_term": 0.34632483220801014,
+          "civic": 0.3234007619210697,
+          "both": 0.6127986142751105
+        }
+      },
+      "Q4": {
+        "n": 73,
+        "gain": {
+          "long_term": 0.23859235791293365,
+          "civic": 0.22999177134461313,
+          "both": 0.47079241864467214
+        }
+      }
+    },
+    "civic_value_quartiles": {
+      "Q1": {
+        "n": 73,
+        "gain": {
+          "long_term": 0.41410433957901915,
+          "civic": 0.6806545957209185,
+          "both": 1.0632524422220495
+        }
+      },
+      "Q2": {
+        "n": 72,
+        "gain": {
+          "long_term": 0.22895754916935296,
+          "civic": 0.4614321588698438,
+          "both": 0.6395737097447132
+        }
+      },
+      "Q3": {
+        "n": 72,
+        "gain": {
+          "long_term": 0.19722016601500858,
+          "civic": -0.07860314098287802,
+          "both": 0.04968946773963179
+        }
+      },
+      "Q4": {
+        "n": 73,
+        "gain": {
+          "long_term": 0.4642012727349023,
+          "civic": -0.03147897706341318,
+          "both": 0.4385496175460002
+        }
+      }
+    }
+  },
+  "largest_reference_errors": [
+    {
+      "code": "0184",
+      "fold": 2,
+      "actual": 137.43020666985277,
+      "reference": 75.76150046369034,
+      "long_term": 81.46086165429634,
+      "civic": 74.91268738181012,
+      "both": 79.919663342041,
+      "abs_error": 61.668706206162426
+    },
+    {
+      "code": "0183",
+      "fold": 2,
+      "actual": 135.67544514340548,
+      "reference": 92.72127488892964,
+      "long_term": 94.8516465847035,
+      "civic": 95.36341067191879,
+      "both": 97.21078197363937,
+      "abs_error": 42.95417025447584
+    },
+    {
+      "code": "1486",
+      "fold": 0,
+      "actual": 57.40987983978639,
+      "reference": 91.70125714331354,
+      "long_term": 93.79784446463577,
+      "civic": 90.3986590138431,
+      "both": 92.89739435391184,
+      "abs_error": 34.29137730352715
+    },
+    {
+      "code": "0126",
+      "fold": 2,
+      "actual": 101.6149916013438,
+      "reference": 72.12633827319364,
+      "long_term": 74.70056905297267,
+      "civic": 72.60269733700467,
+      "both": 74.88029967931037,
+      "abs_error": 29.488653328150164
+    },
+    {
+      "code": "2023",
+      "fold": 3,
+      "actual": 52.66237565827969,
+      "reference": 23.910506265472932,
+      "long_term": 23.825518384357714,
+      "civic": 26.116147492126643,
+      "both": 26.83861915401241,
+      "abs_error": 28.75186939280676
+    },
+    {
+      "code": "2321",
+      "fold": 0,
+      "actual": 92.5707082643977,
+      "reference": 64.18851181905012,
+      "long_term": 63.62195807220094,
+      "civic": 65.98808887346519,
+      "both": 65.9280470257444,
+      "abs_error": 28.382196445347574
+    },
+    {
+      "code": "2361",
+      "fold": 2,
+      "actual": 61.13022113022113,
+      "reference": 37.44743245936358,
+      "long_term": 39.493576343238416,
+      "civic": 38.72028737999162,
+      "both": 40.39029703437491,
+      "abs_error": 23.682788670857548
+    },
+    {
+      "code": "2482",
+      "fold": 4,
+      "actual": 63.37811900191939,
+      "reference": 40.202411708045275,
+      "long_term": 40.415369031083614,
+      "civic": 38.510307569322805,
+      "both": 38.61553949104864,
+      "abs_error": 23.17570729387411
+    },
+    {
+      "code": "1280",
+      "fold": 4,
+      "actual": 65.58565161742023,
+      "reference": 88.51801375210371,
+      "long_term": 90.0661018022613,
+      "civic": 89.99804489538677,
+      "both": 91.73171414268194,
+      "abs_error": 22.932362134683487
+    },
+    {
+      "code": "2583",
+      "fold": 4,
+      "actual": 47.42651076385094,
+      "reference": 69.47746543903494,
+      "long_term": 69.65669043860444,
+      "civic": 67.24478482498735,
+      "both": 67.27650888056819,
+      "abs_error": 22.050954675184002
+    }
+  ],
+  "lulea": [
+    {
+      "code": "2580",
+      "actual": 51.74210559357147,
+      "reference": 46.75369057083769,
+      "long_term": 49.17431486750788,
+      "civic": 44.61211434672149,
+      "both": 47.05303884742409,
+      "long_term_winsor": 49.18038699580683,
+      "civic_winsor": 43.91474184022129,
+      "both_winsor": 46.37768699012507
+    }
+  ],
+  "production_model_changed": false,
+  "limitations": [
+    "Outlier deletion uses observed reference errors; sensitivity diagnostic, not operational evaluation.",
+    "Train-only candidate winsorization uses 2.5th and 97.5th percentiles of the training sample.",
+    "Years/folds previously inspected; no prospective independent validation.",
+    "Municipal aggregate associations do not demonstrate causality."
+  ]
+}
