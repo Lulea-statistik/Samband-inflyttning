@@ -1,0 +1,172 @@
+{
+  "status": "housing_candidate_head_to_head",
+  "source": "BAS",
+  "years": [
+    2023,
+    2024
+  ],
+  "candidates": [
+    "lag1_smahuspris_medel_tkr",
+    "lag1_smahuspris_inkomstkvot_median",
+    "lag1_smahusforsaljningar_per_1000_smahus",
+    "lag1_andel_bostader_70_max",
+    "lag1_andel_bostader_151_plus",
+    "lag1_andel_smahus_151_plus"
+  ],
+  "omitted_incomplete": "lag1_lediga_allmannytta_pct",
+  "selection_train_only": true,
+  "production_model_changed": false,
+  "results": {
+    "2023": {
+      "n_train": 290,
+      "n_test": 290,
+      "selected_features": [
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_inkomst_tkr",
+        "lag1_fardigstallda_bostader_per_1000",
+        "lag1_kolada_arbetslosa_18_65_pct"
+      ],
+      "comparisons": {
+        "reference": {
+          "rmse": 6.174145340083862,
+          "mae": 4.778874511993231,
+          "lulea_prediction": 48.50148622306121,
+          "lulea_actual": 47.73666700272205,
+          "coefficient": null,
+          "feature_count": 7
+        },
+        "lag1_smahuspris_medel_tkr": {
+          "rmse": 6.115080964138871,
+          "mae": 4.7393113661448085,
+          "lulea_prediction": 48.52576741161841,
+          "lulea_actual": 47.73666700272205,
+          "coefficient": 0.5487942719981262,
+          "feature_count": 8
+        },
+        "lag1_smahuspris_inkomstkvot_median": {
+          "rmse": 6.123239523986972,
+          "mae": 4.747173442357035,
+          "lulea_prediction": 48.53925640963462,
+          "lulea_actual": 47.73666700272205,
+          "coefficient": 0.4651431372280683,
+          "feature_count": 8
+        },
+        "lag1_smahusforsaljningar_per_1000_smahus": {
+          "rmse": 6.175137791615532,
+          "mae": 4.779186073645006,
+          "lulea_prediction": 48.47958451926469,
+          "lulea_actual": 47.73666700272205,
+          "coefficient": -0.03903623162560521,
+          "feature_count": 8
+        },
+        "lag1_andel_bostader_70_max": {
+          "rmse": 6.173426349353978,
+          "mae": 4.785589000319598,
+          "lulea_prediction": 48.55292988045175,
+          "lulea_actual": 47.73666700272205,
+          "coefficient": 0.07582628359142696,
+          "feature_count": 8
+        },
+        "lag1_andel_bostader_151_plus": {
+          "rmse": 6.181016488520916,
+          "mae": 4.833995047880494,
+          "lulea_prediction": 48.97508909390175,
+          "lulea_actual": 47.73666700272205,
+          "coefficient": -0.3688239657785948,
+          "feature_count": 8
+        },
+        "lag1_andel_smahus_151_plus": {
+          "rmse": 6.193694097257124,
+          "mae": 4.803895145227426,
+          "lulea_prediction": 48.68115780161938,
+          "lulea_actual": 47.73666700272205,
+          "coefficient": -0.16941665047797727,
+          "feature_count": 8
+        }
+      }
+    },
+    "2024": {
+      "n_train": 580,
+      "n_test": 290,
+      "selected_features": [
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_andel_20_34",
+        "lag1_inflyttare_medelalder",
+        "lag1_inkomst_tkr",
+        "lag1_ekonomisk_standard_gap_pp",
+        "lag1_bostader_per_1000",
+        "lag1_bostadsbestandsforandring_pct",
+        "lag1_andel_bostadsratt",
+        "lag1_fritidshusandel_bland_smahus",
+        "lag1_andel_studerande",
+        "lag1_andel_hotell_restaurang_i",
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+        "lag1_kolada_arbetslosa_18_65_pct",
+        "lag1_bas_studerande_andel_pct",
+        "lag1_andel_smahus_111_plus",
+        "lag1_gymnasium_yrkesprogram_pct"
+      ],
+      "comparisons": {
+        "reference": {
+          "rmse": 5.604905182036146,
+          "mae": 4.31414105491758,
+          "lulea_prediction": 46.05039980011311,
+          "lulea_actual": 51.74210559357147,
+          "coefficient": null,
+          "feature_count": 19
+        },
+        "lag1_smahuspris_medel_tkr": {
+          "rmse": 5.6176145655429774,
+          "mae": 4.327406588529242,
+          "lulea_prediction": 46.00761178685153,
+          "lulea_actual": 51.74210559357147,
+          "coefficient": 0.0844845909266212,
+          "feature_count": 20
+        },
+        "lag1_smahuspris_inkomstkvot_median": {
+          "rmse": 5.607110424019233,
+          "mae": 4.316478437395628,
+          "lulea_prediction": 46.04100844776866,
+          "lulea_actual": 51.74210559357147,
+          "coefficient": 0.015444524558006378,
+          "feature_count": 20
+        },
+        "lag1_smahusforsaljningar_per_1000_smahus": {
+          "rmse": 5.706084215861791,
+          "mae": 4.430091069618381,
+          "lulea_prediction": 45.98826833421354,
+          "lulea_actual": 51.74210559357147,
+          "coefficient": 0.2880580757281255,
+          "feature_count": 20
+        },
+        "lag1_andel_bostader_70_max": {
+          "rmse": 5.568876320214266,
+          "mae": 4.286289556456573,
+          "lulea_prediction": 46.17071700363957,
+          "lulea_actual": 51.74210559357147,
+          "coefficient": -0.6086222627447739,
+          "feature_count": 20
+        },
+        "lag1_andel_bostader_151_plus": {
+          "rmse": 5.609003376881428,
+          "mae": 4.307086724041622,
+          "lulea_prediction": 46.38972732753671,
+          "lulea_actual": 51.74210559357147,
+          "coefficient": -0.4526111719340591,
+          "feature_count": 20
+        },
+        "lag1_andel_smahus_151_plus": {
+          "rmse": 5.5804574700158165,
+          "mae": 4.284526616079571,
+          "lulea_prediction": 46.96367101944208,
+          "lulea_actual": 51.74210559357147,
+          "coefficient": -0.740555291873994,
+          "feature_count": 20
+        }
+      }
+    }
+  },
+  "limitations": "2023 and 2024 have been inspected repeatedly; descriptive exploratory comparisons only. No unseen future-year confirmation. Selected baseline includes historical demographics and is not demographically blind."
+}
