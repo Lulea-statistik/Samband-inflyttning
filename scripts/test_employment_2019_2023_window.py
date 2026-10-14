@@ -20,7 +20,12 @@ lag.kommun_kod=lag.kommun_kod.str.zfill(4)
 assert not lag.duplicated(["target_year","kommun_kod","dimension"]).any()
 wide=lag.pivot(index=["target_year","kommun_kod"],columns="dimension",values="growth_pct").reset_index()
 wide=wide.rename(columns={"target_year":"year"})
-d=p.loc[p.year.between(2019,2024),["year","kommun_kod",TARGET]+BASE].merge(wide,on=["year","kommun_kod"],how="left",validate="one_to_one")
+# Limit the panel to the exact 290 municipality codes represented in the SCB source.
+municipalities=set(lag.loc[lag.target_year==2024,"kommun_kod"])
+if len(municipalities)!=290:raise RuntimeError("Expected 290 distinct official municipality codes")
+extra=sorted(set(p.loc[p.year==2024,"kommun_kod"])-municipalities)
+print("Excluded nonmunicipal panel codes:",extra,flush=True)
+d=p.loc[p.year.between(2019,2024)&p.kommun_kod.isin(municipalities),["year","kommun_kod",TARGET]+BASE].merge(wide,on=["year","kommun_kod"],how="left",validate="one_to_one")
 for c in [TARGET]+BASE+["residence","workplace"]:d[c]=pd.to_numeric(d[c],errors="coerce")
 if d.duplicated(["year","kommun_kod"]).any():raise RuntimeError("Panel duplicate")
 if len(d)!=6*290 or any(d.groupby("year").size()!=290):
