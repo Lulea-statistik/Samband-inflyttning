@@ -1,0 +1,104 @@
+{
+  "status": "exploratory_employment_level_growth_comparison",
+  "level_definition": "log(previous calendar year's mean employment by place of residence)",
+  "source": "BAS",
+  "test_years": [
+    2023,
+    2024
+  ],
+  "production_model_changed": false,
+  "models": {
+    "reference": [],
+    "level": [
+      "log_employment_level"
+    ],
+    "growth": [
+      "lag1_sysselsatta_bostad_forandring_pct"
+    ],
+    "level_and_growth": [
+      "log_employment_level",
+      "lag1_sysselsatta_bostad_forandring_pct"
+    ]
+  },
+  "results": {
+    "2023": {
+      "n_train": 290,
+      "n_test": 290,
+      "selected_features": 5,
+      "comparisons": {
+        "reference": {
+          "rmse": 6.174145340083848,
+          "mae": 4.778874511993216,
+          "lulea_pred": 48.501486223061235,
+          "lulea_actual": 47.73666700272205,
+          "growth_coefficient": null,
+          "level_coefficient": null
+        },
+        "level": {
+          "rmse": 6.163694584097785,
+          "mae": 4.786713395792424,
+          "lulea_pred": 48.72374888774148,
+          "lulea_actual": 47.73666700272205,
+          "growth_coefficient": null,
+          "level_coefficient": 0.21938243536386892
+        },
+        "growth": {
+          "rmse": 6.240390924108808,
+          "mae": 4.8664193382764775,
+          "lulea_pred": 48.754078611792664,
+          "lulea_actual": 47.73666700272205,
+          "growth_coefficient": 0.1276394250590549,
+          "level_coefficient": null
+        },
+        "level_and_growth": {
+          "rmse": 6.197416714263265,
+          "mae": 4.8282732792529215,
+          "lulea_pred": 48.82325742750871,
+          "lulea_actual": 47.73666700272205,
+          "growth_coefficient": 0.06309906031815295,
+          "level_coefficient": 0.19434956905867115
+        }
+      }
+    },
+    "2024": {
+      "n_train": 580,
+      "n_test": 290,
+      "selected_features": 17,
+      "comparisons": {
+        "reference": {
+          "rmse": 5.604905182036141,
+          "mae": 4.31414105491757,
+          "lulea_pred": 46.050399800113276,
+          "lulea_actual": 51.74210559357147,
+          "growth_coefficient": null,
+          "level_coefficient": null
+        },
+        "level": {
+          "rmse": 5.622164833737972,
+          "mae": 4.344897542231388,
+          "lulea_pred": 46.128619707020675,
+          "lulea_actual": 51.74210559357147,
+          "growth_coefficient": null,
+          "level_coefficient": -0.5393429915871906
+        },
+        "growth": {
+          "rmse": 5.342589132268113,
+          "mae": 4.022120734042994,
+          "lulea_pred": 46.311828275048015,
+          "lulea_actual": 51.74210559357147,
+          "growth_coefficient": -0.5719379300017806,
+          "level_coefficient": null
+        },
+        "level_and_growth": {
+          "rmse": 5.364590550209871,
+          "mae": 4.052425832306935,
+          "lulea_pred": 46.35798393190829,
+          "lulea_actual": 51.74210559357147,
+          "growth_coefficient": -0.5452759131913227,
+          "level_coefficient": -0.40228513444757624
+        }
+      }
+    }
+  },
+  "caution": "Level is a structural population-size proxy. 2023 and 2024 previously repeatedly inspected; no independent evaluation."
+}
