@@ -1,0 +1,32 @@
+name: Test historical employment fixed regression
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/test_historical_employment_fixed_regression.py
+      - .github/workflows/test_historical_employment_fixed_regression.yml
+permissions:
+  contents: write
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas numpy scikit-learn
+      - run: python scripts/test_historical_employment_fixed_regression.py
+      - name: Commit research report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/employment_historical_fixed_regression_test.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record fair historical fixed employment growth regression diagnostic"
+          git pull --rebase origin main
+          git push origin HEAD:main
