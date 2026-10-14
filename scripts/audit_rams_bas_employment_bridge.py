@@ -49,7 +49,7 @@ def main():
         # Exploratory pooled 2020/2021 municipality factor, shrunk toward common anchor.
         shrink=(pivot.mean(axis=1)*2+national_anchor*3)/5
         annual_regime=r.assign(year=r.year.astype(int)).copy()
-        anchor=annual_regime[["kommun_kod","year","regime","rams_"+type_]].rename(columns={"rams_"+type_":"unadjusted"})
+        anchor=annual_regime[["kommun_kod","year","regime","rams_"+type_]].rename(columns={"rams_"+type_:"unadjusted"})
         anchor=anchor.merge(shrink.rename("log_factor"),left_on="kommun_kod",right_index=True,validate="many_to_one")
         anchor["bridge_diagnostic"]=anchor.unadjusted*np.exp(anchor.log_factor)
         anchor["regime_boundary"]="RAMS_2004_2018_not_calibrated" 
