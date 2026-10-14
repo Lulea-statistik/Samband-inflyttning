@@ -1,0 +1,34 @@
+name: Test blind nature with historic controls
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/test_blind_nature_control_stress.py"
+      - ".github/workflows/test_blind_nature_control_stress.yml"
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Check blind historic controls with fixed five-year windows
+        run: python scripts/test_blind_nature_control_stress.py
+      - name: Save research report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/blind_nature_five_year_control_stress.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record natural land share historical control stress"
+          git pull --rebase origin main
+          git push origin HEAD:main
