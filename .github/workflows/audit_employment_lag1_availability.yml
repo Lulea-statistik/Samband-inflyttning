@@ -1,0 +1,28 @@
+name: Audit lagged employment predictor availability
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/audit_employment_lag1_availability.py
+      - .github/workflows/audit_employment_lag1_availability.yml
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: python scripts/audit_employment_lag1_availability.py
+      - name: Save lag availability audit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/employment_lag1_research_availability.csv docs/data/employment_lag1_availability_gate_status.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Report lagged employment growth coverage pending publication dates"
+          git pull --rebase origin main
+          git push origin HEAD:main
