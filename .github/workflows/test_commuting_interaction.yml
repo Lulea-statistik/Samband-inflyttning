@@ -1,0 +1,37 @@
+name: Test commuting labor-market interaction
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/test_commuting_interaction.py"
+      - ".github/workflows/test_commuting_interaction.yml"
+concurrency:
+  group: commuting-interaction
+  cancel-in-progress: true
+permissions:
+  contents: write
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Compare baseline, linear, and interaction versions
+        run: python scripts/test_commuting_interaction.py
+      - name: Persist diagnostics
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/commuting_interaction_test.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Update commuting interaction diagnostic"
+          git pull --rebase origin main
+          git push origin HEAD:main
