@@ -1,0 +1,309 @@
+{
+  "status": "exploratory_theme_ablations_replacements",
+  "production_changed": false,
+  "reference": {
+    "r2": 0.46467515814002813,
+    "rmse": 11.074079101920084,
+    "mae": 7.899511874324499,
+    "median_abs_error": 6.0682092879834215,
+    "p90_abs_error": 16.308025375654864,
+    "p95_abs_error": 21.203242664287945,
+    "p90_p10_abs_error_gap": 15.295222891510932,
+    "best_decile_mae": 0.45611669197368243,
+    "worst_decile_mae": 25.213358917850815,
+    "decile_mae_gap": 24.757242225877132,
+    "max_abs_error": 56.631135124138424,
+    "n": 290
+  },
+  "comparisons": {
+    "drop_arbetsmarknad_och_aktivitet": {
+      "n_municipalities": 290,
+      "rmse_reference_same_rows": 11.074079101920084,
+      "rmse_alternative": 11.272136913446817,
+      "rmse_change_alternative_minus_reference": 0.1980578115267324,
+      "n_folds": 5
+    },
+    "drop_bostader_och_bestand": {
+      "n_municipalities": 290,
+      "rmse_reference_same_rows": 11.074079101920084,
+      "rmse_alternative": 10.873782675841765,
+      "rmse_change_alternative_minus_reference": -0.2002964260783191,
+      "n_folds": 5
+    },
+    "drop_demokrati": {
+      "n_municipalities": 168,
+      "rmse_reference_same_rows": 11.630410073907557,
+      "rmse_alternative": 11.623643485554997,
+      "rmse_change_alternative_minus_reference": -0.006766588352560277,
+      "n_folds": 3
+    },
+    "drop_foreningsliv_och_kultur": {
+      "n_municipalities": 290,
+      "rmse_reference_same_rows": 11.074079101920084,
+      "rmse_alternative": 11.134344349701,
+      "rmse_change_alternative_minus_reference": 0.06026524778091513,
+      "n_folds": 5
+    },
+    "drop_geografi_och_mark": {
+      "n_municipalities": 225,
+      "rmse_reference_same_rows": 10.38476936658858,
+      "rmse_alternative": 11.490330106479279,
+      "rmse_change_alternative_minus_reference": 1.1055607398906986,
+      "n_folds": 4
+    },
+    "drop_inkomst_och_bostadsekonomi": {
+      "n_municipalities": 290,
+      "rmse_reference_same_rows": 11.074079101920084,
+      "rmse_alternative": 11.456491017921369,
+      "rmse_change_alternative_minus_reference": 0.3824119160012849,
+      "n_folds": 5
+    },
+    "drop_naringslivsstruktur": {
+      "n_municipalities": 168,
+      "rmse_reference_same_rows": 11.630410073907557,
+      "rmse_alternative": 12.009682230112952,
+      "rmse_change_alternative_minus_reference": 0.37927215620539556,
+      "n_folds": 3
+    },
+    "drop_trygghet": {
+      "n_municipalities": 65,
+      "rmse_reference_same_rows": 13.184748343761488,
+      "rmse_alternative": 13.29967585424578,
+      "rmse_change_alternative_minus_reference": 0.11492751048429284,
+      "n_folds": 1
+    },
+    "drop_utbildning_och_studier": {
+      "n_municipalities": 290,
+      "rmse_reference_same_rows": 11.074079101920084,
+      "rmse_alternative": 12.02541793210265,
+      "rmse_change_alternative_minus_reference": 0.951338830182566,
+      "n_folds": 5
+    },
+    "replace_arbetsmarknad_och_aktivitet": {
+      "n_municipalities": 290,
+      "rmse_reference_same_rows": 11.074079101920084,
+      "rmse_alternative": 11.141779594368268,
+      "rmse_change_alternative_minus_reference": 0.06770049244818388,
+      "n_folds": 5
+    },
+    "replace_bostader_och_bestand": {
+      "n_municipalities": 290,
+      "rmse_reference_same_rows": 11.074079101920084,
+      "rmse_alternative": 10.267336970529781,
+      "rmse_change_alternative_minus_reference": -0.8067421313903029,
+      "n_folds": 5
+    },
+    "replace_demokrati": {
+      "n_municipalities": 168,
+      "rmse_reference_same_rows": 11.630410073907557,
+      "rmse_alternative": 11.478421543708304,
+      "rmse_change_alternative_minus_reference": -0.15198853019925274,
+      "n_folds": 3
+    },
+    "replace_foreningsliv_och_kultur": {
+      "n_municipalities": 290,
+      "rmse_reference_same_rows": 11.074079101920084,
+      "rmse_alternative": 11.22297030582316,
+      "rmse_change_alternative_minus_reference": 0.14889120390307653,
+      "n_folds": 5
+    },
+    "replace_inkomst_och_bostadsekonomi": {
+      "n_municipalities": 290,
+      "rmse_reference_same_rows": 11.074079101920084,
+      "rmse_alternative": 11.205788805526925,
+      "rmse_change_alternative_minus_reference": 0.1317097036068411,
+      "n_folds": 5
+    },
+    "replace_naringslivsstruktur": {
+      "n_municipalities": 168,
+      "rmse_reference_same_rows": 11.630410073907557,
+      "rmse_alternative": 11.865285813523034,
+      "rmse_change_alternative_minus_reference": 0.23487573961547703,
+      "n_folds": 3
+    },
+    "replace_utbildning_och_studier": {
+      "n_municipalities": 290,
+      "rmse_reference_same_rows": 11.074079101920084,
+      "rmse_alternative": 11.123253012562591,
+      "rmse_change_alternative_minus_reference": 0.04917391064250687,
+      "n_folds": 5
+    }
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "n_test": 58,
+      "selected": [
+        "lag1_log_folkmangd",
+        "lag1_tatortsgrad_pct",
+        "lag1_regional_centre_distance_km",
+        "lag1_smahusforsaljningar_per_1000_smahus",
+        "lag1_ekonomisk_standard_gap_pp",
+        "lag1_bebyggd_anlagd_andel_land_pct",
+        "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+        "lag1_andel_studerande",
+        "lag1_kolada_arbetslosa_18_65_pct"
+      ],
+      "ablation_groups": [
+        "bostader_och_bestand",
+        "inkomst_och_bostadsekonomi",
+        "geografi_och_mark",
+        "foreningsliv_och_kultur",
+        "utbildning_och_studier",
+        "arbetsmarknad_och_aktivitet"
+      ],
+      "replacement_groups": [
+        "bostader_och_bestand",
+        "inkomst_och_bostadsekonomi",
+        "foreningsliv_och_kultur",
+        "utbildning_och_studier",
+        "arbetsmarknad_och_aktivitet"
+      ]
+    },
+    {
+      "fold": 1,
+      "n_test": 52,
+      "selected": [
+        "lag1_log_folkmangd",
+        "lag1_tatortsgrad_pct",
+        "lag1_regional_centre_distance_km",
+        "lag1_log_fritidshus_per_1000_inv",
+        "lag1_bebyggd_anlagd_andel_land_pct",
+        "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+        "lag1_ekonomisk_standard_gap_pp",
+        "lag1_kolada_arbetslosa_18_65_pct",
+        "lag1_andel_studerande",
+        "lag1_log_externa_fa_jobb_per_1000",
+        "lag1_valdeltagande_gap_pp"
+      ],
+      "ablation_groups": [
+        "bostader_och_bestand",
+        "geografi_och_mark",
+        "foreningsliv_och_kultur",
+        "inkomst_och_bostadsekonomi",
+        "arbetsmarknad_och_aktivitet",
+        "utbildning_och_studier",
+        "naringslivsstruktur",
+        "demokrati"
+      ],
+      "replacement_groups": [
+        "bostader_och_bestand",
+        "foreningsliv_och_kultur",
+        "inkomst_och_bostadsekonomi",
+        "arbetsmarknad_och_aktivitet",
+        "utbildning_och_studier",
+        "naringslivsstruktur",
+        "demokrati"
+      ]
+    },
+    {
+      "fold": 2,
+      "n_test": 65,
+      "selected": [
+        "lag1_log_folkmangd",
+        "lag1_tatortsgrad_pct",
+        "lag1_regional_centre_distance_km",
+        "lag1_ekonomisk_standard_gap_pp",
+        "lag1_andel_studerande",
+        "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+        "lag1_log_fritidshus_per_1000_inv",
+        "lag1_sysselsatta_bostad_sasongsvariation_pct",
+        "lag1_log_externa_fa_jobb_per_1000",
+        "lag1_valdeltagande_gap_pp",
+        "lag1_brott_per_100000"
+      ],
+      "ablation_groups": [
+        "inkomst_och_bostadsekonomi",
+        "utbildning_och_studier",
+        "foreningsliv_och_kultur",
+        "bostader_och_bestand",
+        "arbetsmarknad_och_aktivitet",
+        "naringslivsstruktur",
+        "demokrati",
+        "trygghet"
+      ],
+      "replacement_groups": [
+        "inkomst_och_bostadsekonomi",
+        "utbildning_och_studier",
+        "foreningsliv_och_kultur",
+        "bostader_och_bestand",
+        "arbetsmarknad_och_aktivitet",
+        "naringslivsstruktur",
+        "demokrati"
+      ]
+    },
+    {
+      "fold": 3,
+      "n_test": 64,
+      "selected": [
+        "lag1_log_folkmangd",
+        "lag1_tatortsgrad_pct",
+        "lag1_regional_centre_distance_km",
+        "lag1_ekonomisk_standard_gap_pp",
+        "lag1_smahusforsaljningar_per_1000_smahus",
+        "lag1_bebyggd_anlagd_andel_land_pct",
+        "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+        "lag1_kolada_arbetslosa_18_65_pct",
+        "lag1_andel_studerande"
+      ],
+      "ablation_groups": [
+        "inkomst_och_bostadsekonomi",
+        "bostader_och_bestand",
+        "geografi_och_mark",
+        "foreningsliv_och_kultur",
+        "arbetsmarknad_och_aktivitet",
+        "utbildning_och_studier"
+      ],
+      "replacement_groups": [
+        "inkomst_och_bostadsekonomi",
+        "bostader_och_bestand",
+        "foreningsliv_och_kultur",
+        "arbetsmarknad_och_aktivitet",
+        "utbildning_och_studier"
+      ]
+    },
+    {
+      "fold": 4,
+      "n_test": 51,
+      "selected": [
+        "lag1_log_folkmangd",
+        "lag1_tatortsgrad_pct",
+        "lag1_regional_centre_distance_km",
+        "lag1_bebyggd_anlagd_andel_land_pct",
+        "lag1_smahusforsaljningar_per_1000_smahus",
+        "lag1_ekonomisk_standard_gap_pp",
+        "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+        "lag1_kolada_arbetslosa_18_65_pct",
+        "lag1_log_externa_fa_jobb_per_1000",
+        "lag1_andel_studerande",
+        "lag1_valdeltagande_gap_pp"
+      ],
+      "ablation_groups": [
+        "geografi_och_mark",
+        "bostader_och_bestand",
+        "inkomst_och_bostadsekonomi",
+        "foreningsliv_och_kultur",
+        "arbetsmarknad_och_aktivitet",
+        "naringslivsstruktur",
+        "utbildning_och_studier",
+        "demokrati"
+      ],
+      "replacement_groups": [
+        "bostader_och_bestand",
+        "inkomst_och_bostadsekonomi",
+        "foreningsliv_och_kultur",
+        "arbetsmarknad_och_aktivitet",
+        "naringslivsstruktur",
+        "utbildning_och_studier",
+        "demokrati"
+      ]
+    }
+  ],
+  "limitations": [
+    "No re-selection after ablation; comparisons evaluate contributions conditional on selected features.",
+    "The selected model and 2024 folds come from earlier exploratory research, not an independent confirmation.",
+    "Subset sample sizes differ because a theme can be absent in some folds: compare only matching-row errors.",
+    "Replacement choices are ranked using training-only residual association and not a full nested refit.",
+    "Source publication timing and thematic assignments need scientific audit before production."
+  ]
+}
