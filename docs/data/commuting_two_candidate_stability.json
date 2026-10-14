@@ -1,0 +1,249 @@
+{
+  "status": "exploratory_two_candidate_stability",
+  "candidates": [
+    "lag1_sysselsatta_bostad_forandring_pct",
+    "lag1_andel_bostader_70_max"
+  ],
+  "years": [
+    2023,
+    2024
+  ],
+  "production_model_changed": false,
+  "data_source": "BAS",
+  "warning": "Both candidates selected after looking at historical outcomes. This is NOT independent validation.",
+  "results": {
+    "2023": {
+      "train_years": [
+        2022
+      ],
+      "n_train": 290,
+      "n_test": 290,
+      "metrics": {
+        "reference": {
+          "r2": 0.8525093355952844,
+          "rmse": 6.174145340083848,
+          "mae": 4.778874511993216,
+          "median_abs_error": 3.9634120749133714,
+          "p90_abs_error": 9.39022500886561,
+          "p95_abs_error": 11.819293184219312,
+          "p90_p10_abs_error_gap": 8.673573298945257,
+          "best_decile_mae": 0.4226054741915064,
+          "worst_decile_mae": 13.381669279830597,
+          "decile_mae_gap": 12.95906380563909,
+          "max_abs_error": 21.424073148636026,
+          "n": 290
+        },
+        "employment": {
+          "r2": 0.8493273495591993,
+          "rmse": 6.240390924108808,
+          "mae": 4.8664193382764775,
+          "median_abs_error": 4.127049928359359,
+          "p90_abs_error": 9.530206955578677,
+          "p95_abs_error": 11.952090263823969,
+          "p90_p10_abs_error_gap": 8.690669933535542,
+          "best_decile_mae": 0.4231917263262808,
+          "worst_decile_mae": 13.387334533468207,
+          "decile_mae_gap": 12.964142807141927,
+          "max_abs_error": 21.702485462389106,
+          "n": 290
+        },
+        "small_housing": {
+          "r2": 0.8525436847205717,
+          "rmse": 6.173426349353977,
+          "mae": 4.785589000319596,
+          "median_abs_error": 4.0064224634385575,
+          "p90_abs_error": 9.44873143734524,
+          "p95_abs_error": 11.804363481963662,
+          "p90_p10_abs_error_gap": 8.713779700716028,
+          "best_decile_mae": 0.4186955775955739,
+          "worst_decile_mae": 13.353586085458018,
+          "decile_mae_gap": 12.934890507862443,
+          "max_abs_error": 21.448748763414315,
+          "n": 290
+        },
+        "employment_and_small_housing": {
+          "r2": 0.849410577051501,
+          "rmse": 6.238667174550873,
+          "mae": 4.871196438990744,
+          "median_abs_error": 4.096997859970845,
+          "p90_abs_error": 9.577675824358787,
+          "p95_abs_error": 11.89126915401775,
+          "p90_p10_abs_error_gap": 8.687163510151786,
+          "best_decile_mae": 0.41863466519343473,
+          "worst_decile_mae": 13.361608809217513,
+          "decile_mae_gap": 12.942974144024078,
+          "max_abs_error": 21.718160218906405,
+          "n": 290
+        }
+      },
+      "quartiles": [
+        {
+          "group": "Q1",
+          "n": 73,
+          "rmse": {
+            "reference": 5.240637627231697,
+            "employment": 5.270309740735802,
+            "small_housing": 5.240314540220037,
+            "employment_and_small_housing": 5.269939826111606
+          }
+        },
+        {
+          "group": "Q2",
+          "n": 72,
+          "rmse": {
+            "reference": 5.487011045550973,
+            "employment": 5.566265246358918,
+            "small_housing": 5.49080773267563,
+            "employment_and_small_housing": 5.568176846388687
+          }
+        },
+        {
+          "group": "Q3",
+          "n": 72,
+          "rmse": {
+            "reference": 6.682071623084933,
+            "employment": 6.7522611788954485,
+            "small_housing": 6.6792611188307625,
+            "employment_and_small_housing": 6.748384274066482
+          }
+        },
+        {
+          "group": "Q4",
+          "n": 73,
+          "rmse": {
+            "reference": 7.087899313231992,
+            "employment": 7.169343392903333,
+            "small_housing": 7.08536267808044,
+            "employment_and_small_housing": 7.165790997645224
+          }
+        }
+      ],
+      "lulea": [
+        {
+          "actual": 47.73666700272205,
+          "reference": 48.501486223061235,
+          "employment": 48.754078611792664,
+          "small_housing": 48.552929880451764,
+          "employment_and_small_housing": 48.79477365065141
+        }
+      ]
+    },
+    "2024": {
+      "train_years": [
+        2022,
+        2023
+      ],
+      "n_train": 580,
+      "n_test": 290,
+      "metrics": {
+        "reference": {
+          "r2": 0.8628680363842541,
+          "rmse": 5.604905182036141,
+          "mae": 4.31414105491757,
+          "median_abs_error": 3.57228990423031,
+          "p90_abs_error": 9.54129083311546,
+          "p95_abs_error": 11.838499519033212,
+          "p90_p10_abs_error_gap": 8.844480332948198,
+          "best_decile_mae": 0.29633017667381367,
+          "worst_decile_mae": 12.350061009454098,
+          "decile_mae_gap": 12.053730832780284,
+          "max_abs_error": 18.95241634937996,
+          "n": 290
+        },
+        "employment": {
+          "r2": 0.8754035388498488,
+          "rmse": 5.342589132268113,
+          "mae": 4.022120734042994,
+          "median_abs_error": 3.178353529046884,
+          "p90_abs_error": 8.785752527923476,
+          "p95_abs_error": 11.452064610291334,
+          "p90_p10_abs_error_gap": 8.373607430533037,
+          "best_decile_mae": 0.20105725392412863,
+          "worst_decile_mae": 11.976591113429263,
+          "decile_mae_gap": 11.775533859505135,
+          "max_abs_error": 18.365907352537143,
+          "n": 290
+        },
+        "small_housing": {
+          "r2": 0.8646253645591352,
+          "rmse": 5.568876320214233,
+          "mae": 4.28628955645654,
+          "median_abs_error": 3.503262909960309,
+          "p90_abs_error": 9.349643399082714,
+          "p95_abs_error": 11.718984437303426,
+          "p90_p10_abs_error_gap": 8.75428675951103,
+          "best_decile_mae": 0.3085291696609953,
+          "worst_decile_mae": 12.274615082957355,
+          "decile_mae_gap": 11.96608591329636,
+          "max_abs_error": 18.81944535334194,
+          "n": 290
+        },
+        "employment_and_small_housing": {
+          "r2": 0.8766879219540084,
+          "rmse": 5.314981178266092,
+          "mae": 4.0027860775515975,
+          "median_abs_error": 3.1329047318571774,
+          "p90_abs_error": 8.824287970531719,
+          "p95_abs_error": 11.418336978839644,
+          "p90_p10_abs_error_gap": 8.428670651257393,
+          "best_decile_mae": 0.15959606251437267,
+          "worst_decile_mae": 11.93374902458749,
+          "decile_mae_gap": 11.774152962073117,
+          "max_abs_error": 18.261473566203094,
+          "n": 290
+        }
+      },
+      "quartiles": [
+        {
+          "group": "Q1",
+          "n": 73,
+          "rmse": {
+            "reference": 5.517598287852857,
+            "employment": 5.2773799186756545,
+            "small_housing": 5.475820074786478,
+            "employment_and_small_housing": 5.244495000331219
+          }
+        },
+        {
+          "group": "Q2",
+          "n": 72,
+          "rmse": {
+            "reference": 5.38409885254813,
+            "employment": 5.124493429120664,
+            "small_housing": 5.367168363187763,
+            "employment_and_small_housing": 5.118008712696616
+          }
+        },
+        {
+          "group": "Q3",
+          "n": 72,
+          "rmse": {
+            "reference": 5.476133876496334,
+            "employment": 5.274459769861892,
+            "small_housing": 5.448713245372934,
+            "employment_and_small_housing": 5.255087846113895
+          }
+        },
+        {
+          "group": "Q4",
+          "n": 73,
+          "rmse": {
+            "reference": 6.015530655801613,
+            "employment": 5.674571060125317,
+            "small_housing": 5.960000232145871,
+            "employment_and_small_housing": 5.6253521943477605
+          }
+        }
+      ],
+      "lulea": [
+        {
+          "actual": 51.74210559357147,
+          "reference": 46.050399800113276,
+          "employment": 46.311828275048015,
+          "small_housing": 46.17071700363955,
+          "employment_and_small_housing": 46.414908857929355
+        }
+      ]
+    }
+  }
+}
