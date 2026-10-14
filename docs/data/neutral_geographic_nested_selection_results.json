@@ -1,0 +1,1125 @@
+{
+  "status": "geographic_nested_cv_research_not_asof",
+  "target": "inflyttning_per_1000",
+  "window_years": {
+    "five": [
+      2019,
+      2020,
+      2021,
+      2022,
+      2023
+    ],
+    "three": [
+      2021,
+      2022,
+      2023
+    ]
+  },
+  "notes": [
+    "Groups are municipality IDs; all records of a municipality held out together.",
+    "Outer GroupKFold=5, inner GroupKFold=3; all tuning and feature selection within training.",
+    "Incumbent and neutral arms share identical samples and model family, no incumbent advantage.",
+    "No 2024 values used for tuning or evaluation.",
+    "Retrospective associations only; SCB publication as-of not verified.",
+    "Neutral candidate family may include close correlated representations; elastic net penalizes redundancies.",
+    "Demographic-blind and demographics-allowed branches analyzed separately.",
+    "Research exercise not a production challenger approval."
+  ],
+  "hyperparameter_grid": {
+    "alpha": [
+      0.03,
+      0.3,
+      3.0,
+      30.0
+    ],
+    "l1_ratio": [
+      0.3,
+      0.8,
+      1.0
+    ]
+  },
+  "results": {
+    "five_blind": {
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "n_train_rows": 1450,
+      "n_municipalities": 290,
+      "models": {
+        "intercept": {
+          "n_candidates": 0,
+          "n_evaluated": 1450,
+          "rmse": 17.178457050972227,
+          "mae": 12.308849117283229,
+          "folds": [
+            {
+              "fold": 1,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 19.372772321480408,
+              "mae": 12.50829665613674,
+              "alpha": null,
+              "l1_ratio": null,
+              "nonzero_features": null
+            },
+            {
+              "fold": 2,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 12.987297287697013,
+              "mae": 10.170138542175836,
+              "alpha": null,
+              "l1_ratio": null,
+              "nonzero_features": null
+            },
+            {
+              "fold": 3,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 16.744502051508615,
+              "mae": 12.625544487589872,
+              "alpha": null,
+              "l1_ratio": null,
+              "nonzero_features": null
+            },
+            {
+              "fold": 4,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 16.80369729735335,
+              "mae": 13.369374493180354,
+              "alpha": null,
+              "l1_ratio": null,
+              "nonzero_features": null
+            },
+            {
+              "fold": 5,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 19.203649215383283,
+              "mae": 12.87089140733334,
+              "alpha": null,
+              "l1_ratio": null,
+              "nonzero_features": null
+            }
+          ],
+          "selection_frequency_outer_folds": {}
+        },
+        "incumbent_retrain": {
+          "n_candidates": 14,
+          "n_evaluated": 1450,
+          "rmse": 11.33631872294953,
+          "mae": 8.43434537220097,
+          "folds": [
+            {
+              "fold": 1,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 12.338838530643828,
+              "mae": 8.849338754046048,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 14
+            },
+            {
+              "fold": 2,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 10.75910254488139,
+              "mae": 8.088603381076254,
+              "alpha": 0.03,
+              "l1_ratio": 0.8,
+              "nonzero_features": 14
+            },
+            {
+              "fold": 3,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 10.460077614428306,
+              "mae": 8.082748409215865,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 14
+            },
+            {
+              "fold": 4,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 10.792366325878161,
+              "mae": 8.404246453550895,
+              "alpha": 0.03,
+              "l1_ratio": 0.3,
+              "nonzero_features": 14
+            },
+            {
+              "fold": 5,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 12.19290746594484,
+              "mae": 8.74678986311579,
+              "alpha": 0.03,
+              "l1_ratio": 0.3,
+              "nonzero_features": 14
+            }
+          ],
+          "selection_frequency_outer_folds": {
+            "lag1_andel_bostadsratt": 5,
+            "lag1_andel_eftergymnasial": 5,
+            "lag1_andel_hyresratt": 5,
+            "lag1_andel_smahus": 5,
+            "lag1_andel_studerande": 5,
+            "lag1_bostader_per_1000": 5,
+            "lag1_brott_per_100000": 5,
+            "lag1_ekonomisk_standard_gap_pp": 5,
+            "lag1_fardigstallda_bostader_per_1000": 5,
+            "lag1_fritidshusandel_bland_smahus": 5,
+            "lag1_inkomst_tkr": 5,
+            "lag1_log_folkmangd": 5,
+            "lag1_valdeltagande_gap_pp": 5,
+            "lag1_valdeltagande_pct": 5
+          }
+        },
+        "neutral_from_zero": {
+          "n_candidates": 51,
+          "n_evaluated": 1450,
+          "rmse": 8.64888105033909,
+          "mae": 6.598726011094006,
+          "folds": [
+            {
+              "fold": 1,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 9.05075701617483,
+              "mae": 6.97862552892694,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 40
+            },
+            {
+              "fold": 2,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 7.668578390475893,
+              "mae": 6.072220306496952,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 40
+            },
+            {
+              "fold": 3,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 8.314998068086688,
+              "mae": 6.4857678966965935,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 43
+            },
+            {
+              "fold": 4,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 9.259656751609258,
+              "mae": 6.762105047016555,
+              "alpha": 0.03,
+              "l1_ratio": 0.3,
+              "nonzero_features": 48
+            },
+            {
+              "fold": 5,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 8.855054149351835,
+              "mae": 6.694911276332991,
+              "alpha": 0.03,
+              "l1_ratio": 0.3,
+              "nonzero_features": 50
+            }
+          ],
+          "selection_frequency_outer_folds": {
+            "lag1_andel_bostader_111_plus": 5,
+            "lag1_andel_bostadsratt": 5,
+            "lag1_andel_smahus": 5,
+            "lag1_andel_smahus_151_plus": 5,
+            "lag1_andel_studerande": 5,
+            "lag1_bebyggd_anlagd_andel_land_pct": 5,
+            "lag1_bostader_per_1000": 5,
+            "lag1_brott_per_100000": 5,
+            "lag1_ekonomisk_standard_gap_pp": 5,
+            "lag1_fardigstallda_bostader_per_1000": 5,
+            "lag1_fritidshusandel_bland_smahus": 5,
+            "lag1_gymnasium_yrkesprogram_pct": 5,
+            "lag1_inkomst_median_tkr": 5,
+            "lag1_inkomst_tkr": 5,
+            "lag1_kolada_arbetslosa_18_24_pct": 5,
+            "lag1_kolada_arbetslosa_18_65_pct": 5,
+            "lag1_kolada_flickdominerade_idrottsforeningar_andel": 5,
+            "lag1_kolada_langtidsarbetslosa_pct": 5,
+            "lag1_kolada_lok_foreningar_per_10000": 5,
+            "lag1_kolada_utbetalt_lok_stod_kr_per_inv": 5,
+            "lag1_kvinnors_lonesumma_dagbef_pct": 5,
+            "lag1_log_folkmangd": 5,
+            "lag1_log_fritidshus_per_1000_inv": 5,
+            "lag1_skogsmark_andel_land_pct": 5,
+            "lag1_smahusforsaljningar_per_1000_smahus": 5,
+            "lag1_smahuspris_inkomstkvot_medel": 5,
+            "lag1_strand_hav_bostader_per_1000": 5,
+            "lag1_strand_hav_bostader_tatort_per_1000": 5,
+            "lag1_strand_inland_bostader_per_1000": 5,
+            "lag1_tatortsgrad_pct": 5,
+            "lag1_valdeltagande_gap_pp": 5,
+            "lag1_valdeltagande_pct": 5,
+            "lag1_andel_bostader_141_plus": 4,
+            "lag1_andel_bostader_70_max": 4,
+            "lag1_andel_eftergymnasial": 4,
+            "lag1_andel_hyresratt": 4,
+            "lag1_fritidshus_per_1000_inv": 4,
+            "lag1_log_smahuspris_medel": 4,
+            "lag1_naturpraglad_mark_andel_land_pct": 4,
+            "lag1_strand_hav_bostader_skyddad_natur_per_1000": 4,
+            "lag1_andel_smahus_111_plus": 4,
+            "lag1_kvinnors_mediannettoinkomst_andel_pct": 4,
+            "lag1_snoskoterandel_alla_fordon_pct": 4,
+            "lag1_andel_bostader_151_plus": 3,
+            "lag1_andel_flerbostad_70_max": 3,
+            "lag1_smahuspris_medel_tkr": 3,
+            "lag1_gymnasium_hogskoleforberedande_pct": 2,
+            "lag1_smahusforsaljningar_per_1000_inv": 2,
+            "lag1_smahuspris_inkomstkvot_median": 2,
+            "lag1_snoskoterandel_exkl_dragfordon_pct": 2
+          }
+        }
+      }
+    },
+    "five_forecast": {
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "n_train_rows": 1450,
+      "n_municipalities": 290,
+      "models": {
+        "intercept": {
+          "n_candidates": 0,
+          "n_evaluated": 1450,
+          "rmse": 17.178457050972227,
+          "mae": 12.308849117283229,
+          "folds": [
+            {
+              "fold": 1,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 19.372772321480408,
+              "mae": 12.50829665613674,
+              "alpha": null,
+              "l1_ratio": null,
+              "nonzero_features": null
+            },
+            {
+              "fold": 2,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 12.987297287697013,
+              "mae": 10.170138542175836,
+              "alpha": null,
+              "l1_ratio": null,
+              "nonzero_features": null
+            },
+            {
+              "fold": 3,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 16.744502051508615,
+              "mae": 12.625544487589872,
+              "alpha": null,
+              "l1_ratio": null,
+              "nonzero_features": null
+            },
+            {
+              "fold": 4,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 16.80369729735335,
+              "mae": 13.369374493180354,
+              "alpha": null,
+              "l1_ratio": null,
+              "nonzero_features": null
+            },
+            {
+              "fold": 5,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 19.203649215383283,
+              "mae": 12.87089140733334,
+              "alpha": null,
+              "l1_ratio": null,
+              "nonzero_features": null
+            }
+          ],
+          "selection_frequency_outer_folds": {}
+        },
+        "incumbent_retrain": {
+          "n_candidates": 19,
+          "n_evaluated": 1450,
+          "rmse": 5.355567143700206,
+          "mae": 4.075645840480331,
+          "folds": [
+            {
+              "fold": 1,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 5.5591678968343405,
+              "mae": 4.195612929883332,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 17
+            },
+            {
+              "fold": 2,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 5.323878285963403,
+              "mae": 4.160802902831085,
+              "alpha": 0.03,
+              "l1_ratio": 0.8,
+              "nonzero_features": 18
+            },
+            {
+              "fold": 3,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 5.819143622147796,
+              "mae": 4.451023269494874,
+              "alpha": 0.03,
+              "l1_ratio": 0.8,
+              "nonzero_features": 18
+            },
+            {
+              "fold": 4,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 4.779327536464478,
+              "mae": 3.68867211800565,
+              "alpha": 0.03,
+              "l1_ratio": 0.8,
+              "nonzero_features": 19
+            },
+            {
+              "fold": 5,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 5.2400443937498045,
+              "mae": 3.882117982186716,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 19
+            }
+          ],
+          "selection_frequency_outer_folds": {
+            "lag1_andel_20_34": 5,
+            "lag1_andel_bostadsratt": 5,
+            "lag1_andel_hyresratt": 5,
+            "lag1_andel_smahus": 5,
+            "lag1_andel_studerande": 5,
+            "lag1_befolkningstillvaxt_pct": 5,
+            "lag1_bostader_per_1000": 5,
+            "lag1_brott_per_100000": 5,
+            "lag1_ekonomisk_standard_gap_pp": 5,
+            "lag1_fardigstallda_bostader_per_1000": 5,
+            "lag1_fritidshusandel_bland_smahus": 5,
+            "lag1_inflyttare_medelalder": 5,
+            "lag1_inflyttning_per_1000": 5,
+            "lag1_inkomst_tkr": 5,
+            "lag1_utflyttning_per_1000": 5,
+            "lag1_valdeltagande_gap_pp": 5,
+            "lag1_andel_eftergymnasial": 4,
+            "lag1_log_folkmangd": 4,
+            "lag1_valdeltagande_pct": 3
+          }
+        },
+        "neutral_from_zero": {
+          "n_candidates": 56,
+          "n_evaluated": 1450,
+          "rmse": 5.239361468329144,
+          "mae": 3.970168696124389,
+          "folds": [
+            {
+              "fold": 1,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 5.363903480082436,
+              "mae": 4.042018878842784,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 38
+            },
+            {
+              "fold": 2,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 5.224578653113778,
+              "mae": 4.0851192664230505,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 38
+            },
+            {
+              "fold": 3,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 5.689314820750251,
+              "mae": 4.290725565745364,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 38
+            },
+            {
+              "fold": 4,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 4.735365743044862,
+              "mae": 3.6612627953646664,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 38
+            },
+            {
+              "fold": 5,
+              "municipalities": 58,
+              "n_test": 290,
+              "rmse": 5.137593647111135,
+              "mae": 3.7717169742460808,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 37
+            }
+          ],
+          "selection_frequency_outer_folds": {
+            "lag1_andel_20_34": 5,
+            "lag1_andel_hyresratt": 5,
+            "lag1_andel_studerande": 5,
+            "lag1_befolkningstillvaxt_pct": 5,
+            "lag1_ekonomisk_standard_gap_pp": 5,
+            "lag1_fardigstallda_bostader_per_1000": 5,
+            "lag1_fritidshus_per_1000_inv": 5,
+            "lag1_gymnasium_hogskoleforberedande_pct": 5,
+            "lag1_gymnasium_yrkesprogram_pct": 5,
+            "lag1_inflyttare_medelalder": 5,
+            "lag1_inflyttning_per_1000": 5,
+            "lag1_inkomst_tkr": 5,
+            "lag1_kolada_arbetslosa_18_24_pct": 5,
+            "lag1_kolada_arbetslosa_18_65_pct": 5,
+            "lag1_kolada_flickdominerade_idrottsforeningar_andel": 5,
+            "lag1_kolada_langtidsarbetslosa_pct": 5,
+            "lag1_kolada_utbetalt_lok_stod_kr_per_inv": 5,
+            "lag1_kvinnors_lonesumma_dagbef_pct": 5,
+            "lag1_kvinnors_mediannettoinkomst_andel_pct": 5,
+            "lag1_log_folkmangd": 5,
+            "lag1_log_fritidshus_per_1000_inv": 5,
+            "lag1_log_smahuspris_medel": 5,
+            "lag1_smahusforsaljningar_per_1000_smahus": 5,
+            "lag1_strand_hav_bostader_tatort_per_1000": 5,
+            "lag1_strand_inland_bostader_per_1000": 5,
+            "lag1_utflyttning_per_1000": 5,
+            "lag1_valdeltagande_gap_pp": 5,
+            "lag1_andel_bostader_70_max": 4,
+            "lag1_brott_per_100000": 4,
+            "lag1_smahuspris_inkomstkvot_medel": 4,
+            "lag1_snoskoterandel_alla_fordon_pct": 4,
+            "lag1_valdeltagande_pct": 4,
+            "lag1_bebyggd_anlagd_andel_land_pct": 4,
+            "lag1_bostader_per_1000": 4,
+            "lag1_strand_hav_bostader_skyddad_natur_per_1000": 3,
+            "lag1_andel_smahus_111_plus": 3,
+            "lag1_strand_hav_bostader_per_1000": 3,
+            "lag1_naturpraglad_mark_andel_land_pct": 3,
+            "lag1_andel_bostadsratt": 2,
+            "lag1_tatortsgrad_pct": 2,
+            "lag1_andel_smahus": 2,
+            "lag1_andel_smahus_151_plus": 1,
+            "lag1_kolada_lok_foreningar_per_10000": 1,
+            "lag1_skogsmark_andel_land_pct": 1,
+            "lag1_andel_bostader_151_plus": 1,
+            "lag1_inkomst_median_tkr": 1,
+            "lag1_andel_eftergymnasial": 1,
+            "lag1_andel_flerbostad_70_max": 1,
+            "lag1_smahusforsaljningar_per_1000_inv": 1
+          }
+        }
+      }
+    },
+    "three_blind": {
+      "years": [
+        2021,
+        2022,
+        2023
+      ],
+      "n_train_rows": 870,
+      "n_municipalities": 290,
+      "models": {
+        "intercept": {
+          "n_candidates": 0,
+          "n_evaluated": 870,
+          "rmse": 17.177778716461304,
+          "mae": 12.214984206844367,
+          "folds": [
+            {
+              "fold": 1,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 19.59582930562021,
+              "mae": 12.4098704781159,
+              "alpha": null,
+              "l1_ratio": null,
+              "nonzero_features": null
+            },
+            {
+              "fold": 2,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 13.268869063672966,
+              "mae": 10.306671880552784,
+              "alpha": null,
+              "l1_ratio": null,
+              "nonzero_features": null
+            },
+            {
+              "fold": 3,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 16.33235785378983,
+              "mae": 12.467276328516101,
+              "alpha": null,
+              "l1_ratio": null,
+              "nonzero_features": null
+            },
+            {
+              "fold": 4,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 16.68240820986439,
+              "mae": 13.238894552709604,
+              "alpha": null,
+              "l1_ratio": null,
+              "nonzero_features": null
+            },
+            {
+              "fold": 5,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 19.242461874974634,
+              "mae": 12.652207794327436,
+              "alpha": null,
+              "l1_ratio": null,
+              "nonzero_features": null
+            }
+          ],
+          "selection_frequency_outer_folds": {}
+        },
+        "incumbent_retrain": {
+          "n_candidates": 22,
+          "n_evaluated": 870,
+          "rmse": 10.740321807602683,
+          "mae": 7.706267736813989,
+          "folds": [
+            {
+              "fold": 1,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 12.429029831343607,
+              "mae": 8.473209784800057,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 22
+            },
+            {
+              "fold": 2,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 9.470670796705656,
+              "mae": 6.991969718935588,
+              "alpha": 0.03,
+              "l1_ratio": 0.8,
+              "nonzero_features": 22
+            },
+            {
+              "fold": 3,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 8.970629222730132,
+              "mae": 7.208913287517264,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 22
+            },
+            {
+              "fold": 4,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 10.15968290549575,
+              "mae": 7.857758998362986,
+              "alpha": 0.03,
+              "l1_ratio": 0.3,
+              "nonzero_features": 22
+            },
+            {
+              "fold": 5,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 12.202738601412545,
+              "mae": 7.999486894454052,
+              "alpha": 0.3,
+              "l1_ratio": 0.8,
+              "nonzero_features": 17
+            }
+          ],
+          "selection_frequency_outer_folds": {
+            "lag1_andel_bostadsratt": 5,
+            "lag1_andel_eftergymnasial": 5,
+            "lag1_andel_fa_arbetsplatser_i_egen_kommun": 5,
+            "lag1_andel_hotell_restaurang_i": 5,
+            "lag1_andel_industri_bc": 5,
+            "lag1_andel_studerande": 5,
+            "lag1_bostader_per_1000": 5,
+            "lag1_bostadsbestandsforandring_pct": 5,
+            "lag1_brott_per_100000": 5,
+            "lag1_ekonomisk_standard_gap_pp": 5,
+            "lag1_fardigstallda_bostader_per_1000": 5,
+            "lag1_fritidshusandel_bland_smahus": 5,
+            "lag1_log_externa_fa_jobb_per_1000": 5,
+            "lag1_log_folkmangd": 5,
+            "lag1_sysselsattningsgrad": 5,
+            "lag1_valdeltagande_gap_pp": 5,
+            "lag1_valdeltagande_pct": 5,
+            "lag1_andel_hyresratt": 4,
+            "lag1_andel_kultur_service_rstu": 4,
+            "lag1_andel_smahus": 4,
+            "lag1_arbetsloshet": 4,
+            "lag1_inkomst_tkr": 4
+          }
+        },
+        "neutral_from_zero": {
+          "n_candidates": 73,
+          "n_evaluated": 870,
+          "rmse": 8.13975280953921,
+          "mae": 6.199426704272614,
+          "folds": [
+            {
+              "fold": 1,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 8.682198134994323,
+              "mae": 6.542605026875053,
+              "alpha": 0.03,
+              "l1_ratio": 0.8,
+              "nonzero_features": 60
+            },
+            {
+              "fold": 2,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 7.208339413378657,
+              "mae": 5.812547031073148,
+              "alpha": 0.03,
+              "l1_ratio": 0.8,
+              "nonzero_features": 60
+            },
+            {
+              "fold": 3,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 7.7753635081093035,
+              "mae": 6.039864371242236,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 60
+            },
+            {
+              "fold": 4,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 8.634778061623496,
+              "mae": 6.539754734957187,
+              "alpha": 0.03,
+              "l1_ratio": 0.3,
+              "nonzero_features": 71
+            },
+            {
+              "fold": 5,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 8.301896626163684,
+              "mae": 6.062362357215445,
+              "alpha": 0.03,
+              "l1_ratio": 0.3,
+              "nonzero_features": 70
+            }
+          ],
+          "selection_frequency_outer_folds": {
+            "lag1_andel_bostader_111_plus": 5,
+            "lag1_andel_bostadsratt": 5,
+            "lag1_andel_eftergymnasial": 5,
+            "lag1_andel_hotell_restaurang_i": 5,
+            "lag1_andel_industri_bc": 5,
+            "lag1_andel_kultur_service_rstu": 5,
+            "lag1_andel_smahus": 5,
+            "lag1_andel_smahus_111_plus": 5,
+            "lag1_andel_smahus_151_plus": 5,
+            "lag1_andel_studerande": 5,
+            "lag1_arbetsloshet": 5,
+            "lag1_bas_ovriga_andel_pct": 5,
+            "lag1_bas_pensionarer_andel_pct": 5,
+            "lag1_bas_sjuka_andel_pct": 5,
+            "lag1_bas_studerande_andel_pct": 5,
+            "lag1_bebyggd_anlagd_andel_land_pct": 5,
+            "lag1_bostadsbestandsforandring_pct": 5,
+            "lag1_brott_per_100000": 5,
+            "lag1_ekonomisk_standard_gap_pp": 5,
+            "lag1_fardigstallda_bostader_per_1000": 5,
+            "lag1_fritidshusandel_bland_smahus": 5,
+            "lag1_gymnasium_yrkesprogram_pct": 5,
+            "lag1_inkomst_median_tkr": 5,
+            "lag1_inkomst_tkr": 5,
+            "lag1_kolada_arbetslosa_18_65_pct": 5,
+            "lag1_kolada_flickdominerade_idrottsforeningar_andel": 5,
+            "lag1_kolada_utbetalt_lok_stod_kr_per_inv": 5,
+            "lag1_kvinnors_lonesumma_dagbef_pct": 5,
+            "lag1_kvinnors_mediannettoinkomst_andel_pct": 5,
+            "lag1_log_externa_fa_jobb_per_1000": 5,
+            "lag1_log_folkmangd": 5,
+            "lag1_log_fritidshus_per_1000_inv": 5,
+            "lag1_log_regional_centre_distance_km": 5,
+            "lag1_regional_centre_distance_km": 5,
+            "lag1_skogsmark_andel_land_pct": 5,
+            "lag1_smahusforsaljningar_per_1000_smahus": 5,
+            "lag1_smahuspris_forandring_pct": 5,
+            "lag1_smahuspris_inkomstkvot_medel": 5,
+            "lag1_smahuspris_medel_tkr": 5,
+            "lag1_snoskoterandel_alla_fordon_pct": 5,
+            "lag1_strand_hav_bostader_per_1000": 5,
+            "lag1_strand_hav_bostader_skyddad_natur_per_1000": 5,
+            "lag1_strand_hav_bostader_tatort_per_1000": 5,
+            "lag1_strand_inland_bostader_per_1000": 5,
+            "lag1_sysselsatta_arbetsstalle_rams_bas_historisk_forandring_pct": 5,
+            "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct": 5,
+            "lag1_sysselsatta_bostad_rams_bas_historisk_forandring_pct": 5,
+            "lag1_sysselsatta_bostad_sasongsvariation_pct": 5,
+            "lag1_valdeltagande_gap_pp": 5,
+            "lag1_andel_bostader_141_plus": 4,
+            "lag1_andel_hyresratt": 4,
+            "lag1_arbetskraftsdeltagande": 4,
+            "lag1_kolada_langtidsarbetslosa_pct": 4,
+            "lag1_kolada_lok_foreningar_per_10000": 4,
+            "lag1_log_befolkningstathet_land": 4,
+            "lag1_snoskoterandel_exkl_dragfordon_pct": 4,
+            "lag1_utanf_arbetkraften_andel_pct": 4,
+            "lag1_fritidshus_per_1000_inv": 4,
+            "lag1_kolada_arbetslosa_18_24_pct": 4,
+            "lag1_tatortsgrad_pct": 4,
+            "lag1_valdeltagande_pct": 4,
+            "lag1_naturpraglad_mark_andel_land_pct": 3,
+            "lag1_smahuspris_inkomstkvot_median": 3,
+            "lag1_andel_fa_arbetsplatser_i_egen_kommun": 3,
+            "lag1_bostader_per_1000": 3,
+            "lag1_andel_bostader_70_max": 3,
+            "lag1_andel_flerbostad_70_max": 3,
+            "lag1_log_smahuspris_medel": 2,
+            "lag1_andel_bostader_151_plus": 2,
+            "lag1_gymnasium_hogskoleforberedande_pct": 2,
+            "lag1_smahusforsaljningar_per_1000_inv": 2,
+            "lag1_utanf_arbetkraften_andel_fran_komponenter_pct": 2
+          }
+        }
+      }
+    },
+    "three_forecast": {
+      "years": [
+        2021,
+        2022,
+        2023
+      ],
+      "n_train_rows": 870,
+      "n_municipalities": 290,
+      "models": {
+        "intercept": {
+          "n_candidates": 0,
+          "n_evaluated": 870,
+          "rmse": 17.177778716461304,
+          "mae": 12.214984206844367,
+          "folds": [
+            {
+              "fold": 1,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 19.59582930562021,
+              "mae": 12.4098704781159,
+              "alpha": null,
+              "l1_ratio": null,
+              "nonzero_features": null
+            },
+            {
+              "fold": 2,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 13.268869063672966,
+              "mae": 10.306671880552784,
+              "alpha": null,
+              "l1_ratio": null,
+              "nonzero_features": null
+            },
+            {
+              "fold": 3,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 16.33235785378983,
+              "mae": 12.467276328516101,
+              "alpha": null,
+              "l1_ratio": null,
+              "nonzero_features": null
+            },
+            {
+              "fold": 4,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 16.68240820986439,
+              "mae": 13.238894552709604,
+              "alpha": null,
+              "l1_ratio": null,
+              "nonzero_features": null
+            },
+            {
+              "fold": 5,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 19.242461874974634,
+              "mae": 12.652207794327436,
+              "alpha": null,
+              "l1_ratio": null,
+              "nonzero_features": null
+            }
+          ],
+          "selection_frequency_outer_folds": {}
+        },
+        "incumbent_retrain": {
+          "n_candidates": 27,
+          "n_evaluated": 870,
+          "rmse": 5.0094055512696265,
+          "mae": 3.7206834911125717,
+          "folds": [
+            {
+              "fold": 1,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 5.663476617352192,
+              "mae": 4.22598916672162,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 23
+            },
+            {
+              "fold": 2,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 4.721217210201296,
+              "mae": 3.5982811528396614,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 23
+            },
+            {
+              "fold": 3,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 5.453826372891043,
+              "mae": 4.080184225828619,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 23
+            },
+            {
+              "fold": 4,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 4.158396390602942,
+              "mae": 3.0957356069079265,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 24
+            },
+            {
+              "fold": 5,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 4.906055227699479,
+              "mae": 3.603227303265032,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 22
+            }
+          ],
+          "selection_frequency_outer_folds": {
+            "lag1_andel_20_34": 5,
+            "lag1_andel_bostadsratt": 5,
+            "lag1_andel_hotell_restaurang_i": 5,
+            "lag1_andel_industri_bc": 5,
+            "lag1_andel_kultur_service_rstu": 5,
+            "lag1_andel_studerande": 5,
+            "lag1_bostadsbestandsforandring_pct": 5,
+            "lag1_brott_per_100000": 5,
+            "lag1_ekonomisk_standard_gap_pp": 5,
+            "lag1_fardigstallda_bostader_per_1000": 5,
+            "lag1_fritidshusandel_bland_smahus": 5,
+            "lag1_inflyttare_medelalder": 5,
+            "lag1_inflyttning_per_1000": 5,
+            "lag1_inkomst_tkr": 5,
+            "lag1_log_externa_fa_jobb_per_1000": 5,
+            "lag1_log_folkmangd": 5,
+            "lag1_sysselsattningsgrad": 5,
+            "lag1_utflyttning_per_1000": 5,
+            "lag1_valdeltagande_gap_pp": 5,
+            "lag1_valdeltagande_pct": 5,
+            "lag1_andel_hyresratt": 4,
+            "lag1_arbetsloshet": 4,
+            "lag1_befolkningstillvaxt_pct": 3,
+            "lag1_bostader_per_1000": 2,
+            "lag1_andel_eftergymnasial": 1,
+            "lag1_andel_fa_arbetsplatser_i_egen_kommun": 1
+          }
+        },
+        "neutral_from_zero": {
+          "n_candidates": 78,
+          "n_evaluated": 870,
+          "rmse": 5.031188400952228,
+          "mae": 3.7707485827817817,
+          "folds": [
+            {
+              "fold": 1,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 5.569858015997878,
+              "mae": 4.182156097639874,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 45
+            },
+            {
+              "fold": 2,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 4.846983516903819,
+              "mae": 3.750178917969137,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 50
+            },
+            {
+              "fold": 3,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 5.559462730417443,
+              "mae": 4.097580826729205,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 47
+            },
+            {
+              "fold": 4,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 4.255819602713534,
+              "mae": 3.320296794829244,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 49
+            },
+            {
+              "fold": 5,
+              "municipalities": 58,
+              "n_test": 174,
+              "rmse": 4.798759189220342,
+              "mae": 3.5035302767414485,
+              "alpha": 0.03,
+              "l1_ratio": 1.0,
+              "nonzero_features": 52
+            }
+          ],
+          "selection_frequency_outer_folds": {
+            "lag1_andel_20_34": 5,
+            "lag1_andel_hyresratt": 5,
+            "lag1_andel_kultur_service_rstu": 5,
+            "lag1_andel_studerande": 5,
+            "lag1_bas_sjuka_andel_pct": 5,
+            "lag1_bostadsbestandsforandring_pct": 5,
+            "lag1_ekonomisk_standard_gap_pp": 5,
+            "lag1_fardigstallda_bostader_per_1000": 5,
+            "lag1_gymnasium_hogskoleforberedande_pct": 5,
+            "lag1_inflyttare_medelalder": 5,
+            "lag1_inflyttning_per_1000": 5,
+            "lag1_kolada_arbetslosa_18_24_pct": 5,
+            "lag1_kolada_arbetslosa_18_65_pct": 5,
+            "lag1_kolada_flickdominerade_idrottsforeningar_andel": 5,
+            "lag1_kolada_langtidsarbetslosa_pct": 5,
+            "lag1_kvinnors_lonesumma_dagbef_pct": 5,
+            "lag1_log_folkmangd": 5,
+            "lag1_log_fritidshus_per_1000_inv": 5,
+            "lag1_log_regional_centre_distance_km": 5,
+            "lag1_smahusforsaljningar_per_1000_smahus": 5,
+            "lag1_smahuspris_forandring_pct": 5,
+            "lag1_strand_hav_bostader_tatort_per_1000": 5,
+            "lag1_strand_inland_bostader_per_1000": 5,
+            "lag1_sysselsatta_arbetsstalle_rams_bas_historisk_forandring_pct": 5,
+            "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct": 5,
+            "lag1_utflyttning_per_1000": 5,
+            "lag1_valdeltagande_gap_pp": 5,
+            "lag1_andel_flerbostad_70_max": 4,
+            "lag1_andel_hotell_restaurang_i": 4,
+            "lag1_andel_industri_bc": 4,
+            "lag1_gymnasium_yrkesprogram_pct": 4,
+            "lag1_kolada_utbetalt_lok_stod_kr_per_inv": 4,
+            "lag1_kvinnors_mediannettoinkomst_andel_pct": 4,
+            "lag1_log_externa_fa_jobb_per_1000": 4,
+            "lag1_snoskoterandel_alla_fordon_pct": 4,
+            "lag1_sysselsatta_bostad_rams_bas_historisk_forandring_pct": 4,
+            "lag1_sysselsatta_bostad_sasongsvariation_pct": 4,
+            "lag1_valdeltagande_pct": 4,
+            "lag1_fritidshus_per_1000_inv": 4,
+            "lag1_strand_hav_bostader_per_1000": 4,
+            "lag1_andel_bostader_151_plus": 3,
+            "lag1_andel_bostadsratt": 3,
+            "lag1_andel_fa_arbetsplatser_i_egen_kommun": 3,
+            "lag1_strand_hav_bostader_skyddad_natur_per_1000": 3,
+            "lag1_andel_smahus_111_plus": 3,
+            "lag1_bas_pensionarer_andel_pct": 3,
+            "lag1_bebyggd_anlagd_andel_land_pct": 3,
+            "lag1_kolada_lok_foreningar_per_10000": 3,
+            "lag1_regional_centre_distance_km": 3,
+            "lag1_log_smahuspris_medel": 3,
+            "lag1_utanf_arbetkraften_andel_fran_komponenter_pct": 3,
+            "lag1_inkomst_tkr": 2,
+            "lag1_skogsmark_andel_land_pct": 2,
+            "lag1_andel_bostader_141_plus": 2,
+            "lag1_bas_studerande_andel_pct": 2,
+            "lag1_naturpraglad_mark_andel_land_pct": 2,
+            "lag1_arbetsloshet": 2,
+            "lag1_brott_per_100000": 2,
+            "lag1_inkomst_median_tkr": 2,
+            "lag1_tatortsgrad_pct": 2,
+            "lag1_befolkningstillvaxt_pct": 1,
+            "lag1_smahuspris_medel_tkr": 1,
+            "lag1_andel_smahus_151_plus": 1,
+            "lag1_andel_bostader_70_max": 1,
+            "lag1_smahusforsaljningar_per_1000_inv": 1
+          }
+        }
+      }
+    }
+  },
+  "production_changed": false
+}
