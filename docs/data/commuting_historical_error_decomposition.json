@@ -1,0 +1,477 @@
+{
+  "status": "historical_error_decomposition",
+  "source": "historical common-feature panel",
+  "model": "six-variable core RidgeCV; rolling-origin",
+  "production_model_changed": false,
+  "years": {
+    "2015": {
+      "n": 290,
+      "rmse": 5.963436939373573,
+      "mae": 4.4625765419143795,
+      "bias_pred_minus_actual": 1.2989202165697054,
+      "actual_distribution": {
+        "mean": 64.28560047228459,
+        "sd": 17.58349197251219,
+        "p05": 42.95652910337658,
+        "median": 61.16946479011017,
+        "p95": 94.85281117397454
+      },
+      "prediction_distribution": {
+        "mean": 65.58452068885428,
+        "sd": 16.818355795411808,
+        "p05": 45.78575871247038,
+        "median": 62.49477763090583,
+        "p95": 96.27390224155775
+      },
+      "error_distribution": {
+        "mean": 1.2989202165697054,
+        "sd": 5.8202565579939645,
+        "p05": -8.694931073178575,
+        "median": 1.621854925127856,
+        "p95": 10.451815373829039
+      },
+      "error_sd": 5.8202565579939645,
+      "top_10_squared_error_share_pct": 28.69027244146424,
+      "rmse_excluding_largest_5pct_errors": 4.821919710637221,
+      "largest_errors": [
+        {
+          "kommun_kod": "1461",
+          "actual": 83.32424473770313,
+          "pred": 62.5320698309256,
+          "signed_error": -20.792174906777525,
+          "squared_error_share_pct": 4.191877469336532
+        },
+        {
+          "kommun_kod": "2422",
+          "actual": 46.89984101748808,
+          "pred": 66.37796920504572,
+          "signed_error": 19.478128187557637,
+          "squared_error_share_pct": 3.6787745986744715
+        },
+        {
+          "kommun_kod": "2313",
+          "actual": 48.58265027322405,
+          "pred": 67.88004317027827,
+          "signed_error": 19.297392897054223,
+          "squared_error_share_pct": 3.610821487692775
+        },
+        {
+          "kommun_kod": "1495",
+          "actual": 71.18807118807119,
+          "pred": 88.62407645918027,
+          "signed_error": 17.43600527110908,
+          "squared_error_share_pct": 2.94783195982573
+        },
+        {
+          "kommun_kod": "2417",
+          "actual": 37.116858237547895,
+          "pred": 53.637762827986364,
+          "signed_error": 16.52090459043847,
+          "squared_error_share_pct": 2.6465273473866184
+        },
+        {
+          "kommun_kod": "0767",
+          "actual": 79.86501687289089,
+          "pred": 64.01923178317293,
+          "signed_error": -15.845785089717964,
+          "squared_error_share_pct": 2.4346484635261607
+        },
+        {
+          "kommun_kod": "1782",
+          "actual": 68.51764705882353,
+          "pred": 84.18092959217782,
+          "signed_error": 15.663282533354291,
+          "squared_error_share_pct": 2.37888968592182
+        },
+        {
+          "kommun_kod": "1446",
+          "actual": 63.57185097575399,
+          "pred": 79.07143885624697,
+          "signed_error": 15.499587880492982,
+          "squared_error_share_pct": 2.329426659336731
+        },
+        {
+          "kommun_kod": "1783",
+          "actual": 50.40595399188092,
+          "pred": 65.74666189459333,
+          "signed_error": 15.34070790271241,
+          "squared_error_share_pct": 2.281915410629125
+        },
+        {
+          "kommun_kod": "1982",
+          "actual": 74.66506096643083,
+          "pred": 89.69211997540606,
+          "signed_error": 15.027059008975229,
+          "squared_error_share_pct": 2.1895593591342783
+        },
+        {
+          "kommun_kod": "1715",
+          "actual": 44.31452296220979,
+          "pred": 58.552372879754365,
+          "signed_error": 14.237849917544573,
+          "squared_error_share_pct": 1.9656109424874044
+        },
+        {
+          "kommun_kod": "0509",
+          "actual": 54.6218487394958,
+          "pred": 68.67182676623639,
+          "signed_error": 14.04997802674059,
+          "squared_error_share_pct": 1.914079755306166
+        }
+      ],
+      "alpha": 1.0
+    },
+    "2016": {
+      "n": 290,
+      "rmse": 7.54166893074057,
+      "mae": 5.413106260463875,
+      "bias_pred_minus_actual": -1.588228089207882,
+      "actual_distribution": {
+        "mean": 68.71966627085915,
+        "sd": 18.030586449900067,
+        "p05": 45.96082016179932,
+        "median": 64.9359045155604,
+        "p95": 104.20839112480208
+      },
+      "prediction_distribution": {
+        "mean": 67.13143818165126,
+        "sd": 17.67677730317766,
+        "p05": 46.19365679102292,
+        "median": 63.603122570718696,
+        "p95": 99.32645198131978
+      },
+      "error_distribution": {
+        "mean": -1.588228089207882,
+        "sd": 7.372536998723621,
+        "p05": -15.658145315088072,
+        "median": -0.8527425420878529,
+        "p95": 8.358366934502786
+      },
+      "error_sd": 7.372536998723621,
+      "top_10_squared_error_share_pct": 32.23252944978838,
+      "rmse_excluding_largest_5pct_errors": 5.951647910457727,
+      "largest_errors": [
+        {
+          "kommun_kod": "1782",
+          "actual": 107.48175182481752,
+          "pred": 72.39761824062334,
+          "signed_error": -35.08413358419418,
+          "squared_error_share_pct": 7.462572903800899
+        },
+        {
+          "kommun_kod": "0860",
+          "actual": 126.44622441295267,
+          "pred": 97.22940881638675,
+          "signed_error": -29.216815596565922,
+          "squared_error_share_pct": 5.175267874425856
+        },
+        {
+          "kommun_kod": "1737",
+          "actual": 78.88898019557892,
+          "pred": 55.01245224582375,
+          "signed_error": -23.87652794975517,
+          "squared_error_share_pct": 3.4562840058482927
+        },
+        {
+          "kommun_kod": "2021",
+          "actual": 67.98373038930855,
+          "pred": 47.129887020349756,
+          "signed_error": -20.853843368958792,
+          "squared_error_share_pct": 2.6365698991977995
+        },
+        {
+          "kommun_kod": "1460",
+          "actual": 89.33601609657947,
+          "pred": 68.72199125319635,
+          "signed_error": -20.61402484338312,
+          "squared_error_share_pct": 2.576277646146202
+        },
+        {
+          "kommun_kod": "1446",
+          "actual": 88.23954867640677,
+          "pred": 68.44263809466533,
+          "signed_error": -19.796910581741443,
+          "squared_error_share_pct": 2.3760847008166364
+        },
+        {
+          "kommun_kod": "2463",
+          "actual": 76.17391304347827,
+          "pred": 56.60156664129061,
+          "signed_error": -19.572346402187655,
+          "squared_error_share_pct": 2.3224847024845836
+        },
+        {
+          "kommun_kod": "0760",
+          "actual": 86.97938578039546,
+          "pred": 106.04823337745032,
+          "signed_error": 19.068847597054855,
+          "squared_error_share_pct": 2.2045297834656896
+        },
+        {
+          "kommun_kod": "0821",
+          "actual": 131.08552631578948,
+          "pred": 112.28952753436675,
+          "signed_error": -18.795998781422725,
+          "squared_error_share_pct": 2.1418935913959927
+        },
+        {
+          "kommun_kod": "0509",
+          "actual": 76.85098406747892,
+          "pred": 59.23890765519064,
+          "signed_error": -17.612076412288282,
+          "squared_error_share_pct": 1.880564342206423
+        },
+        {
+          "kommun_kod": "2425",
+          "actual": 50.75395365943361,
+          "pred": 68.31065277013779,
+          "signed_error": 17.55669911070418,
+          "squared_error_share_pct": 1.8687568922820197
+        },
+        {
+          "kommun_kod": "1764",
+          "actual": 77.1267792121814,
+          "pred": 59.69339699654045,
+          "signed_error": -17.433382215640954,
+          "squared_error_share_pct": 1.8425970809045567
+        }
+      ],
+      "alpha": 1.7782794100389228
+    },
+    "2017": {
+      "n": 290,
+      "rmse": 9.003449297938408,
+      "mae": 6.3613291138557395,
+      "bias_pred_minus_actual": 4.168453659587389,
+      "actual_distribution": {
+        "mean": 66.44840673162263,
+        "sd": 17.381381349512065,
+        "p05": 45.171710813615995,
+        "median": 63.688488310006974,
+        "p95": 97.16216051638047
+      },
+      "prediction_distribution": {
+        "mean": 70.61686039121001,
+        "sd": 17.643961693976262,
+        "p05": 49.39111291916928,
+        "median": 66.87893270693515,
+        "p95": 105.30663824992355
+      },
+      "error_distribution": {
+        "mean": 4.168453659587389,
+        "sd": 7.980356718118568,
+        "p05": -6.298376257310629,
+        "median": 2.9709523789469365,
+        "p95": 18.109002543141493
+      },
+      "error_sd": 7.980356718118568,
+      "top_10_squared_error_share_pct": 35.9273515750464,
+      "rmse_excluding_largest_5pct_errors": 6.952136677818786,
+      "largest_errors": [
+        {
+          "kommun_kod": "1860",
+          "actual": 69.46659578238526,
+          "pred": 116.53727199972496,
+          "signed_error": 47.07067621733971,
+          "squared_error_share_pct": 9.42507968143488
+        },
+        {
+          "kommun_kod": "1864",
+          "actual": 95.50789154188588,
+          "pred": 134.77894771257812,
+          "signed_error": 39.27105617069223,
+          "squared_error_share_pct": 6.560384874915743
+        },
+        {
+          "kommun_kod": "1737",
+          "actual": 48.44407064760303,
+          "pred": 77.56727384042024,
+          "signed_error": 29.123203192817215,
+          "squared_error_share_pct": 3.6079659997879183
+        },
+        {
+          "kommun_kod": "1315",
+          "actual": 77.52502274795269,
+          "pred": 103.96551321322323,
+          "signed_error": 26.440490465270543,
+          "squared_error_share_pct": 2.9738781468957325
+        },
+        {
+          "kommun_kod": "1471",
+          "actual": 54.44796858480592,
+          "pred": 80.14643414883955,
+          "signed_error": 25.698465564033626,
+          "squared_error_share_pct": 2.809302728998122
+        },
+        {
+          "kommun_kod": "1782",
+          "actual": 81.70268014467217,
+          "pred": 105.4693138784967,
+          "signed_error": 23.766633733824534,
+          "squared_error_share_pct": 2.402810396194682
+        },
+        {
+          "kommun_kod": "1863",
+          "actual": 79.19538613025742,
+          "pred": 101.89103954773239,
+          "signed_error": 22.695653417474972,
+          "squared_error_share_pct": 2.191137023747284
+        },
+        {
+          "kommun_kod": "1962",
+          "actual": 97.135955831608,
+          "pred": 119.23304061790567,
+          "signed_error": 22.09708478629767,
+          "squared_error_share_pct": 2.0770842843685835
+        },
+        {
+          "kommun_kod": "1495",
+          "actual": 61.614392612641296,
+          "pred": 83.4646657124448,
+          "signed_error": 21.850273099803502,
+          "squared_error_share_pct": 2.0309437472615244
+        },
+        {
+          "kommun_kod": "1882",
+          "actual": 55.92841163310962,
+          "pred": 76.77566003879804,
+          "signed_error": 20.84724840568842,
+          "squared_error_share_pct": 1.8487646914419305
+        },
+        {
+          "kommun_kod": "1766",
+          "actual": 55.58472732728227,
+          "pred": 75.39710513399844,
+          "signed_error": 19.812377806716164,
+          "squared_error_share_pct": 1.6697727057052751
+        },
+        {
+          "kommun_kod": "1465",
+          "actual": 78.05610282390468,
+          "pred": 97.67985199035952,
+          "signed_error": 19.623749166454843,
+          "squared_error_share_pct": 1.638129094049439
+        }
+      ],
+      "alpha": 1.0
+    },
+    "2018": {
+      "n": 290,
+      "rmse": 10.073352936085438,
+      "mae": 7.499688682458859,
+      "bias_pred_minus_actual": 6.2943556126702225,
+      "actual_distribution": {
+        "mean": 62.45719729989489,
+        "sd": 16.82246973211718,
+        "p05": 43.39558945069334,
+        "median": 59.54720222737457,
+        "p95": 93.25292155115154
+      },
+      "prediction_distribution": {
+        "mean": 68.75155291256512,
+        "sd": 16.896517413134216,
+        "p05": 48.31403762593252,
+        "median": 65.4695442849272,
+        "p95": 99.35042174875116
+      },
+      "error_distribution": {
+        "mean": 6.2943556126702225,
+        "sd": 7.86470131640026,
+        "p05": -4.271683166294749,
+        "median": 5.4125539561224905,
+        "p95": 21.51880712192014
+      },
+      "error_sd": 7.86470131640026,
+      "top_10_squared_error_share_pct": 30.12183639523409,
+      "rmse_excluding_largest_5pct_errors": 8.08807491691313,
+      "largest_errors": [
+        {
+          "kommun_kod": "0821",
+          "actual": 90.74499507712504,
+          "pred": 131.4481833100309,
+          "signed_error": 40.70318823290587,
+          "squared_error_share_pct": 5.630030633929489
+        },
+        {
+          "kommun_kod": "0860",
+          "actual": 78.13370473537604,
+          "pred": 117.55580523920766,
+          "signed_error": 39.422100503831615,
+          "squared_error_share_pct": 5.281209828848841
+        },
+        {
+          "kommun_kod": "2303",
+          "actual": 48.84896125772038,
+          "pred": 81.29542501135688,
+          "signed_error": 32.4464637536365,
+          "squared_error_share_pct": 3.577574148589309
+        },
+        {
+          "kommun_kod": "0761",
+          "actual": 65.71753986332574,
+          "pred": 95.29318666665702,
+          "signed_error": 29.57564680333128,
+          "squared_error_share_pct": 2.972503698349439
+        },
+        {
+          "kommun_kod": "1760",
+          "actual": 65.8446362515413,
+          "pred": 92.91570155792742,
+          "signed_error": 27.071065306386117,
+          "squared_error_share_pct": 2.4903741192388527
+        },
+        {
+          "kommun_kod": "2260",
+          "actual": 50.15407501859526,
+          "pred": 76.44157138501023,
+          "signed_error": 26.287496366414977,
+          "squared_error_share_pct": 2.348293373434828
+        },
+        {
+          "kommun_kod": "2422",
+          "actual": 48.77081681205392,
+          "pred": 73.31255953789535,
+          "signed_error": 24.54174272584143,
+          "squared_error_share_pct": 2.046749529950418
+        },
+        {
+          "kommun_kod": "2463",
+          "actual": 57.82192266761263,
+          "pred": 81.69604602626944,
+          "signed_error": 23.87412335865681,
+          "squared_error_share_pct": 1.936906998506152
+        },
+        {
+          "kommun_kod": "1864",
+          "actual": 81.09781262897235,
+          "pred": 104.8619862775183,
+          "signed_error": 23.76417364854595,
+          "squared_error_share_pct": 1.9191076454438947
+        },
+        {
+          "kommun_kod": "2282",
+          "actual": 53.574336427291975,
+          "pred": 77.3383786523473,
+          "signed_error": 23.764042225055327,
+          "squared_error_share_pct": 1.9190864189428638
+        },
+        {
+          "kommun_kod": "2313",
+          "actual": 44.689395881397935,
+          "pred": 68.07095975794046,
+          "signed_error": 23.381563876542522,
+          "squared_error_share_pct": 1.8578087861044823
+        },
+        {
+          "kommun_kod": "0428",
+          "actual": 70.16199649737302,
+          "pred": 93.51630888899543,
+          "signed_error": 23.3543123916224,
+          "squared_error_share_pct": 1.8534807142444136
+        }
+      ],
+      "alpha": 17.78279410038923
+    }
+  },
+  "limitations": "Retrospective diagnostic; cannot establish causal source of temporal deterioration."
+}
