@@ -1,0 +1,32 @@
+{
+  "status": "method_break_guard_for_research",
+  "summary": {
+    "RAMS_2004_2018": {
+      "measure_observations": 8120,
+      "blocked": 580,
+      "eligible_for_candidate": 7540
+    },
+    "RAMS_2019_2021": {
+      "measure_observations": 1160,
+      "blocked": 0,
+      "eligible_for_candidate": 1160
+    },
+    "BAS_2020_2024": {
+      "measure_observations": 2320,
+      "blocked": 580,
+      "eligible_for_candidate": 1740
+    }
+  },
+  "explicitly_not_calculated": [
+    "RAMS transition 2018_to_2019",
+    "RAMS_to_BAS_cross_source_growth"
+  ],
+  "potentially_eligible_not_final": "All unflagged within-regime changes still require source availability and regression fair-window tests.",
+  "limitations": [
+    "Flagging the 2011 and 2024 calendar changes is conservative; it does not quantify or eliminate method effects.",
+    "Only candidate historical changes are produced; lagging for forecast origin must be performed in a separate as-of audited step.",
+    "2019-2020 source transition is avoided: no growth is computed by crossing RAMS and BAS regimes.",
+    "Constant BAS level calibration does not change within-RAMS percentage growth; raw values are displayed intentionally."
+  ],
+  "production_changed": false
+}
