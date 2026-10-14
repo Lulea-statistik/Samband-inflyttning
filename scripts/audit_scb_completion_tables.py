@@ -33,7 +33,7 @@ def main():
         import re
         year_col={}
         for col in value_cols:
-            matched=re.search(r"(?:19|20)\\d{2}$",str(col))
+            matched=re.search(r"(?:19|20)\d{2}$",str(col))
             if not matched:raise RuntimeError("Unrecognized value-column year: "+str(col))
             year_col[col]=int(matched.group())
         if len(set(year_col.values()))!=len(value_cols):
