@@ -1,0 +1,205 @@
+{
+  "status": "blind_civic_unemployment_geographic_stress",
+  "year": 2024,
+  "n_municipalities": 290,
+  "design": "Same five geographic splits; held municipality excluded from training for both 2022 and 2023",
+  "structural_controls": [
+    "lag1_log_folkmangd",
+    "lag1_tatortsgrad_pct",
+    "lag1_regional_centre_distance_km"
+  ],
+  "demographic_blind": true,
+  "production_model_changed": false,
+  "folds": [
+    {
+      "fold": 0,
+      "n_test": 58,
+      "selected_features": 21,
+      "candidate_coefficients": {
+        "reference": {},
+        "civic_support": {
+          "lag1_kolada_utbetalt_lok_stod_kr_per_inv": -4.2234370267508385
+        },
+        "long_term_unemployment": {
+          "lag1_kolada_langtidsarbetslosa_pct": -4.049071538093388
+        },
+        "both": {
+          "lag1_kolada_utbetalt_lok_stod_kr_per_inv": -4.145267678098505,
+          "lag1_kolada_langtidsarbetslosa_pct": -3.952329117816917
+        }
+      }
+    },
+    {
+      "fold": 1,
+      "n_test": 52,
+      "selected_features": 21,
+      "candidate_coefficients": {
+        "reference": {},
+        "civic_support": {
+          "lag1_kolada_utbetalt_lok_stod_kr_per_inv": -4.399338622158078
+        },
+        "long_term_unemployment": {
+          "lag1_kolada_langtidsarbetslosa_pct": -3.740267965518946
+        },
+        "both": {
+          "lag1_kolada_utbetalt_lok_stod_kr_per_inv": -4.344955538189064,
+          "lag1_kolada_langtidsarbetslosa_pct": -3.668655382589403
+        }
+      }
+    },
+    {
+      "fold": 2,
+      "n_test": 65,
+      "selected_features": 21,
+      "candidate_coefficients": {
+        "reference": {},
+        "civic_support": {
+          "lag1_kolada_utbetalt_lok_stod_kr_per_inv": -3.3817346774148773
+        },
+        "long_term_unemployment": {
+          "lag1_kolada_langtidsarbetslosa_pct": -3.1887651107730153
+        },
+        "both": {
+          "lag1_kolada_utbetalt_lok_stod_kr_per_inv": -3.2668128070250546,
+          "lag1_kolada_langtidsarbetslosa_pct": -2.6914550986953936
+        }
+      }
+    },
+    {
+      "fold": 3,
+      "n_test": 64,
+      "selected_features": 21,
+      "candidate_coefficients": {
+        "reference": {},
+        "civic_support": {
+          "lag1_kolada_utbetalt_lok_stod_kr_per_inv": -3.907444055369365
+        },
+        "long_term_unemployment": {
+          "lag1_kolada_langtidsarbetslosa_pct": -2.176960933529467
+        },
+        "both": {
+          "lag1_kolada_utbetalt_lok_stod_kr_per_inv": -3.8609909099622226,
+          "lag1_kolada_langtidsarbetslosa_pct": -2.0860778522477914
+        }
+      }
+    },
+    {
+      "fold": 4,
+      "n_test": 51,
+      "selected_features": 21,
+      "candidate_coefficients": {
+        "reference": {},
+        "civic_support": {
+          "lag1_kolada_utbetalt_lok_stod_kr_per_inv": -2.476145365382179
+        },
+        "long_term_unemployment": {
+          "lag1_kolada_langtidsarbetslosa_pct": -2.9812061531569016
+        },
+        "both": {
+          "lag1_kolada_utbetalt_lok_stod_kr_per_inv": -2.5971411967547353,
+          "lag1_kolada_langtidsarbetslosa_pct": -3.102737118968654
+        }
+      }
+    }
+  ],
+  "metrics": {
+    "reference": {
+      "r2": 0.548943587142769,
+      "rmse": 10.165163152553387,
+      "mae": 7.268733389782715,
+      "median_abs_error": 5.6022865865417515,
+      "p90_abs_error": 15.718528578765454,
+      "p95_abs_error": 20.702435387307528,
+      "p90_p10_abs_error_gap": 14.469662785594904,
+      "best_decile_mae": 0.515949676270922,
+      "worst_decile_mae": 23.604795455661165,
+      "decile_mae_gap": 23.088845779390244,
+      "max_abs_error": 59.96030602988691,
+      "n": 290
+    },
+    "civic_support": {
+      "r2": 0.5775218715548232,
+      "rmse": 9.837869061253066,
+      "mae": 7.0748877455132595,
+      "median_abs_error": 5.40574949162141,
+      "p90_abs_error": 15.590243363727975,
+      "p95_abs_error": 19.520591760569467,
+      "p90_p10_abs_error_gap": 14.653387627010376,
+      "best_decile_mae": 0.5440911465334375,
+      "worst_decile_mae": 22.768504842589856,
+      "decile_mae_gap": 22.22441369605642,
+      "max_abs_error": 58.89949694281036,
+      "n": 290
+    },
+    "long_term_unemployment": {
+      "r2": 0.5695745871951372,
+      "rmse": 9.929968595133982,
+      "mae": 7.0415545477130435,
+      "median_abs_error": 5.279147387641238,
+      "p90_abs_error": 15.799689207202833,
+      "p95_abs_error": 19.423074245923825,
+      "p90_p10_abs_error_gap": 14.744237466355605,
+      "best_decile_mae": 0.5724189182144227,
+      "worst_decile_mae": 22.982687792778687,
+      "decile_mae_gap": 22.410268874564263,
+      "max_abs_error": 57.978505508755745,
+      "n": 290
+    },
+    "both": {
+      "r2": 0.5950599387657546,
+      "rmse": 9.631508112086188,
+      "mae": 6.860126696825025,
+      "median_abs_error": 5.01840305906579,
+      "p90_abs_error": 14.682980329571343,
+      "p95_abs_error": 19.226968236382838,
+      "p90_p10_abs_error_gap": 13.851728211543216,
+      "best_decile_mae": 0.5000520989669429,
+      "worst_decile_mae": 22.181026156746835,
+      "decile_mae_gap": 21.680974057779892,
+      "max_abs_error": 57.18309185112642,
+      "n": 290
+    }
+  },
+  "lulea": [
+    {
+      "kommun_kod": "2580",
+      "actual": 51.74210559357147,
+      "fold": 1,
+      "reference": 46.011948759118354,
+      "civic_support": 43.59738621559022,
+      "long_term_unemployment": 49.04225436403305,
+      "both": 46.599520421935665
+    }
+  ],
+  "bootstrap": {
+    "civic_support": {
+      "rmse_gain": 0.3272940913003204,
+      "exploratory_ci95": [
+        0.09193066713557138,
+        0.5345556283789731
+      ],
+      "municipalities_improved": 159
+    },
+    "long_term_unemployment": {
+      "rmse_gain": 0.23519455741940476,
+      "exploratory_ci95": [
+        0.0626858379643628,
+        0.39607153893174474
+      ],
+      "municipalities_improved": 167
+    },
+    "both": {
+      "rmse_gain": 0.5336550404671989,
+      "exploratory_ci95": [
+        0.23662747307074694,
+        0.8272508860327963
+      ],
+      "municipalities_improved": 163
+    }
+  },
+  "limitations": [
+    "Repeatedly inspected 2024 and reused geographic folds, not independent confirmation.",
+    "Population/urbanity/distance are included, but cannot establish whether civic support is a proxy rather than a cause.",
+    "Blind BAS subset not the full published historical structural model."
+  ]
+}
