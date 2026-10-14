@@ -16,6 +16,7 @@ BLOCK=("inflytt","utflytt","befolkningstillvaxt","inflyttare_medelalder","andel_
 CONTROLS=["lag1_log_folkmangd","lag1_tatortsgrad_pct","lag1_regional_centre_distance_km"]
 CAPS=[6,10,14]
 def choose(train,features,target,k):
+    features=list(dict.fromkeys(CONTROLS+features))
     z=StandardScaler().fit_transform(train[features])
     cv=list(GroupKFold(n_splits=3).split(z,train[target],groups=train.kommun_kod))
     m=ElasticNetCV(l1_ratio=[.5,.8,1.0],alphas=40,cv=cv,max_iter=10000,random_state=20261014,n_jobs=1)
@@ -24,6 +25,7 @@ def choose(train,features,target,k):
     # Remove near-redundant members inside training only. No held-out target information is used.
     corr=pd.DataFrame(z,columns=features).corr().abs()
     selected=list(CONTROLS)
+    if len(selected)>k: raise RuntimeError("Cap below mandatory controls")
     for i in order:
         c=features[i]
         if c in selected or abs(m.coef_[i])<1e-7:continue
