@@ -1,0 +1,92 @@
+{
+  "status": "lag1_structural_coverage_only_asof_blocked",
+  "target_year_min": 2006,
+  "target_year_max": 2024,
+  "rows": 9860,
+  "overlapping_choices": 580,
+  "preferred_regime_counts": {
+    "RAMS_2004_2018": 7540,
+    "RAMS_2019_2021": 580,
+    "BAS_2020_2024": 1740
+  },
+  "target_year_coverage": {
+    "2006": {
+      "residence": 290,
+      "workplace": 290
+    },
+    "2007": {
+      "residence": 290,
+      "workplace": 290
+    },
+    "2008": {
+      "residence": 290,
+      "workplace": 290
+    },
+    "2009": {
+      "residence": 290,
+      "workplace": 290
+    },
+    "2010": {
+      "residence": 290,
+      "workplace": 290
+    },
+    "2011": {
+      "residence": 290,
+      "workplace": 290
+    },
+    "2013": {
+      "residence": 290,
+      "workplace": 290
+    },
+    "2014": {
+      "residence": 290,
+      "workplace": 290
+    },
+    "2015": {
+      "residence": 290,
+      "workplace": 290
+    },
+    "2016": {
+      "residence": 290,
+      "workplace": 290
+    },
+    "2017": {
+      "residence": 290,
+      "workplace": 290
+    },
+    "2018": {
+      "residence": 290,
+      "workplace": 290
+    },
+    "2019": {
+      "residence": 290,
+      "workplace": 290
+    },
+    "2021": {
+      "residence": 290,
+      "workplace": 290
+    },
+    "2022": {
+      "residence": 290,
+      "workplace": 290
+    },
+    "2023": {
+      "residence": 290,
+      "workplace": 290
+    },
+    "2024": {
+      "residence": 290,
+      "workplace": 290
+    }
+  },
+  "asof_approved_rows": 0,
+  "production_changed": false,
+  "requirements": [
+    "Verify annual source publication dates, edition/vintage and release month for each RAMS/BAS regime.",
+    "For target year T, a lag1 employment-growth predictor uses observations T-1 and T-2; establish it was published by the chosen forecast origin, not merely by end of T.",
+    "If the prediction is issued before publication, use a longer lag or a genuinely available data vintage; never backfill with hindsight.",
+    "Treat RAMS/BAS overlapping candidate sources as distinct sensitivity variants, not an automatic approved blend.",
+    "Compare predictive model runs on precisely common train/test municipalities and target years with no use of a repeatedly inspected holdout as a selection criterion.",
+    "Resolve earlier RAMS 2011/2019 break uncertainty separately from BAS calibration."
+  ]
+}
