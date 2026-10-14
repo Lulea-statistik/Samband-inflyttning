@@ -12,7 +12,12 @@ def main():
     prior=json.loads((D/"fair_variable_inventory.json").read_text(encoding="utf-8"))
     data=pd.read_csv(D/"panel.csv",dtype={"kommun_kod":str},low_memory=False)
     years=[2022,2023,2024]
-    subset=data.loc[data.year.isin(years)&data.kommun_kod.str.fullmatch(r"\d{4}",na=False)].copy()
+    valid_codes=set(data.loc[(data.year.eq(2024)) & data["lag1_log_folkmangd"].notna(), "kommun_kod"])
+    if len(valid_codes)!=290:
+        raise RuntimeError(f"Expected 290 valid municipalities, got {len(valid_codes)}")
+    subset=data.loc[data.year.isin(years)&data.kommun_kod.isin(valid_codes)].copy()
+    if len(subset)!=870 or subset.kommun_kod.nunique()!=290:
+        raise RuntimeError("Common 290-municipality 2022-2024 sample unavailable")
     base={v["feature"] for v in prior["variables"]}
     extra={v["feature"] for v in reconciled["previously_researched_outside_pool"]+reconciled["other_untracked_lagged_fields"]}
     all_candidates=sorted(base|extra)
