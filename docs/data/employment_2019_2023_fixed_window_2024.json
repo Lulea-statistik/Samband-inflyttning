@@ -1,0 +1,68 @@
+{
+  "status": "exploratory_2019_2023_train_2024_test",
+  "n_train": 1450,
+  "n_test": 290,
+  "method_gap_year": 2020,
+  "missingness_handling": "training-median fill with explicit gap indicator, never an observed year-on-year growth",
+  "models": {
+    "baseline": [
+      "lag1_log_folkmangd",
+      "lag1_tatortsgrad_pct"
+    ],
+    "residence": [
+      "lag1_log_folkmangd",
+      "lag1_tatortsgrad_pct",
+      "residence",
+      "residence_missing"
+    ],
+    "workplace": [
+      "lag1_log_folkmangd",
+      "lag1_tatortsgrad_pct",
+      "workplace",
+      "workplace_missing"
+    ],
+    "both": [
+      "lag1_log_folkmangd",
+      "lag1_tatortsgrad_pct",
+      "residence",
+      "residence_missing",
+      "workplace",
+      "workplace_missing"
+    ]
+  },
+  "ridge_alpha": 10.0,
+  "results": {
+    "baseline": {
+      "rmse": 14.255337594510937,
+      "mae": 11.108175207256664,
+      "lulea_actual": 51.74210559357147,
+      "lulea_pred": 62.771504985637485
+    },
+    "residence": {
+      "rmse": 13.88878039863513,
+      "mae": 10.693341253292925,
+      "lulea_actual": 51.74210559357147,
+      "lulea_pred": 63.07282915854553
+    },
+    "workplace": {
+      "rmse": 13.985813610994065,
+      "mae": 10.825378519658972,
+      "lulea_actual": 51.74210559357147,
+      "lulea_pred": 63.33297593333275
+    },
+    "both": {
+      "rmse": 13.860095321103383,
+      "mae": 10.695465632337065,
+      "lulea_actual": 51.74210559357147,
+      "lulea_pred": 63.335505005108935
+    }
+  },
+  "production_changed": false,
+  "limitations": [
+    "2024 is a repeatedly inspected outcome, not independent confirmation.",
+    "The 2020 method break remains unresolved; median imputation is only a transparent statistical device.",
+    "Predictor vintages are retrospective, not verified as available in real time.",
+    "This minimal structural baseline is not the complete existing production model.",
+    "The gap indicator is collinear with year 2020 and may capture other time effects."
+  ]
+}
