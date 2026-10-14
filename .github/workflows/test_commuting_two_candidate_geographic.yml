@@ -1,0 +1,37 @@
+name: Geographic stress employment and housing challenger
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/test_commuting_two_candidate_geographic.py"
+      - ".github/workflows/test_commuting_two_candidate_geographic.yml"
+concurrency:
+  group: commuting-two-candidate-geographic
+  cancel-in-progress: true
+permissions:
+  contents: write
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Geographic holdout and job coefficient diagnostics
+        run: python scripts/test_commuting_two_candidate_geographic.py
+      - name: Persist report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/commuting_two_candidate_geographic_stress.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Update geographic stress of thematic commuter challenger"
+          git pull --rebase origin main
+          git push origin HEAD:main
