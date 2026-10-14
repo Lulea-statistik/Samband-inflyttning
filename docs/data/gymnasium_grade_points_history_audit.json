@@ -1,0 +1,128 @@
+{
+  "source": "Kolada",
+  "measures": {
+    "N17500": {
+      "label": "Average grade points, diploma or study certificate 2500 points (old definition)",
+      "coverage": {
+        "2014": {
+          "n_municipalities": 0,
+          "min": null,
+          "max": null
+        },
+        "2015": {
+          "n_municipalities": 0,
+          "min": null,
+          "max": null
+        },
+        "2016": {
+          "n_municipalities": 0,
+          "min": null,
+          "max": null
+        },
+        "2017": {
+          "n_municipalities": 0,
+          "min": null,
+          "max": null
+        },
+        "2018": {
+          "n_municipalities": 0,
+          "min": null,
+          "max": null
+        },
+        "2019": {
+          "n_municipalities": 0,
+          "min": null,
+          "max": null
+        },
+        "2020": {
+          "n_municipalities": 0,
+          "min": null,
+          "max": null
+        },
+        "2021": {
+          "n_municipalities": 0,
+          "min": null,
+          "max": null
+        },
+        "2022": {
+          "n_municipalities": 0,
+          "min": null,
+          "max": null
+        },
+        "2023": {
+          "n_municipalities": 0,
+          "min": null,
+          "max": null
+        },
+        "2024": {
+          "n_municipalities": 0,
+          "min": null,
+          "max": null
+        }
+      }
+    },
+    "N17701": {
+      "label": "Average grade points, diploma only (new definition)",
+      "coverage": {
+        "2014": {
+          "n_municipalities": 290,
+          "min": 13.37163636,
+          "max": 15.8942236
+        },
+        "2015": {
+          "n_municipalities": 290,
+          "min": 12.74125,
+          "max": 16.25390052
+        },
+        "2016": {
+          "n_municipalities": 290,
+          "min": 12.542,
+          "max": 16.06705202
+        },
+        "2017": {
+          "n_municipalities": 290,
+          "min": 13.052,
+          "max": 16.24893557
+        },
+        "2018": {
+          "n_municipalities": 290,
+          "min": 13.52025641,
+          "max": 16.50088472
+        },
+        "2019": {
+          "n_municipalities": 290,
+          "min": 13.39508772,
+          "max": 16.32741047
+        },
+        "2020": {
+          "n_municipalities": 290,
+          "min": 13.5354,
+          "max": 16.45557457
+        },
+        "2021": {
+          "n_municipalities": 290,
+          "min": 13.15590909,
+          "max": 16.56599562
+        },
+        "2022": {
+          "n_municipalities": 290,
+          "min": 13.62945455,
+          "max": 16.71213675
+        },
+        "2023": {
+          "n_municipalities": 290,
+          "min": 13.27526316,
+          "max": 16.50146288
+        },
+        "2024": {
+          "n_municipalities": 290,
+          "min": 13.49875,
+          "max": 16.70227823
+        }
+      }
+    }
+  },
+  "definition_warning": "Different populations around 2022; cannot splice N17500 and N17701 as continuous identical measure.",
+  "research_only": true,
+  "recommendation": "Find uninterrupted comparable years and enforce five observed years for a rolling forecast. Distinguish home municipality from school municipality and grade points from admission merit."
+}
