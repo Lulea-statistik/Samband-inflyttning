@@ -1,0 +1,96 @@
+{
+  "status": "last_historical_calibration_experiment",
+  "method": "Previous-year rolling-origin OOS bias correction",
+  "models": [
+    "baseline",
+    "previous_oos_bias_correction"
+  ],
+  "production_model_changed": false,
+  "results": {
+    "2015": {
+      "n_test": 290,
+      "prior_forecast_year": 2014,
+      "prior_year_out_of_sample_bias": -1.5467218453878788,
+      "baseline": {
+        "rmse": 5.963436939373566,
+        "mae": 4.46257654191437,
+        "bias_pred_minus_actual": 1.298920216569662
+      },
+      "previous_oos_bias_correction": {
+        "rmse": 6.478662296003224,
+        "mae": 5.039611717893878,
+        "bias_pred_minus_actual": 2.8456420619575407
+      },
+      "lulea": {
+        "actual": 48.7987593313006,
+        "baseline": 52.966304095630925,
+        "calibrated": 54.5130259410188
+      }
+    },
+    "2016": {
+      "n_test": 290,
+      "prior_forecast_year": 2015,
+      "prior_year_out_of_sample_bias": 1.298920216569662,
+      "baseline": {
+        "rmse": 7.541668930740578,
+        "mae": 5.413106260463888,
+        "bias_pred_minus_actual": -1.5882280892078409
+      },
+      "previous_oos_bias_correction": {
+        "rmse": 7.917697085460067,
+        "mae": 5.70469935574865,
+        "bias_pred_minus_actual": -2.8871483057775005
+      },
+      "lulea": {
+        "actual": 52.63774912075029,
+        "baseline": 52.33237483356415,
+        "calibrated": 51.03345461699449
+      }
+    },
+    "2017": {
+      "n_test": 290,
+      "prior_forecast_year": 2016,
+      "prior_year_out_of_sample_bias": -1.5882280892078409,
+      "baseline": {
+        "rmse": 9.003449297938445,
+        "mae": 6.361329113855756,
+        "bias_pred_minus_actual": 4.168453659587411
+      },
+      "previous_oos_bias_correction": {
+        "rmse": 9.839993806163346,
+        "mae": 7.168165247449326,
+        "bias_pred_minus_actual": 5.756681748795255
+      },
+      "lulea": {
+        "actual": 54.04672776558668,
+        "baseline": 54.33800022354368,
+        "calibrated": 55.92622831275152
+      }
+    },
+    "2018": {
+      "n_test": 290,
+      "prior_forecast_year": 2017,
+      "prior_year_out_of_sample_bias": 4.168453659587411,
+      "baseline": {
+        "rmse": 10.073352936085513,
+        "mae": 7.499688682458884,
+        "bias_pred_minus_actual": 6.294355612670278
+      },
+      "previous_oos_bias_correction": {
+        "rmse": 8.146961759472688,
+        "mae": 5.853962708591833,
+        "bias_pred_minus_actual": 2.1259019530828644
+      },
+      "lulea": {
+        "actual": 52.39490183986021,
+        "baseline": 54.549704582968474,
+        "calibrated": 50.38125092338106
+      }
+    }
+  },
+  "limitations": [
+    "Six common historical features only; not a prospective test of the modern model.",
+    "Calibration is deliberately fixed at 100% previous-year OOS bias, not tuned on test outcomes.",
+    "Historical years already inspected; results exploratory."
+  ]
+}
