@@ -1,0 +1,912 @@
+{
+  "status": "fixed_five_year_rolling_gymnasium",
+  "train_window": 5,
+  "cohort_mapping": "Kolada graduation source year E is paired with municipality migration outcome in E+lag",
+  "warning": "These are municipal aggregate associations, NOT migrations of identified graduates.",
+  "kpis": {
+    "exam3": "N17445",
+    "exam4": "N17461"
+  },
+  "results": {
+    "exam3_lag1": {
+      "first_possible_forecast": 2020,
+      "years": {
+        "2020": {
+          "status": "evaluated",
+          "train_years": [
+            2015,
+            2019
+          ],
+          "n_train": 1450,
+          "n_test": 290,
+          "targets": {
+            "inflyttning_18_23_per_1000": {
+              "five_year_mean": {
+                "rmse": 21.481243412819826,
+                "mae": 16.224588069428933,
+                "lulea_actual": 217.5379426644182,
+                "lulea_prediction": 194.90542927537763
+              },
+              "structural": {
+                "rmse": 40.11346555609243,
+                "mae": 31.461313758490007,
+                "lulea_prediction": 156.27507976380465,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 39.979238498894404,
+                "mae": 31.200861970052944,
+                "lulea_prediction": 152.9882590021786,
+                "coefficient": -5.563848108302478
+              }
+            },
+            "inflyttning_24_34_per_1000": {
+              "five_year_mean": {
+                "rmse": 23.09181339567787,
+                "mae": 16.940168063942703,
+                "lulea_actual": 107.42781936332976,
+                "lulea_prediction": 109.9555440061149
+              },
+              "structural": {
+                "rmse": 43.81928302299722,
+                "mae": 35.5722295962171,
+                "lulea_prediction": 153.92854113715197,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 43.98073015075608,
+                "mae": 35.72531019466355,
+                "lulea_prediction": 153.49118939626166,
+                "coefficient": -0.8065343594933823
+              }
+            }
+          }
+        },
+        "2021": {
+          "status": "evaluated",
+          "train_years": [
+            2016,
+            2020
+          ],
+          "n_train": 1450,
+          "n_test": 290,
+          "targets": {
+            "inflyttning_18_23_per_1000": {
+              "five_year_mean": {
+                "rmse": 22.862842592024194,
+                "mae": 16.086977500792216,
+                "lulea_actual": 209.29526123936816,
+                "lulea_prediction": 202.46056782275824
+              },
+              "structural": {
+                "rmse": 40.22886026074205,
+                "mae": 31.583357256293375,
+                "lulea_prediction": 157.35184339488012,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 39.67015861041224,
+                "mae": 31.177301817417888,
+                "lulea_prediction": 154.68479698968727,
+                "coefficient": -5.9440760453513555
+              }
+            },
+            "inflyttning_24_34_per_1000": {
+              "five_year_mean": {
+                "rmse": 21.36972963471746,
+                "mae": 15.033381165459964,
+                "lulea_actual": 105.09370098241558,
+                "lulea_prediction": 110.06309515590655
+              },
+              "structural": {
+                "rmse": 43.794947574613154,
+                "mae": 35.112753494250335,
+                "lulea_prediction": 152.1409527026441,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 43.478976293730284,
+                "mae": 34.89886482562021,
+                "lulea_prediction": 152.84118424300107,
+                "coefficient": 1.5908290342826583
+              }
+            }
+          }
+        },
+        "2022": {
+          "status": "evaluated",
+          "train_years": [
+            2017,
+            2021
+          ],
+          "n_train": 1450,
+          "n_test": 290,
+          "targets": {
+            "inflyttning_18_23_per_1000": {
+              "five_year_mean": {
+                "rmse": 21.474615116597604,
+                "mae": 15.873547280102176,
+                "lulea_actual": 190.1728844404004,
+                "lulea_prediction": 202.954696810313
+              },
+              "structural": {
+                "rmse": 39.470898131237284,
+                "mae": 31.03718548207397,
+                "lulea_prediction": 157.2985115370988,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 39.31482330558743,
+                "mae": 30.9623419084986,
+                "lulea_prediction": 155.0012764454753,
+                "coefficient": -5.780607139248732
+              }
+            },
+            "inflyttning_24_34_per_1000": {
+              "five_year_mean": {
+                "rmse": 16.33117433897968,
+                "mae": 12.178914209232971,
+                "lulea_actual": 110.71693754640708,
+                "lulea_prediction": 108.19850057767721
+              },
+              "structural": {
+                "rmse": 39.67621575178311,
+                "mae": 31.28454150057595,
+                "lulea_prediction": 151.70782597435604,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 39.15829274272254,
+                "mae": 31.194344251667218,
+                "lulea_prediction": 153.30308799937282,
+                "coefficient": 4.1067138040971045
+              }
+            }
+          }
+        },
+        "2023": {
+          "status": "evaluated",
+          "train_years": [
+            2018,
+            2022
+          ],
+          "n_train": 1450,
+          "n_test": 290,
+          "targets": {
+            "inflyttning_18_23_per_1000": {
+              "five_year_mean": {
+                "rmse": 19.968450276368877,
+                "mae": 15.098408901648368,
+                "lulea_actual": 179.98163452708908,
+                "lulea_prediction": 200.63545335372325
+              },
+              "structural": {
+                "rmse": 37.542993018487415,
+                "mae": 29.691717448126084,
+                "lulea_prediction": 156.8780874826665,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 37.31269185546395,
+                "mae": 29.389354436025535,
+                "lulea_prediction": 154.68176291668078,
+                "coefficient": -4.783553616531854
+              }
+            },
+            "inflyttning_24_34_per_1000": {
+              "five_year_mean": {
+                "rmse": 19.359223920675174,
+                "mae": 14.974111774838335,
+                "lulea_actual": 108.4436405492066,
+                "lulea_prediction": 106.89627052369401
+              },
+              "structural": {
+                "rmse": 39.33651211753252,
+                "mae": 31.25288904436503,
+                "lulea_prediction": 150.8573777214896,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 38.81160469810342,
+                "mae": 31.081187232804098,
+                "lulea_prediction": 153.62888143367627,
+                "coefficient": 6.168945017569051
+              }
+            }
+          }
+        },
+        "2024": {
+          "status": "evaluated",
+          "train_years": [
+            2019,
+            2023
+          ],
+          "n_train": 1450,
+          "n_test": 290,
+          "targets": {
+            "inflyttning_18_23_per_1000": {
+              "five_year_mean": {
+                "rmse": 19.303988688726946,
+                "mae": 14.949457773881953,
+                "lulea_actual": 182.05642053337445,
+                "lulea_prediction": 196.28009122628592
+              },
+              "structural": {
+                "rmse": 36.852547388467464,
+                "mae": 28.9245903239757,
+                "lulea_prediction": 155.99186693683905,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 36.7477808255142,
+                "mae": 28.712875486604275,
+                "lulea_prediction": 153.4603765869943,
+                "coefficient": -4.877505301684697
+              }
+            },
+            "inflyttning_24_34_per_1000": {
+              "five_year_mean": {
+                "rmse": 15.742146938193269,
+                "mae": 12.07017565371039,
+                "lulea_actual": 107.45974367400592,
+                "lulea_prediction": 106.59546983772381
+              },
+              "structural": {
+                "rmse": 38.0396086756009,
+                "mae": 30.719599596942096,
+                "lulea_prediction": 149.4846006018729,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 37.528855579720464,
+                "mae": 30.473291828893675,
+                "lulea_prediction": 153.2020622164339,
+                "coefficient": 7.305390172112635
+              }
+            }
+          }
+        }
+      },
+      "summary": {
+        "inflyttning_18_23_per_1000": {
+          "n_years": 5,
+          "graduation_better_than_structural": 5,
+          "graduation_better_than_five_year_mean": 0,
+          "mean_rmse_improvement_vs_structural": 0.23681425183088436
+        },
+        "inflyttning_24_34_per_1000": {
+          "n_years": 5,
+          "graduation_better_than_structural": 4,
+          "graduation_better_than_five_year_mean": 0,
+          "mean_rmse_improvement_vs_structural": 0.3416215354988239
+        }
+      }
+    },
+    "exam3_lag2": {
+      "first_possible_forecast": 2021,
+      "years": {
+        "2021": {
+          "status": "evaluated",
+          "train_years": [
+            2016,
+            2020
+          ],
+          "n_train": 1450,
+          "n_test": 290,
+          "targets": {
+            "inflyttning_18_23_per_1000": {
+              "five_year_mean": {
+                "rmse": 22.862842592024194,
+                "mae": 16.086977500792216,
+                "lulea_actual": 209.29526123936816,
+                "lulea_prediction": 202.46056782275824
+              },
+              "structural": {
+                "rmse": 40.22886026074205,
+                "mae": 31.583357256293375,
+                "lulea_prediction": 157.35184339488012,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 40.14449331370719,
+                "mae": 31.34428663399085,
+                "lulea_prediction": 154.1902840703204,
+                "coefficient": -5.325506156568994
+              }
+            },
+            "inflyttning_24_34_per_1000": {
+              "five_year_mean": {
+                "rmse": 21.36972963471746,
+                "mae": 15.033381165459964,
+                "lulea_actual": 105.09370098241558,
+                "lulea_prediction": 110.06309515590655
+              },
+              "structural": {
+                "rmse": 43.794947574613154,
+                "mae": 35.112753494250335,
+                "lulea_prediction": 152.1409527026441,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 43.91479551890039,
+                "mae": 35.209368581960206,
+                "lulea_prediction": 151.91278361788076,
+                "coefficient": -0.45051807924923226
+              }
+            }
+          }
+        },
+        "2022": {
+          "status": "evaluated",
+          "train_years": [
+            2017,
+            2021
+          ],
+          "n_train": 1450,
+          "n_test": 290,
+          "targets": {
+            "inflyttning_18_23_per_1000": {
+              "five_year_mean": {
+                "rmse": 21.474615116597604,
+                "mae": 15.873547280102176,
+                "lulea_actual": 190.1728844404004,
+                "lulea_prediction": 202.954696810313
+              },
+              "structural": {
+                "rmse": 39.470898131237284,
+                "mae": 31.03718548207397,
+                "lulea_prediction": 157.2985115370988,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 39.19287736301557,
+                "mae": 30.976820410921253,
+                "lulea_prediction": 154.97058702655497,
+                "coefficient": -5.192421291953629
+              }
+            },
+            "inflyttning_24_34_per_1000": {
+              "five_year_mean": {
+                "rmse": 16.33117433897968,
+                "mae": 12.178914209232971,
+                "lulea_actual": 110.71693754640708,
+                "lulea_prediction": 108.19850057767721
+              },
+              "structural": {
+                "rmse": 39.67621575178311,
+                "mae": 31.28454150057595,
+                "lulea_prediction": 151.70782597435604,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 39.39624693327188,
+                "mae": 31.050016693864627,
+                "lulea_prediction": 152.98149681004665,
+                "coefficient": 2.8230203899565836
+              }
+            }
+          }
+        },
+        "2023": {
+          "status": "evaluated",
+          "train_years": [
+            2018,
+            2022
+          ],
+          "n_train": 1450,
+          "n_test": 290,
+          "targets": {
+            "inflyttning_18_23_per_1000": {
+              "five_year_mean": {
+                "rmse": 19.968450276368877,
+                "mae": 15.098408901648368,
+                "lulea_actual": 179.98163452708908,
+                "lulea_prediction": 200.63545335372325
+              },
+              "structural": {
+                "rmse": 37.542993018487415,
+                "mae": 29.691717448126084,
+                "lulea_prediction": 156.8780874826665,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 37.29080365341932,
+                "mae": 29.4551733117585,
+                "lulea_prediction": 154.93256639726113,
+                "coefficient": -4.905485890163101
+              }
+            },
+            "inflyttning_24_34_per_1000": {
+              "five_year_mean": {
+                "rmse": 19.359223920675174,
+                "mae": 14.974111774838335,
+                "lulea_actual": 108.4436405492066,
+                "lulea_prediction": 106.89627052369401
+              },
+              "structural": {
+                "rmse": 39.33651211753252,
+                "mae": 31.25288904436503,
+                "lulea_prediction": 150.8573777214896,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 38.89092656059214,
+                "mae": 31.051922558342167,
+                "lulea_prediction": 152.41412651296272,
+                "coefficient": 4.015931636069186
+              }
+            }
+          }
+        },
+        "2024": {
+          "status": "evaluated",
+          "train_years": [
+            2019,
+            2023
+          ],
+          "n_train": 1450,
+          "n_test": 290,
+          "targets": {
+            "inflyttning_18_23_per_1000": {
+              "five_year_mean": {
+                "rmse": 19.303988688726946,
+                "mae": 14.949457773881953,
+                "lulea_actual": 182.05642053337445,
+                "lulea_prediction": 196.28009122628592
+              },
+              "structural": {
+                "rmse": 36.852547388467464,
+                "mae": 28.9245903239757,
+                "lulea_prediction": 155.99186693683905,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 36.883648534098576,
+                "mae": 28.617836798873608,
+                "lulea_prediction": 153.9218193075072,
+                "coefficient": -4.508004624228692
+              }
+            },
+            "inflyttning_24_34_per_1000": {
+              "five_year_mean": {
+                "rmse": 15.742146938193269,
+                "mae": 12.07017565371039,
+                "lulea_actual": 107.45974367400592,
+                "lulea_prediction": 106.59546983772381
+              },
+              "structural": {
+                "rmse": 38.0396086756009,
+                "mae": 30.719599596942096,
+                "lulea_prediction": 149.4846006018729,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 37.12890249614239,
+                "mae": 29.978331330158923,
+                "lulea_prediction": 152.14903068163824,
+                "coefficient": 5.929587301317199
+              }
+            }
+          }
+        }
+      },
+      "summary": {
+        "inflyttning_18_23_per_1000": {
+          "n_years": 4,
+          "graduation_better_than_structural": 3,
+          "graduation_better_than_five_year_mean": 0,
+          "mean_rmse_improvement_vs_structural": 0.14586898367339174
+        },
+        "inflyttning_24_34_per_1000": {
+          "n_years": 4,
+          "graduation_better_than_structural": 3,
+          "graduation_better_than_five_year_mean": 0,
+          "mean_rmse_improvement_vs_structural": 0.3791031526557216
+        }
+      }
+    },
+    "exam4_lag1": {
+      "first_possible_forecast": 2021,
+      "years": {
+        "2021": {
+          "status": "evaluated",
+          "train_years": [
+            2016,
+            2020
+          ],
+          "n_train": 1450,
+          "n_test": 290,
+          "targets": {
+            "inflyttning_18_23_per_1000": {
+              "five_year_mean": {
+                "rmse": 22.862842592024194,
+                "mae": 16.086977500792216,
+                "lulea_actual": 209.29526123936816,
+                "lulea_prediction": 202.46056782275824
+              },
+              "structural": {
+                "rmse": 40.22886026074205,
+                "mae": 31.583357256293375,
+                "lulea_prediction": 157.35184339488012,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 40.468143670652196,
+                "mae": 31.736424456627304,
+                "lulea_prediction": 153.94241287738595,
+                "coefficient": -5.908593966210135
+              }
+            },
+            "inflyttning_24_34_per_1000": {
+              "five_year_mean": {
+                "rmse": 21.36972963471746,
+                "mae": 15.033381165459964,
+                "lulea_actual": 105.09370098241558,
+                "lulea_prediction": 110.06309515590655
+              },
+              "structural": {
+                "rmse": 43.794947574613154,
+                "mae": 35.112753494250335,
+                "lulea_prediction": 152.1409527026441,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 43.565628677117274,
+                "mae": 34.90919901835078,
+                "lulea_prediction": 152.55702911348624,
+                "coefficient": 0.6628952396760575
+              }
+            }
+          }
+        },
+        "2022": {
+          "status": "evaluated",
+          "train_years": [
+            2017,
+            2021
+          ],
+          "n_train": 1450,
+          "n_test": 290,
+          "targets": {
+            "inflyttning_18_23_per_1000": {
+              "five_year_mean": {
+                "rmse": 21.474615116597604,
+                "mae": 15.873547280102176,
+                "lulea_actual": 190.1728844404004,
+                "lulea_prediction": 202.954696810313
+              },
+              "structural": {
+                "rmse": 39.470898131237284,
+                "mae": 31.03718548207397,
+                "lulea_prediction": 157.2985115370988,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 39.22394248852853,
+                "mae": 31.025992852324297,
+                "lulea_prediction": 154.93219531195484,
+                "coefficient": -5.093968844753444
+              }
+            },
+            "inflyttning_24_34_per_1000": {
+              "five_year_mean": {
+                "rmse": 16.33117433897968,
+                "mae": 12.178914209232971,
+                "lulea_actual": 110.71693754640708,
+                "lulea_prediction": 108.19850057767721
+              },
+              "structural": {
+                "rmse": 39.67621575178311,
+                "mae": 31.28454150057595,
+                "lulea_prediction": 151.70782597435604,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 39.077441937639755,
+                "mae": 30.792715965036436,
+                "lulea_prediction": 153.76268796745188,
+                "coefficient": 4.501834883644982
+              }
+            }
+          }
+        },
+        "2023": {
+          "status": "evaluated",
+          "train_years": [
+            2018,
+            2022
+          ],
+          "n_train": 1450,
+          "n_test": 290,
+          "targets": {
+            "inflyttning_18_23_per_1000": {
+              "five_year_mean": {
+                "rmse": 19.968450276368877,
+                "mae": 15.098408901648368,
+                "lulea_actual": 179.98163452708908,
+                "lulea_prediction": 200.63545335372325
+              },
+              "structural": {
+                "rmse": 37.542993018487415,
+                "mae": 29.691717448126084,
+                "lulea_prediction": 156.8780874826665,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 37.36523646762764,
+                "mae": 29.579261946218473,
+                "lulea_prediction": 154.34266878789103,
+                "coefficient": -4.903714472207898
+              }
+            },
+            "inflyttning_24_34_per_1000": {
+              "five_year_mean": {
+                "rmse": 19.359223920675174,
+                "mae": 14.974111774838335,
+                "lulea_actual": 108.4436405492066,
+                "lulea_prediction": 106.89627052369401
+              },
+              "structural": {
+                "rmse": 39.33651211753252,
+                "mae": 31.25288904436503,
+                "lulea_prediction": 150.8573777214896,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 38.79384354556204,
+                "mae": 31.005893500441605,
+                "lulea_prediction": 153.76228653587327,
+                "coefficient": 5.718599956574861
+              }
+            }
+          }
+        },
+        "2024": {
+          "status": "evaluated",
+          "train_years": [
+            2019,
+            2023
+          ],
+          "n_train": 1450,
+          "n_test": 290,
+          "targets": {
+            "inflyttning_18_23_per_1000": {
+              "five_year_mean": {
+                "rmse": 19.303988688726946,
+                "mae": 14.949457773881953,
+                "lulea_actual": 182.05642053337445,
+                "lulea_prediction": 196.28009122628592
+              },
+              "structural": {
+                "rmse": 36.852547388467464,
+                "mae": 28.9245903239757,
+                "lulea_prediction": 155.99186693683905,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 37.02435452652845,
+                "mae": 28.84277252991491,
+                "lulea_prediction": 154.06337928882027,
+                "coefficient": -4.435117529030815
+              }
+            },
+            "inflyttning_24_34_per_1000": {
+              "five_year_mean": {
+                "rmse": 15.742146938193269,
+                "mae": 12.07017565371039,
+                "lulea_actual": 107.45974367400592,
+                "lulea_prediction": 106.59546983772381
+              },
+              "structural": {
+                "rmse": 38.0396086756009,
+                "mae": 30.719599596942096,
+                "lulea_prediction": 149.4846006018729,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 36.989121899919596,
+                "mae": 29.85122732857226,
+                "lulea_prediction": 152.45243618331136,
+                "coefficient": 6.9836920851921995
+              }
+            }
+          }
+        }
+      },
+      "summary": {
+        "inflyttning_18_23_per_1000": {
+          "n_years": 4,
+          "graduation_better_than_structural": 2,
+          "graduation_better_than_five_year_mean": 0,
+          "mean_rmse_improvement_vs_structural": 0.0034054113993509105
+        },
+        "inflyttning_24_34_per_1000": {
+          "n_years": 4,
+          "graduation_better_than_structural": 4,
+          "graduation_better_than_five_year_mean": 0,
+          "mean_rmse_improvement_vs_structural": 0.605312014822756
+        }
+      }
+    },
+    "exam4_lag2": {
+      "first_possible_forecast": 2022,
+      "years": {
+        "2022": {
+          "status": "evaluated",
+          "train_years": [
+            2017,
+            2021
+          ],
+          "n_train": 1450,
+          "n_test": 290,
+          "targets": {
+            "inflyttning_18_23_per_1000": {
+              "five_year_mean": {
+                "rmse": 21.474615116597604,
+                "mae": 15.873547280102176,
+                "lulea_actual": 190.1728844404004,
+                "lulea_prediction": 202.954696810313
+              },
+              "structural": {
+                "rmse": 39.470898131237284,
+                "mae": 31.03718548207397,
+                "lulea_prediction": 157.2985115370988,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 39.505346984691364,
+                "mae": 31.149472442538553,
+                "lulea_prediction": 154.33937918286878,
+                "coefficient": -5.13061421107912
+              }
+            },
+            "inflyttning_24_34_per_1000": {
+              "five_year_mean": {
+                "rmse": 16.33117433897968,
+                "mae": 12.178914209232971,
+                "lulea_actual": 110.71693754640708,
+                "lulea_prediction": 108.19850057767721
+              },
+              "structural": {
+                "rmse": 39.67621575178311,
+                "mae": 31.28454150057595,
+                "lulea_prediction": 151.70782597435604,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 39.26147563520024,
+                "mae": 30.917770440285665,
+                "lulea_prediction": 152.68106141258986,
+                "coefficient": 1.648043997011176
+              }
+            }
+          }
+        },
+        "2023": {
+          "status": "evaluated",
+          "train_years": [
+            2018,
+            2022
+          ],
+          "n_train": 1450,
+          "n_test": 290,
+          "targets": {
+            "inflyttning_18_23_per_1000": {
+              "five_year_mean": {
+                "rmse": 19.968450276368877,
+                "mae": 15.098408901648368,
+                "lulea_actual": 179.98163452708908,
+                "lulea_prediction": 200.63545335372325
+              },
+              "structural": {
+                "rmse": 37.542993018487415,
+                "mae": 29.691717448126084,
+                "lulea_prediction": 156.8780874826665,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 37.40943443555234,
+                "mae": 29.679055533025842,
+                "lulea_prediction": 154.8740709923666,
+                "coefficient": -4.32178020382648
+              }
+            },
+            "inflyttning_24_34_per_1000": {
+              "five_year_mean": {
+                "rmse": 19.359223920675174,
+                "mae": 14.974111774838335,
+                "lulea_actual": 108.4436405492066,
+                "lulea_prediction": 106.89627052369401
+              },
+              "structural": {
+                "rmse": 39.33651211753252,
+                "mae": 31.25288904436503,
+                "lulea_prediction": 150.8573777214896,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 38.605456533221684,
+                "mae": 30.72637455666966,
+                "lulea_prediction": 152.88065174033022,
+                "coefficient": 4.440634002609005
+              }
+            }
+          }
+        },
+        "2024": {
+          "status": "evaluated",
+          "train_years": [
+            2019,
+            2023
+          ],
+          "n_train": 1450,
+          "n_test": 290,
+          "targets": {
+            "inflyttning_18_23_per_1000": {
+              "five_year_mean": {
+                "rmse": 19.303988688726946,
+                "mae": 14.949457773881953,
+                "lulea_actual": 182.05642053337445,
+                "lulea_prediction": 196.28009122628592
+              },
+              "structural": {
+                "rmse": 36.852547388467464,
+                "mae": 28.9245903239757,
+                "lulea_prediction": 155.99186693683905,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 37.00681708260919,
+                "mae": 28.996622514329427,
+                "lulea_prediction": 153.8476547760462,
+                "coefficient": -4.14959213685936
+              }
+            },
+            "inflyttning_24_34_per_1000": {
+              "five_year_mean": {
+                "rmse": 15.742146938193269,
+                "mae": 12.07017565371039,
+                "lulea_actual": 107.45974367400592,
+                "lulea_prediction": 106.59546983772381
+              },
+              "structural": {
+                "rmse": 38.0396086756009,
+                "mae": 30.719599596942096,
+                "lulea_prediction": 149.4846006018729,
+                "coefficient": null
+              },
+              "structural_plus_graduation": {
+                "rmse": 37.27057021848087,
+                "mae": 30.222054555577504,
+                "lulea_prediction": 152.56099006946326,
+                "coefficient": 6.059441616109955
+              }
+            }
+          }
+        }
+      },
+      "summary": {
+        "inflyttning_18_23_per_1000": {
+          "n_years": 3,
+          "graduation_better_than_structural": 1,
+          "graduation_better_than_five_year_mean": 0,
+          "mean_rmse_improvement_vs_structural": -0.018386654886910492
+        },
+        "inflyttning_24_34_per_1000": {
+          "n_years": 3,
+          "graduation_better_than_structural": 3,
+          "graduation_better_than_five_year_mean": 0,
+          "mean_rmse_improvement_vs_structural": 0.6382780526712466
+        }
+      }
+    }
+  },
+  "production_model_changed": false,
+  "limitations": [
+    "Only municipal-level aggregate relationships; individual graduates are not followed.",
+    "Potential publication-time leakage remains until Kolada reference-year and release date are audited.",
+    "Five-year mean is a municipality-specific univariate baseline; structural Ridge model is pooled over municipalities.",
+    "Different lag/KPI designs have different first forecast years. Compare candidates on shared forecast years.",
+    "Out-migration by age unavailable in panel. No production promotion."
+  ]
+}
