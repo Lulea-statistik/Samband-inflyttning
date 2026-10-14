@@ -1,0 +1,172 @@
+{
+  "status": "isolated_candidate_screen",
+  "years": [
+    2023,
+    2024
+  ],
+  "source": "BAS",
+  "target": "inflyttning_per_1000",
+  "comparison": "dynamic baseline with fixed commuter interaction plus exactly one extra variable",
+  "selection_train_only": true,
+  "production_model_changed": false,
+  "results": {
+    "2023": {
+      "train_years": [
+        2022
+      ],
+      "n_train": 290,
+      "n_test": 290,
+      "selected": [
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_inkomst_tkr",
+        "lag1_fardigstallda_bostader_per_1000",
+        "lag1_kolada_arbetslosa_18_65_pct"
+      ],
+      "comparisons": {
+        "reference": {
+          "theme": "reference",
+          "rmse": 6.174145340083848,
+          "mae": 4.778874511993216,
+          "lulea_actual": 47.73666700272205,
+          "lulea_prediction": 48.501486223061235
+        },
+        "lag1_sysselsatta_arbetsstalle_forandring_pct": {
+          "theme": "labor_dynamics",
+          "rmse": 6.159066998020676,
+          "mae": 4.774039262238583,
+          "lulea_actual": 47.73666700272205,
+          "lulea_prediction": 48.59343013539447
+        },
+        "lag1_sysselsatta_bostad_forandring_pct": {
+          "theme": "labor_dynamics",
+          "rmse": 6.240390924108808,
+          "mae": 4.8664193382764775,
+          "lulea_actual": 47.73666700272205,
+          "lulea_prediction": 48.754078611792664
+        },
+        "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct": {
+          "theme": "labor_dynamics",
+          "rmse": 6.1571454873550415,
+          "mae": 4.752090270304795,
+          "lulea_actual": 47.73666700272205,
+          "lulea_prediction": 48.32015720097553
+        },
+        "lag1_sysselsatta_bostad_sasongsvariation_pct": {
+          "theme": "labor_dynamics",
+          "rmse": 6.1629029602923,
+          "mae": 4.768239350578352,
+          "lulea_actual": 47.73666700272205,
+          "lulea_prediction": 48.55688376227067
+        },
+        "lag1_andel_bostader_70_max": {
+          "theme": "housing_sizes",
+          "rmse": 6.173426349353977,
+          "mae": 4.785589000319596,
+          "lulea_actual": 47.73666700272205,
+          "lulea_prediction": 48.552929880451764
+        },
+        "lag1_andel_bostader_151_plus": {
+          "theme": "housing_sizes",
+          "rmse": 6.181016488520927,
+          "mae": 4.8339950478805065,
+          "lulea_actual": 47.73666700272205,
+          "lulea_prediction": 48.97508909390175
+        },
+        "lag1_andel_smahus_151_plus": {
+          "theme": "housing_sizes",
+          "rmse": 6.193694097257139,
+          "mae": 4.803895145227441,
+          "lulea_actual": 47.73666700272205,
+          "lulea_prediction": 48.681157801619435
+        }
+      }
+    },
+    "2024": {
+      "train_years": [
+        2022,
+        2023
+      ],
+      "n_train": 580,
+      "n_test": 290,
+      "selected": [
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_andel_20_34",
+        "lag1_inflyttare_medelalder",
+        "lag1_inkomst_tkr",
+        "lag1_ekonomisk_standard_gap_pp",
+        "lag1_bostader_per_1000",
+        "lag1_bostadsbestandsforandring_pct",
+        "lag1_andel_bostadsratt",
+        "lag1_fritidshusandel_bland_smahus",
+        "lag1_andel_studerande",
+        "lag1_andel_hotell_restaurang_i",
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+        "lag1_kolada_arbetslosa_18_65_pct",
+        "lag1_bas_studerande_andel_pct",
+        "lag1_andel_smahus_111_plus",
+        "lag1_gymnasium_yrkesprogram_pct"
+      ],
+      "comparisons": {
+        "reference": {
+          "theme": "reference",
+          "rmse": 5.604905182036141,
+          "mae": 4.31414105491757,
+          "lulea_actual": 51.74210559357147,
+          "lulea_prediction": 46.050399800113276
+        },
+        "lag1_sysselsatta_arbetsstalle_forandring_pct": {
+          "theme": "labor_dynamics",
+          "rmse": 5.725945934323356,
+          "mae": 4.443818047147342,
+          "lulea_actual": 51.74210559357147,
+          "lulea_prediction": 45.96719439042828
+        },
+        "lag1_sysselsatta_bostad_forandring_pct": {
+          "theme": "labor_dynamics",
+          "rmse": 5.342589132268113,
+          "mae": 4.022120734042994,
+          "lulea_actual": 51.74210559357147,
+          "lulea_prediction": 46.311828275048015
+        },
+        "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct": {
+          "theme": "labor_dynamics",
+          "rmse": 5.6755368929644,
+          "mae": 4.378579182812882,
+          "lulea_actual": 51.74210559357147,
+          "lulea_prediction": 46.17304985724705
+        },
+        "lag1_sysselsatta_bostad_sasongsvariation_pct": {
+          "theme": "labor_dynamics",
+          "rmse": 5.697604711504439,
+          "mae": 4.404130409975011,
+          "lulea_actual": 51.74210559357147,
+          "lulea_prediction": 46.191391390704
+        },
+        "lag1_andel_bostader_70_max": {
+          "theme": "housing_sizes",
+          "rmse": 5.568876320214233,
+          "mae": 4.28628955645654,
+          "lulea_actual": 51.74210559357147,
+          "lulea_prediction": 46.17071700363955
+        },
+        "lag1_andel_bostader_151_plus": {
+          "theme": "housing_sizes",
+          "rmse": 5.609003376881393,
+          "mae": 4.307086724041583,
+          "lulea_actual": 51.74210559357147,
+          "lulea_prediction": 46.3897273275368
+        },
+        "lag1_andel_smahus_151_plus": {
+          "theme": "housing_sizes",
+          "rmse": 5.580457470015845,
+          "mae": 4.284526616079607,
+          "lulea_actual": 51.74210559357147,
+          "lulea_prediction": 46.963671019442074
+        }
+      }
+    }
+  },
+  "limitations": "Repeated retrospective years; exploratory variable screening only, no data-unseen confirmation. A better result here cannot authorize production promotion."
+}
