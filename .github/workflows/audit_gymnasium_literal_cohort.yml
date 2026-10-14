@@ -1,0 +1,33 @@
+name: Audit literal gymnasium cohort horizon
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/audit_gymnasium_literal_cohort.py"
+      - ".github/workflows/audit_gymnasium_literal_cohort.yml"
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python scripts/audit_gymnasium_literal_cohort.py
+      - name: Persist report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/gymnasium_literal_cohort_sixyear_audit.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record literal graduation cohort historical feasibility"
+          git pull --rebase origin main
+          git push origin HEAD:main
