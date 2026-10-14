@@ -1,0 +1,28 @@
+name: Gate RAMS BAS employment growth around method breaks
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/audit_employment_growth_regime_gate.py
+      - .github/workflows/audit_employment_growth_regime_gate.yml
+permissions:
+  contents: write
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: python scripts/audit_employment_growth_regime_gate.py
+      - name: Commit gated research observations
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/employment_growth_regime_gated.csv docs/data/employment_growth_regime_gate_status.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Publish method-break gated employment growth research observations"
+          git pull --rebase origin main
+          git push origin HEAD:main
