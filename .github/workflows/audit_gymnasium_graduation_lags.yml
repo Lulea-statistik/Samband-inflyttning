@@ -1,0 +1,34 @@
+name: Audit gymnasium graduation lag history
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/audit_gymnasium_graduation_lags.py"
+      - ".github/workflows/audit_gymnasium_graduation_lags.yml"
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Discover Kolada graduation rates and audit lagged coverage
+        run: python scripts/audit_gymnasium_graduation_lags.py
+      - name: Save research report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/gymnasium_graduation_lag_audit.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record gymnasium graduation lagged historical coverage"
+          git pull --rebase origin main
+          git push origin HEAD:main
