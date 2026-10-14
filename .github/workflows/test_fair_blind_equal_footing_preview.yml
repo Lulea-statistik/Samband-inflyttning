@@ -1,0 +1,32 @@
+name: Preview equal footing blind reselection
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/test_fair_blind_equal_footing_preview.py
+      - .github/workflows/test_fair_blind_equal_footing_preview.yml
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - run: python scripts/test_fair_blind_equal_footing_preview.py
+      - name: Save preview
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/fair_blind_equal_footing_preview.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record exploratory equal footing blind reselection"
+          git pull --rebase origin main
+          git push origin HEAD:main
