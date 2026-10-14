@@ -32,7 +32,7 @@ def main():
         selection=record["models"]["expanded"]["selected"]
         if not set(CONTROLS).issubset(selection):raise RuntimeError("Missing fixed controls")
         ref=fit(train,test,target,selection)
-        actions={}
+        actions={};replacements={}
         for col in selection:
             if col in CONTROLS:continue
             group=assignment[col]
@@ -56,9 +56,11 @@ def main():
                 if scored:
                     substitute=sorted(scored,key=lambda x:(-x[0],x[1]))[0][1]
                     actions["replace_"+group]=fit(train,test,target,without+[substitute])
+                    replacements[group]={"removed":col,"replacement":substitute,"training_residual_abs_corr":float(sorted(scored,key=lambda x:(-x[0],x[1]))[0][0])}
         fold_reports.append({"fold":fold,"n_test":len(test),"selected":selection,
             "ablation_groups":[k.removeprefix("drop_") for k in actions if k.startswith("drop_")],
-            "replacement_groups":[k.removeprefix("replace_") for k in actions if k.startswith("replace_")]})
+            "replacement_groups":[k.removeprefix("replace_") for k in actions if k.startswith("replace_")],
+            "replacement_details":replacements})
         for i,(_,r) in enumerate(test.iterrows()):
             item={"code":r.kommun_kod,"fold":fold,"actual":float(r[target]),"reference":float(ref[i])}
             item.update({key:float(p[i]) for key,p in actions.items()})
@@ -84,6 +86,7 @@ def main():
         "comparisons":diagnostics,"folds":fold_reports,
         "limitations":[
         "No re-selection after ablation; comparisons evaluate contributions conditional on selected features.",
+        "Replacement details record training-only selection and are not 2024 validation of the replacement choice.",
         "The selected model and 2024 folds come from earlier exploratory research, not an independent confirmation.",
         "Subset sample sizes differ because a theme can be absent in some folds: compare only matching-row errors.",
         "Replacement choices are ranked using training-only residual association and not a full nested refit.",
