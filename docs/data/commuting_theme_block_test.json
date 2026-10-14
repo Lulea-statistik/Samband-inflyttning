@@ -1,0 +1,436 @@
+{
+  "status": "exploratory_theme_block_test",
+  "source": "BAS",
+  "test_years": [
+    2023,
+    2024
+  ],
+  "fixed_theme_blocks": {
+    "civic_associations": [
+      "lag1_kolada_lok_foreningar_per_10000",
+      "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+      "lag1_kolada_utbetalt_lok_stod_kr_per_inv"
+    ],
+    "labor_dynamics": [
+      "lag1_sysselsatta_arbetsstalle_forandring_pct",
+      "lag1_sysselsatta_bostad_forandring_pct",
+      "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+      "lag1_sysselsatta_bostad_sasongsvariation_pct"
+    ],
+    "housing_market": [
+      "lag1_smahuspris_medel_tkr",
+      "lag1_smahuspris_inkomstkvot_median",
+      "lag1_smahusforsaljningar_per_1000_smahus"
+    ],
+    "housing_sizes": [
+      "lag1_andel_bostader_70_max",
+      "lag1_andel_bostader_151_plus",
+      "lag1_andel_smahus_151_plus"
+    ],
+    "shore_nature": [
+      "lag1_skogsmark_andel_land_pct",
+      "lag1_naturpraglad_mark_andel_land_pct",
+      "lag1_strand_hav_bostader_per_1000",
+      "lag1_strand_hav_bostader_tatort_per_1000"
+    ]
+  },
+  "model_families": [
+    "dynamic",
+    "dynamic_interaction"
+  ],
+  "fair_comparison": "Same rows and train-only dynamic selection; add each fixed full theme block to each base model",
+  "production_model_changed": false,
+  "results": {
+    "2023": {
+      "n_train": 290,
+      "n_test": 290,
+      "selected_dynamic": [
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_inkomst_tkr",
+        "lag1_fardigstallda_bostader_per_1000",
+        "lag1_kolada_arbetslosa_18_65_pct"
+      ],
+      "models": {
+        "dynamic__none": {
+          "features_added": [],
+          "rmse": 6.177499348165193,
+          "mae": 4.834402718845322,
+          "lulea": [
+            {
+              "actual": 47.73666700272205,
+              "predicted": 49.61524162024416
+            }
+          ]
+        },
+        "dynamic__civic_associations": {
+          "features_added": [
+            "lag1_kolada_lok_foreningar_per_10000",
+            "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+            "lag1_kolada_utbetalt_lok_stod_kr_per_inv"
+          ],
+          "rmse": 6.250084558111085,
+          "mae": 4.923385324159998,
+          "lulea": [
+            {
+              "actual": 47.73666700272205,
+              "predicted": 50.474246247007585
+            }
+          ]
+        },
+        "dynamic__labor_dynamics": {
+          "features_added": [
+            "lag1_sysselsatta_arbetsstalle_forandring_pct",
+            "lag1_sysselsatta_bostad_forandring_pct",
+            "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+            "lag1_sysselsatta_bostad_sasongsvariation_pct"
+          ],
+          "rmse": 6.341833001461223,
+          "mae": 5.022766636886301,
+          "lulea": [
+            {
+              "actual": 47.73666700272205,
+              "predicted": 49.39346775047498
+            }
+          ]
+        },
+        "dynamic__housing_market": {
+          "features_added": [
+            "lag1_smahuspris_medel_tkr",
+            "lag1_smahuspris_inkomstkvot_median",
+            "lag1_smahusforsaljningar_per_1000_smahus"
+          ],
+          "rmse": 6.173328944273244,
+          "mae": 4.857244624308513,
+          "lulea": [
+            {
+              "actual": 47.73666700272205,
+              "predicted": 49.77385369590446
+            }
+          ]
+        },
+        "dynamic__housing_sizes": {
+          "features_added": [
+            "lag1_andel_bostader_70_max",
+            "lag1_andel_bostader_151_plus",
+            "lag1_andel_smahus_151_plus"
+          ],
+          "rmse": 6.188683534077816,
+          "mae": 4.857062462149463,
+          "lulea": [
+            {
+              "actual": 47.73666700272205,
+              "predicted": 49.728622187266865
+            }
+          ]
+        },
+        "dynamic__shore_nature": {
+          "features_added": [
+            "lag1_skogsmark_andel_land_pct",
+            "lag1_naturpraglad_mark_andel_land_pct",
+            "lag1_strand_hav_bostader_per_1000",
+            "lag1_strand_hav_bostader_tatort_per_1000"
+          ],
+          "rmse": 6.197378476145454,
+          "mae": 4.8715950104065895,
+          "lulea": [
+            {
+              "actual": 47.73666700272205,
+              "predicted": 49.26537365163111
+            }
+          ]
+        },
+        "dynamic_interaction__none": {
+          "features_added": [],
+          "rmse": 6.174145340083848,
+          "mae": 4.778874511993216,
+          "lulea": [
+            {
+              "actual": 47.73666700272205,
+              "predicted": 48.501486223061235
+            }
+          ]
+        },
+        "dynamic_interaction__civic_associations": {
+          "features_added": [
+            "lag1_kolada_lok_foreningar_per_10000",
+            "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+            "lag1_kolada_utbetalt_lok_stod_kr_per_inv"
+          ],
+          "rmse": 6.235924075807619,
+          "mae": 4.848246321661459,
+          "lulea": [
+            {
+              "actual": 47.73666700272205,
+              "predicted": 49.375057162710505
+            }
+          ]
+        },
+        "dynamic_interaction__labor_dynamics": {
+          "features_added": [
+            "lag1_sysselsatta_arbetsstalle_forandring_pct",
+            "lag1_sysselsatta_bostad_forandring_pct",
+            "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+            "lag1_sysselsatta_bostad_sasongsvariation_pct"
+          ],
+          "rmse": 6.279494775137638,
+          "mae": 4.89837149134787,
+          "lulea": [
+            {
+              "actual": 47.73666700272205,
+              "predicted": 48.394255625437374
+            }
+          ]
+        },
+        "dynamic_interaction__housing_market": {
+          "features_added": [
+            "lag1_smahuspris_medel_tkr",
+            "lag1_smahuspris_inkomstkvot_median",
+            "lag1_smahusforsaljningar_per_1000_smahus"
+          ],
+          "rmse": 6.134044242663834,
+          "mae": 4.760669544438205,
+          "lulea": [
+            {
+              "actual": 47.73666700272205,
+              "predicted": 48.49662084524041
+            }
+          ]
+        },
+        "dynamic_interaction__housing_sizes": {
+          "features_added": [
+            "lag1_andel_bostader_70_max",
+            "lag1_andel_bostader_151_plus",
+            "lag1_andel_smahus_151_plus"
+          ],
+          "rmse": 6.1577560533868345,
+          "mae": 4.823559566655692,
+          "lulea": [
+            {
+              "actual": 47.73666700272205,
+              "predicted": 48.920860664750414
+            }
+          ]
+        },
+        "dynamic_interaction__shore_nature": {
+          "features_added": [
+            "lag1_skogsmark_andel_land_pct",
+            "lag1_naturpraglad_mark_andel_land_pct",
+            "lag1_strand_hav_bostader_per_1000",
+            "lag1_strand_hav_bostader_tatort_per_1000"
+          ],
+          "rmse": 6.17168322995028,
+          "mae": 4.782063397340087,
+          "lulea": [
+            {
+              "actual": 47.73666700272205,
+              "predicted": 48.200706210798785
+            }
+          ]
+        }
+      }
+    },
+    "2024": {
+      "n_train": 580,
+      "n_test": 290,
+      "selected_dynamic": [
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_andel_20_34",
+        "lag1_inflyttare_medelalder",
+        "lag1_inkomst_tkr",
+        "lag1_ekonomisk_standard_gap_pp",
+        "lag1_bostader_per_1000",
+        "lag1_bostadsbestandsforandring_pct",
+        "lag1_andel_bostadsratt",
+        "lag1_fritidshusandel_bland_smahus",
+        "lag1_andel_studerande",
+        "lag1_andel_hotell_restaurang_i",
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+        "lag1_kolada_arbetslosa_18_65_pct",
+        "lag1_bas_studerande_andel_pct",
+        "lag1_andel_smahus_111_plus",
+        "lag1_gymnasium_yrkesprogram_pct"
+      ],
+      "models": {
+        "dynamic__none": {
+          "features_added": [],
+          "rmse": 5.7823763214820385,
+          "mae": 4.4374671974239925,
+          "lulea": [
+            {
+              "actual": 51.74210559357147,
+              "predicted": 46.18500427481125
+            }
+          ]
+        },
+        "dynamic__civic_associations": {
+          "features_added": [
+            "lag1_kolada_lok_foreningar_per_10000",
+            "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+            "lag1_kolada_utbetalt_lok_stod_kr_per_inv"
+          ],
+          "rmse": 5.815852741602885,
+          "mae": 4.478192929919518,
+          "lulea": [
+            {
+              "actual": 51.74210559357147,
+              "predicted": 45.98705902855835
+            }
+          ]
+        },
+        "dynamic__labor_dynamics": {
+          "features_added": [
+            "lag1_sysselsatta_arbetsstalle_forandring_pct",
+            "lag1_sysselsatta_bostad_forandring_pct",
+            "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+            "lag1_sysselsatta_bostad_sasongsvariation_pct"
+          ],
+          "rmse": 5.602062407013777,
+          "mae": 4.23573813956863,
+          "lulea": [
+            {
+              "actual": 51.74210559357147,
+              "predicted": 46.56065800660811
+            }
+          ]
+        },
+        "dynamic__housing_market": {
+          "features_added": [
+            "lag1_smahuspris_medel_tkr",
+            "lag1_smahuspris_inkomstkvot_median",
+            "lag1_smahusforsaljningar_per_1000_smahus"
+          ],
+          "rmse": 6.005222945647208,
+          "mae": 4.664796909874784,
+          "lulea": [
+            {
+              "actual": 51.74210559357147,
+              "predicted": 45.719481004636876
+            }
+          ]
+        },
+        "dynamic__housing_sizes": {
+          "features_added": [
+            "lag1_andel_bostader_70_max",
+            "lag1_andel_bostader_151_plus",
+            "lag1_andel_smahus_151_plus"
+          ],
+          "rmse": 5.671667362329874,
+          "mae": 4.318037606654323,
+          "lulea": [
+            {
+              "actual": 51.74210559357147,
+              "predicted": 47.645990110118206
+            }
+          ]
+        },
+        "dynamic__shore_nature": {
+          "features_added": [
+            "lag1_skogsmark_andel_land_pct",
+            "lag1_naturpraglad_mark_andel_land_pct",
+            "lag1_strand_hav_bostader_per_1000",
+            "lag1_strand_hav_bostader_tatort_per_1000"
+          ],
+          "rmse": 5.734377590348435,
+          "mae": 4.370407581764891,
+          "lulea": [
+            {
+              "actual": 51.74210559357147,
+              "predicted": 45.960225911675394
+            }
+          ]
+        },
+        "dynamic_interaction__none": {
+          "features_added": [],
+          "rmse": 5.604905182036141,
+          "mae": 4.31414105491757,
+          "lulea": [
+            {
+              "actual": 51.74210559357147,
+              "predicted": 46.050399800113276
+            }
+          ]
+        },
+        "dynamic_interaction__civic_associations": {
+          "features_added": [
+            "lag1_kolada_lok_foreningar_per_10000",
+            "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+            "lag1_kolada_utbetalt_lok_stod_kr_per_inv"
+          ],
+          "rmse": 5.636703256101977,
+          "mae": 4.359135011252317,
+          "lulea": [
+            {
+              "actual": 51.74210559357147,
+              "predicted": 45.815274987253304
+            }
+          ]
+        },
+        "dynamic_interaction__labor_dynamics": {
+          "features_added": [
+            "lag1_sysselsatta_arbetsstalle_forandring_pct",
+            "lag1_sysselsatta_bostad_forandring_pct",
+            "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+            "lag1_sysselsatta_bostad_sasongsvariation_pct"
+          ],
+          "rmse": 5.474609129042171,
+          "mae": 4.153534904394163,
+          "lulea": [
+            {
+              "actual": 51.74210559357147,
+              "predicted": 46.46480210877897
+            }
+          ]
+        },
+        "dynamic_interaction__housing_market": {
+          "features_added": [
+            "lag1_smahuspris_medel_tkr",
+            "lag1_smahuspris_inkomstkvot_median",
+            "lag1_smahusforsaljningar_per_1000_smahus"
+          ],
+          "rmse": 5.738345695344817,
+          "mae": 4.46401998076188,
+          "lulea": [
+            {
+              "actual": 51.74210559357147,
+              "predicted": 45.894963515719155
+            }
+          ]
+        },
+        "dynamic_interaction__housing_sizes": {
+          "features_added": [
+            "lag1_andel_bostader_70_max",
+            "lag1_andel_bostader_151_plus",
+            "lag1_andel_smahus_151_plus"
+          ],
+          "rmse": 5.539493869488123,
+          "mae": 4.244571330674492,
+          "lulea": [
+            {
+              "actual": 51.74210559357147,
+              "predicted": 47.15636460012987
+            }
+          ]
+        },
+        "dynamic_interaction__shore_nature": {
+          "features_added": [
+            "lag1_skogsmark_andel_land_pct",
+            "lag1_naturpraglad_mark_andel_land_pct",
+            "lag1_strand_hav_bostader_per_1000",
+            "lag1_strand_hav_bostader_tatort_per_1000"
+          ],
+          "rmse": 5.596193430290938,
+          "mae": 4.29737053748235,
+          "lulea": [
+            {
+              "actual": 51.74210559357147,
+              "predicted": 45.85172108656215
+            }
+          ]
+        }
+      }
+    }
+  },
+  "limitations": "Already inspected retrospective years; full blocks are not independently feature-selected. Apparent gain is exploratory; use future holdout to evaluate frozen candidate."
+}
