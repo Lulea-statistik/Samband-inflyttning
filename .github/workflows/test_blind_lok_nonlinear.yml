@@ -1,0 +1,35 @@
+name: Test nonlinear LOK structural sensitivity
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/test_blind_lok_nonlinear.py
+      - .github/workflows/test_blind_lok_nonlinear.yml
+permissions:
+  contents: write
+concurrency:
+  group: blind-lok-nonlinear
+  cancel-in-progress: true
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - run: python scripts/test_blind_lok_nonlinear.py
+      - name: Persist test results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/blind_lok_nonlinear_test.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record nonlinear LOK sensitivity research"
+          git pull --rebase origin main
+          git push origin HEAD:main
