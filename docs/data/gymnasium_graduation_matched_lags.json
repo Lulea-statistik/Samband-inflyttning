@@ -1,0 +1,295 @@
+{
+  "status": "gymnasium_matched_one_year_lag_test",
+  "training_window_years": 5,
+  "forecast_horizon_years": 1,
+  "forecast_years": [
+    2023,
+    2024
+  ],
+  "train_years_by_forecast": {
+    "2023": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022
+    ],
+    "2024": [
+      2019,
+      2020,
+      2021,
+      2022,
+      2023
+    ]
+  },
+  "kolada_ids": {
+    "exam3": "N17445",
+    "exam4": "N17461"
+  },
+  "candidates": [
+    "exam3_lag1",
+    "exam3_lag2",
+    "exam3_lag3",
+    "exam4_lag1",
+    "exam4_lag2",
+    "exam4_lag3"
+  ],
+  "controls": [
+    "lag1_log_folkmangd",
+    "lag1_tatortsgrad_pct"
+  ],
+  "source_year_rule": "candidate_for_forecast_year_y = Kolada measure labelled year y-minus-lag",
+  "coverage": {
+    "2023": {
+      "lag1_log_folkmangd": 1740,
+      "lag1_tatortsgrad_pct": 1740,
+      "inflyttning_per_1000": 1740,
+      "utflyttning_per_1000": 1740,
+      "exam3_lag1": 1740,
+      "exam3_lag2": 1740,
+      "exam3_lag3": 1740,
+      "exam4_lag1": 1740,
+      "exam4_lag2": 1740,
+      "exam4_lag3": 1740
+    },
+    "2024": {
+      "lag1_log_folkmangd": 1740,
+      "lag1_tatortsgrad_pct": 1740,
+      "inflyttning_per_1000": 1740,
+      "utflyttning_per_1000": 1740,
+      "exam3_lag1": 1740,
+      "exam3_lag2": 1740,
+      "exam3_lag3": 1740,
+      "exam4_lag1": 1740,
+      "exam4_lag2": 1740,
+      "exam4_lag3": 1740
+    }
+  },
+  "results": {
+    "2023": {
+      "status": "evaluated",
+      "n_train": 1450,
+      "n_test": 290,
+      "outcomes": {
+        "inflyttning_per_1000": {
+          "reference": {
+            "rmse": 15.68009243795381,
+            "mae": 12.274334824466123,
+            "lulea_actual": 47.73666700272205,
+            "lulea_prediction": 63.62533546356759,
+            "coefficient": null
+          },
+          "exam3_lag1": {
+            "rmse": 15.62810676604585,
+            "mae": 12.242506540413778,
+            "lulea_actual": 47.73666700272205,
+            "lulea_prediction": 63.0626724510566,
+            "coefficient": -1.2510537164621474
+          },
+          "exam3_lag2": {
+            "rmse": 15.624150158697589,
+            "mae": 12.14217325058658,
+            "lulea_actual": 47.73666700272205,
+            "lulea_prediction": 62.865811555822894,
+            "coefficient": -1.9571166954062296
+          },
+          "exam3_lag3": {
+            "rmse": 15.635641495645663,
+            "mae": 12.30865316308034,
+            "lulea_actual": 47.73666700272205,
+            "lulea_prediction": 62.66791951829088,
+            "coefficient": -2.1778448072311813
+          },
+          "exam4_lag1": {
+            "rmse": 15.630562422694396,
+            "mae": 12.230351820267924,
+            "lulea_actual": 47.73666700272205,
+            "lulea_prediction": 62.85444973558466,
+            "coefficient": -1.5162307681072733
+          },
+          "exam4_lag2": {
+            "rmse": 15.734512708746522,
+            "mae": 12.45375337936375,
+            "lulea_actual": 47.73666700272205,
+            "lulea_prediction": 62.77430057188898,
+            "coefficient": -1.8662063918757548
+          },
+          "exam4_lag3": {
+            "rmse": 16.031253142940074,
+            "mae": 12.723436898154253,
+            "lulea_actual": 47.73666700272205,
+            "lulea_prediction": 62.02902268285292,
+            "coefficient": -2.7928450557881535
+          }
+        },
+        "utflyttning_per_1000": {
+          "reference": {
+            "rmse": 14.06178856682213,
+            "mae": 10.525793464706055,
+            "lulea_actual": 44.787781026313134,
+            "lulea_prediction": 56.5286318106788,
+            "coefficient": null
+          },
+          "exam3_lag1": {
+            "rmse": 13.963408470999552,
+            "mae": 10.297866693030059,
+            "lulea_actual": 44.787781026313134,
+            "lulea_prediction": 55.403482453837164,
+            "coefficient": -2.5277805045791135
+          },
+          "exam3_lag2": {
+            "rmse": 14.080602245616623,
+            "mae": 10.423587185041445,
+            "lulea_actual": 44.787781026313134,
+            "lulea_prediction": 55.34773505332179,
+            "coefficient": -3.073104529881015
+          },
+          "exam3_lag3": {
+            "rmse": 13.67344179687376,
+            "mae": 10.190148004657738,
+            "lulea_actual": 44.787781026313134,
+            "lulea_prediction": 55.127589737201305,
+            "coefficient": -3.2136329604411054
+          },
+          "exam4_lag1": {
+            "rmse": 13.9820007236526,
+            "mae": 10.404102467967064,
+            "lulea_actual": 44.787781026313134,
+            "lulea_prediction": 55.169814172678635,
+            "coefficient": -2.695673378191678
+          },
+          "exam4_lag2": {
+            "rmse": 13.839972363807977,
+            "mae": 10.33881023535857,
+            "lulea_actual": 44.787781026313134,
+            "lulea_prediction": 55.191843362879396,
+            "coefficient": -2.957106713309392
+          },
+          "exam4_lag3": {
+            "rmse": 14.09478824324304,
+            "mae": 10.564711663017263,
+            "lulea_actual": 44.787781026313134,
+            "lulea_prediction": 54.57142179230497,
+            "coefficient": -3.4447668232526163
+          }
+        }
+      }
+    },
+    "2024": {
+      "status": "evaluated",
+      "n_train": 1450,
+      "n_test": 290,
+      "outcomes": {
+        "inflyttning_per_1000": {
+          "reference": {
+            "rmse": 14.257458181988154,
+            "mae": 11.114099549623825,
+            "lulea_actual": 51.74210559357147,
+            "lulea_prediction": 62.761761953222035,
+            "coefficient": null
+          },
+          "exam3_lag1": {
+            "rmse": 14.223936539316549,
+            "mae": 10.99525352520648,
+            "lulea_actual": 51.74210559357147,
+            "lulea_prediction": 62.25617380124801,
+            "coefficient": -1.009978796971324
+          },
+          "exam3_lag2": {
+            "rmse": 14.32077915979629,
+            "mae": 11.06161236195978,
+            "lulea_actual": 51.74210559357147,
+            "lulea_prediction": 62.11536376008919,
+            "coefficient": -1.455890831085749
+          },
+          "exam3_lag3": {
+            "rmse": 14.317055464168346,
+            "mae": 11.013593957939774,
+            "lulea_actual": 51.74210559357147,
+            "lulea_prediction": 62.03219725236602,
+            "coefficient": -1.9015520203869816
+          },
+          "exam4_lag1": {
+            "rmse": 14.30875624692593,
+            "mae": 11.077122795898244,
+            "lulea_actual": 51.74210559357147,
+            "lulea_prediction": 62.272008695880785,
+            "coefficient": -1.1716837788879704
+          },
+          "exam4_lag2": {
+            "rmse": 14.304997061286455,
+            "mae": 11.032474173174139,
+            "lulea_actual": 51.74210559357147,
+            "lulea_prediction": 62.01012841732903,
+            "coefficient": -1.4960301700859377
+          },
+          "exam4_lag3": {
+            "rmse": 14.378278919952042,
+            "mae": 11.162286475638744,
+            "lulea_actual": 51.74210559357147,
+            "lulea_prediction": 61.87808454700232,
+            "coefficient": -1.9568349673317895
+          }
+        },
+        "utflyttning_per_1000": {
+          "reference": {
+            "rmse": 13.73784100565392,
+            "mae": 10.456066316699482,
+            "lulea_actual": 46.029254818256014,
+            "lulea_prediction": 56.998493641959215,
+            "coefficient": null
+          },
+          "exam3_lag1": {
+            "rmse": 13.51291633522955,
+            "mae": 10.087390303219909,
+            "lulea_actual": 46.029254818256014,
+            "lulea_prediction": 55.83706807799612,
+            "coefficient": -2.3017742572824096
+          },
+          "exam3_lag2": {
+            "rmse": 13.770902136182658,
+            "mae": 10.353499061671455,
+            "lulea_actual": 46.029254818256014,
+            "lulea_prediction": 55.88731893884511,
+            "coefficient": -2.4947020089443264
+          },
+          "exam3_lag3": {
+            "rmse": 13.861610404303223,
+            "mae": 10.387727904852369,
+            "lulea_actual": 46.029254818256014,
+            "lulea_prediction": 55.815812810664866,
+            "coefficient": -3.0763678594697983
+          },
+          "exam4_lag1": {
+            "rmse": 13.737484831485803,
+            "mae": 10.392541619228787,
+            "lulea_actual": 46.029254818256014,
+            "lulea_prediction": 56.044043946929065,
+            "coefficient": -2.269264684603502
+          },
+          "exam4_lag2": {
+            "rmse": 13.791215778602515,
+            "mae": 10.406410529032769,
+            "lulea_actual": 46.029254818256014,
+            "lulea_prediction": 55.63694307664249,
+            "coefficient": -2.701114508780769
+          },
+          "exam4_lag3": {
+            "rmse": 13.714566324821373,
+            "mae": 10.463433920091308,
+            "lulea_actual": 46.029254818256014,
+            "lulea_prediction": 55.63948551031014,
+            "coefficient": -3.0052791942802672
+          }
+        }
+      }
+    }
+  },
+  "production_model_changed": false,
+  "limitations": [
+    "Cohort/start-year versus outcome/publication-year Kolada semantics must be externally verified.",
+    "The source year is lagged, but actual data release date was not verified; this is retrospective, not proven release-date-safe forecasting.",
+    "No historical migration variables; simple fixed geographic/population controls, not production model.",
+    "Only two forecast years; compare same test years and training windows, no automatic challenger promotion."
+  ]
+}
