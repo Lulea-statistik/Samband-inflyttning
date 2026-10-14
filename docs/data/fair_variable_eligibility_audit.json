@@ -1,0 +1,1230 @@
+{
+  "status": "stage_a3_preselection_eligibility",
+  "production_changed": false,
+  "years": [
+    2022,
+    2023,
+    2024
+  ],
+  "n_sample_rows": 879,
+  "n_unique_municipalities": 293,
+  "features": [
+    {
+      "feature": "lag1_andel_20_34",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": false,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_andel_bostader_111_plus",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_andel_bostader_141_plus",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_andel_bostader_151_plus",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_andel_bostader_70_max",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_andel_bostadsratt",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_andel_eftergymnasial",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_andel_flerbostad_70_max",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_andel_hotell_restaurang_i",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_andel_hyresratt",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_andel_industri_bc",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_andel_kultur_service_rstu",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_andel_smahus",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_andel_smahus_111_plus",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_andel_smahus_151_plus",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_andel_studerande",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_arbetskraftsdeltagande",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_arbetsloshet",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_bas_ovriga_andel_pct",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_bas_pensionarer_andel_pct",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_bas_sjuka_andel_pct",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_bas_studerande_andel_pct",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_befolkningstillvaxt_pct",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": false,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_bostader_per_1000",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_bostadsbestandsforandring_pct",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_brott_per_100000",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_ekonomisk_standard_gap_pp",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_fardigstallda_bostader_per_1000",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_fritidshus_per_1000_inv",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_fritidshusandel_bland_smahus",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_gymnasium_yrkesprogram_pct",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_inflyttare_medelalder",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 293,
+        "2023": 293,
+        "2024": 293
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": false,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_inflyttning_18_23_per_1000",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": false,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_inflyttning_24_34_per_1000",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": false,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_inflyttning_35_49_per_1000",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": false,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_inflyttning_63_68_per_1000",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": false,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_inflyttning_70_79_per_1000",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": false,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_inflyttning_per_1000",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": false,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_inkomst_median_tkr",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_inkomst_tkr",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_kolada_arbetslosa_18_24_pct",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_kolada_arbetslosa_18_65_pct",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_kolada_langtidsarbetslosa_pct",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_kolada_lok_foreningar_per_10000",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_kvinnors_lonesumma_dagbef_pct",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_kvinnors_mediannettoinkomst_andel_pct",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_lediga_allmannytta_av_total_bostadsbestand_pct",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 0,
+        "2024": 0
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_lediga_allmannytta_pct",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 293,
+        "2023": 0,
+        "2024": 0
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_log_befolkningstathet_land",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_log_externa_fa_jobb_per_1000",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_log_folkmangd",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_log_fritidshus_per_1000_inv",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_log_regional_centre_distance_km",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_log_smahuspris_medel",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_naturpraglad_mark_andel_land_pct",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_regional_centre_distance_km",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_skogsmark_andel_land_pct",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_smahusforsaljningar_per_1000_inv",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_smahusforsaljningar_per_1000_smahus",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_smahuspris_forandring_pct",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_smahuspris_inkomstkvot_medel",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_smahuspris_inkomstkvot_median",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_smahuspris_medel_tkr",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_snoskoterandel_alla_fordon_pct",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_strand_hav_bostader_per_1000",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_strand_hav_bostader_tatort_andel_pct",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 85,
+        "2023": 85,
+        "2024": 85
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_strand_hav_bostader_tatort_per_1000",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_strand_inland_bostader_per_1000",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_sysselsatta_arbetsstalle_forandring_pct",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_sysselsatta_bostad_forandring_pct",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_sysselsattningsgrad",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_tatortsgrad_pct",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+      "historical_pool": false,
+      "newly_discovered": true,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_utanf_arbetkraften_andel_pct",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_utflyttning_per_1000",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": false,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_valdeltagande_gap_pp",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    },
+    {
+      "feature": "lag1_valdeltagande_pct",
+      "historical_pool": true,
+      "newly_discovered": false,
+      "n_by_year": {
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "complete_sample_2022_2024": false,
+      "blind_predictor_allowed_by_name": true,
+      "source_and_release_timing_review": "pending",
+      "candidate_status": "technical_screen_only"
+    }
+  ],
+  "high_correlations": [],
+  "limitations": [
+    "Coverage is only technical; forecast-time publication dates and semantic definitions remain unverified.",
+    "Never treat any feature as production-approved based on this audit.",
+    "Strongly correlated variables are flagged for group substitution, not automatically deleted.",
+    "Known 2023-2024 evaluations are exploratory, not an independent test."
+  ],
+  "summary": {
+    "total": 86,
+    "complete_and_name_allowed": 0,
+    "incomplete_or_forbidden": 86,
+    "high_corr_pairs": 0
+  }
+}
