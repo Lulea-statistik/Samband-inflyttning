@@ -1,0 +1,34 @@
+name: Test young migration graduation lags
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/test_gymnasium_young_migration_lags.py"
+      - ".github/workflows/test_gymnasium_young_migration_lags.yml"
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Compare young in-migration at one and two year graduation lags
+        run: python scripts/test_gymnasium_young_migration_lags.py
+      - name: Persist research output
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/gymnasium_young_migration_lags.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record young migration graduation lag candidate tests"
+          git pull --rebase origin main
+          git push origin HEAD:main
