@@ -35,3 +35,21 @@ Historikrapporten [structural_historical_bottlenecks.json](data/structural_histo
 Skapa en **icke-prediktiv** maskinläsbar täckningsmatris utifrån redan producerade data, med tydliga statusfält `completely_covered`, `too_short`, `not_yet_audited`, `as_of_unknown`. Denna inventering kräver inga nya modellkörningar och förhindrar att historiskt korta serier ges skenbart likvärdig validering.
 
 Separata prognos- och demografiskt blinda strukturmodeller kvarstår. En variabel kan behållas som **förklarande kandidat** även om den inte får ingå i en bekräftande historisk prognostest.
+
+## Uppdatering efter fullständig 73-variabelsgranskning (2026-10-14)
+
+[Maskinläsbar täckningsmatris](data/fair_all_candidate_historical_coverage.json) från framgångsrika Actions #38595729089 ersätter de äldre, mer begränsade screeningrapporterna när det gäller **förekomst i den nuvarande panelen**:
+
+| Historiskt träningsfönster | Antal kandidater med minst ett helt täckt prognosår av 73 |
+|---|---:|
+| 3 år | 71 |
+| 5 år | 51 |
+| 10 år | 6 |
+
+45 kandidater blir fullständiga först 2019. En kandidat med första helt täckta år 2019 kan med fem års träning endast användas för teståret 2024 i den befintliga panelen. Bland de 73 finns 18 med första kompletta år 2021 och 2 med första kompletta år 2022.
+
+**Korrigering:** Den äldre rapporten `fresh_structural_historical_coverage.json` redovisade LOK-stöd som komplett 2021–2024. Den fullständiga nya panelinventeringen redovisar däremot `lag1_kolada_utbetalt_lok_stod_kr_per_inv` som komplett från **2019** (femårsfönster för 2024). Detta är en skillnad mellan två rapporter som måste förstås som olika granskningstidpunkter och/eller panelunderlag; den gamla uppgiften ska inte längre presenteras som säker aktuell paneltäckning. De verkliga publiceringsdatumen är fortfarande **inte kontrollerade**.
+
+Viktigt: 51 individuellt godkända femårsfönster betyder **inte** 51 samtidigt förenliga variabler i valfri multivariabel modell. En modell behöver ett gemensamt identiskt års-/kommunurval och alla variabler måste ha varit tillgängliga vid prognostillfället.
+
+**Beslut:** Inga nya tränings-/testkörningar mot det redan återanvända prognosåret 2024 förrän testprotokoll och historisk tillgänglighet är tydligare låsta. Produktionsmodell oförändrad.
