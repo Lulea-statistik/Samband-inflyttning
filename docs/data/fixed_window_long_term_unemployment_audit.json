@@ -1,0 +1,185 @@
+{
+  "status": "fixed_window_long_term_unemployment",
+  "panel_source": "docs/data/panel.csv",
+  "definition": "one-year ahead, fixed rolling training years; identical common complete-case municipality-years",
+  "feature_columns": [
+    "lag1_log_folkmangd",
+    "lag1_tatortsgrad_pct",
+    "lag1_regional_centre_distance_km",
+    "lag1_inkomst_tkr",
+    "lag1_andel_eftergymnasial",
+    "lag1_andel_studerande",
+    "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+    "lag1_kolada_arbetslosa_18_65_pct"
+  ],
+  "candidate": "lag1_kolada_langtidsarbetslosa_pct",
+  "coverage_by_year": {
+    "2002": {
+      "n_municipalities": 293,
+      "complete_joint": 0,
+      "candidate_nonmissing": 0,
+      "target_nonmissing": 290
+    },
+    "2003": {
+      "n_municipalities": 293,
+      "complete_joint": 0,
+      "candidate_nonmissing": 0,
+      "target_nonmissing": 290
+    },
+    "2004": {
+      "n_municipalities": 293,
+      "complete_joint": 0,
+      "candidate_nonmissing": 0,
+      "target_nonmissing": 290
+    },
+    "2005": {
+      "n_municipalities": 293,
+      "complete_joint": 0,
+      "candidate_nonmissing": 0,
+      "target_nonmissing": 290
+    },
+    "2006": {
+      "n_municipalities": 293,
+      "complete_joint": 0,
+      "candidate_nonmissing": 0,
+      "target_nonmissing": 290
+    },
+    "2007": {
+      "n_municipalities": 293,
+      "complete_joint": 0,
+      "candidate_nonmissing": 0,
+      "target_nonmissing": 290
+    },
+    "2008": {
+      "n_municipalities": 293,
+      "complete_joint": 0,
+      "candidate_nonmissing": 0,
+      "target_nonmissing": 290
+    },
+    "2009": {
+      "n_municipalities": 293,
+      "complete_joint": 0,
+      "candidate_nonmissing": 0,
+      "target_nonmissing": 290
+    },
+    "2010": {
+      "n_municipalities": 293,
+      "complete_joint": 0,
+      "candidate_nonmissing": 0,
+      "target_nonmissing": 290
+    },
+    "2011": {
+      "n_municipalities": 293,
+      "complete_joint": 0,
+      "candidate_nonmissing": 0,
+      "target_nonmissing": 290
+    },
+    "2012": {
+      "n_municipalities": 293,
+      "complete_joint": 0,
+      "candidate_nonmissing": 0,
+      "target_nonmissing": 290
+    },
+    "2013": {
+      "n_municipalities": 293,
+      "complete_joint": 0,
+      "candidate_nonmissing": 0,
+      "target_nonmissing": 290
+    },
+    "2014": {
+      "n_municipalities": 293,
+      "complete_joint": 0,
+      "candidate_nonmissing": 0,
+      "target_nonmissing": 290
+    },
+    "2015": {
+      "n_municipalities": 293,
+      "complete_joint": 0,
+      "candidate_nonmissing": 0,
+      "target_nonmissing": 290
+    },
+    "2016": {
+      "n_municipalities": 293,
+      "complete_joint": 0,
+      "candidate_nonmissing": 0,
+      "target_nonmissing": 290
+    },
+    "2017": {
+      "n_municipalities": 293,
+      "complete_joint": 0,
+      "candidate_nonmissing": 0,
+      "target_nonmissing": 290
+    },
+    "2018": {
+      "n_municipalities": 293,
+      "complete_joint": 0,
+      "candidate_nonmissing": 0,
+      "target_nonmissing": 290
+    },
+    "2019": {
+      "n_municipalities": 293,
+      "complete_joint": 0,
+      "candidate_nonmissing": 290,
+      "target_nonmissing": 290
+    },
+    "2020": {
+      "n_municipalities": 293,
+      "complete_joint": 0,
+      "candidate_nonmissing": 290,
+      "target_nonmissing": 290
+    },
+    "2021": {
+      "n_municipalities": 293,
+      "complete_joint": 290,
+      "candidate_nonmissing": 290,
+      "target_nonmissing": 290
+    },
+    "2022": {
+      "n_municipalities": 293,
+      "complete_joint": 290,
+      "candidate_nonmissing": 290,
+      "target_nonmissing": 290
+    },
+    "2023": {
+      "n_municipalities": 293,
+      "complete_joint": 290,
+      "candidate_nonmissing": 290,
+      "target_nonmissing": 290
+    },
+    "2024": {
+      "n_municipalities": 293,
+      "complete_joint": 290,
+      "candidate_nonmissing": 290,
+      "target_nonmissing": 290
+    }
+  },
+  "eligible_forecast_years": {
+    "3": [],
+    "5": [],
+    "10": []
+  },
+  "results": {
+    "3": {
+      "n_forecast_years": 0,
+      "years": {},
+      "mean_rmse_gain": null
+    },
+    "5": {
+      "n_forecast_years": 0,
+      "years": {},
+      "mean_rmse_gain": null
+    },
+    "10": {
+      "n_forecast_years": 0,
+      "years": {},
+      "mean_rmse_gain": null
+    }
+  },
+  "production_model_changed": false,
+  "decision": "No automatic promotion. Require at least three test years in a fixed-length window, consistency and local checks; selection retrospective.",
+  "limitations": [
+    "Preselected eight blind structural controls; not the full published model.",
+    "Lagged variables reflect previous year's measurements, not all historic definitions are necessarily method-harmonized.",
+    "Years previously explored cannot be treated as unseen confirmation."
+  ]
+}
