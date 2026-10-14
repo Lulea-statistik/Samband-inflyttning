@@ -11,9 +11,8 @@ import pandas as pd
 from build_analysis import _kolada_json,_kolada_year_rows,_kolada_total_value,_norm_header
 D=Path("docs/data")
 SPECS={
- "examen_3_ar":("gymnasieelever med examen inom 3 ar","hemkommun"),
- "examen_4_ar":("gymnasieelever med examen inom 4 ar","hemkommun"),
- "hogskolebehorighet_3_ar":("gymnasieelever som uppnatt grundlaggande behorighet","hemkommun")}
+ "examen_3_ar":("N17445","Gymnasieelever med examen inom 3 år, hemkommun"),
+ "examen_4_ar":("N17461","Gymnasieelever med examen inom 4 år, hemkommun")}
 YEARS=list(range(2013,2025))
 def fetch_kpi(search,required):
  data=_kolada_json("/kpi",{"title":search,"per_page":5000}).get("values",[])
@@ -30,12 +29,7 @@ def main():
    "candidate_results":{},"production_model_changed":False}
  for short,(search,hemloc) in SPECS.items():
   try:
-   options=fetch_kpi(search,[hemloc])
-   # Search again broadly to catch differing inflections, but never silently map
-   # to school-location or a different educational outcome.
-   if not options:options=fetch_kpi("Gymnasieelever",[hemloc])
-   options=[o for o in options if ("examen inom 3" if short=="examen_3_ar" else "examen inom 4" if short=="examen_4_ar" else "grundlaggande behorighet") in _norm_header(str(o.get("title","")))]
-   if not options:raise RuntimeError("No exact concept-matching KPI found")
+   options=[{"id":search,"title":hemloc}]
    candidates=[]
    for o in options[:8]:
     kid=str(o["id"]);yearly={}
