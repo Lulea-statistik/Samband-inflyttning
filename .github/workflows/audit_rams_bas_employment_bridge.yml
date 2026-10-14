@@ -1,0 +1,32 @@
+name: Diagnose RAMS BAS employment level bridge
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/audit_rams_bas_employment_bridge.py
+      - .github/workflows/audit_rams_bas_employment_bridge.yml
+permissions:
+  contents: write
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas numpy
+      - run: python scripts/audit_rams_bas_employment_bridge.py
+      - name: Save diagnostic
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/rams_bas_employment_level_bridge.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record RAMS BAS municipal employment level overlap diagnostics"
+          git pull --rebase origin main
+          git push origin HEAD:main
