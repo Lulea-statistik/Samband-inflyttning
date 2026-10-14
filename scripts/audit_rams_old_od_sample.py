@@ -42,6 +42,7 @@ def main():
             raise RuntimeError("Ambiguous SCB gender categories: "+str(candidates))
     data={}
     seen=set()
+    diagonal_skipped=0
     def fetch(selected_home,selected_work,yr):
         query=[{"code":home["code"],"selection":{"filter":"item","values":selected_home}},
            {"code":work["code"],"selection":{"filter":"item","values":selected_work}},
@@ -54,10 +55,13 @@ def main():
         res=request("POST",url,json={"query":query,"response":{"format":"json"}})
         dims=[x["code"] for x in res["columns"] if x.get("type")!="c"]
         if home["code"] not in dims or work["code"] not in dims:raise RuntimeError("Unexpected response dimensions "+str(dims))
+        nonlocal diagonal_skipped
         for row in res["data"]:
             d=dict(zip(dims,row["key"]))
             h=str(d[home["code"]]).zfill(4);w=str(d[work["code"]]).zfill(4)
-            if h==w:raise RuntimeError("Expected intermunicipal-only flows; found diagonal")
+            if h==w:
+                diagonal_skipped+=1
+                continue  # Local workers are not intermunicipal commuters.
             value=row["values"][0]
             if value in (None,"","..",".","-"):raise RuntimeError(f"Suppressed cell {yr} {h} {w}")
             key=(yr,h,w)
@@ -76,7 +80,7 @@ def main():
     old=pd.read_csv(D/"commuting_historical_rams.csv",dtype={"kommun_kod":str})
     old.kommun_kod=old.kommun_kod.str.zfill(4)
     report={"status":"independent_sample_commuter_flow_crosscheck",
-      "sex_handling":sex_mode,"source":url,"years":YEARS,"municipalities":chosen,"rows":[],
+      "sex_handling":sex_mode,"diagonal_observations_skipped":diagonal_skipped,"source":url,"years":YEARS,"municipalities":chosen,"rows":[],
       "production_changed":False,
       "limitations":["Commuters crossing a municipal border are not total employed persons.",
         "Only a fixed selection of 12 municipalities and 3 years is checked.",
