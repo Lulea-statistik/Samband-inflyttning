@@ -1,0 +1,352 @@
+{
+  "status": "neutral_correlated_pair_classification",
+  "inventory_size": 80,
+  "pair_count": 33,
+  "pairs": [
+    {
+      "a": "lag1_arbetskraftsdeltagande",
+      "b": "lag1_utanf_arbetkraften_andel_pct",
+      "rho": -1.0,
+      "n_complete_pairs": 870,
+      "provisional_relationship": "complement_candidate",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_fritidshus_per_1000_inv",
+      "b": "lag1_log_fritidshus_per_1000_inv",
+      "rho": 1.0,
+      "n_complete_pairs": 1450,
+      "provisional_relationship": "monotone_transform",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_log_regional_centre_distance_km",
+      "b": "lag1_regional_centre_distance_km",
+      "rho": 1.0,
+      "n_complete_pairs": 870,
+      "provisional_relationship": "monotone_transform",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_log_smahuspris_medel",
+      "b": "lag1_smahuspris_medel_tkr",
+      "rho": 1.0,
+      "n_complete_pairs": 1450,
+      "provisional_relationship": "monotone_transform",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_snoskoterandel_alla_fordon_pct",
+      "b": "lag1_snoskoterandel_exkl_dragfordon_pct",
+      "rho": 1.0,
+      "n_complete_pairs": 1450,
+      "provisional_relationship": "alternative_denominator",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_arbetskraftsdeltagande",
+      "b": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+      "rho": -0.99974,
+      "n_complete_pairs": 870,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+      "b": "lag1_utanf_arbetkraften_andel_pct",
+      "rho": 0.99974,
+      "n_complete_pairs": 870,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_smahuspris_inkomstkvot_medel",
+      "b": "lag1_smahuspris_inkomstkvot_median",
+      "rho": 0.99934,
+      "n_complete_pairs": 1450,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_log_smahuspris_medel",
+      "b": "lag1_smahuspris_inkomstkvot_median",
+      "rho": 0.99514,
+      "n_complete_pairs": 1450,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_smahuspris_inkomstkvot_median",
+      "b": "lag1_smahuspris_medel_tkr",
+      "rho": 0.99514,
+      "n_complete_pairs": 1450,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_log_smahuspris_medel",
+      "b": "lag1_smahuspris_inkomstkvot_medel",
+      "rho": 0.9933,
+      "n_complete_pairs": 1450,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_smahuspris_inkomstkvot_medel",
+      "b": "lag1_smahuspris_medel_tkr",
+      "rho": 0.9933,
+      "n_complete_pairs": 1450,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+      "b": "lag1_log_externa_fa_jobb_per_1000",
+      "rho": -0.99268,
+      "n_complete_pairs": 870,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_andel_bostader_141_plus",
+      "b": "lag1_andel_bostader_151_plus",
+      "rho": 0.98791,
+      "n_complete_pairs": 1450,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_fritidshus_per_1000_inv",
+      "b": "lag1_fritidshusandel_bland_smahus",
+      "rho": 0.98054,
+      "n_complete_pairs": 1450,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_fritidshusandel_bland_smahus",
+      "b": "lag1_log_fritidshus_per_1000_inv",
+      "rho": 0.98054,
+      "n_complete_pairs": 1450,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_arbetsloshet",
+      "b": "lag1_kolada_langtidsarbetslosa_pct",
+      "rho": 0.96846,
+      "n_complete_pairs": 870,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_inkomst_median_tkr",
+      "b": "lag1_inkomst_tkr",
+      "rho": 0.96233,
+      "n_complete_pairs": 1450,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_bebyggd_anlagd_andel_land_pct",
+      "b": "lag1_log_befolkningstathet_land",
+      "rho": 0.96091,
+      "n_complete_pairs": 1450,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_strand_hav_bostader_per_1000",
+      "b": "lag1_strand_hav_bostader_tatort_per_1000",
+      "rho": 0.95447,
+      "n_complete_pairs": 1450,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_andel_bostader_111_plus",
+      "b": "lag1_andel_bostader_141_plus",
+      "rho": 0.94036,
+      "n_complete_pairs": 1450,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_andel_bostader_111_plus",
+      "b": "lag1_andel_bostader_70_max",
+      "rho": -0.91562,
+      "n_complete_pairs": 1450,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_andel_bostader_111_plus",
+      "b": "lag1_andel_bostader_151_plus",
+      "rho": 0.91307,
+      "n_complete_pairs": 1450,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_arbetskraftsdeltagande",
+      "b": "lag1_sysselsattningsgrad",
+      "rho": 0.89904,
+      "n_complete_pairs": 870,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_sysselsattningsgrad",
+      "b": "lag1_utanf_arbetkraften_andel_pct",
+      "rho": -0.89904,
+      "n_complete_pairs": 870,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_sysselsattningsgrad",
+      "b": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+      "rho": -0.89884,
+      "n_complete_pairs": 870,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_strand_hav_bostader_per_1000",
+      "b": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+      "rho": 0.89534,
+      "n_complete_pairs": 1450,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_log_befolkningstathet_land",
+      "b": "lag1_strand_inland_bostader_per_1000",
+      "rho": -0.89012,
+      "n_complete_pairs": 1450,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_arbetsloshet",
+      "b": "lag1_sysselsattningsgrad",
+      "rho": -0.88951,
+      "n_complete_pairs": 870,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_gymnasium_hogskoleforberedande_pct",
+      "b": "lag1_gymnasium_yrkesprogram_pct",
+      "rho": -0.88635,
+      "n_complete_pairs": 1450,
+      "provisional_relationship": "possible_compositional_complement",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_bebyggd_anlagd_andel_land_pct",
+      "b": "lag1_strand_inland_bostader_per_1000",
+      "rho": -0.8594,
+      "n_complete_pairs": 1450,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_andel_eftergymnasial",
+      "b": "lag1_log_smahuspris_medel",
+      "rho": 0.85448,
+      "n_complete_pairs": 1450,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    },
+    {
+      "a": "lag1_andel_eftergymnasial",
+      "b": "lag1_smahuspris_medel_tkr",
+      "rho": 0.85448,
+      "n_complete_pairs": 1450,
+      "provisional_relationship": "empirical_association_only",
+      "algebraic_identity_proven": false,
+      "restrict_joint_selection": false,
+      "requires_definition_check": true
+    }
+  ],
+  "rules": {
+    "monotone_transform": "Consider alternative functional forms, not two independent signals; compare with train-only models.",
+    "complement_candidate": "Confirm denominators and algebraic identity before treating as exact complements.",
+    "alternative_denominator": "Different denominators may matter; compare definition and missingness, no forced exclusion.",
+    "possible_compositional_complement": "Check shares cover same denominator and whether other categories exist.",
+    "empirical_association_only": "Correlation alone does not justify forcing one variable per network or dropping one."
+  },
+  "fairness": [
+    "Incumbent and new variables have equal prior status.",
+    "Separate demographic-blind and demographics-allowed universes.",
+    "Report identical-row windows, source releases and full feature-family alternatives prior to tests.",
+    "Use no outcome-based ranking or model selection in this report."
+  ],
+  "production_changed": false,
+  "variables_removed": 0
+}
