@@ -1,0 +1,197 @@
+{
+  "status": "job_growth_sign_stability_research",
+  "source": "BAS",
+  "years": [
+    2023,
+    2024
+  ],
+  "production_model_changed": false,
+  "results": {
+    "2023": {
+      "n_train": 290,
+      "n_test": 290,
+      "train_years": [
+        2022
+      ],
+      "models": {
+        "univariate_job": {
+          "rmse": 17.9720291945411,
+          "mae": 15.417078540080299,
+          "standardized_job_coefficient": 5.71437992863822,
+          "chosen_alpha": 5.62341325190349,
+          "feature_count": 1
+        },
+        "basic_adjusted": {
+          "rmse": 14.37800984186027,
+          "mae": 11.667507484218095,
+          "standardized_job_coefficient": 2.874444371271561,
+          "chosen_alpha": 5.62341325190349,
+          "feature_count": 3
+        },
+        "baseline_without_job": {
+          "rmse": 6.174145340083862,
+          "mae": 4.778874511993231,
+          "standardized_job_coefficient": null,
+          "chosen_alpha": 1.7782794100389228,
+          "feature_count": 7
+        },
+        "baseline_with_job": {
+          "rmse": 6.240390924108793,
+          "mae": 4.866419338276463,
+          "standardized_job_coefficient": 0.1276394250590478,
+          "chosen_alpha": 1.7782794100389228,
+          "feature_count": 8
+        },
+        "baseline_job_and_other_growth": {
+          "rmse": 6.22371023015767,
+          "mae": 4.852614826200814,
+          "standardized_job_coefficient": 0.10056313385453974,
+          "chosen_alpha": 1.7782794100389228,
+          "feature_count": 9
+        },
+        "baseline_job_and_seasonality": {
+          "rmse": 6.229458477042276,
+          "mae": 4.855409352548045,
+          "standardized_job_coefficient": 0.12386897679334961,
+          "chosen_alpha": 1.7782794100389228,
+          "feature_count": 9
+        }
+      },
+      "pairwise_correlations": {
+        "lag1_sysselsatta_arbetsstalle_forandring_pct": 0.48591239381333284,
+        "lag1_sysselsatta_bostad_sasongsvariation_pct": 0.05490237394148339,
+        "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct": 0.025541529538208114,
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun": -0.16959725851176813
+      },
+      "top_correlations_with_selected_features": [
+        [
+          "lag1_fardigstallda_bostader_per_1000",
+          0.4288876264153398
+        ],
+        [
+          "lag1_inflyttning_per_1000",
+          0.40058327788460246
+        ],
+        [
+          "lag1_utflyttning_per_1000",
+          0.19010564020532147
+        ],
+        [
+          "lag1_inkomst_tkr",
+          0.17048666576371888
+        ],
+        [
+          "lag1_kolada_arbetslosa_18_65_pct",
+          0.0420557409149889
+        ]
+      ],
+      "job_train_mean": 1.0936245943087741,
+      "job_train_sd": 0.9527675364665827,
+      "job_test_mean": 2.2534024024342907
+    },
+    "2024": {
+      "n_train": 580,
+      "n_test": 290,
+      "train_years": [
+        2022,
+        2023
+      ],
+      "models": {
+        "univariate_job": {
+          "rmse": 14.821476625803133,
+          "mae": 9.763103624312292,
+          "standardized_job_coefficient": 5.187472953523408,
+          "chosen_alpha": 10.0,
+          "feature_count": 1
+        },
+        "basic_adjusted": {
+          "rmse": 11.531113444938171,
+          "mae": 8.39209273258656,
+          "standardized_job_coefficient": 2.1923809385309156,
+          "chosen_alpha": 5.62341325190349,
+          "feature_count": 3
+        },
+        "baseline_without_job": {
+          "rmse": 5.604905182036146,
+          "mae": 4.31414105491758,
+          "standardized_job_coefficient": null,
+          "chosen_alpha": 5.62341325190349,
+          "feature_count": 19
+        },
+        "baseline_with_job": {
+          "rmse": 5.342589132268128,
+          "mae": 4.022120734043011,
+          "standardized_job_coefficient": -0.5719379300017735,
+          "chosen_alpha": 5.62341325190349,
+          "feature_count": 20
+        },
+        "baseline_job_and_other_growth": {
+          "rmse": 5.393851431776714,
+          "mae": 4.084763050018742,
+          "standardized_job_coefficient": -0.8439034627356417,
+          "chosen_alpha": 5.62341325190349,
+          "feature_count": 21
+        },
+        "baseline_job_and_seasonality": {
+          "rmse": 5.4235644156416205,
+          "mae": 4.100960677915086,
+          "standardized_job_coefficient": -0.5980353143090532,
+          "chosen_alpha": 5.62341325190349,
+          "feature_count": 21
+        }
+      },
+      "pairwise_correlations": {
+        "lag1_sysselsatta_arbetsstalle_forandring_pct": 0.5393457006259249,
+        "lag1_sysselsatta_bostad_sasongsvariation_pct": -0.055042686755932206,
+        "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct": -0.07084383883993021,
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun": -0.14320144719513714
+      },
+      "top_correlations_with_selected_features": [
+        [
+          "lag1_bostader_per_1000",
+          -0.4352016781747541
+        ],
+        [
+          "lag1_bostadsbestandsforandring_pct",
+          0.42971459317697064
+        ],
+        [
+          "lag1_gymnasium_yrkesprogram_pct",
+          -0.3788189538231285
+        ],
+        [
+          "lag1_inflyttning_per_1000",
+          0.37815900408780545
+        ],
+        [
+          "lag1_andel_smahus_111_plus",
+          0.3684579408349261
+        ],
+        [
+          "lag1_fritidshusandel_bland_smahus",
+          -0.3654813011448966
+        ],
+        [
+          "lag1_andel_bostadsratt",
+          0.35626821576539375
+        ],
+        [
+          "lag1_inflyttare_medelalder",
+          -0.3182038921616642
+        ],
+        [
+          "lag1_andel_20_34",
+          0.3174761321874525
+        ],
+        [
+          "lag1_inkomst_tkr",
+          0.2966898851681314
+        ]
+      ],
+      "job_train_mean": 1.673513498371532,
+      "job_train_sd": 1.2654881365746578,
+      "job_test_mean": 0.24218221527439465
+    }
+  },
+  "limitation": "Retrospective years already used repeatedly; conditional coefficients are not causal effects."
+}
