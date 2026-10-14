@@ -1,0 +1,218 @@
+{
+  "status": "geographic_holdout_stress",
+  "year": 2024,
+  "train_years": [
+    2022,
+    2023
+  ],
+  "design": "Five deterministic municipality holdouts; each holdout absent from both training years",
+  "retrospective_selection_warning": "Variants chosen from previously inspected 2023-2024 outcomes, not independent validation.",
+  "production_model_changed": false,
+  "coefficient_checks": [
+    {
+      "fold": 0,
+      "model": "employment",
+      "standardized_job_coefficient": -0.7129961510823257
+    },
+    {
+      "fold": 0,
+      "model": "combined",
+      "standardized_job_coefficient": -0.7124206331915963
+    },
+    {
+      "fold": 1,
+      "model": "employment",
+      "standardized_job_coefficient": -0.7867461210282254
+    },
+    {
+      "fold": 1,
+      "model": "combined",
+      "standardized_job_coefficient": -0.7307533394653714
+    },
+    {
+      "fold": 2,
+      "model": "employment",
+      "standardized_job_coefficient": -0.9400613649967422
+    },
+    {
+      "fold": 2,
+      "model": "combined",
+      "standardized_job_coefficient": -0.9373343039238975
+    },
+    {
+      "fold": 3,
+      "model": "employment",
+      "standardized_job_coefficient": -0.5695003328286692
+    },
+    {
+      "fold": 3,
+      "model": "combined",
+      "standardized_job_coefficient": -0.5643181913386037
+    },
+    {
+      "fold": 4,
+      "model": "employment",
+      "standardized_job_coefficient": -0.24942943494960587
+    },
+    {
+      "fold": 4,
+      "model": "combined",
+      "standardized_job_coefficient": -0.2503391388042111
+    },
+    {
+      "train_years": [
+        2022
+      ],
+      "test_year": 2023,
+      "model": "combined",
+      "standardized_job_coefficient": 0.12451839277544133
+    },
+    {
+      "train_years": [
+        2022,
+        2023
+      ],
+      "test_year": 2024,
+      "model": "combined",
+      "standardized_job_coefficient": -0.5537030751421906
+    }
+  ],
+  "metrics": {
+    "reference": {
+      "r2": 0.8654619908191437,
+      "rmse": 5.55164159659851,
+      "mae": 4.297990229919311,
+      "median_abs_error": 3.4823387542487865,
+      "p90_abs_error": 8.988497325338251,
+      "p95_abs_error": 11.885269660202638,
+      "p90_p10_abs_error_gap": 8.233766009812102,
+      "best_decile_mae": 0.38418723107579994,
+      "worst_decile_mae": 12.407584615787304,
+      "decile_mae_gap": 12.023397384711505,
+      "max_abs_error": 20.00599921069832,
+      "n": 290
+    },
+    "employment": {
+      "r2": 0.8789957972983364,
+      "rmse": 5.2650093875613315,
+      "mae": 3.976860300935892,
+      "median_abs_error": 3.1707666692369934,
+      "p90_abs_error": 8.46004195588139,
+      "p95_abs_error": 11.345644507092633,
+      "p90_p10_abs_error_gap": 8.102989880498534,
+      "best_decile_mae": 0.18284696381337098,
+      "worst_decile_mae": 11.967420780663518,
+      "decile_mae_gap": 11.784573816850147,
+      "max_abs_error": 19.350241265427144,
+      "n": 290
+    },
+    "small_housing": {
+      "r2": 0.8655553092717111,
+      "rmse": 5.54971589369287,
+      "mae": 4.283167165116837,
+      "median_abs_error": 3.4106027328127553,
+      "p90_abs_error": 9.078916586722846,
+      "p95_abs_error": 11.730934601999197,
+      "p90_p10_abs_error_gap": 8.414163544317601,
+      "best_decile_mae": 0.36766347403603683,
+      "worst_decile_mae": 12.445000659706274,
+      "decile_mae_gap": 12.077337185670237,
+      "max_abs_error": 19.875645603555427,
+      "n": 290
+    },
+    "combined": {
+      "r2": 0.8789995063525563,
+      "rmse": 5.264928694682494,
+      "mae": 3.965768124596398,
+      "median_abs_error": 2.968732027248734,
+      "p90_abs_error": 8.355196934622791,
+      "p95_abs_error": 11.365164012267206,
+      "p90_p10_abs_error_gap": 8.00059302390396,
+      "best_decile_mae": 0.1853774480275026,
+      "worst_decile_mae": 12.00354434422184,
+      "decile_mae_gap": 11.818166896194338,
+      "max_abs_error": 19.223832421710014,
+      "n": 290
+    }
+  },
+  "quartiles": [
+    {
+      "group": "Q1",
+      "n": 73,
+      "rmse": {
+        "reference": 5.50654070159474,
+        "employment": 5.211183171027588,
+        "small_housing": 5.495933599439215,
+        "combined": 5.202703537140662
+      }
+    },
+    {
+      "group": "Q2",
+      "n": 72,
+      "rmse": {
+        "reference": 5.401959227548327,
+        "employment": 5.11048269520262,
+        "small_housing": 5.387367067422787,
+        "combined": 5.100860301924912
+      }
+    },
+    {
+      "group": "Q3",
+      "n": 72,
+      "rmse": {
+        "reference": 5.532719233499844,
+        "employment": 5.35454463110407,
+        "small_housing": 5.564204962583135,
+        "combined": 5.380267800610164
+      }
+    },
+    {
+      "group": "Q4",
+      "n": 73,
+      "rmse": {
+        "reference": 5.757032971621593,
+        "employment": 5.378451997179076,
+        "small_housing": 5.743333647543044,
+        "combined": 5.370031392971403
+      }
+    }
+  ],
+  "lulea": [
+    {
+      "kommun_kod": "2580",
+      "out_share": 10.391649955302134,
+      "actual": 51.74210559357147,
+      "fold": 1,
+      "reference": 47.09195996475776,
+      "employment": 47.51227362607302,
+      "small_housing": 47.14989373706347,
+      "combined": 47.5293030596088
+    }
+  ],
+  "bootstrap": {
+    "employment": {
+      "rmse_gain": 0.2866322090371787,
+      "ci95": [
+        0.1945443225057568,
+        0.37619751830872383
+      ],
+      "improved_municipalities": 207
+    },
+    "small_housing": {
+      "rmse_gain": 0.001925702905640314,
+      "ci95": [
+        -0.02555083706894834,
+        0.031013882969073828
+      ],
+      "improved_municipalities": 137
+    },
+    "combined": {
+      "rmse_gain": 0.28671290191601617,
+      "ci95": [
+        0.20224965412526955,
+        0.373477364268937
+      ],
+      "improved_municipalities": 208
+    }
+  }
+}
