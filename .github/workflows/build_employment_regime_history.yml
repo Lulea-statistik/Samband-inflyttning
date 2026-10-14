@@ -1,0 +1,28 @@
+name: Build separate RAMS BAS employment histories
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/build_employment_regime_history.py
+      - .github/workflows/build_employment_regime_history.yml
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: python scripts/build_employment_regime_history.py
+      - name: Save separate research histories
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/employment_historical_regime_research.csv docs/data/employment_growth_within_regimes.csv docs/data/employment_historical_regime_status.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record distinct RAMS and BAS employment histories"
+          git pull --rebase origin main
+          git push origin HEAD:main
