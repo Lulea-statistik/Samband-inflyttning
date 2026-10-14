@@ -1,0 +1,37 @@
+name: Compare two thematic commuter candidates
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/test_commuting_two_candidates.py"
+      - ".github/workflows/test_commuting_two_candidates.yml"
+concurrency:
+  group: commuting-two-candidates
+  cancel-in-progress: true
+permissions:
+  contents: write
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Compare two candidate additions against frozen commuter baseline
+        run: python scripts/test_commuting_two_candidates.py
+      - name: Save results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/commuting_two_candidate_stability.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Update two thematic commuter candidate report"
+          git pull --rebase origin main
+          git push origin HEAD:main
