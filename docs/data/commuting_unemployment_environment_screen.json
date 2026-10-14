@@ -1,0 +1,207 @@
+{
+  "status": "unemployment_environment_single_candidate",
+  "source": "BAS",
+  "years": [
+    2023,
+    2024
+  ],
+  "candidate_themes": {
+    "unemployment": [
+      "lag1_kolada_langtidsarbetslosa_pct",
+      "lag1_kolada_arbetslosa_18_24_pct"
+    ],
+    "shore_nature": [
+      "lag1_skogsmark_andel_land_pct",
+      "lag1_naturpraglad_mark_andel_land_pct",
+      "lag1_strand_hav_bostader_per_1000",
+      "lag1_strand_hav_bostader_tatort_per_1000"
+    ]
+  },
+  "same_sample": true,
+  "production_model_changed": false,
+  "results": {
+    "2023": {
+      "n_train": 290,
+      "n_test": 290,
+      "selected": [
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_inkomst_tkr",
+        "lag1_fardigstallda_bostader_per_1000",
+        "lag1_kolada_arbetslosa_18_65_pct"
+      ],
+      "comparisons": {
+        "reference": {
+          "theme": "reference",
+          "already_in_selected": false,
+          "added_feature": false,
+          "rmse": 6.174145340083862,
+          "mae": 4.778874511993231,
+          "lulea_prediction": 48.50148622306121,
+          "lulea_actual": 47.73666700272205,
+          "standardized_coefficient": null
+        },
+        "lag1_kolada_langtidsarbetslosa_pct": {
+          "theme": "unemployment",
+          "already_in_selected": false,
+          "added_feature": true,
+          "rmse": 6.22515353491352,
+          "mae": 4.796513322270884,
+          "lulea_prediction": 48.289991757153,
+          "lulea_actual": 47.73666700272205,
+          "standardized_coefficient": -1.1775997834735854
+        },
+        "lag1_kolada_arbetslosa_18_24_pct": {
+          "theme": "unemployment",
+          "already_in_selected": false,
+          "added_feature": true,
+          "rmse": 6.206911217590108,
+          "mae": 4.82266481766673,
+          "lulea_prediction": 49.0371285118338,
+          "lulea_actual": 47.73666700272205,
+          "standardized_coefficient": -0.8908579236853997
+        },
+        "lag1_skogsmark_andel_land_pct": {
+          "theme": "shore_nature",
+          "already_in_selected": false,
+          "added_feature": true,
+          "rmse": 6.155261589956866,
+          "mae": 4.762730720603369,
+          "lulea_prediction": 48.33915327001237,
+          "lulea_actual": 47.73666700272205,
+          "standardized_coefficient": -0.2117464074713764
+        },
+        "lag1_naturpraglad_mark_andel_land_pct": {
+          "theme": "shore_nature",
+          "already_in_selected": false,
+          "added_feature": true,
+          "rmse": 6.164738314798863,
+          "mae": 4.776647030696611,
+          "lulea_prediction": 48.42908434159367,
+          "lulea_actual": 47.73666700272205,
+          "standardized_coefficient": -0.22916227971166947
+        },
+        "lag1_strand_hav_bostader_per_1000": {
+          "theme": "shore_nature",
+          "already_in_selected": false,
+          "added_feature": true,
+          "rmse": 6.182212422594864,
+          "mae": 4.777538518252374,
+          "lulea_prediction": 48.33438344607076,
+          "lulea_actual": 47.73666700272205,
+          "standardized_coefficient": -0.3073328371299704
+        },
+        "lag1_strand_hav_bostader_tatort_per_1000": {
+          "theme": "shore_nature",
+          "already_in_selected": false,
+          "added_feature": true,
+          "rmse": 6.160216664345104,
+          "mae": 4.773449547721602,
+          "lulea_prediction": 48.55815168448524,
+          "lulea_actual": 47.73666700272205,
+          "standardized_coefficient": -0.29852666913298176
+        }
+      }
+    },
+    "2024": {
+      "n_train": 580,
+      "n_test": 290,
+      "selected": [
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_andel_20_34",
+        "lag1_inflyttare_medelalder",
+        "lag1_inkomst_tkr",
+        "lag1_ekonomisk_standard_gap_pp",
+        "lag1_bostader_per_1000",
+        "lag1_bostadsbestandsforandring_pct",
+        "lag1_andel_bostadsratt",
+        "lag1_fritidshusandel_bland_smahus",
+        "lag1_andel_studerande",
+        "lag1_andel_hotell_restaurang_i",
+        "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+        "lag1_kolada_arbetslosa_18_65_pct",
+        "lag1_bas_studerande_andel_pct",
+        "lag1_andel_smahus_111_plus",
+        "lag1_gymnasium_yrkesprogram_pct"
+      ],
+      "comparisons": {
+        "reference": {
+          "theme": "reference",
+          "already_in_selected": false,
+          "added_feature": false,
+          "rmse": 5.604905182036146,
+          "mae": 4.31414105491758,
+          "lulea_prediction": 46.05039980011311,
+          "lulea_actual": 51.74210559357147,
+          "standardized_coefficient": null
+        },
+        "lag1_kolada_langtidsarbetslosa_pct": {
+          "theme": "unemployment",
+          "already_in_selected": false,
+          "added_feature": true,
+          "rmse": 5.5024356351899355,
+          "mae": 4.213068120555613,
+          "lulea_prediction": 46.34767335835673,
+          "lulea_actual": 51.74210559357147,
+          "standardized_coefficient": -0.696205231553094
+        },
+        "lag1_kolada_arbetslosa_18_24_pct": {
+          "theme": "unemployment",
+          "already_in_selected": false,
+          "added_feature": true,
+          "rmse": 5.615304515366978,
+          "mae": 4.336782138596145,
+          "lulea_prediction": 46.09862019479003,
+          "lulea_actual": 51.74210559357147,
+          "standardized_coefficient": -0.26097584007930585
+        },
+        "lag1_skogsmark_andel_land_pct": {
+          "theme": "shore_nature",
+          "already_in_selected": false,
+          "added_feature": true,
+          "rmse": 5.608003919865166,
+          "mae": 4.322547168830329,
+          "lulea_prediction": 45.80467765923872,
+          "lulea_actual": 51.74210559357147,
+          "standardized_coefficient": -0.3613709208566682
+        },
+        "lag1_naturpraglad_mark_andel_land_pct": {
+          "theme": "shore_nature",
+          "already_in_selected": false,
+          "added_feature": true,
+          "rmse": 5.596066801191698,
+          "mae": 4.3043548486697,
+          "lulea_prediction": 45.93664013724294,
+          "lulea_actual": 51.74210559357147,
+          "standardized_coefficient": -0.2105541854651154
+        },
+        "lag1_strand_hav_bostader_per_1000": {
+          "theme": "shore_nature",
+          "already_in_selected": false,
+          "added_feature": true,
+          "rmse": 5.591663666883785,
+          "mae": 4.29469716570081,
+          "lulea_prediction": 45.91735177957051,
+          "lulea_actual": 51.74210559357147,
+          "standardized_coefficient": -0.17861654784449055
+        },
+        "lag1_strand_hav_bostader_tatort_per_1000": {
+          "theme": "shore_nature",
+          "already_in_selected": false,
+          "added_feature": true,
+          "rmse": 5.568659361115435,
+          "mae": 4.262098050778574,
+          "lulea_prediction": 46.025455743877664,
+          "lulea_actual": 51.74210559357147,
+          "standardized_coefficient": -0.3451887339917734
+        }
+      }
+    }
+  },
+  "limitations": [
+    "The modern dynamically selected baseline includes lagged migration outcomes (not a demographically blind structural model).",
+    "For unemployment variables already eligible, this tests forced inclusion if not selected, not independent new candidate discovery.",
+    "2023/24 have been repeatedly inspected: exploratory, no independent validation."
+  ]
+}
