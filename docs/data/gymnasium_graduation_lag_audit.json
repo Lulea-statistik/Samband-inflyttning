@@ -17,13 +17,212 @@
   "focus": "Home-municipality gymnasium qualification outcomes, never school location",
   "candidate_results": {
     "examen_3_ar": {
-      "error": "No exact concept-matching KPI found"
+      "selected": {
+        "id": "N17445",
+        "title": "Gymnasieelever med examen inom 3 år, hemkommun",
+        "coverage": {
+          "2013": 0,
+          "2014": 290,
+          "2015": 290,
+          "2016": 290,
+          "2017": 290,
+          "2018": 290,
+          "2019": 290,
+          "2020": 290,
+          "2021": 290,
+          "2022": 290,
+          "2023": 290,
+          "2024": 290
+        },
+        "years_290": 11,
+        "municipality_observations": 3190
+      },
+      "other_matches": [],
+      "lag_coverage": {
+        "1": {
+          "forecast_years_with_290_coverage": [
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "five_year_fixed_training_forecasts": [
+            2020,
+            2021,
+            2022,
+            2023,
+            2024
+          ]
+        },
+        "2": {
+          "forecast_years_with_290_coverage": [
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "five_year_fixed_training_forecasts": [
+            2021,
+            2022,
+            2023,
+            2024
+          ]
+        },
+        "3": {
+          "forecast_years_with_290_coverage": [
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "five_year_fixed_training_forecasts": [
+            2022,
+            2023,
+            2024
+          ]
+        },
+        "4": {
+          "forecast_years_with_290_coverage": [
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "five_year_fixed_training_forecasts": [
+            2023,
+            2024
+          ]
+        },
+        "5": {
+          "forecast_years_with_290_coverage": [
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "five_year_fixed_training_forecasts": [
+            2024
+          ]
+        }
+      }
     },
     "examen_4_ar": {
-      "error": "No exact concept-matching KPI found"
-    },
-    "hogskolebehorighet_3_ar": {
-      "error": "No exact concept-matching KPI found"
+      "selected": {
+        "id": "N17461",
+        "title": "Gymnasieelever med examen inom 4 år, hemkommun",
+        "coverage": {
+          "2013": 0,
+          "2014": 0,
+          "2015": 290,
+          "2016": 290,
+          "2017": 290,
+          "2018": 290,
+          "2019": 290,
+          "2020": 290,
+          "2021": 290,
+          "2022": 290,
+          "2023": 290,
+          "2024": 290
+        },
+        "years_290": 10,
+        "municipality_observations": 2900
+      },
+      "other_matches": [],
+      "lag_coverage": {
+        "1": {
+          "forecast_years_with_290_coverage": [
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "five_year_fixed_training_forecasts": [
+            2021,
+            2022,
+            2023,
+            2024
+          ]
+        },
+        "2": {
+          "forecast_years_with_290_coverage": [
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "five_year_fixed_training_forecasts": [
+            2022,
+            2023,
+            2024
+          ]
+        },
+        "3": {
+          "forecast_years_with_290_coverage": [
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "five_year_fixed_training_forecasts": [
+            2023,
+            2024
+          ]
+        },
+        "4": {
+          "forecast_years_with_290_coverage": [
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "five_year_fixed_training_forecasts": [
+            2024
+          ]
+        },
+        "5": {
+          "forecast_years_with_290_coverage": [
+            2020,
+            2021,
+            2022,
+            2023,
+            2024
+          ],
+          "five_year_fixed_training_forecasts": []
+        }
+      }
     },
     "lag1_gymnasium_hogskoleforberedande_pct": {
       "lag_coverage": {
