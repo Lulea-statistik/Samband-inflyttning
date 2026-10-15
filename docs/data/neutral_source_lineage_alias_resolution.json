@@ -1,0 +1,5858 @@
+{
+  "status": "code_index_with_historical_employment_research_aliases",
+  "source_files_scanned": [
+    "scripts/build_analysis.py",
+    "scripts/test_environment_unemployment_geographic.py",
+    "scripts/audit_scb_completion_tables.py",
+    "scripts/audit_fixed_window_long_term_unemployment.py",
+    "scripts/build_employment_regime_history.py",
+    "scripts/audit_employment_lag1_availability.py",
+    "scripts/audit_employment_regression_readiness.py",
+    "scripts/test_historical_employment_fixed_regression.py",
+    "scripts/test_employment_level_growth.py",
+    "scripts/audit_employment_growth_regime_gate.py",
+    "scripts/test_employment_2019_2023_window.py",
+    "scripts/test_commuting_unemployment_environment.py",
+    "scripts/audit_employment_representation.py",
+    "scripts/import_scb_commuting.py",
+    "scripts/test_blind_civic_unemployment_geographic.py",
+    "scripts/audit_rams_bas_employment_bridge.py"
+  ],
+  "counts": {
+    "candidates": 80,
+    "with_source_code_mentions": 78,
+    "missing_code_mentions": [
+      "lag1_sysselsatta_arbetsstalle_rams_bas_historisk_forandring_pct",
+      "lag1_sysselsatta_bostad_rams_bas_historisk_forandring_pct"
+    ],
+    "resolved_research_aliases": 2,
+    "remaining_unmapped_names": 0
+  },
+  "records": [
+    {
+      "feature": "lag1_andel_20_34",
+      "theme": "needs_classification",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4848,
+          "excerpt": "panel[\"lag1_andel_20_34\"] = g[\"andel_20_34\"].shift(1)",
+          "context_lines": [
+            4843,
+            4852
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5068,
+          "excerpt": "\"lag1_andel_20_34\": \"Åldersstruktur\",",
+          "context_lines": [
+            5063,
+            5072
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6055,
+          "excerpt": "\"lag1_andel_20_34\",",
+          "context_lines": [
+            6050,
+            6059
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6633,
+          "excerpt": "\"lag1_andel_20_34\",",
+          "context_lines": [
+            6628,
+            6637
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8907,
+          "excerpt": "\"lag1_andel_20_34\",",
+          "context_lines": [
+            8902,
+            8911
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8935,
+          "excerpt": "\"lag1_andel_20_34\",",
+          "context_lines": [
+            8930,
+            8939
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9080,
+          "excerpt": "\"lag1_andel_20_34\",",
+          "context_lines": [
+            9075,
+            9084
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9111,
+          "excerpt": "\"lag1_andel_20_34\",",
+          "context_lines": [
+            9106,
+            9115
+          ]
+        },
+        {
+          "path": "scripts/test_blind_civic_unemployment_geographic.py",
+          "line": 18,
+          "excerpt": "FORBIDDEN={\"lag1_inflyttning_per_1000\",\"lag1_utflyttning_per_1000\",\"lag1_befolkningstillvaxt_pct\",\"lag1_andel_20_34\",\"lag1_inflyttare_medelalder\"}",
+          "context_lines": [
+            13,
+            22
+          ]
+        }
+      ],
+      "source_code_mention_count": 9,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_andel_bostader_111_plus",
+      "theme": "bostader_och_bestand",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 223,
+          "excerpt": "\"lag1_andel_bostader_111_plus\",",
+          "context_lines": [
+            218,
+            227
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4876,
+          "excerpt": "panel[\"lag1_andel_bostader_111_plus\"] = g[\"andel_bostader_111_plus\"].shift(1)",
+          "context_lines": [
+            4871,
+            4880
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5090,
+          "excerpt": "\"lag1_andel_bostader_111_plus\": \"Bostadsstorlek\",",
+          "context_lines": [
+            5085,
+            5094
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5135,
+          "excerpt": "\"lag1_andel_bostader_111_plus\": \"Bostadsstorlek\",",
+          "context_lines": [
+            5130,
+            5139
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6622,
+          "excerpt": "\"lag1_andel_bostader_111_plus\",",
+          "context_lines": [
+            6617,
+            6626
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7770,
+          "excerpt": "\"lag1_andel_bostader_111_plus\",",
+          "context_lines": [
+            7765,
+            7774
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7776,
+          "excerpt": "\"lag1_andel_bostader_111_plus\"]",
+          "context_lines": [
+            7771,
+            7780
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7805,
+          "excerpt": "\"lag1_andel_bostader_111_plus\",",
+          "context_lines": [
+            7800,
+            7809
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7904,
+          "excerpt": "\"lag1_andel_bostader_111_plus\",",
+          "context_lines": [
+            7899,
+            7908
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7910,
+          "excerpt": "\"lag1_andel_bostader_111_plus\"]",
+          "context_lines": [
+            7905,
+            7914
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7938,
+          "excerpt": "\"lag1_andel_bostader_111_plus\",",
+          "context_lines": [
+            7933,
+            7942
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8944,
+          "excerpt": "features.append(\"lag1_andel_bostader_111_plus\")",
+          "context_lines": [
+            8939,
+            8948
+          ]
+        }
+      ],
+      "source_code_mention_count": 12,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_andel_bostader_141_plus",
+      "theme": "bostader_och_bestand",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 224,
+          "excerpt": "\"lag1_andel_bostader_141_plus\",",
+          "context_lines": [
+            219,
+            228
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4877,
+          "excerpt": "panel[\"lag1_andel_bostader_141_plus\"] = g[\"andel_bostader_141_plus\"].shift(1)",
+          "context_lines": [
+            4872,
+            4881
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5091,
+          "excerpt": "\"lag1_andel_bostader_141_plus\": \"Bostadsstorlek\",",
+          "context_lines": [
+            5086,
+            5095
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5136,
+          "excerpt": "\"lag1_andel_bostader_141_plus\": \"Bostadsstorlek\",",
+          "context_lines": [
+            5131,
+            5140
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6623,
+          "excerpt": "\"lag1_andel_bostader_141_plus\",",
+          "context_lines": [
+            6618,
+            6627
+          ]
+        }
+      ],
+      "source_code_mention_count": 5,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_andel_bostader_151_plus",
+      "theme": "bostader_och_bestand",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 241,
+          "excerpt": "\"lag1_andel_bostader_151_plus\",",
+          "context_lines": [
+            236,
+            245
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4881,
+          "excerpt": "panel[\"lag1_andel_bostader_151_plus\"] = g[\"andel_bostader_151_plus\"].shift(1)",
+          "context_lines": [
+            4876,
+            4885
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5095,
+          "excerpt": "\"lag1_andel_bostader_151_plus\": \"Mycket stora bostäder\",",
+          "context_lines": [
+            5090,
+            5099
+          ]
+        }
+      ],
+      "source_code_mention_count": 3,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_andel_bostader_70_max",
+      "theme": "bostader_och_bestand",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 239,
+          "excerpt": "\"lag1_andel_bostader_70_max\",",
+          "context_lines": [
+            234,
+            243
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4879,
+          "excerpt": "panel[\"lag1_andel_bostader_70_max\"] = g[\"andel_bostader_70_max\"].shift(1)",
+          "context_lines": [
+            4874,
+            4883
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5093,
+          "excerpt": "\"lag1_andel_bostader_70_max\": \"Små bostäder\",",
+          "context_lines": [
+            5088,
+            5097
+          ]
+        }
+      ],
+      "source_code_mention_count": 3,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_andel_bostadsratt",
+      "theme": "bostader_och_bestand",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4874,
+          "excerpt": "panel[\"lag1_andel_bostadsratt\"] = g[\"andel_bostadsratt\"].shift(1)",
+          "context_lines": [
+            4869,
+            4878
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5088,
+          "excerpt": "\"lag1_andel_bostadsratt\": \"Upplåtelseform\",",
+          "context_lines": [
+            5083,
+            5092
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8917,
+          "excerpt": "\"lag1_andel_bostadsratt\",",
+          "context_lines": [
+            8912,
+            8921
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9090,
+          "excerpt": "\"lag1_andel_bostadsratt\",",
+          "context_lines": [
+            9085,
+            9094
+          ]
+        }
+      ],
+      "source_code_mention_count": 4,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_andel_eftergymnasial",
+      "theme": "utbildning_och_studier",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4893,
+          "excerpt": "panel[\"lag1_andel_eftergymnasial\"] = g[\"andel_eftergymnasial\"].shift(1)",
+          "context_lines": [
+            4888,
+            4897
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5110,
+          "excerpt": "\"lag1_andel_eftergymnasial\": \"Humankapital\",",
+          "context_lines": [
+            5105,
+            5114
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5670,
+          "excerpt": "\"lag1_andel_eftergymnasial\",",
+          "context_lines": [
+            5665,
+            5674
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5888,
+          "excerpt": "\"lag1_andel_eftergymnasial\",",
+          "context_lines": [
+            5883,
+            5892
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6057,
+          "excerpt": "\"lag1_andel_eftergymnasial\",",
+          "context_lines": [
+            6052,
+            6061
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6061,
+          "excerpt": "\"lag1_andel_eftergymnasial\",",
+          "context_lines": [
+            6056,
+            6065
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6254,
+          "excerpt": "\"lag1_andel_eftergymnasial\",",
+          "context_lines": [
+            6249,
+            6258
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6441,
+          "excerpt": "\"lag1_andel_eftergymnasial\",",
+          "context_lines": [
+            6436,
+            6445
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8923,
+          "excerpt": "\"lag1_andel_eftergymnasial\",",
+          "context_lines": [
+            8918,
+            8927
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9096,
+          "excerpt": "\"lag1_andel_eftergymnasial\",",
+          "context_lines": [
+            9091,
+            9100
+          ]
+        },
+        {
+          "path": "scripts/audit_fixed_window_long_term_unemployment.py",
+          "line": 20,
+          "excerpt": "\"lag1_inkomst_tkr\",\"lag1_andel_eftergymnasial\",\"lag1_andel_studerande\",",
+          "context_lines": [
+            15,
+            24
+          ]
+        }
+      ],
+      "source_code_mention_count": 11,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+      "theme": "naringslivsstruktur",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4920,
+          "excerpt": "panel[\"lag1_andel_fa_arbetsplatser_i_egen_kommun\"] = g[\"andel_fa_arbetsplatser_i_egen_kommun\"].shift(1)",
+          "context_lines": [
+            4915,
+            4924
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5116,
+          "excerpt": "\"lag1_andel_fa_arbetsplatser_i_egen_kommun\": \"Regional arbetsmotor\",",
+          "context_lines": [
+            5111,
+            5120
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5689,
+          "excerpt": "\"lag1_andel_fa_arbetsplatser_i_egen_kommun\",",
+          "context_lines": [
+            5684,
+            5693
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5894,
+          "excerpt": "\"lag1_andel_fa_arbetsplatser_i_egen_kommun\",",
+          "context_lines": [
+            5889,
+            5898
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6067,
+          "excerpt": "\"lag1_andel_fa_arbetsplatser_i_egen_kommun\",",
+          "context_lines": [
+            6062,
+            6071
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6260,
+          "excerpt": "\"lag1_andel_fa_arbetsplatser_i_egen_kommun\",",
+          "context_lines": [
+            6255,
+            6264
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6447,
+          "excerpt": "\"lag1_andel_fa_arbetsplatser_i_egen_kommun\",",
+          "context_lines": [
+            6442,
+            6451
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8929,
+          "excerpt": "\"lag1_andel_fa_arbetsplatser_i_egen_kommun\",",
+          "context_lines": [
+            8924,
+            8933
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9102,
+          "excerpt": "\"lag1_andel_fa_arbetsplatser_i_egen_kommun\",",
+          "context_lines": [
+            9097,
+            9106
+          ]
+        },
+        {
+          "path": "scripts/test_environment_unemployment_geographic.py",
+          "line": 13,
+          "excerpt": "CONTROL=\"lag1_andel_fa_arbetsplatser_i_egen_kommun\"",
+          "context_lines": [
+            8,
+            17
+          ]
+        },
+        {
+          "path": "scripts/audit_fixed_window_long_term_unemployment.py",
+          "line": 21,
+          "excerpt": "\"lag1_andel_fa_arbetsplatser_i_egen_kommun\",\"lag1_kolada_arbetslosa_18_65_pct\"]",
+          "context_lines": [
+            16,
+            25
+          ]
+        },
+        {
+          "path": "scripts/test_employment_level_growth.py",
+          "line": 18,
+          "excerpt": "CONTROL=\"lag1_andel_fa_arbetsplatser_i_egen_kommun\"",
+          "context_lines": [
+            13,
+            22
+          ]
+        },
+        {
+          "path": "scripts/test_commuting_unemployment_environment.py",
+          "line": 18,
+          "excerpt": "CONTROL=\"lag1_andel_fa_arbetsplatser_i_egen_kommun\"",
+          "context_lines": [
+            13,
+            22
+          ]
+        }
+      ],
+      "source_code_mention_count": 13,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_andel_flerbostad_70_max",
+      "theme": "bostader_och_bestand",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 240,
+          "excerpt": "\"lag1_andel_flerbostad_70_max\",",
+          "context_lines": [
+            235,
+            244
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4880,
+          "excerpt": "panel[\"lag1_andel_flerbostad_70_max\"] = g[\"andel_flerbostad_70_max\"].shift(1)",
+          "context_lines": [
+            4875,
+            4884
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5094,
+          "excerpt": "\"lag1_andel_flerbostad_70_max\": \"Små bostäder\",",
+          "context_lines": [
+            5089,
+            5098
+          ]
+        }
+      ],
+      "source_code_mention_count": 3,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_andel_hotell_restaurang_i",
+      "theme": "naringslivsstruktur",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4917,
+          "excerpt": "panel[\"lag1_andel_hotell_restaurang_i\"] = g[\"andel_hotell_restaurang_i\"].shift(1)",
+          "context_lines": [
+            4912,
+            4921
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5113,
+          "excerpt": "\"lag1_andel_hotell_restaurang_i\": \"Näringslivsprofil\",",
+          "context_lines": [
+            5108,
+            5117
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5680,
+          "excerpt": "\"lag1_andel_hotell_restaurang_i\",",
+          "context_lines": [
+            5675,
+            5684
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5891,
+          "excerpt": "\"lag1_andel_hotell_restaurang_i\",",
+          "context_lines": [
+            5886,
+            5895
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6064,
+          "excerpt": "\"lag1_andel_hotell_restaurang_i\",",
+          "context_lines": [
+            6059,
+            6068
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6257,
+          "excerpt": "\"lag1_andel_hotell_restaurang_i\",",
+          "context_lines": [
+            6252,
+            6261
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6444,
+          "excerpt": "\"lag1_andel_hotell_restaurang_i\",",
+          "context_lines": [
+            6439,
+            6448
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8926,
+          "excerpt": "\"lag1_andel_hotell_restaurang_i\",",
+          "context_lines": [
+            8921,
+            8930
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9099,
+          "excerpt": "\"lag1_andel_hotell_restaurang_i\",",
+          "context_lines": [
+            9094,
+            9103
+          ]
+        }
+      ],
+      "source_code_mention_count": 9,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_andel_hyresratt",
+      "theme": "bostader_och_bestand",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4873,
+          "excerpt": "panel[\"lag1_andel_hyresratt\"] = g[\"andel_hyresratt\"].shift(1)",
+          "context_lines": [
+            4868,
+            4877
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5087,
+          "excerpt": "\"lag1_andel_hyresratt\": \"Upplåtelseform\",",
+          "context_lines": [
+            5082,
+            5091
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8916,
+          "excerpt": "\"lag1_andel_hyresratt\",",
+          "context_lines": [
+            8911,
+            8920
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9089,
+          "excerpt": "\"lag1_andel_hyresratt\",",
+          "context_lines": [
+            9084,
+            9093
+          ]
+        }
+      ],
+      "source_code_mention_count": 4,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_andel_industri_bc",
+      "theme": "naringslivsstruktur",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4916,
+          "excerpt": "panel[\"lag1_andel_industri_bc\"] = g[\"andel_industri_bc\"].shift(1)",
+          "context_lines": [
+            4911,
+            4920
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5112,
+          "excerpt": "\"lag1_andel_industri_bc\": \"Näringslivsprofil\",",
+          "context_lines": [
+            5107,
+            5116
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5679,
+          "excerpt": "\"lag1_andel_industri_bc\",",
+          "context_lines": [
+            5674,
+            5683
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5890,
+          "excerpt": "\"lag1_andel_industri_bc\",",
+          "context_lines": [
+            5885,
+            5894
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6063,
+          "excerpt": "\"lag1_andel_industri_bc\",",
+          "context_lines": [
+            6058,
+            6067
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6256,
+          "excerpt": "\"lag1_andel_industri_bc\",",
+          "context_lines": [
+            6251,
+            6260
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6443,
+          "excerpt": "\"lag1_andel_industri_bc\",",
+          "context_lines": [
+            6438,
+            6447
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8925,
+          "excerpt": "\"lag1_andel_industri_bc\",",
+          "context_lines": [
+            8920,
+            8929
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9098,
+          "excerpt": "\"lag1_andel_industri_bc\",",
+          "context_lines": [
+            9093,
+            9102
+          ]
+        }
+      ],
+      "source_code_mention_count": 9,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_andel_kultur_service_rstu",
+      "theme": "foreningsliv_och_kultur",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4918,
+          "excerpt": "panel[\"lag1_andel_kultur_service_rstu\"] = g[\"andel_kultur_service_rstu\"].shift(1)",
+          "context_lines": [
+            4913,
+            4922
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5114,
+          "excerpt": "\"lag1_andel_kultur_service_rstu\": \"Näringslivsprofil\",",
+          "context_lines": [
+            5109,
+            5118
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5681,
+          "excerpt": "\"lag1_andel_kultur_service_rstu\",",
+          "context_lines": [
+            5676,
+            5685
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5892,
+          "excerpt": "\"lag1_andel_kultur_service_rstu\",",
+          "context_lines": [
+            5887,
+            5896
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6065,
+          "excerpt": "\"lag1_andel_kultur_service_rstu\",",
+          "context_lines": [
+            6060,
+            6069
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6258,
+          "excerpt": "\"lag1_andel_kultur_service_rstu\",",
+          "context_lines": [
+            6253,
+            6262
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6445,
+          "excerpt": "\"lag1_andel_kultur_service_rstu\",",
+          "context_lines": [
+            6440,
+            6449
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8927,
+          "excerpt": "\"lag1_andel_kultur_service_rstu\",",
+          "context_lines": [
+            8922,
+            8931
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9100,
+          "excerpt": "\"lag1_andel_kultur_service_rstu\",",
+          "context_lines": [
+            9095,
+            9104
+          ]
+        }
+      ],
+      "source_code_mention_count": 9,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_andel_smahus",
+      "theme": "bostader_och_bestand",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 225,
+          "excerpt": "\"lag1_andel_smahus_111_plus\",",
+          "context_lines": [
+            220,
+            229
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 242,
+          "excerpt": "\"lag1_andel_smahus_151_plus\",",
+          "context_lines": [
+            237,
+            246
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4875,
+          "excerpt": "panel[\"lag1_andel_smahus\"] = g[\"andel_smahus\"].shift(1)",
+          "context_lines": [
+            4870,
+            4879
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4878,
+          "excerpt": "panel[\"lag1_andel_smahus_111_plus\"] = g[\"andel_smahus_111_plus\"].shift(1)",
+          "context_lines": [
+            4873,
+            4882
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4882,
+          "excerpt": "panel[\"lag1_andel_smahus_151_plus\"] = g[\"andel_smahus_151_plus\"].shift(1)",
+          "context_lines": [
+            4877,
+            4886
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5089,
+          "excerpt": "\"lag1_andel_smahus\": \"Landets lugn\",",
+          "context_lines": [
+            5084,
+            5093
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5092,
+          "excerpt": "\"lag1_andel_smahus_111_plus\": \"Bostadsstorlek\",",
+          "context_lines": [
+            5087,
+            5096
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5096,
+          "excerpt": "\"lag1_andel_smahus_151_plus\": \"Mycket stora bostäder\",",
+          "context_lines": [
+            5091,
+            5100
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5137,
+          "excerpt": "\"lag1_andel_smahus_111_plus\": \"Bostadsstorlek\",",
+          "context_lines": [
+            5132,
+            5141
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6624,
+          "excerpt": "\"lag1_andel_smahus_111_plus\",",
+          "context_lines": [
+            6619,
+            6628
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7498,
+          "excerpt": "\"lag1_andel_smahus\",",
+          "context_lines": [
+            7493,
+            7502
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7503,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\", \"lag1_andel_smahus\"]",
+          "context_lines": [
+            7498,
+            7507
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7531,
+          "excerpt": "\"lag1_andel_smahus\",",
+          "context_lines": [
+            7526,
+            7535
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7635,
+          "excerpt": "\"lag1_andel_smahus\",",
+          "context_lines": [
+            7630,
+            7639
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7640,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\", \"lag1_andel_smahus\"]",
+          "context_lines": [
+            7635,
+            7644
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7667,
+          "excerpt": "\"lag1_andel_smahus\",",
+          "context_lines": [
+            7662,
+            7671
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7769,
+          "excerpt": "\"lag1_andel_smahus\",",
+          "context_lines": [
+            7764,
+            7773
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7775,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\", \"lag1_andel_smahus\",",
+          "context_lines": [
+            7770,
+            7779
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7804,
+          "excerpt": "\"lag1_andel_smahus\",",
+          "context_lines": [
+            7799,
+            7808
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7903,
+          "excerpt": "\"lag1_andel_smahus\",",
+          "context_lines": [
+            7898,
+            7907
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7909,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\", \"lag1_andel_smahus\",",
+          "context_lines": [
+            7904,
+            7913
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7937,
+          "excerpt": "\"lag1_andel_smahus\",",
+          "context_lines": [
+            7932,
+            7941
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8918,
+          "excerpt": "\"lag1_andel_smahus\",",
+          "context_lines": [
+            8913,
+            8922
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9091,
+          "excerpt": "\"lag1_andel_smahus\",",
+          "context_lines": [
+            9086,
+            9095
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9919,
+          "excerpt": "\"lag1_andel_smahus\",",
+          "context_lines": [
+            9914,
+            9923
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9924,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\", \"lag1_andel_smahus\"]",
+          "context_lines": [
+            9919,
+            9928
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9952,
+          "excerpt": "\"lag1_andel_smahus\",",
+          "context_lines": [
+            9947,
+            9956
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10056,
+          "excerpt": "\"lag1_andel_smahus\",",
+          "context_lines": [
+            10051,
+            10060
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10075,
+          "excerpt": "\"lag1_andel_smahus\", SHORELINE_COMPARATOR_FEATURE, candidate,",
+          "context_lines": [
+            10070,
+            10079
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10109,
+          "excerpt": "\"lag1_andel_smahus\",",
+          "context_lines": [
+            10104,
+            10113
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10240,
+          "excerpt": "\"lag1_andel_smahus\",",
+          "context_lines": [
+            10235,
+            10244
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10248,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\", \"lag1_andel_smahus\",",
+          "context_lines": [
+            10243,
+            10252
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10278,
+          "excerpt": "\"lag1_andel_smahus\",",
+          "context_lines": [
+            10273,
+            10282
+          ]
+        }
+      ],
+      "source_code_mention_count": 33,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_andel_smahus_111_plus",
+      "theme": "bostader_och_bestand",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 225,
+          "excerpt": "\"lag1_andel_smahus_111_plus\",",
+          "context_lines": [
+            220,
+            229
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4878,
+          "excerpt": "panel[\"lag1_andel_smahus_111_plus\"] = g[\"andel_smahus_111_plus\"].shift(1)",
+          "context_lines": [
+            4873,
+            4882
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5092,
+          "excerpt": "\"lag1_andel_smahus_111_plus\": \"Bostadsstorlek\",",
+          "context_lines": [
+            5087,
+            5096
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5137,
+          "excerpt": "\"lag1_andel_smahus_111_plus\": \"Bostadsstorlek\",",
+          "context_lines": [
+            5132,
+            5141
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6624,
+          "excerpt": "\"lag1_andel_smahus_111_plus\",",
+          "context_lines": [
+            6619,
+            6628
+          ]
+        }
+      ],
+      "source_code_mention_count": 5,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_andel_smahus_151_plus",
+      "theme": "bostader_och_bestand",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 242,
+          "excerpt": "\"lag1_andel_smahus_151_plus\",",
+          "context_lines": [
+            237,
+            246
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4882,
+          "excerpt": "panel[\"lag1_andel_smahus_151_plus\"] = g[\"andel_smahus_151_plus\"].shift(1)",
+          "context_lines": [
+            4877,
+            4886
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5096,
+          "excerpt": "\"lag1_andel_smahus_151_plus\": \"Mycket stora bostäder\",",
+          "context_lines": [
+            5091,
+            5100
+          ]
+        }
+      ],
+      "source_code_mention_count": 3,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_andel_studerande",
+      "theme": "utbildning_och_studier",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4894,
+          "excerpt": "panel[\"lag1_andel_studerande\"] = g[\"andel_studerande\"].shift(1)",
+          "context_lines": [
+            4889,
+            4898
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5111,
+          "excerpt": "\"lag1_andel_studerande\": \"Studentmiljö\",",
+          "context_lines": [
+            5106,
+            5115
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5671,
+          "excerpt": "\"lag1_andel_studerande\",",
+          "context_lines": [
+            5666,
+            5675
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5889,
+          "excerpt": "\"lag1_andel_studerande\",",
+          "context_lines": [
+            5884,
+            5893
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6054,
+          "excerpt": "\"lag1_andel_studerande\",",
+          "context_lines": [
+            6049,
+            6058
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6062,
+          "excerpt": "\"lag1_andel_studerande\",",
+          "context_lines": [
+            6057,
+            6066
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6255,
+          "excerpt": "\"lag1_andel_studerande\",",
+          "context_lines": [
+            6250,
+            6259
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6442,
+          "excerpt": "\"lag1_andel_studerande\",",
+          "context_lines": [
+            6437,
+            6446
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8924,
+          "excerpt": "\"lag1_andel_studerande\",",
+          "context_lines": [
+            8919,
+            8928
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9097,
+          "excerpt": "\"lag1_andel_studerande\",",
+          "context_lines": [
+            9092,
+            9101
+          ]
+        },
+        {
+          "path": "scripts/audit_fixed_window_long_term_unemployment.py",
+          "line": 20,
+          "excerpt": "\"lag1_inkomst_tkr\",\"lag1_andel_eftergymnasial\",\"lag1_andel_studerande\",",
+          "context_lines": [
+            15,
+            24
+          ]
+        }
+      ],
+      "source_code_mention_count": 11,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_arbetskraftsdeltagande",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4905,
+          "excerpt": "panel[\"lag1_arbetskraftsdeltagande\"] = g[\"arbetskraftsdeltagande\"].shift(1)",
+          "context_lines": [
+            4900,
+            4909
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5129,
+          "excerpt": "\"lag1_arbetskraftsdeltagande\": \"Arbetsmarknadsdeltagande\",",
+          "context_lines": [
+            5124,
+            5133
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6243,
+          "excerpt": "participation = \"lag1_arbetskraftsdeltagande\"",
+          "context_lines": [
+            6238,
+            6247
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6616,
+          "excerpt": "\"lag1_arbetskraftsdeltagande\",",
+          "context_lines": [
+            6611,
+            6620
+          ]
+        }
+      ],
+      "source_code_mention_count": 4,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_arbetsloshet",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4888,
+          "excerpt": "panel[\"lag1_arbetsloshet\"] = g[\"arbetsloshet\"].shift(1)",
+          "context_lines": [
+            4883,
+            4892
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5109,
+          "excerpt": "\"lag1_arbetsloshet\": \"Arbetsmarknad\",",
+          "context_lines": [
+            5104,
+            5113
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5696,
+          "excerpt": "[\"lag1_arbetsloshet\"],",
+          "context_lines": [
+            5691,
+            5700
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5885,
+          "excerpt": "bas = \"lag1_arbetsloshet\"",
+          "context_lines": [
+            5880,
+            5889
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6050,
+          "excerpt": "bas = \"lag1_arbetsloshet\"",
+          "context_lines": [
+            6045,
+            6054
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6241,
+          "excerpt": "bas = \"lag1_arbetsloshet\"",
+          "context_lines": [
+            6236,
+            6245
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6425,
+          "excerpt": "bas_unemp = \"lag1_arbetsloshet\"",
+          "context_lines": [
+            6420,
+            6429
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8922,
+          "excerpt": "\"lag1_arbetsloshet\",",
+          "context_lines": [
+            8917,
+            8926
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9095,
+          "excerpt": "\"lag1_arbetsloshet\",",
+          "context_lines": [
+            9090,
+            9099
+          ]
+        }
+      ],
+      "source_code_mention_count": 9,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_bas_ovriga_andel_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4910,
+          "excerpt": "panel[\"lag1_bas_ovriga_andel_pct\"] = g[\"bas_ovriga_andel_pct\"].shift(1)",
+          "context_lines": [
+            4905,
+            4914
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5134,
+          "excerpt": "\"lag1_bas_ovriga_andel_pct\": \"BAS-status\",",
+          "context_lines": [
+            5129,
+            5138
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6250,
+          "excerpt": "\"lag1_bas_ovriga_andel_pct\",",
+          "context_lines": [
+            6245,
+            6254
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6431,
+          "excerpt": "\"lag1_bas_ovriga_andel_pct\",",
+          "context_lines": [
+            6426,
+            6435
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6437,
+          "excerpt": "\"lag1_bas_ovriga_andel_pct\": \"Övriga utanför arbetskraften\",",
+          "context_lines": [
+            6432,
+            6441
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6621,
+          "excerpt": "\"lag1_bas_ovriga_andel_pct\",",
+          "context_lines": [
+            6616,
+            6625
+          ]
+        }
+      ],
+      "source_code_mention_count": 6,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_bas_pensionarer_andel_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4908,
+          "excerpt": "panel[\"lag1_bas_pensionarer_andel_pct\"] = g[\"bas_pensionarer_andel_pct\"].shift(1)",
+          "context_lines": [
+            4903,
+            4912
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5132,
+          "excerpt": "\"lag1_bas_pensionarer_andel_pct\": \"BAS-status\",",
+          "context_lines": [
+            5127,
+            5136
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6248,
+          "excerpt": "\"lag1_bas_pensionarer_andel_pct\",",
+          "context_lines": [
+            6243,
+            6252
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6429,
+          "excerpt": "\"lag1_bas_pensionarer_andel_pct\",",
+          "context_lines": [
+            6424,
+            6433
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6435,
+          "excerpt": "\"lag1_bas_pensionarer_andel_pct\": \"Pensionärer\",",
+          "context_lines": [
+            6430,
+            6439
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6619,
+          "excerpt": "\"lag1_bas_pensionarer_andel_pct\",",
+          "context_lines": [
+            6614,
+            6623
+          ]
+        }
+      ],
+      "source_code_mention_count": 6,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_bas_sjuka_andel_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4909,
+          "excerpt": "panel[\"lag1_bas_sjuka_andel_pct\"] = g[\"bas_sjuka_andel_pct\"].shift(1)",
+          "context_lines": [
+            4904,
+            4913
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5133,
+          "excerpt": "\"lag1_bas_sjuka_andel_pct\": \"BAS-status\",",
+          "context_lines": [
+            5128,
+            5137
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6249,
+          "excerpt": "\"lag1_bas_sjuka_andel_pct\",",
+          "context_lines": [
+            6244,
+            6253
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6430,
+          "excerpt": "\"lag1_bas_sjuka_andel_pct\",",
+          "context_lines": [
+            6425,
+            6434
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6436,
+          "excerpt": "\"lag1_bas_sjuka_andel_pct\": \"Sjuka\",",
+          "context_lines": [
+            6431,
+            6440
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6620,
+          "excerpt": "\"lag1_bas_sjuka_andel_pct\",",
+          "context_lines": [
+            6615,
+            6624
+          ]
+        }
+      ],
+      "source_code_mention_count": 6,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_bas_studerande_andel_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4907,
+          "excerpt": "panel[\"lag1_bas_studerande_andel_pct\"] = g[\"bas_studerande_andel_pct\"].shift(1)",
+          "context_lines": [
+            4902,
+            4911
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5131,
+          "excerpt": "\"lag1_bas_studerande_andel_pct\": \"BAS-status\",",
+          "context_lines": [
+            5126,
+            5135
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6247,
+          "excerpt": "\"lag1_bas_studerande_andel_pct\",",
+          "context_lines": [
+            6242,
+            6251
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6428,
+          "excerpt": "\"lag1_bas_studerande_andel_pct\",",
+          "context_lines": [
+            6423,
+            6432
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6434,
+          "excerpt": "\"lag1_bas_studerande_andel_pct\": \"Studerande\",",
+          "context_lines": [
+            6429,
+            6438
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6618,
+          "excerpt": "\"lag1_bas_studerande_andel_pct\",",
+          "context_lines": [
+            6613,
+            6622
+          ]
+        }
+      ],
+      "source_code_mention_count": 6,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+      "theme": "geografi_och_mark",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4844,
+          "excerpt": "panel[\"lag1_bebyggd_anlagd_andel_land_pct\"] = g[\"bebyggd_anlagd_andel_land_pct\"].shift(1)",
+          "context_lines": [
+            4839,
+            4848
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7362,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            7357,
+            7366
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7368,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\"]",
+          "context_lines": [
+            7363,
+            7372
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7395,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            7390,
+            7399
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7496,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            7491,
+            7500
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7503,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\", \"lag1_andel_smahus\"]",
+          "context_lines": [
+            7498,
+            7507
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7530,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            7525,
+            7534
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7633,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            7628,
+            7637
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7640,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\", \"lag1_andel_smahus\"]",
+          "context_lines": [
+            7635,
+            7644
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7666,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            7661,
+            7670
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7767,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            7762,
+            7771
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7775,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\", \"lag1_andel_smahus\",",
+          "context_lines": [
+            7770,
+            7779
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7803,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            7798,
+            7807
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7901,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            7896,
+            7905
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7909,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\", \"lag1_andel_smahus\",",
+          "context_lines": [
+            7904,
+            7913
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7936,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            7931,
+            7940
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9441,
+          "excerpt": "\"urbanity\": \"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            9436,
+            9445
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9447,
+          "excerpt": "\"urbanity\": \"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            9442,
+            9451
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9456,
+          "excerpt": "\"lag1_tatortsgrad_pct\", \"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            9451,
+            9460
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9594,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            9589,
+            9598
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9600,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\"]",
+          "context_lines": [
+            9595,
+            9604
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9626,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            9621,
+            9630
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9704,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            9699,
+            9708
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9718,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            9713,
+            9722
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9749,
+          "excerpt": "corr_record(\"lag1_bebyggd_anlagd_andel_land_pct\"),",
+          "context_lines": [
+            9744,
+            9753
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9787,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            9782,
+            9791
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9797,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\"]",
+          "context_lines": [
+            9792,
+            9801
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9821,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            9816,
+            9825
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9917,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            9912,
+            9921
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9924,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\", \"lag1_andel_smahus\"]",
+          "context_lines": [
+            9919,
+            9928
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9951,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            9946,
+            9955
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10054,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            10049,
+            10058
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10074,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            10069,
+            10078
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10108,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            10103,
+            10112
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10238,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            10233,
+            10242
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10248,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\", \"lag1_andel_smahus\",",
+          "context_lines": [
+            10243,
+            10252
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10277,
+          "excerpt": "\"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            10272,
+            10281
+          ]
+        }
+      ],
+      "source_code_mention_count": 37,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_befolkningstillvaxt_pct",
+      "theme": "needs_classification",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4847,
+          "excerpt": "panel[\"lag1_befolkningstillvaxt_pct\"] = g[\"befolkningstillvaxt_pct\"].shift(1)",
+          "context_lines": [
+            4842,
+            4851
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5067,
+          "excerpt": "\"lag1_befolkningstillvaxt_pct\": \"Befolkningsdynamik\",",
+          "context_lines": [
+            5062,
+            5071
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6632,
+          "excerpt": "\"lag1_befolkningstillvaxt_pct\",",
+          "context_lines": [
+            6627,
+            6636
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8906,
+          "excerpt": "\"lag1_befolkningstillvaxt_pct\",",
+          "context_lines": [
+            8901,
+            8910
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8934,
+          "excerpt": "\"lag1_befolkningstillvaxt_pct\",",
+          "context_lines": [
+            8929,
+            8938
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9079,
+          "excerpt": "\"lag1_befolkningstillvaxt_pct\",",
+          "context_lines": [
+            9074,
+            9083
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9110,
+          "excerpt": "\"lag1_befolkningstillvaxt_pct\",",
+          "context_lines": [
+            9105,
+            9114
+          ]
+        },
+        {
+          "path": "scripts/test_blind_civic_unemployment_geographic.py",
+          "line": 18,
+          "excerpt": "FORBIDDEN={\"lag1_inflyttning_per_1000\",\"lag1_utflyttning_per_1000\",\"lag1_befolkningstillvaxt_pct\",\"lag1_andel_20_34\",\"lag1_inflyttare_medelalder\"}",
+          "context_lines": [
+            13,
+            22
+          ]
+        }
+      ],
+      "source_code_mention_count": 8,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_bostader_per_1000",
+      "theme": "bostader_och_bestand",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4870,
+          "excerpt": "panel[\"lag1_bostader_per_1000\"] = g[\"bostader_per_1000\"].shift(1)",
+          "context_lines": [
+            4865,
+            4874
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5084,
+          "excerpt": "\"lag1_bostader_per_1000\": \"Bostadsutbud\",",
+          "context_lines": [
+            5079,
+            5088
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8913,
+          "excerpt": "\"lag1_bostader_per_1000\",",
+          "context_lines": [
+            8908,
+            8917
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9086,
+          "excerpt": "\"lag1_bostader_per_1000\",",
+          "context_lines": [
+            9081,
+            9090
+          ]
+        }
+      ],
+      "source_code_mention_count": 4,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_bostadsbestandsforandring_pct",
+      "theme": "bostader_och_bestand",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4871,
+          "excerpt": "panel[\"lag1_bostadsbestandsforandring_pct\"] = g[\"bostadsbestandsforandring_pct\"].shift(1)",
+          "context_lines": [
+            4866,
+            4875
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5085,
+          "excerpt": "\"lag1_bostadsbestandsforandring_pct\": \"Bostadsdynamik\",",
+          "context_lines": [
+            5080,
+            5089
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8914,
+          "excerpt": "\"lag1_bostadsbestandsforandring_pct\",",
+          "context_lines": [
+            8909,
+            8918
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9087,
+          "excerpt": "\"lag1_bostadsbestandsforandring_pct\",",
+          "context_lines": [
+            9082,
+            9091
+          ]
+        }
+      ],
+      "source_code_mention_count": 4,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_brott_per_100000",
+      "theme": "trygghet",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4886,
+          "excerpt": "panel[\"lag1_brott_per_100000\"] = g[\"brott_per_100000\"].shift(1)",
+          "context_lines": [
+            4881,
+            4890
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5107,
+          "excerpt": "\"lag1_brott_per_100000\": \"Landets lugn\",",
+          "context_lines": [
+            5102,
+            5111
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8920,
+          "excerpt": "\"lag1_brott_per_100000\",",
+          "context_lines": [
+            8915,
+            8924
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9093,
+          "excerpt": "\"lag1_brott_per_100000\",",
+          "context_lines": [
+            9088,
+            9097
+          ]
+        }
+      ],
+      "source_code_mention_count": 4,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_ekonomisk_standard_gap_pp",
+      "theme": "inkomst_och_bostadsekonomi",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4869,
+          "excerpt": "panel[\"lag1_ekonomisk_standard_gap_pp\"] = g[\"ekonomisk_standard_gap_pp\"].shift(1)",
+          "context_lines": [
+            4864,
+            4873
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5083,
+          "excerpt": "\"lag1_ekonomisk_standard_gap_pp\": \"Socioekonomiska klyftor\",",
+          "context_lines": [
+            5078,
+            5087
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8912,
+          "excerpt": "\"lag1_ekonomisk_standard_gap_pp\",",
+          "context_lines": [
+            8907,
+            8916
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9085,
+          "excerpt": "\"lag1_ekonomisk_standard_gap_pp\",",
+          "context_lines": [
+            9080,
+            9089
+          ]
+        }
+      ],
+      "source_code_mention_count": 4,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_fardigstallda_bostader_per_1000",
+      "theme": "bostader_och_bestand",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4872,
+          "excerpt": "panel[\"lag1_fardigstallda_bostader_per_1000\"] = g[\"fardigstallda_bostader_per_1000\"].shift(1)",
+          "context_lines": [
+            4867,
+            4876
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5086,
+          "excerpt": "\"lag1_fardigstallda_bostader_per_1000\": \"Bostadsdynamik\",",
+          "context_lines": [
+            5081,
+            5090
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8915,
+          "excerpt": "\"lag1_fardigstallda_bostader_per_1000\",",
+          "context_lines": [
+            8910,
+            8919
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9088,
+          "excerpt": "\"lag1_fardigstallda_bostader_per_1000\",",
+          "context_lines": [
+            9083,
+            9092
+          ]
+        }
+      ],
+      "source_code_mention_count": 4,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_fritidshus_per_1000_inv",
+      "theme": "bostader_och_bestand",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 232,
+          "excerpt": "\"lag1_fritidshus_per_1000_inv\",",
+          "context_lines": [
+            227,
+            236
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4884,
+          "excerpt": "panel[\"lag1_fritidshus_per_1000_inv\"] = g[\"fritidshus_per_1000_inv\"].shift(1)",
+          "context_lines": [
+            4879,
+            4888
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5105,
+          "excerpt": "\"lag1_fritidshus_per_1000_inv\": \"Fritidshusintensitet\",",
+          "context_lines": [
+            5100,
+            5109
+          ]
+        }
+      ],
+      "source_code_mention_count": 3,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_fritidshusandel_bland_smahus",
+      "theme": "bostader_och_bestand",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4883,
+          "excerpt": "panel[\"lag1_fritidshusandel_bland_smahus\"] = g[\"fritidshusandel_bland_smahus\"].shift(1)",
+          "context_lines": [
+            4878,
+            4887
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5104,
+          "excerpt": "\"lag1_fritidshusandel_bland_smahus\": \"Landets lugn\",",
+          "context_lines": [
+            5099,
+            5108
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8919,
+          "excerpt": "\"lag1_fritidshusandel_bland_smahus\",",
+          "context_lines": [
+            8914,
+            8923
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9092,
+          "excerpt": "\"lag1_fritidshusandel_bland_smahus\",",
+          "context_lines": [
+            9087,
+            9096
+          ]
+        }
+      ],
+      "source_code_mention_count": 4,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+      "theme": "utbildning_och_studier",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 180,
+          "excerpt": "\"lag1_gymnasium_hogskoleforberedande_pct\",",
+          "context_lines": [
+            175,
+            184
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4900,
+          "excerpt": "panel[\"lag1_gymnasium_hogskoleforberedande_pct\"] = g[\"gymnasium_hogskoleforberedande_pct\"].shift(1)",
+          "context_lines": [
+            4895,
+            4904
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5121,
+          "excerpt": "\"lag1_gymnasium_hogskoleforberedande_pct\": \"Gymnasieinriktning – utbildnings- och arbetsmarknadskultur\",",
+          "context_lines": [
+            5116,
+            5125
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5138,
+          "excerpt": "\"lag1_gymnasium_hogskoleforberedande_pct\": \"Gymnasieinriktning\",",
+          "context_lines": [
+            5133,
+            5142
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6625,
+          "excerpt": "\"lag1_gymnasium_hogskoleforberedande_pct\",",
+          "context_lines": [
+            6620,
+            6629
+          ]
+        }
+      ],
+      "source_code_mention_count": 5,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_gymnasium_yrkesprogram_pct",
+      "theme": "utbildning_och_studier",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 181,
+          "excerpt": "\"lag1_gymnasium_yrkesprogram_pct\",",
+          "context_lines": [
+            176,
+            185
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4901,
+          "excerpt": "panel[\"lag1_gymnasium_yrkesprogram_pct\"] = g[\"gymnasium_yrkesprogram_pct\"].shift(1)",
+          "context_lines": [
+            4896,
+            4905
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5122,
+          "excerpt": "\"lag1_gymnasium_yrkesprogram_pct\": \"Gymnasieinriktning – utbildnings- och arbetsmarknadskultur\",",
+          "context_lines": [
+            5117,
+            5126
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5139,
+          "excerpt": "\"lag1_gymnasium_yrkesprogram_pct\": \"Gymnasieinriktning\",",
+          "context_lines": [
+            5134,
+            5143
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6626,
+          "excerpt": "\"lag1_gymnasium_yrkesprogram_pct\",",
+          "context_lines": [
+            6621,
+            6630
+          ]
+        }
+      ],
+      "source_code_mention_count": 5,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_inflyttare_medelalder",
+      "theme": "needs_classification",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4849,
+          "excerpt": "panel[\"lag1_inflyttare_medelalder\"] = g[\"inflyttare_medelalder\"].shift(1)",
+          "context_lines": [
+            4844,
+            4853
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5069,
+          "excerpt": "\"lag1_inflyttare_medelalder\": \"Inflyttarprofil\",",
+          "context_lines": [
+            5064,
+            5073
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6634,
+          "excerpt": "\"lag1_inflyttare_medelalder\",",
+          "context_lines": [
+            6629,
+            6638
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8908,
+          "excerpt": "\"lag1_inflyttare_medelalder\",",
+          "context_lines": [
+            8903,
+            8912
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8936,
+          "excerpt": "\"lag1_inflyttare_medelalder\",",
+          "context_lines": [
+            8931,
+            8940
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9081,
+          "excerpt": "\"lag1_inflyttare_medelalder\",",
+          "context_lines": [
+            9076,
+            9085
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9112,
+          "excerpt": "\"lag1_inflyttare_medelalder\",",
+          "context_lines": [
+            9107,
+            9116
+          ]
+        },
+        {
+          "path": "scripts/test_blind_civic_unemployment_geographic.py",
+          "line": 18,
+          "excerpt": "FORBIDDEN={\"lag1_inflyttning_per_1000\",\"lag1_utflyttning_per_1000\",\"lag1_befolkningstillvaxt_pct\",\"lag1_andel_20_34\",\"lag1_inflyttare_medelalder\"}",
+          "context_lines": [
+            13,
+            22
+          ]
+        }
+      ],
+      "source_code_mention_count": 8,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_inflyttning_per_1000",
+      "theme": "needs_classification",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4834,
+          "excerpt": "panel[\"lag1_inflyttning_per_1000\"] = g[\"inflyttning_per_1000\"].shift(1)",
+          "context_lines": [
+            4829,
+            4838
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5059,
+          "excerpt": "\"lag1_inflyttning_per_1000\": \"Historisk inflyttningsdynamik\",",
+          "context_lines": [
+            5054,
+            5063
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6630,
+          "excerpt": "\"lag1_inflyttning_per_1000\",",
+          "context_lines": [
+            6625,
+            6634
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8903,
+          "excerpt": "\"lag1_inflyttning_per_1000\",",
+          "context_lines": [
+            8898,
+            8907
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8932,
+          "excerpt": "\"lag1_inflyttning_per_1000\",",
+          "context_lines": [
+            8927,
+            8936
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8970,
+          "excerpt": "naive_pred = test[\"lag1_inflyttning_per_1000\"].to_numpy()",
+          "context_lines": [
+            8965,
+            8974
+          ]
+        },
+        {
+          "path": "scripts/test_blind_civic_unemployment_geographic.py",
+          "line": 18,
+          "excerpt": "FORBIDDEN={\"lag1_inflyttning_per_1000\",\"lag1_utflyttning_per_1000\",\"lag1_befolkningstillvaxt_pct\",\"lag1_andel_20_34\",\"lag1_inflyttare_medelalder\"}",
+          "context_lines": [
+            13,
+            22
+          ]
+        }
+      ],
+      "source_code_mention_count": 7,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_inkomst_median_tkr",
+      "theme": "inkomst_och_bostadsekonomi",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 213,
+          "excerpt": "\"lag1_inkomst_median_tkr\",",
+          "context_lines": [
+            208,
+            217
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4851,
+          "excerpt": "panel[\"lag1_inkomst_median_tkr\"] = g[\"inkomst_median_tkr\"].shift(1)",
+          "context_lines": [
+            4846,
+            4855
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5071,
+          "excerpt": "\"lag1_inkomst_median_tkr\": \"Inkomstnivå\",",
+          "context_lines": [
+            5066,
+            5075
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10800,
+          "excerpt": "\"lag1_inkomst_median_tkr\",",
+          "context_lines": [
+            10795,
+            10804
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 11118,
+          "excerpt": "\"lag1_inkomst_median_tkr\",",
+          "context_lines": [
+            11113,
+            11122
+          ]
+        }
+      ],
+      "source_code_mention_count": 5,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_inkomst_tkr",
+      "theme": "inkomst_och_bostadsekonomi",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4850,
+          "excerpt": "panel[\"lag1_inkomst_tkr\"] = g[\"inkomst_tkr\"].shift(1)",
+          "context_lines": [
+            4845,
+            4854
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5070,
+          "excerpt": "\"lag1_inkomst_tkr\": \"Inkomstnivå\",",
+          "context_lines": [
+            5065,
+            5074
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8909,
+          "excerpt": "\"lag1_inkomst_tkr\",",
+          "context_lines": [
+            8904,
+            8913
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9082,
+          "excerpt": "\"lag1_inkomst_tkr\",",
+          "context_lines": [
+            9077,
+            9086
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10799,
+          "excerpt": "\"lag1_inkomst_tkr\",",
+          "context_lines": [
+            10794,
+            10803
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 11117,
+          "excerpt": "\"lag1_inkomst_tkr\",",
+          "context_lines": [
+            11112,
+            11121
+          ]
+        },
+        {
+          "path": "scripts/audit_fixed_window_long_term_unemployment.py",
+          "line": 20,
+          "excerpt": "\"lag1_inkomst_tkr\",\"lag1_andel_eftergymnasial\",\"lag1_andel_studerande\",",
+          "context_lines": [
+            15,
+            24
+          ]
+        }
+      ],
+      "source_code_mention_count": 7,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_kolada_arbetslosa_18_24_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 186,
+          "excerpt": "\"lag1_kolada_arbetslosa_18_24_pct\",",
+          "context_lines": [
+            181,
+            190
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4904,
+          "excerpt": "panel[\"lag1_kolada_arbetslosa_18_24_pct\"] = g[\"kolada_arbetslosa_18_24_pct\"].shift(1)",
+          "context_lines": [
+            4899,
+            4908
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5125,
+          "excerpt": "\"lag1_kolada_arbetslosa_18_24_pct\": \"Ungdomsarbetslöshet\",",
+          "context_lines": [
+            5120,
+            5129
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5128,
+          "excerpt": "\"lag1_kolada_arbetslosa_18_24_pct\": \"Arbetsmarknad\",",
+          "context_lines": [
+            5123,
+            5132
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6615,
+          "excerpt": "\"lag1_kolada_arbetslosa_18_24_pct\",",
+          "context_lines": [
+            6610,
+            6619
+          ]
+        }
+      ],
+      "source_code_mention_count": 5,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_kolada_arbetslosa_18_65_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 184,
+          "excerpt": "\"lag1_kolada_arbetslosa_18_65_pct\",",
+          "context_lines": [
+            179,
+            188
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4902,
+          "excerpt": "panel[\"lag1_kolada_arbetslosa_18_65_pct\"] = g[\"kolada_arbetslosa_18_65_pct\"].shift(1)",
+          "context_lines": [
+            4897,
+            4906
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5123,
+          "excerpt": "\"lag1_kolada_arbetslosa_18_65_pct\": \"Arbetsmarknadssvaghet\",",
+          "context_lines": [
+            5118,
+            5127
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5126,
+          "excerpt": "\"lag1_kolada_arbetslosa_18_65_pct\": \"Arbetsmarknad\",",
+          "context_lines": [
+            5121,
+            5130
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5660,
+          "excerpt": "candidate = \"lag1_kolada_arbetslosa_18_65_pct\"",
+          "context_lines": [
+            5655,
+            5664
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5884,
+          "excerpt": "candidate = \"lag1_kolada_arbetslosa_18_65_pct\"",
+          "context_lines": [
+            5879,
+            5888
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6049,
+          "excerpt": "candidate = \"lag1_kolada_arbetslosa_18_65_pct\"",
+          "context_lines": [
+            6044,
+            6053
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6240,
+          "excerpt": "candidate = \"lag1_kolada_arbetslosa_18_65_pct\"",
+          "context_lines": [
+            6235,
+            6244
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6613,
+          "excerpt": "\"lag1_kolada_arbetslosa_18_65_pct\",",
+          "context_lines": [
+            6608,
+            6617
+          ]
+        },
+        {
+          "path": "scripts/audit_fixed_window_long_term_unemployment.py",
+          "line": 21,
+          "excerpt": "\"lag1_andel_fa_arbetsplatser_i_egen_kommun\",\"lag1_kolada_arbetslosa_18_65_pct\"]",
+          "context_lines": [
+            16,
+            25
+          ]
+        }
+      ],
+      "source_code_mention_count": 10,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+      "theme": "foreningsliv_och_kultur",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 194,
+          "excerpt": "\"lag1_kolada_flickdominerade_idrottsforeningar_andel\",",
+          "context_lines": [
+            189,
+            198
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4896,
+          "excerpt": "panel[\"lag1_kolada_flickdominerade_idrottsforeningar_andel\"] = g[\"kolada_flickdominerade_idrottsforeningar_andel\"].shift(1)",
+          "context_lines": [
+            4891,
+            4900
+          ]
+        }
+      ],
+      "source_code_mention_count": 2,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_kolada_langtidsarbetslosa_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 185,
+          "excerpt": "\"lag1_kolada_langtidsarbetslosa_pct\",",
+          "context_lines": [
+            180,
+            189
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4903,
+          "excerpt": "panel[\"lag1_kolada_langtidsarbetslosa_pct\"] = g[\"kolada_langtidsarbetslosa_pct\"].shift(1)",
+          "context_lines": [
+            4898,
+            4907
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5124,
+          "excerpt": "\"lag1_kolada_langtidsarbetslosa_pct\": \"Strukturell arbetsmarknadssvaghet\",",
+          "context_lines": [
+            5119,
+            5128
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5127,
+          "excerpt": "\"lag1_kolada_langtidsarbetslosa_pct\": \"Arbetsmarknad\",",
+          "context_lines": [
+            5122,
+            5131
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6614,
+          "excerpt": "\"lag1_kolada_langtidsarbetslosa_pct\",",
+          "context_lines": [
+            6609,
+            6618
+          ]
+        },
+        {
+          "path": "scripts/test_environment_unemployment_geographic.py",
+          "line": 16,
+          "excerpt": "\"long_term_unemployment\":[\"lag1_kolada_langtidsarbetslosa_pct\"]}",
+          "context_lines": [
+            11,
+            20
+          ]
+        },
+        {
+          "path": "scripts/audit_fixed_window_long_term_unemployment.py",
+          "line": 18,
+          "excerpt": "CAND=\"lag1_kolada_langtidsarbetslosa_pct\"",
+          "context_lines": [
+            13,
+            22
+          ]
+        },
+        {
+          "path": "scripts/test_blind_civic_unemployment_geographic.py",
+          "line": 21,
+          "excerpt": "LONG=\"lag1_kolada_langtidsarbetslosa_pct\"",
+          "context_lines": [
+            16,
+            25
+          ]
+        }
+      ],
+      "source_code_mention_count": 8,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_kolada_lok_foreningar_per_10000",
+      "theme": "foreningsliv_och_kultur",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 193,
+          "excerpt": "\"lag1_kolada_lok_foreningar_per_10000\",",
+          "context_lines": [
+            188,
+            197
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4895,
+          "excerpt": "panel[\"lag1_kolada_lok_foreningar_per_10000\"] = g[\"kolada_lok_foreningar_per_10000\"].shift(1)",
+          "context_lines": [
+            4890,
+            4899
+          ]
+        }
+      ],
+      "source_code_mention_count": 2,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+      "theme": "foreningsliv_och_kultur",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 195,
+          "excerpt": "\"lag1_kolada_utbetalt_lok_stod_kr_per_inv\",",
+          "context_lines": [
+            190,
+            199
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4897,
+          "excerpt": "panel[\"lag1_kolada_utbetalt_lok_stod_kr_per_inv\"] = g[\"kolada_utbetalt_lok_stod_kr_per_inv\"].shift(1)",
+          "context_lines": [
+            4892,
+            4901
+          ]
+        },
+        {
+          "path": "scripts/test_blind_civic_unemployment_geographic.py",
+          "line": 20,
+          "excerpt": "CIVIC=\"lag1_kolada_utbetalt_lok_stod_kr_per_inv\"",
+          "context_lines": [
+            15,
+            24
+          ]
+        }
+      ],
+      "source_code_mention_count": 3,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_kvinnors_lonesumma_dagbef_pct",
+      "theme": "inkomst_och_bostadsekonomi",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 176,
+          "excerpt": "\"lag1_kvinnors_lonesumma_dagbef_pct\",",
+          "context_lines": [
+            171,
+            180
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4898,
+          "excerpt": "panel[\"lag1_kvinnors_lonesumma_dagbef_pct\"] = g[\"kvinnors_lonesumma_dagbef_pct\"].shift(1)",
+          "context_lines": [
+            4893,
+            4902
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5119,
+          "excerpt": "\"lag1_kvinnors_lonesumma_dagbef_pct\": \"Ekonomisk jämställdhet\",",
+          "context_lines": [
+            5114,
+            5123
+          ]
+        }
+      ],
+      "source_code_mention_count": 3,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_kvinnors_mediannettoinkomst_andel_pct",
+      "theme": "inkomst_och_bostadsekonomi",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 177,
+          "excerpt": "\"lag1_kvinnors_mediannettoinkomst_andel_pct\",",
+          "context_lines": [
+            172,
+            181
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4899,
+          "excerpt": "panel[\"lag1_kvinnors_mediannettoinkomst_andel_pct\"] = g[\"kvinnors_mediannettoinkomst_andel_pct\"].shift(1)",
+          "context_lines": [
+            4894,
+            4903
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5120,
+          "excerpt": "\"lag1_kvinnors_mediannettoinkomst_andel_pct\": \"Ekonomisk jämställdhet\",",
+          "context_lines": [
+            5115,
+            5124
+          ]
+        }
+      ],
+      "source_code_mention_count": 3,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_log_befolkningstathet_land",
+      "theme": "geografi_och_mark",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4842,
+          "excerpt": "panel[\"lag1_log_befolkningstathet_land\"] = g[\"log_befolkningstathet_land\"].shift(1)",
+          "context_lines": [
+            4837,
+            4846
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9417,
+          "excerpt": "\"urbanity\": \"lag1_log_befolkningstathet_land\",",
+          "context_lines": [
+            9412,
+            9421
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9423,
+          "excerpt": "\"urbanity\": \"lag1_log_befolkningstathet_land\",",
+          "context_lines": [
+            9418,
+            9427
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9455,
+          "excerpt": "\"lag1_log_folkmangd\", \"lag1_log_befolkningstathet_land\",",
+          "context_lines": [
+            9450,
+            9459
+          ]
+        }
+      ],
+      "source_code_mention_count": 4,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_log_externa_fa_jobb_per_1000",
+      "theme": "naringslivsstruktur",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4919,
+          "excerpt": "panel[\"lag1_log_externa_fa_jobb_per_1000\"] = g[\"log_externa_fa_jobb_per_1000\"].shift(1)",
+          "context_lines": [
+            4914,
+            4923
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5115,
+          "excerpt": "\"lag1_log_externa_fa_jobb_per_1000\": \"Regional arbetsmarknadsaccess\",",
+          "context_lines": [
+            5110,
+            5119
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5688,
+          "excerpt": "\"lag1_log_externa_fa_jobb_per_1000\",",
+          "context_lines": [
+            5683,
+            5692
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5893,
+          "excerpt": "\"lag1_log_externa_fa_jobb_per_1000\",",
+          "context_lines": [
+            5888,
+            5897
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6066,
+          "excerpt": "\"lag1_log_externa_fa_jobb_per_1000\",",
+          "context_lines": [
+            6061,
+            6070
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6259,
+          "excerpt": "\"lag1_log_externa_fa_jobb_per_1000\",",
+          "context_lines": [
+            6254,
+            6263
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6446,
+          "excerpt": "\"lag1_log_externa_fa_jobb_per_1000\",",
+          "context_lines": [
+            6441,
+            6450
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8928,
+          "excerpt": "\"lag1_log_externa_fa_jobb_per_1000\",",
+          "context_lines": [
+            8923,
+            8932
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9101,
+          "excerpt": "\"lag1_log_externa_fa_jobb_per_1000\",",
+          "context_lines": [
+            9096,
+            9105
+          ]
+        }
+      ],
+      "source_code_mention_count": 9,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_log_folkmangd",
+      "theme": "geografi_och_mark",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4841,
+          "excerpt": "panel[\"lag1_log_folkmangd\"] = g[\"log_folkmangd\"].shift(1)",
+          "context_lines": [
+            4836,
+            4845
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5066,
+          "excerpt": "\"lag1_log_folkmangd\": \"Kommunstorlek\",",
+          "context_lines": [
+            5061,
+            5070
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5672,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            5667,
+            5676
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5887,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            5882,
+            5891
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6056,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            6051,
+            6060
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6060,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            6055,
+            6064
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6253,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            6248,
+            6257
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6440,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            6435,
+            6444
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7360,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            7355,
+            7364
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7367,
+          "excerpt": "\"havsandel_pct\", \"lag1_log_folkmangd\", \"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            7362,
+            7371
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7393,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            7388,
+            7397
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7494,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            7489,
+            7498
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7502,
+          "excerpt": "\"havsandel_pct\", \"lag1_log_folkmangd\", \"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            7497,
+            7506
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7528,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            7523,
+            7532
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7631,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            7626,
+            7635
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7639,
+          "excerpt": "\"havsandel_pct\", \"lag1_log_folkmangd\", \"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            7634,
+            7643
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7664,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            7659,
+            7668
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7765,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            7760,
+            7769
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7774,
+          "excerpt": "\"havsandel_pct\", \"lag1_log_folkmangd\", \"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            7769,
+            7778
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7801,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            7796,
+            7805
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7899,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            7894,
+            7903
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7908,
+          "excerpt": "\"havsandel_pct\", \"lag1_log_folkmangd\", \"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            7903,
+            7912
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7934,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            7929,
+            7938
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8905,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            8900,
+            8909
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9078,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            9073,
+            9082
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9405,
+          "excerpt": "\"urbanity\": \"lag1_log_folkmangd\",",
+          "context_lines": [
+            9400,
+            9409
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9411,
+          "excerpt": "\"urbanity\": \"lag1_log_folkmangd\",",
+          "context_lines": [
+            9406,
+            9415
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9455,
+          "excerpt": "\"lag1_log_folkmangd\", \"lag1_log_befolkningstathet_land\",",
+          "context_lines": [
+            9450,
+            9459
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9592,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            9587,
+            9596
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9599,
+          "excerpt": "\"lag1_log_folkmangd\", \"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            9594,
+            9603
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9624,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            9619,
+            9628
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9785,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            9780,
+            9789
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9796,
+          "excerpt": "\"lag1_log_folkmangd\", \"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            9791,
+            9800
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9819,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            9814,
+            9823
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9915,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            9910,
+            9919
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9923,
+          "excerpt": "\"havsandel_pct\", \"lag1_log_folkmangd\", \"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            9918,
+            9927
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9949,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            9944,
+            9953
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10052,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            10047,
+            10056
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10072,
+          "excerpt": "\"havsandel_pct\", \"lag1_log_folkmangd\",",
+          "context_lines": [
+            10067,
+            10076
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10106,
+          "excerpt": "\"lag1_log_folkmangd\",",
+          "context_lines": [
+            10101,
+            10110
+          ]
+        }
+      ],
+      "source_code_mention_count": 48,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_log_fritidshus_per_1000_inv",
+      "theme": "bostader_och_bestand",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 233,
+          "excerpt": "\"lag1_log_fritidshus_per_1000_inv\",",
+          "context_lines": [
+            228,
+            237
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 236,
+          "excerpt": "\"lag1_log_fritidshus_per_1000_inv\",",
+          "context_lines": [
+            231,
+            240
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4885,
+          "excerpt": "panel[\"lag1_log_fritidshus_per_1000_inv\"] = g[\"log_fritidshus_per_1000_inv\"].shift(1)",
+          "context_lines": [
+            4880,
+            4889
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5106,
+          "excerpt": "\"lag1_log_fritidshus_per_1000_inv\": \"Fritidshusintensitet\",",
+          "context_lines": [
+            5101,
+            5110
+          ]
+        }
+      ],
+      "source_code_mention_count": 4,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_log_regional_centre_distance_km",
+      "theme": "geografi_och_mark",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 190,
+          "excerpt": "\"lag1_log_regional_centre_distance_km\",",
+          "context_lines": [
+            185,
+            194
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4915,
+          "excerpt": "panel[\"lag1_log_regional_centre_distance_km\"] = g[\"log_regional_centre_distance_km\"].shift(1)",
+          "context_lines": [
+            4910,
+            4919
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5118,
+          "excerpt": "\"lag1_log_regional_centre_distance_km\": \"Tillgänglighet till regionalt centrum\",",
+          "context_lines": [
+            5113,
+            5122
+          ]
+        }
+      ],
+      "source_code_mention_count": 3,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_log_smahuspris_medel",
+      "theme": "inkomst_och_bostadsekonomi",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 215,
+          "excerpt": "\"lag1_log_smahuspris_medel\",",
+          "context_lines": [
+            210,
+            219
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4853,
+          "excerpt": "panel[\"lag1_log_smahuspris_medel\"] = g[\"log_smahuspris_medel\"].shift(1)",
+          "context_lines": [
+            4848,
+            4857
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5073,
+          "excerpt": "\"lag1_log_smahuspris_medel\": \"Bostadspris\",",
+          "context_lines": [
+            5068,
+            5077
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7353,
+          "excerpt": "\"lag1_log_smahuspris_medel\",",
+          "context_lines": [
+            7348,
+            7357
+          ]
+        }
+      ],
+      "source_code_mention_count": 4,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_naturpraglad_mark_andel_land_pct",
+      "theme": "geografi_och_mark",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 246,
+          "excerpt": "\"lag1_naturpraglad_mark_andel_land_pct\",",
+          "context_lines": [
+            241,
+            250
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4846,
+          "excerpt": "panel[\"lag1_naturpraglad_mark_andel_land_pct\"] = g[\"naturpraglad_mark_andel_land_pct\"].shift(1)",
+          "context_lines": [
+            4841,
+            4850
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5098,
+          "excerpt": "\"lag1_naturpraglad_mark_andel_land_pct\": \"Natur och friluftsliv\",",
+          "context_lines": [
+            5093,
+            5102
+          ]
+        },
+        {
+          "path": "scripts/test_environment_unemployment_geographic.py",
+          "line": 15,
+          "excerpt": "\"natural_land\":[\"lag1_naturpraglad_mark_andel_land_pct\"],",
+          "context_lines": [
+            10,
+            19
+          ]
+        }
+      ],
+      "source_code_mention_count": 4,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_regional_centre_distance_km",
+      "theme": "geografi_och_mark",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 189,
+          "excerpt": "\"lag1_regional_centre_distance_km\",",
+          "context_lines": [
+            184,
+            193
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4914,
+          "excerpt": "panel[\"lag1_regional_centre_distance_km\"] = g[\"regional_centre_distance_km\"].shift(1)",
+          "context_lines": [
+            4909,
+            4918
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5117,
+          "excerpt": "\"lag1_regional_centre_distance_km\": \"Tillgänglighet till regionalt centrum\",",
+          "context_lines": [
+            5112,
+            5121
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5140,
+          "excerpt": "\"lag1_regional_centre_distance_km\": \"Regional tillgänglighet\",",
+          "context_lines": [
+            5135,
+            5144
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5690,
+          "excerpt": "\"lag1_regional_centre_distance_km\",",
+          "context_lines": [
+            5685,
+            5694
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5895,
+          "excerpt": "\"lag1_regional_centre_distance_km\",",
+          "context_lines": [
+            5890,
+            5899
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6068,
+          "excerpt": "\"lag1_regional_centre_distance_km\",",
+          "context_lines": [
+            6063,
+            6072
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6261,
+          "excerpt": "\"lag1_regional_centre_distance_km\",",
+          "context_lines": [
+            6256,
+            6265
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6448,
+          "excerpt": "\"lag1_regional_centre_distance_km\",",
+          "context_lines": [
+            6443,
+            6452
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6627,
+          "excerpt": "\"lag1_regional_centre_distance_km\",",
+          "context_lines": [
+            6622,
+            6631
+          ]
+        },
+        {
+          "path": "scripts/audit_fixed_window_long_term_unemployment.py",
+          "line": 19,
+          "excerpt": "CONTROLS=[\"lag1_log_folkmangd\",\"lag1_tatortsgrad_pct\",\"lag1_regional_centre_distance_km\",",
+          "context_lines": [
+            14,
+            23
+          ]
+        },
+        {
+          "path": "scripts/audit_employment_regression_readiness.py",
+          "line": 24,
+          "excerpt": "\"excluded_short_history_control\":\"lag1_regional_centre_distance_km\",",
+          "context_lines": [
+            19,
+            28
+          ]
+        },
+        {
+          "path": "scripts/test_blind_civic_unemployment_geographic.py",
+          "line": 19,
+          "excerpt": "CONTROLS=[\"lag1_log_folkmangd\",\"lag1_tatortsgrad_pct\",\"lag1_regional_centre_distance_km\"]",
+          "context_lines": [
+            14,
+            23
+          ]
+        }
+      ],
+      "source_code_mention_count": 13,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_skogsmark_andel_land_pct",
+      "theme": "geografi_och_mark",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 245,
+          "excerpt": "\"lag1_skogsmark_andel_land_pct\",",
+          "context_lines": [
+            240,
+            249
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4845,
+          "excerpt": "panel[\"lag1_skogsmark_andel_land_pct\"] = g[\"skogsmark_andel_land_pct\"].shift(1)",
+          "context_lines": [
+            4840,
+            4849
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5097,
+          "excerpt": "\"lag1_skogsmark_andel_land_pct\": \"Natur och friluftsliv\",",
+          "context_lines": [
+            5092,
+            5101
+          ]
+        }
+      ],
+      "source_code_mention_count": 3,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_smahusforsaljningar_per_1000_inv",
+      "theme": "bostader_och_bestand",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 229,
+          "excerpt": "\"lag1_smahusforsaljningar_per_1000_inv\",",
+          "context_lines": [
+            224,
+            233
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4860,
+          "excerpt": "panel[\"lag1_smahusforsaljningar_per_1000_inv\"] = (",
+          "context_lines": [
+            4855,
+            4864
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5078,
+          "excerpt": "\"lag1_smahusforsaljningar_per_1000_inv\": \"Bostadsomsättning\",",
+          "context_lines": [
+            5073,
+            5082
+          ]
+        }
+      ],
+      "source_code_mention_count": 3,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_smahusforsaljningar_per_1000_smahus",
+      "theme": "bostader_och_bestand",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 228,
+          "excerpt": "\"lag1_smahusforsaljningar_per_1000_smahus\",",
+          "context_lines": [
+            223,
+            232
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4857,
+          "excerpt": "panel[\"lag1_smahusforsaljningar_per_1000_smahus\"] = (",
+          "context_lines": [
+            4852,
+            4861
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5077,
+          "excerpt": "\"lag1_smahusforsaljningar_per_1000_smahus\": \"Bostadsomsättning\",",
+          "context_lines": [
+            5072,
+            5081
+          ]
+        }
+      ],
+      "source_code_mention_count": 3,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_smahuspris_forandring_pct",
+      "theme": "inkomst_och_bostadsekonomi",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 216,
+          "excerpt": "\"lag1_smahuspris_forandring_pct\",",
+          "context_lines": [
+            211,
+            220
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4854,
+          "excerpt": "panel[\"lag1_smahuspris_forandring_pct\"] = g[\"smahuspris_forandring_pct\"].shift(1)",
+          "context_lines": [
+            4849,
+            4858
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5074,
+          "excerpt": "\"lag1_smahuspris_forandring_pct\": \"Bostadsprisdynamik\",",
+          "context_lines": [
+            5069,
+            5078
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7354,
+          "excerpt": "\"lag1_smahuspris_forandring_pct\",",
+          "context_lines": [
+            7349,
+            7358
+          ]
+        }
+      ],
+      "source_code_mention_count": 4,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_smahuspris_inkomstkvot_medel",
+      "theme": "inkomst_och_bostadsekonomi",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 217,
+          "excerpt": "\"lag1_smahuspris_inkomstkvot_medel\",",
+          "context_lines": [
+            212,
+            221
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4855,
+          "excerpt": "panel[\"lag1_smahuspris_inkomstkvot_medel\"] = g[\"smahuspris_inkomstkvot_medel\"].shift(1)",
+          "context_lines": [
+            4850,
+            4859
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5075,
+          "excerpt": "\"lag1_smahuspris_inkomstkvot_medel\": \"Boendeekonomisk tillgänglighet\",",
+          "context_lines": [
+            5070,
+            5079
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7355,
+          "excerpt": "\"lag1_smahuspris_inkomstkvot_medel\",",
+          "context_lines": [
+            7350,
+            7359
+          ]
+        }
+      ],
+      "source_code_mention_count": 4,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_smahuspris_inkomstkvot_median",
+      "theme": "inkomst_och_bostadsekonomi",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 218,
+          "excerpt": "\"lag1_smahuspris_inkomstkvot_median\",",
+          "context_lines": [
+            213,
+            222
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4856,
+          "excerpt": "panel[\"lag1_smahuspris_inkomstkvot_median\"] = g[\"smahuspris_inkomstkvot_median\"].shift(1)",
+          "context_lines": [
+            4851,
+            4860
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5076,
+          "excerpt": "\"lag1_smahuspris_inkomstkvot_median\": \"Boendeekonomisk tillgänglighet\",",
+          "context_lines": [
+            5071,
+            5080
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7356,
+          "excerpt": "\"lag1_smahuspris_inkomstkvot_median\",",
+          "context_lines": [
+            7351,
+            7360
+          ]
+        }
+      ],
+      "source_code_mention_count": 4,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_smahuspris_medel_tkr",
+      "theme": "inkomst_och_bostadsekonomi",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 214,
+          "excerpt": "\"lag1_smahuspris_medel_tkr\",",
+          "context_lines": [
+            209,
+            218
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4852,
+          "excerpt": "panel[\"lag1_smahuspris_medel_tkr\"] = g[\"smahuspris_medel_tkr\"].shift(1)",
+          "context_lines": [
+            4847,
+            4856
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5072,
+          "excerpt": "\"lag1_smahuspris_medel_tkr\": \"Bostadspris\",",
+          "context_lines": [
+            5067,
+            5076
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7352,
+          "excerpt": "\"lag1_smahuspris_medel_tkr\",",
+          "context_lines": [
+            7347,
+            7356
+          ]
+        }
+      ],
+      "source_code_mention_count": 4,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_snoskoterandel_alla_fordon_pct",
+      "theme": "geografi_och_mark",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 209,
+          "excerpt": "\"lag1_snoskoterandel_alla_fordon_pct\",",
+          "context_lines": [
+            204,
+            213
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9790,
+          "excerpt": "\"lag1_snoskoterandel_alla_fordon_pct\",",
+          "context_lines": [
+            9785,
+            9794
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10564,
+          "excerpt": "panel[\"lag1_snoskoterandel_alla_fordon_pct\"] = (",
+          "context_lines": [
+            10559,
+            10568
+          ]
+        }
+      ],
+      "source_code_mention_count": 3,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+      "theme": "geografi_och_mark",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 210,
+          "excerpt": "\"lag1_snoskoterandel_exkl_dragfordon_pct\",",
+          "context_lines": [
+            205,
+            214
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9791,
+          "excerpt": "\"lag1_snoskoterandel_exkl_dragfordon_pct\",",
+          "context_lines": [
+            9786,
+            9795
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10567,
+          "excerpt": "panel[\"lag1_snoskoterandel_exkl_dragfordon_pct\"] = (",
+          "context_lines": [
+            10562,
+            10571
+          ]
+        }
+      ],
+      "source_code_mention_count": 3,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_strand_hav_bostader_per_1000",
+      "theme": "bostader_och_bestand",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 249,
+          "excerpt": "\"lag1_strand_hav_bostader_per_1000\",",
+          "context_lines": [
+            244,
+            253
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5099,
+          "excerpt": "\"lag1_strand_hav_bostader_per_1000\": \"Strandnära boendemiljö\",",
+          "context_lines": [
+            5094,
+            5103
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10540,
+          "excerpt": "panel[\"lag1_strand_hav_bostader_per_1000\"] = (",
+          "context_lines": [
+            10535,
+            10544
+          ]
+        }
+      ],
+      "source_code_mention_count": 3,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+      "theme": "bostader_och_bestand",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 252,
+          "excerpt": "\"lag1_strand_hav_bostader_skyddad_natur_per_1000\",",
+          "context_lines": [
+            247,
+            256
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5102,
+          "excerpt": "\"lag1_strand_hav_bostader_skyddad_natur_per_1000\": \"Strandnära boendemiljö\",",
+          "context_lines": [
+            5097,
+            5106
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10233,
+          "excerpt": "source_feature = \"lag1_strand_hav_bostader_skyddad_natur_per_1000\"",
+          "context_lines": [
+            10228,
+            10237
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10549,
+          "excerpt": "panel[\"lag1_strand_hav_bostader_skyddad_natur_per_1000\"] = (",
+          "context_lines": [
+            10544,
+            10553
+          ]
+        }
+      ],
+      "source_code_mention_count": 4,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_strand_hav_bostader_tatort_per_1000",
+      "theme": "bostader_och_bestand",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 250,
+          "excerpt": "\"lag1_strand_hav_bostader_tatort_per_1000\",",
+          "context_lines": [
+            245,
+            254
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5100,
+          "excerpt": "\"lag1_strand_hav_bostader_tatort_per_1000\": \"Strandnära boendemiljö\",",
+          "context_lines": [
+            5095,
+            5104
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10543,
+          "excerpt": "panel[\"lag1_strand_hav_bostader_tatort_per_1000\"] = (",
+          "context_lines": [
+            10538,
+            10547
+          ]
+        },
+        {
+          "path": "scripts/test_environment_unemployment_geographic.py",
+          "line": 14,
+          "excerpt": "ADDITIONS={\"reference\":[],\"coastal_urban\":[\"lag1_strand_hav_bostader_tatort_per_1000\"],",
+          "context_lines": [
+            9,
+            18
+          ]
+        }
+      ],
+      "source_code_mention_count": 4,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_strand_inland_bostader_per_1000",
+      "theme": "bostader_och_bestand",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 254,
+          "excerpt": "SHORELINE_COMPARATOR_FEATURE = \"lag1_strand_inland_bostader_per_1000\"",
+          "context_lines": [
+            249,
+            258
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5103,
+          "excerpt": "\"lag1_strand_inland_bostader_per_1000\": \"Strandnära boendemiljö\",",
+          "context_lines": [
+            5098,
+            5107
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10552,
+          "excerpt": "panel[\"lag1_strand_inland_bostader_per_1000\"] = (",
+          "context_lines": [
+            10547,
+            10556
+          ]
+        }
+      ],
+      "source_code_mention_count": 3,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_sysselsatta_arbetsstalle_forandring_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 198,
+          "excerpt": "\"lag1_sysselsatta_arbetsstalle_forandring_pct\",",
+          "context_lines": [
+            193,
+            202
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4889,
+          "excerpt": "panel[\"lag1_sysselsatta_arbetsstalle_forandring_pct\"] = g[\"sysselsatta_arbetsstalle_forandring_pct\"].shift(1)",
+          "context_lines": [
+            4884,
+            4893
+          ]
+        }
+      ],
+      "source_code_mention_count": 2,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_sysselsatta_arbetsstalle_rams_bas_historisk_forandring_pct",
+      "theme": "arbetsmarknad_historisk",
+      "incumbent": false,
+      "source_code_mentions": [],
+      "source_code_mention_count": 0,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date.",
+      "research_csv_join": {
+        "data_path": "docs/data/employment_lag1_research_availability.csv",
+        "dimension": "workplace",
+        "value_column": "growth_pct",
+        "join_keys": [
+          "target_year",
+          "kommun_kod",
+          "dimension"
+        ],
+        "upstream_scripts": [
+          "scripts/build_employment_regime_history.py",
+          "scripts/audit_employment_growth_regime_gate.py",
+          "scripts/audit_employment_lag1_availability.py"
+        ],
+        "source_inputs": [
+          "docs/data/commuting_historical_rams.csv",
+          "docs/data/commuting_flows_2020_2024.csv"
+        ],
+        "regime_selection": "research preference; not historical as-of approval",
+        "asof_source_release_verified": false
+      },
+      "lineage_evidence_type": "upstream_csv_regime_aware_research"
+    },
+    {
+      "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 200,
+          "excerpt": "\"lag1_sysselsatta_arbetsstalle_sasongsvariation_pct\",",
+          "context_lines": [
+            195,
+            204
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4891,
+          "excerpt": "panel[\"lag1_sysselsatta_arbetsstalle_sasongsvariation_pct\"] = g[\"sysselsatta_arbetsstalle_sasongsvariation_pct\"].shift(1)",
+          "context_lines": [
+            4886,
+            4895
+          ]
+        }
+      ],
+      "source_code_mention_count": 2,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_sysselsatta_bostad_forandring_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 199,
+          "excerpt": "\"lag1_sysselsatta_bostad_forandring_pct\",",
+          "context_lines": [
+            194,
+            203
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4890,
+          "excerpt": "panel[\"lag1_sysselsatta_bostad_forandring_pct\"] = g[\"sysselsatta_bostad_forandring_pct\"].shift(1)",
+          "context_lines": [
+            4885,
+            4894
+          ]
+        },
+        {
+          "path": "scripts/test_employment_level_growth.py",
+          "line": 17,
+          "excerpt": "GROWTH=\"lag1_sysselsatta_bostad_forandring_pct\"",
+          "context_lines": [
+            12,
+            21
+          ]
+        },
+        {
+          "path": "scripts/audit_employment_representation.py",
+          "line": 16,
+          "excerpt": "growth=\"lag1_sysselsatta_bostad_forandring_pct\"",
+          "context_lines": [
+            11,
+            20
+          ]
+        }
+      ],
+      "source_code_mention_count": 4,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_sysselsatta_bostad_rams_bas_historisk_forandring_pct",
+      "theme": "arbetsmarknad_historisk",
+      "incumbent": false,
+      "source_code_mentions": [],
+      "source_code_mention_count": 0,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date.",
+      "research_csv_join": {
+        "data_path": "docs/data/employment_lag1_research_availability.csv",
+        "dimension": "residence",
+        "value_column": "growth_pct",
+        "join_keys": [
+          "target_year",
+          "kommun_kod",
+          "dimension"
+        ],
+        "upstream_scripts": [
+          "scripts/build_employment_regime_history.py",
+          "scripts/audit_employment_growth_regime_gate.py",
+          "scripts/audit_employment_lag1_availability.py"
+        ],
+        "source_inputs": [
+          "docs/data/commuting_historical_rams.csv",
+          "docs/data/commuting_flows_2020_2024.csv"
+        ],
+        "regime_selection": "research preference; not historical as-of approval",
+        "asof_source_release_verified": false
+      },
+      "lineage_evidence_type": "upstream_csv_regime_aware_research"
+    },
+    {
+      "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 201,
+          "excerpt": "\"lag1_sysselsatta_bostad_sasongsvariation_pct\",",
+          "context_lines": [
+            196,
+            205
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4892,
+          "excerpt": "panel[\"lag1_sysselsatta_bostad_sasongsvariation_pct\"] = g[\"sysselsatta_bostad_sasongsvariation_pct\"].shift(1)",
+          "context_lines": [
+            4887,
+            4896
+          ]
+        }
+      ],
+      "source_code_mention_count": 2,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_sysselsattningsgrad",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4887,
+          "excerpt": "panel[\"lag1_sysselsattningsgrad\"] = g[\"sysselsattningsgrad\"].shift(1)",
+          "context_lines": [
+            4882,
+            4891
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5108,
+          "excerpt": "\"lag1_sysselsattningsgrad\": \"Arbetsmarknad\",",
+          "context_lines": [
+            5103,
+            5112
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6051,
+          "excerpt": "employment = \"lag1_sysselsattningsgrad\"",
+          "context_lines": [
+            6046,
+            6055
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6053,
+          "excerpt": "\"lag1_sysselsattningsgrad\",",
+          "context_lines": [
+            6048,
+            6057
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6426,
+          "excerpt": "employment = \"lag1_sysselsattningsgrad\"",
+          "context_lines": [
+            6421,
+            6430
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8921,
+          "excerpt": "\"lag1_sysselsattningsgrad\",",
+          "context_lines": [
+            8916,
+            8925
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9094,
+          "excerpt": "\"lag1_sysselsattningsgrad\",",
+          "context_lines": [
+            9089,
+            9098
+          ]
+        }
+      ],
+      "source_code_mention_count": 7,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_tatortsgrad_pct",
+      "theme": "geografi_och_mark",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4843,
+          "excerpt": "panel[\"lag1_tatortsgrad_pct\"] = g[\"tatortsgrad_pct\"].shift(1)",
+          "context_lines": [
+            4838,
+            4847
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7361,
+          "excerpt": "\"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            7356,
+            7365
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7367,
+          "excerpt": "\"havsandel_pct\", \"lag1_log_folkmangd\", \"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            7362,
+            7371
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7394,
+          "excerpt": "\"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            7389,
+            7398
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7495,
+          "excerpt": "\"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            7490,
+            7499
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7502,
+          "excerpt": "\"havsandel_pct\", \"lag1_log_folkmangd\", \"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            7497,
+            7506
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7529,
+          "excerpt": "\"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            7524,
+            7533
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7632,
+          "excerpt": "\"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            7627,
+            7636
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7639,
+          "excerpt": "\"havsandel_pct\", \"lag1_log_folkmangd\", \"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            7634,
+            7643
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7665,
+          "excerpt": "\"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            7660,
+            7669
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7766,
+          "excerpt": "\"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            7761,
+            7770
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7774,
+          "excerpt": "\"havsandel_pct\", \"lag1_log_folkmangd\", \"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            7769,
+            7778
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7802,
+          "excerpt": "\"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            7797,
+            7806
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7900,
+          "excerpt": "\"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            7895,
+            7904
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7908,
+          "excerpt": "\"havsandel_pct\", \"lag1_log_folkmangd\", \"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            7903,
+            7912
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 7935,
+          "excerpt": "\"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            7930,
+            7939
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9429,
+          "excerpt": "\"urbanity\": \"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            9424,
+            9433
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9435,
+          "excerpt": "\"urbanity\": \"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            9430,
+            9439
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9456,
+          "excerpt": "\"lag1_tatortsgrad_pct\", \"lag1_bebyggd_anlagd_andel_land_pct\",",
+          "context_lines": [
+            9451,
+            9460
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9593,
+          "excerpt": "\"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            9588,
+            9597
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9599,
+          "excerpt": "\"lag1_log_folkmangd\", \"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            9594,
+            9603
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9625,
+          "excerpt": "\"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            9620,
+            9629
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9703,
+          "excerpt": "\"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            9698,
+            9707
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9717,
+          "excerpt": "\"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            9712,
+            9721
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9748,
+          "excerpt": "corr_record(\"lag1_tatortsgrad_pct\"),",
+          "context_lines": [
+            9743,
+            9752
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9786,
+          "excerpt": "\"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            9781,
+            9790
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9796,
+          "excerpt": "\"lag1_log_folkmangd\", \"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            9791,
+            9800
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9820,
+          "excerpt": "\"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            9815,
+            9824
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9916,
+          "excerpt": "\"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            9911,
+            9920
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9923,
+          "excerpt": "\"havsandel_pct\", \"lag1_log_folkmangd\", \"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            9918,
+            9927
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9950,
+          "excerpt": "\"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            9945,
+            9954
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10053,
+          "excerpt": "\"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            10048,
+            10057
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10073,
+          "excerpt": "\"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            10068,
+            10077
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10107,
+          "excerpt": "\"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            10102,
+            10111
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10237,
+          "excerpt": "\"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            10232,
+            10241
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10247,
+          "excerpt": "\"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            10242,
+            10251
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 10276,
+          "excerpt": "\"lag1_tatortsgrad_pct\",",
+          "context_lines": [
+            10271,
+            10280
+          ]
+        },
+        {
+          "path": "scripts/audit_fixed_window_long_term_unemployment.py",
+          "line": 19,
+          "excerpt": "CONTROLS=[\"lag1_log_folkmangd\",\"lag1_tatortsgrad_pct\",\"lag1_regional_centre_distance_km\",",
+          "context_lines": [
+            14,
+            23
+          ]
+        },
+        {
+          "path": "scripts/audit_employment_regression_readiness.py",
+          "line": 23,
+          "excerpt": "\"fixed_structural_controls\":[\"lag1_log_folkmangd\",\"lag1_tatortsgrad_pct\"],",
+          "context_lines": [
+            18,
+            27
+          ]
+        },
+        {
+          "path": "scripts/test_historical_employment_fixed_regression.py",
+          "line": 13,
+          "excerpt": "BASE=[\"lag1_log_folkmangd\",\"lag1_tatortsgrad_pct\"]",
+          "context_lines": [
+            8,
+            17
+          ]
+        }
+      ],
+      "source_code_mention_count": 42,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4911,
+          "excerpt": "panel[\"lag1_utanf_arbetkraften_andel_fran_komponenter_pct\"] = g[",
+          "context_lines": [
+            4906,
+            4915
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6245,
+          "excerpt": "component_outside = \"lag1_utanf_arbetkraften_andel_fran_komponenter_pct\"",
+          "context_lines": [
+            6240,
+            6249
+          ]
+        }
+      ],
+      "source_code_mention_count": 2,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_utanf_arbetkraften_andel_pct",
+      "theme": "arbetsmarknad_och_aktivitet",
+      "incumbent": false,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4906,
+          "excerpt": "panel[\"lag1_utanf_arbetkraften_andel_pct\"] = g[\"utanf_arbetkraften_andel_pct\"].shift(1)",
+          "context_lines": [
+            4901,
+            4910
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5130,
+          "excerpt": "\"lag1_utanf_arbetkraften_andel_pct\": \"Arbetsmarknadsdeltagande\",",
+          "context_lines": [
+            5125,
+            5134
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6244,
+          "excerpt": "outside = \"lag1_utanf_arbetkraften_andel_pct\"",
+          "context_lines": [
+            6239,
+            6248
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6617,
+          "excerpt": "\"lag1_utanf_arbetkraften_andel_pct\",",
+          "context_lines": [
+            6612,
+            6621
+          ]
+        }
+      ],
+      "source_code_mention_count": 4,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_utflyttning_per_1000",
+      "theme": "needs_classification",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4835,
+          "excerpt": "panel[\"lag1_utflyttning_per_1000\"] = g[\"utflyttning_per_1000\"].shift(1)",
+          "context_lines": [
+            4830,
+            4839
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5060,
+          "excerpt": "\"lag1_utflyttning_per_1000\": \"Historisk utflyttningsdynamik\",",
+          "context_lines": [
+            5055,
+            5064
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 6631,
+          "excerpt": "\"lag1_utflyttning_per_1000\",",
+          "context_lines": [
+            6626,
+            6635
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8904,
+          "excerpt": "\"lag1_utflyttning_per_1000\",",
+          "context_lines": [
+            8899,
+            8908
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8933,
+          "excerpt": "\"lag1_utflyttning_per_1000\",",
+          "context_lines": [
+            8928,
+            8937
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9077,
+          "excerpt": "\"lag1_utflyttning_per_1000\",",
+          "context_lines": [
+            9072,
+            9081
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9109,
+          "excerpt": "\"lag1_utflyttning_per_1000\",",
+          "context_lines": [
+            9104,
+            9113
+          ]
+        },
+        {
+          "path": "scripts/test_blind_civic_unemployment_geographic.py",
+          "line": 18,
+          "excerpt": "FORBIDDEN={\"lag1_inflyttning_per_1000\",\"lag1_utflyttning_per_1000\",\"lag1_befolkningstillvaxt_pct\",\"lag1_andel_20_34\",\"lag1_inflyttare_medelalder\"}",
+          "context_lines": [
+            13,
+            22
+          ]
+        }
+      ],
+      "source_code_mention_count": 8,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_valdeltagande_gap_pp",
+      "theme": "demokrati",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 72,
+          "excerpt": "\"lag1_valdeltagande_gap_pp\",",
+          "context_lines": [
+            67,
+            76
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4868,
+          "excerpt": "panel[\"lag1_valdeltagande_gap_pp\"] = g[\"valdeltagande_gap_pp\"].shift(1)",
+          "context_lines": [
+            4863,
+            4872
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5082,
+          "excerpt": "\"lag1_valdeltagande_gap_pp\": \"Demokratisk ojämlikhet\",",
+          "context_lines": [
+            5077,
+            5086
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8911,
+          "excerpt": "\"lag1_valdeltagande_gap_pp\",",
+          "context_lines": [
+            8906,
+            8915
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9084,
+          "excerpt": "\"lag1_valdeltagande_gap_pp\",",
+          "context_lines": [
+            9079,
+            9088
+          ]
+        }
+      ],
+      "source_code_mention_count": 5,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    },
+    {
+      "feature": "lag1_valdeltagande_pct",
+      "theme": "demokrati",
+      "incumbent": true,
+      "source_code_mentions": [
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 71,
+          "excerpt": "\"lag1_valdeltagande_pct\",",
+          "context_lines": [
+            66,
+            75
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 4867,
+          "excerpt": "panel[\"lag1_valdeltagande_pct\"] = g[\"valdeltagande_pct\"].shift(1)",
+          "context_lines": [
+            4862,
+            4871
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 5081,
+          "excerpt": "\"lag1_valdeltagande_pct\": \"Demokratisk delaktighet\",",
+          "context_lines": [
+            5076,
+            5085
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 8910,
+          "excerpt": "\"lag1_valdeltagande_pct\",",
+          "context_lines": [
+            8905,
+            8914
+          ]
+        },
+        {
+          "path": "scripts/build_analysis.py",
+          "line": 9083,
+          "excerpt": "\"lag1_valdeltagande_pct\",",
+          "context_lines": [
+            9078,
+            9087
+          ]
+        }
+      ],
+      "source_code_mention_count": 5,
+      "candidate_definition_located": true,
+      "source_url_confirmed_for_feature": false,
+      "historical_publication_verified": false,
+      "caveat": "Mention in code is not a verified definition, SCB source lineage or archived publication date."
+    }
+  ],
+  "historical_asof_verified_count": 0,
+  "production_changed": false,
+  "next_step": "Review relevant code contexts and source metadata manually, then document archived publication timestamp for each candidate.",
+  "notes": [
+    "78 candidate names matched code in initial audit. Two names are analytical aliases joined from separate CSV.",
+    "Explicit alias mapping resolves local research-file lineage but does not prove historical publication, methodology equivalence, or genuine forecast availability.",
+    "SCB release-vintage evidence remains pending for all 80 candidates."
+  ]
+}
