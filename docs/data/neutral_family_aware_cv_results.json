@@ -1,0 +1,376 @@
+{
+  "status": "exploratory_family_aware_cv",
+  "grid": [
+    [
+      0.03,
+      0.8
+    ],
+    [
+      0.3,
+      0.8
+    ],
+    [
+      3.0,
+      0.8
+    ],
+    [
+      10.0,
+      0.8
+    ],
+    [
+      0.03,
+      1.0
+    ],
+    [
+      0.3,
+      1.0
+    ],
+    [
+      3.0,
+      1.0
+    ],
+    [
+      10.0,
+      1.0
+    ]
+  ],
+  "production_changed": false,
+  "results": {
+    "five_blind": {
+      "incumbent": {
+        "rmse": 11.314140507306956,
+        "mae": 8.417922368215358,
+        "folds": [
+          {
+            "fold": 1,
+            "rmse": 12.338838530643827,
+            "features": 14,
+            "nonzero": 14,
+            "alpha": 0.03
+          },
+          {
+            "fold": 2,
+            "rmse": 10.759102544881388,
+            "features": 14,
+            "nonzero": 14,
+            "alpha": 0.03
+          },
+          {
+            "fold": 3,
+            "rmse": 10.460077614428306,
+            "features": 14,
+            "nonzero": 14,
+            "alpha": 0.03
+          },
+          {
+            "fold": 4,
+            "rmse": 10.778560955299,
+            "features": 14,
+            "nonzero": 14,
+            "alpha": 0.03
+          },
+          {
+            "fold": 5,
+            "rmse": 12.101778930053479,
+            "features": 14,
+            "nonzero": 13,
+            "alpha": 0.03
+          }
+        ]
+      },
+      "neutral": {
+        "rmse": 8.499708834687555,
+        "mae": 6.497773312758195,
+        "folds": [
+          {
+            "fold": 1,
+            "rmse": 9.004492081800917,
+            "features": 47,
+            "nonzero": 38,
+            "alpha": 0.03
+          },
+          {
+            "fold": 2,
+            "rmse": 7.666778391869211,
+            "features": 47,
+            "nonzero": 39,
+            "alpha": 0.03
+          },
+          {
+            "fold": 3,
+            "rmse": 8.220104240644348,
+            "features": 47,
+            "nonzero": 41,
+            "alpha": 0.03
+          },
+          {
+            "fold": 4,
+            "rmse": 8.948428551791695,
+            "features": 47,
+            "nonzero": 41,
+            "alpha": 0.03
+          },
+          {
+            "fold": 5,
+            "rmse": 8.586058207204298,
+            "features": 47,
+            "nonzero": 43,
+            "alpha": 0.03
+          }
+        ]
+      }
+    },
+    "five_forecast": {
+      "incumbent": {
+        "rmse": 5.355567143700206,
+        "mae": 4.075645840480331,
+        "folds": [
+          {
+            "fold": 1,
+            "rmse": 5.559167896834341,
+            "features": 19,
+            "nonzero": 17,
+            "alpha": 0.03
+          },
+          {
+            "fold": 2,
+            "rmse": 5.323878285963403,
+            "features": 19,
+            "nonzero": 18,
+            "alpha": 0.03
+          },
+          {
+            "fold": 3,
+            "rmse": 5.819143622147795,
+            "features": 19,
+            "nonzero": 18,
+            "alpha": 0.03
+          },
+          {
+            "fold": 4,
+            "rmse": 4.779327536464478,
+            "features": 19,
+            "nonzero": 19,
+            "alpha": 0.03
+          },
+          {
+            "fold": 5,
+            "rmse": 5.2400443937498045,
+            "features": 19,
+            "nonzero": 19,
+            "alpha": 0.03
+          }
+        ]
+      },
+      "neutral": {
+        "rmse": 5.262571831493697,
+        "mae": 3.995449223626836,
+        "folds": [
+          {
+            "fold": 1,
+            "rmse": 5.393557429648407,
+            "features": 52,
+            "nonzero": 35,
+            "alpha": 0.03
+          },
+          {
+            "fold": 2,
+            "rmse": 5.204518200201826,
+            "features": 52,
+            "nonzero": 37,
+            "alpha": 0.03
+          },
+          {
+            "fold": 3,
+            "rmse": 5.689917319476503,
+            "features": 52,
+            "nonzero": 40,
+            "alpha": 0.03
+          },
+          {
+            "fold": 4,
+            "rmse": 4.810104000766401,
+            "features": 52,
+            "nonzero": 38,
+            "alpha": 0.03
+          },
+          {
+            "fold": 5,
+            "rmse": 5.17528553457096,
+            "features": 52,
+            "nonzero": 37,
+            "alpha": 0.03
+          }
+        ]
+      }
+    },
+    "three_blind": {
+      "incumbent": {
+        "rmse": 10.76736616224923,
+        "mae": 7.722112148858895,
+        "folds": [
+          {
+            "fold": 1,
+            "rmse": 12.429029831343607,
+            "features": 22,
+            "nonzero": 22,
+            "alpha": 0.03
+          },
+          {
+            "fold": 2,
+            "rmse": 9.470670796705654,
+            "features": 22,
+            "nonzero": 22,
+            "alpha": 0.03
+          },
+          {
+            "fold": 3,
+            "rmse": 8.970629222730128,
+            "features": 22,
+            "nonzero": 22,
+            "alpha": 0.03
+          },
+          {
+            "fold": 4,
+            "rmse": 10.301818501878316,
+            "features": 22,
+            "nonzero": 18,
+            "alpha": 0.3
+          },
+          {
+            "fold": 5,
+            "rmse": 12.202738601412545,
+            "features": 22,
+            "nonzero": 17,
+            "alpha": 0.3
+          }
+        ]
+      },
+      "neutral": {
+        "rmse": 8.201712535104319,
+        "mae": 6.2207869248484355,
+        "folds": [
+          {
+            "fold": 1,
+            "rmse": 8.685204617845692,
+            "features": 67,
+            "nonzero": 58,
+            "alpha": 0.03
+          },
+          {
+            "fold": 2,
+            "rmse": 6.949074179244572,
+            "features": 67,
+            "nonzero": 61,
+            "alpha": 0.03
+          },
+          {
+            "fold": 3,
+            "rmse": 7.694212219985082,
+            "features": 67,
+            "nonzero": 59,
+            "alpha": 0.03
+          },
+          {
+            "fold": 4,
+            "rmse": 8.312651128684404,
+            "features": 67,
+            "nonzero": 59,
+            "alpha": 0.03
+          },
+          {
+            "fold": 5,
+            "rmse": 9.182426741693012,
+            "features": 67,
+            "nonzero": 32,
+            "alpha": 0.3
+          }
+        ]
+      }
+    },
+    "three_forecast": {
+      "incumbent": {
+        "rmse": 5.0094055512696265,
+        "mae": 3.720683491112572,
+        "folds": [
+          {
+            "fold": 1,
+            "rmse": 5.663476617352193,
+            "features": 27,
+            "nonzero": 23,
+            "alpha": 0.03
+          },
+          {
+            "fold": 2,
+            "rmse": 4.721217210201295,
+            "features": 27,
+            "nonzero": 23,
+            "alpha": 0.03
+          },
+          {
+            "fold": 3,
+            "rmse": 5.4538263728910445,
+            "features": 27,
+            "nonzero": 23,
+            "alpha": 0.03
+          },
+          {
+            "fold": 4,
+            "rmse": 4.158396390602942,
+            "features": 27,
+            "nonzero": 24,
+            "alpha": 0.03
+          },
+          {
+            "fold": 5,
+            "rmse": 4.906055227699479,
+            "features": 27,
+            "nonzero": 22,
+            "alpha": 0.03
+          }
+        ]
+      },
+      "neutral": {
+        "rmse": 5.02296821474473,
+        "mae": 3.7714037163120477,
+        "folds": [
+          {
+            "fold": 1,
+            "rmse": 5.576461401184946,
+            "features": 72,
+            "nonzero": 43,
+            "alpha": 0.03
+          },
+          {
+            "fold": 2,
+            "rmse": 4.86627942405046,
+            "features": 72,
+            "nonzero": 47,
+            "alpha": 0.03
+          },
+          {
+            "fold": 3,
+            "rmse": 5.551988573835171,
+            "features": 72,
+            "nonzero": 46,
+            "alpha": 0.03
+          },
+          {
+            "fold": 4,
+            "rmse": 4.170456350162551,
+            "features": 72,
+            "nonzero": 52,
+            "alpha": 0.03
+          },
+          {
+            "fold": 5,
+            "rmse": 4.812085613040297,
+            "features": 72,
+            "nonzero": 49,
+            "alpha": 0.03
+          }
+        ]
+      }
+    }
+  }
+}
