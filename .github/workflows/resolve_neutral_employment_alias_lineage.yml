@@ -1,0 +1,31 @@
+name: Resolve neutral employment lineage aliases
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/resolve_neutral_employment_alias_lineage.py
+      - .github/workflows/resolve_neutral_employment_alias_lineage.yml
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/resolve_neutral_employment_alias_lineage.py
+      - name: Commit lineage report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/neutral_source_lineage_alias_resolution.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record employment research alias source lineage"
+          git pull --rebase origin main
+          git push origin HEAD:main
