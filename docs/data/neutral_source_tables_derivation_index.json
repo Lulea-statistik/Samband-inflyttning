@@ -1,0 +1,1346 @@
+{
+  "status": "scb_constants_and_variable_derivations_extracted",
+  "source_file": "scripts/build_analysis.py",
+  "source_constants": [
+    {
+      "constant": "MIGRATION_URL",
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101J/Flyttningar97",
+      "line": 31
+    },
+    {
+      "constant": "POPULATION_URL",
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101A/BefolkningNy",
+      "line": 32
+    },
+    {
+      "constant": "INCOME_URL",
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/HE/HE0110/HE0110A/SamForvInk2",
+      "line": 33
+    },
+    {
+      "constant": "HOUSE_PRICE_URL",
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0501/BO0501B/FastprisSHRegionAr",
+      "line": 34
+    },
+    {
+      "constant": "VACANCY_ALLM_URL",
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0303/BO0303A/OuthAllmLghTypKom0",
+      "line": 35
+    },
+    {
+      "constant": "INEQUALITY_URL",
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/HE/HE0110/HE0110I/Tab4InkDesoRegso",
+      "line": 36
+    },
+    {
+      "constant": "HOUSING_URL",
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104D/BO0104T04",
+      "line": 74
+    },
+    {
+      "constant": "COMPLETED_HOUSING_URL",
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0101/BO0101A/LghReHtypUfAr",
+      "line": 82
+    },
+    {
+      "constant": "LABOR_URL",
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210A/ArbStatusAr",
+      "line": 97
+    },
+    {
+      "constant": "MONTHLY_EMPLOYMENT_URL",
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210B/ArbStDoNMNN",
+      "line": 98
+    },
+    {
+      "constant": "AREA_URL",
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/MI/MI0802/Areal2012NN",
+      "line": 99
+    },
+    {
+      "constant": "TATORTSGRAD_URL",
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/MI/MI0810/MI0810A/TatortGrad",
+      "line": 100
+    },
+    {
+      "constant": "LAND_USE_URL",
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/MI/MI0803/MI0803A/MarkanvN",
+      "line": 101
+    },
+    {
+      "constant": "SHORELINE_BUILDINGS_URL",
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/MI/MI0812/MI0812S/MI0812T01",
+      "line": 102
+    },
+    {
+      "constant": "VEHICLE_TRAFFIC_URL",
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/TK/TK1001/TK1001A/FordonTrafik",
+      "line": 103
+    },
+    {
+      "constant": "EDUCATION_URL",
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/UF/UF0506/UF0506B/Utbildning",
+      "line": 106
+    },
+    {
+      "constant": "STUDENT_URL",
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AA/AA0003/AA0003H/IntGr8Kom1N",
+      "line": 107
+    },
+    {
+      "constant": "INDUSTRY_URL",
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210F/ArRegUtb",
+      "line": 108
+    },
+    {
+      "constant": "KOLADA_API_BASE",
+      "url": "https://api.kolada.se/v3",
+      "line": 110
+    }
+  ],
+  "n_scb_or_kolada_constants": 19,
+  "feature_count": 80,
+  "n_with_local_assignment": 78,
+  "features": [
+    {
+      "feature": "lag1_andel_20_34",
+      "local_derived_assignments": [
+        {
+          "line": 4848,
+          "expression": "panel[\"lag1_andel_20_34\"] = g[\"andel_20_34\"].shift(1)",
+          "preceding_context": "panel[\"lag1_naturpraglad_mark_andel_land_pct\"] = g[\"naturpraglad_mark_andel_land_pct\"].shift(1) panel[\"lag1_befolkningstillvaxt_pct\"] = g[\"befolkningstillvaxt_pct\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_andel_bostader_111_plus",
+      "local_derived_assignments": [
+        {
+          "line": 4876,
+          "expression": "panel[\"lag1_andel_bostader_111_plus\"] = g[\"andel_bostader_111_plus\"].shift(1)",
+          "preceding_context": "panel[\"lag1_andel_bostadsratt\"] = g[\"andel_bostadsratt\"].shift(1) panel[\"lag1_andel_smahus\"] = g[\"andel_smahus\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_andel_bostader_141_plus",
+      "local_derived_assignments": [
+        {
+          "line": 4877,
+          "expression": "panel[\"lag1_andel_bostader_141_plus\"] = g[\"andel_bostader_141_plus\"].shift(1)",
+          "preceding_context": "panel[\"lag1_andel_smahus\"] = g[\"andel_smahus\"].shift(1) panel[\"lag1_andel_bostader_111_plus\"] = g[\"andel_bostader_111_plus\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_andel_bostader_151_plus",
+      "local_derived_assignments": [
+        {
+          "line": 4881,
+          "expression": "panel[\"lag1_andel_bostader_151_plus\"] = g[\"andel_bostader_151_plus\"].shift(1)",
+          "preceding_context": "panel[\"lag1_andel_bostader_70_max\"] = g[\"andel_bostader_70_max\"].shift(1) panel[\"lag1_andel_flerbostad_70_max\"] = g[\"andel_flerbostad_70_max\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_andel_bostader_70_max",
+      "local_derived_assignments": [
+        {
+          "line": 4879,
+          "expression": "panel[\"lag1_andel_bostader_70_max\"] = g[\"andel_bostader_70_max\"].shift(1)",
+          "preceding_context": "panel[\"lag1_andel_bostader_141_plus\"] = g[\"andel_bostader_141_plus\"].shift(1) panel[\"lag1_andel_smahus_111_plus\"] = g[\"andel_smahus_111_plus\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_andel_bostadsratt",
+      "local_derived_assignments": [
+        {
+          "line": 4874,
+          "expression": "panel[\"lag1_andel_bostadsratt\"] = g[\"andel_bostadsratt\"].shift(1)",
+          "preceding_context": "panel[\"lag1_fardigstallda_bostader_per_1000\"] = g[\"fardigstallda_bostader_per_1000\"].shift(1) panel[\"lag1_andel_hyresratt\"] = g[\"andel_hyresratt\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_andel_eftergymnasial",
+      "local_derived_assignments": [
+        {
+          "line": 4893,
+          "expression": "panel[\"lag1_andel_eftergymnasial\"] = g[\"andel_eftergymnasial\"].shift(1)",
+          "preceding_context": "panel[\"lag1_sysselsatta_arbetsstalle_sasongsvariation_pct\"] = g[\"sysselsatta_arbetsstalle_sasongsvariation_pct\"].shift(1) panel[\"lag1_sysselsatta_bostad_sasongsvariation_pct\"] = g[\"sysselsatta_bostad_sasongsvariation_pct"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+      "local_derived_assignments": [
+        {
+          "line": 4920,
+          "expression": "panel[\"lag1_andel_fa_arbetsplatser_i_egen_kommun\"] = g[\"andel_fa_arbetsplatser_i_egen_kommun\"].shift(1)",
+          "preceding_context": "panel[\"lag1_andel_kultur_service_rstu\"] = g[\"andel_kultur_service_rstu\"].shift(1) panel[\"lag1_log_externa_fa_jobb_per_1000\"] = g[\"log_externa_fa_jobb_per_1000\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_andel_flerbostad_70_max",
+      "local_derived_assignments": [
+        {
+          "line": 4880,
+          "expression": "panel[\"lag1_andel_flerbostad_70_max\"] = g[\"andel_flerbostad_70_max\"].shift(1)",
+          "preceding_context": "panel[\"lag1_andel_smahus_111_plus\"] = g[\"andel_smahus_111_plus\"].shift(1) panel[\"lag1_andel_bostader_70_max\"] = g[\"andel_bostader_70_max\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_andel_hotell_restaurang_i",
+      "local_derived_assignments": [
+        {
+          "line": 4917,
+          "expression": "panel[\"lag1_andel_hotell_restaurang_i\"] = g[\"andel_hotell_restaurang_i\"].shift(1)",
+          "preceding_context": "panel[\"lag1_log_regional_centre_distance_km\"] = g[\"log_regional_centre_distance_km\"].shift(1) panel[\"lag1_andel_industri_bc\"] = g[\"andel_industri_bc\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_andel_hyresratt",
+      "local_derived_assignments": [
+        {
+          "line": 4873,
+          "expression": "panel[\"lag1_andel_hyresratt\"] = g[\"andel_hyresratt\"].shift(1)",
+          "preceding_context": "panel[\"lag1_bostadsbestandsforandring_pct\"] = g[\"bostadsbestandsforandring_pct\"].shift(1) panel[\"lag1_fardigstallda_bostader_per_1000\"] = g[\"fardigstallda_bostader_per_1000\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_andel_industri_bc",
+      "local_derived_assignments": [
+        {
+          "line": 4916,
+          "expression": "panel[\"lag1_andel_industri_bc\"] = g[\"andel_industri_bc\"].shift(1)",
+          "preceding_context": "panel[\"lag1_regional_centre_distance_km\"] = g[\"regional_centre_distance_km\"].shift(1) panel[\"lag1_log_regional_centre_distance_km\"] = g[\"log_regional_centre_distance_km\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_andel_kultur_service_rstu",
+      "local_derived_assignments": [
+        {
+          "line": 4918,
+          "expression": "panel[\"lag1_andel_kultur_service_rstu\"] = g[\"andel_kultur_service_rstu\"].shift(1)",
+          "preceding_context": "panel[\"lag1_andel_industri_bc\"] = g[\"andel_industri_bc\"].shift(1) panel[\"lag1_andel_hotell_restaurang_i\"] = g[\"andel_hotell_restaurang_i\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_andel_smahus",
+      "local_derived_assignments": [
+        {
+          "line": 4875,
+          "expression": "panel[\"lag1_andel_smahus\"] = g[\"andel_smahus\"].shift(1)",
+          "preceding_context": "panel[\"lag1_andel_hyresratt\"] = g[\"andel_hyresratt\"].shift(1) panel[\"lag1_andel_bostadsratt\"] = g[\"andel_bostadsratt\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_andel_smahus_111_plus",
+      "local_derived_assignments": [
+        {
+          "line": 4878,
+          "expression": "panel[\"lag1_andel_smahus_111_plus\"] = g[\"andel_smahus_111_plus\"].shift(1)",
+          "preceding_context": "panel[\"lag1_andel_bostader_111_plus\"] = g[\"andel_bostader_111_plus\"].shift(1) panel[\"lag1_andel_bostader_141_plus\"] = g[\"andel_bostader_141_plus\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_andel_smahus_151_plus",
+      "local_derived_assignments": [
+        {
+          "line": 4882,
+          "expression": "panel[\"lag1_andel_smahus_151_plus\"] = g[\"andel_smahus_151_plus\"].shift(1)",
+          "preceding_context": "panel[\"lag1_andel_flerbostad_70_max\"] = g[\"andel_flerbostad_70_max\"].shift(1) panel[\"lag1_andel_bostader_151_plus\"] = g[\"andel_bostader_151_plus\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_andel_studerande",
+      "local_derived_assignments": [
+        {
+          "line": 4894,
+          "expression": "panel[\"lag1_andel_studerande\"] = g[\"andel_studerande\"].shift(1)",
+          "preceding_context": "panel[\"lag1_sysselsatta_bostad_sasongsvariation_pct\"] = g[\"sysselsatta_bostad_sasongsvariation_pct\"].shift(1) panel[\"lag1_andel_eftergymnasial\"] = g[\"andel_eftergymnasial\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_arbetskraftsdeltagande",
+      "local_derived_assignments": [
+        {
+          "line": 4905,
+          "expression": "panel[\"lag1_arbetskraftsdeltagande\"] = g[\"arbetskraftsdeltagande\"].shift(1)",
+          "preceding_context": "panel[\"lag1_kolada_langtidsarbetslosa_pct\"] = g[\"kolada_langtidsarbetslosa_pct\"].shift(1) panel[\"lag1_kolada_arbetslosa_18_24_pct\"] = g[\"kolada_arbetslosa_18_24_pct\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_arbetsloshet",
+      "local_derived_assignments": [
+        {
+          "line": 4888,
+          "expression": "panel[\"lag1_arbetsloshet\"] = g[\"arbetsloshet\"].shift(1)",
+          "preceding_context": "panel[\"lag1_brott_per_100000\"] = g[\"brott_per_100000\"].shift(1) panel[\"lag1_sysselsattningsgrad\"] = g[\"sysselsattningsgrad\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_bas_ovriga_andel_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4910,
+          "expression": "panel[\"lag1_bas_ovriga_andel_pct\"] = g[\"bas_ovriga_andel_pct\"].shift(1)",
+          "preceding_context": "panel[\"lag1_bas_pensionarer_andel_pct\"] = g[\"bas_pensionarer_andel_pct\"].shift(1) panel[\"lag1_bas_sjuka_andel_pct\"] = g[\"bas_sjuka_andel_pct\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_bas_pensionarer_andel_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4908,
+          "expression": "panel[\"lag1_bas_pensionarer_andel_pct\"] = g[\"bas_pensionarer_andel_pct\"].shift(1)",
+          "preceding_context": "panel[\"lag1_utanf_arbetkraften_andel_pct\"] = g[\"utanf_arbetkraften_andel_pct\"].shift(1) panel[\"lag1_bas_studerande_andel_pct\"] = g[\"bas_studerande_andel_pct\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_bas_sjuka_andel_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4909,
+          "expression": "panel[\"lag1_bas_sjuka_andel_pct\"] = g[\"bas_sjuka_andel_pct\"].shift(1)",
+          "preceding_context": "panel[\"lag1_bas_studerande_andel_pct\"] = g[\"bas_studerande_andel_pct\"].shift(1) panel[\"lag1_bas_pensionarer_andel_pct\"] = g[\"bas_pensionarer_andel_pct\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_bas_studerande_andel_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4907,
+          "expression": "panel[\"lag1_bas_studerande_andel_pct\"] = g[\"bas_studerande_andel_pct\"].shift(1)",
+          "preceding_context": "panel[\"lag1_arbetskraftsdeltagande\"] = g[\"arbetskraftsdeltagande\"].shift(1) panel[\"lag1_utanf_arbetkraften_andel_pct\"] = g[\"utanf_arbetkraften_andel_pct\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4844,
+          "expression": "panel[\"lag1_bebyggd_anlagd_andel_land_pct\"] = g[\"bebyggd_anlagd_andel_land_pct\"].shift(1)",
+          "preceding_context": "panel[\"lag1_log_befolkningstathet_land\"] = g[\"log_befolkningstathet_land\"].shift(1) panel[\"lag1_tatortsgrad_pct\"] = g[\"tatortsgrad_pct\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_befolkningstillvaxt_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4847,
+          "expression": "panel[\"lag1_befolkningstillvaxt_pct\"] = g[\"befolkningstillvaxt_pct\"].shift(1)",
+          "preceding_context": "panel[\"lag1_skogsmark_andel_land_pct\"] = g[\"skogsmark_andel_land_pct\"].shift(1) panel[\"lag1_naturpraglad_mark_andel_land_pct\"] = g[\"naturpraglad_mark_andel_land_pct\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_bostader_per_1000",
+      "local_derived_assignments": [
+        {
+          "line": 4870,
+          "expression": "panel[\"lag1_bostader_per_1000\"] = g[\"bostader_per_1000\"].shift(1)",
+          "preceding_context": "panel[\"lag1_valdeltagande_gap_pp\"] = g[\"valdeltagande_gap_pp\"].shift(1) panel[\"lag1_ekonomisk_standard_gap_pp\"] = g[\"ekonomisk_standard_gap_pp\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_bostadsbestandsforandring_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4871,
+          "expression": "panel[\"lag1_bostadsbestandsforandring_pct\"] = g[\"bostadsbestandsforandring_pct\"].shift(1)",
+          "preceding_context": "panel[\"lag1_ekonomisk_standard_gap_pp\"] = g[\"ekonomisk_standard_gap_pp\"].shift(1) panel[\"lag1_bostader_per_1000\"] = g[\"bostader_per_1000\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_brott_per_100000",
+      "local_derived_assignments": [
+        {
+          "line": 4886,
+          "expression": "panel[\"lag1_brott_per_100000\"] = g[\"brott_per_100000\"].shift(1)",
+          "preceding_context": "panel[\"lag1_fritidshus_per_1000_inv\"] = g[\"fritidshus_per_1000_inv\"].shift(1) panel[\"lag1_log_fritidshus_per_1000_inv\"] = g[\"log_fritidshus_per_1000_inv\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_ekonomisk_standard_gap_pp",
+      "local_derived_assignments": [
+        {
+          "line": 4869,
+          "expression": "panel[\"lag1_ekonomisk_standard_gap_pp\"] = g[\"ekonomisk_standard_gap_pp\"].shift(1)",
+          "preceding_context": "panel[\"lag1_valdeltagande_pct\"] = g[\"valdeltagande_pct\"].shift(1) panel[\"lag1_valdeltagande_gap_pp\"] = g[\"valdeltagande_gap_pp\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_fardigstallda_bostader_per_1000",
+      "local_derived_assignments": [
+        {
+          "line": 4872,
+          "expression": "panel[\"lag1_fardigstallda_bostader_per_1000\"] = g[\"fardigstallda_bostader_per_1000\"].shift(1)",
+          "preceding_context": "panel[\"lag1_bostader_per_1000\"] = g[\"bostader_per_1000\"].shift(1) panel[\"lag1_bostadsbestandsforandring_pct\"] = g[\"bostadsbestandsforandring_pct\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_fritidshus_per_1000_inv",
+      "local_derived_assignments": [
+        {
+          "line": 4884,
+          "expression": "panel[\"lag1_fritidshus_per_1000_inv\"] = g[\"fritidshus_per_1000_inv\"].shift(1)",
+          "preceding_context": "panel[\"lag1_andel_smahus_151_plus\"] = g[\"andel_smahus_151_plus\"].shift(1) panel[\"lag1_fritidshusandel_bland_smahus\"] = g[\"fritidshusandel_bland_smahus\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_fritidshusandel_bland_smahus",
+      "local_derived_assignments": [
+        {
+          "line": 4883,
+          "expression": "panel[\"lag1_fritidshusandel_bland_smahus\"] = g[\"fritidshusandel_bland_smahus\"].shift(1)",
+          "preceding_context": "panel[\"lag1_andel_bostader_151_plus\"] = g[\"andel_bostader_151_plus\"].shift(1) panel[\"lag1_andel_smahus_151_plus\"] = g[\"andel_smahus_151_plus\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4900,
+          "expression": "panel[\"lag1_gymnasium_hogskoleforberedande_pct\"] = g[\"gymnasium_hogskoleforberedande_pct\"].shift(1)",
+          "preceding_context": "panel[\"lag1_kvinnors_lonesumma_dagbef_pct\"] = g[\"kvinnors_lonesumma_dagbef_pct\"].shift(1) panel[\"lag1_kvinnors_mediannettoinkomst_andel_pct\"] = g[\"kvinnors_mediannettoinkomst_andel_pct\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_gymnasium_yrkesprogram_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4901,
+          "expression": "panel[\"lag1_gymnasium_yrkesprogram_pct\"] = g[\"gymnasium_yrkesprogram_pct\"].shift(1)",
+          "preceding_context": "panel[\"lag1_kvinnors_mediannettoinkomst_andel_pct\"] = g[\"kvinnors_mediannettoinkomst_andel_pct\"].shift(1) panel[\"lag1_gymnasium_hogskoleforberedande_pct\"] = g[\"gymnasium_hogskoleforberedande_pct\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_inflyttare_medelalder",
+      "local_derived_assignments": [
+        {
+          "line": 4849,
+          "expression": "panel[\"lag1_inflyttare_medelalder\"] = g[\"inflyttare_medelalder\"].shift(1)",
+          "preceding_context": "panel[\"lag1_befolkningstillvaxt_pct\"] = g[\"befolkningstillvaxt_pct\"].shift(1) panel[\"lag1_andel_20_34\"] = g[\"andel_20_34\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_inflyttning_per_1000",
+      "local_derived_assignments": [
+        {
+          "line": 4834,
+          "expression": "panel[\"lag1_inflyttning_per_1000\"] = g[\"inflyttning_per_1000\"].shift(1)",
+          "preceding_context": "# All structural predictors are lagged one year so the explanatory value # precedes the migration outcome temporally."
+        },
+        {
+          "line": 8970,
+          "expression": "naive_pred = test[\"lag1_inflyttning_per_1000\"].to_numpy()",
+          "preceding_context": "Xte, yte = test[validation_features], test[target] "
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_inkomst_median_tkr",
+      "local_derived_assignments": [
+        {
+          "line": 4851,
+          "expression": "panel[\"lag1_inkomst_median_tkr\"] = g[\"inkomst_median_tkr\"].shift(1)",
+          "preceding_context": "panel[\"lag1_inflyttare_medelalder\"] = g[\"inflyttare_medelalder\"].shift(1) panel[\"lag1_inkomst_tkr\"] = g[\"inkomst_tkr\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_inkomst_tkr",
+      "local_derived_assignments": [
+        {
+          "line": 4850,
+          "expression": "panel[\"lag1_inkomst_tkr\"] = g[\"inkomst_tkr\"].shift(1)",
+          "preceding_context": "panel[\"lag1_andel_20_34\"] = g[\"andel_20_34\"].shift(1) panel[\"lag1_inflyttare_medelalder\"] = g[\"inflyttare_medelalder\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_kolada_arbetslosa_18_24_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4904,
+          "expression": "panel[\"lag1_kolada_arbetslosa_18_24_pct\"] = g[\"kolada_arbetslosa_18_24_pct\"].shift(1)",
+          "preceding_context": "panel[\"lag1_kolada_arbetslosa_18_65_pct\"] = g[\"kolada_arbetslosa_18_65_pct\"].shift(1) panel[\"lag1_kolada_langtidsarbetslosa_pct\"] = g[\"kolada_langtidsarbetslosa_pct\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_kolada_arbetslosa_18_65_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4902,
+          "expression": "panel[\"lag1_kolada_arbetslosa_18_65_pct\"] = g[\"kolada_arbetslosa_18_65_pct\"].shift(1)",
+          "preceding_context": "panel[\"lag1_gymnasium_hogskoleforberedande_pct\"] = g[\"gymnasium_hogskoleforberedande_pct\"].shift(1) panel[\"lag1_gymnasium_yrkesprogram_pct\"] = g[\"gymnasium_yrkesprogram_pct\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+      "local_derived_assignments": [
+        {
+          "line": 4896,
+          "expression": "panel[\"lag1_kolada_flickdominerade_idrottsforeningar_andel\"] = g[\"kolada_flickdominerade_idrottsforeningar_andel\"].shift(1)",
+          "preceding_context": "panel[\"lag1_andel_studerande\"] = g[\"andel_studerande\"].shift(1) panel[\"lag1_kolada_lok_foreningar_per_10000\"] = g[\"kolada_lok_foreningar_per_10000\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_kolada_langtidsarbetslosa_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4903,
+          "expression": "panel[\"lag1_kolada_langtidsarbetslosa_pct\"] = g[\"kolada_langtidsarbetslosa_pct\"].shift(1)",
+          "preceding_context": "panel[\"lag1_gymnasium_yrkesprogram_pct\"] = g[\"gymnasium_yrkesprogram_pct\"].shift(1) panel[\"lag1_kolada_arbetslosa_18_65_pct\"] = g[\"kolada_arbetslosa_18_65_pct\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_kolada_lok_foreningar_per_10000",
+      "local_derived_assignments": [
+        {
+          "line": 4895,
+          "expression": "panel[\"lag1_kolada_lok_foreningar_per_10000\"] = g[\"kolada_lok_foreningar_per_10000\"].shift(1)",
+          "preceding_context": "panel[\"lag1_andel_eftergymnasial\"] = g[\"andel_eftergymnasial\"].shift(1) panel[\"lag1_andel_studerande\"] = g[\"andel_studerande\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+      "local_derived_assignments": [
+        {
+          "line": 4897,
+          "expression": "panel[\"lag1_kolada_utbetalt_lok_stod_kr_per_inv\"] = g[\"kolada_utbetalt_lok_stod_kr_per_inv\"].shift(1)",
+          "preceding_context": "panel[\"lag1_kolada_lok_foreningar_per_10000\"] = g[\"kolada_lok_foreningar_per_10000\"].shift(1) panel[\"lag1_kolada_flickdominerade_idrottsforeningar_andel\"] = g[\"kolada_flickdominerade_idrottsforeningar_andel\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_kvinnors_lonesumma_dagbef_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4898,
+          "expression": "panel[\"lag1_kvinnors_lonesumma_dagbef_pct\"] = g[\"kvinnors_lonesumma_dagbef_pct\"].shift(1)",
+          "preceding_context": "panel[\"lag1_kolada_flickdominerade_idrottsforeningar_andel\"] = g[\"kolada_flickdominerade_idrottsforeningar_andel\"].shift(1) panel[\"lag1_kolada_utbetalt_lok_stod_kr_per_inv\"] = g[\"kolada_utbetalt_lok_stod_kr_per_inv\"].shi"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_kvinnors_mediannettoinkomst_andel_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4899,
+          "expression": "panel[\"lag1_kvinnors_mediannettoinkomst_andel_pct\"] = g[\"kvinnors_mediannettoinkomst_andel_pct\"].shift(1)",
+          "preceding_context": "panel[\"lag1_kolada_utbetalt_lok_stod_kr_per_inv\"] = g[\"kolada_utbetalt_lok_stod_kr_per_inv\"].shift(1) panel[\"lag1_kvinnors_lonesumma_dagbef_pct\"] = g[\"kvinnors_lonesumma_dagbef_pct\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_log_befolkningstathet_land",
+      "local_derived_assignments": [
+        {
+          "line": 4842,
+          "expression": "panel[\"lag1_log_befolkningstathet_land\"] = g[\"log_befolkningstathet_land\"].shift(1)",
+          "preceding_context": "panel[\"lag1_inflyttning_70_79_per_1000\"] = g[\"inflyttning_70_79_per_1000\"].shift(1) panel[\"lag1_log_folkmangd\"] = g[\"log_folkmangd\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_log_externa_fa_jobb_per_1000",
+      "local_derived_assignments": [
+        {
+          "line": 4919,
+          "expression": "panel[\"lag1_log_externa_fa_jobb_per_1000\"] = g[\"log_externa_fa_jobb_per_1000\"].shift(1)",
+          "preceding_context": "panel[\"lag1_andel_hotell_restaurang_i\"] = g[\"andel_hotell_restaurang_i\"].shift(1) panel[\"lag1_andel_kultur_service_rstu\"] = g[\"andel_kultur_service_rstu\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_log_folkmangd",
+      "local_derived_assignments": [
+        {
+          "line": 4841,
+          "expression": "panel[\"lag1_log_folkmangd\"] = g[\"log_folkmangd\"].shift(1)",
+          "preceding_context": "panel[\"lag1_inflyttning_63_68_per_1000\"] = g[\"inflyttning_63_68_per_1000\"].shift(1) panel[\"lag1_inflyttning_70_79_per_1000\"] = g[\"inflyttning_70_79_per_1000\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_log_fritidshus_per_1000_inv",
+      "local_derived_assignments": [
+        {
+          "line": 4885,
+          "expression": "panel[\"lag1_log_fritidshus_per_1000_inv\"] = g[\"log_fritidshus_per_1000_inv\"].shift(1)",
+          "preceding_context": "panel[\"lag1_fritidshusandel_bland_smahus\"] = g[\"fritidshusandel_bland_smahus\"].shift(1) panel[\"lag1_fritidshus_per_1000_inv\"] = g[\"fritidshus_per_1000_inv\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_log_regional_centre_distance_km",
+      "local_derived_assignments": [
+        {
+          "line": 4915,
+          "expression": "panel[\"lag1_log_regional_centre_distance_km\"] = g[\"log_regional_centre_distance_km\"].shift(1)",
+          "preceding_context": "].shift(1) panel[\"lag1_regional_centre_distance_km\"] = g[\"regional_centre_distance_km\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_log_smahuspris_medel",
+      "local_derived_assignments": [
+        {
+          "line": 4853,
+          "expression": "panel[\"lag1_log_smahuspris_medel\"] = g[\"log_smahuspris_medel\"].shift(1)",
+          "preceding_context": "panel[\"lag1_inkomst_median_tkr\"] = g[\"inkomst_median_tkr\"].shift(1) panel[\"lag1_smahuspris_medel_tkr\"] = g[\"smahuspris_medel_tkr\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_naturpraglad_mark_andel_land_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4846,
+          "expression": "panel[\"lag1_naturpraglad_mark_andel_land_pct\"] = g[\"naturpraglad_mark_andel_land_pct\"].shift(1)",
+          "preceding_context": "panel[\"lag1_bebyggd_anlagd_andel_land_pct\"] = g[\"bebyggd_anlagd_andel_land_pct\"].shift(1) panel[\"lag1_skogsmark_andel_land_pct\"] = g[\"skogsmark_andel_land_pct\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_regional_centre_distance_km",
+      "local_derived_assignments": [
+        {
+          "line": 4914,
+          "expression": "panel[\"lag1_regional_centre_distance_km\"] = g[\"regional_centre_distance_km\"].shift(1)",
+          "preceding_context": "\"utanf_arbetkraften_andel_fran_komponenter_pct\" ].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_skogsmark_andel_land_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4845,
+          "expression": "panel[\"lag1_skogsmark_andel_land_pct\"] = g[\"skogsmark_andel_land_pct\"].shift(1)",
+          "preceding_context": "panel[\"lag1_tatortsgrad_pct\"] = g[\"tatortsgrad_pct\"].shift(1) panel[\"lag1_bebyggd_anlagd_andel_land_pct\"] = g[\"bebyggd_anlagd_andel_land_pct\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_smahusforsaljningar_per_1000_inv",
+      "local_derived_assignments": [
+        {
+          "line": 4860,
+          "expression": "panel[\"lag1_smahusforsaljningar_per_1000_inv\"] = (",
+          "preceding_context": "g[\"smahusforsaljningar_per_1000_smahus\"].shift(1) )"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_smahusforsaljningar_per_1000_smahus",
+      "local_derived_assignments": [
+        {
+          "line": 4857,
+          "expression": "panel[\"lag1_smahusforsaljningar_per_1000_smahus\"] = (",
+          "preceding_context": "panel[\"lag1_smahuspris_inkomstkvot_medel\"] = g[\"smahuspris_inkomstkvot_medel\"].shift(1) panel[\"lag1_smahuspris_inkomstkvot_median\"] = g[\"smahuspris_inkomstkvot_median\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_smahuspris_forandring_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4854,
+          "expression": "panel[\"lag1_smahuspris_forandring_pct\"] = g[\"smahuspris_forandring_pct\"].shift(1)",
+          "preceding_context": "panel[\"lag1_smahuspris_medel_tkr\"] = g[\"smahuspris_medel_tkr\"].shift(1) panel[\"lag1_log_smahuspris_medel\"] = g[\"log_smahuspris_medel\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_smahuspris_inkomstkvot_medel",
+      "local_derived_assignments": [
+        {
+          "line": 4855,
+          "expression": "panel[\"lag1_smahuspris_inkomstkvot_medel\"] = g[\"smahuspris_inkomstkvot_medel\"].shift(1)",
+          "preceding_context": "panel[\"lag1_log_smahuspris_medel\"] = g[\"log_smahuspris_medel\"].shift(1) panel[\"lag1_smahuspris_forandring_pct\"] = g[\"smahuspris_forandring_pct\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_smahuspris_inkomstkvot_median",
+      "local_derived_assignments": [
+        {
+          "line": 4856,
+          "expression": "panel[\"lag1_smahuspris_inkomstkvot_median\"] = g[\"smahuspris_inkomstkvot_median\"].shift(1)",
+          "preceding_context": "panel[\"lag1_smahuspris_forandring_pct\"] = g[\"smahuspris_forandring_pct\"].shift(1) panel[\"lag1_smahuspris_inkomstkvot_medel\"] = g[\"smahuspris_inkomstkvot_medel\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_smahuspris_medel_tkr",
+      "local_derived_assignments": [
+        {
+          "line": 4852,
+          "expression": "panel[\"lag1_smahuspris_medel_tkr\"] = g[\"smahuspris_medel_tkr\"].shift(1)",
+          "preceding_context": "panel[\"lag1_inkomst_tkr\"] = g[\"inkomst_tkr\"].shift(1) panel[\"lag1_inkomst_median_tkr\"] = g[\"inkomst_median_tkr\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_snoskoterandel_alla_fordon_pct",
+      "local_derived_assignments": [
+        {
+          "line": 10564,
+          "expression": "panel[\"lag1_snoskoterandel_alla_fordon_pct\"] = (",
+          "preceding_context": "panel = panel.sort_values([\"kommun_kod\", \"year\"]) vehicle_g = panel.groupby(\"kommun_kod\", group_keys=False)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+      "local_derived_assignments": [
+        {
+          "line": 10567,
+          "expression": "panel[\"lag1_snoskoterandel_exkl_dragfordon_pct\"] = (",
+          "preceding_context": "vehicle_g[\"snoskoterandel_alla_fordon_pct\"].shift(1) )"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_strand_hav_bostader_per_1000",
+      "local_derived_assignments": [
+        {
+          "line": 10540,
+          "expression": "panel[\"lag1_strand_hav_bostader_per_1000\"] = (",
+          "preceding_context": ") shoreline_g = panel.groupby(\"kommun_kod\", group_keys=False)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+      "local_derived_assignments": [
+        {
+          "line": 10549,
+          "expression": "panel[\"lag1_strand_hav_bostader_skyddad_natur_per_1000\"] = (",
+          "preceding_context": "shoreline_g[\"strand_hav_bostader_tatort_andel_pct\"].shift(1) )"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_strand_hav_bostader_tatort_per_1000",
+      "local_derived_assignments": [
+        {
+          "line": 10543,
+          "expression": "panel[\"lag1_strand_hav_bostader_tatort_per_1000\"] = (",
+          "preceding_context": "shoreline_g[\"strand_hav_bostader_per_1000\"].shift(1) )"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_strand_inland_bostader_per_1000",
+      "local_derived_assignments": [
+        {
+          "line": 10552,
+          "expression": "panel[\"lag1_strand_inland_bostader_per_1000\"] = (",
+          "preceding_context": "shoreline_g[\"strand_hav_bostader_skyddad_natur_per_1000\"].shift(1) )"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_sysselsatta_arbetsstalle_forandring_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4889,
+          "expression": "panel[\"lag1_sysselsatta_arbetsstalle_forandring_pct\"] = g[\"sysselsatta_arbetsstalle_forandring_pct\"].shift(1)",
+          "preceding_context": "panel[\"lag1_sysselsattningsgrad\"] = g[\"sysselsattningsgrad\"].shift(1) panel[\"lag1_arbetsloshet\"] = g[\"arbetsloshet\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_sysselsatta_arbetsstalle_rams_bas_historisk_forandring_pct",
+      "local_derived_assignments": [],
+      "research_alias": {
+        "data_path": "docs/data/employment_lag1_research_availability.csv",
+        "dimension": "workplace",
+        "value_column": "growth_pct",
+        "join_keys": [
+          "target_year",
+          "kommun_kod",
+          "dimension"
+        ],
+        "upstream_scripts": [
+          "scripts/build_employment_regime_history.py",
+          "scripts/audit_employment_growth_regime_gate.py",
+          "scripts/audit_employment_lag1_availability.py"
+        ],
+        "source_inputs": [
+          "docs/data/commuting_historical_rams.csv",
+          "docs/data/commuting_flows_2020_2024.csv"
+        ],
+        "regime_selection": "research preference; not historical as-of approval",
+        "asof_source_release_verified": false
+      },
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4891,
+          "expression": "panel[\"lag1_sysselsatta_arbetsstalle_sasongsvariation_pct\"] = g[\"sysselsatta_arbetsstalle_sasongsvariation_pct\"].shift(1)",
+          "preceding_context": "panel[\"lag1_sysselsatta_arbetsstalle_forandring_pct\"] = g[\"sysselsatta_arbetsstalle_forandring_pct\"].shift(1) panel[\"lag1_sysselsatta_bostad_forandring_pct\"] = g[\"sysselsatta_bostad_forandring_pct\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_sysselsatta_bostad_forandring_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4890,
+          "expression": "panel[\"lag1_sysselsatta_bostad_forandring_pct\"] = g[\"sysselsatta_bostad_forandring_pct\"].shift(1)",
+          "preceding_context": "panel[\"lag1_arbetsloshet\"] = g[\"arbetsloshet\"].shift(1) panel[\"lag1_sysselsatta_arbetsstalle_forandring_pct\"] = g[\"sysselsatta_arbetsstalle_forandring_pct\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_sysselsatta_bostad_rams_bas_historisk_forandring_pct",
+      "local_derived_assignments": [],
+      "research_alias": {
+        "data_path": "docs/data/employment_lag1_research_availability.csv",
+        "dimension": "residence",
+        "value_column": "growth_pct",
+        "join_keys": [
+          "target_year",
+          "kommun_kod",
+          "dimension"
+        ],
+        "upstream_scripts": [
+          "scripts/build_employment_regime_history.py",
+          "scripts/audit_employment_growth_regime_gate.py",
+          "scripts/audit_employment_lag1_availability.py"
+        ],
+        "source_inputs": [
+          "docs/data/commuting_historical_rams.csv",
+          "docs/data/commuting_flows_2020_2024.csv"
+        ],
+        "regime_selection": "research preference; not historical as-of approval",
+        "asof_source_release_verified": false
+      },
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4892,
+          "expression": "panel[\"lag1_sysselsatta_bostad_sasongsvariation_pct\"] = g[\"sysselsatta_bostad_sasongsvariation_pct\"].shift(1)",
+          "preceding_context": "panel[\"lag1_sysselsatta_bostad_forandring_pct\"] = g[\"sysselsatta_bostad_forandring_pct\"].shift(1) panel[\"lag1_sysselsatta_arbetsstalle_sasongsvariation_pct\"] = g[\"sysselsatta_arbetsstalle_sasongsvariation_pct\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_sysselsattningsgrad",
+      "local_derived_assignments": [
+        {
+          "line": 4887,
+          "expression": "panel[\"lag1_sysselsattningsgrad\"] = g[\"sysselsattningsgrad\"].shift(1)",
+          "preceding_context": "panel[\"lag1_log_fritidshus_per_1000_inv\"] = g[\"log_fritidshus_per_1000_inv\"].shift(1) panel[\"lag1_brott_per_100000\"] = g[\"brott_per_100000\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_tatortsgrad_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4843,
+          "expression": "panel[\"lag1_tatortsgrad_pct\"] = g[\"tatortsgrad_pct\"].shift(1)",
+          "preceding_context": "panel[\"lag1_log_folkmangd\"] = g[\"log_folkmangd\"].shift(1) panel[\"lag1_log_befolkningstathet_land\"] = g[\"log_befolkningstathet_land\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4911,
+          "expression": "panel[\"lag1_utanf_arbetkraften_andel_fran_komponenter_pct\"] = g[",
+          "preceding_context": "panel[\"lag1_bas_sjuka_andel_pct\"] = g[\"bas_sjuka_andel_pct\"].shift(1) panel[\"lag1_bas_ovriga_andel_pct\"] = g[\"bas_ovriga_andel_pct\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_utanf_arbetkraften_andel_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4906,
+          "expression": "panel[\"lag1_utanf_arbetkraften_andel_pct\"] = g[\"utanf_arbetkraften_andel_pct\"].shift(1)",
+          "preceding_context": "panel[\"lag1_kolada_arbetslosa_18_24_pct\"] = g[\"kolada_arbetslosa_18_24_pct\"].shift(1) panel[\"lag1_arbetskraftsdeltagande\"] = g[\"arbetskraftsdeltagande\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_utflyttning_per_1000",
+      "local_derived_assignments": [
+        {
+          "line": 4835,
+          "expression": "panel[\"lag1_utflyttning_per_1000\"] = g[\"utflyttning_per_1000\"].shift(1)",
+          "preceding_context": "# precedes the migration outcome temporally. panel[\"lag1_inflyttning_per_1000\"] = g[\"inflyttning_per_1000\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_valdeltagande_gap_pp",
+      "local_derived_assignments": [
+        {
+          "line": 4868,
+          "expression": "panel[\"lag1_valdeltagande_gap_pp\"] = g[\"valdeltagande_gap_pp\"].shift(1)",
+          "preceding_context": ") panel[\"lag1_valdeltagande_pct\"] = g[\"valdeltagande_pct\"].shift(1)"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    },
+    {
+      "feature": "lag1_valdeltagande_pct",
+      "local_derived_assignments": [
+        {
+          "line": 4867,
+          "expression": "panel[\"lag1_valdeltagande_pct\"] = g[\"valdeltagande_pct\"].shift(1)",
+          "preceding_context": "g[\"lediga_allmannytta_av_total_bostadsbestand_pct\"].shift(1) )"
+        }
+      ],
+      "research_alias": null,
+      "scb_table_match_status": "not_yet_proven",
+      "source_publication_date_verified": false,
+      "asof_eligible": false,
+      "next_review": "Trace non-lagged base column through loader and exact SCB table or Kolada indicator."
+    }
+  ],
+  "caveats": [
+    "Constants are real links referenced in repository code, not verified public historical releases.",
+    "Candidate feature derivations such as shift(1) do not establish upstream source column lineage.",
+    "Historical availability and source publication dates remain blocked.",
+    "No historical test and no production change."
+  ],
+  "production_changed": false
+}
