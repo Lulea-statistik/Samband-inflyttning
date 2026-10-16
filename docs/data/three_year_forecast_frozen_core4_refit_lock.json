@@ -1,0 +1,46 @@
+{
+  "status": "frozen_core4_refit_method_locked",
+  "branch": "three_year_forecast",
+  "production_changed": false,
+  "frozen_features": [
+    "lag1_inflyttning_per_1000",
+    "lag1_utflyttning_per_1000",
+    "lag1_kolada_arbetslosa_18_65_pct",
+    "lag1_bostadsbestandsforandring_pct"
+  ],
+  "refit_method": "OLS",
+  "refit_method_locked": true,
+  "reason": {
+    "core4_ols_mean_rmse": 5.381850122770515,
+    "core4_ridge_tuned_mean_rmse": 5.382664071775386,
+    "core4_ols_mean_mae": 3.992651758129279,
+    "core4_ridge_tuned_mean_mae": 3.9927277190816954,
+    "ridge_alpha_counts": {
+      "0.01": 72,
+      "0.1": 7,
+      "1.0": 16,
+      "3.0": 5
+    },
+    "interpretation": "Tuned Ridge collapses toward near-OLS regularization in most repeated municipality splits; OLS is marginally better and is the simpler fixed refit rule."
+  },
+  "benchmark_status": {
+    "full_ridge_tuned_mean_rmse": 5.186961644569829,
+    "core4_ols_mean_rmse": 5.381850122770515,
+    "core4_ols_mean_relative_rmse_vs_full_pct": 3.768231818375714,
+    "core4_better_than_full_share": 0.12,
+    "core4_within_5pct_share": 0.62,
+    "interpretation": "Full tuned Ridge remains the stronger historical predictive benchmark on 2021-2023. Core4 OLS is retained for parsimony and interpretability, not because it currently wins predictive loss."
+  },
+  "allowed_next_work": [
+    "future untouched temporal confirmation using frozen source snapshots",
+    "production-readiness comparison against full Ridge benchmark",
+    "sensitivity analysis that keeps both frozen variables and OLS refit unchanged"
+  ],
+  "forbidden_next_work": [
+    "reopen variable selection",
+    "switch core4 refit based on further 2021-2023 optimization",
+    "activate monthly temporal module before untouched confirmation"
+  ],
+  "production_promotion_gate": "future untouched temporal confirmation",
+  "temporal_module_deferred": true
+}
