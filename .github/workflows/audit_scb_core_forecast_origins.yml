@@ -1,0 +1,30 @@
+name: Audit SCB core forecast origins
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/audit_scb_core_forecast_origins.py
+      - .github/workflows/audit_scb_core_forecast_origins.yml
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/audit_scb_core_forecast_origins.py
+      - name: Commit audit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/neutral_scb_core_forecast_origin_gate.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record SCB core forecast-origin gate"
+          git pull --rebase origin main
+          git push origin HEAD:main
