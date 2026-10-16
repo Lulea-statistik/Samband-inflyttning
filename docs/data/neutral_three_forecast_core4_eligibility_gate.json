@@ -1,0 +1,220 @@
+{
+  "status": "non_predictive_core4_eligibility_gate",
+  "production_changed": false,
+  "core4": [
+    "lag1_inflyttning_per_1000",
+    "lag1_utflyttning_per_1000",
+    "lag1_valdeltagande_gap_pp",
+    "lag1_bostadsbestandsforandring_pct"
+  ],
+  "all_asof_verified": false,
+  "all_method_definitions_verified": false,
+  "lockin_allowed": false,
+  "records": [
+    {
+      "feature": "lag1_inflyttning_per_1000",
+      "theme": "needs_classification",
+      "origin": "prior_inventory_only",
+      "incumbent": true,
+      "asof_verified": false,
+      "method_definition_verified": false,
+      "coverage_2020_2024": {
+        "2020": 290,
+        "2021": 290,
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "possible_full_year_windows": {
+        "3": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "5": [
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "10": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ]
+      },
+      "gate_status": "blocked_pending_source_vintage_and_definition_audit",
+      "notes": "Historical coverage != as-of eligibility. Previously chosen and new candidates evaluated equally."
+    },
+    {
+      "feature": "lag1_utflyttning_per_1000",
+      "theme": "needs_classification",
+      "origin": "prior_inventory_only",
+      "incumbent": true,
+      "asof_verified": false,
+      "method_definition_verified": false,
+      "coverage_2020_2024": {
+        "2020": 290,
+        "2021": 290,
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "possible_full_year_windows": {
+        "3": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "5": [
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "10": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ]
+      },
+      "gate_status": "blocked_pending_source_vintage_and_definition_audit",
+      "notes": "Historical coverage != as-of eligibility. Previously chosen and new candidates evaluated equally."
+    },
+    {
+      "feature": "lag1_valdeltagande_gap_pp",
+      "theme": "demokrati",
+      "origin": "fair_pool",
+      "incumbent": true,
+      "asof_verified": false,
+      "method_definition_verified": false,
+      "coverage_2020_2024": {
+        "2020": 290,
+        "2021": 290,
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "possible_full_year_windows": {
+        "3": [
+          2022,
+          2023,
+          2024
+        ],
+        "5": [
+          2024
+        ],
+        "10": []
+      },
+      "gate_status": "blocked_pending_source_vintage_and_definition_audit",
+      "notes": "Historical coverage != as-of eligibility. Previously chosen and new candidates evaluated equally."
+    },
+    {
+      "feature": "lag1_bostadsbestandsforandring_pct",
+      "theme": "bostader_och_bestand",
+      "origin": "fair_pool",
+      "incumbent": true,
+      "asof_verified": false,
+      "method_definition_verified": false,
+      "coverage_2020_2024": {
+        "2020": 290,
+        "2021": 290,
+        "2022": 290,
+        "2023": 290,
+        "2024": 290
+      },
+      "possible_full_year_windows": {
+        "3": [
+          2023,
+          2024
+        ],
+        "5": [],
+        "10": []
+      },
+      "gate_status": "blocked_pending_source_vintage_and_definition_audit",
+      "notes": "Historical coverage != as-of eligibility. Previously chosen and new candidates evaluated equally."
+    }
+  ],
+  "decision": {
+    "model_status": "provisional_sparse_candidate_not_locked",
+    "next_required_step": "verify source vintage and exact feature derivation for all four variables before any temporal confirmation or production reconsideration",
+    "no_more_reselection_on_2021_2023": true,
+    "temporal_module_deferred": true
+  }
+}
