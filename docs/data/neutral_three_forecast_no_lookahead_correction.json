@@ -1,0 +1,150 @@
+{
+  "status": "research_only_corrected_three_forecast_no_lookahead",
+  "production_changed": false,
+  "excluded_method_ineligible_features": [
+    "lag1_valdeltagande_gap_pp",
+    "lag1_valdeltagande_pct"
+  ],
+  "candidate_count": 76,
+  "protocol": "same nested 1-SE Lasso plus PFER=1 CPSS; only pre-existing LOOKAHEAD_ONLY features removed",
+  "summary": {
+    "full_ridge": {
+      "rmse": 5.218967703476998,
+      "mae": 3.9203522432461684
+    },
+    "one_se_lasso": {
+      "rmse": 5.306920532185653,
+      "mae": 3.96184734561088
+    },
+    "pfer_lasso": {
+      "rmse": 5.643668025672096,
+      "mae": 4.15213149575327
+    },
+    "pfer_ols": {
+      "rmse": 5.444913764463253,
+      "mae": 4.057721315875495
+    }
+  },
+  "outer_folds": [
+    {
+      "fold": 1,
+      "one_se_alpha": 0.3727593720314938,
+      "one_se_active_count": 17,
+      "full_ridge_rmse": 5.839265221680755,
+      "one_se_lasso_rmse": 6.030167363939824,
+      "stable": {
+        "source": "outside_1se",
+        "alpha": 1.0,
+        "stable_features": [
+          "lag1_bostadsbestandsforandring_pct",
+          "lag1_inflyttning_per_1000",
+          "lag1_kolada_arbetslosa_18_65_pct",
+          "lag1_utflyttning_per_1000"
+        ],
+        "stable_count": 4,
+        "threshold": 0.875016447368421,
+        "inner_mean_rmse": 5.489846992620767,
+        "inner_excess_over_min": 0.49674379529758994,
+        "lasso_rmse": 6.374722041889857,
+        "ols_rmse": 6.0664574108518465
+      }
+    },
+    {
+      "fold": 2,
+      "one_se_alpha": 0.13894954943731375,
+      "one_se_active_count": 27,
+      "full_ridge_rmse": 4.996237590861076,
+      "one_se_lasso_rmse": 5.020987751247358,
+      "stable": {
+        "source": "outside_1se",
+        "alpha": 1.0,
+        "stable_features": [
+          "lag1_inflyttning_per_1000",
+          "lag1_kolada_arbetslosa_18_65_pct",
+          "lag1_utflyttning_per_1000"
+        ],
+        "stable_count": 3,
+        "threshold": 0.9079975328947368,
+        "inner_mean_rmse": 5.761890681490555,
+        "inner_excess_over_min": 0.545444083672666,
+        "lasso_rmse": 5.544281774256495,
+        "ols_rmse": 5.521060312797091
+      }
+    },
+    {
+      "fold": 3,
+      "one_se_alpha": 0.3727593720314938,
+      "one_se_active_count": 14,
+      "full_ridge_rmse": 5.56445748825128,
+      "one_se_lasso_rmse": 5.771881632634486,
+      "stable": {
+        "source": "outside_1se",
+        "alpha": 1.0,
+        "stable_features": [
+          "lag1_bostadsbestandsforandring_pct",
+          "lag1_inflyttning_per_1000",
+          "lag1_kolada_arbetslosa_18_65_pct",
+          "lag1_utflyttning_per_1000"
+        ],
+        "stable_count": 4,
+        "threshold": 0.8676027960526316,
+        "inner_mean_rmse": 5.559734052651359,
+        "inner_excess_over_min": 0.504159259490466,
+        "lasso_rmse": 6.025347581319336,
+        "ols_rmse": 5.839106167072035
+      }
+    },
+    {
+      "fold": 4,
+      "one_se_alpha": 0.13894954943731375,
+      "one_se_active_count": 32,
+      "full_ridge_rmse": 4.504820725601705,
+      "one_se_lasso_rmse": 4.2994579987252735,
+      "stable": {
+        "source": "outside_1se",
+        "alpha": 1.0,
+        "stable_features": [
+          "lag1_bostadsbestandsforandring_pct",
+          "lag1_inflyttning_per_1000",
+          "lag1_kolada_arbetslosa_18_65_pct",
+          "lag1_utflyttning_per_1000"
+        ],
+        "stable_count": 4,
+        "threshold": 0.9369901315789473,
+        "inner_mean_rmse": 5.887275647959098,
+        "inner_excess_over_min": 0.4758957403485091,
+        "lasso_rmse": 4.503674374978867,
+        "ols_rmse": 4.238184715526636
+      }
+    },
+    {
+      "fold": 5,
+      "one_se_alpha": 0.3727593720314938,
+      "one_se_active_count": 15,
+      "full_ridge_rmse": 5.086463815643409,
+      "one_se_lasso_rmse": 5.238686340622162,
+      "stable": {
+        "source": "outside_1se",
+        "alpha": 1.0,
+        "stable_features": [
+          "lag1_bostadsbestandsforandring_pct",
+          "lag1_inflyttning_per_1000",
+          "lag1_kolada_arbetslosa_18_65_pct",
+          "lag1_sysselsatta_bostad_sasongsvariation_pct",
+          "lag1_utflyttning_per_1000"
+        ],
+        "stable_count": 5,
+        "threshold": 0.8458059210526316,
+        "inner_mean_rmse": 5.663690796604044,
+        "inner_excess_over_min": 0.39989406228503555,
+        "lasso_rmse": 5.59382749686712,
+        "ols_rmse": 5.375318269993166
+      }
+    }
+  ],
+  "limitations": [
+    "Same 2021-2023 historical era remains previously inspected.",
+    "This correction addresses known feature lookahead, not exact source-vintage certification.",
+    "No new variables or thresholds were introduced."
+  ]
+}
