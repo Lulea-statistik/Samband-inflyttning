@@ -1,0 +1,32 @@
+name: Audit Kolada unemployment KPI identity
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/audit_kolada_unemployment_kpi_identity.py
+      - .github/workflows/audit_kolada_unemployment_kpi_identity.yml
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests
+      - run: python scripts/audit_kolada_unemployment_kpi_identity.py
+      - name: Commit audit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/neutral_kolada_unemployment_kpi_identity_audit.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record live Kolada unemployment KPI identity audit"
+          git pull --rebase origin main
+          git push origin HEAD:main
