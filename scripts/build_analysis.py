@@ -152,11 +152,14 @@ KOLADA_GYMNASIUM_PROGRAM_SPECS = {
 # Priority candidate block for the next build: unemployment indicators requested for structural testing.
 KOLADA_UNEMPLOYMENT_SPECS = {
     "kolada_arbetslosa_18_65_pct": {
-        "id": None,
-        "search": "Arbetslösa i befolkningen",
-        "required_terms": ["arbetslösa", "befolkningen", "18-65", "andel"],
+        # Identity frozen after live Kolada audit 2026-10-16.
+        # N03937 = "Öppet arbetslösa av befolkningen, 18-65 år, andel (%)".
+        # Definition break: through 2022 the age group is 18-64; from 2023 it is 18-65.
+        "id": "N03937",
+        "search": "Öppet arbetslösa av befolkningen",
+        "required_terms": ["öppet arbetslösa", "befolkningen", "18-65", "andel"],
         "forbidden_terms": ["långtids"],
-        "label": "Arbetslösa i befolkningen, 18-65 år, andel (%)",
+        "label": "Öppet arbetslösa av befolkningen, 18-65 år, andel (%)",
     },
     "kolada_langtidsarbetslosa_pct": {
         "id": None,
