@@ -1,0 +1,30 @@
+{
+  "status": "forecast_core_snapshot_verified",
+  "snapshot": "20261016T203726Z",
+  "captured_at_utc": "20261016T203726Z",
+  "protocol_version": 2,
+  "all_required_files_present": true,
+  "future_scoring_rules_verified": true,
+  "sha256": {
+    "kolada_N03937_2019.json": "8cf5e79ed5a59465789f9d0d8af3b88462e47cf310318d147e9bf6e58d473c04",
+    "kolada_N03937_2020.json": "44a639c32fd977354bd370a19a10914a44a208d8238145b5354656f780745dc3",
+    "kolada_N03937_2021.json": "e174c35fbc7560c2e8650f6f53b7c40e49b87a5fda22885fdd14019444a7aaf0",
+    "kolada_N03937_2022.json": "75db56683b2fde8c90e204bd33be8458f37bf739d84abe1081dc0c514d2edfaf",
+    "kolada_N03937_2023.json": "2e1f8f4a453e0ee1f7e8630ace489362f357e479c3b80648f9730ed1c9792dd3",
+    "kolada_N03937_2024.json": "84dc438b399ee1aa3bcea556e38cf9dc95abbcc58e4f97cde7f0de8ee16eec3e",
+    "kolada_N03937_2025.json": "7134221b2fee7aa8d7a0c005d353057e6d34fe7c1bdfe88840579dc7c956aafb",
+    "kolada_N03937_2026.json": "dc893a4990b89a0ec921aedffe38902925f4de543380e03c51b04a71de29653d",
+    "kolada_N03937_metadata.json": "a57eecd6ccb0bb88d8104feb2c187a135e2db03b4ae3f7b2eb3ade3fe6415052",
+    "manifest.json": "c98ae6886cd8f26eb814e4830074dcafcc951595025dedbbbfd387087f246a45",
+    "scb_housing_metadata.json": "6a5cff32bb8370eba3bdbffb4bc2dad4ed47ceb928679e2445c1b24b078c1724",
+    "scb_housing_query.json": "0baee07303969cfc18bd0fb6ef956d8fe3b6607199a5d9e03d0caae641925962",
+    "scb_housing_values.json": "be33b08c9c3f98227106c2682a73b9e245731df527b2c97aeb85917a84565102",
+    "scb_migration_metadata.json": "fd400876e198b707d17886916dd15fd8905247aa4ceaa07a0bf939bdd73da76a",
+    "scb_migration_query.json": "d02fbd6b81bfc9af9c261a051274a18e82159278d77bd00327cf80b5cbb5e124",
+    "scb_migration_values.json": "59365c5219ff41e6f03393feeaebdac347387288c6eb789ddc1ab8a9307a4937",
+    "scb_population_metadata.json": "6e750ede605309ff70dfdf1c5a9950623ac7612a7ab4f77dee53b80e325e847d",
+    "scb_population_query.json": "395ff9d1c81a129f5a37c8ebc357dd69aeca08a96a41c6b9697d7b56b0bfa405",
+    "scb_population_values.json": "f9d781a5cbe340a47c77a515d08c7748c252866090a9e4bf7cc12ede2bae135a"
+  },
+  "production_changed": false
+}
