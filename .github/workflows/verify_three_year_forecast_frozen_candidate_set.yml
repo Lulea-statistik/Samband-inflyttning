@@ -1,0 +1,38 @@
+name: Verify frozen 3-year forecast candidate set
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - docs/data/three_year_forecast_frozen_candidate_set.json
+      - .github/workflows/verify_three_year_forecast_frozen_candidate_set.yml
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify frozen candidate set
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("docs/data/three_year_forecast_frozen_candidate_set.json")
+          j=json.loads(p.read_text(encoding="utf-8"))
+          expected=[
+            "lag1_inflyttning_per_1000",
+            "lag1_utflyttning_per_1000",
+            "lag1_kolada_arbetslosa_18_65_pct",
+            "lag1_bostadsbestandsforandring_pct",
+          ]
+          assert j["status"]=="frozen_candidate_set"
+          assert j["selection_phase_closed"] is True
+          assert j["reselection_allowed"] is False
+          assert j["features"]==expected
+          assert j["temporal_module_deferred"] is True
+          print("Frozen candidate set verified.")
+          PY
