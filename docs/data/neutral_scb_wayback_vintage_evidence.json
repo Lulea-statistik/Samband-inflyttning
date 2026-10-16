@@ -1,0 +1,120 @@
+{
+  "status": "research_only_scb_wayback_vintage_evidence",
+  "production_changed": false,
+  "window": {
+    "from": "20240201",
+    "to": "20240515"
+  },
+  "results": {
+    "migration": {
+      "api": {
+        "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101J/Flyttningar97",
+        "ok": true,
+        "status": 200,
+        "captures": []
+      },
+      "pxweb": {
+        "url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BE__BE0101__BE0101J/Flyttningar97/",
+        "ok": false,
+        "status": 503,
+        "error": "<html><head><meta charset=\"UTF-8\"><title>Internet Archive: Temporarily Offline</title><style>p{font-size:24px;}img{margin-bottom:2rem;}</style></head>\n<body style=\"padding:30px 0;\">\n<div style=\"float:left;width:260px;text-align:center;\">\n<img xsrc=\"logo_ia.jpg\" src=\"data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAKsAAACmCAAAAACAHSAbAAAOuklEQVR42t2d2bmsqhKAIQcyIRQyIQ+SIAOeiYAIyIAYePHrW1WgOCC6etp9bi2n3SL8lMUMbvbYynSQ6JXUccI7s6NktZJcKqVje4SejkYJIZWemn9GC2HpWku3CsYbeN64hP/MsBslVSx3g1oRKSmlgj/pjqxHWM",
+        "captures": []
+      }
+    },
+    "population": {
+      "api": {
+        "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101A/BefolkningNy",
+        "ok": true,
+        "status": 200,
+        "captures": []
+      },
+      "pxweb": {
+        "url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BE__BE0101__BE0101A/BefolkningNy/",
+        "ok": true,
+        "status": 200,
+        "captures": [
+          {
+            "timestamp": "20240224094336",
+            "original": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BE__BE0101__BE0101A/BefolkningNy/",
+            "statuscode": "200",
+            "mimetype": "text/html",
+            "digest": "S7HOYO5D3JVDPTB2XDGQ63Q3BNQ5C7TW",
+            "archive_url": "https://web.archive.org/web/20240224094336id_/https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BE__BE0101__BE0101A/BefolkningNy/"
+          },
+          {
+            "timestamp": "20240224094337",
+            "original": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BE__BE0101__BE0101A/BefolkningNy/",
+            "statuscode": "200",
+            "mimetype": "text/html",
+            "digest": "7BCUQSCI6EEPBEDK2FANM6LHMNQN356K",
+            "archive_url": "https://web.archive.org/web/20240224094337id_/https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BE__BE0101__BE0101A/BefolkningNy/"
+          },
+          {
+            "timestamp": "20240302175152",
+            "original": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BE__BE0101__BE0101A/BefolkningNy",
+            "statuscode": "200",
+            "mimetype": "text/html",
+            "digest": "RYPO6SXU7ECW4V3HBPXUACAMW5PLMOV3",
+            "archive_url": "https://web.archive.org/web/20240302175152id_/https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BE__BE0101__BE0101A/BefolkningNy"
+          },
+          {
+            "timestamp": "20240302180331",
+            "original": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BE__BE0101__BE0101A/BefolkningNy/",
+            "statuscode": "200",
+            "mimetype": "text/html",
+            "digest": "AGI7PHBBW6HXDTTF4CM5COIY6BZUQKLN",
+            "archive_url": "https://web.archive.org/web/20240302180331id_/https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BE__BE0101__BE0101A/BefolkningNy/"
+          },
+          {
+            "timestamp": "20240418000401",
+            "original": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BE__BE0101__BE0101A/BefolkningNy/",
+            "statuscode": "200",
+            "mimetype": "text/html",
+            "digest": "PRTDASGCP62QRCBA5RDYAXNXAO3IARFO",
+            "archive_url": "https://web.archive.org/web/20240418000401id_/https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BE__BE0101__BE0101A/BefolkningNy/"
+          },
+          {
+            "timestamp": "20240429130023",
+            "original": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BE__BE0101__BE0101A/BefolkningNy/",
+            "statuscode": "200",
+            "mimetype": "text/html",
+            "digest": "ZMXL7O5NV2RNF26G2Y7PWMBXJHDQKLYQ",
+            "archive_url": "https://web.archive.org/web/20240429130023id_/https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BE__BE0101__BE0101A/BefolkningNy/"
+          }
+        ]
+      }
+    },
+    "housing": {
+      "api": {
+        "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104D/BO0104T04",
+        "ok": true,
+        "status": 200,
+        "captures": []
+      },
+      "pxweb": {
+        "url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0104__BO0104D/BO0104T04/",
+        "ok": true,
+        "status": 200,
+        "captures": [
+          {
+            "timestamp": "20240302160244",
+            "original": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0104__BO0104D/BO0104T04/",
+            "statuscode": "200",
+            "mimetype": "text/html",
+            "digest": "HPTF4BIXWISB4NON4MPE52HKO67YXB2K",
+            "archive_url": "https://web.archive.org/web/20240302160244id_/https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0104__BO0104D/BO0104T04/"
+          }
+        ]
+      }
+    }
+  },
+  "interpretation": {
+    "metadata_capture_can_support_table_existence": true,
+    "metadata_capture_does_not_certify_posted_cell_values": true,
+    "strict_asof_requires_value_snapshot_or_equivalent_version_specific_evidence": true
+  },
+  "decision": {
+    "no_model_run": true,
+    "no_asof_upgrade_automatically": true
+  }
+}
