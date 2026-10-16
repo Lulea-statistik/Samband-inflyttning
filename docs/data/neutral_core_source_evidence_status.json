@@ -1,0 +1,71 @@
+{
+  "status": "core_source_evidence_status_after_scb_finality_review",
+  "production_changed": false,
+  "forecast_origin": "2024-05-01",
+  "evidence_levels": {
+    "lag1_inflyttning_per_1000": {
+      "method_definition_verified": true,
+      "source_identity_verified": true,
+      "official_release_before_origin": true,
+      "annual_statistics_final_after_release": true,
+      "exact_archived_table_value_snapshot": false,
+      "evidence_status": "strong_final_release_equivalence_not_exact_vintage",
+      "asof_verified": false,
+      "reason": "SCB documents that annual population statistics become final at December/full-year publication and are not revised further; exact historical Flyttningar97 POST-value snapshot is still absent."
+    },
+    "lag1_utflyttning_per_1000": {
+      "method_definition_verified": true,
+      "source_identity_verified": true,
+      "official_release_before_origin": true,
+      "annual_statistics_final_after_release": true,
+      "exact_archived_table_value_snapshot": false,
+      "evidence_status": "strong_final_release_equivalence_not_exact_vintage",
+      "asof_verified": false,
+      "reason": "Same SCB finality rule as inflow; exact historical table-value snapshot is still absent."
+    },
+    "lag1_bostadsbestandsforandring_pct": {
+      "method_definition_verified": true,
+      "source_identity_verified": true,
+      "official_release_before_origin": true,
+      "annual_statistics_final_after_release": null,
+      "exact_archived_table_value_snapshot": false,
+      "evidence_status": "blocked_revision_policy_not_yet_verified",
+      "asof_verified": false,
+      "reason": "Wayback proves the table page existed before the 2023 product release, so page existence cannot certify 2023 values. A product-specific revision/finality rule or value snapshot is still needed."
+    },
+    "lag1_kolada_arbetslosa_18_65_pct": {
+      "method_definition_verified": true,
+      "source_identity_verified": true,
+      "source_id": "N03937",
+      "definition_break": "Through 2022 age 18-64; from 2023 age 18-65.",
+      "historical_publication_identity_verified": false,
+      "evidence_status": "blocked_historical_publication_and_definition_break",
+      "asof_verified": false,
+      "reason": "Current KPI identity is pinned, but historical publication/replacement timing is not certified and the age definition changes in 2023."
+    }
+  },
+  "wayback_summary": {
+    "population_pxweb_captures": [
+      "20240224094336",
+      "20240224094337",
+      "20240302175152",
+      "20240302180331",
+      "20240418000401",
+      "20240429130023"
+    ],
+    "housing_pxweb_captures": [
+      "20240302160244"
+    ],
+    "migration_exact_captures_found": false
+  },
+  "decision": {
+    "full_core_asof_lock_allowed": false,
+    "migration_population_evidence_upgraded": true,
+    "next_blockers": [
+      "housing-stock product-specific revision/finality evidence or archived 2023 value snapshot",
+      "Kolada N03937 historical publication/replacement evidence and treatment of 2023 age-definition break"
+    ],
+    "no_new_model_selection": true,
+    "temporal_module_deferred": true
+  }
+}
