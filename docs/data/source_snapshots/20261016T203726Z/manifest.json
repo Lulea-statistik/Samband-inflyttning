@@ -1,0 +1,105 @@
+{
+  "captured_at_utc": "20261016T203726Z",
+  "snapshot_protocol_version": 2,
+  "purpose": "freeze exact predictor-source values before a future untouched outcome",
+  "sources": {
+    "migration": {
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101J/Flyttningar97",
+      "metadata_file": "scb_migration_metadata.json",
+      "metadata_status_code": 200,
+      "values_file": "scb_migration_values.json",
+      "query_file": "scb_migration_query.json",
+      "values_status_code": 200,
+      "years": [
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024"
+      ],
+      "derivation_note": "sum sexes for age=tot separately for Inflyttningar and Utflyttningar"
+    },
+    "population": {
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101A/BefolkningNy",
+      "metadata_file": "scb_population_metadata.json",
+      "metadata_status_code": 200,
+      "values_file": "scb_population_values.json",
+      "query_file": "scb_population_query.json",
+      "values_status_code": 200,
+      "years": [
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024"
+      ],
+      "derivation_note": "sum all civil states and both sexes for age=tot and Folkmängd"
+    },
+    "housing": {
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104D/BO0104T04",
+      "metadata_file": "scb_housing_metadata.json",
+      "metadata_status_code": 200,
+      "values_file": "scb_housing_values.json",
+      "query_file": "scb_housing_query.json",
+      "values_status_code": 200,
+      "years": [
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025"
+      ],
+      "derivation_note": "sum all house-type x tenure cells to total dwelling stock; annual pct_change then lag1"
+    },
+    "kolada_N03937": {
+      "url": "https://api.kolada.se/v3/kpi/N03937",
+      "metadata_file": "kolada_N03937_metadata.json",
+      "metadata_status_code": 200,
+      "years": {
+        "2019": {
+          "file": "kolada_N03937_2019.json",
+          "status_code": 200
+        },
+        "2020": {
+          "file": "kolada_N03937_2020.json",
+          "status_code": 200
+        },
+        "2021": {
+          "file": "kolada_N03937_2021.json",
+          "status_code": 200
+        },
+        "2022": {
+          "file": "kolada_N03937_2022.json",
+          "status_code": 200
+        },
+        "2023": {
+          "file": "kolada_N03937_2023.json",
+          "status_code": 200
+        },
+        "2024": {
+          "file": "kolada_N03937_2024.json",
+          "status_code": 200
+        },
+        "2025": {
+          "file": "kolada_N03937_2025.json",
+          "status_code": 200
+        },
+        "2026": {
+          "file": "kolada_N03937_2026.json",
+          "status_code": 200
+        }
+      }
+    }
+  },
+  "validation_requirements": {
+    "future_scoring_must_use_snapshot_values": true,
+    "metadata_only_snapshot_is_insufficient": true,
+    "refit_before_scoring": false,
+    "reselect_before_scoring": false,
+    "retune_before_scoring": false
+  }
+}

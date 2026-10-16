@@ -1,0 +1,21 @@
+{
+  "values": [
+    {
+      "id": "N03937",
+      "title": "Öppet arbetslösa av befolkningen, 18-65 år, andel (%)",
+      "description": "Antal invånare 18-65 år som är öppet arbetslösa dividerat med antal invånare 18-65 år. Till och med 2022 avsåg nyckeltalet åldersgruppen 18-64 år. Avser årsmedelvärde år T. Källa: Arbetsförmedlingen och SCB.",
+      "is_divided_by_gender": true,
+      "municipality_type": "A",
+      "auspice": "X",
+      "operating_area": "Befolkning",
+      "perspective": "Volymer",
+      "prel_publication_date": null,
+      "publication_date": "2027-01-19",
+      "publ_period": "2026",
+      "has_ou_data": false
+    }
+  ],
+  "next_url": null,
+  "previous_url": null,
+  "count": 1
+}

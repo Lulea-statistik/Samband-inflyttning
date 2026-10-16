@@ -1,0 +1,8127 @@
+{
+  "values": [
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 5.389501,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 5.416102,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.364238,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0114"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.589421,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.606023,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.597909,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0115"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.688253,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.459863,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.903902,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0117"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.869794,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.90325,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.83557,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0120"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.216891,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 5.327984,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 5.270714,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0123"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.00489,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.518532,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.766375,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0125"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.606702,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.691786,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.772305,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0126"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 6.3799,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 6.334069,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 6.422105,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0127"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.60483,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.632613,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.618708,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0128"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.823802,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.899131,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.742808,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0136"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.664723,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.403727,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.1327,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0138"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.776666,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.844786,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.918081,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0139"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.893047,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.91855,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.869019,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0140"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.859395,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.765255,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.66936,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0160"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.540073,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.514556,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.489095,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0162"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.21066,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.313734,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.104817,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0163"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.743423,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.607566,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.878319,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0180"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 6.429012,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 6.198839,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 6.684767,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0181"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.466671,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.499266,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.531958,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0182"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.93809,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.118728,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.749738,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0183"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.866778,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.983035,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.105523,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0184"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.123012,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.020743,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.227804,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0186"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.634713,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.412539,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.861295,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0187"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.823898,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.163653,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.998795,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0188"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 6.709895,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 6.546717,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 6.368564,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0191"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.027067,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.0266,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.026101,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0192"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.040541,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.216805,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.404903,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0305"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.778261,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.445407,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.085815,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0319"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.181846,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.89835,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.455974,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0330"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.474636,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.103567,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.820777,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0331"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.123654,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.269465,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.965916,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0360"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.286602,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.266245,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.77625,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0380"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.850095,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.658872,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.757811,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0381"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.076323,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 1.837835,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.29389,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0382"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.540282,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.753297,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.956763,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0428"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.961378,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.72503,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.190714,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0461"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.6597,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.152052,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.911388,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0480"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.474271,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.528898,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.546875,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0481"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.532519,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.517647,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 5.044158,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0482"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.208746,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.795122,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.611364,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0483"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 5.970935,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 6.446502,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 5.474259,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0484"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.623259,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.224846,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.005586,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0486"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.05582,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.061287,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.058551,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0488"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.25687,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.028152,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.473154,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0509"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.034154,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 1.911714,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.147933,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0512"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.166603,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.954955,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.571578,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0513"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.279496,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.3794,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.469518,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0560"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.649245,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.667771,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.684463,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0561"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.085263,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.196435,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.143624,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0562"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.373202,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.241306,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.097909,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0563"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.438239,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.144208,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.822658,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0580"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.264878,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.671428,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.839411,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0581"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.325385,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.347755,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.369503,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0582"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.708713,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.405548,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.054715,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0583"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.776356,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.534542,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.012302,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0584"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.704137,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.888434,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.056842,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0586"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.406134,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.926953,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.410206,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0604"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.39161,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.232087,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.572782,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0617"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.621587,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.604167,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.613189,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0642"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.029792,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 1.862116,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 1.68704,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0643"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.847436,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.818465,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.87964,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0662"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.112864,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.966497,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.246326,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0665"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.394859,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.804435,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.107885,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0680"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.384208,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.828455,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.233196,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0682"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.250293,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.705645,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.758627,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0683"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.321292,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.119752,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.89879,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0684"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.836369,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.17556,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.483267,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0685"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.823934,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.38491,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.222454,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0686"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.638127,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.01783,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.835979,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0687"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.569017,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.92947,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.76424,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0760"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.834748,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 5.120973,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.381591,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0761"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.227551,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.959098,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.662722,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0763"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.783183,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.281544,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.042317,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0764"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.072599,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.038906,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.002664,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0765"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.015101,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.468445,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.850467,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0767"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.016727,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.151758,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.597694,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0780"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.937897,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.481547,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.972171,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0781"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.873239,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.633031,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.758974,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0821"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.303965,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.240242,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.802952,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0834"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.815707,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 1.920066,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.366943,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0840"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.491481,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.867941,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.204095,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0860"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.36411,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.707288,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.049432,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0861"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.375051,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.136386,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.778827,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0862"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.527099,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.852875,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.19457,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0880"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.165865,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.749373,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.472405,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0881"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.873092,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.600319,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.251899,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0882"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.955382,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.585911,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.289023,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0883"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.542745,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.937391,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.292692,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0884"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.668278,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.223999,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.755034,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0885"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.741418,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.923708,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.336999,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "0980"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.827438,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.154135,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.000044,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1060"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.705753,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.383707,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.555704,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1080"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.861762,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.053413,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.477719,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1081"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.485478,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.467372,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.993479,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1082"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.872011,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.532271,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.199947,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1083"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.43594,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.488285,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.378043,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1214"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.924184,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.107602,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.01645,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1230"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 5.502368,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.977843,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.995378,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1231"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.83831,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.77833,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.808089,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1233"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.833831,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.430783,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.994781,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1256"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.091743,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.410906,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.689751,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1257"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.836158,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 5.195718,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.525606,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1260"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.05475,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.851347,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.253758,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1261"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.165789,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.375588,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 1.955167,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1262"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.098358,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.787059,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.943313,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1263"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.566469,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.970085,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.772776,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1264"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.17475,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.516699,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.349967,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1265"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.615452,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.887217,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.330326,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1266"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.150491,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.927551,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.370035,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1267"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.712904,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.937161,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.483607,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1270"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.454756,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.000984,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.517496,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1272"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.701417,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.82,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.5758,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1273"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.729187,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.536837,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 5.147287,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1275"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.670415,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.383798,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.077303,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1276"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.522977,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 5.707529,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 5.610721,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1277"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.152872,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.377984,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.60366,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1278"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 7.376206,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 6.463595,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 6.922384,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1280"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.013912,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.140835,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.886763,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1281"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 5.731418,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 5.502695,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.952122,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1282"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 5.314828,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.547048,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 5.079408,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1283"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.315387,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.195206,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.073666,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1284"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.360121,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.576629,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.132493,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1285"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.228833,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.06782,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.908093,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1286"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.248729,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.593283,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.424104,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1287"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.767308,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.756828,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.2685,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1290"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.443997,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.290227,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.135146,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1291"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.487061,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.088305,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.289091,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1292"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.822586,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.376022,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.908368,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1293"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.767126,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.885358,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.823041,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1315"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.538325,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.029371,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.496285,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1380"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.35085,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.999097,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.686573,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1381"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.627991,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.068612,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.853162,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1382"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.869098,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.002084,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.733047,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1383"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.695215,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.265926,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.481347,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1384"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.813863,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.913992,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.864572,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1401"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.32343,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.561069,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.792064,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1402"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.323301,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 1.561308,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 1.950776,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1407"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.644656,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.497617,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.78723,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1415"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.113499,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.229704,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 1.991602,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1419"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.416115,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.384702,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.351649,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1421"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.774928,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.26087,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.234266,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1427"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.472447,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.155147,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.802731,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1430"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.533333,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.052039,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.799423,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1435"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.508245,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.280921,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.69986,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1438"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.594521,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.327515,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.031161,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1439"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.293278,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.08647,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.865976,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1440"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.267853,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.74912,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.511876,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1441"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.313619,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.341912,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.371621,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1442"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.750411,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.170746,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.965971,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1443"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.255675,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 1.974244,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.636317,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1444"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.330169,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.688968,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.01312,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1445"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.242174,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.72381,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.996204,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1446"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.345679,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.801969,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.582442,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1447"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.733972,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.501321,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.624515,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1452"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.036796,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.373127,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.628923,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1460"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.185865,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.580601,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.935359,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1461"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.674762,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.632023,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.584521,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1462"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.140014,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.869445,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.582562,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1463"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.410297,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.070975,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.702936,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1465"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.439576,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.714624,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.583117,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1466"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.837471,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.400874,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.627962,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1470"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.454163,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.196161,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.919948,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1471"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.286507,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.274302,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.802973,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1472"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.195612,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.802269,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.006715,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1473"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 5.027975,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.895454,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.155471,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1480"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.19054,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.557115,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.880073,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1481"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.423412,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.740303,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.585023,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1482"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.44484,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.911064,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.94241,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1484"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.706299,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.187328,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.204536,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1485"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.529317,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.984875,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.038896,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1486"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.311546,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.149867,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.744025,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1487"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.254366,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.26335,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.772192,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1488"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.072802,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.695931,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.443387,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1489"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.293255,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.636662,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.936624,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1490"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.456362,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.696795,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.919182,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1491"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.579882,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.394813,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.168539,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1492"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.519698,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.080823,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.611809,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1493"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.206591,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.91965,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.62037,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1494"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.852566,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.466903,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.218344,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1495"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.446451,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.726861,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.142068,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1496"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.620292,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.421018,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.022418,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1497"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.642731,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.173875,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.916779,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1498"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.5186,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.2621,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.903657,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1499"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.204169,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.078983,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.321729,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1715"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.336933,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.89515,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.39896,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1730"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.169538,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.759723,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.537713,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1737"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.530453,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.819362,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.20269,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1760"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.917739,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.735704,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.552924,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1761"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.196466,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.215005,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.270073,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1762"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.587273,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.862637,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.75236,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1763"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.698649,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.028063,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.375371,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1764"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.447574,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.808471,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.131131,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1765"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.312899,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.785792,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.798948,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1766"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.664537,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.494853,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.086271,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1780"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.609356,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.303246,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.869319,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1781"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 5.133645,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.381632,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.809492,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1782"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.309759,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.643573,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.884615,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1783"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.795314,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.141559,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.454571,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1784"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.6596,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.350432,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.019057,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1785"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.315452,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.71135,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.074604,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1814"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.945053,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.911516,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.87296,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1860"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.746981,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.668914,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.598882,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1861"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.887433,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.352155,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.382961,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1862"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.528215,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.659358,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.667995,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1863"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.723911,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.473164,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.851425,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1864"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.851639,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.320743,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.787241,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1880"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.459497,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.281428,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.631102,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1881"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.761326,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.33311,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.554892,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1882"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.105942,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.56254,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.98253,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1883"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.136915,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.532515,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.90684,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1884"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.162269,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.785142,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.510415,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1885"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.908526,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.748673,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.351525,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1904"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.487399,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.031922,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.534031,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1907"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.737783,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.23819,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.193721,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1960"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.105654,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.093041,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.081201,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1961"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.447475,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.174897,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.659759,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1962"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.274258,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.559276,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.831679,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1980"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.005852,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.749287,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.47811,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1981"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.439991,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.083216,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.760998,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1982"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.355469,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.096083,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.816963,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1983"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.206583,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.156822,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.18253,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "1984"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.643392,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.549681,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.599348,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2021"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.971877,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.83792,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.090741,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2023"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.897294,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.004413,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.463846,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2026"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.506953,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.811316,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.105781,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2029"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.75384,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.242315,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.238046,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2031"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.353476,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.07041,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.741713,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2034"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.012686,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.343884,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.18731,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2039"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.557441,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.188934,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.79052,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2061"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.333481,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.975434,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.673681,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2062"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.076669,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.496778,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.653266,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2080"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.488034,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.144518,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.783948,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2081"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 1.995105,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.190104,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.096932,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2082"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.919774,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.359509,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.440513,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2083"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.326667,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.307016,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.288909,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2084"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 5.239793,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 5.436039,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.615087,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2085"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.683354,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.729604,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.632479,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2101"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.252824,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.57099,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.855765,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2104"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.803667,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.361946,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.202704,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2121"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.891018,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.971232,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.453497,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2132"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.110972,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.749584,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.446298,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2161"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.488584,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.956714,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.412713,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2180"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.633151,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.663706,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.692424,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2181"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.776044,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.205524,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.598541,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2182"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.576253,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.164709,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.73052,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2183"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.528935,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.351282,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.951976,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2184"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.726944,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.603604,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.83693,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2260"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.564528,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.803188,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.197233,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2262"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.853195,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 5.299836,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 5.082312,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2280"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.529422,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.1808,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.81562,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2281"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.360795,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.995862,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.6631,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2282"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.394924,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.63291,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.029685,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2283"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.562951,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.183247,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.886054,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2284"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.94766,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.40268,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.788197,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2303"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.459885,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.991111,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.843137,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2305"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.296436,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.435205,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.147071,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2309"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.350755,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.07331,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.742148,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2313"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.210955,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.919705,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.582707,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2321"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.080229,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.414136,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.704165,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2326"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.261706,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.243741,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.277371,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2361"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.628904,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.196136,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.763367,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2380"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.495175,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.847706,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.0889,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2401"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.356844,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.29235,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.415916,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2403"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.537983,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.310049,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.7398,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2404"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.124275,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.587963,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.888143,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2409"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.91522,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.924791,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.935795,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2417"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.802607,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.678176,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.745752,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2418"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.90144,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.368278,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.150217,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2421"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.044872,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.121256,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.183399,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2422"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.953074,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.021842,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.08046,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2425"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.325581,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.598245,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.850288,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2460"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.593475,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.046346,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.436086,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2462"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.853468,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.730559,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.993305,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2463"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.063947,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.586349,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.5248,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2480"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.99407,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.229196,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.738928,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2481"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.980148,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.717066,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.433099,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2482"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.359048,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.556583,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 4.138872,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2505"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.947295,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.441101,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.864447,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2506"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.139039,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.009782,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.077971,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2510"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.573975,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.892395,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.25469,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2513"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.666266,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.417932,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.088084,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2514"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.626899,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.180804,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.653157,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2518"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.514297,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.134831,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.900844,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2521"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.058862,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 1.913749,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.184569,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2523"
+    },
+    {
+      "values": [
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.705548,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.044936,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.322337,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2560"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.361996,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.248679,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.122156,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2580"
+    },
+    {
+      "values": [
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.439332,
+          "isdeleted": false
+        },
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.029105,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.743046,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2581"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 3.821482,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 3.374905,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.884161,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2582"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 4.712518,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 4.196585,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 3.607069,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2583"
+    },
+    {
+      "values": [
+        {
+          "gender": "M",
+          "count": 1,
+          "status": "",
+          "value": 2.129929,
+          "isdeleted": false
+        },
+        {
+          "gender": "T",
+          "count": 1,
+          "status": "",
+          "value": 2.346038,
+          "isdeleted": false
+        },
+        {
+          "gender": "K",
+          "count": 1,
+          "status": "",
+          "value": 2.59851,
+          "isdeleted": false
+        }
+      ],
+      "kpi": "N03937",
+      "period": 2020,
+      "municipality": "2584"
+    }
+  ],
+  "next_url": null,
+  "previous_url": null,
+  "count": 290
+}
