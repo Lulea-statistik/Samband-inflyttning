@@ -1,0 +1,109 @@
+{
+  "status": "live_kolada_unemployment_identity_audit",
+  "production_changed": false,
+  "query_spec": {
+    "search": "Arbetslösa i befolkningen",
+    "required_terms": [
+      "arbetslösa",
+      "befolkningen",
+      "18-65",
+      "andel"
+    ],
+    "forbidden_terms": [
+      "långtids"
+    ],
+    "label": "Arbetslösa i befolkningen, 18-65 år, andel (%)"
+  },
+  "years_checked": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "matching_candidates": [
+    {
+      "id": "N03937",
+      "title": "Öppet arbetslösa av befolkningen, 18-65 år, andel (%)",
+      "description": "Antal invånare 18-65 år som är öppet arbetslösa dividerat med antal invånare 18-65 år. Till och med 2022 avsåg nyckeltalet åldersgruppen 18-64 år. Avser årsmedelvärde år T. Källa: Arbetsförmedlingen och SCB.",
+      "operating_area": "Befolkning",
+      "perspective": "Volymer",
+      "is_divided_by_gender": true,
+      "municipality_type": "A",
+      "coverage_by_year": {
+        "2019": 290,
+        "2020": 290,
+        "2021": 290,
+        "2022": 290,
+        "2023": 290,
+        "2024": 290,
+        "2025": 290
+      },
+      "coverage_total": 2030,
+      "years_with_150_plus": 7
+    },
+    {
+      "id": "N03920",
+      "title": "Arbetslösa av befolkningen, 18-65 år, andel (%)",
+      "description": "Antal invånare 18-65 år som är öppet arbetslösa eller i program med aktivitetsstöd dividerat med antal invånare 18-65 år. Till och med 2022 avsåg nyckeltalet åldersgruppen 18-64 år. Avser årsmedelvärde år T. Källa: Arbetsförmedlingen och SCB.",
+      "operating_area": "Arbetsmarknad",
+      "perspective": "Övrigt",
+      "is_divided_by_gender": true,
+      "municipality_type": "A",
+      "coverage_by_year": {
+        "2019": 290,
+        "2020": 290,
+        "2021": 290,
+        "2022": 290,
+        "2023": 290,
+        "2024": 290,
+        "2025": 290
+      },
+      "coverage_total": 2030,
+      "years_with_150_plus": 7
+    }
+  ],
+  "resolver_winner": {
+    "id": "N03937",
+    "title": "Öppet arbetslösa av befolkningen, 18-65 år, andel (%)",
+    "description": "Antal invånare 18-65 år som är öppet arbetslösa dividerat med antal invånare 18-65 år. Till och med 2022 avsåg nyckeltalet åldersgruppen 18-64 år. Avser årsmedelvärde år T. Källa: Arbetsförmedlingen och SCB.",
+    "operating_area": "Befolkning",
+    "perspective": "Volymer",
+    "is_divided_by_gender": true,
+    "municipality_type": "A",
+    "coverage_by_year": {
+      "2019": 290,
+      "2020": 290,
+      "2021": 290,
+      "2022": 290,
+      "2023": 290,
+      "2024": 290,
+      "2025": 290
+    },
+    "coverage_total": 2030,
+    "years_with_150_plus": 7
+  },
+  "known_research_alias": "N03937",
+  "known_alias_metadata": {
+    "id": "N03937",
+    "title": "Öppet arbetslösa av befolkningen, 18-65 år, andel (%)",
+    "description": "Antal invånare 18-65 år som är öppet arbetslösa dividerat med antal invånare 18-65 år. Till och med 2022 avsåg nyckeltalet åldersgruppen 18-64 år. Avser årsmedelvärde år T. Källa: Arbetsförmedlingen och SCB.",
+    "is_divided_by_gender": true,
+    "municipality_type": "A",
+    "auspice": "X",
+    "operating_area": "Befolkning",
+    "perspective": "Volymer",
+    "prel_publication_date": null,
+    "publication_date": "2027-01-19",
+    "publ_period": "2026",
+    "has_ou_data": false
+  },
+  "winner_is_known_alias": true,
+  "decision": {
+    "can_pin_id_now": true,
+    "asof_verified": false,
+    "remaining_blocker": "Historical publication/replacement timestamps and revision history are still required even if current KPI identity is pinned."
+  }
+}
