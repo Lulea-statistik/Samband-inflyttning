@@ -1,6 +1,11 @@
 name: Snapshot forecast core sources
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/snapshot_forecast_core_sources.py
+      - .github/workflows/snapshot_forecast_core_sources.yml
 permissions:
   contents: write
 jobs:
