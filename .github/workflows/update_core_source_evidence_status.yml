@@ -1,0 +1,30 @@
+name: Update core source evidence status
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/update_core_source_evidence_status.py
+      - .github/workflows/update_core_source_evidence_status.yml
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/update_core_source_evidence_status.py
+      - name: Commit evidence status
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/neutral_core_source_evidence_status.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record updated core source evidence status"
+          git pull --rebase origin main
+          git push origin HEAD:main
