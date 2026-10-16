@@ -1,0 +1,17 @@
+{
+  "status": "untouched_benchmark_snapshot_gap_registered",
+  "production_changed": false,
+  "core4_future_scoring_ready": true,
+  "full_ridge_future_scoring_ready": false,
+  "reason": "Only the four core predictor sources are frozen at source-value level; the 76-variable benchmark requires a complete pre-outcome predictor matrix.",
+  "allowed_resolution": [
+    "freeze complete 76-feature predictor matrix before future scoring",
+    "use core4-only untouched absolute validation and retain full Ridge as historical contextual benchmark"
+  ],
+  "forbidden_resolution": [
+    "reconstruct 76-feature benchmark predictors after future scoring from revised live data",
+    "refit or retune benchmark after future scoring"
+  ],
+  "selection_phase_closed": true,
+  "temporal_module_deferred": true
+}
