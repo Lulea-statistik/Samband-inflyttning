@@ -1,0 +1,32 @@
+name: Compare PFER-stable post-selection refits
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/compare_pfer_stable_post_selection_refit.py
+      - .github/workflows/compare_pfer_stable_post_selection_refit.yml
+permissions:
+  contents: write
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy pandas scikit-learn
+      - run: python scripts/compare_pfer_stable_post_selection_refit.py
+      - name: Commit research report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/neutral_pfer_stable_post_selection_refit.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record PFER-stable post-selection refit comparison"
+          git pull --rebase origin main
+          git push origin HEAD:main
