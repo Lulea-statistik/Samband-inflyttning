@@ -1,0 +1,517 @@
+{
+  "status": "research_only_post_selection_refit",
+  "production_changed": false,
+  "purpose": "Distinguish Lasso shrinkage loss from omitted-variable loss after PFER-stable selection.",
+  "ridge_refit_alphas": [
+    0.01,
+    0.1,
+    1.0,
+    3.0,
+    10.0,
+    30.0,
+    100.0
+  ],
+  "results": {
+    "five_blind": {
+      "candidate_count": 51,
+      "summary": {
+        "full_ridge": {
+          "rmse": 8.589717644781706,
+          "mae": 6.58003426423494
+        },
+        "stable_lasso": {
+          "rmse": 13.66202856318191,
+          "mae": 10.229697889053616
+        },
+        "stable_ols": {
+          "rmse": 13.237050757817157,
+          "mae": 10.097808717565206
+        },
+        "stable_ridge": {
+          "rmse": 13.203410283202734,
+          "mae": 10.089670307697613
+        }
+      },
+      "outer_folds": [
+        {
+          "fold": 1,
+          "source": "outside_1se",
+          "stable_features": [
+            "lag1_bebyggd_anlagd_andel_land_pct",
+            "lag1_smahusforsaljningar_per_1000_smahus"
+          ],
+          "stable_count": 2,
+          "selection_alpha": 2.6826957952797246,
+          "threshold": 0.9206127450980393,
+          "inner_excess_over_min": 4.6433964827675,
+          "ridge_refit_alpha": 1.0,
+          "rmse": {
+            "full_ridge": 9.169907684693895,
+            "stable_lasso": 14.086839891459086,
+            "stable_ols": 12.947293119990661,
+            "stable_ridge": 12.949198990458475
+          }
+        },
+        {
+          "fold": 2,
+          "source": "outside_1se",
+          "stable_features": [
+            "lag1_smahusforsaljningar_per_1000_smahus"
+          ],
+          "stable_count": 1,
+          "selection_alpha": 2.6826957952797246,
+          "threshold": 0.9600245098039215,
+          "inner_excess_over_min": 4.956787781711281,
+          "ridge_refit_alpha": 30.0,
+          "rmse": {
+            "full_ridge": 7.684398245648201,
+            "stable_lasso": 12.132416823911688,
+            "stable_ols": 12.524698802127796,
+            "stable_ridge": 12.475268082062547
+          }
+        },
+        {
+          "fold": 3,
+          "source": "outside_1se",
+          "stable_features": [
+            "lag1_bebyggd_anlagd_andel_land_pct",
+            "lag1_smahusforsaljningar_per_1000_smahus"
+          ],
+          "stable_count": 2,
+          "selection_alpha": 2.6826957952797246,
+          "threshold": 0.7965686274509804,
+          "inner_excess_over_min": 4.4289886887805405,
+          "ridge_refit_alpha": 30.0,
+          "rmse": {
+            "full_ridge": 8.430170518292233,
+            "stable_lasso": 13.630045512457382,
+            "stable_ols": 13.705357847962265,
+            "stable_ridge": 13.682661664331578
+          }
+        },
+        {
+          "fold": 4,
+          "source": "outside_1se",
+          "stable_features": [
+            "lag1_bebyggd_anlagd_andel_land_pct",
+            "lag1_smahusforsaljningar_per_1000_smahus"
+          ],
+          "stable_count": 2,
+          "selection_alpha": 2.6826957952797246,
+          "threshold": 0.8269669117647058,
+          "inner_excess_over_min": 4.194294840460639,
+          "ridge_refit_alpha": 100.0,
+          "rmse": {
+            "full_ridge": 8.943444452480417,
+            "stable_lasso": 14.484654620007499,
+            "stable_ols": 14.537457671841102,
+            "stable_ridge": 14.194720462429064
+          }
+        },
+        {
+          "fold": 5,
+          "source": "outside_1se",
+          "stable_features": [
+            "lag1_bebyggd_anlagd_andel_land_pct",
+            "lag1_smahusforsaljningar_per_1000_smahus"
+          ],
+          "stable_count": 2,
+          "selection_alpha": 2.6826957952797246,
+          "threshold": 0.9078676470588235,
+          "inner_excess_over_min": 3.884178002292968,
+          "ridge_refit_alpha": 100.0,
+          "rmse": {
+            "full_ridge": 8.644425319230617,
+            "stable_lasso": 13.857747510208474,
+            "stable_ols": 12.345953802962624,
+            "stable_ridge": 12.634509412400142
+          }
+        }
+      ]
+    },
+    "five_forecast": {
+      "candidate_count": 56,
+      "summary": {
+        "full_ridge": {
+          "rmse": 5.2740882314737565,
+          "mae": 3.9942032178782996
+        },
+        "stable_lasso": {
+          "rmse": 5.700572899304328,
+          "mae": 4.280049027182013
+        },
+        "stable_ols": {
+          "rmse": 5.594102760677224,
+          "mae": 4.257550682245345
+        },
+        "stable_ridge": {
+          "rmse": 5.594108809904065,
+          "mae": 4.257551003821921
+        }
+      },
+      "outer_folds": [
+        {
+          "fold": 1,
+          "source": "outside_1se",
+          "stable_features": [
+            "lag1_inflyttning_per_1000",
+            "lag1_smahuspris_inkomstkvot_medel",
+            "lag1_utflyttning_per_1000"
+          ],
+          "stable_count": 3,
+          "selection_alpha": 1.0,
+          "threshold": 0.7531752232142858,
+          "inner_excess_over_min": 0.3703566235716922,
+          "ridge_refit_alpha": 0.01,
+          "rmse": {
+            "full_ridge": 5.428779882389057,
+            "stable_lasso": 5.9314198556579605,
+            "stable_ols": 5.668744773172864,
+            "stable_ridge": 5.668749447372393
+          }
+        },
+        {
+          "fold": 2,
+          "source": "outside_1se",
+          "stable_features": [
+            "lag1_inflyttning_per_1000",
+            "lag1_log_befolkningstathet_land",
+            "lag1_smahuspris_inkomstkvot_medel",
+            "lag1_utflyttning_per_1000"
+          ],
+          "stable_count": 4,
+          "selection_alpha": 1.0,
+          "threshold": 0.7875502232142857,
+          "inner_excess_over_min": 0.4649222865433522,
+          "ridge_refit_alpha": 0.01,
+          "rmse": {
+            "full_ridge": 5.280773809728811,
+            "stable_lasso": 5.567960270060969,
+            "stable_ols": 5.529781439542239,
+            "stable_ridge": 5.529757022862513
+          }
+        },
+        {
+          "fold": 3,
+          "source": "outside_1se",
+          "stable_features": [
+            "lag1_inflyttning_per_1000",
+            "lag1_log_befolkningstathet_land",
+            "lag1_utflyttning_per_1000"
+          ],
+          "stable_count": 3,
+          "selection_alpha": 1.0,
+          "threshold": 0.7579520089285714,
+          "inner_excess_over_min": 0.47756537578960057,
+          "ridge_refit_alpha": 0.01,
+          "rmse": {
+            "full_ridge": 5.666269025551215,
+            "stable_lasso": 6.100431805426077,
+            "stable_ols": 6.080233195788574,
+            "stable_ridge": 6.080238208234254
+          }
+        },
+        {
+          "fold": 4,
+          "source": "outside_1se",
+          "stable_features": [
+            "lag1_bebyggd_anlagd_andel_land_pct",
+            "lag1_inflyttning_per_1000",
+            "lag1_smahuspris_inkomstkvot_medel",
+            "lag1_utflyttning_per_1000"
+          ],
+          "stable_count": 4,
+          "selection_alpha": 1.0,
+          "threshold": 0.7484430803571429,
+          "inner_excess_over_min": 0.41113942108316603,
+          "ridge_refit_alpha": 0.01,
+          "rmse": {
+            "full_ridge": 4.766044959732185,
+            "stable_lasso": 5.105122470939098,
+            "stable_ols": 5.056274375473435,
+            "stable_ridge": 5.0563263149710185
+          }
+        },
+        {
+          "fold": 5,
+          "source": "outside_1se",
+          "stable_features": [
+            "lag1_inflyttning_per_1000",
+            "lag1_utflyttning_per_1000"
+          ],
+          "stable_count": 2,
+          "selection_alpha": 1.0,
+          "threshold": 0.7725502232142858,
+          "inner_excess_over_min": 0.39444838997837994,
+          "ridge_refit_alpha": 0.01,
+          "rmse": {
+            "full_ridge": 5.1865230258613835,
+            "stable_lasso": 5.746406718324282,
+            "stable_ols": 5.587632068896768,
+            "stable_ridge": 5.587629316974164
+          }
+        }
+      ]
+    },
+    "three_blind": {
+      "candidate_count": 73,
+      "summary": {
+        "full_ridge": {
+          "rmse": 8.081695390280528,
+          "mae": 6.16927730424714
+        },
+        "stable_lasso": {
+          "rmse": 13.388445177657474,
+          "mae": 9.684348163547677
+        },
+        "stable_ols": {
+          "rmse": 12.41249805121895,
+          "mae": 9.224009887590283
+        },
+        "stable_ridge": {
+          "rmse": 12.337260290733427,
+          "mae": 9.185484852322242
+        }
+      },
+      "outer_folds": [
+        {
+          "fold": 1,
+          "source": "outside_1se",
+          "stable_features": [
+            "lag1_bas_ovriga_andel_pct",
+            "lag1_bebyggd_anlagd_andel_land_pct",
+            "lag1_log_externa_fa_jobb_per_1000",
+            "lag1_smahusforsaljningar_per_1000_smahus"
+          ],
+          "stable_count": 4,
+          "selection_alpha": 4.39397056076079,
+          "threshold": 0.7364083904109588,
+          "inner_excess_over_min": 4.742958652805353,
+          "ridge_refit_alpha": 30.0,
+          "rmse": {
+            "full_ridge": 8.733532597733745,
+            "stable_lasso": 14.876720048232768,
+            "stable_ols": 12.849302302537753,
+            "stable_ridge": 12.866847749445391
+          }
+        },
+        {
+          "fold": 2,
+          "source": "outside_1se",
+          "stable_features": [
+            "lag1_bas_ovriga_andel_pct",
+            "lag1_bebyggd_anlagd_andel_land_pct",
+            "lag1_log_externa_fa_jobb_per_1000",
+            "lag1_smahusforsaljningar_per_1000_smahus",
+            "lag1_smahuspris_inkomstkvot_medel"
+          ],
+          "stable_count": 5,
+          "selection_alpha": 4.39397056076079,
+          "threshold": 0.7071917808219178,
+          "inner_excess_over_min": 5.272108353245715,
+          "ridge_refit_alpha": 100.0,
+          "rmse": {
+            "full_ridge": 7.179241176366805,
+            "stable_lasso": 10.461917888778599,
+            "stable_ols": 10.18832894737162,
+            "stable_ridge": 10.083671814059299
+          }
+        },
+        {
+          "fold": 3,
+          "source": "outside_1se",
+          "stable_features": [
+            "lag1_bebyggd_anlagd_andel_land_pct",
+            "lag1_log_externa_fa_jobb_per_1000",
+            "lag1_smahusforsaljningar_per_1000_smahus"
+          ],
+          "stable_count": 3,
+          "selection_alpha": 2.6826957952797246,
+          "threshold": 0.8878467465753426,
+          "inner_excess_over_min": 3.9512523423214247,
+          "ridge_refit_alpha": 30.0,
+          "rmse": {
+            "full_ridge": 7.8003783210502995,
+            "stable_lasso": 12.907458724154392,
+            "stable_ols": 13.100165755410321,
+            "stable_ridge": 13.04937786440287
+          }
+        },
+        {
+          "fold": 4,
+          "source": "outside_1se",
+          "stable_features": [
+            "lag1_bas_ovriga_andel_pct",
+            "lag1_bebyggd_anlagd_andel_land_pct",
+            "lag1_log_externa_fa_jobb_per_1000"
+          ],
+          "stable_count": 3,
+          "selection_alpha": 2.6826957952797246,
+          "threshold": 0.9087371575342466,
+          "inner_excess_over_min": 3.4311662510331047,
+          "ridge_refit_alpha": 100.0,
+          "rmse": {
+            "full_ridge": 8.42420221899189,
+            "stable_lasso": 13.711679178648932,
+            "stable_ols": 14.035218617159156,
+            "stable_ridge": 13.585719953907455
+          }
+        },
+        {
+          "fold": 5,
+          "source": "outside_1se",
+          "stable_features": [
+            "lag1_bas_ovriga_andel_pct",
+            "lag1_bebyggd_anlagd_andel_land_pct",
+            "lag1_log_externa_fa_jobb_per_1000",
+            "lag1_smahusforsaljningar_per_1000_smahus"
+          ],
+          "stable_count": 4,
+          "selection_alpha": 4.39397056076079,
+          "threshold": 0.7225342465753425,
+          "inner_excess_over_min": 4.094154342799245,
+          "ridge_refit_alpha": 100.0,
+          "rmse": {
+            "full_ridge": 8.181675954491824,
+            "stable_lasso": 14.521403494728666,
+            "stable_ols": 11.525719869276816,
+            "stable_ridge": 11.787523057517658
+          }
+        }
+      ]
+    },
+    "three_forecast": {
+      "candidate_count": 78,
+      "summary": {
+        "full_ridge": {
+          "rmse": 5.083892476826192,
+          "mae": 3.8282198667994662
+        },
+        "stable_lasso": {
+          "rmse": 5.216898664017514,
+          "mae": 3.828867268444984
+        },
+        "stable_ols": {
+          "rmse": 5.12810001757842,
+          "mae": 3.797770512248212
+        },
+        "stable_ridge": {
+          "rmse": 5.128806642773781,
+          "mae": 3.79802091872432
+        }
+      },
+      "outer_folds": [
+        {
+          "fold": 1,
+          "source": "within_1se",
+          "stable_features": [
+            "lag1_bostadsbestandsforandring_pct",
+            "lag1_inflyttning_per_1000",
+            "lag1_utflyttning_per_1000",
+            "lag1_valdeltagande_gap_pp"
+          ],
+          "stable_count": 4,
+          "selection_alpha": 0.6105402296585326,
+          "threshold": 0.8141025641025641,
+          "inner_excess_over_min": 0.28923999714437265,
+          "ridge_refit_alpha": 0.01,
+          "rmse": {
+            "full_ridge": 5.677782587514952,
+            "stable_lasso": 5.9284712638588175,
+            "stable_ols": 5.778397769419133,
+            "stable_ridge": 5.778404029447113
+          }
+        },
+        {
+          "fold": 2,
+          "source": "outside_1se",
+          "stable_features": [
+            "lag1_bostadsbestandsforandring_pct",
+            "lag1_inflyttning_per_1000",
+            "lag1_utflyttning_per_1000",
+            "lag1_valdeltagande_gap_pp"
+          ],
+          "stable_count": 4,
+          "selection_alpha": 0.6105402296585326,
+          "threshold": 0.8462980769230769,
+          "inner_excess_over_min": 0.3064254742138619,
+          "ridge_refit_alpha": 0.01,
+          "rmse": {
+            "full_ridge": 4.900405493816695,
+            "stable_lasso": 5.027869153367005,
+            "stable_ols": 4.959831208162811,
+            "stable_ridge": 4.95980053281363
+          }
+        },
+        {
+          "fold": 3,
+          "source": "outside_1se",
+          "stable_features": [
+            "lag1_bostadsbestandsforandring_pct",
+            "lag1_inflyttning_per_1000",
+            "lag1_utflyttning_per_1000",
+            "lag1_valdeltagande_gap_pp"
+          ],
+          "stable_count": 4,
+          "selection_alpha": 0.6105402296585326,
+          "threshold": 0.8557852564102564,
+          "inner_excess_over_min": 0.22339310457242867,
+          "ridge_refit_alpha": 0.01,
+          "rmse": {
+            "full_ridge": 5.53113792696835,
+            "stable_lasso": 5.682374184431004,
+            "stable_ols": 5.5929999510736605,
+            "stable_ridge": 5.592981454706849
+          }
+        },
+        {
+          "fold": 4,
+          "source": "outside_1se",
+          "stable_features": [
+            "lag1_inflyttning_per_1000",
+            "lag1_utflyttning_per_1000",
+            "lag1_valdeltagande_gap_pp"
+          ],
+          "stable_count": 3,
+          "selection_alpha": 0.6105402296585326,
+          "threshold": 0.9658693910256411,
+          "inner_excess_over_min": 0.2529230925877304,
+          "ridge_refit_alpha": 1.0,
+          "rmse": {
+            "full_ridge": 4.362097220564837,
+            "stable_lasso": 4.166039799111019,
+            "stable_ols": 4.160912117524808,
+            "stable_ridge": 4.165310716711384
+          }
+        },
+        {
+          "fold": 5,
+          "source": "outside_1se",
+          "stable_features": [
+            "lag1_bostadsbestandsforandring_pct",
+            "lag1_inflyttning_per_1000",
+            "lag1_utflyttning_per_1000",
+            "lag1_valdeltagande_gap_pp"
+          ],
+          "stable_count": 4,
+          "selection_alpha": 0.6105402296585326,
+          "threshold": 0.8462980769230769,
+          "inner_excess_over_min": 0.19971458540357645,
+          "ridge_refit_alpha": 0.01,
+          "rmse": {
+            "full_ridge": 4.83293342970144,
+            "stable_lasso": 5.099868098656525,
+            "stable_ols": 4.990230901859197,
+            "stable_ridge": 4.990236319306719
+          }
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Research-only; historical years have been repeatedly inspected.",
+    "Stable sets are selected within each outer training fold.",
+    "OLS/Ridge refit improves prediction only if shrinkage bias, not omitted predictors, drives the sparse-model loss.",
+    "No production decision is made automatically."
+  ]
+}
