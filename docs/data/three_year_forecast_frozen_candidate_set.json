@@ -1,0 +1,50 @@
+{
+  "status": "frozen_candidate_set",
+  "branch": "three_year_forecast",
+  "production_changed": false,
+  "frozen_at": "2026-10-16",
+  "features": [
+    "lag1_inflyttning_per_1000",
+    "lag1_utflyttning_per_1000",
+    "lag1_kolada_arbetslosa_18_65_pct",
+    "lag1_bostadsbestandsforandring_pct"
+  ],
+  "feature_recurrence_corrected_outer_folds": {
+    "lag1_inflyttning_per_1000": 5,
+    "lag1_utflyttning_per_1000": 5,
+    "lag1_kolada_arbetslosa_18_65_pct": 5,
+    "lag1_bostadsbestandsforandring_pct": 4
+  },
+  "selection_phase_closed": true,
+  "reselection_allowed": false,
+  "reopen_only_if": [
+    "source eligibility failure",
+    "definition invalidation",
+    "documented data-quality defect"
+  ],
+  "allowed_next_work": [
+    "source snapshot validation",
+    "temporal confirmation",
+    "OLS versus Ridge refit on identical frozen predictors",
+    "comparison with full Ridge benchmark",
+    "production readiness assessment"
+  ],
+  "forbidden_next_work": [
+    "add predictors",
+    "swap predictors after viewing 2021-2023 outcomes",
+    "rerank candidate universe",
+    "change feature families to improve historical fit",
+    "activate monthly temporal module before structural lock confirmation"
+  ],
+  "source_notes": {
+    "lag1_inflyttning_per_1000": "strong_final_release_equivalence_not_exact_vintage",
+    "lag1_utflyttning_per_1000": "strong_final_release_equivalence_not_exact_vintage",
+    "lag1_bostadsbestandsforandring_pct": "strong_final_release_equivalence_not_exact_vintage",
+    "lag1_kolada_arbetslosa_18_65_pct": "N03937 pinned; current snapshot captured; historical vintage not retrospectively certifiable"
+  },
+  "definition_breaks": {
+    "lag1_kolada_arbetslosa_18_65_pct": "18-64 through 2022; 18-65 from 2023"
+  },
+  "production_promotion_gate": "future untouched temporal confirmation using predictor vintages captured before outcome publication",
+  "temporal_module_deferred": true
+}
