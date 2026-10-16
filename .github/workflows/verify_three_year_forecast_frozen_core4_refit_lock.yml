@@ -1,0 +1,32 @@
+name: Verify frozen core-4 OLS refit lock
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - docs/data/three_year_forecast_frozen_core4_refit_lock.json
+      - .github/workflows/verify_three_year_forecast_frozen_core4_refit_lock.yml
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify refit lock
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("docs/data/three_year_forecast_frozen_core4_refit_lock.json")
+          j=json.loads(p.read_text(encoding="utf-8"))
+          assert j["status"]=="frozen_core4_refit_method_locked"
+          assert j["refit_method"]=="OLS"
+          assert j["refit_method_locked"] is True
+          assert len(j["frozen_features"])==4
+          assert j["production_changed"] is False
+          print("Frozen core-4 OLS refit lock verified.")
+          PY
