@@ -1,0 +1,39 @@
+name: Score untouched 3-year forecast outcome
+on:
+  workflow_dispatch:
+    inputs:
+      outcome_path:
+        description: "Repository path to outcome CSV with kommun_kod, inflyttning_per_1000"
+        required: true
+        type: string
+      outcome_year:
+        description: "Outcome year to score"
+        required: true
+        type: string
+permissions:
+  contents: write
+jobs:
+  score:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy pandas
+      - name: Score exact frozen model
+        run: |
+          python scripts/score_three_year_forecast_untouched.py \
+            --outcome-csv "${{ inputs.outcome_path }}" \
+            --outcome-year "${{ inputs.outcome_year }}"
+      - name: Commit untouched score before any model change
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/three_year_forecast_untouched_score.json
+          git commit -m "Record untouched three-year forecast score for ${{ inputs.outcome_year }}"
+          git pull --rebase origin main
+          git push origin HEAD:main
