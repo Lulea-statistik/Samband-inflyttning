@@ -1,0 +1,4121 @@
+{
+  "status": "research_only_three_forecast_sparse_core_robustness",
+  "production_changed": false,
+  "period": [
+    2021,
+    2022,
+    2023
+  ],
+  "n_rows": 870,
+  "n_municipalities": 290,
+  "full_candidate_count": 78,
+  "core3": [
+    "lag1_inflyttning_per_1000",
+    "lag1_utflyttning_per_1000",
+    "lag1_valdeltagande_gap_pp"
+  ],
+  "core4": [
+    "lag1_inflyttning_per_1000",
+    "lag1_utflyttning_per_1000",
+    "lag1_valdeltagande_gap_pp",
+    "lag1_bostadsbestandsforandring_pct"
+  ],
+  "protocol": {
+    "splitter": "GroupShuffleSplit by municipality",
+    "n_splits": 100,
+    "test_size": 0.2,
+    "random_state": 20261016,
+    "full_ridge_alpha": 10.0,
+    "sparse_ridge_alphas": [
+      0.01,
+      0.1,
+      1.0,
+      3.0,
+      10.0,
+      30.0,
+      100.0
+    ],
+    "sparse_ridge_tuning": "3-fold GroupKFold within each training split",
+    "no_new_variables": true
+  },
+  "summary": {
+    "full_ridge": {
+      "mean_rmse": 5.062528314585329,
+      "median_rmse": 5.121057952492261,
+      "mean_delta_rmse_vs_full": 0.0,
+      "median_delta_rmse_vs_full": 0.0,
+      "delta_rmse_p05": 0.0,
+      "delta_rmse_p95": 0.0,
+      "mean_relative_rmse_vs_full_pct": 0.0,
+      "relative_rmse_p05_pct": 0.0,
+      "relative_rmse_p95_pct": 0.0,
+      "share_splits_better_than_full": 0.0,
+      "share_splits_within_2pct_of_full": 1.0,
+      "share_splits_within_5pct_of_full": 1.0
+    },
+    "core3_ols": {
+      "mean_rmse": 5.162094999917943,
+      "median_rmse": 5.239294634662063,
+      "mean_delta_rmse_vs_full": 0.09956668533261304,
+      "median_delta_rmse_vs_full": 0.11724136725878997,
+      "delta_rmse_p05": -0.260157991502558,
+      "delta_rmse_p95": 0.3923330442526256,
+      "mean_relative_rmse_vs_full_pct": 1.9436948363967759,
+      "relative_rmse_p05_pct": -4.743773787133464,
+      "relative_rmse_p95_pct": 7.979798683315331,
+      "share_splits_better_than_full": 0.28,
+      "share_splits_within_2pct_of_full": 0.49,
+      "share_splits_within_5pct_of_full": 0.83
+    },
+    "core3_ridge": {
+      "mean_rmse": 5.162519760861352,
+      "median_rmse": 5.23929150528221,
+      "mean_delta_rmse_vs_full": 0.09999144627602291,
+      "median_delta_rmse_vs_full": 0.11835795850352326,
+      "delta_rmse_p05": -0.2601342837798248,
+      "delta_rmse_p95": 0.39229638742996537,
+      "mean_relative_rmse_vs_full_pct": 1.9521545549833776,
+      "relative_rmse_p05_pct": -4.740403030847203,
+      "relative_rmse_p95_pct": 7.966593004582326,
+      "share_splits_better_than_full": 0.28,
+      "share_splits_within_2pct_of_full": 0.49,
+      "share_splits_within_5pct_of_full": 0.83
+    },
+    "core4_ols": {
+      "mean_rmse": 5.103952952516947,
+      "median_rmse": 5.146713548612524,
+      "mean_delta_rmse_vs_full": 0.04142463793161798,
+      "median_delta_rmse_vs_full": 0.057176784837367656,
+      "delta_rmse_p05": -0.2460913036792231,
+      "delta_rmse_p95": 0.2915274421927781,
+      "mean_relative_rmse_vs_full_pct": 0.8059028499237023,
+      "relative_rmse_p05_pct": -5.1134605627454075,
+      "relative_rmse_p95_pct": 5.911148167868578,
+      "share_splits_better_than_full": 0.38,
+      "share_splits_within_2pct_of_full": 0.65,
+      "share_splits_within_5pct_of_full": 0.89
+    },
+    "core4_ridge": {
+      "mean_rmse": 5.104795532220192,
+      "median_rmse": 5.144228206965271,
+      "mean_delta_rmse_vs_full": 0.04226721763486245,
+      "median_delta_rmse_vs_full": 0.055403997053808496,
+      "delta_rmse_p05": -0.24595955474516215,
+      "delta_rmse_p95": 0.29119941644642117,
+      "mean_relative_rmse_vs_full_pct": 0.82294976838268,
+      "relative_rmse_p05_pct": -5.112600507871924,
+      "relative_rmse_p95_pct": 5.9482002198268065,
+      "share_splits_better_than_full": 0.37,
+      "share_splits_within_2pct_of_full": 0.66,
+      "share_splits_within_5pct_of_full": 0.89
+    }
+  },
+  "splits": [
+    {
+      "split": 1,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.578572141661085,
+        "mae": 4.120922460012091,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.271638771227469,
+        "mae": 3.8038812824374286,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.3069333704336161,
+        "relative_rmse_vs_full_pct": -5.502005936992749
+      },
+      "core3_ridge": {
+        "rmse": 5.275259614516078,
+        "mae": 3.8055985755118606,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": -0.3033125271450068,
+        "relative_rmse_vs_full_pct": -5.4370996635474516
+      },
+      "core4_ols": {
+        "rmse": 5.263370599577425,
+        "mae": 3.847202590885123,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.3152015420836598,
+        "relative_rmse_vs_full_pct": -5.6502189821964866
+      },
+      "core4_ridge": {
+        "rmse": 5.263414779948765,
+        "mae": 3.847225390380618,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.3151573617123198,
+        "relative_rmse_vs_full_pct": -5.649427016614295
+      }
+    },
+    {
+      "split": 2,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.350635375496842,
+        "mae": 3.9905644184849907,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.8310818188896745,
+        "mae": 4.426923008146309,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.4804464433928324,
+        "relative_rmse_vs_full_pct": 8.97924096254119
+      },
+      "core3_ridge": {
+        "rmse": 5.8311421403522825,
+        "mae": 4.426939183497745,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.4805067648554404,
+        "relative_rmse_vs_full_pct": 8.980368332626698
+      },
+      "core4_ols": {
+        "rmse": 5.668808156443334,
+        "mae": 4.384912757783857,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.31817278094649204,
+        "relative_rmse_vs_full_pct": 5.946448573258412
+      },
+      "core4_ridge": {
+        "rmse": 5.668830211409998,
+        "mae": 4.384923136338595,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.31819483591315567,
+        "relative_rmse_vs_full_pct": 5.9468607666731454
+      }
+    },
+    {
+      "split": 3,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.167440616145926,
+        "mae": 3.9765829206203542,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.397377107843367,
+        "mae": 4.002365155075627,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.22993649169744046,
+        "relative_rmse_vs_full_pct": 4.449717157445265
+      },
+      "core3_ridge": {
+        "rmse": 5.39731034607706,
+        "mae": 4.002306678553981,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.22986972993113408,
+        "relative_rmse_vs_full_pct": 4.448425187759186
+      },
+      "core4_ols": {
+        "rmse": 5.311576001656517,
+        "mae": 3.9387114977790776,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.1441353855105909,
+        "relative_rmse_vs_full_pct": 2.7892993111567232
+      },
+      "core4_ridge": {
+        "rmse": 5.311520925263471,
+        "mae": 3.9386512767343764,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.14408030911754466,
+        "relative_rmse_vs_full_pct": 2.788233476111146
+      }
+    },
+    {
+      "split": 4,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.301510148362043,
+        "mae": 4.0179604160796645,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.308995800438296,
+        "mae": 3.9111804102196306,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.007485652076253402,
+        "relative_rmse_vs_full_pct": 0.1411984862193627
+      },
+      "core3_ridge": {
+        "rmse": 5.308935382829935,
+        "mae": 3.9110036632424863,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": 0.007425234467891784,
+        "relative_rmse_vs_full_pct": 0.14005885606360735
+      },
+      "core4_ols": {
+        "rmse": 5.362156698462931,
+        "mae": 3.9603506021471384,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.06064655010088771,
+        "relative_rmse_vs_full_pct": 1.1439485807572147
+      },
+      "core4_ridge": {
+        "rmse": 5.362257829232589,
+        "mae": 3.9603128217213297,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": 0.06074768087054583,
+        "relative_rmse_vs_full_pct": 1.1458561649516863
+      }
+    },
+    {
+      "split": 5,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.157816856481939,
+        "mae": 3.7269887013499545,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.380878944578241,
+        "mae": 3.6971132283950214,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.22306208809630146,
+        "relative_rmse_vs_full_pct": 4.3247384368829245
+      },
+      "core3_ridge": {
+        "rmse": 5.380898023683964,
+        "mae": 3.6970137795837408,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": 0.2230811672020252,
+        "relative_rmse_vs_full_pct": 4.325108343497575
+      },
+      "core4_ols": {
+        "rmse": 5.215944022867238,
+        "mae": 3.657868713491346,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.058127166385299134,
+        "relative_rmse_vs_full_pct": 1.1269722830939521
+      },
+      "core4_ridge": {
+        "rmse": 5.215906535503344,
+        "mae": 3.6578569951107864,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.05808967902140516,
+        "relative_rmse_vs_full_pct": 1.1262454762891227
+      }
+    },
+    {
+      "split": 6,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.707335561026884,
+        "mae": 4.15573108466619,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.701077355300378,
+        "mae": 4.241325135774108,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.006258205726505928,
+        "relative_rmse_vs_full_pct": -0.10965196736005822
+      },
+      "core3_ridge": {
+        "rmse": 5.700601507490036,
+        "mae": 4.241607276282164,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": -0.006734053536848528,
+        "relative_rmse_vs_full_pct": -0.11798944472150019
+      },
+      "core4_ols": {
+        "rmse": 5.750351234712305,
+        "mae": 4.264228799514186,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.04301567368542081,
+        "relative_rmse_vs_full_pct": 0.7536909863712582
+      },
+      "core4_ridge": {
+        "rmse": 5.750366852299029,
+        "mae": 4.264246053628029,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.04303129127214511,
+        "relative_rmse_vs_full_pct": 0.7539646269616451
+      }
+    },
+    {
+      "split": 7,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.9521452266694075,
+        "mae": 3.829490947369267,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.887040785424791,
+        "mae": 3.667915972203886,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.06510444124461667,
+        "relative_rmse_vs_full_pct": -1.314671486086505
+      },
+      "core3_ridge": {
+        "rmse": 4.887014353527279,
+        "mae": 3.66789675075054,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.06513087314212829,
+        "relative_rmse_vs_full_pct": -1.3152052324994612
+      },
+      "core4_ols": {
+        "rmse": 4.940578572213511,
+        "mae": 3.6796422525285917,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.011566654455896774,
+        "relative_rmse_vs_full_pct": -0.23356856324820985
+      },
+      "core4_ridge": {
+        "rmse": 4.940580311707812,
+        "mae": 3.6796332650083805,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.011564914961595285,
+        "relative_rmse_vs_full_pct": -0.2335334371721065
+      }
+    },
+    {
+      "split": 8,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.183090540157513,
+        "mae": 3.889448408602972,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.124731336156002,
+        "mae": 3.918822637049735,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.05835920400151107,
+        "relative_rmse_vs_full_pct": -1.125953782774125
+      },
+      "core3_ridge": {
+        "rmse": 5.124705337916643,
+        "mae": 3.9188043697579555,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.058385202240870626,
+        "relative_rmse_vs_full_pct": -1.1264553800191979
+      },
+      "core4_ols": {
+        "rmse": 5.040070317238935,
+        "mae": 3.8454531310622597,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.14302022291857863,
+        "relative_rmse_vs_full_pct": -2.759361848119135
+      },
+      "core4_ridge": {
+        "rmse": 5.04004107259661,
+        "mae": 3.845424642287095,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.1430494675609033,
+        "relative_rmse_vs_full_pct": -2.759926079866548
+      }
+    },
+    {
+      "split": 9,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.7046728817765935,
+        "mae": 4.092315315193008,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.748120276907598,
+        "mae": 4.05424634477541,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.04344739513100482,
+        "relative_rmse_vs_full_pct": 0.7616106309933368
+      },
+      "core3_ridge": {
+        "rmse": 5.748086518737538,
+        "mae": 4.054202814119713,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.04341363696094458,
+        "relative_rmse_vs_full_pct": 0.7610188675257534
+      },
+      "core4_ols": {
+        "rmse": 5.682351819194952,
+        "mae": 4.047446264471212,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.022321062581641904,
+        "relative_rmse_vs_full_pct": -0.39127681892060506
+      },
+      "core4_ridge": {
+        "rmse": 5.682322341272827,
+        "mae": 4.047414407712728,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.022350540503766503,
+        "relative_rmse_vs_full_pct": -0.39179355182950015
+      }
+    },
+    {
+      "split": 10,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.52428141177341,
+        "mae": 3.942603784729993,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.651604581061973,
+        "mae": 4.170979748650999,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.12732316928856235,
+        "relative_rmse_vs_full_pct": 2.3047915158197707
+      },
+      "core3_ridge": {
+        "rmse": 5.651615096568049,
+        "mae": 4.170971697070147,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.1273336847946389,
+        "relative_rmse_vs_full_pct": 2.30498186647885
+      },
+      "core4_ols": {
+        "rmse": 5.611175697034919,
+        "mae": 4.103208498289469,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.08689428526150866,
+        "relative_rmse_vs_full_pct": 1.5729518245815477
+      },
+      "core4_ridge": {
+        "rmse": 5.611199182111359,
+        "mae": 4.103213061204691,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.08691777033794867,
+        "relative_rmse_vs_full_pct": 1.5733769491305782
+      }
+    },
+    {
+      "split": 11,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.936446647908992,
+        "mae": 3.4618030924819108,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.151308463228516,
+        "mae": 3.693106799045262,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.21486181531952386,
+        "relative_rmse_vs_full_pct": 4.352560265399319
+      },
+      "core3_ridge": {
+        "rmse": 5.154463168338021,
+        "mae": 3.693794157608524,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.2180165204290283,
+        "relative_rmse_vs_full_pct": 4.416466660717933
+      },
+      "core4_ols": {
+        "rmse": 5.124127994647511,
+        "mae": 3.7264000470454195,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.18768134673851833,
+        "relative_rmse_vs_full_pct": 3.8019522973679276
+      },
+      "core4_ridge": {
+        "rmse": 5.124461186603326,
+        "mae": 3.7265834526821995,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": 0.1880145386943335,
+        "relative_rmse_vs_full_pct": 3.8087019288251422
+      }
+    },
+    {
+      "split": 12,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.050108090358607,
+        "mae": 3.9138216607368133,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.945303136634826,
+        "mae": 3.8037886961428007,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.10480495372378051,
+        "relative_rmse_vs_full_pct": -2.07530119848065
+      },
+      "core3_ridge": {
+        "rmse": 4.943078948138235,
+        "mae": 3.799109167177989,
+        "ridge_alpha": 3.0,
+        "delta_rmse_vs_full": -0.1070291422203713,
+        "relative_rmse_vs_full_pct": -2.119343592362022
+      },
+      "core4_ols": {
+        "rmse": 4.905507934261158,
+        "mae": 3.778334360271957,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.14460015609744836,
+        "relative_rmse_vs_full_pct": -2.8633081413348638
+      },
+      "core4_ridge": {
+        "rmse": 4.912786435868006,
+        "mae": 3.7740279075502485,
+        "ridge_alpha": 3.0,
+        "delta_rmse_vs_full": -0.1373216544906004,
+        "relative_rmse_vs_full_pct": -2.719182481514948
+      }
+    },
+    {
+      "split": 13,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.5677123174733225,
+        "mae": 3.4098336511709966,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.934678819441613,
+        "mae": 3.5441433975344254,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.3669665019682906,
+        "relative_rmse_vs_full_pct": 8.033923252226227
+      },
+      "core3_ridge": {
+        "rmse": 4.93461961718114,
+        "mae": 3.544094021572387,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.3669072997078171,
+        "relative_rmse_vs_full_pct": 8.032627149136573
+      },
+      "core4_ols": {
+        "rmse": 4.766125819530728,
+        "mae": 3.4534528043296557,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.19841350205740582,
+        "relative_rmse_vs_full_pct": 4.343826586853883
+      },
+      "core4_ridge": {
+        "rmse": 4.766041636825806,
+        "mae": 3.453385322924722,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.19832931935248332,
+        "relative_rmse_vs_full_pct": 4.341983591956833
+      }
+    },
+    {
+      "split": 14,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.299109935509018,
+        "mae": 4.144254154779455,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.5431777820950305,
+        "mae": 4.271400015533034,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.24406784658601222,
+        "relative_rmse_vs_full_pct": 4.605827196573675
+      },
+      "core3_ridge": {
+        "rmse": 5.543084349466124,
+        "mae": 4.27131489843703,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.24397441395710562,
+        "relative_rmse_vs_full_pct": 4.6040640206810535
+      },
+      "core4_ols": {
+        "rmse": 5.499230887847978,
+        "mae": 4.272903506712194,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.20012095233895977,
+        "relative_rmse_vs_full_pct": 3.776501238405361
+      },
+      "core4_ridge": {
+        "rmse": 5.499153929411867,
+        "mae": 4.272823468037172,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.20004399390284888,
+        "relative_rmse_vs_full_pct": 3.775048948548254
+      }
+    },
+    {
+      "split": 15,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.323150117629787,
+        "mae": 3.910698015183777,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.600871545495173,
+        "mae": 4.025021349116007,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.27772142786538634,
+        "relative_rmse_vs_full_pct": 5.2172383218275
+      },
+      "core3_ridge": {
+        "rmse": 5.6010604761842275,
+        "mae": 4.025107830379806,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": 0.2779103585544407,
+        "relative_rmse_vs_full_pct": 5.22078754897457
+      },
+      "core4_ols": {
+        "rmse": 5.5903173128995345,
+        "mae": 3.996832464453935,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.26716719526974764,
+        "relative_rmse_vs_full_pct": 5.018967892431103
+      },
+      "core4_ridge": {
+        "rmse": 5.590335394538138,
+        "mae": 3.9968336287133113,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.2671852769083509,
+        "relative_rmse_vs_full_pct": 5.0193075717225755
+      }
+    },
+    {
+      "split": 16,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.5560570441818085,
+        "mae": 4.067341005801287,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.542809688131159,
+        "mae": 4.038783354543988,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.013247356050649195,
+        "relative_rmse_vs_full_pct": -0.23843088624371234
+      },
+      "core3_ridge": {
+        "rmse": 5.5428184130437845,
+        "mae": 4.038799246836126,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.013238631138023926,
+        "relative_rmse_vs_full_pct": -0.23827385199162165
+      },
+      "core4_ols": {
+        "rmse": 5.553659829878869,
+        "mae": 4.009821738085014,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.0023972143029391546,
+        "relative_rmse_vs_full_pct": -0.04314596275517557
+      },
+      "core4_ridge": {
+        "rmse": 5.556235925425736,
+        "mae": 4.012795535565712,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.00017888124392761995,
+        "relative_rmse_vs_full_pct": 0.0032195717665439716
+      }
+    },
+    {
+      "split": 17,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.279425168655999,
+        "mae": 3.3380015649041894,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.6207927755797495,
+        "mae": 3.500493357893247,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.34136760692375034,
+        "relative_rmse_vs_full_pct": 7.976950021793705
+      },
+      "core3_ridge": {
+        "rmse": 4.620200824157328,
+        "mae": 3.4982111312909643,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.3407756555013286,
+        "relative_rmse_vs_full_pct": 7.963117523289998
+      },
+      "core4_ols": {
+        "rmse": 4.56276199499032,
+        "mae": 3.493721335726117,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.2833368263343212,
+        "relative_rmse_vs_full_pct": 6.620908537192771
+      },
+      "core4_ridge": {
+        "rmse": 4.562752762612919,
+        "mae": 3.493726203937118,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.28332759395692,
+        "relative_rmse_vs_full_pct": 6.620692798465311
+      }
+    },
+    {
+      "split": 18,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.165104878213911,
+        "mae": 3.9441906684497114,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.565784472330095,
+        "mae": 4.15308034087577,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.40067959411618403,
+        "relative_rmse_vs_full_pct": 7.757433848172668
+      },
+      "core3_ridge": {
+        "rmse": 5.565773445733924,
+        "mae": 4.153066545158826,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.4006685675200128,
+        "relative_rmse_vs_full_pct": 7.75722036565043
+      },
+      "core4_ols": {
+        "rmse": 5.416298869140851,
+        "mae": 4.077751522293651,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.2511939909269403,
+        "relative_rmse_vs_full_pct": 4.863289262265735
+      },
+      "core4_ridge": {
+        "rmse": 5.416265279343087,
+        "mae": 4.077721354712644,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.2511604011291766,
+        "relative_rmse_vs_full_pct": 4.862638940567421
+      }
+    },
+    {
+      "split": 19,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.212859784129991,
+        "mae": 3.310407264104244,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.3984907920794445,
+        "mae": 3.2560811716242375,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.18563100794945342,
+        "relative_rmse_vs_full_pct": 4.406294475993078
+      },
+      "core3_ridge": {
+        "rmse": 4.398534553190816,
+        "mae": 3.2560970865772565,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.18567476906082536,
+        "relative_rmse_vs_full_pct": 4.407333226713828
+      },
+      "core4_ols": {
+        "rmse": 4.319042456849751,
+        "mae": 3.1836856058027934,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.10618267271976034,
+        "relative_rmse_vs_full_pct": 2.520441651529781
+      },
+      "core4_ridge": {
+        "rmse": 4.319073939713667,
+        "mae": 3.1836843754998667,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.1062141555836762,
+        "relative_rmse_vs_full_pct": 2.52118895539295
+      }
+    },
+    {
+      "split": 20,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.442258667403246,
+        "mae": 3.4233121527658303,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.627484592507596,
+        "mae": 3.3671148347982647,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.18522592510434954,
+        "relative_rmse_vs_full_pct": 4.169633940128592
+      },
+      "core3_ridge": {
+        "rmse": 4.635194943205279,
+        "mae": 3.3698834188793803,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.19293627580203232,
+        "relative_rmse_vs_full_pct": 4.3432021916637975
+      },
+      "core4_ols": {
+        "rmse": 4.5959161813164435,
+        "mae": 3.332135117169459,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.15365751391319726,
+        "relative_rmse_vs_full_pct": 3.458995196311232
+      },
+      "core4_ridge": {
+        "rmse": 4.602279378549224,
+        "mae": 3.3344045628777894,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.16002071114597793,
+        "relative_rmse_vs_full_pct": 3.6022375806296525
+      }
+    },
+    {
+      "split": 21,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.164213458905906,
+        "mae": 3.9432111478286758,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.174063716794071,
+        "mae": 3.8730288449795855,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.009850257888164293,
+        "relative_rmse_vs_full_pct": 0.1907407191152677
+      },
+      "core3_ridge": {
+        "rmse": 5.173985675450844,
+        "mae": 3.8729668772016783,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.009772216544937429,
+        "relative_rmse_vs_full_pct": 0.18922952396720483
+      },
+      "core4_ols": {
+        "rmse": 5.1677866522505145,
+        "mae": 3.8276980103233615,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.00357319334460815,
+        "relative_rmse_vs_full_pct": 0.06919143395294203
+      },
+      "core4_ridge": {
+        "rmse": 5.167751167942393,
+        "mae": 3.827667169571362,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.00353770903648698,
+        "relative_rmse_vs_full_pct": 0.06850431463838458
+      }
+    },
+    {
+      "split": 22,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.453146570020858,
+        "mae": 3.286460987242247,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.504469438903165,
+        "mae": 3.4363516060131074,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.051322868882306416,
+        "relative_rmse_vs_full_pct": 1.1525079643194047
+      },
+      "core3_ridge": {
+        "rmse": 4.5044522453859495,
+        "mae": 3.436323775032057,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.05130567536509112,
+        "relative_rmse_vs_full_pct": 1.1521218661538546
+      },
+      "core4_ols": {
+        "rmse": 4.5093729733102945,
+        "mae": 3.4506643726139488,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.05622640328943618,
+        "relative_rmse_vs_full_pct": 1.2626218878120765
+      },
+      "core4_ridge": {
+        "rmse": 4.509372097550361,
+        "mae": 3.450663787306766,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.05622552752950227,
+        "relative_rmse_vs_full_pct": 1.2626022217193444
+      }
+    },
+    {
+      "split": 23,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.473334155260164,
+        "mae": 3.465492581704616,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.152733833067869,
+        "mae": 3.222445150082815,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.32060032219229484,
+        "relative_rmse_vs_full_pct": -7.166920937826726
+      },
+      "core3_ridge": {
+        "rmse": 4.152740610920393,
+        "mae": 3.2224531264541962,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.32059354433977116,
+        "relative_rmse_vs_full_pct": -7.166769421032127
+      },
+      "core4_ols": {
+        "rmse": 4.24469333574989,
+        "mae": 3.277893382929673,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.22864081951027426,
+        "relative_rmse_vs_full_pct": -5.111194728017732
+      },
+      "core4_ridge": {
+        "rmse": 4.244733181147538,
+        "mae": 3.277910179282068,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.22860097411262625,
+        "relative_rmse_vs_full_pct": -5.110303996490306
+      }
+    },
+    {
+      "split": 24,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.9124347145797955,
+        "mae": 3.8016580662727226,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.875460155226411,
+        "mae": 3.7319345145826675,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.036974559353384784,
+        "relative_rmse_vs_full_pct": -0.7526727885797002
+      },
+      "core3_ridge": {
+        "rmse": 4.87547022025756,
+        "mae": 3.7318175285462054,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": -0.03696449432223581,
+        "relative_rmse_vs_full_pct": -0.7524678997265388
+      },
+      "core4_ols": {
+        "rmse": 4.7887303545549,
+        "mae": 3.744042230729612,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.12370436002489527,
+        "relative_rmse_vs_full_pct": -2.518188377297892
+      },
+      "core4_ridge": {
+        "rmse": 4.7886284296722215,
+        "mae": 3.7440160464115553,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": -0.12380628490757406,
+        "relative_rmse_vs_full_pct": -2.520263211643803
+      }
+    },
+    {
+      "split": 25,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.905442428217282,
+        "mae": 4.395850349457717,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 6.131826797673502,
+        "mae": 4.485001898570087,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.22638436945621976,
+        "relative_rmse_vs_full_pct": 3.833487028414906
+      },
+      "core3_ridge": {
+        "rmse": 6.131856663303776,
+        "mae": 4.4850185486151295,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.2264142350864944,
+        "relative_rmse_vs_full_pct": 3.833992759029292
+      },
+      "core4_ols": {
+        "rmse": 6.081858807227624,
+        "mae": 4.529597017592155,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.1764163790103419,
+        "relative_rmse_vs_full_pct": 2.9873524491135894
+      },
+      "core4_ridge": {
+        "rmse": 6.081888454642095,
+        "mae": 4.529607115527185,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.17644602642481289,
+        "relative_rmse_vs_full_pct": 2.9878544845636235
+      }
+    },
+    {
+      "split": 26,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.088452488411474,
+        "mae": 3.861418759631822,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.265502325177659,
+        "mae": 3.810092340538158,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.17704983676618458,
+        "relative_rmse_vs_full_pct": 3.4794436455759525
+      },
+      "core3_ridge": {
+        "rmse": 5.265119443542581,
+        "mae": 3.809630338218383,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": 0.17666695513110664,
+        "relative_rmse_vs_full_pct": 3.4719191253814508
+      },
+      "core4_ols": {
+        "rmse": 5.147402690426699,
+        "mae": 3.7955754401830193,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.05895020201522527,
+        "relative_rmse_vs_full_pct": 1.1585094318848244
+      },
+      "core4_ridge": {
+        "rmse": 5.143034954989589,
+        "mae": 3.791961601688305,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.05458246657811472,
+        "relative_rmse_vs_full_pct": 1.0726732086507873
+      }
+    },
+    {
+      "split": 27,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.975080317778449,
+        "mae": 3.6287369852186897,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.029210400841818,
+        "mae": 3.578978109908397,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.054130083063369305,
+        "relative_rmse_vs_full_pct": 1.0880243052546312
+      },
+      "core3_ridge": {
+        "rmse": 5.0296222606235705,
+        "mae": 3.5790459118382096,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": 0.05454194284512148,
+        "relative_rmse_vs_full_pct": 1.09630276018291
+      },
+      "core4_ols": {
+        "rmse": 4.9665013391200175,
+        "mae": 3.5652227601322175,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.008578978658431602,
+        "relative_rmse_vs_full_pct": -0.172438998176061
+      },
+      "core4_ridge": {
+        "rmse": 4.9670245929518195,
+        "mae": 3.565447777692807,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": -0.008055724826629529,
+        "relative_rmse_vs_full_pct": -0.16192150301257424
+      }
+    },
+    {
+      "split": 28,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.575312041990387,
+        "mae": 3.4766426572360163,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.438750835172584,
+        "mae": 3.2525152443661645,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.13656120681780326,
+        "relative_rmse_vs_full_pct": -2.9847408343846027
+      },
+      "core3_ridge": {
+        "rmse": 4.4383784333989915,
+        "mae": 3.2524118542746874,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": -0.13693360859139592,
+        "relative_rmse_vs_full_pct": -2.9928802087086925
+      },
+      "core4_ols": {
+        "rmse": 4.38229330242011,
+        "mae": 3.2223283556157107,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.19301873957027738,
+        "relative_rmse_vs_full_pct": -4.218701102762578
+      },
+      "core4_ridge": {
+        "rmse": 4.382260200529558,
+        "mae": 3.2223065480671376,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.19305184146082954,
+        "relative_rmse_vs_full_pct": -4.219424592007648
+      }
+    },
+    {
+      "split": 29,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.8279723630234885,
+        "mae": 3.605367408186582,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.893177852830508,
+        "mae": 3.6118556605526253,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.06520548980701957,
+        "relative_rmse_vs_full_pct": 1.350577114036855
+      },
+      "core3_ridge": {
+        "rmse": 4.893061061977895,
+        "mae": 3.6116291450889726,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": 0.06508869895440661,
+        "relative_rmse_vs_full_pct": 1.3481580684452155
+      },
+      "core4_ols": {
+        "rmse": 4.98957281891624,
+        "mae": 3.647767833964389,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.16160045589275107,
+        "relative_rmse_vs_full_pct": 3.347170276499889
+      },
+      "core4_ridge": {
+        "rmse": 5.005636342773097,
+        "mae": 3.6524227128022644,
+        "ridge_alpha": 3.0,
+        "delta_rmse_vs_full": 0.17766397974960846,
+        "relative_rmse_vs_full_pct": 3.6798880853234017
+      }
+    },
+    {
+      "split": 30,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.091513972756239,
+        "mae": 3.8988282745081064,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.282062462304795,
+        "mae": 3.8537947757756568,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.19054848954855608,
+        "relative_rmse_vs_full_pct": 3.742472093136673
+      },
+      "core3_ridge": {
+        "rmse": 5.282031444632165,
+        "mae": 3.8535032997095047,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": 0.19051747187592571,
+        "relative_rmse_vs_full_pct": 3.7418628898074235
+      },
+      "core4_ols": {
+        "rmse": 5.289773623998716,
+        "mae": 3.946456563810464,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.19825965124247702,
+        "relative_rmse_vs_full_pct": 3.8939233458521016
+      },
+      "core4_ridge": {
+        "rmse": 5.289781396186611,
+        "mae": 3.9464379443049213,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.19826742343037207,
+        "relative_rmse_vs_full_pct": 3.8940759956913595
+      }
+    },
+    {
+      "split": 31,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.647290966984691,
+        "mae": 4.128315392739673,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.743645435100096,
+        "mae": 4.145781567387317,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.09635446811540493,
+        "relative_rmse_vs_full_pct": 1.7062068995331359
+      },
+      "core3_ridge": {
+        "rmse": 5.743653041484881,
+        "mae": 4.145770142155955,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.09636207450019008,
+        "relative_rmse_vs_full_pct": 1.706341590393401
+      },
+      "core4_ols": {
+        "rmse": 5.584473367091742,
+        "mae": 4.086034818797823,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.06281759989294944,
+        "relative_rmse_vs_full_pct": -1.1123492708308258
+      },
+      "core4_ridge": {
+        "rmse": 5.584444301598912,
+        "mae": 4.086008009435096,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.06284666538577977,
+        "relative_rmse_vs_full_pct": -1.1128639511085114
+      }
+    },
+    {
+      "split": 32,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.377618345093562,
+        "mae": 3.9582814297637765,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.236973841538344,
+        "mae": 3.69714028998012,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.14064450355521796,
+        "relative_rmse_vs_full_pct": -2.6153678920620926
+      },
+      "core3_ridge": {
+        "rmse": 5.236922364613852,
+        "mae": 3.6970775484120004,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.14069598047970988,
+        "relative_rmse_vs_full_pct": -2.6163251359791695
+      },
+      "core4_ols": {
+        "rmse": 5.1334957260121366,
+        "mae": 3.644452867136624,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.24412261908142519,
+        "relative_rmse_vs_full_pct": -4.539604773257255
+      },
+      "core4_ridge": {
+        "rmse": 5.13342815119246,
+        "mae": 3.6443937741338277,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.24419019390110197,
+        "relative_rmse_vs_full_pct": -4.5408613670752
+      }
+    },
+    {
+      "split": 33,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.162995175888517,
+        "mae": 3.949820900683265,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.396775522843197,
+        "mae": 4.0663789814684135,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.23378034695468042,
+        "relative_rmse_vs_full_pct": 4.5279985549172785
+      },
+      "core3_ridge": {
+        "rmse": 5.396794857470818,
+        "mae": 4.066386645577233,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.23379968158230113,
+        "relative_rmse_vs_full_pct": 4.528373039629385
+      },
+      "core4_ols": {
+        "rmse": 5.342863206954301,
+        "mae": 4.008287244538858,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.17986803106578453,
+        "relative_rmse_vs_full_pct": 3.4837923518847846
+      },
+      "core4_ridge": {
+        "rmse": 5.342880977189422,
+        "mae": 4.008284259867853,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.17988580130090526,
+        "relative_rmse_vs_full_pct": 3.4841365365007926
+      }
+    },
+    {
+      "split": 34,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.154917871669846,
+        "mae": 3.9237508931473255,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.539982746758998,
+        "mae": 4.159709989243735,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.3850648750891521,
+        "relative_rmse_vs_full_pct": 7.469854703318823
+      },
+      "core3_ridge": {
+        "rmse": 5.53999988497724,
+        "mae": 4.159693534584469,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.385082013307394,
+        "relative_rmse_vs_full_pct": 7.4701871667773645
+      },
+      "core4_ols": {
+        "rmse": 5.449265544333722,
+        "mae": 4.046303382257074,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.29434767266387585,
+        "relative_rmse_vs_full_pct": 5.71003612456249
+      },
+      "core4_ridge": {
+        "rmse": 5.449274816480369,
+        "mae": 4.046269551148245,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.29435694481052277,
+        "relative_rmse_vs_full_pct": 5.710215994482382
+      }
+    },
+    {
+      "split": 35,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.510018278754632,
+        "mae": 3.929910674976472,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.7462050849337585,
+        "mae": 4.208339596363888,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.23618680617912613,
+        "relative_rmse_vs_full_pct": 4.286497688942492
+      },
+      "core3_ridge": {
+        "rmse": 5.7462455356922595,
+        "mae": 4.208352113729222,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.23622725693762714,
+        "relative_rmse_vs_full_pct": 4.287231820055215
+      },
+      "core4_ols": {
+        "rmse": 5.577791670122661,
+        "mae": 4.135988219067289,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.06777339136802851,
+        "relative_rmse_vs_full_pct": 1.230003022482662
+      },
+      "core4_ridge": {
+        "rmse": 5.577804255388947,
+        "mae": 4.13600174886074,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.06778597663431452,
+        "relative_rmse_vs_full_pct": 1.2302314294615257
+      }
+    },
+    {
+      "split": 36,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.949984539811517,
+        "mae": 3.6364991084518317,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.3177725066171275,
+        "mae": 3.799590386576046,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.36778796680561054,
+        "relative_rmse_vs_full_pct": 7.430083141625632
+      },
+      "core3_ridge": {
+        "rmse": 5.316446053326209,
+        "mae": 3.7971106654059996,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.36646151351469225,
+        "relative_rmse_vs_full_pct": 7.403286021750821
+      },
+      "core4_ols": {
+        "rmse": 5.241363548821606,
+        "mae": 3.7959437608157334,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.29137900901008873,
+        "relative_rmse_vs_full_pct": 5.886463011482124
+      },
+      "core4_ridge": {
+        "rmse": 5.241017770554564,
+        "mae": 3.795442007461081,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.29103323074304743,
+        "relative_rmse_vs_full_pct": 5.879477570128522
+      }
+    },
+    {
+      "split": 37,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.829133459119019,
+        "mae": 3.6182492746359762,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.778035742736044,
+        "mae": 3.478607484477324,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.05109771638297467,
+        "relative_rmse_vs_full_pct": -1.058113568729091
+      },
+      "core3_ridge": {
+        "rmse": 4.778049500942766,
+        "mae": 3.4785839892067614,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.05108395817625322,
+        "relative_rmse_vs_full_pct": -1.0578286686152683
+      },
+      "core4_ols": {
+        "rmse": 4.775958192008202,
+        "mae": 3.500248234464216,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.05317526711081655,
+        "relative_rmse_vs_full_pct": -1.1011347597031929
+      },
+      "core4_ridge": {
+        "rmse": 4.775985516122551,
+        "mae": 3.500275296271282,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.053147942996467634,
+        "relative_rmse_vs_full_pct": -1.1005689415376718
+      }
+    },
+    {
+      "split": 38,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.048122537856955,
+        "mae": 3.5143455892331064,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.23721799476083,
+        "mae": 3.7685517935941744,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.18909545690387564,
+        "relative_rmse_vs_full_pct": 3.7458571079804104
+      },
+      "core3_ridge": {
+        "rmse": 5.237258184287693,
+        "mae": 3.768584286052895,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.18913564643073855,
+        "relative_rmse_vs_full_pct": 3.746653236175823
+      },
+      "core4_ols": {
+        "rmse": 5.175205605938323,
+        "mae": 3.7567028690572535,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.12708306808136793,
+        "relative_rmse_vs_full_pct": 2.517432315248791
+      },
+      "core4_ridge": {
+        "rmse": 5.175236151431855,
+        "mae": 3.756732349750158,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.1271136135748998,
+        "relative_rmse_vs_full_pct": 2.5180374014625695
+      }
+    },
+    {
+      "split": 39,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.55415478330016,
+        "mae": 3.9938513417444503,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.710989642859786,
+        "mae": 4.100760312215933,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.15683485955962606,
+        "relative_rmse_vs_full_pct": 2.823739446930529
+      },
+      "core3_ridge": {
+        "rmse": 5.715816051002016,
+        "mae": 4.102058014372417,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.16166126770185585,
+        "relative_rmse_vs_full_pct": 2.910636703678615
+      },
+      "core4_ols": {
+        "rmse": 5.528414850419342,
+        "mae": 4.036731298164337,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.02573993288081855,
+        "relative_rmse_vs_full_pct": -0.46343564205685306
+      },
+      "core4_ridge": {
+        "rmse": 5.5276274544439525,
+        "mae": 4.036222109272133,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": -0.026527328856207788,
+        "relative_rmse_vs_full_pct": -0.4776123441134206
+      }
+    },
+    {
+      "split": 40,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.497831533863271,
+        "mae": 3.929947127506536,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.239220859869363,
+        "mae": 3.7379932943485445,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.2586106739939078,
+        "relative_rmse_vs_full_pct": -4.703866831877712
+      },
+      "core3_ridge": {
+        "rmse": 5.2392281194731405,
+        "mae": 3.7380008824708795,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.2586034143901301,
+        "relative_rmse_vs_full_pct": -4.703734787020874
+      },
+      "core4_ols": {
+        "rmse": 5.214335222825887,
+        "mae": 3.7580992398090265,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.2834963110373838,
+        "relative_rmse_vs_full_pct": -5.156511422571253
+      },
+      "core4_ridge": {
+        "rmse": 5.214350462729605,
+        "mae": 3.758122101679147,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.2834810711336653,
+        "relative_rmse_vs_full_pct": -5.156234224122647
+      }
+    },
+    {
+      "split": 41,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.188854580353676,
+        "mae": 3.864636494320791,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.447196112171052,
+        "mae": 3.9865555974077864,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.2583415318173756,
+        "relative_rmse_vs_full_pct": 4.9787776438276365
+      },
+      "core3_ridge": {
+        "rmse": 5.447221094594178,
+        "mae": 3.9865526619407445,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.2583665142405014,
+        "relative_rmse_vs_full_pct": 4.979259106985623
+      },
+      "core4_ols": {
+        "rmse": 5.2632952074891834,
+        "mae": 3.912509059255557,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.07444062713550714,
+        "relative_rmse_vs_full_pct": 1.43462542614623
+      },
+      "core4_ridge": {
+        "rmse": 5.26326973962529,
+        "mae": 3.912501767313521,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.0744151592716138,
+        "relative_rmse_vs_full_pct": 1.4341346075368744
+      }
+    },
+    {
+      "split": 42,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.324930656891501,
+        "mae": 3.4070373394144444,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.032702318253981,
+        "mae": 3.1288110333553414,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.2922283386375204,
+        "relative_rmse_vs_full_pct": -6.75683292567647
+      },
+      "core3_ridge": {
+        "rmse": 4.035709854707478,
+        "mae": 3.1289337883077044,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": -0.28922080218402346,
+        "relative_rmse_vs_full_pct": -6.687293395633254
+      },
+      "core4_ols": {
+        "rmse": 4.0255489933944455,
+        "mae": 3.151142678672814,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.29938166349705586,
+        "relative_rmse_vs_full_pct": -6.922230371948512
+      },
+      "core4_ridge": {
+        "rmse": 4.045353246109196,
+        "mae": 3.160905111637641,
+        "ridge_alpha": 3.0,
+        "delta_rmse_vs_full": -0.2795774107823057,
+        "relative_rmse_vs_full_pct": -6.464321233377857
+      }
+    },
+    {
+      "split": 43,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.2426297910686355,
+        "mae": 3.883222765411462,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.709913848178279,
+        "mae": 4.168904219426236,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.4672840571096435,
+        "relative_rmse_vs_full_pct": 8.913161442482753
+      },
+      "core3_ridge": {
+        "rmse": 5.709902525718012,
+        "mae": 4.168875040959239,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.46727273464937635,
+        "relative_rmse_vs_full_pct": 8.912945473384838
+      },
+      "core4_ols": {
+        "rmse": 5.560616590679633,
+        "mae": 4.0310384923835825,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.3179867996109973,
+        "relative_rmse_vs_full_pct": 6.065406337726165
+      },
+      "core4_ridge": {
+        "rmse": 5.560582321285382,
+        "mae": 4.030995282711172,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.31795253021674696,
+        "relative_rmse_vs_full_pct": 6.064752669708096
+      }
+    },
+    {
+      "split": 44,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.3443362771676854,
+        "mae": 4.064012205676191,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.683779175347747,
+        "mae": 4.207437383951218,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.3394428981800619,
+        "relative_rmse_vs_full_pct": 6.3514509674521324
+      },
+      "core3_ridge": {
+        "rmse": 5.684055440400101,
+        "mae": 4.207345960531797,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": 0.3397191632324157,
+        "relative_rmse_vs_full_pct": 6.356620272638525
+      },
+      "core4_ols": {
+        "rmse": 5.571431317607474,
+        "mae": 4.133409358228619,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.22709504043978868,
+        "relative_rmse_vs_full_pct": 4.249265552581227
+      },
+      "core4_ridge": {
+        "rmse": 5.571447251009771,
+        "mae": 4.133420214347131,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.22711097384208578,
+        "relative_rmse_vs_full_pct": 4.249563688803781
+      }
+    },
+    {
+      "split": 45,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.225305970325499,
+        "mae": 4.022764699120846,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.512349578324066,
+        "mae": 3.4637037984376082,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.7129563920014323,
+        "relative_rmse_vs_full_pct": -13.64429941615496
+      },
+      "core3_ridge": {
+        "rmse": 4.513022166991325,
+        "mae": 3.46400443317667,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": -0.7122838033341736,
+        "relative_rmse_vs_full_pct": -13.631427659532891
+      },
+      "core4_ols": {
+        "rmse": 4.590104937886516,
+        "mae": 3.497564940340333,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.6352010324389825,
+        "relative_rmse_vs_full_pct": -12.156245702094537
+      },
+      "core4_ridge": {
+        "rmse": 4.614362410705994,
+        "mae": 3.510362868590995,
+        "ridge_alpha": 3.0,
+        "delta_rmse_vs_full": -0.6109435596195043,
+        "relative_rmse_vs_full_pct": -11.692015033933922
+      }
+    },
+    {
+      "split": 46,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.416732394996456,
+        "mae": 3.4048514414127786,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.556045945747549,
+        "mae": 3.330458519451752,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.1393135507510932,
+        "relative_rmse_vs_full_pct": 3.1542221328354936
+      },
+      "core3_ridge": {
+        "rmse": 4.556105480859638,
+        "mae": 3.3304851912216886,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.1393730858631823,
+        "relative_rmse_vs_full_pct": 3.155570077577541
+      },
+      "core4_ols": {
+        "rmse": 4.420270620300961,
+        "mae": 3.2841251799475426,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.003538225304505538,
+        "relative_rmse_vs_full_pct": 0.08010956942996472
+      },
+      "core4_ridge": {
+        "rmse": 4.420306924284989,
+        "mae": 3.2841514812398462,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.0035745292885334123,
+        "relative_rmse_vs_full_pct": 0.08093153419443944
+      }
+    },
+    {
+      "split": 47,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.430473931988132,
+        "mae": 3.943214470412831,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.6098836774126175,
+        "mae": 3.9612031059953448,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.1794097454244854,
+        "relative_rmse_vs_full_pct": 3.303758524052114
+      },
+      "core3_ridge": {
+        "rmse": 5.610026183339046,
+        "mae": 3.9604308491287785,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.17955225135091357,
+        "relative_rmse_vs_full_pct": 3.306382713546663
+      },
+      "core4_ols": {
+        "rmse": 5.484351097398471,
+        "mae": 3.9273162728560838,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.05387716541033871,
+        "relative_rmse_vs_full_pct": 0.9921263979001171
+      },
+      "core4_ridge": {
+        "rmse": 5.484840159517502,
+        "mae": 3.926803911304355,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.05436622752936948,
+        "relative_rmse_vs_full_pct": 1.001132280722783
+      }
+    },
+    {
+      "split": 48,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.918249460317185,
+        "mae": 3.6235039978804218,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.922101149609441,
+        "mae": 3.5977613850154424,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0038516892922562107,
+        "relative_rmse_vs_full_pct": 0.07831423199113896
+      },
+      "core3_ridge": {
+        "rmse": 4.921935218631517,
+        "mae": 3.5974478918649795,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": 0.003685758314332155,
+        "relative_rmse_vs_full_pct": 0.07494045074514233
+      },
+      "core4_ols": {
+        "rmse": 4.919541977128997,
+        "mae": 3.5845891297828794,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0012925168118123054,
+        "relative_rmse_vs_full_pct": 0.02628001735660579
+      },
+      "core4_ridge": {
+        "rmse": 4.921798159684906,
+        "mae": 3.577220983537807,
+        "ridge_alpha": 3.0,
+        "delta_rmse_vs_full": 0.0035486993677213974,
+        "relative_rmse_vs_full_pct": 0.07215370827271528
+      }
+    },
+    {
+      "split": 49,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.561165237711962,
+        "mae": 3.3241685869770374,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.527422307198786,
+        "mae": 3.305865777049271,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.033742930513176006,
+        "relative_rmse_vs_full_pct": -0.7397875050477842
+      },
+      "core3_ridge": {
+        "rmse": 4.5274021284674655,
+        "mae": 3.305862913074351,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.03376310924449655,
+        "relative_rmse_vs_full_pct": -0.7402299080362496
+      },
+      "core4_ols": {
+        "rmse": 4.465711943907087,
+        "mae": 3.2811960089797023,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.09545329380487466,
+        "relative_rmse_vs_full_pct": -2.0927392196989802
+      },
+      "core4_ridge": {
+        "rmse": 4.465138182600809,
+        "mae": 3.2836219994222957,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": -0.09602705511115328,
+        "relative_rmse_vs_full_pct": -2.105318490047159
+      }
+    },
+    {
+      "split": 50,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.535843211372001,
+        "mae": 3.5735660081046836,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.463105513788852,
+        "mae": 3.444007339317488,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.07273769758314863,
+        "relative_rmse_vs_full_pct": -1.6036201912972836
+      },
+      "core3_ridge": {
+        "rmse": 4.458279287189078,
+        "mae": 3.442812825372002,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": -0.07756392418292268,
+        "relative_rmse_vs_full_pct": -1.710022162769187
+      },
+      "core4_ols": {
+        "rmse": 4.399648976057626,
+        "mae": 3.391037951548676,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.1361942353143748,
+        "relative_rmse_vs_full_pct": -3.002622202039884
+      },
+      "core4_ridge": {
+        "rmse": 4.399613173532046,
+        "mae": 3.3910031483247263,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.13623003783995458,
+        "relative_rmse_vs_full_pct": -3.0034115266243444
+      }
+    },
+    {
+      "split": 51,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.327134529949434,
+        "mae": 3.799038382461695,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.591681218424916,
+        "mae": 3.8515759958380955,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.26454668847548213,
+        "relative_rmse_vs_full_pct": 4.966022295629791
+      },
+      "core3_ridge": {
+        "rmse": 5.590912714664859,
+        "mae": 3.8481483671800305,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.26377818471542547,
+        "relative_rmse_vs_full_pct": 4.951596082893173
+      },
+      "core4_ols": {
+        "rmse": 5.587709637760645,
+        "mae": 3.8638809738034143,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.26057510781121174,
+        "relative_rmse_vs_full_pct": 4.891468506121721
+      },
+      "core4_ridge": {
+        "rmse": 5.58771579437062,
+        "mae": 3.863852987239669,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.26058126442118645,
+        "relative_rmse_vs_full_pct": 4.891584076883815
+      }
+    },
+    {
+      "split": 52,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.227068385512132,
+        "mae": 3.8687298798162995,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.130186002425876,
+        "mae": 3.68981668974737,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.09688238308625596,
+        "relative_rmse_vs_full_pct": -1.8534745662556307
+      },
+      "core3_ridge": {
+        "rmse": 5.130201886907487,
+        "mae": 3.6898170520774203,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.09686649860464502,
+        "relative_rmse_vs_full_pct": -1.8531706773366463
+      },
+      "core4_ols": {
+        "rmse": 5.067287935627685,
+        "mae": 3.6500049439677777,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.15978044988444662,
+        "relative_rmse_vs_full_pct": -3.056788970416191
+      },
+      "core4_ridge": {
+        "rmse": 5.0675149597715174,
+        "mae": 3.6500277940085524,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": -0.15955342574061415,
+        "relative_rmse_vs_full_pct": -3.052445730054887
+      }
+    },
+    {
+      "split": 53,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.1973503765647235,
+        "mae": 3.9720172904477673,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.41355474950012,
+        "mae": 4.084574669331118,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.21620437293539663,
+        "relative_rmse_vs_full_pct": 4.159896048384182
+      },
+      "core3_ridge": {
+        "rmse": 5.413334423450708,
+        "mae": 4.0839635243672054,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": 0.2159840468859846,
+        "relative_rmse_vs_full_pct": 4.155656848918143
+      },
+      "core4_ols": {
+        "rmse": 5.240489534082121,
+        "mae": 3.9775863732453365,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.043139157517397386,
+        "relative_rmse_vs_full_pct": 0.8300221149591058
+      },
+      "core4_ridge": {
+        "rmse": 5.23982870330065,
+        "mae": 3.97675172506552,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": 0.04247832673592633,
+        "relative_rmse_vs_full_pct": 0.8173073519819773
+      }
+    },
+    {
+      "split": 54,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.428688719729625,
+        "mae": 3.481409711609041,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.54983822401174,
+        "mae": 3.5147031225286733,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.12114950428211468,
+        "relative_rmse_vs_full_pct": 2.7355615160396862
+      },
+      "core3_ridge": {
+        "rmse": 4.55201680683246,
+        "mae": 3.5147143429380265,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.12332808710283416,
+        "relative_rmse_vs_full_pct": 2.7847540188004727
+      },
+      "core4_ols": {
+        "rmse": 4.566473093702816,
+        "mae": 3.526290203334723,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.137784373973191,
+        "relative_rmse_vs_full_pct": 3.1111776576070227
+      },
+      "core4_ridge": {
+        "rmse": 4.56650604954102,
+        "mae": 3.526306531389372,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.13781732981139427,
+        "relative_rmse_vs_full_pct": 3.111921801986761
+      }
+    },
+    {
+      "split": 55,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.268676916185022,
+        "mae": 3.327978119664165,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.235381832482099,
+        "mae": 3.130511260196442,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.033295083702923556,
+        "relative_rmse_vs_full_pct": -0.7799860321281882
+      },
+      "core3_ridge": {
+        "rmse": 4.23539596209093,
+        "mae": 3.1305047759766187,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.03328095409409215,
+        "relative_rmse_vs_full_pct": -0.7796550253757695
+      },
+      "core4_ols": {
+        "rmse": 4.408291581298536,
+        "mae": 3.2984587692820524,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.1396146651135135,
+        "relative_rmse_vs_full_pct": 3.2706777264907005
+      },
+      "core4_ridge": {
+        "rmse": 4.408351967535762,
+        "mae": 3.298479145576542,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.1396750513507401,
+        "relative_rmse_vs_full_pct": 3.272092362416834
+      }
+    },
+    {
+      "split": 56,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.408027127869972,
+        "mae": 3.42094228622385,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.321379708412641,
+        "mae": 3.3173940468497607,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.08664741945733123,
+        "relative_rmse_vs_full_pct": -1.9656734621594896
+      },
+      "core3_ridge": {
+        "rmse": 4.321397674243123,
+        "mae": 3.3174001013553265,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.08662945362684926,
+        "relative_rmse_vs_full_pct": -1.965265891380985
+      },
+      "core4_ols": {
+        "rmse": 4.246808102913361,
+        "mae": 3.286065934726936,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.161219024956611,
+        "relative_rmse_vs_full_pct": -3.657396387996248
+      },
+      "core4_ridge": {
+        "rmse": 4.246816770423125,
+        "mae": 3.2860733830293514,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.16121035744684686,
+        "relative_rmse_vs_full_pct": -3.6571997578596194
+      }
+    },
+    {
+      "split": 57,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.046504396225273,
+        "mae": 3.7766788478741065,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.098180506477835,
+        "mae": 3.7051678024934502,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.051676110252562246,
+        "relative_rmse_vs_full_pct": 1.023998122169778
+      },
+      "core3_ridge": {
+        "rmse": 5.098180825311898,
+        "mae": 3.70515166537001,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.0516764290866254,
+        "relative_rmse_vs_full_pct": 1.0240044400888326
+      },
+      "core4_ols": {
+        "rmse": 5.128918652816186,
+        "mae": 3.6811246713397474,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.08241425659091295,
+        "relative_rmse_vs_full_pct": 1.6330959040193882
+      },
+      "core4_ridge": {
+        "rmse": 5.128945149862295,
+        "mae": 3.6811311584644817,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.08244075363702219,
+        "relative_rmse_vs_full_pct": 1.6336209614458364
+      }
+    },
+    {
+      "split": 58,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.725030666444063,
+        "mae": 3.586530786008807,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.865658095926709,
+        "mae": 3.6614330154308825,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.14062742948264617,
+        "relative_rmse_vs_full_pct": 2.976222577375953
+      },
+      "core3_ridge": {
+        "rmse": 4.865645064142111,
+        "mae": 3.661438361777396,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.14061439769804807,
+        "relative_rmse_vs_full_pct": 2.975946774200966
+      },
+      "core4_ols": {
+        "rmse": 4.7653326920384576,
+        "mae": 3.5587418253271035,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.040302025594394664,
+        "relative_rmse_vs_full_pct": 0.852947386788605
+      },
+      "core4_ridge": {
+        "rmse": 4.765316300986757,
+        "mae": 3.5587249378850885,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.04028563454269385,
+        "relative_rmse_vs_full_pct": 0.8526004884749527
+      }
+    },
+    {
+      "split": 59,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.128504680884239,
+        "mae": 3.783646238839855,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.270463181780032,
+        "mae": 3.85688020253617,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.1419585008957931,
+        "relative_rmse_vs_full_pct": 2.768029079215295
+      },
+      "core3_ridge": {
+        "rmse": 5.277171721358059,
+        "mae": 3.856732853561726,
+        "ridge_alpha": 3.0,
+        "delta_rmse_vs_full": 0.1486670404738195,
+        "relative_rmse_vs_full_pct": 2.898837960077416
+      },
+      "core4_ols": {
+        "rmse": 5.14602440679835,
+        "mae": 3.734891143954556,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.017519725914111106,
+        "relative_rmse_vs_full_pct": 0.34161470066340627
+      },
+      "core4_ridge": {
+        "rmse": 5.145421458940953,
+        "mae": 3.732462340959921,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.016916778056713433,
+        "relative_rmse_vs_full_pct": 0.32985790419122196
+      }
+    },
+    {
+      "split": 60,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.766629120287593,
+        "mae": 3.674867421448252,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.8294885999445505,
+        "mae": 3.7890073171799834,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.06285947965695726,
+        "relative_rmse_vs_full_pct": 1.3187407299933618
+      },
+      "core3_ridge": {
+        "rmse": 4.828205640551874,
+        "mae": 3.7873674546804224,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.061576520264281065,
+        "relative_rmse_vs_full_pct": 1.2918252859699386
+      },
+      "core4_ols": {
+        "rmse": 4.710344834604787,
+        "mae": 3.7116634937011366,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.05628428568280608,
+        "relative_rmse_vs_full_pct": -1.1807985111165986
+      },
+      "core4_ridge": {
+        "rmse": 4.710321659511562,
+        "mae": 3.7116383702179254,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.05630746077603099,
+        "relative_rmse_vs_full_pct": -1.181284705713237
+      }
+    },
+    {
+      "split": 61,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.764478448003529,
+        "mae": 3.681906790646794,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.979597552141429,
+        "mae": 3.714211585192913,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.2151191041378997,
+        "relative_rmse_vs_full_pct": 4.51506091349918
+      },
+      "core3_ridge": {
+        "rmse": 4.979546004210763,
+        "mae": 3.714157167005374,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.2150675562072344,
+        "relative_rmse_vs_full_pct": 4.5139789917058915
+      },
+      "core4_ols": {
+        "rmse": 4.957419892451059,
+        "mae": 3.728252608526579,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.1929414444475297,
+        "relative_rmse_vs_full_pct": 4.0495816394841455
+      },
+      "core4_ridge": {
+        "rmse": 4.957390865148426,
+        "mae": 3.7282379476044913,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.19291241714489704,
+        "relative_rmse_vs_full_pct": 4.048972395409489
+      }
+    },
+    {
+      "split": 62,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.897741842310407,
+        "mae": 3.888477481470108,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.956788604897176,
+        "mae": 3.7389775450815943,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.05904676258676922,
+        "relative_rmse_vs_full_pct": 1.2055915662332106
+      },
+      "core3_ridge": {
+        "rmse": 4.9567709607749615,
+        "mae": 3.7389448134316745,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.059029118464554386,
+        "relative_rmse_vs_full_pct": 1.205231316085631
+      },
+      "core4_ols": {
+        "rmse": 4.927544578990984,
+        "mae": 3.7690695683373208,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.02980273668057709,
+        "relative_rmse_vs_full_pct": 0.608499542036256
+      },
+      "core4_ridge": {
+        "rmse": 4.927535005660996,
+        "mae": 3.7690655482400213,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.02979316335058879,
+        "relative_rmse_vs_full_pct": 0.6083040778754878
+      }
+    },
+    {
+      "split": 63,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.978540186755288,
+        "mae": 4.417483723303061,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 6.1828170856373585,
+        "mae": 4.463332972639313,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.20427689888207023,
+        "relative_rmse_vs_full_pct": 3.4168357575754094
+      },
+      "core3_ridge": {
+        "rmse": 6.188617896738362,
+        "mae": 4.465186195116785,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.2100777099830733,
+        "relative_rmse_vs_full_pct": 3.5138629735813165
+      },
+      "core4_ols": {
+        "rmse": 6.055763793341485,
+        "mae": 4.448134483824705,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.07722360658619642,
+        "relative_rmse_vs_full_pct": 1.2916799782876076
+      },
+      "core4_ridge": {
+        "rmse": 6.067636196407664,
+        "mae": 4.455154898936795,
+        "ridge_alpha": 3.0,
+        "delta_rmse_vs_full": 0.08909600965237541,
+        "relative_rmse_vs_full_pct": 1.4902636240491596
+      }
+    },
+    {
+      "split": 64,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.418549709104913,
+        "mae": 3.9747345495421755,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.531882939340378,
+        "mae": 4.002025567355562,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.11333323023546527,
+        "relative_rmse_vs_full_pct": 2.0915786754715615
+      },
+      "core3_ridge": {
+        "rmse": 5.531937539009125,
+        "mae": 4.002032376353214,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.11338782990421237,
+        "relative_rmse_vs_full_pct": 2.09258631906033
+      },
+      "core4_ols": {
+        "rmse": 5.496947415433689,
+        "mae": 4.0099020797200575,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.07839770632877574,
+        "relative_rmse_vs_full_pct": 1.4468392934929186
+      },
+      "core4_ridge": {
+        "rmse": 5.4969921483742255,
+        "mae": 4.0099094286107375,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.07844243926931238,
+        "relative_rmse_vs_full_pct": 1.4476648454014196
+      }
+    },
+    {
+      "split": 65,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.270460867851196,
+        "mae": 3.9100775991347883,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.300846194734735,
+        "mae": 3.898474854432392,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.030385326883538788,
+        "relative_rmse_vs_full_pct": 0.5765212501412043
+      },
+      "core3_ridge": {
+        "rmse": 5.300861314198819,
+        "mae": 3.8984676693779408,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.030400446347623067,
+        "relative_rmse_vs_full_pct": 0.5768081219056143
+      },
+      "core4_ols": {
+        "rmse": 5.175785020128392,
+        "mae": 3.8739802368838347,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.09467584772280446,
+        "relative_rmse_vs_full_pct": -1.796348556542926
+      },
+      "core4_ridge": {
+        "rmse": 5.175622891327482,
+        "mae": 3.873342982507732,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": -0.0948379765237144,
+        "relative_rmse_vs_full_pct": -1.799424735362476
+      }
+    },
+    {
+      "split": 66,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.205200931937679,
+        "mae": 3.948001951726047,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.329667282623572,
+        "mae": 3.9948817348559666,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.12446635068589362,
+        "relative_rmse_vs_full_pct": 2.3911920464434466
+      },
+      "core3_ridge": {
+        "rmse": 5.33024971742358,
+        "mae": 3.9951519430927274,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": 0.1250487854859017,
+        "relative_rmse_vs_full_pct": 2.402381524191255
+      },
+      "core4_ols": {
+        "rmse": 5.274281220508674,
+        "mae": 3.9529526254845884,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.06908028857099513,
+        "relative_rmse_vs_full_pct": 1.3271397103450377
+      },
+      "core4_ridge": {
+        "rmse": 5.274331247645097,
+        "mae": 3.9529857438003244,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.06913031570741879,
+        "relative_rmse_vs_full_pct": 1.3281008093895874
+      }
+    },
+    {
+      "split": 67,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.164825363562696,
+        "mae": 3.950820441855119,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.29274123339983,
+        "mae": 3.9717680903488457,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.12791586983713366,
+        "relative_rmse_vs_full_pct": 2.476673669153784
+      },
+      "core3_ridge": {
+        "rmse": 5.2929196253229795,
+        "mae": 3.971697562606797,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": 0.1280942617602836,
+        "relative_rmse_vs_full_pct": 2.4801276469863964
+      },
+      "core4_ols": {
+        "rmse": 5.292694424247658,
+        "mae": 3.9688799157101844,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.1278690606849624,
+        "relative_rmse_vs_full_pct": 2.4757673625727117
+      },
+      "core4_ridge": {
+        "rmse": 5.292907702742262,
+        "mae": 3.9689268960239112,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": 0.12808233917956624,
+        "relative_rmse_vs_full_pct": 2.4798968050918857
+      }
+    },
+    {
+      "split": 68,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.112272613516633,
+        "mae": 3.9923096957875535,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.4575521897894435,
+        "mae": 4.0984790698059905,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.3452795762728105,
+        "relative_rmse_vs_full_pct": 6.7539351356167066
+      },
+      "core3_ridge": {
+        "rmse": 5.461691999437103,
+        "mae": 4.101248003485554,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.34941938592046995,
+        "relative_rmse_vs_full_pct": 6.83491300907193
+      },
+      "core4_ols": {
+        "rmse": 5.288337155280795,
+        "mae": 4.023640582128628,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.17606454176416175,
+        "relative_rmse_vs_full_pct": 3.4439583933504325
+      },
+      "core4_ridge": {
+        "rmse": 5.288349594657529,
+        "mae": 4.023664339163468,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.17607698114089576,
+        "relative_rmse_vs_full_pct": 3.4442017171649963
+      }
+    },
+    {
+      "split": 69,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.96558693744757,
+        "mae": 3.7894688355584023,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.013357594858805,
+        "mae": 3.81559185236639,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.04777065741123465,
+        "relative_rmse_vs_full_pct": 0.9620344586251495
+      },
+      "core3_ridge": {
+        "rmse": 5.0117948993939905,
+        "mae": 3.812782583063999,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.046207961946420184,
+        "relative_rmse_vs_full_pct": 0.930563950012564
+      },
+      "core4_ols": {
+        "rmse": 4.963930205299797,
+        "mae": 3.7527883993560978,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.0016567321477731767,
+        "relative_rmse_vs_full_pct": -0.033364276341207866
+      },
+      "core4_ridge": {
+        "rmse": 4.963841889127442,
+        "mae": 3.752601534419316,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": -0.0017450483201280065,
+        "relative_rmse_vs_full_pct": -0.035142840959401234
+      }
+    },
+    {
+      "split": 70,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.694152651986356,
+        "mae": 4.238743542059274,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.755192428778736,
+        "mae": 4.230044476519036,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.06103977679237982,
+        "relative_rmse_vs_full_pct": 1.0719729610881856
+      },
+      "core3_ridge": {
+        "rmse": 5.753321258509362,
+        "mae": 4.228444346992699,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.05916860652300571,
+        "relative_rmse_vs_full_pct": 1.0391117017624296
+      },
+      "core4_ols": {
+        "rmse": 5.662959076635,
+        "mae": 4.193800439952769,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.031193575351355918,
+        "relative_rmse_vs_full_pct": -0.5478176869823548
+      },
+      "core4_ridge": {
+        "rmse": 5.660906596974063,
+        "mae": 4.19222592251159,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": -0.033246055012293496,
+        "relative_rmse_vs_full_pct": -0.5838630792712518
+      }
+    },
+    {
+      "split": 71,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.5596739693887995,
+        "mae": 3.5117162815770673,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.270116945221888,
+        "mae": 3.173064500068858,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.2895570241669114,
+        "relative_rmse_vs_full_pct": -6.3503887802251135
+      },
+      "core3_ridge": {
+        "rmse": 4.270139366749826,
+        "mae": 3.1730712961699616,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.2895346026389731,
+        "relative_rmse_vs_full_pct": -6.349897044892961
+      },
+      "core4_ols": {
+        "rmse": 4.198991250243753,
+        "mae": 3.172869022667699,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.36068271914504635,
+        "relative_rmse_vs_full_pct": -7.910274321507993
+      },
+      "core4_ridge": {
+        "rmse": 4.198998623324362,
+        "mae": 3.172882883997539,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.3606753460644372,
+        "relative_rmse_vs_full_pct": -7.910112619582399
+      }
+    },
+    {
+      "split": 72,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.948383155160452,
+        "mae": 3.8796815387506283,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.762060989454948,
+        "mae": 3.614358304742732,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.18632216570550408,
+        "relative_rmse_vs_full_pct": -3.7653140402273966
+      },
+      "core3_ridge": {
+        "rmse": 4.762141774858577,
+        "mae": 3.614397336374215,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.1862413803018752,
+        "relative_rmse_vs_full_pct": -3.7636814786189743
+      },
+      "core4_ols": {
+        "rmse": 4.899112192598035,
+        "mae": 3.691004779149886,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.04927096256241725,
+        "relative_rmse_vs_full_pct": -0.9956982112639068
+      },
+      "core4_ridge": {
+        "rmse": 4.899211477011077,
+        "mae": 3.6910517812037287,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.049171678149375175,
+        "relative_rmse_vs_full_pct": -0.9936918101844272
+      }
+    },
+    {
+      "split": 73,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.158436792885463,
+        "mae": 3.6089116555737952,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.511843306274541,
+        "mae": 3.841652348165926,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.3534065133890776,
+        "relative_rmse_vs_full_pct": 6.851038940256027
+      },
+      "core3_ridge": {
+        "rmse": 5.511853955820152,
+        "mae": 3.841638016563286,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.35341716293468917,
+        "relative_rmse_vs_full_pct": 6.851245389342053
+      },
+      "core4_ols": {
+        "rmse": 5.425556307057032,
+        "mae": 3.777210647314914,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.26711951417156854,
+        "relative_rmse_vs_full_pct": 5.178303522880823
+      },
+      "core4_ridge": {
+        "rmse": 5.425554732237003,
+        "mae": 3.7772021220787417,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.2671179393515395,
+        "relative_rmse_vs_full_pct": 5.1782729938641525
+      }
+    },
+    {
+      "split": 74,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.945203856036917,
+        "mae": 3.497672141334315,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.337097608191461,
+        "mae": 3.811543532470458,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.3918937521545436,
+        "relative_rmse_vs_full_pct": 7.924723905489439
+      },
+      "core3_ridge": {
+        "rmse": 5.337059602409512,
+        "mae": 3.8115120098507096,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.39185574637259446,
+        "relative_rmse_vs_full_pct": 7.923955367264224
+      },
+      "core4_ols": {
+        "rmse": 5.235549464483416,
+        "mae": 3.765189855625067,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.2903456084464988,
+        "relative_rmse_vs_full_pct": 5.871256613457021
+      },
+      "core4_ridge": {
+        "rmse": 5.233124046655774,
+        "mae": 3.762146173664937,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.28792019061885643,
+        "relative_rmse_vs_full_pct": 5.822210752088086
+      }
+    },
+    {
+      "split": 75,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.744454169586408,
+        "mae": 3.6886158894040615,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.8345691625663,
+        "mae": 3.6820612506463024,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0901149929798919,
+        "relative_rmse_vs_full_pct": 1.899375349804422
+      },
+      "core3_ridge": {
+        "rmse": 4.834200139500729,
+        "mae": 3.681607256423984,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": 0.08974596991432104,
+        "relative_rmse_vs_full_pct": 1.8915973620237336
+      },
+      "core4_ols": {
+        "rmse": 4.820187675596068,
+        "mae": 3.6536927046618213,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.07573350600965956,
+        "relative_rmse_vs_full_pct": 1.5962532949551411
+      },
+      "core4_ridge": {
+        "rmse": 4.820194465709831,
+        "mae": 3.6536785732612937,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.07574029612342237,
+        "relative_rmse_vs_full_pct": 1.596396411813683
+      }
+    },
+    {
+      "split": 76,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.30789328900283,
+        "mae": 3.9418641833168144,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.2393684094547615,
+        "mae": 3.970567969133472,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.06852487954806818,
+        "relative_rmse_vs_full_pct": -1.2909995702069188
+      },
+      "core3_ridge": {
+        "rmse": 5.2393548910912795,
+        "mae": 3.9705694478652482,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.06853839791155014,
+        "relative_rmse_vs_full_pct": -1.2912542543677685
+      },
+      "core4_ols": {
+        "rmse": 5.132817806951711,
+        "mae": 3.886750631815353,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.17507548205111867,
+        "relative_rmse_vs_full_pct": -3.2983986775666607
+      },
+      "core4_ridge": {
+        "rmse": 5.132789489511433,
+        "mae": 3.8867331839165224,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.17510379949139665,
+        "relative_rmse_vs_full_pct": -3.298932174355984
+      }
+    },
+    {
+      "split": 77,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.842630672192374,
+        "mae": 3.7413244869018047,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.917600482867883,
+        "mae": 3.5737111691508794,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.07496981067550834,
+        "relative_rmse_vs_full_pct": 1.5481215841216978
+      },
+      "core3_ridge": {
+        "rmse": 4.916276628019456,
+        "mae": 3.570352486949773,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.07364595582708144,
+        "relative_rmse_vs_full_pct": 1.5207840699059672
+      },
+      "core4_ols": {
+        "rmse": 4.7631204992211025,
+        "mae": 3.486752364268919,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.07951017297127194,
+        "relative_rmse_vs_full_pct": -1.6418797623333092
+      },
+      "core4_ridge": {
+        "rmse": 4.763081323902265,
+        "mae": 3.486710621486071,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.07954934829010973,
+        "relative_rmse_vs_full_pct": -1.642688730051256
+      }
+    },
+    {
+      "split": 78,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.49287392175368,
+        "mae": 4.077084987733652,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.970142444832169,
+        "mae": 4.263750670589787,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.47726852307848944,
+        "relative_rmse_vs_full_pct": 8.688867246494425
+      },
+      "core3_ridge": {
+        "rmse": 5.974330630715048,
+        "mae": 4.264034884572915,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.4814567089613684,
+        "relative_rmse_vs_full_pct": 8.765114871008306
+      },
+      "core4_ols": {
+        "rmse": 5.879292721413404,
+        "mae": 4.2404835176698406,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.38641879965972414,
+        "relative_rmse_vs_full_pct": 7.0349111442258305
+      },
+      "core4_ridge": {
+        "rmse": 5.879311992892788,
+        "mae": 4.240490938492502,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.386438071139108,
+        "relative_rmse_vs_full_pct": 7.035261989332753
+      }
+    },
+    {
+      "split": 79,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.353143772989893,
+        "mae": 4.073276968865653,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.378780066817914,
+        "mae": 3.945204720125981,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.025636293828021017,
+        "relative_rmse_vs_full_pct": 0.47890164948254377
+      },
+      "core3_ridge": {
+        "rmse": 5.378816741510612,
+        "mae": 3.945211487188236,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.025672968520718875,
+        "relative_rmse_vs_full_pct": 0.47958675517469906
+      },
+      "core4_ols": {
+        "rmse": 5.4565656432973615,
+        "mae": 4.019042205020462,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.10342187030746874,
+        "relative_rmse_vs_full_pct": 1.9319837966859765
+      },
+      "core4_ridge": {
+        "rmse": 5.456622411963772,
+        "mae": 4.019065880862569,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.1034786389738791,
+        "relative_rmse_vs_full_pct": 1.9330442700978168
+      }
+    },
+    {
+      "split": 80,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.103366579484045,
+        "mae": 3.7315193285576354,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.182221488158155,
+        "mae": 3.748358549859577,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.07885490867410994,
+        "relative_rmse_vs_full_pct": 1.54515470221388
+      },
+      "core3_ridge": {
+        "rmse": 5.182152049030328,
+        "mae": 3.7483076679793546,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.07878546954628263,
+        "relative_rmse_vs_full_pct": 1.5437940488736812
+      },
+      "core4_ols": {
+        "rmse": 5.090873954698682,
+        "mae": 3.731897093735823,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.012492624785362949,
+        "relative_rmse_vs_full_pct": -0.24479183673742355
+      },
+      "core4_ridge": {
+        "rmse": 5.090809421916188,
+        "mae": 3.7318472652851877,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.012557157567856692,
+        "relative_rmse_vs_full_pct": -0.24605635069088194
+      }
+    },
+    {
+      "split": 81,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.562290465350504,
+        "mae": 3.3955539703886317,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.694128901956809,
+        "mae": 3.4350214655412272,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.131838436606305,
+        "relative_rmse_vs_full_pct": 2.889742282031049
+      },
+      "core3_ridge": {
+        "rmse": 4.693967746112992,
+        "mae": 3.4344907678673735,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": 0.13167728076248775,
+        "relative_rmse_vs_full_pct": 2.8862099369284966
+      },
+      "core4_ols": {
+        "rmse": 4.629558800089496,
+        "mae": 3.389434323005275,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.06726833473899241,
+        "relative_rmse_vs_full_pct": 1.474442174383217
+      },
+      "core4_ridge": {
+        "rmse": 4.6294827667613125,
+        "mae": 3.389035092433716,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": 0.06719230141080867,
+        "relative_rmse_vs_full_pct": 1.4727756139403692
+      }
+    },
+    {
+      "split": 82,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.668564740444447,
+        "mae": 3.5509114313505417,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.966174876772419,
+        "mae": 3.8072018851653553,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.29761013632797173,
+        "relative_rmse_vs_full_pct": 6.374767254478275
+      },
+      "core3_ridge": {
+        "rmse": 4.976192223122782,
+        "mae": 3.807298072965688,
+        "ridge_alpha": 3.0,
+        "delta_rmse_vs_full": 0.30762748267833473,
+        "relative_rmse_vs_full_pct": 6.5893374041343655
+      },
+      "core4_ols": {
+        "rmse": 4.944443781550289,
+        "mae": 3.849677034664466,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.27587904110584205,
+        "relative_rmse_vs_full_pct": 5.909290251795429
+      },
+      "core4_ridge": {
+        "rmse": 4.947448450113606,
+        "mae": 3.850186223740937,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.27888370966915854,
+        "relative_rmse_vs_full_pct": 5.973649829746375
+      }
+    },
+    {
+      "split": 83,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.113611224100282,
+        "mae": 3.7516367374553146,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.175579794202126,
+        "mae": 3.8317980220974523,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0619685701018442,
+        "relative_rmse_vs_full_pct": 1.2118357729228313
+      },
+      "core3_ridge": {
+        "rmse": 5.17559270527811,
+        "mae": 3.8317750261941854,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.061981481177827646,
+        "relative_rmse_vs_full_pct": 1.212088257427757
+      },
+      "core4_ols": {
+        "rmse": 5.074144285798422,
+        "mae": 3.784690190293879,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.03946693830186021,
+        "relative_rmse_vs_full_pct": -0.771801698882657
+      },
+      "core4_ridge": {
+        "rmse": 5.074140208342479,
+        "mae": 3.78467476588924,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.039471015757802874,
+        "relative_rmse_vs_full_pct": -0.7718814361908688
+      }
+    },
+    {
+      "split": 84,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.305853044691648,
+        "mae": 3.9865603205592093,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.3038216636298845,
+        "mae": 3.9833310900155205,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.002031381061763149,
+        "relative_rmse_vs_full_pct": -0.0382856638631468
+      },
+      "core3_ridge": {
+        "rmse": 5.297912830477079,
+        "mae": 3.9808643398954837,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": -0.007940214214568364,
+        "relative_rmse_vs_full_pct": -0.14965009674574592
+      },
+      "core4_ols": {
+        "rmse": 5.293739595070615,
+        "mae": 4.002587756287916,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.012113449621032224,
+        "relative_rmse_vs_full_pct": -0.22830352667139175
+      },
+      "core4_ridge": {
+        "rmse": 5.29148067516154,
+        "mae": 4.003488220257631,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": -0.014372369530107676,
+        "relative_rmse_vs_full_pct": -0.2708776403916202
+      }
+    },
+    {
+      "split": 85,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.521545024287954,
+        "mae": 3.5114304100300133,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.438466654194428,
+        "mae": 3.333851763492911,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.08307837009352514,
+        "relative_rmse_vs_full_pct": -1.8373889820240907
+      },
+      "core3_ridge": {
+        "rmse": 4.4402293748170045,
+        "mae": 3.333866469116457,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": -0.08131564947094905,
+        "relative_rmse_vs_full_pct": -1.798404063968262
+      },
+      "core4_ols": {
+        "rmse": 4.376963205812768,
+        "mae": 3.3127033246685853,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.14458181847518592,
+        "relative_rmse_vs_full_pct": -3.197619789221373
+      },
+      "core4_ridge": {
+        "rmse": 4.377765407501107,
+        "mae": 3.3118570144275292,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": -0.1437796167868468,
+        "relative_rmse_vs_full_pct": -3.179878028738392
+      }
+    },
+    {
+      "split": 86,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.391149870515834,
+        "mae": 3.837052316630635,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.707356830861911,
+        "mae": 3.8690715350743754,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.31620696034607665,
+        "relative_rmse_vs_full_pct": 5.865297161843164
+      },
+      "core3_ridge": {
+        "rmse": 5.707404393932876,
+        "mae": 3.8690895279067905,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.31625452341704197,
+        "relative_rmse_vs_full_pct": 5.866179405373906
+      },
+      "core4_ols": {
+        "rmse": 5.583009516117681,
+        "mae": 3.78765097693898,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.19185964560184665,
+        "relative_rmse_vs_full_pct": 3.5587889450287014
+      },
+      "core4_ridge": {
+        "rmse": 5.583028957231768,
+        "mae": 3.787651520027841,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.19187908671593412,
+        "relative_rmse_vs_full_pct": 3.559149556671004
+      }
+    },
+    {
+      "split": 87,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.25886935465195,
+        "mae": 3.972717566046836,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.526202587664151,
+        "mae": 4.203175845089211,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.26733323301220047,
+        "relative_rmse_vs_full_pct": 5.08347355645411
+      },
+      "core3_ridge": {
+        "rmse": 5.533962612488636,
+        "mae": 4.204120449213797,
+        "ridge_alpha": 3.0,
+        "delta_rmse_vs_full": 0.27509325783668537,
+        "relative_rmse_vs_full_pct": 5.2310342639210194
+      },
+      "core4_ols": {
+        "rmse": 5.498498941781083,
+        "mae": 4.213311203762286,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.23962958712913274,
+        "relative_rmse_vs_full_pct": 4.556675037328284
+      },
+      "core4_ridge": {
+        "rmse": 5.505476705122613,
+        "mae": 4.2185681882708606,
+        "ridge_alpha": 3.0,
+        "delta_rmse_vs_full": 0.2466073504706623,
+        "relative_rmse_vs_full_pct": 4.689360656060337
+      }
+    },
+    {
+      "split": 88,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.492940510701906,
+        "mae": 4.14716131888797,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.364224886507371,
+        "mae": 4.050361026978247,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.12871562419453486,
+        "relative_rmse_vs_full_pct": -2.34329179323457
+      },
+      "core3_ridge": {
+        "rmse": 5.367554341205118,
+        "mae": 4.051218582005072,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": -0.12538616949678794,
+        "relative_rmse_vs_full_pct": -2.2826784534166644
+      },
+      "core4_ols": {
+        "rmse": 5.431658232227306,
+        "mae": 4.0989850038112134,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.06128227847459922,
+        "relative_rmse_vs_full_pct": -1.1156552370301998
+      },
+      "core4_ridge": {
+        "rmse": 5.436805382835823,
+        "mae": 4.101035467962102,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": -0.056135127866082435,
+        "relative_rmse_vs_full_pct": -1.0219504062844664
+      }
+    },
+    {
+      "split": 89,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.053666720292797,
+        "mae": 3.7910357824695735,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.273496713100255,
+        "mae": 3.86512155173964,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.2198299928074583,
+        "relative_rmse_vs_full_pct": 4.349910767260123
+      },
+      "core3_ridge": {
+        "rmse": 5.273505608425073,
+        "mae": 3.865103467315665,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.21983888813227637,
+        "relative_rmse_vs_full_pct": 4.35008678450286
+      },
+      "core4_ols": {
+        "rmse": 5.2793085438640635,
+        "mae": 3.8739317345081257,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.22564182357126672,
+        "relative_rmse_vs_full_pct": 4.464913023749895
+      },
+      "core4_ridge": {
+        "rmse": 5.279328212397607,
+        "mae": 3.8739288697795256,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.2256614921048099,
+        "relative_rmse_vs_full_pct": 4.465302217074885
+      }
+    },
+    {
+      "split": 90,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.468987611308507,
+        "mae": 4.124207092146005,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.445885065934953,
+        "mae": 4.066615452915673,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.02310254537355405,
+        "relative_rmse_vs_full_pct": -0.42242818992282993
+      },
+      "core3_ridge": {
+        "rmse": 5.443691204477338,
+        "mae": 4.062020899425172,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": -0.025296406831169627,
+        "relative_rmse_vs_full_pct": -0.4625427707838137
+      },
+      "core4_ols": {
+        "rmse": 5.437564566828166,
+        "mae": 4.0386119712992,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.03142304448034139,
+        "relative_rmse_vs_full_pct": -0.574567848999441
+      },
+      "core4_ridge": {
+        "rmse": 5.4375747863771515,
+        "mae": 4.038612432534349,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.031412824931355665,
+        "relative_rmse_vs_full_pct": -0.5743809853655857
+      }
+    },
+    {
+      "split": 91,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.717267854566503,
+        "mae": 3.6665840510734458,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.84482611835444,
+        "mae": 3.7388140857328507,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.1275582637879369,
+        "relative_rmse_vs_full_pct": 2.7040708249046252
+      },
+      "core3_ridge": {
+        "rmse": 4.844809564276655,
+        "mae": 3.7387891824565465,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.12754170971015188,
+        "relative_rmse_vs_full_pct": 2.7037198997866163
+      },
+      "core4_ols": {
+        "rmse": 4.8260468081257475,
+        "mae": 3.734919841255965,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.10877895355924405,
+        "relative_rmse_vs_full_pct": 2.3059736464602354
+      },
+      "core4_ridge": {
+        "rmse": 4.826044319551837,
+        "mae": 3.734902794533001,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.10877646498533355,
+        "relative_rmse_vs_full_pct": 2.3059208919000262
+      }
+    },
+    {
+      "split": 92,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.2702096756111905,
+        "mae": 3.988672317040766,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.155567558844902,
+        "mae": 3.746074009520872,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.1146421167662881,
+        "relative_rmse_vs_full_pct": -2.175285687338291
+      },
+      "core3_ridge": {
+        "rmse": 5.155432452402456,
+        "mae": 3.745875812849691,
+        "ridge_alpha": 0.1,
+        "delta_rmse_vs_full": -0.11477722320873429,
+        "relative_rmse_vs_full_pct": -2.1778492749517264
+      },
+      "core4_ols": {
+        "rmse": 5.062099064564985,
+        "mae": 3.6678052250906448,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.2081106110462052,
+        "relative_rmse_vs_full_pct": -3.9488108416117274
+      },
+      "core4_ridge": {
+        "rmse": 5.062078415241777,
+        "mae": 3.667775285680472,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.20813126036941387,
+        "relative_rmse_vs_full_pct": -3.949202653787709
+      }
+    },
+    {
+      "split": 93,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.025644891007523,
+        "mae": 3.812536643732135,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.248053296001051,
+        "mae": 3.8565641765447767,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.2224084049935282,
+        "relative_rmse_vs_full_pct": 4.425469960909645
+      },
+      "core3_ridge": {
+        "rmse": 5.248097363010212,
+        "mae": 3.856585144263156,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.22245247200268903,
+        "relative_rmse_vs_full_pct": 4.426346803784864
+      },
+      "core4_ols": {
+        "rmse": 5.092314855188339,
+        "mae": 3.7520828661578696,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.06666996418081617,
+        "relative_rmse_vs_full_pct": 1.326595205723935
+      },
+      "core4_ridge": {
+        "rmse": 5.092325801543731,
+        "mae": 3.7520773194867387,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.06668091053620806,
+        "relative_rmse_vs_full_pct": 1.326813015689221
+      }
+    },
+    {
+      "split": 94,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.666417590641653,
+        "mae": 3.4119682381132983,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.708328304457754,
+        "mae": 3.441743924176658,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.04191071381610101,
+        "relative_rmse_vs_full_pct": 0.8981346611617314
+      },
+      "core3_ridge": {
+        "rmse": 4.710252319364909,
+        "mae": 3.437485011954152,
+        "ridge_alpha": 3.0,
+        "delta_rmse_vs_full": 0.04383472872325633,
+        "relative_rmse_vs_full_pct": 0.9393657526742816
+      },
+      "core4_ols": {
+        "rmse": 4.603781628299458,
+        "mae": 3.403130088104149,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.0626359623421946,
+        "relative_rmse_vs_full_pct": -1.3422708346507384
+      },
+      "core4_ridge": {
+        "rmse": 4.600212202575546,
+        "mae": 3.4030192655584557,
+        "ridge_alpha": 3.0,
+        "delta_rmse_vs_full": -0.06620538806610732,
+        "relative_rmse_vs_full_pct": -1.4187626113633778
+      }
+    },
+    {
+      "split": 95,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.4041660968819265,
+        "mae": 3.918366658296803,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.460056453280747,
+        "mae": 4.054837353344867,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.05589035639882045,
+        "relative_rmse_vs_full_pct": 1.0342087085566831
+      },
+      "core3_ridge": {
+        "rmse": 5.460075926675237,
+        "mae": 4.054845549225278,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.05590982979331027,
+        "relative_rmse_vs_full_pct": 1.034569048970746
+      },
+      "core4_ols": {
+        "rmse": 5.504947517895979,
+        "mae": 4.098988185996245,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.10078142101405252,
+        "relative_rmse_vs_full_pct": 1.8648838545543667
+      },
+      "core4_ridge": {
+        "rmse": 5.505007388105838,
+        "mae": 4.099010092990883,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.10084129122391161,
+        "relative_rmse_vs_full_pct": 1.8659917074365096
+      }
+    },
+    {
+      "split": 96,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.061123653996458,
+        "mae": 3.9735919258954486,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.5151759934621,
+        "mae": 4.1651714927320045,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.45405233946564216,
+        "relative_rmse_vs_full_pct": 8.971374155363797
+      },
+      "core3_ridge": {
+        "rmse": 5.515188990863992,
+        "mae": 4.165168053393157,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.4540653368675338,
+        "relative_rmse_vs_full_pct": 8.971630963985366
+      },
+      "core4_ols": {
+        "rmse": 5.437661712549604,
+        "mae": 4.1094640373928994,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.3765380585531455,
+        "relative_rmse_vs_full_pct": 7.43981147854027
+      },
+      "core4_ridge": {
+        "rmse": 5.437661649216442,
+        "mae": 4.1094603108575605,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.37653799521998366,
+        "relative_rmse_vs_full_pct": 7.439810227174637
+      }
+    },
+    {
+      "split": 97,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.324055316331714,
+        "mae": 4.122754002778252,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.4892845649885915,
+        "mae": 4.175058102902711,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.16522924865687738,
+        "relative_rmse_vs_full_pct": 3.1034472566434657
+      },
+      "core3_ridge": {
+        "rmse": 5.486249443117708,
+        "mae": 4.1709468005684105,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.16219412678599365,
+        "relative_rmse_vs_full_pct": 3.0464395493498664
+      },
+      "core4_ols": {
+        "rmse": 5.346835061175547,
+        "mae": 4.090306172306675,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.022779744843832717,
+        "relative_rmse_vs_full_pct": 0.4278645410380255
+      },
+      "core4_ridge": {
+        "rmse": 5.342814752373067,
+        "mae": 4.085006097706505,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.01875943604135255,
+        "relative_rmse_vs_full_pct": 0.35235238792141743
+      }
+    },
+    {
+      "split": 98,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 5.133962613020542,
+        "mae": 3.8315134384366245,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 5.132722800532743,
+        "mae": 3.7623119695766967,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.0012398124877988081,
+        "relative_rmse_vs_full_pct": -0.02414923094014032
+      },
+      "core3_ridge": {
+        "rmse": 5.1327057227700115,
+        "mae": 3.7623173556100395,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.0012568902505307733,
+        "relative_rmse_vs_full_pct": -0.0244818738520447
+      },
+      "core4_ols": {
+        "rmse": 4.991284452381671,
+        "mae": 3.61665870116516,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": -0.14267816063887118,
+        "relative_rmse_vs_full_pct": -2.779104005880695
+      },
+      "core4_ridge": {
+        "rmse": 4.991246035432203,
+        "mae": 3.616632744084755,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": -0.142716577588339,
+        "relative_rmse_vs_full_pct": -2.779852296282548
+      }
+    },
+    {
+      "split": 99,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.808371417940905,
+        "mae": 3.7788096339939057,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.936761539522193,
+        "mae": 3.753197644383116,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.1283901215812877,
+        "relative_rmse_vs_full_pct": 2.6701373588205124
+      },
+      "core3_ridge": {
+        "rmse": 4.936693433175915,
+        "mae": 3.753156689577758,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.12832201523500952,
+        "relative_rmse_vs_full_pct": 2.6687209468930995
+      },
+      "core4_ols": {
+        "rmse": 4.844728715731057,
+        "mae": 3.6826439903647685,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0363572977901514,
+        "relative_rmse_vs_full_pct": 0.7561249876516518
+      },
+      "core4_ridge": {
+        "rmse": 4.84466653127786,
+        "mae": 3.6826054767848238,
+        "ridge_alpha": 0.01,
+        "delta_rmse_vs_full": 0.0362951133369549,
+        "relative_rmse_vs_full_pct": 0.7548317337036758
+      }
+    },
+    {
+      "split": 100,
+      "n_test_rows": 174,
+      "n_test_municipalities": 58,
+      "full_ridge": {
+        "rmse": 4.705424205084183,
+        "mae": 3.543464726892609,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.0,
+        "relative_rmse_vs_full_pct": 0.0
+      },
+      "core3_ols": {
+        "rmse": 4.9215035907040905,
+        "mae": 3.6208556257705453,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.21607938561990725,
+        "relative_rmse_vs_full_pct": 4.592134018149419
+      },
+      "core3_ridge": {
+        "rmse": 4.920770021862838,
+        "mae": 3.616682579195321,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.2153458167786546,
+        "relative_rmse_vs_full_pct": 4.576544162500262
+      },
+      "core4_ols": {
+        "rmse": 4.800248302002852,
+        "mae": 3.5133361865038384,
+        "ridge_alpha": null,
+        "delta_rmse_vs_full": 0.09482409691866867,
+        "relative_rmse_vs_full_pct": 2.0152082529819815
+      },
+      "core4_ridge": {
+        "rmse": 4.79831548331052,
+        "mae": 3.5085695763408897,
+        "ridge_alpha": 1.0,
+        "delta_rmse_vs_full": 0.09289127822633692,
+        "relative_rmse_vs_full_pct": 1.9741318567190635
+      }
+    }
+  ],
+  "limitations": [
+    "The sparse cores were discovered on this same historical period; this is not a fresh independent holdout.",
+    "Repeated group splits are overlapping and summary quantiles are sensitivity diagnostics, not classical confidence intervals.",
+    "The 2% and 5% bands are descriptive reporting bands only; they are not pre-declared acceptance thresholds.",
+    "No production model is changed automatically."
+  ]
+}
