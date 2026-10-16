@@ -1,0 +1,30 @@
+name: Verify forecast-core source snapshot
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/verify_forecast_core_source_snapshot.py
+      - .github/workflows/verify_forecast_core_source_snapshot.yml
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/verify_forecast_core_source_snapshot.py
+      - name: Commit verification
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/forecast_core_snapshot_verification.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Verify complete forecast-core source snapshot"
+          git pull --rebase origin main
+          git push origin HEAD:main
