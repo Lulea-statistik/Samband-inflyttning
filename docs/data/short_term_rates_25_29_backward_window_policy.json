@@ -1,0 +1,31 @@
+{
+  "status": "backward_window_policy_locked",
+  "date": "2026-10-20",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "current_backward_window_months": 12,
+  "current_transform": "year-over-year percentage-point change",
+  "current_candidate_features": [
+    "bas2_age25_29_sysselsattningsgrad_yoy_pp",
+    "bas2_age25_29_arbetskraftsdeltagande_yoy_pp"
+  ],
+  "forecast_horizons_months": [
+    3,
+    6,
+    9,
+    12
+  ],
+  "current_track": "finish_12_month_backward_validation",
+  "later_backward_window_challengers_months": [
+    9,
+    6,
+    3
+  ],
+  "challenger_order": [
+    9,
+    6,
+    3
+  ],
+  "shorter_windows_must_use_common_origins": true,
+  "no_midstream_window_tuning": true
+}
