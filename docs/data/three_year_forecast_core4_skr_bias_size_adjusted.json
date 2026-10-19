@@ -1,0 +1,592 @@
+{
+  "status": "core4_skr_bias_size_adjusted_diagnostic",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "variable_selection_reopened": false,
+  "within_population_decile_cells": [
+    {
+      "population_decile": 1,
+      "skr_group": "B4",
+      "n": 18,
+      "municipalities": 3,
+      "mean_residual": 1.7837003094452082,
+      "mae": 6.625601692705
+    },
+    {
+      "population_decile": 1,
+      "skr_group": "B5",
+      "n": 18,
+      "municipalities": 3,
+      "mean_residual": 1.661391874173547,
+      "mae": 6.835429043791868
+    },
+    {
+      "population_decile": 1,
+      "skr_group": "C7",
+      "n": 66,
+      "municipalities": 11,
+      "mean_residual": 3.458508000350455,
+      "mae": 7.235609353288481
+    },
+    {
+      "population_decile": 1,
+      "skr_group": "C8",
+      "n": 48,
+      "municipalities": 8,
+      "mean_residual": 1.2885022711744103,
+      "mae": 6.860112357096599
+    },
+    {
+      "population_decile": 1,
+      "skr_group": "C9",
+      "n": 24,
+      "municipalities": 4,
+      "mean_residual": 3.0408276515473474,
+      "mae": 6.918440422651774
+    },
+    {
+      "population_decile": 2,
+      "skr_group": "B4",
+      "n": 66,
+      "municipalities": 11,
+      "mean_residual": 2.3953858052649286,
+      "mae": 6.087610424669848
+    },
+    {
+      "population_decile": 2,
+      "skr_group": "B5",
+      "n": 18,
+      "municipalities": 3,
+      "mean_residual": 2.1090091693886457,
+      "mae": 5.072890885218584
+    },
+    {
+      "population_decile": 2,
+      "skr_group": "C7",
+      "n": 39,
+      "municipalities": 8,
+      "mean_residual": 2.467574730544809,
+      "mae": 6.045805392945198
+    },
+    {
+      "population_decile": 2,
+      "skr_group": "C8",
+      "n": 27,
+      "municipalities": 5,
+      "mean_residual": 2.6891828833014215,
+      "mae": 5.3093718325576065
+    },
+    {
+      "population_decile": 2,
+      "skr_group": "C9",
+      "n": 24,
+      "municipalities": 4,
+      "mean_residual": 1.5780970158713632,
+      "mae": 5.271136394988662
+    },
+    {
+      "population_decile": 3,
+      "skr_group": "A2",
+      "n": 6,
+      "municipalities": 1,
+      "mean_residual": 1.400495101030194,
+      "mae": 2.21988030886072
+    },
+    {
+      "population_decile": 3,
+      "skr_group": "B4",
+      "n": 48,
+      "municipalities": 8,
+      "mean_residual": 2.200299243854818,
+      "mae": 4.177421735538043
+    },
+    {
+      "population_decile": 3,
+      "skr_group": "B5",
+      "n": 12,
+      "municipalities": 2,
+      "mean_residual": 3.812426969173247,
+      "mae": 5.112991621459342
+    },
+    {
+      "population_decile": 3,
+      "skr_group": "C7",
+      "n": 57,
+      "municipalities": 11,
+      "mean_residual": 2.875487912859138,
+      "mae": 5.120992413422558
+    },
+    {
+      "population_decile": 3,
+      "skr_group": "C8",
+      "n": 21,
+      "municipalities": 4,
+      "mean_residual": 4.644314554255398,
+      "mae": 5.722807873236
+    },
+    {
+      "population_decile": 3,
+      "skr_group": "C9",
+      "n": 30,
+      "municipalities": 5,
+      "mean_residual": 1.1540173504977695,
+      "mae": 4.244784861234234
+    },
+    {
+      "population_decile": 4,
+      "skr_group": "A2",
+      "n": 12,
+      "municipalities": 2,
+      "mean_residual": 2.5721893028311578,
+      "mae": 6.553932596454053
+    },
+    {
+      "population_decile": 4,
+      "skr_group": "B4",
+      "n": 47,
+      "municipalities": 8,
+      "mean_residual": 1.5378361582997335,
+      "mae": 5.336528517698671
+    },
+    {
+      "population_decile": 4,
+      "skr_group": "B5",
+      "n": 18,
+      "municipalities": 3,
+      "mean_residual": 1.5724598961496388,
+      "mae": 3.6120447626831
+    },
+    {
+      "population_decile": 4,
+      "skr_group": "C7",
+      "n": 51,
+      "municipalities": 10,
+      "mean_residual": 1.5541901273210654,
+      "mae": 4.135882394892058
+    },
+    {
+      "population_decile": 4,
+      "skr_group": "C8",
+      "n": 31,
+      "municipalities": 6,
+      "mean_residual": 2.568001960237267,
+      "mae": 3.7183672933241407
+    },
+    {
+      "population_decile": 4,
+      "skr_group": "C9",
+      "n": 15,
+      "municipalities": 3,
+      "mean_residual": -0.11421639932532,
+      "mae": 4.035023267280935
+    },
+    {
+      "population_decile": 5,
+      "skr_group": "A2",
+      "n": 9,
+      "municipalities": 2,
+      "mean_residual": 0.1916207581033199,
+      "mae": 5.241234636279085
+    },
+    {
+      "population_decile": 5,
+      "skr_group": "B4",
+      "n": 68,
+      "municipalities": 13,
+      "mean_residual": 0.822582274071086,
+      "mae": 4.450933875456563
+    },
+    {
+      "population_decile": 5,
+      "skr_group": "C7",
+      "n": 54,
+      "municipalities": 12,
+      "mean_residual": 3.2420087997260065,
+      "mae": 5.013360150732755
+    },
+    {
+      "population_decile": 5,
+      "skr_group": "C8",
+      "n": 28,
+      "municipalities": 5,
+      "mean_residual": 1.993262452873625,
+      "mae": 4.631353288787935
+    },
+    {
+      "population_decile": 5,
+      "skr_group": "C9",
+      "n": 15,
+      "municipalities": 3,
+      "mean_residual": -1.1848711975305994,
+      "mae": 4.742743562321406
+    },
+    {
+      "population_decile": 6,
+      "skr_group": "A2",
+      "n": 20,
+      "municipalities": 5,
+      "mean_residual": -0.9931921453257324,
+      "mae": 8.497678870572775
+    },
+    {
+      "population_decile": 6,
+      "skr_group": "B4",
+      "n": 63,
+      "municipalities": 12,
+      "mean_residual": 1.074388724646268,
+      "mae": 3.8326989730923446
+    },
+    {
+      "population_decile": 6,
+      "skr_group": "B5",
+      "n": 13,
+      "municipalities": 3,
+      "mean_residual": 1.50830374118201,
+      "mae": 3.2839750102389855
+    },
+    {
+      "population_decile": 6,
+      "skr_group": "C7",
+      "n": 33,
+      "municipalities": 7,
+      "mean_residual": 2.224804480686934,
+      "mae": 4.856542902277386
+    },
+    {
+      "population_decile": 6,
+      "skr_group": "C8",
+      "n": 25,
+      "municipalities": 5,
+      "mean_residual": 2.6043614112206352,
+      "mae": 4.2256729874291175
+    },
+    {
+      "population_decile": 6,
+      "skr_group": "C9",
+      "n": 18,
+      "municipalities": 3,
+      "mean_residual": 0.8463305080085092,
+      "mae": 3.802547685602439
+    },
+    {
+      "population_decile": 7,
+      "skr_group": "A2",
+      "n": 38,
+      "municipalities": 8,
+      "mean_residual": 0.8238404230587228,
+      "mae": 4.841834034152524
+    },
+    {
+      "population_decile": 7,
+      "skr_group": "B4",
+      "n": 26,
+      "municipalities": 5,
+      "mean_residual": 0.7986419587007639,
+      "mae": 4.001379722444373
+    },
+    {
+      "population_decile": 7,
+      "skr_group": "B5",
+      "n": 35,
+      "municipalities": 7,
+      "mean_residual": 2.094950217131552,
+      "mae": 3.6335871521534235
+    },
+    {
+      "population_decile": 7,
+      "skr_group": "C6",
+      "n": 41,
+      "municipalities": 8,
+      "mean_residual": 2.2738306024279122,
+      "mae": 4.018706099590537
+    },
+    {
+      "population_decile": 7,
+      "skr_group": "C7",
+      "n": 6,
+      "municipalities": 1,
+      "mean_residual": 3.672774260972561,
+      "mae": 3.672774260972561
+    },
+    {
+      "population_decile": 7,
+      "skr_group": "C8",
+      "n": 28,
+      "municipalities": 5,
+      "mean_residual": 2.2411243630983124,
+      "mae": 3.306207388535406
+    },
+    {
+      "population_decile": 8,
+      "skr_group": "A2",
+      "n": 65,
+      "municipalities": 13,
+      "mean_residual": 0.7729878666665563,
+      "mae": 4.661576212720488
+    },
+    {
+      "population_decile": 8,
+      "skr_group": "B4",
+      "n": 30,
+      "municipalities": 5,
+      "mean_residual": 0.15026197243500483,
+      "mae": 3.3959010313720173
+    },
+    {
+      "population_decile": 8,
+      "skr_group": "B5",
+      "n": 18,
+      "municipalities": 3,
+      "mean_residual": 1.9212102073958808,
+      "mae": 3.491032638492037
+    },
+    {
+      "population_decile": 8,
+      "skr_group": "C6",
+      "n": 59,
+      "municipalities": 10,
+      "mean_residual": 1.8599011149841538,
+      "mae": 3.1958293406400125
+    },
+    {
+      "population_decile": 9,
+      "skr_group": "A2",
+      "n": 66,
+      "municipalities": 12,
+      "mean_residual": -1.014236907543004,
+      "mae": 5.737134980259839
+    },
+    {
+      "population_decile": 9,
+      "skr_group": "B3",
+      "n": 24,
+      "municipalities": 4,
+      "mean_residual": 0.8696864263517359,
+      "mae": 1.9761965475168495
+    },
+    {
+      "population_decile": 9,
+      "skr_group": "B4",
+      "n": 12,
+      "municipalities": 2,
+      "mean_residual": -0.0836896956083546,
+      "mae": 4.96637608432547
+    },
+    {
+      "population_decile": 9,
+      "skr_group": "B5",
+      "n": 12,
+      "municipalities": 2,
+      "mean_residual": 1.599912736458024,
+      "mae": 2.814899737773817
+    },
+    {
+      "population_decile": 9,
+      "skr_group": "C6",
+      "n": 60,
+      "municipalities": 10,
+      "mean_residual": 0.406624522667027,
+      "mae": 3.5885883700459753
+    },
+    {
+      "population_decile": 10,
+      "skr_group": "A1",
+      "n": 18,
+      "municipalities": 3,
+      "mean_residual": 0.08383266728536472,
+      "mae": 2.4806395649914115
+    },
+    {
+      "population_decile": 10,
+      "skr_group": "A2",
+      "n": 42,
+      "municipalities": 7,
+      "mean_residual": -0.8791116320817584,
+      "mae": 5.272554168980708
+    },
+    {
+      "population_decile": 10,
+      "skr_group": "B3",
+      "n": 114,
+      "municipalities": 19,
+      "mean_residual": 0.5565605793451451,
+      "mae": 2.23444188530456
+    }
+  ],
+  "skr_equal_weight_across_population_deciles": [
+    {
+      "skr_group": "A1",
+      "n_deciles": 1,
+      "equal_weight_mean_residual_across_population_deciles": 0.08383266728536472,
+      "weighted_mean_residual": 0.08383266728536472,
+      "mean_mae_across_population_deciles": 2.4806395649914115
+    },
+    {
+      "skr_group": "A2",
+      "n_deciles": 8,
+      "equal_weight_mean_residual_across_population_deciles": 0.359324095842432,
+      "weighted_mean_residual": -0.004582135190481373,
+      "mean_mae_across_population_deciles": 5.3782282260350245
+    },
+    {
+      "skr_group": "B3",
+      "n_deciles": 2,
+      "equal_weight_mean_residual_across_population_deciles": 0.7131235028484405,
+      "weighted_mean_residual": 0.6110172483897696,
+      "mean_mae_across_population_deciles": 2.1053192164107046
+    },
+    {
+      "skr_group": "B4",
+      "n_deciles": 9,
+      "equal_weight_mean_residual_across_population_deciles": 1.186600750123273,
+      "weighted_mean_residual": 1.365039920381313,
+      "mean_mae_across_population_deciles": 4.763828006366925
+    },
+    {
+      "skr_group": "B5",
+      "n_deciles": 8,
+      "equal_weight_mean_residual_across_population_deciles": 2.034958101381568,
+      "weighted_mean_residual": 2.0043928010450314,
+      "mean_mae_across_population_deciles": 4.232106356476395
+    },
+    {
+      "skr_group": "C6",
+      "n_deciles": 3,
+      "equal_weight_mean_residual_across_population_deciles": 1.5134520800263642,
+      "weighted_mean_residual": 1.4209918240226942,
+      "mean_mae_across_population_deciles": 3.601041270092175
+    },
+    {
+      "skr_group": "C7",
+      "n_deciles": 7,
+      "equal_weight_mean_residual_across_population_deciles": 2.7850497589229954,
+      "weighted_mean_residual": 2.7391735903739582,
+      "mean_mae_across_population_deciles": 5.154423838361571
+    },
+    {
+      "skr_group": "C8",
+      "n_deciles": 7,
+      "equal_weight_mean_residual_across_population_deciles": 2.575535699451581,
+      "weighted_mean_residual": 2.381089324038263,
+      "mean_mae_across_population_deciles": 4.824841860138116
+    },
+    {
+      "skr_group": "C9",
+      "n_deciles": 6,
+      "equal_weight_mean_residual_across_population_deciles": 0.8866974881781782,
+      "weighted_mean_residual": 1.1208122835261627,
+      "mean_mae_across_population_deciles": 4.835779365679907
+    }
+  ],
+  "regression_control": {
+    "base_features": [
+      "lag1_log_folkmangd",
+      "lag1_andel_20_34",
+      "lag1_inflyttare_medelalder",
+      "lag1_andel_studerande",
+      "lag1_andel_eftergymnasial",
+      "lag1_befolkningstillvaxt_pct",
+      "northing_sweref99tm"
+    ],
+    "base_r2": 0.07096265244917266,
+    "base_plus_skr_r2": 0.09513095915944825,
+    "incremental_r2_from_skr": 0.02416830671027559,
+    "skr_coefficients_vs_reference_A1": {
+      "A2": -5.812028620820614,
+      "B3": -3.0537395136534355,
+      "B4": -5.121282939330795,
+      "B5": -3.777023148636184,
+      "C6": -3.394598113304352,
+      "C7": -3.22232603498813,
+      "C8": -2.7775680682511146,
+      "C9": -3.67905697639853
+    },
+    "note": "Diagnostic only; not a forecast correction."
+  },
+  "skr_adjusted_residual_means": [
+    {
+      "skr_group": "A1",
+      "n": 18,
+      "municipalities": 3,
+      "mean_raw_residual": 0.08383266728536472,
+      "mean_residual_after_size_demo_north": 3.1208289837505903,
+      "mae_after_size_demo_north": 3.355955967061279
+    },
+    {
+      "skr_group": "A2",
+      "n": 258,
+      "municipalities": 43,
+      "mean_raw_residual": -0.0045821351904814,
+      "mean_residual_after_size_demo_north": -0.9562877305073879,
+      "mae_after_size_demo_north": 5.373499620600429
+    },
+    {
+      "skr_group": "B3",
+      "n": 138,
+      "municipalities": 23,
+      "mean_raw_residual": 0.6110172483897695,
+      "mean_residual_after_size_demo_north": 0.42582471940980077,
+      "mae_after_size_demo_north": 1.9969640595838178
+    },
+    {
+      "skr_group": "B4",
+      "n": 378,
+      "municipalities": 63,
+      "mean_raw_residual": 1.3650399203813126,
+      "mean_residual_after_size_demo_north": -0.7816466736067677,
+      "mae_after_size_demo_north": 4.646833411922579
+    },
+    {
+      "skr_group": "B5",
+      "n": 144,
+      "municipalities": 24,
+      "mean_raw_residual": 2.0043928010450314,
+      "mean_residual_after_size_demo_north": -0.026200447064765382,
+      "mae_after_size_demo_north": 3.8795701589202656
+    },
+    {
+      "skr_group": "C6",
+      "n": 162,
+      "municipalities": 27,
+      "mean_raw_residual": 1.4074355334769801,
+      "mean_residual_after_size_demo_north": 0.39632830363338795,
+      "mae_after_size_demo_north": 3.0699329699240763
+    },
+    {
+      "skr_group": "C7",
+      "n": 306,
+      "municipalities": 51,
+      "mean_raw_residual": 2.7391735903739582,
+      "mean_residual_after_size_demo_north": 0.7178177732151605,
+      "mae_after_size_demo_north": 4.726876601545879
+    },
+    {
+      "skr_group": "C8",
+      "n": 210,
+      "municipalities": 35,
+      "mean_raw_residual": 2.43641450769361,
+      "mean_residual_after_size_demo_north": 0.6250166181790343,
+      "mae_after_size_demo_north": 4.351684341287932
+    },
+    {
+      "skr_group": "C9",
+      "n": 126,
+      "municipalities": 21,
+      "mean_raw_residual": 1.120812283526163,
+      "mean_residual_after_size_demo_north": 0.1262531339323967,
+      "mae_after_size_demo_north": 4.7257867619501095
+    }
+  ],
+  "lulea": {
+    "skr_group": "B3",
+    "group_adjusted_context": {
+      "skr_group": "B3",
+      "n": 138,
+      "municipalities": 23,
+      "mean_raw_residual": 0.6110172483897695,
+      "mean_residual_after_size_demo_north": 0.42582471940980077,
+      "mae_after_size_demo_north": 1.9969640595838178
+    }
+  },
+  "interpretation_guardrail": "Persistent C7/C8 positive residual after adjustment means bias is not explained only by small population; this does not prove causality."
+}
