@@ -1,0 +1,145 @@
+{
+  "status": "short_term_monthly_family_1_rolling_benchmark",
+  "generated_at_utc": "2026-10-19T14:34:04.820061+00:00",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "target": "sum of Lulea all_inmigrations over t+1..t+h",
+  "baseline": "same forecast-calendar months one year earlier",
+  "model": "fixed Ridge correction to seasonal-naive forecast",
+  "ridge_alpha": 10.0,
+  "min_train_origins": 24,
+  "features": [
+    "bas_workplace_employed_yoy_pct",
+    "bas_residence_employed_yoy_pct",
+    "bas_workplace_residence_gap_pct",
+    "gdp_kalenderkorrigerad_volymforandring_fran_motsvarande_manad_foreg_ar_procent",
+    "gdp_sasongrensad_volymforandring_fran_foregaende_manad_procent",
+    "asylum_seekers_sweden_change_3m_pct"
+  ],
+  "horizons_months": [
+    3,
+    6,
+    9,
+    12
+  ],
+  "leakage_control": "training row target_end must be <= current forecast origin",
+  "source_break_2025": "reported separately; no parameter tuning on break",
+  "summaries": {
+    "3": {
+      "n_origins": 39,
+      "first_origin": "2023M03",
+      "last_origin": "2026M05",
+      "seasonal_naive": {
+        "rmse": 100.98502046825736,
+        "mae": 80.17948717948718,
+        "bias": -28.435897435897434
+      },
+      "monthly_model": {
+        "rmse": 102.71797884269756,
+        "mae": 79.71009834112851,
+        "bias": -22.913886941406506
+      },
+      "delta_pct": {
+        "rmse": 1.716054882600071,
+        "mae": -0.5854225998077389
+      },
+      "pre_2025": {
+        "n": 19,
+        "seasonal_rmse": 116.69415716217104,
+        "monthly_rmse": 124.07428508441713
+      },
+      "post_2025": {
+        "n": 17,
+        "seasonal_rmse": 80.37595484749814,
+        "monthly_rmse": 78.88432458076379
+      }
+    },
+    "6": {
+      "n_origins": 33,
+      "first_origin": "2023M06",
+      "last_origin": "2026M02",
+      "seasonal_naive": {
+        "rmse": 162.7056274752696,
+        "mae": 127.96969696969697,
+        "bias": -100.81818181818181
+      },
+      "monthly_model": {
+        "rmse": 175.0415729974546,
+        "mae": 137.66021610261419,
+        "bias": -95.39795361270194
+      },
+      "delta_pct": {
+        "rmse": 7.581757136249023,
+        "mae": 7.572510807157662
+      },
+      "pre_2025": {
+        "n": 13,
+        "seasonal_rmse": 195.7816680347308,
+        "monthly_rmse": 230.9768123208436
+      },
+      "post_2025": {
+        "n": 14,
+        "seasonal_rmse": 98.90868804826283,
+        "monthly_rmse": 81.0038355293901
+      }
+    },
+    "9": {
+      "n_origins": 27,
+      "first_origin": "2023M09",
+      "last_origin": "2025M11",
+      "seasonal_naive": {
+        "rmse": 236.3823017753076,
+        "mae": 199.77777777777777,
+        "bias": -199.77777777777777
+      },
+      "monthly_model": {
+        "rmse": 269.14843553313665,
+        "mae": 204.56914160395638,
+        "bias": -200.77570714187598
+      },
+      "delta_pct": {
+        "rmse": 13.861500421877926,
+        "mae": 2.3983467428035254
+      },
+      "pre_2025": {
+        "n": 7,
+        "seasonal_rmse": 263.3021078533174,
+        "monthly_rmse": 332.5196174950245
+      },
+      "post_2025": {
+        "n": 11,
+        "seasonal_rmse": 126.16619630831822,
+        "monthly_rmse": 81.32302024516547
+      }
+    },
+    "12": {
+      "n_origins": 21,
+      "first_origin": "2023M12",
+      "last_origin": "2025M08",
+      "seasonal_naive": {
+        "rmse": 303.337781233742,
+        "mae": 264.85714285714283,
+        "bias": -264.85714285714283
+      },
+      "monthly_model": {
+        "rmse": 336.6234869420991,
+        "mae": 271.5265477930197,
+        "bias": -269.07244399192894
+      },
+      "delta_pct": {
+        "rmse": 10.97314867042829,
+        "mae": 2.5181140534594304
+      },
+      "pre_2025": {
+        "n": 1,
+        "seasonal_rmse": 333.0,
+        "monthly_rmse": 392.0111194689657
+      },
+      "post_2025": {
+        "n": 8,
+        "seasonal_rmse": 145.06420992098637,
+        "monthly_rmse": 102.27193932686077
+      }
+    }
+  }
+}
