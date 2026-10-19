@@ -1,0 +1,303 @@
+{
+  "status": "short_term_monthly_candidate_family_1_source_audit",
+  "generated_at_utc": "2026-10-19T13:43:25.471122+00:00",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "sources": [
+    {
+      "id": "scb_bas_employment_monthly",
+      "label": "SCB BAS sysselsättning månadsvis",
+      "pxweb_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__AM__AM0210__AM0210B/YrkStallningM/",
+      "api_url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210B/YrkStallningM",
+      "role": "local_labour_market",
+      "expected_frequency": "month",
+      "reachable": true,
+      "title": "Sysselsatta. Preliminär statistik efter region, yrkesställning, kön, ålder, födelseregion, tabellinnehåll och månad",
+      "variables": [
+        {
+          "code": "Region",
+          "text": "region",
+          "time": false,
+          "n_values": 312,
+          "first_value": "00",
+          "last_value": "2584",
+          "first_text": "Riket",
+          "last_text": "Kiruna"
+        },
+        {
+          "code": "Yrkesstallning",
+          "text": "yrkesställning",
+          "time": false,
+          "n_values": 4,
+          "first_value": "ANST",
+          "last_value": "TOT",
+          "first_text": "anställda",
+          "last_text": "totalt"
+        },
+        {
+          "code": "Kon",
+          "text": "kön",
+          "time": false,
+          "n_values": 3,
+          "first_value": "1",
+          "last_value": "1+2",
+          "first_text": "män",
+          "last_text": "totalt"
+        },
+        {
+          "code": "Alder",
+          "text": "ålder",
+          "time": false,
+          "n_values": 10,
+          "first_value": "15-24",
+          "last_value": "55-74",
+          "first_text": "15–24 år",
+          "last_text": "55–74 år"
+        },
+        {
+          "code": "Fodelseregion",
+          "text": "födelseregion",
+          "time": false,
+          "n_values": 3,
+          "first_value": "tot",
+          "last_value": "ut",
+          "first_text": "totalt",
+          "last_text": "utrikes född"
+        },
+        {
+          "code": "ContentsCode",
+          "text": "tabellinnehåll",
+          "time": false,
+          "n_values": 2,
+          "first_value": "00000105",
+          "last_value": "00000106",
+          "first_text": "sysselsatta efter arbetsställets belägenhet",
+          "last_text": "sysselsatta efter bostadens belägenhet"
+        },
+        {
+          "code": "Tid",
+          "text": "månad",
+          "time": true,
+          "n_values": 79,
+          "first_value": "2020M01",
+          "last_value": "2026M07",
+          "first_text": "2020M01",
+          "last_text": "2026M07"
+        }
+      ],
+      "time_range": {
+        "code": "Tid",
+        "text": "månad",
+        "time": true,
+        "n_values": 79,
+        "first_value": "2020M01",
+        "last_value": "2026M07",
+        "first_text": "2020M01",
+        "last_text": "2026M07"
+      }
+    },
+    {
+      "id": "scb_asylum_seekers",
+      "label": "SCB asylsökande",
+      "pxweb_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BE__BE0101__BE0101P/AsylsokandeN/",
+      "api_url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101P/AsylsokandeN",
+      "role": "exogenous_migration",
+      "expected_frequency": "month_or_quarter",
+      "reachable": true,
+      "title": "Asylsökande, antal efter medborgarskapsland, kön, period, tabellinnehåll och år",
+      "variables": [
+        {
+          "code": "Medbland",
+          "text": "medborgarskapsland",
+          "time": false,
+          "n_values": 100,
+          "first_value": "SAMTL",
+          "last_value": "OVMEDB",
+          "first_text": "Samtliga medborgarskap",
+          "last_text": "övriga medborgarskap"
+        },
+        {
+          "code": "Kon",
+          "text": "kön",
+          "time": false,
+          "n_values": 3,
+          "first_value": "1",
+          "last_value": "1+2",
+          "first_text": "män",
+          "last_text": "totalt"
+        },
+        {
+          "code": "Period",
+          "text": "period",
+          "time": false,
+          "n_values": 19,
+          "first_value": "hel",
+          "last_value": "12",
+          "first_text": "hela året",
+          "last_text": "december"
+        },
+        {
+          "code": "ContentsCode",
+          "text": "tabellinnehåll",
+          "time": false,
+          "n_values": 1,
+          "first_value": "000003WL",
+          "last_value": "000003WL",
+          "first_text": "Antal",
+          "last_text": "Antal"
+        },
+        {
+          "code": "Tid",
+          "text": "år",
+          "time": true,
+          "n_values": 25,
+          "first_value": "2002",
+          "last_value": "2026",
+          "first_text": "2002",
+          "last_text": "2026"
+        }
+      ],
+      "time_range": {
+        "code": "Tid",
+        "text": "år",
+        "time": true,
+        "n_values": 25,
+        "first_value": "2002",
+        "last_value": "2026",
+        "first_text": "2002",
+        "last_text": "2026"
+      }
+    },
+    {
+      "id": "scb_gdp_indicator_monthly",
+      "label": "SCB BNP-indikator",
+      "pxweb_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__NR__NR9999__NR9999A/NR9999ENS2010BNPIndN/",
+      "api_url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/NR/NR9999/NR9999A/NR9999ENS2010BNPIndN",
+      "role": "national_business_cycle",
+      "expected_frequency": "month",
+      "reachable": true,
+      "title": "Nationalräkenskaper, BNP-indikator (ENS2010) 2011=100 efter BNP, marknadspris, tabellinnehåll och månad",
+      "variables": [
+        {
+          "code": "BNPMarknadspris",
+          "text": "BNP, marknadspris",
+          "time": false,
+          "n_values": 1,
+          "first_value": "BNPM",
+          "last_value": "BNPM",
+          "first_text": "BNP till marknadspris",
+          "last_text": "BNP till marknadspris"
+        },
+        {
+          "code": "ContentsCode",
+          "text": "tabellinnehåll",
+          "time": false,
+          "n_values": 6,
+          "first_value": "000000X2",
+          "last_value": "0000026Q",
+          "first_text": "säsongrensad, volymförändring från föregående månad, procent",
+          "last_text": "fasta priser 2011=100"
+        },
+        {
+          "code": "Tid",
+          "text": "månad",
+          "time": true,
+          "n_values": 320,
+          "first_value": "2000M01",
+          "last_value": "2026M08",
+          "first_text": "2000M01",
+          "last_text": "2026M08"
+        }
+      ],
+      "time_range": {
+        "code": "Tid",
+        "text": "månad",
+        "time": true,
+        "n_values": 320,
+        "first_value": "2000M01",
+        "last_value": "2026M08",
+        "first_text": "2000M01",
+        "last_text": "2026M08"
+      }
+    },
+    {
+      "id": "scb_monthly_population_ckm",
+      "label": "SCB månadsvis befolkningsstatistik CKM",
+      "pxweb_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BE__BE0101__BE0101G/MBefStatRegionCKM/",
+      "api_url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101G/MBefStatRegionCKM",
+      "role": "local_demographic_realtime",
+      "expected_frequency": "month",
+      "reachable": true,
+      "title": "Befolkning efter region, förändringar, kön, tabellinnehåll och månad",
+      "variables": [
+        {
+          "code": "Region",
+          "text": "region",
+          "time": false,
+          "n_values": 312,
+          "first_value": "00",
+          "last_value": "2584",
+          "first_text": "Riket",
+          "last_text": "Kiruna"
+        },
+        {
+          "code": "Forandringar",
+          "text": "förändringar",
+          "time": false,
+          "n_values": 21,
+          "first_value": "100",
+          "last_value": "270",
+          "first_text": "folkmängd",
+          "last_text": "justeringspost"
+        },
+        {
+          "code": "Kon",
+          "text": "kön",
+          "time": false,
+          "n_values": 3,
+          "first_value": "TotSa",
+          "last_value": "2",
+          "first_text": "totalt, samtliga män och kvinnor",
+          "last_text": "kvinnor"
+        },
+        {
+          "code": "ContentsCode",
+          "text": "tabellinnehåll",
+          "time": false,
+          "n_values": 1,
+          "first_value": "000007SR",
+          "last_value": "000007SR",
+          "first_text": "Befolkning",
+          "last_text": "Befolkning"
+        },
+        {
+          "code": "Tid",
+          "text": "månad",
+          "time": true,
+          "n_values": 20,
+          "first_value": "2025M01",
+          "last_value": "2026M08",
+          "first_text": "2025M01",
+          "last_text": "2026M08"
+        }
+      ],
+      "time_range": {
+        "code": "Tid",
+        "text": "månad",
+        "time": true,
+        "n_values": 20,
+        "first_value": "2025M01",
+        "last_value": "2026M08",
+        "first_text": "2025M01",
+        "last_text": "2026M08"
+      }
+    }
+  ],
+  "forecast_horizons_months": [
+    3,
+    6,
+    9,
+    12
+  ],
+  "next_gate": "Use metadata to define exact API queries and freeze a real-time-safe monthly feature table before modelling."
+}
