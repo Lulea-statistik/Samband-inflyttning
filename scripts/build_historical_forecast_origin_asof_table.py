@@ -14,10 +14,12 @@ pop={x["reference_year"]:x for x in reg["annual_population_final"]["observed"]}
 housing={x["reference_year"]:x for x in reg["housing_stock"]["observed"]}
 
 rows=[]
+ORIGIN_OFFSETS=[7,10,14]
 for p in proj:
     pub=datetime.fromisoformat(p["published"])
     year=pub.year
-    origin=(pub+timedelta(days=10)).date().isoformat()
+    origins={str(off):(pub+timedelta(days=off)).date().isoformat() for off in ORIGIN_OFFSETS}
+    origin=origins["10"]
 
     prev=year-1
     # Population/final migration: use actual date when registered, else infer Feb window conservatively.
@@ -29,7 +31,8 @@ for p in proj:
         pop_pub=f"{year}-03-01"
         pop_quality="conservative_fallback"
         pop_source="SCB annual population fallback"
-    pop_available=pop_pub <= origin
+    pop_available_by_offset={k: pop_pub <= v for k,v in origins.items()}
+    pop_available=pop_available_by_offset["10"]
 
     # Housing: exact only if known; otherwise conservative end-April availability rule.
     if prev in housing:
@@ -40,14 +43,16 @@ for p in proj:
         housing_pub=f"{year}-04-30"
         housing_quality="conservative_fallback"
         housing_source="SCB housing fallback"
-    housing_available=housing_pub <= origin
+    housing_available_by_offset={k: housing_pub <= v for k,v in origins.items()}
+    housing_available=housing_available_by_offset["10"]
 
     # Kolada N03937 is an annual mean for year T. Current KPI metadata shows
     # publication in January of T+1 (2026 period -> 2027-01-19).
     # For historical years without archived exact publication dates, use this only
     # as an inferred annual pattern and conservatively place availability at March 1 Y.
     kolada_pub=f"{year}-03-01"
-    kolada_available=kolada_pub <= origin
+    kolada_available_by_offset={k: kolada_pub <= v for k,v in origins.items()}
+    kolada_available=kolada_available_by_offset["10"]
     kolada_quality="inferred_annual_pattern"
     kolada_note="Current Kolada metadata shows annual N03937 period T published in January T+1; historical exact dates are not archived here, so March 1 Y is used as a conservative inferred cutoff for Y-1."
 
@@ -55,22 +60,30 @@ for p in proj:
       "forecast_year":year,
       "scb_national_projection_published":p["published"],
       "forecast_origin":origin,
-      "origin_rule":"SCB national projection publication + 10 days",
+      "forecast_origins_by_offset_days":origins,
+      "origin_rule":"SCB national projection publication + 10 days (default); sensitivity +7 and +14 days",
       "population_final_reference_year":prev,
       "population_final_published":pop_pub,
       "population_final_quality":pop_quality,
       "population_final_available":pop_available,
+      "population_final_available_by_offset":pop_available_by_offset,
       "housing_reference_year":prev,
       "housing_published":housing_pub,
       "housing_quality":housing_quality,
       "housing_available":housing_available,
+      "housing_available_by_offset":housing_available_by_offset,
       "kolada_unemployment_reference_year":prev,
       "kolada_unemployment_published_assumed":kolada_pub,
       "kolada_unemployment_available":kolada_available,
+      "kolada_unemployment_available_by_offset":kolada_available_by_offset,
       "kolada_unemployment_quality":kolada_quality,
       "kolada_unemployment_note":kolada_note,
       "rates_25_29_realtime_policy":"use latest BAS month available with 1-2 month conservative lag",
       "macro_core4_operationally_available": bool(pop_available and housing_available and kolada_available),
+      "macro_core4_operationally_available_by_offset": {
+          k: bool(pop_available_by_offset[k] and housing_available_by_offset[k] and kolada_available_by_offset[k])
+          for k in origins
+      },
       "macro_core4_fully_certified": bool(
           pop_available and housing_available and kolada_available
           and pop_quality=="observed"
@@ -83,6 +96,7 @@ result={
   "status":"historical_forecast_origin_asof_table_initial",
   "generated_from":"docs/data/scb_publication_calendar_registry.json",
   "default_origin_offset_days":10,
+  "origin_offset_sensitivity_days":ORIGIN_OFFSETS,
   "rows":rows,
   "important_note":"Core4 cannot be called fully as-of certified until source-specific timing for Kolada unemployment is documented. Housing uses conservative fallback where exact historical publication dates are not registered."
 }
