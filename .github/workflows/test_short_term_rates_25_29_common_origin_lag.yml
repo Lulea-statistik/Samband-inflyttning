@@ -1,0 +1,33 @@
+name: Compare rates 25-29 lags on common origins
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/test_short_term_rates_25_29_common_origin_lag.py
+      - .github/workflows/test_short_term_rates_25_29_common_origin_lag.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -q numpy scikit-learn
+      - run: python scripts/test_short_term_rates_25_29_common_origin_lag.py
+      - name: Commit common-origin lag results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/short_term_monthly_rates_25_29_common_origin_lag.json
+          git add docs/data/short_term_monthly_rates_25_29_common_origin_lag_predictions.csv
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Compare rates 25-29 publication lags on common origins"
+          git pull --rebase origin main
+          git push origin HEAD:main
