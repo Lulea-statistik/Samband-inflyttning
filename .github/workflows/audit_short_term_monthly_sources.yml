@@ -1,0 +1,31 @@
+name: Audit short-term monthly sources
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/audit_short_term_monthly_sources.py
+      - .github/workflows/audit_short_term_monthly_sources.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/audit_short_term_monthly_sources.py
+      - name: Commit source audit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/short_term_monthly_source_audit.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record short-term monthly source audit"
+          git pull --rebase origin main
+          git push origin HEAD:main
