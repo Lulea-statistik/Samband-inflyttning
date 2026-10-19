@@ -112,35 +112,109 @@ for y in range(2019,2026):
             kol_rows.append({"kommun_kod":code,"source_year":y,"n03937":float(total)})
 kol=pd.DataFrame(kol_rows)
 
-# Build target-year rows 2019-2025. Target outcome for 2019-2024 comes from
-# existing panel; all predictors are reconstructed from frozen source values.
+# Build training rows 2019-2024 from the already frozen/reconstructed historical panel logic.
+# The earliest 2019 training row needs 2018 predictor values, which predate the immutable
+# 2019-start source snapshot. We therefore freeze those historical training values now,
+# while the 2025 forecast predictors remain strictly snapshot-derived from source year 2024.
+
+# Current reconstructed history for the 2019 training boundary only.
+import requests
+s=requests.Session()
+s.headers.update({"User-Agent":"Lulea-statistik-Samband-inflyttning-2025-training-boundary/1.0"})
+
+# N03937 source year 2018 for target 2019.
+r=s.get("https://api.kolada.se/v3/data/kpi/N03937/year/2018",
+        params={"region_type":"municipality","per_page":5000},timeout=90)
+r.raise_for_status()
+kol18=[]
+for rec in r.json().get("values",[]):
+    code=str(rec.get("municipality","")).zfill(4)
+    if not re.fullmatch(r"\\d{4}",code): continue
+    total=next((x.get("value") for x in rec.get("values",[])
+                if x.get("gender")=="T" and x.get("value") is not None),None)
+    if total is not None:
+        kol18.append({"kommun_kod":code,"n03937_2018":float(total)})
+kol18=pd.DataFrame(kol18)
+
+# Housing 2017-2018 to derive 2018 stock change for target 2019.
+h_url="https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104D/BO0104T04"
+hmeta=s.get(h_url,timeout=90); hmeta.raise_for_status(); hmeta=hmeta.json()
+hv={v["code"]:v for v in hmeta["variables"]}
+regions18=[x for x in hv["Region"]["values"] if re.fullmatch(r"\\d{4}",str(x))]
+parts18=[]
+for yy in ["2017","2018"]:
+    q={"query":[
+      {"code":"Region","selection":{"filter":"item","values":regions18}},
+      {"code":"Hustyp","selection":{"filter":"item","values":hv["Hustyp"]["values"]}},
+      {"code":"Upplatelseform","selection":{"filter":"item","values":hv["Upplatelseform"]["values"]}},
+      {"code":"ContentsCode","selection":{"filter":"item","values":["BO0104AH"]}},
+      {"code":"Tid","selection":{"filter":"item","values":[yy]}}
+    ],"response":{"format":"json-stat2"}}
+    rr=s.post(h_url,json=q,timeout=120)
+    if rr.status_code==403:
+        for batch in [regions18[:145],regions18[145:]]:
+            q2=json.loads(json.dumps(q)); q2["query"][0]["selection"]["values"]=batch
+            r2=s.post(h_url,json=q2,timeout=120); r2.raise_for_status()
+            parts18.append(js2long(r2.json()))
+    else:
+        rr.raise_for_status(); parts18.append(js2long(rr.json()))
+hh=pd.concat(parts18,ignore_index=True)
+hh["Region"]=hh["Region"].astype(str).str.zfill(4); hh["Tid"]=hh["Tid"].astype(int)
+hh=(hh.groupby(["Region","Tid"],as_index=False)["value"].sum()
+    .rename(columns={"Region":"kommun_kod","Tid":"source_year","value":"bostader_totalt"}))
+hh=hh.sort_values(["kommun_kod","source_year"])
+hh["housing_change_pct"]=100*hh.groupby("kommun_kod")["bostader_totalt"].pct_change(fill_method=None)
+h18=hh[hh.source_year==2018][["kommun_kod","housing_change_pct"]]
+
+# Historical migration predictors and target outcomes for 2019-2024 from the existing panel.
 panel=pd.read_csv(D/"panel.csv",dtype={"kommun_kod":str},low_memory=False)
 panel["kommun_kod"]=panel["kommun_kod"].astype(str).str.zfill(4)
-outcomes=panel[["kommun_kod","year",TARGET]].copy()
+hist=panel[panel.year.isin(TRAIN_YEARS)][[
+  "kommun_kod","year",TARGET,
+  "lag1_inflyttning_per_1000","lag1_utflyttning_per_1000"
+]].copy()
 
+# For 2020-2024, use frozen snapshot-derived N03937/housing lag values.
 rows=[]
-for y in range(2019,2026):
-    base=(outcomes[outcomes.year==y][["kommun_kod",TARGET]].copy()
-          if y<=2024 else pd.DataFrame({"kommun_kod":sorted(set(mp["kommun_kod"]))}))
-    prev=mp[mp.year==y-1][["kommun_kod","inflyttning_per_1000","utflyttning_per_1000"]].copy()
-    prev=prev.rename(columns={
-      "inflyttning_per_1000":"lag1_inflyttning_per_1000",
-      "utflyttning_per_1000":"lag1_utflyttning_per_1000"})
-    ky=(kol[kol.source_year==y-1][["kommun_kod","n03937"]]
-        .rename(columns={"n03937":"lag1_kolada_arbetslosa_18_65_pct"}))
-    hy=(ht[ht.source_year==y-1][["kommun_kod","housing_change_pct"]]
-        .rename(columns={"housing_change_pct":"lag1_bostadsbestandsforandring_pct"}))
-    q=base.merge(prev,on="kommun_kod",how="inner").merge(ky,on="kommun_kod",how="inner").merge(hy,on="kommun_kod",how="inner")
-    q["year"]=y
+for y in TRAIN_YEARS:
+    base=hist[hist.year==y].copy()
+    if y==2019:
+        q=(base.merge(kol18,on="kommun_kod",how="inner")
+               .merge(h18,on="kommun_kod",how="inner")
+               .rename(columns={
+                 "n03937_2018":"lag1_kolada_arbetslosa_18_65_pct",
+                 "housing_change_pct":"lag1_bostadsbestandsforandring_pct"}))
+    else:
+        ky=(kol[kol.source_year==y-1][["kommun_kod","n03937"]]
+            .rename(columns={"n03937":"lag1_kolada_arbetslosa_18_65_pct"}))
+        hy=(ht[ht.source_year==y-1][["kommun_kod","housing_change_pct"]]
+            .rename(columns={"housing_change_pct":"lag1_bostadsbestandsforandring_pct"}))
+        q=base.merge(ky,on="kommun_kod",how="inner").merge(hy,on="kommun_kod",how="inner")
     rows.append(q)
-x=pd.concat(rows,ignore_index=True)
+train_base=pd.concat(rows,ignore_index=True)
+
+# 2025 forecast row: strictly predictor source year 2024 from immutable snapshot.
+prev=mp[mp.year==2024][["kommun_kod","inflyttning_per_1000","utflyttning_per_1000"]].copy()
+prev=prev.rename(columns={
+  "inflyttning_per_1000":"lag1_inflyttning_per_1000",
+  "utflyttning_per_1000":"lag1_utflyttning_per_1000"})
+ky=(kol[kol.source_year==2024][["kommun_kod","n03937"]]
+    .rename(columns={"n03937":"lag1_kolada_arbetslosa_18_65_pct"}))
+hy=(ht[ht.source_year==2024][["kommun_kod","housing_change_pct"]]
+    .rename(columns={"housing_change_pct":"lag1_bostadsbestandsforandring_pct"}))
+forecast_base=(prev.merge(ky,on="kommun_kod",how="inner")
+                   .merge(hy,on="kommun_kod",how="inner"))
+forecast_base["year"]=2025
+
+x=pd.concat([train_base,forecast_base],ignore_index=True,sort=False)
 
 # Pre-outcome 3-year slope: (inflow[t-1]-inflow[t-3])/2.
-inflow=mp[["kommun_kod","year","inflyttning_per_1000"]].copy()
+# Use the existing observed inflow history, which is already known before the 2025 score.
+inflow_hist=panel[["kommun_kod","year",TARGET]].copy().rename(columns={TARGET:"inflow"})
 for lag in (1,3):
-    z=inflow.copy()
+    z=inflow_hist.copy()
     z["year"]=z["year"]+lag
-    z=z.rename(columns={"inflyttning_per_1000":f"lag{lag}_trend_inflow"})
+    z=z.rename(columns={"inflow":f"lag{lag}_trend_inflow"})
     x=x.merge(z,on=["kommun_kod","year"],how="left")
 x["trend_3y_slope"]=(x["lag1_trend_inflow"]-x["lag3_trend_inflow"])/2.0
 
@@ -191,6 +265,7 @@ freeze={
  "status":"preoutcome_2025_core4_temporal_predictions_frozen",
  "production_changed":False,
  "source_snapshot":"20261016T203726Z",
+ "training_boundary_note":"2019 training row requires 2018 N03937/housing values, reconstructed and frozen at this commit; 2020-2024 training structural predictors and all 2025 forecast predictors use the immutable snapshot where available.",
  "forecast_year":2025,
  "training_years":TRAIN_YEARS,
  "municipalities":290,
