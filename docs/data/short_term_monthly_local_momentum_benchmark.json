@@ -1,0 +1,228 @@
+{
+  "status": "short_term_monthly_local_momentum_benchmark",
+  "generated_at_utc": "2026-10-19T14:43:07.522574+00:00",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "purpose": "Test whether apparent recent gains can be explained by local migration level/momentum before crediting external indicators.",
+  "target": "sum of all_inmigrations over t+1..t+h",
+  "horizons_months": [
+    3,
+    6,
+    9,
+    12
+  ],
+  "arms": [
+    "seasonal_naive",
+    "seasonal_x_recent_3m_ratio",
+    "seasonal_x_recent_6m_ratio",
+    "seasonal_plus_recent_3m_shift",
+    "seasonal_plus_recent_6m_shift"
+  ],
+  "selection": "No tuning. All four local momentum formulas fixed before evaluation.",
+  "summaries": {
+    "3": {
+      "n_origins": 300,
+      "first_origin": "2001M06",
+      "last_origin": "2026M05",
+      "best_by_rmse": "seasonal_naive",
+      "arms": {
+        "seasonal_naive": {
+          "rmse": 79.1387178735331,
+          "mae": 62.336666666666666,
+          "bias": -6.423333333333333,
+          "pre_2025_rmse": 78.82831706581443,
+          "post_2025_rmse": 80.37595484749814
+        },
+        "seasonal_x_recent_3m_ratio": {
+          "rmse": 119.66223607833852,
+          "mae": 91.80283252041549,
+          "bias": 4.476702947950584,
+          "pre_2025_rmse": 118.80313732851103,
+          "post_2025_rmse": 140.89894433688323,
+          "delta_rmse_pct_vs_seasonal": 51.20567946218646,
+          "delta_mae_pct_vs_seasonal": 47.26939605435349
+        },
+        "seasonal_x_recent_6m_ratio": {
+          "rmse": 100.51903280680287,
+          "mae": 76.57955129189048,
+          "bias": 2.470634575808005,
+          "pre_2025_rmse": 97.90564778871226,
+          "post_2025_rmse": 142.60013818511314,
+          "delta_rmse_pct_vs_seasonal": 27.016251346700336,
+          "delta_mae_pct_vs_seasonal": 22.84832569149855
+        },
+        "seasonal_plus_recent_3m_shift": {
+          "rmse": 110.78662675010312,
+          "mae": 90.01,
+          "bias": -0.03666666666666667,
+          "pre_2025_rmse": 110.74736372225107,
+          "post_2025_rmse": 118.4694053331914,
+          "delta_rmse_pct_vs_seasonal": 39.99042406416626,
+          "delta_mae_pct_vs_seasonal": 44.39334794930754
+        },
+        "seasonal_plus_recent_6m_shift": {
+          "rmse": 93.80265188149001,
+          "mae": 75.02166666666666,
+          "bias": -0.37833333333333335,
+          "pre_2025_rmse": 93.44285400331967,
+          "post_2025_rmse": 103.60984509205677,
+          "delta_rmse_pct_vs_seasonal": 18.529405582979596,
+          "delta_mae_pct_vs_seasonal": 20.349179188278697
+        }
+      }
+    },
+    "6": {
+      "n_origins": 297,
+      "first_origin": "2001M06",
+      "last_origin": "2026M02",
+      "best_by_rmse": "seasonal_naive",
+      "arms": {
+        "seasonal_naive": {
+          "rmse": 112.41927893423919,
+          "mae": 90.88215488215488,
+          "bias": -14.558922558922559,
+          "pre_2025_rmse": 110.43394876445916,
+          "post_2025_rmse": 98.90868804826283
+        },
+        "seasonal_x_recent_3m_ratio": {
+          "rmse": 202.67446473255373,
+          "mae": 158.29449637034054,
+          "bias": 7.814126801681509,
+          "pre_2025_rmse": 199.48025026938976,
+          "post_2025_rmse": 272.82181543956017,
+          "delta_rmse_pct_vs_seasonal": 80.28443755728965,
+          "delta_mae_pct_vs_seasonal": 74.17555357880536
+        },
+        "seasonal_x_recent_6m_ratio": {
+          "rmse": 154.57235027126055,
+          "mae": 122.87369155284819,
+          "bias": 1.6660216430071655,
+          "pre_2025_rmse": 150.66725575775848,
+          "post_2025_rmse": 238.6310566498393,
+          "delta_rmse_pct_vs_seasonal": 37.49630111191091,
+          "delta_mae_pct_vs_seasonal": 35.20112029933282
+        },
+        "seasonal_plus_recent_3m_shift": {
+          "rmse": 187.73179163164025,
+          "mae": 152.73400673400673,
+          "bias": -2.606060606060606,
+          "pre_2025_rmse": 186.20846397992153,
+          "post_2025_rmse": 221.70395318339015,
+          "delta_rmse_pct_vs_seasonal": 66.99252424618014,
+          "delta_mae_pct_vs_seasonal": 68.05720213396562
+        },
+        "seasonal_plus_recent_6m_shift": {
+          "rmse": 145.9688288296477,
+          "mae": 120.25925925925925,
+          "bias": -3.5723905723905722,
+          "pre_2025_rmse": 145.3118642992966,
+          "post_2025_rmse": 172.63276464382835,
+          "delta_rmse_pct_vs_seasonal": 29.843235264863832,
+          "delta_mae_pct_vs_seasonal": 32.32439241256668
+        }
+      }
+    },
+    "9": {
+      "n_origins": 294,
+      "first_origin": "2001M06",
+      "last_origin": "2025M11",
+      "best_by_rmse": "seasonal_naive",
+      "arms": {
+        "seasonal_naive": {
+          "rmse": 141.25398073976513,
+          "mae": 113.63265306122449,
+          "bias": -22.965986394557824,
+          "pre_2025_rmse": 132.94417356421278,
+          "post_2025_rmse": 126.16619630831822
+        },
+        "seasonal_x_recent_3m_ratio": {
+          "rmse": 279.7610500038832,
+          "mae": 221.24842957484478,
+          "bias": 7.19615540451783,
+          "pre_2025_rmse": 276.43007768398354,
+          "post_2025_rmse": 360.8459672692464,
+          "delta_rmse_pct_vs_seasonal": 98.05533871593485,
+          "delta_mae_pct_vs_seasonal": 94.70497573935694
+        },
+        "seasonal_x_recent_6m_ratio": {
+          "rmse": 221.4051844154781,
+          "mae": 175.62292496349627,
+          "bias": 0.6822163152838053,
+          "pre_2025_rmse": 216.3403311296717,
+          "post_2025_rmse": 282.47245555440577,
+          "delta_rmse_pct_vs_seasonal": 56.74261585829361,
+          "delta_mae_pct_vs_seasonal": 54.55322060365153
+        },
+        "seasonal_plus_recent_3m_shift": {
+          "rmse": 260.4190761793291,
+          "mae": 212.24489795918367,
+          "bias": -7.129251700680272,
+          "pre_2025_rmse": 256.09195856347367,
+          "post_2025_rmse": 309.94237000976926,
+          "delta_rmse_pct_vs_seasonal": 84.36229182036583,
+          "delta_mae_pct_vs_seasonal": 86.7816091954023
+        },
+        "seasonal_plus_recent_6m_shift": {
+          "rmse": 215.58798533723697,
+          "mae": 172.34863945578232,
+          "bias": -7.818027210884353,
+          "pre_2025_rmse": 212.2675499781411,
+          "post_2025_rmse": 197.8402707420123,
+          "delta_rmse_pct_vs_seasonal": 52.62436089105253,
+          "delta_mae_pct_vs_seasonal": 51.67175526819925
+        }
+      }
+    },
+    "12": {
+      "n_origins": 291,
+      "first_origin": "2001M06",
+      "last_origin": "2025M08",
+      "best_by_rmse": "seasonal_naive",
+      "arms": {
+        "seasonal_naive": {
+          "rmse": 169.89135400292875,
+          "mae": 133.5189003436426,
+          "bias": -31.00343642611684,
+          "pre_2025_rmse": 155.79522230002087,
+          "post_2025_rmse": 145.06420992098637
+        },
+        "seasonal_x_recent_3m_ratio": {
+          "rmse": 382.45252112589924,
+          "mae": 306.60430148012637,
+          "bias": 10.117807002695205,
+          "pre_2025_rmse": 378.7035418033143,
+          "post_2025_rmse": 456.08587293615074,
+          "delta_rmse_pct_vs_seasonal": 125.11594152066512,
+          "delta_mae_pct_vs_seasonal": 129.6336329096535
+        },
+        "seasonal_x_recent_6m_ratio": {
+          "rmse": 289.9796653167724,
+          "mae": 235.58114402622888,
+          "bias": 1.3445378653136373,
+          "pre_2025_rmse": 279.6572606347917,
+          "post_2025_rmse": 377.0789495714011,
+          "delta_rmse_pct_vs_seasonal": 70.68535772089584,
+          "delta_mae_pct_vs_seasonal": 76.44029678188247
+        },
+        "seasonal_plus_recent_3m_shift": {
+          "rmse": 367.5022126309715,
+          "mae": 293.9587628865979,
+          "bias": -10.646048109965635,
+          "pre_2025_rmse": 362.8996435538521,
+          "post_2025_rmse": 354.83746279106435,
+          "delta_rmse_pct_vs_seasonal": 116.31601842706849,
+          "delta_mae_pct_vs_seasonal": 120.16266021516446
+        },
+        "seasonal_plus_recent_6m_shift": {
+          "rmse": 286.8913248991776,
+          "mae": 230.96219931271477,
+          "bias": -10.728522336769759,
+          "pre_2025_rmse": 278.3226312840385,
+          "post_2025_rmse": 265.6343821872462,
+          "delta_rmse_pct_vs_seasonal": 68.86752512092636,
+          "delta_mae_pct_vs_seasonal": 72.98090286714367
+        }
+      }
+    }
+  }
+}
