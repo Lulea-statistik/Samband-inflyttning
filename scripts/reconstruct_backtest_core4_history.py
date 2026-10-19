@@ -68,18 +68,6 @@ meta=s.get(url,timeout=90); meta.raise_for_status(); meta=meta.json()
 vars={v["code"]:v for v in meta["variables"]}
 regions=[x for x in vars["Region"]["values"] if re.fullmatch(r"\d{4}",str(x))]
 years=[str(y) for y in vars["Tid"]["values"] if str(y).isdigit() and 1990<=int(y)<=2025]
-query={
- "query":[
-  {"code":"Region","selection":{"filter":"item","values":regions}},
-  {"code":"Hustyp","selection":{"filter":"item","values":vars["Hustyp"]["values"]}},
-  {"code":"Upplatelseform","selection":{"filter":"item","values":vars["Upplatelseform"]["values"]}},
-  {"code":"ContentsCode","selection":{"filter":"item","values":["BO0104AH"]}},
-  {"code":"Tid","selection":{"filter":"item","values":years}}
- ],
- "response":{"format":"json-stat2"}
-}
-rr=s.post(url,json=query,timeout=180); rr.raise_for_status(); js=rr.json()
-
 def jsonstat_to_long(js):
     dims=js["id"]; sizes=js["size"]; values=js["value"]
     cats=[]
@@ -97,7 +85,39 @@ def jsonstat_to_long(js):
         row["value"]=float(v); out.append(row)
     return pd.DataFrame(out)
 
-h=jsonstat_to_long(js)
+# SCB rejects one very large POST with 403. Query one year at a time and combine.
+housing_parts=[]
+for yy in years:
+    query={
+     "query":[
+      {"code":"Region","selection":{"filter":"item","values":regions}},
+      {"code":"Hustyp","selection":{"filter":"item","values":vars["Hustyp"]["values"]}},
+      {"code":"Upplatelseform","selection":{"filter":"item","values":vars["Upplatelseform"]["values"]}},
+      {"code":"ContentsCode","selection":{"filter":"item","values":["BO0104AH"]}},
+      {"code":"Tid","selection":{"filter":"item","values":[yy]}}
+     ],
+     "response":{"format":"json-stat2"}
+    }
+    rr=s.post(url,json=query,timeout=120)
+    if rr.status_code==403:
+        # Fallback to two municipality batches if SCB still rejects the request size.
+        for batch_no,batch in enumerate([regions[:145],regions[145:]],start=1):
+            q2=json.loads(json.dumps(query))
+            q2["query"][0]["selection"]["values"]=batch
+            r2=s.post(url,json=q2,timeout=120)
+            r2.raise_for_status()
+            part=jsonstat_to_long(r2.json())
+            if not part.empty:
+                housing_parts.append(part)
+    else:
+        rr.raise_for_status()
+        part=jsonstat_to_long(rr.json())
+        if not part.empty:
+            housing_parts.append(part)
+
+if not housing_parts:
+    raise SystemExit("No housing data returned from SCB")
+h=pd.concat(housing_parts,ignore_index=True)
 h["Region"]=h["Region"].astype(str).str.zfill(4)
 ht=(h.groupby(["Region","Tid"],as_index=False)["value"].sum()
       .rename(columns={"Region":"kommun_kod","Tid":"source_year","value":"bostader_totalt"}))
