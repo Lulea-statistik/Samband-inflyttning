@@ -1,0 +1,33 @@
+name: Diagnose core-4 geographic error concentration
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/diagnose_core4_geographic_errors.py
+      - .github/workflows/diagnose_core4_geographic_errors.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy pandas
+      - run: python scripts/diagnose_core4_geographic_errors.py
+      - name: Commit geographic diagnostic
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/three_year_forecast_core4_geographic_error_diagnostic.json
+          git add docs/data/three_year_forecast_core4_geographic_error_rows.csv
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record core4 geographic error concentration diagnostic"
+          git pull --rebase origin main
+          git push origin HEAD:main
