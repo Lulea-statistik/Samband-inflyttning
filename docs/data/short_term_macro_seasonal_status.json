@@ -1,0 +1,29 @@
+{
+  "status": "macro_seasonal_v1_rejected",
+  "date": "2026-10-19",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "monthly_baseline": "seasonal_naive",
+  "conclusion": "Annual frozen core4 used as a direct annual-count anchor with historical monthly seasonality worsens short-term forecasts across all tested horizons and origin offsets.",
+  "delta_rmse_pct": {
+    "offset_7": {
+      "3m": 11.73660449263705,
+      "6m": 7.846136319423547,
+      "9m": 9.493110591902898,
+      "12m": 9.067889373308379
+    },
+    "offset_10": {
+      "3m": 11.617394633173461,
+      "6m": 8.4548083169953,
+      "9m": 9.922904241659847,
+      "12m": 9.294984636718828
+    },
+    "offset_14": {
+      "3m": 14.908198447330957,
+      "6m": 34.86922290777497,
+      "9m": 29.705082793505788,
+      "12m": 22.523197813140538
+    }
+  },
+  "next_gate": "common_origin_compare_seasonal_family1_bas_yoy_rates_25_29"
+}
