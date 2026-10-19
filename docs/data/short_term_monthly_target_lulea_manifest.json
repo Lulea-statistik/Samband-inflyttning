@@ -1,0 +1,41 @@
+{
+  "status": "short_term_monthly_target_stitched",
+  "generated_at_utc": "2026-10-19T14:31:37.070619+00:00",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "first_month": "2000M01",
+  "last_month": "2026M08",
+  "rows": 320,
+  "rows_with_all_inmigrations": 320,
+  "legacy_rows": 300,
+  "ckm_rows": 20,
+  "legacy_dimensions": {
+    "region": "Region",
+    "change": "Forandringar",
+    "sex": "Kon",
+    "time": "Tid",
+    "region_code": "2580",
+    "sex_code": "1+2"
+  },
+  "ckm_dimensions": {
+    "region": "Region",
+    "change": "Forandringar",
+    "sex": "Kon",
+    "time": "Tid",
+    "region_code": "2580",
+    "sex_code": "TotSa"
+  },
+  "break_month": "2025M01",
+  "primary_target": "all_inmigrations",
+  "forecast_horizons_months": [
+    3,
+    6,
+    9,
+    12
+  ],
+  "quality_checks": {
+    "has_2000_history": true,
+    "has_2024_history": true,
+    "has_2025_ckm": true
+  }
+}
