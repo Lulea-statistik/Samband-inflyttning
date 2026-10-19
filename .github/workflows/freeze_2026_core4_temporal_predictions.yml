@@ -1,0 +1,32 @@
+name: Freeze 2026 core-4 temporal predictions
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/freeze_2026_core4_temporal_predictions.py
+      - .github/workflows/freeze_2026_core4_temporal_predictions.yml
+permissions:
+  contents: write
+jobs:
+  freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy pandas scikit-learn requests
+      - run: python scripts/freeze_2026_core4_temporal_predictions.py
+      - name: Commit immutable pre-outcome freeze
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/preoutcome_2026_core4_temporal
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Freeze pre-outcome 2026 core-4 temporal predictions"
+          git pull --rebase origin main
+          git push origin HEAD:main
