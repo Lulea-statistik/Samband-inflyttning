@@ -82,16 +82,21 @@ else:
     bas_age_values=[bas_total_age_code]
 
 # ---- fetch ----
-bas_payload=post_json(BAS_URL,[
-    item("Region",["2580"]),
-    item("Yrkesstallning",["TOT"]),
-    item("Kon",["1+2"]),
-    item("Alder",bas_age_values),
-    item("Fodelseregion",["tot"]),
-    allq("ContentsCode"),
-    allq("Tid")
-])
-bas=rows_from_classic_json(bas_payload)
+bas=[]
+for content_code in bas_map.get("ContentsCode",{}):
+    payload=post_json(BAS_URL,[
+        item("Region",["2580"]),
+        item("Yrkesstallning",["TOT"]),
+        item("Kon",["1+2"]),
+        item("Alder",bas_age_values),
+        item("Fodelseregion",["tot"]),
+        item("ContentsCode",[content_code]),
+        allq("Tid")
+    ])
+    part=rows_from_classic_json(payload)
+    for r in part:
+        r["ContentsCode"]=content_code
+    bas.extend(part)
 
 ckm_payload=post_json(CKM_URL,[
     item("Region",["2580"]),
@@ -102,12 +107,17 @@ ckm_payload=post_json(CKM_URL,[
 ])
 ckm=rows_from_classic_json(ckm_payload)
 
-gdp_payload=post_json(GDP_URL,[
-    allq("BNPMarknadspris"),
-    allq("ContentsCode"),
-    allq("Tid")
-])
-gdp=rows_from_classic_json(gdp_payload)
+gdp=[]
+for content_code in gdp_map.get("ContentsCode",{}):
+    payload=post_json(GDP_URL,[
+        allq("BNPMarknadspris"),
+        item("ContentsCode",[content_code]),
+        allq("Tid")
+    ])
+    part=rows_from_classic_json(payload)
+    for r in part:
+        r["ContentsCode"]=content_code
+    gdp.extend(part)
 
 # Asylum table has year in Tid and month in Period.
 monthly_period_codes=[
@@ -189,6 +199,10 @@ for m in ordered:
         if b:
             d["bas_workplace_residence_gap_pct"]=100*(a/b-1)
 
+# Drop months that contain no actual observation in any source.
+rows={m:d for m,d in rows.items() if any(v is not None and v != "" for v in d.values())}
+ordered=sorted(rows,key=mk)
+
 allcols=sorted({key for d in rows.values() for key in d})
 OUT.parent.mkdir(parents=True,exist_ok=True)
 with OUT.open("w",newline="",encoding="utf-8") as fh:
@@ -209,8 +223,16 @@ manifest={
     "source_row_counts":{"bas":len(bas),"ckm":len(ckm),"gdp":len(gdp),"asylum":len(asyl)},
     "bas_total_age_code":bas_total_age_code,
     "bas_total_age_label":age_values.get(bas_total_age_code) if bas_total_age_code else None,
+    "quality_checks":{
+      "has_bas_workplace":"bas_workplace_employed" in allcols,
+      "has_bas_residence":"bas_residence_employed" in allcols,
+      "gdp_content_columns":[x for x in allcols if x.startswith("gdp_")],
+      "has_ckm_population":"ckm_folkmangd" in allcols,
+      "has_asylum":"asylum_seekers_sweden" in allcols
+    },
     "notes":[
       "SCB classic JSON is used instead of CSV so dimensions are addressed by stable API codes.",
+      "Each multi-content SCB table is queried one ContentsCode at a time so measures cannot collapse into one unnamed value.",
       "Raw SCB series are preserved before derived features.",
       "BAS totals are populated only if SCB exposes an explicit total-age category; overlapping age groups are never summed.",
       "CKM has short history and is primarily a real-time/nowcast signal.",
