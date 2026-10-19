@@ -18,7 +18,7 @@
 <nav>
   <button class="tab splash-tab" data-page="public">För allmänheten</button>
   <button class="tab active" data-page="overview">Översikt</button>
-  <button class="tab" data-page="geographic">Geografisk robusthet</button>
+  <button class="tab" data-page="geographic">Prognososäkerhet & robusthet</button>
   <button class="tab" data-page="tests">Testlogg</button>
   <button class="tab" data-page="relationships">Samband</button>
   <button class="tab" data-page="model">Multipel regression</button>
@@ -59,8 +59,8 @@
   <section id="public" class="page public-page">
     <section class="public-hero">
       <div class="eyebrow" id="publicEyebrow">Inflyttning till svenska kommuner</div>
-      <h2 id="publicHeroTitle">Tre frågor kräver tre olika modeller</h2>
-      <p id="publicHeroText">En modell försöker <strong>förutsäga nästa års inflyttning så träffsäkert som möjligt</strong>. En andra försöker förstå <strong>vilka strukturella egenskaper som hänger ihop med inflyttning</strong>. Modell 3 frågar om prognosen fungerar <strong>jämnt mellan olika kommuner</strong> och försöker minska den geografiska svansen av stora prognosfel.</p>
+      <h2 id="publicHeroTitle">En fryst prognosmodell – och separata spår för förståelse och osäkerhet</h2>
+      <p id="publicHeroText">Huvudprognosen bygger nu på en <strong>fryst core-4-modell</strong>. Strukturspåret används för att förstå vilka kommunegenskaper som samvarierar med inflyttning. Robusthetsspåret används för att beskriva <strong>var prognosen är mer eller mindre osäker</strong> och för att pröva challengers – inte som en automatisk geografisk korrigering.</p>
     </section>
 
     <section class="public-kpis" id="publicKpis"></section>
@@ -78,8 +78,8 @@
       </article>
       <article class="public-story">
         <div class="story-number">3</div>
-        <h3>Robusthetsmodellen tittar på kommunerna i svansen</h3>
-        <p>Den utgår från prognosspåret men väljer modell efter både genomsnittligt fel och hur stora felen är bland de sämst predikterade kommunerna. Målet är inte att göra alla kommuner lika, utan att undvika att hög total träffsäkerhet döljer tydliga geografiska missar.</p>
+        <h3>Osäkerhetsspåret visar var prognosen är svagare</h3>
+        <p>Små kommuner har betydligt större prognosvariation. SKR-grupp, demografi och geografi används därför främst för <strong>felprofilering och osäkerhet</strong>. En population/reliability-blend är kvar som research-challenger, medan en direkt SKR-korrigering har förkastats efter rolling-origin-test.</p>
       </article>
     </section>
 
@@ -112,9 +112,9 @@
 
     <section id="publicGeoRobustSection" class="public-chart-card">
       <div class="public-chart-copy">
-        <div class="eyebrow">Geografisk robusthet · testår 2024</div>
-        <h3>Vilka kommuner är lätta – och vilka missar modellen?</h3>
-        <p>Här betyder <strong>lätt</strong> bara att Modell 3 låg nära det faktiska utfallet i just 2024 års holdout. <strong>Underskattning</strong> betyder att fler flyttade in än modellen väntade sig; <strong>överskattning</strong> betyder att modellen väntade sig fler inflyttare än det faktiskt blev. Det är inte en permanent etikett på kommunen.</p>
+        <div class="eyebrow">Historiskt robusthetstest · testår 2024</div>
+        <h3>Vilka kommuner var lätta – och vilka missade den tidigare robusthetsvarianten?</h3>
+        <p>Diagrammet bevaras som dokumentation av ett tidigare geografiskt robust modellförsök som <strong>inte fick produktionsstatus</strong>. Det används nu som diagnostik av felmönster, inte som aktuell huvudmodell.</p>
         <div id="publicGeoRobustSummary" class="public-kpis"></div>
         <p id="publicGeoRobustExamples" class="note"></p>
       </div>
@@ -124,9 +124,9 @@
     <section class="public-takeaway">
       <div>
         <div class="eyebrow">Kort slutsats</div>
-        <h3>Den bästa genomsnittsprognosen är inte automatiskt den mest geografiskt robusta.</h3>
+        <h3>En bra punktprognos och en bra beskrivning av prognososäkerhet är två olika uppgifter.</h3>
       </div>
-      <p>Prognosmodellen är bäst när frågan är <strong>vad händer nästa år?</strong> Strukturmodellen är bättre när frågan är <strong>vilka kommunegenskaper är förknippade med hög inflyttning?</strong> Den geografiskt robusta modellen frågar <strong>för vilka kommuner fungerar prognosen sämre – och går den skillnaden att minska?</strong> Sambanden ska fortfarande inte tolkas som säkra orsakseffekter.</p>
+      <p><strong>Core-4</strong> är huvudmodellen när frågan är vad som händer nästa år. Strukturmodellen används för samband och tolkning. Robusthetsspåret används för att mäta var felrisken är större. Population/reliability-blenden är fortsatt en challenger, medan SKR- och geografiska mönster tills vidare används som diagnostik och underlag för framtida osäkerhetsintervall.</p>
     </section>
   </section>
 
@@ -220,6 +220,17 @@
     </section>
 
     <div class="test-summary-grid">
+      <article class="test-summary-card">
+        <div class="test-summary-head">
+          <span class="test-run">Aktuellt 2026-10-19</span>
+          <span class="test-status status-keep">Fryst huvudmodell</span>
+        </div>
+        <h3>Core-4 och ny robusthetsinriktning</h3>
+        <p>Efter neutralt variabelurval och rolling-origin-validering är core-4 fryst med föregående års inflyttning, utflyttning, arbetslöshet och förändring i bostadsbestånd. Robusthetsarbetet har därefter flyttats från en separat geografisk huvudmodell till felprofilering och challengers.</p>
+        <p><strong>Population/reliability:</strong> lovande research-challenger, framför allt för små kommuner, men ännu inte stabil nog år för år. <strong>SKR/demografi/nordlighet:</strong> används för att förstå felrisk. Direkt rolling SKR-korrigering försämrade RMSE med 4,24 % mot population-blenden och förkastades.</p>
+        <p class="test-decision"><strong>Beslut:</strong> core-4 ligger fast. Nästa viktiga gate är prospektiv validering av population/reliability samt utveckling av osäkerhetsintervall, inte fler geografiska punktkorrigeringar på samma retrospektiva data.</p>
+      </article>
+
       <article class="test-summary-card">
         <div class="test-summary-head">
           <span class="test-run">#35–59</span>
@@ -428,13 +439,13 @@
 
   <section id="overview" class="page active">
     <h2>Översikt</h2>
-    <p class="lead">Rapporten skiljer nu på tre modellspår. <strong>Prognosmodellen</strong> maximerar träffsäkerheten, <strong>den demografiskt blinda strukturmodellen</strong> söker strukturella samband utan historisk demografi som genväg och <strong>den geografiskt robusta prognosmodellen</strong> försöker behålla hög precision samtidigt som stora prognosfel koncentrerade till vissa kommuner minskar.</p>
+    <p class="lead">Rapporten skiljer nu på tre <strong>analysuppgifter</strong>. <strong>Core-4-prognosen</strong> är fryst huvudmodell, <strong>den demografiskt blinda strukturmodellen</strong> används för att studera strukturella samband och <strong>robusthetsspåret</strong> beskriver prognosfel, osäkerhet och challengers utan att automatiskt korrigera punktprognosen.</p>
     <div id="swedenOverview">
       <div class="panel"><h3 id="variantPurposeTitle">Prognosmodell</h3><p id="variantPurposeText" class="note"></p></div>
       <div id="cards" class="cards"></div>
       <div class="panel geo-overview-callout">
-        <h3>Tre modellspår – tre olika optimeringsproblem</h3>
-        <p class="note">Modell 3 ska inte vinna genom högsta möjliga R². Den får väljas om den minskar den geografiska svansen av stora kommunfel utan att korsvaliderad RMSE blir mer än 3 % sämre än den vanliga prognosmodellens.</p>
+        <h3>Aktuell modellstatus</h3>
+        <p class="note"><strong>Core-4 = fryst huvudmodell.</strong> Population/reliability = research-challenger. SKR, demografi och geografi = felprofilering och osäkerhetsdiagnostik. Den tidigare geografiskt robusta Modell 3-versionen och den senare SKR-korrigeringen klarade inte valideringen som punktprognoser.</p>
         <div id="threeModelComparison" class="chart"></div>
       </div>
       <div class="panel">
@@ -483,10 +494,33 @@
 
   <section id="geographic" class="page">
     <div class="testlog-hero geo-hero">
-      <div class="eyebrow">Modell 3</div>
-      <h2>Geografiskt robust prognosmodell</h2>
-      <p class="lead">En hög nationell prognosprecision kan dölja att vissa kommuntyper återkommande får stora fel. Modell 3 optimerar därför inte bara genomsnittlig RMSE utan väger också in 90:e-percentilen för absolutfel och spridningen P90–P10. Maxfelet används som diagnostik men inte som optimeringsmål, eftersom en enda extremkommun annars skulle kunna styra hela modellen.</p>
-      <p class="note"><strong>Om modellväljaren:</strong> Modell 3 är utvecklad och utvärderad som en geografiskt robust variant av den vanliga prognosmodellen. Valet <em>Demografiskt blind strukturmodell</em> ändrar därför inte diagrammen på denna sida. En geografiskt robust blind modell skulle vara en separat modellvariant och kräver en egen analyskörning; att bara byta den blå jämförelselinjen skulle blanda två olika modellprinciper.</p>
+      <div class="eyebrow">Prognososäkerhet & robusthet</div>
+      <h2>Var är core-4 mer eller mindre säker?</h2>
+      <p class="lead">Robusthetsspåret har ändrat inriktning. Vi försöker inte längre skapa en separat geografisk huvudmodell. I stället analyserar vi <strong>var core-4 får större fel</strong>, vilka felprofiler som återkommer och om en challenger kan förbättra prognosen utan att bli instabil över tid.</p>
+      <p class="note"><strong>Nuläge:</strong> små kommuner har klart större prognosfel. C7/C8 och vissa demografiska profiler har historiskt större överprognos, men direkt SKR-korrigering försämrade rolling-origin-resultatet. Nord–syd-koordinaten i sig hade nästan inget linjärt samband med residualen.</p>
+    </div>
+
+    <div class="panel geo-overview-callout">
+      <h3>Aktuell slutsats</h3>
+      <div class="cards">
+        <div class="card"><div class="label">Huvudmodell</div><div class="value" style="font-size:18px">Core-4</div><div class="note">Fryst. Ingen geografisk efterkorrigering.</div></div>
+        <div class="card"><div class="label">Research-challenger</div><div class="value" style="font-size:18px">Population/reliability</div><div class="note">Historiskt lovande totalt, men inte stabil varje år.</div></div>
+        <div class="card"><div class="label">SKR-korrigering</div><div class="value" style="font-size:18px">Förkastad</div><div class="note">RMSE +4,24 % mot population-blenden i rolling-origin 2020–2024.</div></div>
+        <div class="card"><div class="label">Nästa användning</div><div class="value" style="font-size:18px">Osäkerhetsintervall</div><div class="note">Befolkningsstorlek, SKR och demografi som riskprofil – inte punktkorrigering.</div></div>
+      </div>
+      <p class="note">Population/reliability-blenden förbättrade i den breda retrospektiva perioden 2019–2024 total RMSE med cirka 2,5 % och p95-felet med cirka 1,9 %, men vann bara ungefär hälften av enskilda år. Därför är den fortfarande challenger och ska prövas prospektivt.</p>
+    </div>
+
+    <div class="panel">
+      <h3>Felprofil som nu styr robusthetsarbetet</h3>
+      <p><strong>Kommunstorlek är den tydligaste signalen:</strong> små kommuner har betydligt större RMSE och övre felkvantiler. SKR-grupperna C7 och C8 har kvar viss överprognos även efter kontroll för storlek och demografi, men signalen är inte tidsstabil nog för att korrigera prognosen direkt. För Luleå och B3-gruppen fungerar core-4 historiskt relativt väl.</p>
+      <p class="note">Den metodiska inriktningen är därför att skilja på <strong>punktprognos</strong> och <strong>prognososäkerhet</strong>.</p>
+    </div>
+
+    <div class="panel">
+      <div class="eyebrow">Historiskt modellförsök · bevaras som diagnostik</div>
+      <h3>Tidigare geografiskt robust Modell 3</h3>
+      <p class="note">Diagrammen nedan dokumenterar den tidigare geografiskt optimerade modellen. Den underkändes i 2024-holdout och är inte aktuell produktionsmodell. Resultaten är kvar för transparens och som jämförelse med den nya osäkerhetsinriktningen.</p>
     </div>
 
     <div id="geoRobustCards" class="cards"></div>
