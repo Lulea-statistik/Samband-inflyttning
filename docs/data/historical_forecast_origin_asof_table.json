@@ -2,291 +2,621 @@
   "status": "historical_forecast_origin_asof_table_initial",
   "generated_from": "docs/data/scb_publication_calendar_registry.json",
   "default_origin_offset_days": 10,
+  "origin_offset_sensitivity_days": [
+    7,
+    10,
+    14
+  ],
   "rows": [
     {
       "forecast_year": 2014,
       "scb_national_projection_published": "2014-04-15",
       "forecast_origin": "2014-04-25",
-      "origin_rule": "SCB national projection publication + 10 days",
+      "forecast_origins_by_offset_days": {
+        "7": "2014-04-22",
+        "10": "2014-04-25",
+        "14": "2014-04-29"
+      },
+      "origin_rule": "SCB national projection publication + 10 days (default); sensitivity +7 and +14 days",
       "population_final_reference_year": 2013,
       "population_final_published": "2014-03-01",
       "population_final_quality": "conservative_fallback",
       "population_final_available": true,
+      "population_final_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "housing_reference_year": 2013,
       "housing_published": "2014-04-30",
       "housing_quality": "conservative_fallback",
       "housing_available": false,
+      "housing_available_by_offset": {
+        "7": false,
+        "10": false,
+        "14": false
+      },
       "kolada_unemployment_reference_year": 2013,
       "kolada_unemployment_published_assumed": "2014-03-01",
       "kolada_unemployment_available": true,
+      "kolada_unemployment_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "kolada_unemployment_quality": "inferred_annual_pattern",
       "kolada_unemployment_note": "Current Kolada metadata shows annual N03937 period T published in January T+1; historical exact dates are not archived here, so March 1 Y is used as a conservative inferred cutoff for Y-1.",
       "rates_25_29_realtime_policy": "use latest BAS month available with 1-2 month conservative lag",
       "macro_core4_operationally_available": false,
+      "macro_core4_operationally_available_by_offset": {
+        "7": false,
+        "10": false,
+        "14": false
+      },
       "macro_core4_fully_certified": false
     },
     {
       "forecast_year": 2015,
       "scb_national_projection_published": "2015-05-19",
       "forecast_origin": "2015-05-29",
-      "origin_rule": "SCB national projection publication + 10 days",
+      "forecast_origins_by_offset_days": {
+        "7": "2015-05-26",
+        "10": "2015-05-29",
+        "14": "2015-06-02"
+      },
+      "origin_rule": "SCB national projection publication + 10 days (default); sensitivity +7 and +14 days",
       "population_final_reference_year": 2014,
       "population_final_published": "2015-03-01",
       "population_final_quality": "conservative_fallback",
       "population_final_available": true,
+      "population_final_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "housing_reference_year": 2014,
       "housing_published": "2015-04-23",
       "housing_quality": "observed",
       "housing_available": true,
+      "housing_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "kolada_unemployment_reference_year": 2014,
       "kolada_unemployment_published_assumed": "2015-03-01",
       "kolada_unemployment_available": true,
+      "kolada_unemployment_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "kolada_unemployment_quality": "inferred_annual_pattern",
       "kolada_unemployment_note": "Current Kolada metadata shows annual N03937 period T published in January T+1; historical exact dates are not archived here, so March 1 Y is used as a conservative inferred cutoff for Y-1.",
       "rates_25_29_realtime_policy": "use latest BAS month available with 1-2 month conservative lag",
       "macro_core4_operationally_available": true,
+      "macro_core4_operationally_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "macro_core4_fully_certified": false
     },
     {
       "forecast_year": 2016,
       "scb_national_projection_published": "2016-04-13",
       "forecast_origin": "2016-04-23",
-      "origin_rule": "SCB national projection publication + 10 days",
+      "forecast_origins_by_offset_days": {
+        "7": "2016-04-20",
+        "10": "2016-04-23",
+        "14": "2016-04-27"
+      },
+      "origin_rule": "SCB national projection publication + 10 days (default); sensitivity +7 and +14 days",
       "population_final_reference_year": 2015,
       "population_final_published": "2016-03-01",
       "population_final_quality": "conservative_fallback",
       "population_final_available": true,
+      "population_final_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "housing_reference_year": 2015,
       "housing_published": "2016-04-30",
       "housing_quality": "conservative_fallback",
       "housing_available": false,
+      "housing_available_by_offset": {
+        "7": false,
+        "10": false,
+        "14": false
+      },
       "kolada_unemployment_reference_year": 2015,
       "kolada_unemployment_published_assumed": "2016-03-01",
       "kolada_unemployment_available": true,
+      "kolada_unemployment_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "kolada_unemployment_quality": "inferred_annual_pattern",
       "kolada_unemployment_note": "Current Kolada metadata shows annual N03937 period T published in January T+1; historical exact dates are not archived here, so March 1 Y is used as a conservative inferred cutoff for Y-1.",
       "rates_25_29_realtime_policy": "use latest BAS month available with 1-2 month conservative lag",
       "macro_core4_operationally_available": false,
+      "macro_core4_operationally_available_by_offset": {
+        "7": false,
+        "10": false,
+        "14": false
+      },
       "macro_core4_fully_certified": false
     },
     {
       "forecast_year": 2017,
       "scb_national_projection_published": "2017-04-06",
       "forecast_origin": "2017-04-16",
-      "origin_rule": "SCB national projection publication + 10 days",
+      "forecast_origins_by_offset_days": {
+        "7": "2017-04-13",
+        "10": "2017-04-16",
+        "14": "2017-04-20"
+      },
+      "origin_rule": "SCB national projection publication + 10 days (default); sensitivity +7 and +14 days",
       "population_final_reference_year": 2016,
       "population_final_published": "2017-03-01",
       "population_final_quality": "conservative_fallback",
       "population_final_available": true,
+      "population_final_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "housing_reference_year": 2016,
       "housing_published": "2017-04-20",
       "housing_quality": "observed",
       "housing_available": false,
+      "housing_available_by_offset": {
+        "7": false,
+        "10": false,
+        "14": true
+      },
       "kolada_unemployment_reference_year": 2016,
       "kolada_unemployment_published_assumed": "2017-03-01",
       "kolada_unemployment_available": true,
+      "kolada_unemployment_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "kolada_unemployment_quality": "inferred_annual_pattern",
       "kolada_unemployment_note": "Current Kolada metadata shows annual N03937 period T published in January T+1; historical exact dates are not archived here, so March 1 Y is used as a conservative inferred cutoff for Y-1.",
       "rates_25_29_realtime_policy": "use latest BAS month available with 1-2 month conservative lag",
       "macro_core4_operationally_available": false,
+      "macro_core4_operationally_available_by_offset": {
+        "7": false,
+        "10": false,
+        "14": true
+      },
       "macro_core4_fully_certified": false
     },
     {
       "forecast_year": 2018,
       "scb_national_projection_published": "2018-04-26",
       "forecast_origin": "2018-05-06",
-      "origin_rule": "SCB national projection publication + 10 days",
+      "forecast_origins_by_offset_days": {
+        "7": "2018-05-03",
+        "10": "2018-05-06",
+        "14": "2018-05-10"
+      },
+      "origin_rule": "SCB national projection publication + 10 days (default); sensitivity +7 and +14 days",
       "population_final_reference_year": 2017,
       "population_final_published": "2018-03-01",
       "population_final_quality": "conservative_fallback",
       "population_final_available": true,
+      "population_final_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "housing_reference_year": 2017,
       "housing_published": "2018-04-19",
       "housing_quality": "observed",
       "housing_available": true,
+      "housing_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "kolada_unemployment_reference_year": 2017,
       "kolada_unemployment_published_assumed": "2018-03-01",
       "kolada_unemployment_available": true,
+      "kolada_unemployment_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "kolada_unemployment_quality": "inferred_annual_pattern",
       "kolada_unemployment_note": "Current Kolada metadata shows annual N03937 period T published in January T+1; historical exact dates are not archived here, so March 1 Y is used as a conservative inferred cutoff for Y-1.",
       "rates_25_29_realtime_policy": "use latest BAS month available with 1-2 month conservative lag",
       "macro_core4_operationally_available": true,
+      "macro_core4_operationally_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "macro_core4_fully_certified": false
     },
     {
       "forecast_year": 2019,
       "scb_national_projection_published": "2019-04-12",
       "forecast_origin": "2019-04-22",
-      "origin_rule": "SCB national projection publication + 10 days",
+      "forecast_origins_by_offset_days": {
+        "7": "2019-04-19",
+        "10": "2019-04-22",
+        "14": "2019-04-26"
+      },
+      "origin_rule": "SCB national projection publication + 10 days (default); sensitivity +7 and +14 days",
       "population_final_reference_year": 2018,
       "population_final_published": "2019-03-01",
       "population_final_quality": "conservative_fallback",
       "population_final_available": true,
+      "population_final_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "housing_reference_year": 2018,
       "housing_published": "2019-04-25",
       "housing_quality": "observed",
       "housing_available": false,
+      "housing_available_by_offset": {
+        "7": false,
+        "10": false,
+        "14": true
+      },
       "kolada_unemployment_reference_year": 2018,
       "kolada_unemployment_published_assumed": "2019-03-01",
       "kolada_unemployment_available": true,
+      "kolada_unemployment_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "kolada_unemployment_quality": "inferred_annual_pattern",
       "kolada_unemployment_note": "Current Kolada metadata shows annual N03937 period T published in January T+1; historical exact dates are not archived here, so March 1 Y is used as a conservative inferred cutoff for Y-1.",
       "rates_25_29_realtime_policy": "use latest BAS month available with 1-2 month conservative lag",
       "macro_core4_operationally_available": false,
+      "macro_core4_operationally_available_by_offset": {
+        "7": false,
+        "10": false,
+        "14": true
+      },
       "macro_core4_fully_certified": false
     },
     {
       "forecast_year": 2020,
       "scb_national_projection_published": "2020-04-08",
       "forecast_origin": "2020-04-18",
-      "origin_rule": "SCB national projection publication + 10 days",
+      "forecast_origins_by_offset_days": {
+        "7": "2020-04-15",
+        "10": "2020-04-18",
+        "14": "2020-04-22"
+      },
+      "origin_rule": "SCB national projection publication + 10 days (default); sensitivity +7 and +14 days",
       "population_final_reference_year": 2019,
       "population_final_published": "2020-03-01",
       "population_final_quality": "conservative_fallback",
       "population_final_available": true,
+      "population_final_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "housing_reference_year": 2019,
       "housing_published": "2020-04-28",
       "housing_quality": "observed",
       "housing_available": false,
+      "housing_available_by_offset": {
+        "7": false,
+        "10": false,
+        "14": false
+      },
       "kolada_unemployment_reference_year": 2019,
       "kolada_unemployment_published_assumed": "2020-03-01",
       "kolada_unemployment_available": true,
+      "kolada_unemployment_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "kolada_unemployment_quality": "inferred_annual_pattern",
       "kolada_unemployment_note": "Current Kolada metadata shows annual N03937 period T published in January T+1; historical exact dates are not archived here, so March 1 Y is used as a conservative inferred cutoff for Y-1.",
       "rates_25_29_realtime_policy": "use latest BAS month available with 1-2 month conservative lag",
       "macro_core4_operationally_available": false,
+      "macro_core4_operationally_available_by_offset": {
+        "7": false,
+        "10": false,
+        "14": false
+      },
       "macro_core4_fully_certified": false
     },
     {
       "forecast_year": 2021,
       "scb_national_projection_published": "2021-04-28",
       "forecast_origin": "2021-05-08",
-      "origin_rule": "SCB national projection publication + 10 days",
+      "forecast_origins_by_offset_days": {
+        "7": "2021-05-05",
+        "10": "2021-05-08",
+        "14": "2021-05-12"
+      },
+      "origin_rule": "SCB national projection publication + 10 days (default); sensitivity +7 and +14 days",
       "population_final_reference_year": 2020,
       "population_final_published": "2021-03-01",
       "population_final_quality": "conservative_fallback",
       "population_final_available": true,
+      "population_final_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "housing_reference_year": 2020,
       "housing_published": "2021-04-22",
       "housing_quality": "observed",
       "housing_available": true,
+      "housing_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "kolada_unemployment_reference_year": 2020,
       "kolada_unemployment_published_assumed": "2021-03-01",
       "kolada_unemployment_available": true,
+      "kolada_unemployment_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "kolada_unemployment_quality": "inferred_annual_pattern",
       "kolada_unemployment_note": "Current Kolada metadata shows annual N03937 period T published in January T+1; historical exact dates are not archived here, so March 1 Y is used as a conservative inferred cutoff for Y-1.",
       "rates_25_29_realtime_policy": "use latest BAS month available with 1-2 month conservative lag",
       "macro_core4_operationally_available": true,
+      "macro_core4_operationally_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "macro_core4_fully_certified": false
     },
     {
       "forecast_year": 2022,
       "scb_national_projection_published": "2022-04-13",
       "forecast_origin": "2022-04-23",
-      "origin_rule": "SCB national projection publication + 10 days",
+      "forecast_origins_by_offset_days": {
+        "7": "2022-04-20",
+        "10": "2022-04-23",
+        "14": "2022-04-27"
+      },
+      "origin_rule": "SCB national projection publication + 10 days (default); sensitivity +7 and +14 days",
       "population_final_reference_year": 2021,
       "population_final_published": "2022-03-01",
       "population_final_quality": "conservative_fallback",
       "population_final_available": true,
+      "population_final_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "housing_reference_year": 2021,
       "housing_published": "2022-04-21",
       "housing_quality": "observed",
       "housing_available": true,
+      "housing_available_by_offset": {
+        "7": false,
+        "10": true,
+        "14": true
+      },
       "kolada_unemployment_reference_year": 2021,
       "kolada_unemployment_published_assumed": "2022-03-01",
       "kolada_unemployment_available": true,
+      "kolada_unemployment_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "kolada_unemployment_quality": "inferred_annual_pattern",
       "kolada_unemployment_note": "Current Kolada metadata shows annual N03937 period T published in January T+1; historical exact dates are not archived here, so March 1 Y is used as a conservative inferred cutoff for Y-1.",
       "rates_25_29_realtime_policy": "use latest BAS month available with 1-2 month conservative lag",
       "macro_core4_operationally_available": true,
+      "macro_core4_operationally_available_by_offset": {
+        "7": false,
+        "10": true,
+        "14": true
+      },
       "macro_core4_fully_certified": false
     },
     {
       "forecast_year": 2023,
       "scb_national_projection_published": "2023-04-18",
       "forecast_origin": "2023-04-28",
-      "origin_rule": "SCB national projection publication + 10 days",
+      "forecast_origins_by_offset_days": {
+        "7": "2023-04-25",
+        "10": "2023-04-28",
+        "14": "2023-05-02"
+      },
+      "origin_rule": "SCB national projection publication + 10 days (default); sensitivity +7 and +14 days",
       "population_final_reference_year": 2022,
       "population_final_published": "2023-03-01",
       "population_final_quality": "conservative_fallback",
       "population_final_available": true,
+      "population_final_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "housing_reference_year": 2022,
       "housing_published": "2023-04-19",
       "housing_quality": "observed",
       "housing_available": true,
+      "housing_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "kolada_unemployment_reference_year": 2022,
       "kolada_unemployment_published_assumed": "2023-03-01",
       "kolada_unemployment_available": true,
+      "kolada_unemployment_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "kolada_unemployment_quality": "inferred_annual_pattern",
       "kolada_unemployment_note": "Current Kolada metadata shows annual N03937 period T published in January T+1; historical exact dates are not archived here, so March 1 Y is used as a conservative inferred cutoff for Y-1.",
       "rates_25_29_realtime_policy": "use latest BAS month available with 1-2 month conservative lag",
       "macro_core4_operationally_available": true,
+      "macro_core4_operationally_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "macro_core4_fully_certified": false
     },
     {
       "forecast_year": 2024,
       "scb_national_projection_published": "2024-04-25",
       "forecast_origin": "2024-05-05",
-      "origin_rule": "SCB national projection publication + 10 days",
+      "forecast_origins_by_offset_days": {
+        "7": "2024-05-02",
+        "10": "2024-05-05",
+        "14": "2024-05-09"
+      },
+      "origin_rule": "SCB national projection publication + 10 days (default); sensitivity +7 and +14 days",
       "population_final_reference_year": 2023,
       "population_final_published": "2024-02-22",
       "population_final_quality": "observed",
       "population_final_available": true,
+      "population_final_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "housing_reference_year": 2023,
       "housing_published": "2024-04-18",
       "housing_quality": "observed",
       "housing_available": true,
+      "housing_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "kolada_unemployment_reference_year": 2023,
       "kolada_unemployment_published_assumed": "2024-03-01",
       "kolada_unemployment_available": true,
+      "kolada_unemployment_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "kolada_unemployment_quality": "inferred_annual_pattern",
       "kolada_unemployment_note": "Current Kolada metadata shows annual N03937 period T published in January T+1; historical exact dates are not archived here, so March 1 Y is used as a conservative inferred cutoff for Y-1.",
       "rates_25_29_realtime_policy": "use latest BAS month available with 1-2 month conservative lag",
       "macro_core4_operationally_available": true,
+      "macro_core4_operationally_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "macro_core4_fully_certified": false
     },
     {
       "forecast_year": 2025,
       "scb_national_projection_published": "2025-04-11",
       "forecast_origin": "2025-04-21",
-      "origin_rule": "SCB national projection publication + 10 days",
+      "forecast_origins_by_offset_days": {
+        "7": "2025-04-18",
+        "10": "2025-04-21",
+        "14": "2025-04-25"
+      },
+      "origin_rule": "SCB national projection publication + 10 days (default); sensitivity +7 and +14 days",
       "population_final_reference_year": 2024,
       "population_final_published": "2025-02-21",
       "population_final_quality": "observed",
       "population_final_available": true,
+      "population_final_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "housing_reference_year": 2024,
       "housing_published": "2025-04-24",
       "housing_quality": "observed",
       "housing_available": false,
+      "housing_available_by_offset": {
+        "7": false,
+        "10": false,
+        "14": true
+      },
       "kolada_unemployment_reference_year": 2024,
       "kolada_unemployment_published_assumed": "2025-03-01",
       "kolada_unemployment_available": true,
+      "kolada_unemployment_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "kolada_unemployment_quality": "inferred_annual_pattern",
       "kolada_unemployment_note": "Current Kolada metadata shows annual N03937 period T published in January T+1; historical exact dates are not archived here, so March 1 Y is used as a conservative inferred cutoff for Y-1.",
       "rates_25_29_realtime_policy": "use latest BAS month available with 1-2 month conservative lag",
       "macro_core4_operationally_available": false,
+      "macro_core4_operationally_available_by_offset": {
+        "7": false,
+        "10": false,
+        "14": true
+      },
       "macro_core4_fully_certified": false
     },
     {
       "forecast_year": 2026,
       "scb_national_projection_published": "2026-04-16",
       "forecast_origin": "2026-04-26",
-      "origin_rule": "SCB national projection publication + 10 days",
+      "forecast_origins_by_offset_days": {
+        "7": "2026-04-23",
+        "10": "2026-04-26",
+        "14": "2026-04-30"
+      },
+      "origin_rule": "SCB national projection publication + 10 days (default); sensitivity +7 and +14 days",
       "population_final_reference_year": 2025,
       "population_final_published": "2026-02-24",
       "population_final_quality": "observed",
       "population_final_available": true,
+      "population_final_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "housing_reference_year": 2025,
       "housing_published": "2026-04-17",
       "housing_quality": "observed",
       "housing_available": true,
+      "housing_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "kolada_unemployment_reference_year": 2025,
       "kolada_unemployment_published_assumed": "2026-03-01",
       "kolada_unemployment_available": true,
+      "kolada_unemployment_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "kolada_unemployment_quality": "inferred_annual_pattern",
       "kolada_unemployment_note": "Current Kolada metadata shows annual N03937 period T published in January T+1; historical exact dates are not archived here, so March 1 Y is used as a conservative inferred cutoff for Y-1.",
       "rates_25_29_realtime_policy": "use latest BAS month available with 1-2 month conservative lag",
       "macro_core4_operationally_available": true,
+      "macro_core4_operationally_available_by_offset": {
+        "7": true,
+        "10": true,
+        "14": true
+      },
       "macro_core4_fully_certified": false
     }
   ],
