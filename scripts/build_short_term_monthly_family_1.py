@@ -14,7 +14,18 @@ def post_csv(url, query):
         "User-Agent":"Lulea-statistik-short-term-monthly/1.0"
     })
     with urllib.request.urlopen(req,timeout=120) as r:
-        raw=r.read().decode("utf-8-sig")
+        payload=r.read()
+        ctype=r.headers.get_content_charset()
+    encodings=[ctype,"utf-8-sig","utf-8","cp1252","latin-1"]
+    raw=None
+    for enc in [e for e in encodings if e]:
+        try:
+            raw=payload.decode(enc)
+            break
+        except UnicodeDecodeError:
+            continue
+    if raw is None:
+        raise UnicodeDecodeError("unknown",payload,0,1,"Could not decode SCB CSV response")
     return list(csv.DictReader(io.StringIO(raw),delimiter=";"))
 
 def allq(code):
