@@ -26,7 +26,13 @@ def post_csv(url, query):
             continue
     if raw is None:
         raise UnicodeDecodeError("unknown",payload,0,1,"Could not decode SCB CSV response")
-    return list(csv.DictReader(io.StringIO(raw),delimiter=";"))
+    sample=raw[:4096]
+    try:
+        dialect=csv.Sniffer().sniff(sample,delimiters=";,\\t,")
+        delimiter=dialect.delimiter
+    except csv.Error:
+        delimiter=";"
+    return list(csv.DictReader(io.StringIO(raw),delimiter=delimiter))
 
 def allq(code):
     return {"code":code,"selection":{"filter":"all","values":["*"]}}
