@@ -1,0 +1,37 @@
+{
+  "status": "kolada_n03937_publication_metadata_audit",
+  "generated_at_utc": "2026-10-19T22:16:50.542759+00:00",
+  "kpi": "N03937",
+  "endpoint_used": "https://api.kolada.se/v3/kpi/N03937",
+  "endpoint_attempts": [
+    {
+      "url": "https://api.kolada.se/v3/kpi/N03937",
+      "ok": true
+    }
+  ],
+  "publication_date": "2027-01-19",
+  "prel_publication_date": null,
+  "publication_period": "2026",
+  "title": "Öppet arbetslösa av befolkningen, 18-65 år, andel (%)",
+  "raw": {
+    "values": [
+      {
+        "id": "N03937",
+        "title": "Öppet arbetslösa av befolkningen, 18-65 år, andel (%)",
+        "description": "Antal invånare 18-65 år som är öppet arbetslösa dividerat med antal invånare 18-65 år. Till och med 2022 avsåg nyckeltalet åldersgruppen 18-64 år. Avser årsmedelvärde år T. Källa: Arbetsförmedlingen och SCB.",
+        "is_divided_by_gender": true,
+        "municipality_type": "A",
+        "auspice": "X",
+        "operating_area": "Befolkning",
+        "perspective": "Volymer",
+        "prel_publication_date": null,
+        "publication_date": "2027-01-19",
+        "publ_period": "2026",
+        "has_ou_data": false
+      }
+    ],
+    "next_url": null,
+    "previous_url": null,
+    "count": 1
+  }
+}
