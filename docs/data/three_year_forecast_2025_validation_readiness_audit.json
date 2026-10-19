@@ -1,0 +1,34 @@
+{
+  "status": "2025_validation_readiness_audit",
+  "validation_ready": true,
+  "forecast_year": 2025,
+  "checks": {
+    "core_manifest_status": true,
+    "naive_manifest_status": true,
+    "forecast_year_2025": true,
+    "production_unchanged": true,
+    "hash_training_matrix_2019_2024.csv": true,
+    "hash_predictor_matrix_2025.csv": true,
+    "hash_predictions_2025.csv": true,
+    "hash_naive_persistence_2025.csv": true,
+    "train_years_exact_2019_2024": true,
+    "train_rows_1740": true,
+    "predictor_rows_290": true,
+    "prediction_rows_290": true,
+    "naive_rows_290": true,
+    "municipality_sets_identical": true,
+    "lulea_present_all": true,
+    "predictor_year_exact_2025": true,
+    "no_2025_outcome_in_predictor_matrix": true,
+    "untouched_scorer_exists": true
+  },
+  "hashes_observed": {
+    "training_matrix_2019_2024.csv": "804f86292c68680a3d66d7503e796f81bbc0d8619661f4680cdbe60ce36df564",
+    "predictor_matrix_2025.csv": "65496eef98813658ac23a775f22f7dff36924f357dd0dba5686c539ba6598363",
+    "predictions_2025.csv": "d98371fc24a33c3530d2392a25d83968b69eba5abf3be5465167f8bf03bbf50c",
+    "naive_persistence_2025.csv": "52c360ed958dcc77c2bb515fb405bc6639474cbe00a15a3a07c15d5f08c80a69"
+  },
+  "municipality_count": 290,
+  "lulea_present": true,
+  "guardrail": "No 2025 outcome values may be written into the frozen predictor or prediction files before scoring."
+}
