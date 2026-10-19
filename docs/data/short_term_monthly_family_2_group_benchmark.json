@@ -1,6 +1,6 @@
 {
   "status": "short_term_monthly_family_2_group_benchmark",
-  "generated_at_utc": "2026-10-19T21:28:24.552106+00:00",
+  "generated_at_utc": "2026-10-19T21:30:06.506934+00:00",
   "production_changed": false,
   "structural_core4_changed": false,
   "target": "sum of Lulea all_inmigrations over t+1..t+h",
@@ -16,14 +16,16 @@
       "bas2_age25_29_antal_studerande_change_3m_pct"
     ],
     "unemployment": [
-      "bas2_age20_24_arbetsloshet_yoy_pct",
-      "bas2_age25_29_arbetsloshet_yoy_pct",
-      "bas2_age20_66_antal_arbetslosa_change_3m_pct"
+      "bas2_age20_24_arbetsloshet_yoy_pp",
+      "bas2_age25_29_arbetsloshet_yoy_pp",
+      "bas2_age20_24_antal_arbetslosa_yoy_pct",
+      "bas2_age25_29_antal_arbetslosa_yoy_pct"
     ],
     "labour_rates": [
-      "bas2_age20_66_sysselsattningsgrad_yoy_pct",
-      "bas2_age20_66_arbetskraftsdeltagande_change_3m_pct",
-      "bas2_age20_66_arbetsloshet_change_3m_pct"
+      "bas2_age20_24_sysselsattningsgrad_yoy_pp",
+      "bas2_age25_29_sysselsattningsgrad_yoy_pp",
+      "bas2_age20_24_arbetskraftsdeltagande_yoy_pp",
+      "bas2_age25_29_arbetskraftsdeltagande_yoy_pp"
     ],
     "broad_status": [
       "bas2_all_15_74_antal_studerande_yoy_pct",
@@ -68,7 +70,7 @@
           "bias": -28.435897435897434
         },
         "model": {
-          "rmse": 104.58816667144082,
+          "rmse": 104.5881666714408,
           "mae": 81.14594586173202,
           "bias": -26.598099840686384
         },
@@ -81,9 +83,10 @@
       },
       "unemployment": {
         "features": [
-          "bas2_age20_24_arbetsloshet_yoy_pct",
-          "bas2_age25_29_arbetsloshet_yoy_pct",
-          "bas2_age20_66_antal_arbetslosa_change_3m_pct"
+          "bas2_age20_24_arbetsloshet_yoy_pp",
+          "bas2_age25_29_arbetsloshet_yoy_pp",
+          "bas2_age20_24_antal_arbetslosa_yoy_pct",
+          "bas2_age25_29_antal_arbetslosa_yoy_pct"
         ],
         "n_origins": 0,
         "first_origin": null,
@@ -107,9 +110,10 @@
       },
       "labour_rates": {
         "features": [
-          "bas2_age20_66_sysselsattningsgrad_yoy_pct",
-          "bas2_age20_66_arbetskraftsdeltagande_change_3m_pct",
-          "bas2_age20_66_arbetsloshet_change_3m_pct"
+          "bas2_age20_24_sysselsattningsgrad_yoy_pp",
+          "bas2_age25_29_sysselsattningsgrad_yoy_pp",
+          "bas2_age20_24_arbetskraftsdeltagande_yoy_pp",
+          "bas2_age25_29_arbetskraftsdeltagande_yoy_pp"
         ],
         "n_origins": 0,
         "first_origin": null,
@@ -147,13 +151,13 @@
           "bias": -28.435897435897434
         },
         "model": {
-          "rmse": 104.31432930291888,
-          "mae": 81.98001166141097,
-          "bias": -21.379921479343793
+          "rmse": 104.31432930291889,
+          "mae": 81.98001166141098,
+          "bias": -21.379921479343796
         },
         "delta_pct": {
-          "rmse": 3.296834341592292,
-          "mae": 2.245617358331553
+          "rmse": 3.296834341592314,
+          "mae": 2.2456173583315753
         },
         "pre_2025_rmse": 125.89603805615175,
         "post_2025_rmse": 78.40272598419718
@@ -202,14 +206,14 @@
         "model": {
           "rmse": 81.48736716346801,
           "mae": 63.93987830352912,
-          "bias": -9.236505859681467
+          "bias": -9.23650585968147
         },
         "delta_pct": {
           "rmse": 3.7202107995160327,
           "mae": 4.7448148846987115
         },
         "pre_2025_rmse": 81.63303378960873,
-        "post_2025_rmse": 78.22972664177956
+        "post_2025_rmse": 78.22972664177958
       }
     },
     "6": {
@@ -242,9 +246,10 @@
       },
       "unemployment": {
         "features": [
-          "bas2_age20_24_arbetsloshet_yoy_pct",
-          "bas2_age25_29_arbetsloshet_yoy_pct",
-          "bas2_age20_66_antal_arbetslosa_change_3m_pct"
+          "bas2_age20_24_arbetsloshet_yoy_pp",
+          "bas2_age25_29_arbetsloshet_yoy_pp",
+          "bas2_age20_24_antal_arbetslosa_yoy_pct",
+          "bas2_age25_29_antal_arbetslosa_yoy_pct"
         ],
         "n_origins": 0,
         "first_origin": null,
@@ -268,9 +273,10 @@
       },
       "labour_rates": {
         "features": [
-          "bas2_age20_66_sysselsattningsgrad_yoy_pct",
-          "bas2_age20_66_arbetskraftsdeltagande_change_3m_pct",
-          "bas2_age20_66_arbetsloshet_change_3m_pct"
+          "bas2_age20_24_sysselsattningsgrad_yoy_pp",
+          "bas2_age25_29_sysselsattningsgrad_yoy_pp",
+          "bas2_age20_24_arbetskraftsdeltagande_yoy_pp",
+          "bas2_age25_29_arbetskraftsdeltagande_yoy_pp"
         ],
         "n_origins": 0,
         "first_origin": null,
@@ -317,7 +323,7 @@
           "mae": 6.530188618850863
         },
         "pre_2025_rmse": 222.88269049846488,
-        "post_2025_rmse": 90.24766398648613
+        "post_2025_rmse": 90.2476639864861
       },
       "birth_region": {
         "features": [
@@ -403,9 +409,10 @@
       },
       "unemployment": {
         "features": [
-          "bas2_age20_24_arbetsloshet_yoy_pct",
-          "bas2_age25_29_arbetsloshet_yoy_pct",
-          "bas2_age20_66_antal_arbetslosa_change_3m_pct"
+          "bas2_age20_24_arbetsloshet_yoy_pp",
+          "bas2_age25_29_arbetsloshet_yoy_pp",
+          "bas2_age20_24_antal_arbetslosa_yoy_pct",
+          "bas2_age25_29_antal_arbetslosa_yoy_pct"
         ],
         "n_origins": 0,
         "first_origin": null,
@@ -429,9 +436,10 @@
       },
       "labour_rates": {
         "features": [
-          "bas2_age20_66_sysselsattningsgrad_yoy_pct",
-          "bas2_age20_66_arbetskraftsdeltagande_change_3m_pct",
-          "bas2_age20_66_arbetsloshet_change_3m_pct"
+          "bas2_age20_24_sysselsattningsgrad_yoy_pp",
+          "bas2_age25_29_sysselsattningsgrad_yoy_pp",
+          "bas2_age20_24_arbetskraftsdeltagande_yoy_pp",
+          "bas2_age25_29_arbetskraftsdeltagande_yoy_pp"
         ],
         "n_origins": 0,
         "first_origin": null,
@@ -564,9 +572,10 @@
       },
       "unemployment": {
         "features": [
-          "bas2_age20_24_arbetsloshet_yoy_pct",
-          "bas2_age25_29_arbetsloshet_yoy_pct",
-          "bas2_age20_66_antal_arbetslosa_change_3m_pct"
+          "bas2_age20_24_arbetsloshet_yoy_pp",
+          "bas2_age25_29_arbetsloshet_yoy_pp",
+          "bas2_age20_24_antal_arbetslosa_yoy_pct",
+          "bas2_age25_29_antal_arbetslosa_yoy_pct"
         ],
         "n_origins": 0,
         "first_origin": null,
@@ -590,9 +599,10 @@
       },
       "labour_rates": {
         "features": [
-          "bas2_age20_66_sysselsattningsgrad_yoy_pct",
-          "bas2_age20_66_arbetskraftsdeltagande_change_3m_pct",
-          "bas2_age20_66_arbetsloshet_change_3m_pct"
+          "bas2_age20_24_sysselsattningsgrad_yoy_pp",
+          "bas2_age25_29_sysselsattningsgrad_yoy_pp",
+          "bas2_age20_24_arbetskraftsdeltagande_yoy_pp",
+          "bas2_age25_29_arbetskraftsdeltagande_yoy_pp"
         ],
         "n_origins": 0,
         "first_origin": null,
