@@ -101,6 +101,48 @@
     "source": "SCB Bostadsbestånd",
     "observed": [
       {
+        "reference_year": 2014,
+        "published": "2015-04-23",
+        "quality": "observed",
+        "evidence": "SCB BO0104 description/statistics document"
+      },
+      {
+        "reference_year": 2016,
+        "published": "2017-04-20",
+        "quality": "observed",
+        "evidence": "SCB BO0104 quality declaration"
+      },
+      {
+        "reference_year": 2017,
+        "published": "2018-04-19",
+        "quality": "observed",
+        "evidence": "SCB BO0104 statistics production document"
+      },
+      {
+        "reference_year": 2018,
+        "published": "2019-04-25",
+        "quality": "observed",
+        "evidence": "SCB BO0104 quality declaration"
+      },
+      {
+        "reference_year": 2019,
+        "published": "2020-04-28",
+        "quality": "observed",
+        "evidence": "SCB BO0104 statistics production document"
+      },
+      {
+        "reference_year": 2020,
+        "published": "2021-04-22",
+        "quality": "observed",
+        "evidence": "SCB BO0104 quality declaration"
+      },
+      {
+        "reference_year": 2021,
+        "published": "2022-04-21",
+        "quality": "observed",
+        "evidence": "SCB BO0104 statistics production document"
+      },
+      {
         "reference_year": 2022,
         "published": "2023-04-19",
         "quality": "observed"
@@ -123,7 +165,11 @@
     ],
     "inferred_rule": "When historical exact dates are missing, infer a mid-April release window from adjacent-year SCB releases, mark inferred_annual_pattern, and test a conservative end-of-April cutoff.",
     "conservative_fallback": "Unavailable at the April forecast origin unless publication before that origin is documented.",
-    "source_note": "SCB states Bostadsbestånd is published annually in April; exact observed dates registered for 2022-2025."
+    "source_note": "Observed SCB BO0104 publication dates registered for reference years 2014 and 2016-2025. Reference years 2013 and 2015 remain conservative fallback until exact archival evidence is found.",
+    "remaining_exact_date_gaps": [
+      2013,
+      2015
+    ]
   },
   "bas_monthly": {
     "source": "SCB Befolkningens arbetsmarknadsstatus",
