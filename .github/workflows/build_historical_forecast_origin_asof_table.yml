@@ -1,0 +1,29 @@
+name: Build historical forecast-origin as-of table
+on:
+  push:
+    branches: [main]
+    paths:
+      - docs/data/scb_publication_calendar_registry.json
+      - scripts/build_historical_forecast_origin_asof_table.py
+      - .github/workflows/build_historical_forecast_origin_asof_table.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/build_historical_forecast_origin_asof_table.py
+      - name: Commit as-of table
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/historical_forecast_origin_asof_table.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Build historical forecast-origin as-of table"
+          git pull --rebase origin main
+          git push origin HEAD:main
