@@ -1,0 +1,6120 @@
+{
+  "status": "full_ridge_76_predictor_snapshot_feasibility_audit",
+  "production_changed": false,
+  "feature_count": 76,
+  "years": [
+    {
+      "target_year": 2002,
+      "municipalities": 293,
+      "complete_features": 0,
+      "missing_features_count": 76,
+      "all_76_complete": false,
+      "missing_features": [
+        {
+          "feature": "lag1_andel_20_34",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_141_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostadsratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_eftergymnasial",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_flerbostad_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hotell_restaurang_i",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hyresratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_industri_bc",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_kultur_service_rstu",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_studerande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetskraftsdeltagande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetsloshet",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_ovriga_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_pensionarer_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_sjuka_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_studerande_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_befolkningstillvaxt_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostadsbestandsforandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_brott_per_100000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_ekonomisk_standard_gap_pp",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fardigstallda_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshusandel_bland_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_yrkesprogram_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inflyttare_medelalder",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inflyttning_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inkomst_median_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inkomst_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_24_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_65_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_langtidsarbetslosa_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_lok_foreningar_per_10000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_lonesumma_dagbef_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_mediannettoinkomst_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_befolkningstathet_land",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_externa_fa_jobb_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_folkmangd",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_smahuspris_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_naturpraglad_mark_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_skogsmark_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_median",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_medel_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_alla_fordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_tatort_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_strand_inland_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_rams_bas_historisk_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_rams_bas_historisk_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsattningsgrad",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_tatortsgrad_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utflyttning_per_1000",
+          "non_null": 0,
+          "missing": 290
+        }
+      ]
+    },
+    {
+      "target_year": 2003,
+      "municipalities": 293,
+      "complete_features": 5,
+      "missing_features_count": 71,
+      "all_76_complete": false,
+      "missing_features": [
+        {
+          "feature": "lag1_andel_bostader_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_141_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostadsratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_eftergymnasial",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_flerbostad_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hotell_restaurang_i",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hyresratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_industri_bc",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_kultur_service_rstu",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_studerande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetskraftsdeltagande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetsloshet",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_ovriga_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_pensionarer_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_sjuka_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_studerande_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_befolkningstillvaxt_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostadsbestandsforandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_brott_per_100000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_ekonomisk_standard_gap_pp",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fardigstallda_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshusandel_bland_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_yrkesprogram_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inflyttare_medelalder",
+          "non_null": 289,
+          "missing": 1
+        },
+        {
+          "feature": "lag1_inkomst_median_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inkomst_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_24_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_65_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_langtidsarbetslosa_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_lok_foreningar_per_10000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_lonesumma_dagbef_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_mediannettoinkomst_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_externa_fa_jobb_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_smahuspris_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_naturpraglad_mark_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_skogsmark_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_median",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_medel_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_alla_fordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_tatort_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_inland_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_rams_bas_historisk_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_rams_bas_historisk_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsattningsgrad",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_tatortsgrad_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        }
+      ]
+    },
+    {
+      "target_year": 2004,
+      "municipalities": 293,
+      "complete_features": 7,
+      "missing_features_count": 69,
+      "all_76_complete": false,
+      "missing_features": [
+        {
+          "feature": "lag1_andel_bostader_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_141_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostadsratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_eftergymnasial",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_flerbostad_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hotell_restaurang_i",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hyresratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_industri_bc",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_kultur_service_rstu",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_studerande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetskraftsdeltagande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetsloshet",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_ovriga_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_pensionarer_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_sjuka_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_studerande_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostadsbestandsforandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_brott_per_100000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_ekonomisk_standard_gap_pp",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fardigstallda_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshusandel_bland_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_yrkesprogram_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inkomst_median_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inkomst_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_24_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_65_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_langtidsarbetslosa_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_lok_foreningar_per_10000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_lonesumma_dagbef_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_mediannettoinkomst_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_externa_fa_jobb_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_smahuspris_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_naturpraglad_mark_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_skogsmark_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_median",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_medel_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_alla_fordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_tatort_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_inland_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_rams_bas_historisk_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_rams_bas_historisk_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsattningsgrad",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_tatortsgrad_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        }
+      ]
+    },
+    {
+      "target_year": 2005,
+      "municipalities": 293,
+      "complete_features": 7,
+      "missing_features_count": 69,
+      "all_76_complete": false,
+      "missing_features": [
+        {
+          "feature": "lag1_andel_bostader_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_141_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostadsratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_eftergymnasial",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_flerbostad_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hotell_restaurang_i",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hyresratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_industri_bc",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_kultur_service_rstu",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_studerande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetskraftsdeltagande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetsloshet",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_ovriga_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_pensionarer_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_sjuka_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_studerande_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostadsbestandsforandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_brott_per_100000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_ekonomisk_standard_gap_pp",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fardigstallda_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshusandel_bland_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_yrkesprogram_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inkomst_median_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inkomst_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_24_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_65_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_langtidsarbetslosa_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_lok_foreningar_per_10000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_lonesumma_dagbef_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_mediannettoinkomst_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_externa_fa_jobb_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_smahuspris_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_naturpraglad_mark_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_skogsmark_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_median",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_medel_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_alla_fordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_tatort_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_inland_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_rams_bas_historisk_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_rams_bas_historisk_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsattningsgrad",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_tatortsgrad_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        }
+      ]
+    },
+    {
+      "target_year": 2006,
+      "municipalities": 293,
+      "complete_features": 9,
+      "missing_features_count": 67,
+      "all_76_complete": false,
+      "missing_features": [
+        {
+          "feature": "lag1_andel_bostader_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_141_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostadsratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_eftergymnasial",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_flerbostad_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hotell_restaurang_i",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hyresratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_industri_bc",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_kultur_service_rstu",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_studerande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetskraftsdeltagande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetsloshet",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_ovriga_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_pensionarer_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_sjuka_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_studerande_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostadsbestandsforandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_brott_per_100000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_ekonomisk_standard_gap_pp",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fardigstallda_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshusandel_bland_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_yrkesprogram_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inflyttare_medelalder",
+          "non_null": 293,
+          "missing": -3
+        },
+        {
+          "feature": "lag1_inkomst_median_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inkomst_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_24_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_65_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_langtidsarbetslosa_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_lok_foreningar_per_10000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_lonesumma_dagbef_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_mediannettoinkomst_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_externa_fa_jobb_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_smahuspris_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_naturpraglad_mark_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_skogsmark_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_median",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_medel_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_alla_fordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_tatort_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_inland_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsattningsgrad",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        }
+      ]
+    },
+    {
+      "target_year": 2007,
+      "municipalities": 293,
+      "complete_features": 9,
+      "missing_features_count": 67,
+      "all_76_complete": false,
+      "missing_features": [
+        {
+          "feature": "lag1_andel_bostader_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_141_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostadsratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_eftergymnasial",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_flerbostad_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hotell_restaurang_i",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hyresratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_industri_bc",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_kultur_service_rstu",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_studerande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetskraftsdeltagande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetsloshet",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_ovriga_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_pensionarer_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_sjuka_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_studerande_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostadsbestandsforandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_brott_per_100000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_ekonomisk_standard_gap_pp",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fardigstallda_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshusandel_bland_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_yrkesprogram_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inflyttare_medelalder",
+          "non_null": 293,
+          "missing": -3
+        },
+        {
+          "feature": "lag1_inkomst_median_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inkomst_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_24_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_65_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_langtidsarbetslosa_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_lok_foreningar_per_10000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_lonesumma_dagbef_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_mediannettoinkomst_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_externa_fa_jobb_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_smahuspris_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_naturpraglad_mark_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_skogsmark_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_median",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_medel_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_alla_fordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_tatort_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_inland_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsattningsgrad",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        }
+      ]
+    },
+    {
+      "target_year": 2008,
+      "municipalities": 293,
+      "complete_features": 9,
+      "missing_features_count": 67,
+      "all_76_complete": false,
+      "missing_features": [
+        {
+          "feature": "lag1_andel_bostader_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_141_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostadsratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_eftergymnasial",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_flerbostad_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hotell_restaurang_i",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hyresratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_industri_bc",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_kultur_service_rstu",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_studerande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetskraftsdeltagande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetsloshet",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_ovriga_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_pensionarer_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_sjuka_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_studerande_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostadsbestandsforandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_brott_per_100000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_ekonomisk_standard_gap_pp",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fardigstallda_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshusandel_bland_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_yrkesprogram_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inflyttare_medelalder",
+          "non_null": 293,
+          "missing": -3
+        },
+        {
+          "feature": "lag1_inkomst_median_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inkomst_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_24_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_65_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_langtidsarbetslosa_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_lok_foreningar_per_10000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_lonesumma_dagbef_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_mediannettoinkomst_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_externa_fa_jobb_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_smahuspris_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_naturpraglad_mark_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_skogsmark_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_median",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_medel_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_alla_fordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_tatort_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_inland_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsattningsgrad",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        }
+      ]
+    },
+    {
+      "target_year": 2009,
+      "municipalities": 293,
+      "complete_features": 9,
+      "missing_features_count": 67,
+      "all_76_complete": false,
+      "missing_features": [
+        {
+          "feature": "lag1_andel_bostader_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_141_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostadsratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_eftergymnasial",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_flerbostad_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hotell_restaurang_i",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hyresratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_industri_bc",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_kultur_service_rstu",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_studerande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetskraftsdeltagande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetsloshet",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_ovriga_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_pensionarer_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_sjuka_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_studerande_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostadsbestandsforandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_brott_per_100000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_ekonomisk_standard_gap_pp",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fardigstallda_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshusandel_bland_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_yrkesprogram_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inflyttare_medelalder",
+          "non_null": 293,
+          "missing": -3
+        },
+        {
+          "feature": "lag1_inkomst_median_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inkomst_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_24_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_65_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_langtidsarbetslosa_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_lok_foreningar_per_10000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_lonesumma_dagbef_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_mediannettoinkomst_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_externa_fa_jobb_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_smahuspris_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_naturpraglad_mark_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_skogsmark_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_median",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_medel_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_alla_fordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_tatort_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_inland_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsattningsgrad",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        }
+      ]
+    },
+    {
+      "target_year": 2010,
+      "municipalities": 293,
+      "complete_features": 9,
+      "missing_features_count": 67,
+      "all_76_complete": false,
+      "missing_features": [
+        {
+          "feature": "lag1_andel_bostader_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_141_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostadsratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_eftergymnasial",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_flerbostad_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hotell_restaurang_i",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hyresratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_industri_bc",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_kultur_service_rstu",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_studerande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetskraftsdeltagande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetsloshet",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_ovriga_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_pensionarer_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_sjuka_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_studerande_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bebyggd_anlagd_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostadsbestandsforandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_brott_per_100000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_ekonomisk_standard_gap_pp",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fardigstallda_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshusandel_bland_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_yrkesprogram_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inflyttare_medelalder",
+          "non_null": 293,
+          "missing": -3
+        },
+        {
+          "feature": "lag1_inkomst_median_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inkomst_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_24_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_65_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_langtidsarbetslosa_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_lok_foreningar_per_10000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_lonesumma_dagbef_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_mediannettoinkomst_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_externa_fa_jobb_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_smahuspris_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_naturpraglad_mark_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_skogsmark_andel_land_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_median",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_medel_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_alla_fordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_tatort_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_inland_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsattningsgrad",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        }
+      ]
+    },
+    {
+      "target_year": 2011,
+      "municipalities": 293,
+      "complete_features": 12,
+      "missing_features_count": 64,
+      "all_76_complete": false,
+      "missing_features": [
+        {
+          "feature": "lag1_andel_bostader_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_141_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostadsratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_eftergymnasial",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_flerbostad_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hotell_restaurang_i",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hyresratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_industri_bc",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_kultur_service_rstu",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_studerande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetskraftsdeltagande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetsloshet",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_ovriga_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_pensionarer_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_sjuka_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_studerande_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostadsbestandsforandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_brott_per_100000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_ekonomisk_standard_gap_pp",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fardigstallda_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshusandel_bland_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_yrkesprogram_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inflyttare_medelalder",
+          "non_null": 293,
+          "missing": -3
+        },
+        {
+          "feature": "lag1_inkomst_median_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inkomst_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_24_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_65_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_langtidsarbetslosa_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_lok_foreningar_per_10000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_lonesumma_dagbef_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_mediannettoinkomst_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_externa_fa_jobb_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_smahuspris_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_median",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_medel_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_alla_fordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_tatort_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_inland_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsattningsgrad",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        }
+      ]
+    },
+    {
+      "target_year": 2012,
+      "municipalities": 293,
+      "complete_features": 10,
+      "missing_features_count": 66,
+      "all_76_complete": false,
+      "missing_features": [
+        {
+          "feature": "lag1_andel_bostader_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_141_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostadsratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_eftergymnasial",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_flerbostad_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hotell_restaurang_i",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hyresratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_industri_bc",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_kultur_service_rstu",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_studerande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetskraftsdeltagande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetsloshet",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_ovriga_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_pensionarer_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_sjuka_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_studerande_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostadsbestandsforandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_brott_per_100000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_ekonomisk_standard_gap_pp",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fardigstallda_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshusandel_bland_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_yrkesprogram_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inflyttare_medelalder",
+          "non_null": 293,
+          "missing": -3
+        },
+        {
+          "feature": "lag1_inkomst_median_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inkomst_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_24_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_65_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_langtidsarbetslosa_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_lok_foreningar_per_10000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_lonesumma_dagbef_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_mediannettoinkomst_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_externa_fa_jobb_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_smahuspris_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_median",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_medel_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_alla_fordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_tatort_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_inland_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_rams_bas_historisk_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_rams_bas_historisk_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsattningsgrad",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        }
+      ]
+    },
+    {
+      "target_year": 2013,
+      "municipalities": 293,
+      "complete_features": 12,
+      "missing_features_count": 64,
+      "all_76_complete": false,
+      "missing_features": [
+        {
+          "feature": "lag1_andel_bostader_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_141_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostadsratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_eftergymnasial",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_flerbostad_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hotell_restaurang_i",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hyresratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_industri_bc",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_kultur_service_rstu",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_studerande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetskraftsdeltagande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetsloshet",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_ovriga_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_pensionarer_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_sjuka_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_studerande_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostadsbestandsforandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_brott_per_100000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_ekonomisk_standard_gap_pp",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fardigstallda_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshusandel_bland_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_yrkesprogram_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inflyttare_medelalder",
+          "non_null": 293,
+          "missing": -3
+        },
+        {
+          "feature": "lag1_inkomst_median_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inkomst_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_24_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_65_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_langtidsarbetslosa_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_lok_foreningar_per_10000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_lonesumma_dagbef_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_mediannettoinkomst_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_externa_fa_jobb_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_smahuspris_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_median",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_medel_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_alla_fordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_tatort_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_inland_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsattningsgrad",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        }
+      ]
+    },
+    {
+      "target_year": 2014,
+      "municipalities": 293,
+      "complete_features": 12,
+      "missing_features_count": 64,
+      "all_76_complete": false,
+      "missing_features": [
+        {
+          "feature": "lag1_andel_bostader_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_141_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostadsratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_eftergymnasial",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_flerbostad_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hotell_restaurang_i",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hyresratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_industri_bc",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_kultur_service_rstu",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_studerande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetskraftsdeltagande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetsloshet",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_ovriga_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_pensionarer_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_sjuka_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_studerande_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostadsbestandsforandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_brott_per_100000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_ekonomisk_standard_gap_pp",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fardigstallda_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshusandel_bland_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_yrkesprogram_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inflyttare_medelalder",
+          "non_null": 293,
+          "missing": -3
+        },
+        {
+          "feature": "lag1_inkomst_median_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inkomst_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_24_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_65_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_langtidsarbetslosa_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_lok_foreningar_per_10000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_lonesumma_dagbef_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_mediannettoinkomst_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_externa_fa_jobb_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_smahuspris_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_median",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_medel_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_alla_fordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_tatort_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_inland_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsattningsgrad",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        }
+      ]
+    },
+    {
+      "target_year": 2015,
+      "municipalities": 293,
+      "complete_features": 12,
+      "missing_features_count": 64,
+      "all_76_complete": false,
+      "missing_features": [
+        {
+          "feature": "lag1_andel_bostader_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_141_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostadsratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_eftergymnasial",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_flerbostad_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hotell_restaurang_i",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hyresratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_industri_bc",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_kultur_service_rstu",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_studerande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetskraftsdeltagande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetsloshet",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_ovriga_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_pensionarer_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_sjuka_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_studerande_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostadsbestandsforandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_brott_per_100000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_ekonomisk_standard_gap_pp",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fardigstallda_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshusandel_bland_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_yrkesprogram_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inflyttare_medelalder",
+          "non_null": 293,
+          "missing": -3
+        },
+        {
+          "feature": "lag1_inkomst_median_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inkomst_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_24_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_65_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_langtidsarbetslosa_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_lok_foreningar_per_10000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_lonesumma_dagbef_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_mediannettoinkomst_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_externa_fa_jobb_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_smahuspris_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_median",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_medel_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_alla_fordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_tatort_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_inland_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsattningsgrad",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        }
+      ]
+    },
+    {
+      "target_year": 2016,
+      "municipalities": 293,
+      "complete_features": 12,
+      "missing_features_count": 64,
+      "all_76_complete": false,
+      "missing_features": [
+        {
+          "feature": "lag1_andel_bostader_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_141_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostadsratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_eftergymnasial",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_flerbostad_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hotell_restaurang_i",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hyresratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_industri_bc",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_kultur_service_rstu",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_studerande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetskraftsdeltagande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetsloshet",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_ovriga_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_pensionarer_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_sjuka_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_studerande_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostadsbestandsforandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_brott_per_100000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_ekonomisk_standard_gap_pp",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fardigstallda_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshusandel_bland_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_yrkesprogram_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inflyttare_medelalder",
+          "non_null": 293,
+          "missing": -3
+        },
+        {
+          "feature": "lag1_inkomst_median_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inkomst_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_24_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_65_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_langtidsarbetslosa_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_lok_foreningar_per_10000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_lonesumma_dagbef_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_mediannettoinkomst_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_externa_fa_jobb_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_smahuspris_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_median",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_medel_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_alla_fordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_tatort_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_inland_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsattningsgrad",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        }
+      ]
+    },
+    {
+      "target_year": 2017,
+      "municipalities": 293,
+      "complete_features": 12,
+      "missing_features_count": 64,
+      "all_76_complete": false,
+      "missing_features": [
+        {
+          "feature": "lag1_andel_bostader_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_141_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostadsratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_eftergymnasial",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_flerbostad_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hotell_restaurang_i",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hyresratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_industri_bc",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_kultur_service_rstu",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_studerande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetskraftsdeltagande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetsloshet",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_ovriga_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_pensionarer_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_sjuka_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_studerande_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostadsbestandsforandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_brott_per_100000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_ekonomisk_standard_gap_pp",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fardigstallda_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshusandel_bland_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_yrkesprogram_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inflyttare_medelalder",
+          "non_null": 293,
+          "missing": -3
+        },
+        {
+          "feature": "lag1_inkomst_median_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inkomst_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_24_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_65_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_langtidsarbetslosa_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_lok_foreningar_per_10000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_lonesumma_dagbef_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_mediannettoinkomst_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_externa_fa_jobb_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_smahuspris_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_median",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_medel_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_alla_fordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_tatort_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_inland_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsattningsgrad",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        }
+      ]
+    },
+    {
+      "target_year": 2018,
+      "municipalities": 293,
+      "complete_features": 12,
+      "missing_features_count": 64,
+      "all_76_complete": false,
+      "missing_features": [
+        {
+          "feature": "lag1_andel_bostader_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_141_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostader_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_bostadsratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_eftergymnasial",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_flerbostad_70_max",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hotell_restaurang_i",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hyresratt",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_industri_bc",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_kultur_service_rstu",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_111_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_smahus_151_plus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_studerande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetskraftsdeltagande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetsloshet",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_ovriga_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_pensionarer_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_sjuka_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_studerande_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostadsbestandsforandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_brott_per_100000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_ekonomisk_standard_gap_pp",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fardigstallda_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_fritidshusandel_bland_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_hogskoleforberedande_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_gymnasium_yrkesprogram_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inflyttare_medelalder",
+          "non_null": 293,
+          "missing": -3
+        },
+        {
+          "feature": "lag1_inkomst_median_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inkomst_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_24_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_arbetslosa_18_65_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_flickdominerade_idrottsforeningar_andel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_langtidsarbetslosa_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_lok_foreningar_per_10000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kolada_utbetalt_lok_stod_kr_per_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_lonesumma_dagbef_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_kvinnors_mediannettoinkomst_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_externa_fa_jobb_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_fritidshus_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_smahuspris_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_inv",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahusforsaljningar_per_1000_smahus",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_medel",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_inkomstkvot_median",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_medel_tkr",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_alla_fordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_snoskoterandel_exkl_dragfordon_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_skyddad_natur_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_hav_bostader_tatort_per_1000",
+          "non_null": 203,
+          "missing": 87
+        },
+        {
+          "feature": "lag1_strand_inland_bostader_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsattningsgrad",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        }
+      ]
+    },
+    {
+      "target_year": 2019,
+      "municipalities": 293,
+      "complete_features": 55,
+      "missing_features_count": 21,
+      "all_76_complete": false,
+      "missing_features": [
+        {
+          "feature": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hotell_restaurang_i",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_industri_bc",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_kultur_service_rstu",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetskraftsdeltagande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetsloshet",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_ovriga_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_pensionarer_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_sjuka_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_studerande_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bostadsbestandsforandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inflyttare_medelalder",
+          "non_null": 293,
+          "missing": -3
+        },
+        {
+          "feature": "lag1_log_externa_fa_jobb_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_smahuspris_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsattningsgrad",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        }
+      ]
+    },
+    {
+      "target_year": 2020,
+      "municipalities": 293,
+      "complete_features": 55,
+      "missing_features_count": 21,
+      "all_76_complete": false,
+      "missing_features": [
+        {
+          "feature": "lag1_andel_fa_arbetsplatser_i_egen_kommun",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_hotell_restaurang_i",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_industri_bc",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_andel_kultur_service_rstu",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetskraftsdeltagande",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_arbetsloshet",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_ovriga_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_pensionarer_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_sjuka_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_bas_studerande_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_inflyttare_medelalder",
+          "non_null": 293,
+          "missing": -3
+        },
+        {
+          "feature": "lag1_log_externa_fa_jobb_per_1000",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_log_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_regional_centre_distance_km",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_rams_bas_historisk_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_arbetsstalle_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_rams_bas_historisk_forandring_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsatta_bostad_sasongsvariation_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_sysselsattningsgrad",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_fran_komponenter_pct",
+          "non_null": 0,
+          "missing": 290
+        },
+        {
+          "feature": "lag1_utanf_arbetkraften_andel_pct",
+          "non_null": 0,
+          "missing": 290
+        }
+      ]
+    },
+    {
+      "target_year": 2021,
+      "municipalities": 293,
+      "complete_features": 75,
+      "missing_features_count": 1,
+      "all_76_complete": false,
+      "missing_features": [
+        {
+          "feature": "lag1_inflyttare_medelalder",
+          "non_null": 293,
+          "missing": -3
+        }
+      ]
+    },
+    {
+      "target_year": 2022,
+      "municipalities": 293,
+      "complete_features": 75,
+      "missing_features_count": 1,
+      "all_76_complete": false,
+      "missing_features": [
+        {
+          "feature": "lag1_inflyttare_medelalder",
+          "non_null": 293,
+          "missing": -3
+        }
+      ]
+    },
+    {
+      "target_year": 2023,
+      "municipalities": 293,
+      "complete_features": 75,
+      "missing_features_count": 1,
+      "all_76_complete": false,
+      "missing_features": [
+        {
+          "feature": "lag1_inflyttare_medelalder",
+          "non_null": 293,
+          "missing": -3
+        }
+      ]
+    },
+    {
+      "target_year": 2024,
+      "municipalities": 293,
+      "complete_features": 75,
+      "missing_features_count": 1,
+      "all_76_complete": false,
+      "missing_features": [
+        {
+          "feature": "lag1_inflyttare_medelalder",
+          "non_null": 293,
+          "missing": -3
+        }
+      ]
+    }
+  ],
+  "latest_panel_year": 2024,
+  "latest_complete_76_year": null,
+  "decision": {
+    "can_freeze_complete_76_matrix_from_existing_panel_for_latest_year": false,
+    "note": "Completeness is necessary but not sufficient for strict as-of validity; each future predictor row must also be available before outcome inspection."
+  }
+}
