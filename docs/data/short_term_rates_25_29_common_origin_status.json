@@ -1,0 +1,25 @@
+{
+  "status": "common_origin_gate_passed",
+  "date": "2026-10-19",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "candidate": "rates_25_29",
+  "common_origin_pass": true,
+  "main_horizons_months": [
+    9,
+    12
+  ],
+  "result_ranges": {
+    "9m_lag1_2_delta_rmse_pct": {
+      "best": -17.454669749860173,
+      "worst": -7.915874425034697
+    },
+    "12m_lag1_2_delta_rmse_pct": {
+      "best": -10.550082645698467,
+      "worst": -1.1170780709143346
+    }
+  },
+  "macro_integration_status": "blocked_pending_explicit_as_of_annual_forecast_mapping",
+  "reason": "Annual core4 historical forecasts are calendar-year one-step forecasts; assigning future-year annual predictions to cross-year monthly horizons without an as-of availability map would risk look-ahead.",
+  "current_monthly_benchmark": "seasonal_naive"
+}
