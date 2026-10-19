@@ -1,0 +1,564 @@
+{
+  "status": "core4_geographic_residual_adjustment_research",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "variable_selection_reopened": false,
+  "evaluation_years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "n_municipalities": 290,
+  "design": {
+    "base_predictions": "6-year rolling-origin core4",
+    "out_of_time_rule": "each forecast year adjustment trained only on earlier forecast residual years",
+    "geo3_features": [
+      "lag1_log_folkmangd",
+      "lag1_tatortsgrad_pct",
+      "lag1_regional_centre_distance_km"
+    ],
+    "ridge_alpha_fixed": 10.0,
+    "county_definition": "first two digits of municipality code",
+    "county_shrinkage_k": 20.0
+  },
+  "summary": {
+    "core4": {
+      "n": 1740,
+      "rmse": 6.027019456767443,
+      "mae": 4.623099904882087,
+      "bias_prediction_minus_actual": 1.4990378736103782,
+      "median_absolute_error": 3.6230774062182363,
+      "p90_absolute_error": 10.072704210357612,
+      "p95_absolute_error": 12.347595344602642,
+      "max_absolute_error": 25.510641189225794,
+      "share_abs_error_gt_10": 0.10229885057471265
+    },
+    "geo3_ridge": {
+      "n": 1740,
+      "rmse": 6.278678120212513,
+      "mae": 4.827819655043909,
+      "bias_prediction_minus_actual": -2.2411893411332464,
+      "median_absolute_error": 3.8188489181598193,
+      "p90_absolute_error": 10.358365308775506,
+      "p95_absolute_error": 12.62765858371055,
+      "max_absolute_error": 24.26416142800538,
+      "share_abs_error_gt_10": 0.10804597701149425,
+      "rmse_change_vs_core4_pct": 4.1755077323086365,
+      "p95_abs_error_change_vs_core4_pct": 2.2681601663463224,
+      "max_abs_error_change_vs_core4_pct": -4.8861169422384165
+    },
+    "county_shrinkage": {
+      "n": 1740,
+      "rmse": 6.034766090151135,
+      "mae": 4.725708553823433,
+      "bias_prediction_minus_actual": -1.200235749000072,
+      "median_absolute_error": 3.9525442366223693,
+      "p90_absolute_error": 9.73294168803421,
+      "p95_absolute_error": 12.506943024386976,
+      "max_absolute_error": 23.351340054861993,
+      "share_abs_error_gt_10": 0.09080459770114943,
+      "rmse_change_vs_core4_pct": 0.12853174673252976,
+      "p95_abs_error_change_vs_core4_pct": 1.290515888617838,
+      "max_abs_error_change_vs_core4_pct": -8.464315413897804
+    },
+    "geo3_plus_county": {
+      "n": 1740,
+      "rmse": 6.340932469764278,
+      "mae": 4.948792907244446,
+      "bias_prediction_minus_actual": -2.249264166925748,
+      "median_absolute_error": 4.053043912549857,
+      "p90_absolute_error": 10.226890357318517,
+      "p95_absolute_error": 12.668352802691219,
+      "max_absolute_error": 24.430911963344215,
+      "share_abs_error_gt_10": 0.10977011494252874,
+      "rmse_change_vs_core4_pct": 5.208428730794257,
+      "p95_abs_error_change_vs_core4_pct": 2.597732182961332,
+      "max_abs_error_change_vs_core4_pct": -4.2324660437684125
+    }
+  },
+  "year_details": [
+    {
+      "year": 2019,
+      "training_residual_years": [
+        2017,
+        2018
+      ],
+      "models": {
+        "core4": {
+          "n": 290,
+          "rmse": 7.842983250232374,
+          "mae": 6.381916378537018,
+          "bias_prediction_minus_actual": 5.488330211244898,
+          "median_absolute_error": 5.670765565068539,
+          "p90_absolute_error": 12.941428330898749,
+          "p95_absolute_error": 14.351659269690861,
+          "max_absolute_error": 25.510641189225794,
+          "share_abs_error_gt_10": 0.20344827586206896
+        },
+        "geo3_ridge": {
+          "n": 290,
+          "rmse": 5.297200688860399,
+          "mae": 3.9984176222839842,
+          "bias_prediction_minus_actual": 0.7144583774696209,
+          "median_absolute_error": 3.012475919519826,
+          "p90_absolute_error": 8.583061006766439,
+          "p95_absolute_error": 11.043888843672992,
+          "max_absolute_error": 19.110277157480027,
+          "share_abs_error_gt_10": 0.06896551724137931
+        },
+        "county_shrinkage": {
+          "n": 290,
+          "rmse": 6.081334186187291,
+          "mae": 4.694659933230949,
+          "bias_prediction_minus_actual": 2.640362714946983,
+          "median_absolute_error": 3.6595416615652976,
+          "p90_absolute_error": 10.441795785000473,
+          "p95_absolute_error": 12.868764986887827,
+          "max_absolute_error": 23.351340054861993,
+          "share_abs_error_gt_10": 0.10689655172413794
+        },
+        "geo3_plus_county": {
+          "n": 290,
+          "rmse": 5.332916772215021,
+          "mae": 4.09024323243,
+          "bias_prediction_minus_actual": 0.7010027645907194,
+          "median_absolute_error": 3.2463489926123508,
+          "p90_absolute_error": 9.293033822703972,
+          "p95_absolute_error": 11.140731479223241,
+          "max_absolute_error": 19.162015813199943,
+          "share_abs_error_gt_10": 0.07586206896551724
+        }
+      }
+    },
+    {
+      "year": 2020,
+      "training_residual_years": [
+        2017,
+        2018,
+        2019
+      ],
+      "models": {
+        "core4": {
+          "n": 290,
+          "rmse": 5.24022879574668,
+          "mae": 3.9995494931001914,
+          "bias_prediction_minus_actual": 1.1501242756755443,
+          "median_absolute_error": 3.2625331270320928,
+          "p90_absolute_error": 8.739684379950587,
+          "p95_absolute_error": 11.240523190488712,
+          "max_absolute_error": 18.70430689918993,
+          "share_abs_error_gt_10": 0.06896551724137931
+        },
+        "geo3_ridge": {
+          "n": 290,
+          "rmse": 6.521112115951869,
+          "mae": 5.119130353682223,
+          "bias_prediction_minus_actual": -3.859499434401253,
+          "median_absolute_error": 4.182810281536209,
+          "p90_absolute_error": 10.905716784481116,
+          "p95_absolute_error": 12.491320260565436,
+          "max_absolute_error": 19.15061713162254,
+          "share_abs_error_gt_10": 0.12758620689655173
+        },
+        "county_shrinkage": {
+          "n": 290,
+          "rmse": 5.488343894276268,
+          "mae": 4.224255425127016,
+          "bias_prediction_minus_actual": -2.2863742608788473,
+          "median_absolute_error": 3.445883835222041,
+          "p90_absolute_error": 8.773448530336022,
+          "p95_absolute_error": 12.397500123292776,
+          "max_absolute_error": 16.40684128041282,
+          "share_abs_error_gt_10": 0.07241379310344828
+        },
+        "geo3_plus_county": {
+          "n": 290,
+          "rmse": 6.547393606215935,
+          "mae": 5.107092424191073,
+          "bias_prediction_minus_actual": -3.867897745148684,
+          "median_absolute_error": 4.08902460112591,
+          "p90_absolute_error": 10.370361287684878,
+          "p95_absolute_error": 13.517066037123154,
+          "max_absolute_error": 19.70438110200503,
+          "share_abs_error_gt_10": 0.1310344827586207
+        }
+      }
+    },
+    {
+      "year": 2021,
+      "training_residual_years": [
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "models": {
+        "core4": {
+          "n": 290,
+          "rmse": 5.553329232424658,
+          "mae": 4.163582909380864,
+          "bias_prediction_minus_actual": -1.282433798706363,
+          "median_absolute_error": 3.2652267104567763,
+          "p90_absolute_error": 9.742941900280902,
+          "p95_absolute_error": 10.991637778366206,
+          "max_absolute_error": 20.233191912154524,
+          "share_abs_error_gt_10": 0.08620689655172414
+        },
+        "geo3_ridge": {
+          "n": 290,
+          "rmse": 7.525831960901316,
+          "mae": 6.0240185235050046,
+          "bias_prediction_minus_actual": -5.324669573392746,
+          "median_absolute_error": 5.234803852098301,
+          "p90_absolute_error": 12.79193100239173,
+          "p95_absolute_error": 15.144500012061213,
+          "max_absolute_error": 20.74404480258721,
+          "share_abs_error_gt_10": 0.1724137931034483
+        },
+        "county_shrinkage": {
+          "n": 290,
+          "rmse": 6.644391919998627,
+          "mae": 5.454171676888455,
+          "bias_prediction_minus_actual": -4.264123434136707,
+          "median_absolute_error": 4.975420071827784,
+          "p90_absolute_error": 10.900250887729731,
+          "p95_absolute_error": 13.341815169172833,
+          "max_absolute_error": 19.076811845244876,
+          "share_abs_error_gt_10": 0.1206896551724138
+        },
+        "geo3_plus_county": {
+          "n": 290,
+          "rmse": 7.445362881032694,
+          "mae": 6.1271307903122105,
+          "bias_prediction_minus_actual": -5.333593615181658,
+          "median_absolute_error": 5.412347450197981,
+          "p90_absolute_error": 11.965588305401498,
+          "p95_absolute_error": 15.376477681068954,
+          "max_absolute_error": 19.025072615763506,
+          "share_abs_error_gt_10": 0.16896551724137931
+        }
+      }
+    },
+    {
+      "year": 2022,
+      "training_residual_years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "models": {
+        "core4": {
+          "n": 290,
+          "rmse": 5.225892897089181,
+          "mae": 3.8452640065495127,
+          "bias_prediction_minus_actual": 1.3618324980432042,
+          "median_absolute_error": 2.841767293475531,
+          "p90_absolute_error": 8.763378246223521,
+          "p95_absolute_error": 11.158016126704938,
+          "max_absolute_error": 20.769609283777,
+          "share_abs_error_gt_10": 0.07241379310344828
+        },
+        "geo3_ridge": {
+          "n": 290,
+          "rmse": 5.565146883113245,
+          "mae": 4.139342227623368,
+          "bias_prediction_minus_actual": -1.6107508192905968,
+          "median_absolute_error": 3.2569362618051514,
+          "p90_absolute_error": 9.706326369310604,
+          "p95_absolute_error": 11.398840426202439,
+          "max_absolute_error": 22.783287951740242,
+          "share_abs_error_gt_10": 0.08275862068965517
+        },
+        "county_shrinkage": {
+          "n": 290,
+          "rmse": 5.643493126447053,
+          "mae": 4.266890227193898,
+          "bias_prediction_minus_actual": -0.9474234271546497,
+          "median_absolute_error": 3.344612259792701,
+          "p90_absolute_error": 9.018300105981563,
+          "p95_absolute_error": 11.032293554056789,
+          "max_absolute_error": 22.370342455814928,
+          "share_abs_error_gt_10": 0.06896551724137931
+        },
+        "geo3_plus_county": {
+          "n": 290,
+          "rmse": 5.918870577975349,
+          "mae": 4.4772670657892615,
+          "bias_prediction_minus_actual": -1.61902944435396,
+          "median_absolute_error": 3.4608117507060996,
+          "p90_absolute_error": 9.480076945746372,
+          "p95_absolute_error": 11.475374016260256,
+          "max_absolute_error": 24.430911963344215,
+          "share_abs_error_gt_10": 0.07586206896551724
+        }
+      }
+    },
+    {
+      "year": 2023,
+      "training_residual_years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "models": {
+        "core4": {
+          "n": 290,
+          "rmse": 6.5566075657912934,
+          "mae": 5.349687935040338,
+          "bias_prediction_minus_actual": 4.314850260955703,
+          "median_absolute_error": 4.790291685694839,
+          "p90_absolute_error": 10.487060364113072,
+          "p95_absolute_error": 11.985640517852534,
+          "max_absolute_error": 25.209714250147094,
+          "share_abs_error_gt_10": 0.10689655172413794
+        },
+        "geo3_ridge": {
+          "n": 290,
+          "rmse": 5.1431638563668285,
+          "mae": 3.9509597524338664,
+          "bias_prediction_minus_actual": 1.6088573475614671,
+          "median_absolute_error": 3.2305102826574803,
+          "p90_absolute_error": 8.41172955470596,
+          "p95_absolute_error": 10.049707471099149,
+          "max_absolute_error": 20.60647486443883,
+          "share_abs_error_gt_10": 0.05172413793103448
+        },
+        "county_shrinkage": {
+          "n": 290,
+          "rmse": 5.489194242207765,
+          "mae": 4.2331687460625425,
+          "bias_prediction_minus_actual": 2.1314890321363293,
+          "median_absolute_error": 3.2785185960459664,
+          "p90_absolute_error": 9.092944570713154,
+          "p95_absolute_error": 11.03825378472822,
+          "max_absolute_error": 21.66393710616135,
+          "share_abs_error_gt_10": 0.06206896551724138
+        },
+        "geo3_plus_county": {
+          "n": 290,
+          "rmse": 5.2451297884596295,
+          "mae": 4.067626387431867,
+          "bias_prediction_minus_actual": 1.6037891093516097,
+          "median_absolute_error": 3.242690930211104,
+          "p90_absolute_error": 8.807360981910575,
+          "p95_absolute_error": 10.775959582718556,
+          "max_absolute_error": 19.85406236665218,
+          "share_abs_error_gt_10": 0.06896551724137931
+        }
+      }
+    },
+    {
+      "year": 2024,
+      "training_residual_years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "models": {
+        "core4": {
+          "n": 290,
+          "rmse": 5.276255508500383,
+          "mae": 3.998598706684602,
+          "bias_prediction_minus_actual": -2.038476205550719,
+          "median_absolute_error": 3.166215267912939,
+          "p90_absolute_error": 8.971325769411663,
+          "p95_absolute_error": 11.118285841995878,
+          "max_absolute_error": 18.200059593145596,
+          "share_abs_error_gt_10": 0.07586206896551724
+        },
+        "geo3_ridge": {
+          "n": 290,
+          "rmse": 7.203083663872561,
+          "mae": 5.735049450735009,
+          "bias_prediction_minus_actual": -4.975531944745972,
+          "median_absolute_error": 4.868094444839755,
+          "p90_absolute_error": 11.22843668775415,
+          "p95_absolute_error": 15.327967070038197,
+          "max_absolute_error": 24.26416142800538,
+          "share_abs_error_gt_10": 0.14482758620689656
+        },
+        "county_shrinkage": {
+          "n": 290,
+          "rmse": 6.728867238073075,
+          "mae": 5.481105314437733,
+          "bias_prediction_minus_actual": -4.4753451189135385,
+          "median_absolute_error": 4.93920863220232,
+          "p90_absolute_error": 10.50295493419677,
+          "p95_absolute_error": 12.851476192820531,
+          "max_absolute_error": 20.80097822906015,
+          "share_abs_error_gt_10": 0.11379310344827587
+        },
+        "geo3_plus_county": {
+          "n": 290,
+          "rmse": 7.208213324791903,
+          "mae": 5.823397543312268,
+          "bias_prediction_minus_actual": -4.979856070812513,
+          "median_absolute_error": 5.289210279260939,
+          "p90_absolute_error": 10.835347743224554,
+          "p95_absolute_error": 14.320928961191608,
+          "max_absolute_error": 22.372563809211805,
+          "share_abs_error_gt_10": 0.13793103448275862
+        }
+      }
+    }
+  ],
+  "county_core4_extremes": [
+    {
+      "county": "06",
+      "n": 78,
+      "mean_residual": 2.801744174405884,
+      "mae": 4.797928099053936,
+      "p95_abs_error": 14.136797809583705
+    },
+    {
+      "county": "18",
+      "n": 72,
+      "mean_residual": 2.65131013975864,
+      "mae": 5.613084901030935,
+      "p95_abs_error": 13.032903968082879
+    },
+    {
+      "county": "08",
+      "n": 72,
+      "mean_residual": 2.6473741256426147,
+      "mae": 4.3104244954572195,
+      "p95_abs_error": 13.145979302919978
+    },
+    {
+      "county": "07",
+      "n": 48,
+      "mean_residual": 2.423630379639572,
+      "mae": 4.286715437935814,
+      "p95_abs_error": 11.157231423826252
+    },
+    {
+      "county": "21",
+      "n": 60,
+      "mean_residual": 2.4233252985887437,
+      "mae": 3.598853880309566,
+      "p95_abs_error": 9.574631532600629
+    },
+    {
+      "county": "19",
+      "n": 60,
+      "mean_residual": 2.362799331232309,
+      "mae": 5.3256559148834794,
+      "p95_abs_error": 12.04094807354276
+    },
+    {
+      "county": "10",
+      "n": 30,
+      "mean_residual": 2.2402667771791536,
+      "mae": 3.0706462076034415,
+      "p95_abs_error": 7.430505413361508
+    },
+    {
+      "county": "25",
+      "n": 84,
+      "mean_residual": 2.043701864880277,
+      "mae": 5.073468177853121,
+      "p95_abs_error": 13.336256553425365
+    },
+    {
+      "county": "22",
+      "n": 42,
+      "mean_residual": 1.8615332166615992,
+      "mae": 3.5857331906818826,
+      "p95_abs_error": 7.514458443907878
+    },
+    {
+      "county": "20",
+      "n": 90,
+      "mean_residual": 1.8036650915319052,
+      "mae": 4.246995156327005,
+      "p95_abs_error": 9.772423741233215
+    }
+  ],
+  "lulea": [
+    {
+      "year": 2019,
+      "actual": 49.19019268932847,
+      "core4": 55.39008499664168,
+      "core4_error": 6.199892307313213,
+      "geo3_ridge": 53.53458955671665,
+      "geo3_ridge_error": 4.344396867388177,
+      "county_shrinkage": 51.8264243064273,
+      "county_shrinkage_error": 2.6362316170988294,
+      "geo3_plus_county": 52.99842473022612,
+      "geo3_plus_county_error": 3.80823204089765
+    },
+    {
+      "year": 2020,
+      "actual": 51.12732179913175,
+      "core4": 51.240323815301466,
+      "core4_error": 0.11300201616971606,
+      "geo3_ridge": 49.115006861704344,
+      "geo3_ridge_error": -2.012314937427405,
+      "county_shrinkage": 46.11178979023957,
+      "county_shrinkage_error": -5.01553200889218,
+      "geo3_plus_county": 47.52240252317436,
+      "geo3_plus_county_error": -3.6049192759573927
+    },
+    {
+      "year": 2021,
+      "actual": 51.27619917075583,
+      "core4": 51.3082893189349,
+      "core4_error": 0.032090148179065636,
+      "geo3_ridge": 49.40425442879716,
+      "geo3_ridge_error": -1.8719447419586714,
+      "county_shrinkage": 46.18306330007931,
+      "county_shrinkage_error": -5.0931358706765195,
+      "geo3_plus_county": 47.20731973260135,
+      "geo3_plus_county_error": -4.068879438154482
+    },
+    {
+      "year": 2022,
+      "actual": 50.72939276159709,
+      "core4": 52.855694777229765,
+      "core4_error": 2.1263020156326746,
+      "geo3_ridge": 51.824897367822025,
+      "geo3_ridge_error": 1.0955046062249352,
+      "county_shrinkage": 48.781750215180004,
+      "county_shrinkage_error": -1.947642546417086,
+      "geo3_plus_county": 50.033354890225695,
+      "geo3_plus_county_error": -0.6960378713713951
+    },
+    {
+      "year": 2023,
+      "actual": 47.73666700272205,
+      "core4": 50.834629640865614,
+      "core4_error": 3.0979626381435637,
+      "geo3_ridge": 49.80300567422999,
+      "geo3_ridge_error": 2.0663386715079426,
+      "county_shrinkage": 46.98721411351921,
+      "county_shrinkage_error": -0.7494528892028427,
+      "geo3_plus_county": 48.25389124941395,
+      "geo3_plus_county_error": 0.5172242466918959
+    },
+    {
+      "year": 2024,
+      "actual": 51.74210559357147,
+      "core4": 47.16098819536065,
+      "core4_error": -4.5811173982108215,
+      "geo3_ridge": 45.855442520409675,
+      "geo3_ridge_error": -5.886663073161799,
+      "county_shrinkage": 43.65631620009198,
+      "county_shrinkage_error": -8.085789393479494,
+      "geo3_plus_county": 45.05809274706373,
+      "geo3_plus_county_error": -6.684012846507741
+    }
+  ],
+  "decision_rule": "A geographic layer is only promising if it improves overall RMSE while also reducing p95/max absolute error; no production promotion from this retrospective test."
+}
