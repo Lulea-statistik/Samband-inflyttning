@@ -1,0 +1,410 @@
+{
+  "status": "core4_municipality_residual_shrinkage_research",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "variable_selection_reopened": false,
+  "evaluation_years": [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "n_municipalities": 290,
+  "design": {
+    "base_predictions": "6-year rolling-origin core4",
+    "local_bias_definition": "same municipality mean prior prediction-minus-actual residual",
+    "shrinkage": "n/(n+5)",
+    "k_fixed": 5.0,
+    "out_of_time_rule": "forecast year uses only earlier residual years"
+  },
+  "summary": {
+    "core4": {
+      "n": 1450,
+      "rmse": 5.593521161667208,
+      "mae": 4.271336610151102,
+      "bias_prediction_minus_actual": 0.7011794060834741,
+      "median_absolute_error": 3.3647111107008065,
+      "p90_absolute_error": 9.516457702217087,
+      "p95_absolute_error": 11.329950705840112,
+      "max_absolute_error": 25.209714250147094,
+      "share_abs_error_gt_10": 0.08206896551724138
+    },
+    "municipality_shrinkage": {
+      "n": 1450,
+      "rmse": 5.851014462428423,
+      "mae": 4.49375630097828,
+      "bias_prediction_minus_actual": -0.9794739667519491,
+      "median_absolute_error": 3.598356257698544,
+      "p90_absolute_error": 9.513791971781318,
+      "p95_absolute_error": 11.994447098238362,
+      "max_absolute_error": 26.17990905619822,
+      "share_abs_error_gt_10": 0.0896551724137931,
+      "rmse_change_vs_core4_pct": 4.6034205166833875,
+      "p95_abs_error_change_vs_core4_pct": 5.864953958323316,
+      "max_abs_error_change_vs_core4_pct": 3.8484958473714803
+    }
+  },
+  "year_details": [
+    {
+      "year": 2020,
+      "prior_years": [
+        2017,
+        2018,
+        2019
+      ],
+      "core4": {
+        "n": 290,
+        "rmse": 5.24022879574668,
+        "mae": 3.9995494931001914,
+        "bias_prediction_minus_actual": 1.1501242756755443,
+        "median_absolute_error": 3.2625331270320928,
+        "p90_absolute_error": 8.739684379950587,
+        "p95_absolute_error": 11.240523190488712,
+        "max_absolute_error": 18.70430689918993,
+        "share_abs_error_gt_10": 0.06896551724137931
+      },
+      "municipality_shrinkage": {
+        "n": 290,
+        "rmse": 5.125235199141577,
+        "mae": 3.8414130546514853,
+        "bias_prediction_minus_actual": -0.7394727822840312,
+        "median_absolute_error": 2.7887850670383507,
+        "p90_absolute_error": 8.453579931155907,
+        "p95_absolute_error": 11.235158575554282,
+        "max_absolute_error": 18.954883889457435,
+        "share_abs_error_gt_10": 0.07241379310344828
+      }
+    },
+    {
+      "year": 2021,
+      "prior_years": [
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "core4": {
+        "n": 290,
+        "rmse": 5.553329232424658,
+        "mae": 4.163582909380864,
+        "bias_prediction_minus_actual": -1.282433798706363,
+        "median_absolute_error": 3.2652267104567763,
+        "p90_absolute_error": 9.742941900280902,
+        "p95_absolute_error": 10.991637778366206,
+        "max_absolute_error": 20.233191912154524,
+        "share_abs_error_gt_10": 0.08620689655172414
+      },
+      "municipality_shrinkage": {
+        "n": 290,
+        "rmse": 5.981837688657363,
+        "mae": 4.725674221447634,
+        "bias_prediction_minus_actual": -3.0898672141899346,
+        "median_absolute_error": 4.150926469390981,
+        "p90_absolute_error": 9.654035003187854,
+        "p95_absolute_error": 11.910759813526385,
+        "max_absolute_error": 18.938104577995674,
+        "share_abs_error_gt_10": 0.09310344827586207
+      }
+    },
+    {
+      "year": 2022,
+      "prior_years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "core4": {
+        "n": 290,
+        "rmse": 5.225892897089181,
+        "mae": 3.8452640065495127,
+        "bias_prediction_minus_actual": 1.3618324980432042,
+        "median_absolute_error": 2.841767293475531,
+        "p90_absolute_error": 8.763378246223521,
+        "p95_absolute_error": 11.158016126704938,
+        "max_absolute_error": 20.769609283777,
+        "share_abs_error_gt_10": 0.07241379310344828
+      },
+      "municipality_shrinkage": {
+        "n": 290,
+        "rmse": 5.739427871684766,
+        "mae": 4.223933927351076,
+        "bias_prediction_minus_actual": -0.1366141960213741,
+        "median_absolute_error": 2.976431562309287,
+        "p90_absolute_error": 9.321517659406423,
+        "p95_absolute_error": 12.29095347311227,
+        "max_absolute_error": 21.460112808129423,
+        "share_abs_error_gt_10": 0.07586206896551724
+      }
+    },
+    {
+      "year": 2023,
+      "prior_years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "core4": {
+        "n": 290,
+        "rmse": 6.5566075657912934,
+        "mae": 5.349687935040338,
+        "bias_prediction_minus_actual": 4.314850260955703,
+        "median_absolute_error": 4.790291685694839,
+        "p90_absolute_error": 10.487060364113072,
+        "p95_absolute_error": 11.985640517852534,
+        "max_absolute_error": 25.209714250147094,
+        "share_abs_error_gt_10": 0.10689655172413794
+      },
+      "municipality_shrinkage": {
+        "n": 290,
+        "rmse": 5.9017235469955605,
+        "mae": 4.598183661557602,
+        "bias_prediction_minus_actual": 2.8288230392567044,
+        "median_absolute_error": 4.026005765605696,
+        "p90_absolute_error": 9.336523191025169,
+        "p95_absolute_error": 11.337246327031114,
+        "max_absolute_error": 26.17990905619822,
+        "share_abs_error_gt_10": 0.09310344827586207
+      }
+    },
+    {
+      "year": 2024,
+      "prior_years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "core4": {
+        "n": 290,
+        "rmse": 5.276255508500383,
+        "mae": 3.998598706684602,
+        "bias_prediction_minus_actual": -2.038476205550719,
+        "median_absolute_error": 3.166215267912939,
+        "p90_absolute_error": 8.971325769411663,
+        "p95_absolute_error": 11.118285841995878,
+        "max_absolute_error": 18.200059593145596,
+        "share_abs_error_gt_10": 0.07586206896551724
+      },
+      "municipality_shrinkage": {
+        "n": 290,
+        "rmse": 6.430401239295849,
+        "mae": 5.079576639883606,
+        "bias_prediction_minus_actual": -3.76023868052111,
+        "median_absolute_error": 4.399969324323262,
+        "p90_absolute_error": 10.363992068222869,
+        "p95_absolute_error": 12.576166288303188,
+        "max_absolute_error": 22.250148579382056,
+        "share_abs_error_gt_10": 0.11379310344827587
+      }
+    }
+  ],
+  "largest_persistent_municipality_biases": [
+    {
+      "kommun_kod": "1864",
+      "mean": 11.404110553861035,
+      "std": 14.322189169071393,
+      "count": 8,
+      "abs_mean": 11.404110553861035
+    },
+    {
+      "kommun_kod": "0860",
+      "mean": 11.250783862150747,
+      "std": 13.320648721127837,
+      "count": 8,
+      "abs_mean": 11.250783862150747
+    },
+    {
+      "kommun_kod": "0821",
+      "mean": 10.433618590559878,
+      "std": 16.043260793780004,
+      "count": 8,
+      "abs_mean": 10.433618590559878
+    },
+    {
+      "kommun_kod": "1782",
+      "mean": 9.663600356113418,
+      "std": 10.271346130752436,
+      "count": 8,
+      "abs_mean": 9.663600356113418
+    },
+    {
+      "kommun_kod": "1315",
+      "mean": 9.305800942211034,
+      "std": 9.926228864976585,
+      "count": 8,
+      "abs_mean": 9.305800942211034
+    },
+    {
+      "kommun_kod": "1863",
+      "mean": 8.543577294869307,
+      "std": 6.768245728288294,
+      "count": 8,
+      "abs_mean": 8.543577294869307
+    },
+    {
+      "kommun_kod": "1962",
+      "mean": 8.461282164712307,
+      "std": 11.31530053925788,
+      "count": 8,
+      "abs_mean": 8.461282164712307
+    },
+    {
+      "kommun_kod": "1737",
+      "mean": 7.558462253903899,
+      "std": 11.002097301801376,
+      "count": 8,
+      "abs_mean": 7.558462253903899
+    },
+    {
+      "kommun_kod": "1860",
+      "mean": 7.302501217300322,
+      "std": 16.807504043773275,
+      "count": 8,
+      "abs_mean": 7.302501217300322
+    },
+    {
+      "kommun_kod": "1461",
+      "mean": 7.286481563430507,
+      "std": 6.549812726176327,
+      "count": 8,
+      "abs_mean": 7.286481563430507
+    },
+    {
+      "kommun_kod": "0761",
+      "mean": 7.08073718475014,
+      "std": 10.974682289828273,
+      "count": 8,
+      "abs_mean": 7.08073718475014
+    },
+    {
+      "kommun_kod": "0482",
+      "mean": 6.89940001081552,
+      "std": 8.597429242844823,
+      "count": 8,
+      "abs_mean": 6.89940001081552
+    },
+    {
+      "kommun_kod": "1760",
+      "mean": 6.349773290968207,
+      "std": 12.932350637404062,
+      "count": 8,
+      "abs_mean": 6.349773290968207
+    },
+    {
+      "kommun_kod": "1460",
+      "mean": 6.147691163703579,
+      "std": 6.866819469361546,
+      "count": 8,
+      "abs_mean": 6.147691163703579
+    },
+    {
+      "kommun_kod": "0760",
+      "mean": 6.082837485962214,
+      "std": 8.10330441373558,
+      "count": 8,
+      "abs_mean": 6.082837485962214
+    },
+    {
+      "kommun_kod": "0428",
+      "mean": 5.989093075519526,
+      "std": 8.108795964408335,
+      "count": 8,
+      "abs_mean": 5.989093075519526
+    },
+    {
+      "kommun_kod": "2506",
+      "mean": 5.847073898603971,
+      "std": 8.772542710043973,
+      "count": 8,
+      "abs_mean": 5.847073898603971
+    },
+    {
+      "kommun_kod": "0617",
+      "mean": 5.759492963856421,
+      "std": 3.912611016579859,
+      "count": 8,
+      "abs_mean": 5.759492963856421
+    },
+    {
+      "kommun_kod": "1446",
+      "mean": 5.678061657898052,
+      "std": 10.346945080827581,
+      "count": 8,
+      "abs_mean": 5.678061657898052
+    },
+    {
+      "kommun_kod": "1885",
+      "mean": 5.540112151933013,
+      "std": 5.471517028843616,
+      "count": 8,
+      "abs_mean": 5.540112151933013
+    }
+  ],
+  "lulea": [
+    {
+      "year": 2020,
+      "actual": 51.12732179913175,
+      "core4": 51.240323815301466,
+      "core4_error": 0.11300201616971606,
+      "municipality_shrinkage": 49.96389567458644,
+      "municipality_shrinkage_error": -1.1634261245453104,
+      "prior_residual_mean": 3.4038083752400703,
+      "prior_residual_n": 3,
+      "shrink_weight": 0.375
+    },
+    {
+      "year": 2021,
+      "actual": 51.27619917075583,
+      "core4": 51.3082893189349,
+      "core4_error": 0.032090148179065636,
+      "municipality_shrinkage": 50.1611307476138,
+      "municipality_shrinkage_error": -1.1150684231420342,
+      "prior_residual_mean": 2.581106785472482,
+      "prior_residual_n": 4,
+      "shrink_weight": 0.4444444444444444
+    },
+    {
+      "year": 2022,
+      "actual": 50.72939276159709,
+      "core4": 52.855694777229765,
+      "core4_error": 2.1263020156326746,
+      "municipality_shrinkage": 51.820043048222864,
+      "municipality_shrinkage_error": 1.090650286625774,
+      "prior_residual_mean": 2.0713034580138,
+      "prior_residual_n": 5,
+      "shrink_weight": 0.5
+    },
+    {
+      "year": 2023,
+      "actual": 47.73666700272205,
+      "core4": 50.834629640865614,
+      "core4_error": 3.0979626381435637,
+      "municipality_shrinkage": 49.699827885801824,
+      "municipality_shrinkage_error": 1.963160883079773,
+      "prior_residual_mean": 2.0804698842836125,
+      "prior_residual_n": 6,
+      "shrink_weight": 0.5454545454545454
+    },
+    {
+      "year": 2024,
+      "actual": 51.74210559357147,
+      "core4": 47.16098819536065,
+      "core4_error": -4.5811173982108215,
+      "municipality_shrinkage": 45.86258970004022,
+      "municipality_shrinkage_error": -5.879515893531256,
+      "prior_residual_mean": 2.2258259919778913,
+      "prior_residual_n": 7,
+      "shrink_weight": 0.5833333333333334
+    }
+  ],
+  "decision_rule": "Promising only if RMSE and upper-tail error both improve on common years; no production promotion from retrospective evidence."
+}
