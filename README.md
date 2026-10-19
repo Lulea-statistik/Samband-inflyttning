@@ -14,11 +14,20 @@ Primära utfallsvariabler:
 - invandring
 - på sikt: inflyttning per åldersgrupp
 
-Rapporten skiljer mellan tre huvudsakliga modellspår:
+Rapporten skiljer mellan tre huvudsakliga **analysuppgifter**:
 
-1. **Prognosmodell** – maximerar prognosprecision och får använda historisk demografi när den är tillgänglig före utfallsåret.
+1. **Fryst core-4-prognosmodell** – huvudmodell för nästa års inflyttning. Den använder föregående års inflyttning, utflyttning, arbetslöshet och förändring i bostadsbestånd. Variabeluppsättningen är fryst och öppnas inte av geografiska eftertester.
 2. **Demografiskt blind strukturmodell** – söker strukturella samband utan tidigare migration, befolkningstillväxt, åldersstruktur eller inflyttarprofil som genväg.
-3. **Geografiskt robust prognosmodell** – försöker behålla hög genomsnittlig prognosprecision samtidigt som stora prognosfel som koncentreras till vissa kommuner minskar. Modellurvalet väger därför även in P90 för absolutfel och P90–P10-spridningen.
+3. **Prognososäkerhet och robusthet** – analyserar var core-4 får större fel och testar challengers. Befolkningsstorlek är den tydligaste felrisksignalen. SKR, demografi och geografi används främst som diagnostik och underlag för framtida osäkerhetsintervall, inte som automatisk punktkorrigering.
+
+### Aktuell modellstatus, 2026-10-19
+
+- **Core-4:** fryst huvudmodell.
+- **Population/reliability-blend:** kvar som research-challenger. Den gav bättre total RMSE och p95 i den breda retrospektiva perioden 2019–2024 men var inte stabil varje enskilt år.
+- **SKR/demografi/nord–syd:** används för felprofilering. C7/C8 har historiskt större överprognos, men nordkoordinaten i sig visar nästan inget linjärt residualsamband.
+- **Rolling SKR-korrigering:** förkastad som punktprognos. Den försämrade RMSE med cirka 4,24 % jämfört med population-blenden 2020–2024.
+- **Nästa gate:** prospektiv validering av population/reliability och utveckling av osäkerhetsintervall snarare än ytterligare geografisk efterkorrigering på samma retrospektiva data.
+
 
 ## Första kandidatvariabler
 
@@ -122,12 +131,12 @@ Bekräftade kandidater i Statistikdatabasen:
    - faktisk och predikterad inflyttning över tid
    - vilka faktorer som bidrar mest till modellens skattning
 
-6. **Geografisk robusthet**
-   - vanlig prognosmodell mot Modell 3
-   - P90-fel och P90–P10-spridning
-   - sämsta decilens kommunfel
-   - kommunvis förbättring/försämring
-   - robusthetstest för lokalt viktiga variabler
+6. **Prognososäkerhet & robusthet**
+   - core-4 som fast referens
+   - felprofil efter befolkningsstorlek, SKR, demografi och geografi
+   - RMSE, MAE, P90/P95 och stora kommunfel
+   - population/reliability som research-challenger
+   - historiska geografiska modellförsök redovisas som diagnostik, inte som produktionsmodell
 
 7. **Metod & data**
    - definitioner
