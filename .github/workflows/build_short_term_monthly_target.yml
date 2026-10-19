@@ -1,0 +1,32 @@
+name: Build stitched short-term monthly target
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/build_short_term_monthly_target.py
+      - .github/workflows/build_short_term_monthly_target.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/build_short_term_monthly_target.py
+      - name: Commit stitched target
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/short_term_monthly_target_lulea.csv
+          git add docs/data/short_term_monthly_target_lulea_manifest.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Build stitched short-term monthly target"
+          git pull --rebase origin main
+          git push origin HEAD:main
