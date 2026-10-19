@@ -1,0 +1,1042 @@
+{
+  "status": "core4_geographic_error_diagnostic",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "variable_selection_reopened": false,
+  "evaluation_years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "n_rows": 1740,
+  "n_municipalities": 290,
+  "overall": {
+    "n": 1740,
+    "rmse": 6.027019456767443,
+    "mae": 4.623099904882087,
+    "bias": 1.4990378736103782,
+    "p90_abs_error": 10.072704210357612,
+    "p95_abs_error": 12.347595344602642,
+    "share_abs_error_gt_10": 0.10229885057471265
+  },
+  "by_county": [
+    {
+      "county": "01",
+      "n": 156,
+      "rmse": 7.404651537969477,
+      "mae": 6.039430887242527,
+      "bias": -0.7061754800549982,
+      "p90_abs_error": 11.973261576397707,
+      "p95_abs_error": 14.153379014212737,
+      "share_abs_error_gt_10": 0.1987179487179487
+    },
+    {
+      "county": "03",
+      "n": 48,
+      "rmse": 5.710233189622096,
+      "mae": 4.386973485217998,
+      "bias": 0.19567391477009824,
+      "p90_abs_error": 9.205137879876629,
+      "p95_abs_error": 12.338375079412629,
+      "share_abs_error_gt_10": 0.08333333333333333
+    },
+    {
+      "county": "04",
+      "n": 54,
+      "rmse": 5.02374099820765,
+      "mae": 3.932338900294773,
+      "bias": 1.5802707887365695,
+      "p90_abs_error": 7.762263715025261,
+      "p95_abs_error": 9.598530529932392,
+      "share_abs_error_gt_10": 0.05555555555555555
+    },
+    {
+      "county": "05",
+      "n": 78,
+      "rmse": 5.42994121210601,
+      "mae": 4.186346218897447,
+      "bias": 1.665105030562443,
+      "p90_abs_error": 8.826687325105267,
+      "p95_abs_error": 11.105178514184777,
+      "share_abs_error_gt_10": 0.0641025641025641
+    },
+    {
+      "county": "06",
+      "n": 78,
+      "rmse": 6.170779224701838,
+      "mae": 4.797928099053936,
+      "bias": 2.8017441744058846,
+      "p90_abs_error": 9.15317291756593,
+      "p95_abs_error": 14.136797809583705,
+      "share_abs_error_gt_10": 0.07692307692307693
+    },
+    {
+      "county": "07",
+      "n": 48,
+      "rmse": 5.687038781236389,
+      "mae": 4.286715437935814,
+      "bias": 2.4236303796395715,
+      "p90_abs_error": 10.475235858528878,
+      "p95_abs_error": 11.157231423826252,
+      "share_abs_error_gt_10": 0.125
+    },
+    {
+      "county": "08",
+      "n": 72,
+      "rmse": 6.113842222844361,
+      "mae": 4.3104244954572195,
+      "bias": 2.6473741256426147,
+      "p90_abs_error": 10.021246717497341,
+      "p95_abs_error": 13.145979302919978,
+      "share_abs_error_gt_10": 0.1111111111111111
+    },
+    {
+      "county": "09",
+      "n": 6,
+      "rmse": 4.080752207309305,
+      "mae": 3.283744305726118,
+      "bias": 1.1832789142549334,
+      "p90_abs_error": 6.088483203351789,
+      "p95_abs_error": 6.274838996116268,
+      "share_abs_error_gt_10": 0.0
+    },
+    {
+      "county": "10",
+      "n": 30,
+      "rmse": 3.887087780081053,
+      "mae": 3.0706462076034415,
+      "bias": 2.2402667771791536,
+      "p90_abs_error": 6.469328944436351,
+      "p95_abs_error": 7.430505413361508,
+      "share_abs_error_gt_10": 0.0
+    },
+    {
+      "county": "12",
+      "n": 198,
+      "rmse": 5.838140500658091,
+      "mae": 4.589790288096847,
+      "bias": 0.5971920972640604,
+      "p90_abs_error": 9.664079550587715,
+      "p95_abs_error": 11.452969655848776,
+      "share_abs_error_gt_10": 0.08585858585858586
+    },
+    {
+      "county": "13",
+      "n": 36,
+      "rmse": 4.093778707813834,
+      "mae": 3.148439345557514,
+      "bias": 1.6017113134399372,
+      "p90_abs_error": 5.486003221011401,
+      "p95_abs_error": 6.440188500862934,
+      "share_abs_error_gt_10": 0.027777777777777776
+    },
+    {
+      "county": "14",
+      "n": 294,
+      "rmse": 5.175525040871079,
+      "mae": 4.059092502955928,
+      "bias": 1.6297233548973502,
+      "p90_abs_error": 8.617665080423055,
+      "p95_abs_error": 10.35230099862445,
+      "share_abs_error_gt_10": 0.05782312925170068
+    },
+    {
+      "county": "17",
+      "n": 96,
+      "rmse": 6.139073261441171,
+      "mae": 4.558376698537381,
+      "bias": 1.7304769319194524,
+      "p90_abs_error": 9.898563263956326,
+      "p95_abs_error": 12.783510667144293,
+      "share_abs_error_gt_10": 0.10416666666666667
+    },
+    {
+      "county": "18",
+      "n": 72,
+      "rmse": 7.2421671819077025,
+      "mae": 5.613084901030935,
+      "bias": 2.6513101397586394,
+      "p90_abs_error": 11.271304484688349,
+      "p95_abs_error": 13.032903968082879,
+      "share_abs_error_gt_10": 0.1527777777777778
+    },
+    {
+      "county": "19",
+      "n": 60,
+      "rmse": 7.034327745265424,
+      "mae": 5.3256559148834794,
+      "bias": 2.362799331232308,
+      "p90_abs_error": 11.26637158430109,
+      "p95_abs_error": 12.04094807354276,
+      "share_abs_error_gt_10": 0.15
+    },
+    {
+      "county": "20",
+      "n": 90,
+      "rmse": 5.339661526734737,
+      "mae": 4.246995156327005,
+      "bias": 1.8036650915319052,
+      "p90_abs_error": 8.776106148758998,
+      "p95_abs_error": 9.772423741233215,
+      "share_abs_error_gt_10": 0.044444444444444446
+    },
+    {
+      "county": "21",
+      "n": 60,
+      "rmse": 4.720035114698726,
+      "mae": 3.598853880309566,
+      "bias": 2.4233252985887437,
+      "p90_abs_error": 7.894828543531493,
+      "p95_abs_error": 9.574631532600629,
+      "share_abs_error_gt_10": 0.05
+    },
+    {
+      "county": "22",
+      "n": 42,
+      "rmse": 4.534244559180883,
+      "mae": 3.5857331906818826,
+      "bias": 1.8615332166615992,
+      "p90_abs_error": 6.966172403571819,
+      "p95_abs_error": 7.514458443907878,
+      "share_abs_error_gt_10": 0.047619047619047616
+    },
+    {
+      "county": "23",
+      "n": 48,
+      "rmse": 7.334935106272593,
+      "mae": 5.72718922070749,
+      "bias": 1.1267117146320655,
+      "p90_abs_error": 12.17649547660223,
+      "p95_abs_error": 14.094924732265238,
+      "share_abs_error_gt_10": 0.20833333333333334
+    },
+    {
+      "county": "24",
+      "n": 90,
+      "rmse": 7.366385140277481,
+      "mae": 5.819936822363679,
+      "bias": 1.4288435547162277,
+      "p90_abs_error": 11.741956419153974,
+      "p95_abs_error": 16.262098008847,
+      "share_abs_error_gt_10": 0.17777777777777778
+    },
+    {
+      "county": "25",
+      "n": 84,
+      "rmse": 6.756401629520582,
+      "mae": 5.073468177853121,
+      "bias": 2.043701864880277,
+      "p90_abs_error": 11.327458205778683,
+      "p95_abs_error": 13.336256553425365,
+      "share_abs_error_gt_10": 0.17857142857142858
+    }
+  ],
+  "by_population_decile": [
+    {
+      "population_decile": "1",
+      "n": 174,
+      "rmse": 8.450530660656925,
+      "mae": 6.9837743325187525,
+      "bias": 2.443110114837791,
+      "p90_abs_error": 12.935262903592527,
+      "p95_abs_error": 16.408666045477446,
+      "share_abs_error_gt_10": 0.25287356321839083
+    },
+    {
+      "population_decile": "2",
+      "n": 174,
+      "rmse": 7.344375394145377,
+      "mae": 5.739891076125233,
+      "bias": 2.31480062596425,
+      "p90_abs_error": 12.437550149031873,
+      "p95_abs_error": 14.902697285700254,
+      "share_abs_error_gt_10": 0.1781609195402299
+    },
+    {
+      "population_decile": "3",
+      "n": 174,
+      "rmse": 6.025865661745684,
+      "mae": 4.6816695595205235,
+      "bias": 2.6196574432675788,
+      "p90_abs_error": 9.496585376153453,
+      "p95_abs_error": 11.760234266216173,
+      "share_abs_error_gt_10": 0.08045977011494253
+    },
+    {
+      "population_decile": "4",
+      "n": 174,
+      "rmse": 5.843282466441886,
+      "mae": 4.489687209536433,
+      "bias": 1.658662991239107,
+      "p90_abs_error": 9.907162090739694,
+      "p95_abs_error": 12.728433962080206,
+      "share_abs_error_gt_10": 0.09770114942528736
+    },
+    {
+      "population_decile": "5",
+      "n": 174,
+      "rmse": 6.088758664363644,
+      "mae": 4.720546602977069,
+      "bias": 1.5561318239222446,
+      "p90_abs_error": 10.363984213772998,
+      "p95_abs_error": 11.920110644078287,
+      "share_abs_error_gt_10": 0.10344827586206896
+    },
+    {
+      "population_decile": "6",
+      "n": 174,
+      "rmse": 5.966414205683522,
+      "mae": 4.5417153853478895,
+      "bias": 1.2749309899341603,
+      "p90_abs_error": 10.432882840792962,
+      "p95_abs_error": 11.968809744913916,
+      "share_abs_error_gt_10": 0.10919540229885058
+    },
+    {
+      "population_decile": "7",
+      "n": 174,
+      "rmse": 5.1893588056551865,
+      "mae": 3.9918305685905646,
+      "bias": 1.7437302703114264,
+      "p90_abs_error": 8.702890951317617,
+      "p95_abs_error": 10.526796644159125,
+      "share_abs_error_gt_10": 0.06321839080459771
+    },
+    {
+      "population_decile": "8",
+      "n": 174,
+      "rmse": 4.771195673516864,
+      "mae": 3.8658187964040738,
+      "bias": 1.2382096967773937,
+      "p90_abs_error": 7.98783316867195,
+      "p95_abs_error": 9.204670046865099,
+      "share_abs_error_gt_10": 0.028735632183908046
+    },
+    {
+      "population_decile": "9",
+      "n": 174,
+      "rmse": 5.3892375771789505,
+      "mae": 4.222817459227033,
+      "bias": -0.01997134376539625,
+      "p90_abs_error": 9.132379939328468,
+      "p95_abs_error": 10.942040403605803,
+      "share_abs_error_gt_10": 0.07471264367816093
+    },
+    {
+      "population_decile": "10",
+      "n": 174,
+      "rmse": 4.004322016387951,
+      "mae": 2.993248058573305,
+      "bias": 0.1611161236152256,
+      "p90_abs_error": 5.438365313770655,
+      "p95_abs_error": 7.152174879431388,
+      "share_abs_error_gt_10": 0.034482758620689655
+    }
+  ],
+  "by_urbanisation_decile": [
+    {
+      "urbanisation_decile": "1",
+      "n": 174,
+      "rmse": 7.035107699599429,
+      "mae": 5.436501912557437,
+      "bias": 1.8546925992219525,
+      "p90_abs_error": 11.27903645500222,
+      "p95_abs_error": 13.666556233829686,
+      "share_abs_error_gt_10": 0.14367816091954022
+    },
+    {
+      "urbanisation_decile": "2",
+      "n": 174,
+      "rmse": 6.670008339960725,
+      "mae": 5.213555750772146,
+      "bias": 2.0875179076361654,
+      "p90_abs_error": 11.211956669476654,
+      "p95_abs_error": 13.11784177373665,
+      "share_abs_error_gt_10": 0.1781609195402299
+    },
+    {
+      "urbanisation_decile": "3",
+      "n": 174,
+      "rmse": 5.9870893403961825,
+      "mae": 4.731545497112645,
+      "bias": 1.938644610117576,
+      "p90_abs_error": 9.487875157413018,
+      "p95_abs_error": 11.89815575649028,
+      "share_abs_error_gt_10": 0.06896551724137931
+    },
+    {
+      "urbanisation_decile": "4",
+      "n": 174,
+      "rmse": 5.67634116112068,
+      "mae": 4.496334457837625,
+      "bias": 2.5371548672746465,
+      "p90_abs_error": 8.87966431137526,
+      "p95_abs_error": 11.559583232251912,
+      "share_abs_error_gt_10": 0.07471264367816093
+    },
+    {
+      "urbanisation_decile": "5",
+      "n": 174,
+      "rmse": 6.493301870812982,
+      "mae": 4.99727994726812,
+      "bias": 2.1664160686839833,
+      "p90_abs_error": 10.72059163977763,
+      "p95_abs_error": 12.76450810431896,
+      "share_abs_error_gt_10": 0.12643678160919541
+    },
+    {
+      "urbanisation_decile": "6",
+      "n": 174,
+      "rmse": 6.361932420831928,
+      "mae": 4.8441487981960245,
+      "bias": 1.6377492634455044,
+      "p90_abs_error": 10.141683728978002,
+      "p95_abs_error": 13.590153472970059,
+      "share_abs_error_gt_10": 0.10344827586206896
+    },
+    {
+      "urbanisation_decile": "7",
+      "n": 174,
+      "rmse": 5.2959773471770175,
+      "mae": 3.990115638205348,
+      "bias": 1.3937241855772682,
+      "p90_abs_error": 8.960975036066037,
+      "p95_abs_error": 10.848561807989979,
+      "share_abs_error_gt_10": 0.06321839080459771
+    },
+    {
+      "urbanisation_decile": "8",
+      "n": 174,
+      "rmse": 5.077541078494303,
+      "mae": 3.970766438250962,
+      "bias": 1.0378106305937076,
+      "p90_abs_error": 8.940127093613473,
+      "p95_abs_error": 10.83097724527357,
+      "share_abs_error_gt_10": 0.06896551724137931
+    },
+    {
+      "urbanisation_decile": "9",
+      "n": 174,
+      "rmse": 4.828215226164765,
+      "mae": 3.6036316058000053,
+      "bias": 0.6280257802436962,
+      "p90_abs_error": 8.690654960980481,
+      "p95_abs_error": 10.628654490625403,
+      "share_abs_error_gt_10": 0.06321839080459771
+    },
+    {
+      "urbanisation_decile": "10",
+      "n": 174,
+      "rmse": 6.436161971749292,
+      "mae": 4.947119002820561,
+      "bias": -0.2913571766907186,
+      "p90_abs_error": 11.237261761838072,
+      "p95_abs_error": 13.228892812366276,
+      "share_abs_error_gt_10": 0.13218390804597702
+    }
+  ],
+  "by_distance_decile": [
+    {
+      "distance_decile": "1",
+      "n": 174,
+      "rmse": 3.4705810739184217,
+      "mae": 2.6603102032513433,
+      "bias": 1.285834552235509,
+      "p90_abs_error": 4.998668972503693,
+      "p95_abs_error": 6.426664301108937,
+      "share_abs_error_gt_10": 0.017241379310344827
+    },
+    {
+      "distance_decile": "2",
+      "n": 174,
+      "rmse": 5.946787881857232,
+      "mae": 4.50411332493445,
+      "bias": 1.574550455064439,
+      "p90_abs_error": 10.566134108679005,
+      "p95_abs_error": 11.919284189952325,
+      "share_abs_error_gt_10": 0.1206896551724138
+    },
+    {
+      "distance_decile": "3",
+      "n": 174,
+      "rmse": 7.045461621546146,
+      "mae": 5.560804155249287,
+      "bias": 0.3281976976221754,
+      "p90_abs_error": 11.740959489578373,
+      "p95_abs_error": 14.346985984658925,
+      "share_abs_error_gt_10": 0.16666666666666666
+    },
+    {
+      "distance_decile": "4",
+      "n": 174,
+      "rmse": 5.457015078423849,
+      "mae": 4.352332215954919,
+      "bias": 1.2485930218570305,
+      "p90_abs_error": 8.887799004194923,
+      "p95_abs_error": 10.352300998624452,
+      "share_abs_error_gt_10": 0.06321839080459771
+    },
+    {
+      "distance_decile": "5",
+      "n": 174,
+      "rmse": 6.223549491569068,
+      "mae": 4.623470437988882,
+      "bias": 2.1567489994748668,
+      "p90_abs_error": 9.96977592766383,
+      "p95_abs_error": 12.54943367189408,
+      "share_abs_error_gt_10": 0.09770114942528736
+    },
+    {
+      "distance_decile": "6",
+      "n": 174,
+      "rmse": 6.736964878674148,
+      "mae": 5.367554026274627,
+      "bias": 1.6975151255968997,
+      "p90_abs_error": 11.256483962851323,
+      "p95_abs_error": 13.204204456052235,
+      "share_abs_error_gt_10": 0.14942528735632185
+    },
+    {
+      "distance_decile": "7",
+      "n": 174,
+      "rmse": 5.371529524118606,
+      "mae": 4.220209050571077,
+      "bias": 1.8683143651321872,
+      "p90_abs_error": 9.376222308964596,
+      "p95_abs_error": 11.164610920841707,
+      "share_abs_error_gt_10": 0.08045977011494253
+    },
+    {
+      "distance_decile": "8",
+      "n": 174,
+      "rmse": 5.982653888895974,
+      "mae": 4.673373096414298,
+      "bias": 1.746092322678271,
+      "p90_abs_error": 9.77145199001137,
+      "p95_abs_error": 11.247518882316403,
+      "share_abs_error_gt_10": 0.08045977011494253
+    },
+    {
+      "distance_decile": "9",
+      "n": 174,
+      "rmse": 6.9213296899447725,
+      "mae": 5.3620662694968075,
+      "bias": 1.4178391980079768,
+      "p90_abs_error": 10.851909602752588,
+      "p95_abs_error": 14.386846415406263,
+      "share_abs_error_gt_10": 0.11494252873563218
+    },
+    {
+      "distance_decile": "10",
+      "n": 174,
+      "rmse": 6.305023987508217,
+      "mae": 4.9067662686851845,
+      "bias": 1.6666929984344263,
+      "p90_abs_error": 11.249978558320395,
+      "p95_abs_error": 13.128497519013589,
+      "share_abs_error_gt_10": 0.13218390804597702
+    }
+  ],
+  "by_inflow_level_decile": [
+    {
+      "inflow_level_decile": "1",
+      "n": 174,
+      "rmse": 4.937933133844322,
+      "mae": 3.713771988925115,
+      "bias": 1.2109370058574225,
+      "p90_abs_error": 7.4683063622356585,
+      "p95_abs_error": 9.584224438603018,
+      "share_abs_error_gt_10": 0.05172413793103448
+    },
+    {
+      "inflow_level_decile": "2",
+      "n": 174,
+      "rmse": 4.903503667113441,
+      "mae": 3.7853288913716514,
+      "bias": 1.3576016516699572,
+      "p90_abs_error": 7.641828642331358,
+      "p95_abs_error": 11.172109322373219,
+      "share_abs_error_gt_10": 0.06896551724137931
+    },
+    {
+      "inflow_level_decile": "3",
+      "n": 174,
+      "rmse": 5.287456836620028,
+      "mae": 4.026230715303502,
+      "bias": 1.4166251688609806,
+      "p90_abs_error": 9.09165796300922,
+      "p95_abs_error": 10.473083664217906,
+      "share_abs_error_gt_10": 0.06321839080459771
+    },
+    {
+      "inflow_level_decile": "4",
+      "n": 174,
+      "rmse": 4.989080666517363,
+      "mae": 3.8138356264042277,
+      "bias": 1.4584050613283015,
+      "p90_abs_error": 8.527606008830006,
+      "p95_abs_error": 10.120665783528354,
+      "share_abs_error_gt_10": 0.05172413793103448
+    },
+    {
+      "inflow_level_decile": "5",
+      "n": 174,
+      "rmse": 5.502668514167501,
+      "mae": 4.317798357458109,
+      "bias": 1.640530592405265,
+      "p90_abs_error": 8.717564193880744,
+      "p95_abs_error": 10.387213407987096,
+      "share_abs_error_gt_10": 0.06321839080459771
+    },
+    {
+      "inflow_level_decile": "6",
+      "n": 174,
+      "rmse": 5.571297283315506,
+      "mae": 4.358087362696252,
+      "bias": 1.5345953867396982,
+      "p90_abs_error": 8.887725992706109,
+      "p95_abs_error": 10.696502969054457,
+      "share_abs_error_gt_10": 0.05747126436781609
+    },
+    {
+      "inflow_level_decile": "7",
+      "n": 174,
+      "rmse": 6.066406678440981,
+      "mae": 4.826616918705758,
+      "bias": 1.2693707623764017,
+      "p90_abs_error": 9.774643127970021,
+      "p95_abs_error": 11.797089939227547,
+      "share_abs_error_gt_10": 0.09195402298850575
+    },
+    {
+      "inflow_level_decile": "8",
+      "n": 174,
+      "rmse": 6.517674453306518,
+      "mae": 4.976502223720706,
+      "bias": 1.6433162139675415,
+      "p90_abs_error": 10.851652566976572,
+      "p95_abs_error": 12.736281687191745,
+      "share_abs_error_gt_10": 0.11494252873563218
+    },
+    {
+      "inflow_level_decile": "9",
+      "n": 174,
+      "rmse": 7.7932619211680425,
+      "mae": 6.179049123183945,
+      "bias": 3.248207483840422,
+      "p90_abs_error": 12.891689745418502,
+      "p95_abs_error": 14.444345939390987,
+      "share_abs_error_gt_10": 0.25287356321839083
+    },
+    {
+      "inflow_level_decile": "10",
+      "n": 174,
+      "rmse": 7.787102281551769,
+      "mae": 6.233777841051613,
+      "bias": 0.21078940905779184,
+      "p90_abs_error": 12.034958936877286,
+      "p95_abs_error": 14.556513218280793,
+      "share_abs_error_gt_10": 0.20689655172413793
+    }
+  ],
+  "repeated_worst_error_municipalities": [
+    {
+      "kommun_kod": "1275",
+      "years": 6,
+      "worst_decile_years": 4,
+      "mean_error": 4.4561167723854425,
+      "mean_abs_error": 10.477662013770654,
+      "max_abs_error": 15.743195841911756
+    },
+    {
+      "kommun_kod": "1864",
+      "years": 6,
+      "worst_decile_years": 4,
+      "mean_error": 5.177406388211263,
+      "mean_abs_error": 8.95025085127147,
+      "max_abs_error": 12.970672749024246
+    },
+    {
+      "kommun_kod": "1814",
+      "years": 6,
+      "worst_decile_years": 3,
+      "mean_error": 2.6081434689544216,
+      "mean_abs_error": 11.540972827352546,
+      "max_abs_error": 25.209714250147094
+    },
+    {
+      "kommun_kod": "0128",
+      "years": 6,
+      "worst_decile_years": 3,
+      "mean_error": 0.5867193176055162,
+      "mean_abs_error": 10.927391261972666,
+      "max_abs_error": 20.769609283777
+    },
+    {
+      "kommun_kod": "0821",
+      "years": 6,
+      "worst_decile_years": 3,
+      "mean_error": 7.11435333921412,
+      "mean_abs_error": 10.715123798162105,
+      "max_abs_error": 21.220378717069387
+    },
+    {
+      "kommun_kod": "1962",
+      "years": 6,
+      "worst_decile_years": 3,
+      "mean_error": 6.271667886057537,
+      "mean_abs_error": 10.274508716269223,
+      "max_abs_error": 25.510641189225794
+    },
+    {
+      "kommun_kod": "0183",
+      "years": 6,
+      "worst_decile_years": 3,
+      "mean_error": -2.4762425745018484,
+      "mean_abs_error": 9.952564817451266,
+      "max_abs_error": 15.580828409673103
+    },
+    {
+      "kommun_kod": "0123",
+      "years": 6,
+      "worst_decile_years": 3,
+      "mean_error": -5.582827165520823,
+      "mean_abs_error": 9.49704669931077,
+      "max_abs_error": 17.348306034983025
+    },
+    {
+      "kommun_kod": "0140",
+      "years": 6,
+      "worst_decile_years": 3,
+      "mean_error": 0.22099739422494005,
+      "mean_abs_error": 9.22701030312635,
+      "max_abs_error": 13.946767129980955
+    },
+    {
+      "kommun_kod": "1760",
+      "years": 6,
+      "worst_decile_years": 3,
+      "mean_error": 1.9324015992611667,
+      "mean_abs_error": 8.974845977068561,
+      "max_abs_error": 16.20263694735958
+    },
+    {
+      "kommun_kod": "0117",
+      "years": 6,
+      "worst_decile_years": 3,
+      "mean_error": -1.7191978960238998,
+      "mean_abs_error": 8.801337138526717,
+      "max_abs_error": 12.771993024840754
+    },
+    {
+      "kommun_kod": "2305",
+      "years": 6,
+      "worst_decile_years": 3,
+      "mean_error": 3.1414800110283587,
+      "mean_abs_error": 8.665826891234873,
+      "max_abs_error": 16.502266850685288
+    },
+    {
+      "kommun_kod": "2403",
+      "years": 6,
+      "worst_decile_years": 3,
+      "mean_error": 0.9302583364870832,
+      "mean_abs_error": 8.319275896375357,
+      "max_abs_error": 17.37615047988662
+    },
+    {
+      "kommun_kod": "2463",
+      "years": 6,
+      "worst_decile_years": 3,
+      "mean_error": 0.5622222673045284,
+      "mean_abs_error": 7.764564980109345,
+      "max_abs_error": 18.200059593145596
+    },
+    {
+      "kommun_kod": "0767",
+      "years": 6,
+      "worst_decile_years": 3,
+      "mean_error": 2.6697588986187526,
+      "mean_abs_error": 7.760081094843606,
+      "max_abs_error": 13.398130734579581
+    },
+    {
+      "kommun_kod": "2321",
+      "years": 6,
+      "worst_decile_years": 3,
+      "mean_error": -2.007439032300882,
+      "mean_abs_error": 6.689312187509404,
+      "max_abs_error": 14.045619465625563
+    },
+    {
+      "kommun_kod": "0187",
+      "years": 6,
+      "worst_decile_years": 2,
+      "mean_error": 2.9146621053636976,
+      "mean_abs_error": 10.048114296048938,
+      "max_abs_error": 16.595470979547954
+    },
+    {
+      "kommun_kod": "1762",
+      "years": 6,
+      "worst_decile_years": 2,
+      "mean_error": 0.35660479929362765,
+      "mean_abs_error": 9.455279245793614,
+      "max_abs_error": 17.731172249737348
+    },
+    {
+      "kommun_kod": "2506",
+      "years": 6,
+      "worst_decile_years": 2,
+      "mean_error": 4.792728249962504,
+      "mean_abs_error": 9.160858366427153,
+      "max_abs_error": 11.728573038413124
+    },
+    {
+      "kommun_kod": "1231",
+      "years": 6,
+      "worst_decile_years": 2,
+      "mean_error": -1.6802776811140088,
+      "mean_abs_error": 9.007300098999194,
+      "max_abs_error": 12.045580486045225
+    },
+    {
+      "kommun_kod": "2510",
+      "years": 6,
+      "worst_decile_years": 2,
+      "mean_error": 2.788992444952303,
+      "mean_abs_error": 8.771058058077582,
+      "max_abs_error": 12.852639930918507
+    },
+    {
+      "kommun_kod": "0584",
+      "years": 6,
+      "worst_decile_years": 2,
+      "mean_error": 0.8880028253207316,
+      "mean_abs_error": 8.33848304652562,
+      "max_abs_error": 12.475760108950979
+    },
+    {
+      "kommun_kod": "0330",
+      "years": 6,
+      "worst_decile_years": 2,
+      "mean_error": -1.14849312490792,
+      "mean_abs_error": 8.176784906730362,
+      "max_abs_error": 16.719271402672433
+    },
+    {
+      "kommun_kod": "1904",
+      "years": 6,
+      "worst_decile_years": 2,
+      "mean_error": 4.823819944512214,
+      "mean_abs_error": 7.782346009232879,
+      "max_abs_error": 18.785895273993816
+    },
+    {
+      "kommun_kod": "1446",
+      "years": 6,
+      "worst_decile_years": 2,
+      "mean_error": 1.9328146383637386,
+      "mean_abs_error": 7.757626616872688,
+      "max_abs_error": 13.233950317918556
+    },
+    {
+      "kommun_kod": "1442",
+      "years": 6,
+      "worst_decile_years": 2,
+      "mean_error": -0.27615231917877026,
+      "mean_abs_error": 7.748912527231075,
+      "max_abs_error": 13.32940262802073
+    },
+    {
+      "kommun_kod": "2482",
+      "years": 6,
+      "worst_decile_years": 2,
+      "mean_error": -4.677712460763337,
+      "mean_abs_error": 7.716365771035638,
+      "max_abs_error": 17.700512044747803
+    },
+    {
+      "kommun_kod": "0604",
+      "years": 6,
+      "worst_decile_years": 2,
+      "mean_error": 5.071996840771381,
+      "mean_abs_error": 7.575320316888342,
+      "max_abs_error": 15.784576876644216
+    },
+    {
+      "kommun_kod": "0642",
+      "years": 6,
+      "worst_decile_years": 2,
+      "mean_error": 1.9042958610741547,
+      "mean_abs_error": 7.236765298635216,
+      "max_abs_error": 17.35723050490131
+    },
+    {
+      "kommun_kod": "0860",
+      "years": 6,
+      "worst_decile_years": 2,
+      "mean_error": 6.718741320755388,
+      "mean_abs_error": 7.059720480575923,
+      "max_abs_error": 18.863975938887407
+    },
+    {
+      "kommun_kod": "0162",
+      "years": 6,
+      "worst_decile_years": 2,
+      "mean_error": 0.31826951405111475,
+      "mean_abs_error": 7.00552159209136,
+      "max_abs_error": 13.76878998327632
+    },
+    {
+      "kommun_kod": "2513",
+      "years": 6,
+      "worst_decile_years": 2,
+      "mean_error": 0.10530224800038468,
+      "mean_abs_error": 6.865472351413423,
+      "max_abs_error": 18.70430689918993
+    },
+    {
+      "kommun_kod": "0482",
+      "years": 6,
+      "worst_decile_years": 2,
+      "mean_error": 4.913279551193032,
+      "mean_abs_error": 6.645407830900987,
+      "max_abs_error": 15.892764646019671
+    },
+    {
+      "kommun_kod": "1782",
+      "years": 6,
+      "worst_decile_years": 2,
+      "mean_error": 5.740968302683748,
+      "mean_abs_error": 6.6212859897523195,
+      "max_abs_error": 20.05105048664784
+    },
+    {
+      "kommun_kod": "0563",
+      "years": 6,
+      "worst_decile_years": 2,
+      "mean_error": 2.513681797552112,
+      "mean_abs_error": 6.615814133492653,
+      "max_abs_error": 14.879681417457078
+    },
+    {
+      "kommun_kod": "1444",
+      "years": 6,
+      "worst_decile_years": 2,
+      "mean_error": 0.29127434678644565,
+      "mean_abs_error": 6.495753285932943,
+      "max_abs_error": 12.825610214076306
+    },
+    {
+      "kommun_kod": "0191",
+      "years": 6,
+      "worst_decile_years": 2,
+      "mean_error": -1.515456590202632,
+      "mean_abs_error": 6.444512598114699,
+      "max_abs_error": 11.085003961310804
+    },
+    {
+      "kommun_kod": "0139",
+      "years": 6,
+      "worst_decile_years": 2,
+      "mean_error": -3.666939824064945,
+      "mean_abs_error": 6.179594312862207,
+      "max_abs_error": 15.101975680581361
+    },
+    {
+      "kommun_kod": "1427",
+      "years": 6,
+      "worst_decile_years": 2,
+      "mean_error": -0.7574550850110574,
+      "mean_abs_error": 5.931015807525803,
+      "max_abs_error": 15.520682167544237
+    },
+    {
+      "kommun_kod": "2082",
+      "years": 6,
+      "worst_decile_years": 2,
+      "mean_error": 2.3188242830847763,
+      "mean_abs_error": 5.8962528477023675,
+      "max_abs_error": 12.993816979405835
+    }
+  ],
+  "lulea": [
+    {
+      "year": 2019,
+      "actual": 49.19019268932847,
+      "prediction": 55.39008499664168,
+      "error": 6.199892307313213,
+      "abs_error": 6.199892307313213,
+      "county": "25",
+      "population_decile": 10,
+      "urbanisation_decile": 9,
+      "distance_decile": 2,
+      "inflow_level_decile": 3
+    },
+    {
+      "year": 2020,
+      "actual": 51.12732179913175,
+      "prediction": 51.240323815301466,
+      "error": 0.11300201616971606,
+      "abs_error": 0.11300201616971606,
+      "county": "25",
+      "population_decile": 10,
+      "urbanisation_decile": 9,
+      "distance_decile": 2,
+      "inflow_level_decile": 3
+    },
+    {
+      "year": 2021,
+      "actual": 51.27619917075583,
+      "prediction": 51.3082893189349,
+      "error": 0.032090148179065636,
+      "abs_error": 0.032090148179065636,
+      "county": "25",
+      "population_decile": 10,
+      "urbanisation_decile": 9,
+      "distance_decile": 2,
+      "inflow_level_decile": 4
+    },
+    {
+      "year": 2022,
+      "actual": 50.72939276159709,
+      "prediction": 52.855694777229765,
+      "error": 2.1263020156326746,
+      "abs_error": 2.1263020156326746,
+      "county": "25",
+      "population_decile": 10,
+      "urbanisation_decile": 9,
+      "distance_decile": 2,
+      "inflow_level_decile": 4
+    },
+    {
+      "year": 2023,
+      "actual": 47.73666700272205,
+      "prediction": 50.834629640865614,
+      "error": 3.0979626381435637,
+      "abs_error": 3.0979626381435637,
+      "county": "25",
+      "population_decile": 10,
+      "urbanisation_decile": 9,
+      "distance_decile": 2,
+      "inflow_level_decile": 4
+    },
+    {
+      "year": 2024,
+      "actual": 51.74210559357147,
+      "prediction": 47.16098819536065,
+      "error": -4.5811173982108215,
+      "abs_error": 4.5811173982108215,
+      "county": "25",
+      "population_decile": 10,
+      "urbanisation_decile": 9,
+      "distance_decile": 2,
+      "inflow_level_decile": 4
+    }
+  ],
+  "interpretation_rule": "Use this diagnostic to identify stable error concentration before defining any further geographic correction. Do not tune a correction on these same results without labeling it exploratory."
+}
