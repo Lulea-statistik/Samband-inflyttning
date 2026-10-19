@@ -16,11 +16,18 @@
     4,
     5
   ],
-  "eligible_complete_years": [],
+  "eligible_complete_years": [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
   "coverage": [
     {
       "year": 2002,
-      "municipalities": 293,
+      "municipalities_in_panel": 293,
+      "complete_municipalities": 0,
       "counts": {
         "inflyttning_per_1000": 290,
         "lag1_inflyttning_per_1000": 0,
@@ -32,7 +39,8 @@
     },
     {
       "year": 2003,
-      "municipalities": 293,
+      "municipalities_in_panel": 293,
+      "complete_municipalities": 0,
       "counts": {
         "inflyttning_per_1000": 290,
         "lag1_inflyttning_per_1000": 290,
@@ -44,7 +52,8 @@
     },
     {
       "year": 2004,
-      "municipalities": 293,
+      "municipalities_in_panel": 293,
+      "complete_municipalities": 0,
       "counts": {
         "inflyttning_per_1000": 290,
         "lag1_inflyttning_per_1000": 290,
@@ -56,7 +65,8 @@
     },
     {
       "year": 2005,
-      "municipalities": 293,
+      "municipalities_in_panel": 293,
+      "complete_municipalities": 0,
       "counts": {
         "inflyttning_per_1000": 290,
         "lag1_inflyttning_per_1000": 290,
@@ -68,7 +78,8 @@
     },
     {
       "year": 2006,
-      "municipalities": 293,
+      "municipalities_in_panel": 293,
+      "complete_municipalities": 0,
       "counts": {
         "inflyttning_per_1000": 290,
         "lag1_inflyttning_per_1000": 290,
@@ -80,7 +91,8 @@
     },
     {
       "year": 2007,
-      "municipalities": 293,
+      "municipalities_in_panel": 293,
+      "complete_municipalities": 0,
       "counts": {
         "inflyttning_per_1000": 290,
         "lag1_inflyttning_per_1000": 290,
@@ -92,7 +104,8 @@
     },
     {
       "year": 2008,
-      "municipalities": 293,
+      "municipalities_in_panel": 293,
+      "complete_municipalities": 0,
       "counts": {
         "inflyttning_per_1000": 290,
         "lag1_inflyttning_per_1000": 290,
@@ -104,7 +117,8 @@
     },
     {
       "year": 2009,
-      "municipalities": 293,
+      "municipalities_in_panel": 293,
+      "complete_municipalities": 0,
       "counts": {
         "inflyttning_per_1000": 290,
         "lag1_inflyttning_per_1000": 290,
@@ -116,7 +130,8 @@
     },
     {
       "year": 2010,
-      "municipalities": 293,
+      "municipalities_in_panel": 293,
+      "complete_municipalities": 0,
       "counts": {
         "inflyttning_per_1000": 290,
         "lag1_inflyttning_per_1000": 290,
@@ -128,7 +143,8 @@
     },
     {
       "year": 2011,
-      "municipalities": 293,
+      "municipalities_in_panel": 293,
+      "complete_municipalities": 0,
       "counts": {
         "inflyttning_per_1000": 290,
         "lag1_inflyttning_per_1000": 290,
@@ -140,7 +156,8 @@
     },
     {
       "year": 2012,
-      "municipalities": 293,
+      "municipalities_in_panel": 293,
+      "complete_municipalities": 0,
       "counts": {
         "inflyttning_per_1000": 290,
         "lag1_inflyttning_per_1000": 290,
@@ -152,7 +169,8 @@
     },
     {
       "year": 2013,
-      "municipalities": 293,
+      "municipalities_in_panel": 293,
+      "complete_municipalities": 0,
       "counts": {
         "inflyttning_per_1000": 290,
         "lag1_inflyttning_per_1000": 290,
@@ -164,7 +182,8 @@
     },
     {
       "year": 2014,
-      "municipalities": 293,
+      "municipalities_in_panel": 293,
+      "complete_municipalities": 0,
       "counts": {
         "inflyttning_per_1000": 290,
         "lag1_inflyttning_per_1000": 290,
@@ -176,7 +195,8 @@
     },
     {
       "year": 2015,
-      "municipalities": 293,
+      "municipalities_in_panel": 293,
+      "complete_municipalities": 0,
       "counts": {
         "inflyttning_per_1000": 290,
         "lag1_inflyttning_per_1000": 290,
@@ -188,7 +208,8 @@
     },
     {
       "year": 2016,
-      "municipalities": 293,
+      "municipalities_in_panel": 293,
+      "complete_municipalities": 0,
       "counts": {
         "inflyttning_per_1000": 290,
         "lag1_inflyttning_per_1000": 290,
@@ -200,7 +221,8 @@
     },
     {
       "year": 2017,
-      "municipalities": 293,
+      "municipalities_in_panel": 293,
+      "complete_municipalities": 0,
       "counts": {
         "inflyttning_per_1000": 290,
         "lag1_inflyttning_per_1000": 290,
@@ -212,7 +234,8 @@
     },
     {
       "year": 2018,
-      "municipalities": 293,
+      "municipalities_in_panel": 293,
+      "complete_municipalities": 0,
       "counts": {
         "inflyttning_per_1000": 290,
         "lag1_inflyttning_per_1000": 290,
@@ -224,7 +247,8 @@
     },
     {
       "year": 2019,
-      "municipalities": 293,
+      "municipalities_in_panel": 293,
+      "complete_municipalities": 0,
       "counts": {
         "inflyttning_per_1000": 290,
         "lag1_inflyttning_per_1000": 290,
@@ -236,7 +260,8 @@
     },
     {
       "year": 2020,
-      "municipalities": 293,
+      "municipalities_in_panel": 293,
+      "complete_municipalities": 290,
       "counts": {
         "inflyttning_per_1000": 290,
         "lag1_inflyttning_per_1000": 290,
@@ -244,11 +269,12 @@
         "lag1_kolada_arbetslosa_18_65_pct": 290,
         "lag1_bostadsbestandsforandring_pct": 290
       },
-      "complete": false
+      "complete": true
     },
     {
       "year": 2021,
-      "municipalities": 293,
+      "municipalities_in_panel": 293,
+      "complete_municipalities": 290,
       "counts": {
         "inflyttning_per_1000": 290,
         "lag1_inflyttning_per_1000": 290,
@@ -256,11 +282,12 @@
         "lag1_kolada_arbetslosa_18_65_pct": 290,
         "lag1_bostadsbestandsforandring_pct": 290
       },
-      "complete": false
+      "complete": true
     },
     {
       "year": 2022,
-      "municipalities": 293,
+      "municipalities_in_panel": 293,
+      "complete_municipalities": 290,
       "counts": {
         "inflyttning_per_1000": 290,
         "lag1_inflyttning_per_1000": 290,
@@ -268,11 +295,12 @@
         "lag1_kolada_arbetslosa_18_65_pct": 290,
         "lag1_bostadsbestandsforandring_pct": 290
       },
-      "complete": false
+      "complete": true
     },
     {
       "year": 2023,
-      "municipalities": 293,
+      "municipalities_in_panel": 293,
+      "complete_municipalities": 290,
       "counts": {
         "inflyttning_per_1000": 290,
         "lag1_inflyttning_per_1000": 290,
@@ -280,11 +308,12 @@
         "lag1_kolada_arbetslosa_18_65_pct": 290,
         "lag1_bostadsbestandsforandring_pct": 290
       },
-      "complete": false
+      "complete": true
     },
     {
       "year": 2024,
-      "municipalities": 293,
+      "municipalities_in_panel": 293,
+      "complete_municipalities": 290,
       "counts": {
         "inflyttning_per_1000": 290,
         "lag1_inflyttning_per_1000": 290,
@@ -292,15 +321,29 @@
         "lag1_kolada_arbetslosa_18_65_pct": 290,
         "lag1_bostadsbestandsforandring_pct": 290
       },
-      "complete": false
+      "complete": true
     }
   ],
   "summary_by_window": {
     "3": {
-      "forecast_count": 0
+      "forecast_count": 2,
+      "first_forecast_year": 2023,
+      "last_forecast_year": 2024,
+      "mean_rmse": 6.273868630558464,
+      "median_rmse": 6.273868630558464,
+      "mean_mae": 5.029389635875438,
+      "mean_abs_bias": 3.711417075344766,
+      "mean_lulea_absolute_error": 4.5188283006906005
     },
     "4": {
-      "forecast_count": 0
+      "forecast_count": 1,
+      "first_forecast_year": 2024,
+      "last_forecast_year": 2024,
+      "mean_rmse": 5.27836556911619,
+      "median_rmse": 5.27836556911619,
+      "mean_mae": 4.021069639758726,
+      "mean_abs_bias": 1.8941671256788077,
+      "mean_lulea_absolute_error": 5.0029891727349565
     },
     "5": {
       "forecast_count": 0
@@ -309,7 +352,69 @@
       "forecast_count": 0
     }
   },
-  "yearly_results": [],
+  "yearly_results": [
+    {
+      "window_years": 3,
+      "forecast_year": 2023,
+      "training_years": [
+        2020,
+        2021,
+        2022
+      ],
+      "n_train": 870,
+      "n_test": 290,
+      "rmse": 6.85027716289201,
+      "mae": 5.6331654675113585,
+      "bias": 4.691739893049624,
+      "median_ae": 5.010724184166747,
+      "lulea": {
+        "actual": 47.73666700272205,
+        "prediction": 50.8010263913074,
+        "residual_prediction_minus_actual": 3.064359388585352
+      }
+    },
+    {
+      "window_years": 3,
+      "forecast_year": 2024,
+      "training_years": [
+        2021,
+        2022,
+        2023
+      ],
+      "n_train": 870,
+      "n_test": 290,
+      "rmse": 5.697460098224918,
+      "mae": 4.425613804239517,
+      "bias": -2.7310942576399087,
+      "median_ae": 3.549590205944501,
+      "lulea": {
+        "actual": 51.74210559357147,
+        "prediction": 45.768808380775624,
+        "residual_prediction_minus_actual": -5.973297212795849
+      }
+    },
+    {
+      "window_years": 4,
+      "forecast_year": 2024,
+      "training_years": [
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "n_train": 1160,
+      "n_test": 290,
+      "rmse": 5.27836556911619,
+      "mae": 4.021069639758726,
+      "bias": -1.8941671256788077,
+      "median_ae": 3.104048731855208,
+      "lulea": {
+        "actual": 51.74210559357147,
+        "prediction": 46.73911642083652,
+        "residual_prediction_minus_actual": -5.0029891727349565
+      }
+    }
+  ],
   "limitations": [
     "Historical values use the current reconstructed panel and are not exact archived as-of source vintages.",
     "N03937 has a documented age-definition break: 18-64 through 2022, 18-65 from 2023.",
