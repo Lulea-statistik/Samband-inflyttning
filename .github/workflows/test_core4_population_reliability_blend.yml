@@ -1,0 +1,33 @@
+name: Test core-4 population reliability blend
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/test_core4_population_reliability_blend.py
+      - .github/workflows/test_core4_population_reliability_blend.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy pandas
+      - run: python scripts/test_core4_population_reliability_blend.py
+      - name: Commit reliability blend results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/three_year_forecast_core4_population_reliability_blend.json
+          git add docs/data/three_year_forecast_core4_population_reliability_blend_predictions.csv
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record core4 population reliability blend study"
+          git pull --rebase origin main
+          git push origin HEAD:main
