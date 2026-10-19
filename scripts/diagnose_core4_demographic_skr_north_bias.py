@@ -48,7 +48,7 @@ DEMOS=[
  "lag1_befolkningstillvaxt_pct"
 ]
 
-SKR_PDF="https://skr.se/download/18.ef4ba7d1849a2f55db2898a/1669978414789/Kommungruppsindelning-2023.pdf"
+SKR_PDF="https://extra.skr.se/download/18.ef4ba7d1849a2f55db2898a/1669978414789/Kommungruppsindelning-2023.pdf"
 SCB_ZIP="https://www.scb.se/contentassets/3443fea3fa6640f7a57ea15d9a372d33/shape_svenska_260225.zip"
 
 pred=pd.read_csv(PRED,dtype={"kommun_kod":str})
