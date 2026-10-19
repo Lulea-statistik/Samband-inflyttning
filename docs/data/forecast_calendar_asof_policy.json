@@ -1,0 +1,28 @@
+{
+  "status": "forecast_calendar_asof_policy_defined",
+  "date": "2026-10-19",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "standard_forecast_origin": {
+    "month": "April",
+    "timing": "approximately 1-2 weeks after SCB national forecast assumptions released in mid-April"
+  },
+  "population_outcome_availability": {
+    "final_previous_calendar_year": "approximately mid-February of following year",
+    "rule": "At April Y origin, final population outcome through Y-1 is available; final Y outcome is not."
+  },
+  "backtest_rule": {
+    "annual_origin": "April Y",
+    "target_start": "remaining months of Y after origin",
+    "outcome_validation": "final outcome becomes available around February Y+1",
+    "require_source_specific_asof": true
+  },
+  "monthly_feature_rule": {
+    "candidate": "rates_25_29",
+    "realtime_lag_months": [
+      1,
+      2
+    ]
+  },
+  "next_gate": "build_april_origin_asof_table_and_macro_seasonal_backtest"
+}
