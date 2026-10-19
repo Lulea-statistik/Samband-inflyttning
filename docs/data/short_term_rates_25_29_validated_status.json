@@ -1,0 +1,42 @@
+{
+  "status": "validated_short_term_candidate",
+  "date": "2026-10-19",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "candidate": "rates_25_29",
+  "features": [
+    "bas2_age25_29_sysselsattningsgrad_yoy_pp",
+    "bas2_age25_29_arbetskraftsdeltagande_yoy_pp"
+  ],
+  "common_origin": {
+    "9m": {
+      "alpha_3": {
+        "lag_1": -17.454669749860173,
+        "lag_2": -17.02513691128137
+      },
+      "alpha_10": {
+        "lag_1": -14.477199241636773,
+        "lag_2": -14.006739879401142
+      },
+      "alpha_30": {
+        "lag_1": -8.319238602529676,
+        "lag_2": -7.915874425034697
+      }
+    },
+    "12m": {
+      "alpha_3": {
+        "lag_1": -10.550082645698467,
+        "lag_2": -10.412757488764424
+      },
+      "alpha_10": {
+        "lag_1": -7.632960639165498,
+        "lag_2": -7.213078070342704
+      },
+      "alpha_30": {
+        "lag_1": -1.7289026505727056,
+        "lag_2": -1.1170780709143346
+      }
+    }
+  },
+  "next_gate": "macro_plus_seasonal_baseline_then_rates_25_29_residual"
+}
