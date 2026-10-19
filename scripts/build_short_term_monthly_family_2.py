@@ -129,20 +129,31 @@ for cc,label in inc_map["ContentsCode"].items():
         m=r.get("Tid")
         if m: rowsout[m][f"income_20_66_{slug(label)}"]=num(r["_value"])
 
-# Derived lagged changes for count/index-like columns.
+# Derived lagged changes.
+# Count/index-like series: relative percent change.
+# Published rate series (unemployment, labour-force participation, employment rate):
+# also store percentage-point changes, which are the preferred representation.
 ordered=sorted(rowsout,key=mk)
 byk={mk(m):m for m in ordered}
 rawcols=sorted({k for d in rowsout.values() for k in d})
+rate_markers=("arbetsloshet","arbetskraftsdeltagande","sysselsattningsgrad")
 for m in ordered:
     k=mk(m)
     for col in rawcols:
         v=rowsout[m].get(col)
         if v is None: continue
+        is_rate=any(col.endswith(marker) for marker in rate_markers)
         for lag,suf in [(3,"change_3m_pct"),(6,"change_6m_pct"),(12,"yoy_pct")]:
             pm=byk.get(k-lag)
             pv=rowsout[pm].get(col) if pm else None
             if pv not in (None,0):
                 rowsout[m][col+"_"+suf]=100*(v/pv-1)
+        if is_rate:
+            for lag,suf in [(3,"change_3m_pp"),(6,"change_6m_pp"),(12,"yoy_pp")]:
+                pm=byk.get(k-lag)
+                pv=rowsout[pm].get(col) if pm else None
+                if pv is not None:
+                    rowsout[m][col+"_"+suf]=v-pv
 
 # Remove empty months.
 rowsout={m:d for m,d in rowsout.items() if any(v is not None for v in d.values())}
