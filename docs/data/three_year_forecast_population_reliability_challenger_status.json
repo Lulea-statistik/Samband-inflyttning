@@ -1,0 +1,29 @@
+{
+  "status": "population_reliability_blend_retained_research_challenger",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "variable_selection_reopened": false,
+  "formula": "blend = w*core4 + (1-w)*lag1_inflow; w = population/(population+10000)",
+  "c_fixed": 10000,
+  "historical_summary": {
+    "rmse_change_vs_core4_pct": -2.526591936483069,
+    "p95_abs_error_change_vs_core4_pct": -1.878658440605463,
+    "municipalities_improved_mean_mae": 183,
+    "municipalities_total": 290,
+    "share_municipalities_improved": 0.6310344827586207,
+    "years_rmse_better": 3,
+    "years_p95_better": 3,
+    "years_total": 6,
+    "lulea_mae_change_pct": -3.7690737587074086,
+    "lulea_years_blend_better": 5,
+    "lulea_years_total": 6
+  },
+  "interpretation": [
+    "The gain is broad across municipalities but not stable across every forecast year.",
+    "Largest gains are concentrated among smaller municipalities, matching the pre-existing geographic error diagnostic.",
+    "Several small municipalities deteriorate materially in individual years, so the blend is not robust enough for production promotion.",
+    "Lulea is largely unaffected and modestly improved on average because its core4 weight is close to 0.89."
+  ],
+  "decision": "retain_as_research_challenger_only",
+  "next_gate": "Use a strictly out-of-time rolling-origin calibration/validation design for any population-reliability rule before considering promotion. Do not tune a fixed threshold or C on the same 2019-2024 evaluation results."
+}
