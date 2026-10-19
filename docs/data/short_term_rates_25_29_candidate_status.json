@@ -1,0 +1,29 @@
+{
+  "status": "provisional_short_term_candidate",
+  "date": "2026-10-19",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "candidate": "rates_25_29",
+  "features": [
+    "bas2_age25_29_sysselsattningsgrad_yoy_pp",
+    "bas2_age25_29_arbetskraftsdeltagande_yoy_pp"
+  ],
+  "robustness_delta_rmse_pct": {
+    "6m": {
+      "alpha_3": -7.4869907665267466,
+      "alpha_10": -6.335196163838308,
+      "alpha_30": -3.778985982220606
+    },
+    "9m": {
+      "alpha_3": -14.133473538125651,
+      "alpha_10": -11.468397804679164,
+      "alpha_30": -6.097225893181257
+    },
+    "12m": {
+      "alpha_3": -15.116873738891423,
+      "alpha_10": -11.867947049887473,
+      "alpha_30": -5.542241648732182
+    }
+  },
+  "next_gate": "pseudo_realtime_publication_lag_0_1_2_months"
+}
