@@ -31,3 +31,4 @@ jobs:
           git commit -m "Test short-term monthly candidate family 2 groups"
           git pull --rebase origin main
           git push origin HEAD:main
+# rerun after family 2 percentage-point rebuild
