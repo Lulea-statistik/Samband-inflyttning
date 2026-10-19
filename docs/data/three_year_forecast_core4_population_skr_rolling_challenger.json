@@ -1,0 +1,641 @@
+{
+  "status": "core4_population_skr_rolling_challenger",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "variable_selection_reopened": false,
+  "design": {
+    "evaluation_years": [
+      2020,
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "population_C_fixed": 10000.0,
+    "skr_shrink_K_fixed": 30.0,
+    "skr_correction_uses_only_prior_years": true,
+    "parameter_tuning": false
+  },
+  "summary": {
+    "core4": {
+      "n": 1450,
+      "rmse": 5.593521161667208,
+      "mae": 4.271336610151102,
+      "bias_prediction_minus_actual": 0.7011794060834741,
+      "median_absolute_error": 3.3647111107008065,
+      "p90_absolute_error": 9.516457702217087,
+      "p95_absolute_error": 11.329950705840112,
+      "max_absolute_error": 25.209714250147094,
+      "share_abs_error_gt_10": 0.08206896551724138
+    },
+    "population_blend": {
+      "n": 1450,
+      "rmse": 5.602886574009611,
+      "mae": 4.269009920759406,
+      "bias_prediction_minus_actual": 0.592104198541596,
+      "median_absolute_error": 3.3418562637089337,
+      "p90_absolute_error": 9.309783081653398,
+      "p95_absolute_error": 11.583868380327639,
+      "max_absolute_error": 25.888401729955483,
+      "share_abs_error_gt_10": 0.08,
+      "rmse_change_vs_core4_pct": 0.16743321553129853,
+      "p95_change_vs_core4_pct": 2.2411189693583022
+    },
+    "population_skr_blend": {
+      "n": 1450,
+      "rmse": 5.840416305615414,
+      "mae": 4.4991253495563726,
+      "bias_prediction_minus_actual": -0.9841343239829305,
+      "median_absolute_error": 3.681636432773203,
+      "p90_absolute_error": 9.675375424205683,
+      "p95_absolute_error": 11.845515058215607,
+      "max_absolute_error": 25.022669321363843,
+      "share_abs_error_gt_10": 0.08413793103448276,
+      "rmse_change_vs_core4_pct": 4.413948509575616,
+      "p95_change_vs_core4_pct": 4.550455388210506,
+      "rmse_change_vs_population_blend_pct": 4.239417101671195,
+      "p95_change_vs_population_blend_pct": 2.2587159081702834
+    }
+  },
+  "yearly": [
+    {
+      "year": 2020,
+      "core4": {
+        "n": 290,
+        "rmse": 5.24022879574668,
+        "mae": 3.9995494931001914,
+        "bias_prediction_minus_actual": 1.1501242756755443,
+        "median_absolute_error": 3.2625331270320928,
+        "p90_absolute_error": 8.739684379950587,
+        "p95_absolute_error": 11.240523190488712,
+        "max_absolute_error": 18.70430689918993,
+        "share_abs_error_gt_10": 0.06896551724137931
+      },
+      "population_blend": {
+        "n": 290,
+        "rmse": 5.001603261877617,
+        "mae": 3.831624373538843,
+        "bias_prediction_minus_actual": 0.4506070073416938,
+        "median_absolute_error": 2.9878812396511556,
+        "p90_absolute_error": 7.921405350660361,
+        "p95_absolute_error": 11.123056625854082,
+        "max_absolute_error": 18.718447678751588,
+        "share_abs_error_gt_10": 0.06206896551724138
+      },
+      "population_skr_blend": {
+        "n": 290,
+        "rmse": 5.501511203767813,
+        "mae": 4.2016554767971055,
+        "bias_prediction_minus_actual": -2.1253238466488273,
+        "median_absolute_error": 3.2531469783894273,
+        "p90_absolute_error": 8.972222524550014,
+        "p95_absolute_error": 11.040560355613007,
+        "max_absolute_error": 19.252439096492367,
+        "share_abs_error_gt_10": 0.06551724137931035
+      },
+      "skr_vs_population_rmse_pct": 9.994953932082362,
+      "skr_vs_population_p95_pct": -0.7416690664805436
+    },
+    {
+      "year": 2021,
+      "core4": {
+        "n": 290,
+        "rmse": 5.553329232424658,
+        "mae": 4.163582909380864,
+        "bias_prediction_minus_actual": -1.282433798706363,
+        "median_absolute_error": 3.2652267104567763,
+        "p90_absolute_error": 9.742941900280902,
+        "p95_absolute_error": 10.991637778366206,
+        "max_absolute_error": 20.233191912154524,
+        "share_abs_error_gt_10": 0.08620689655172414
+      },
+      "population_blend": {
+        "n": 290,
+        "rmse": 5.621234051715197,
+        "mae": 4.243326346022187,
+        "bias_prediction_minus_actual": -1.432410113676554,
+        "median_absolute_error": 3.3682153266909793,
+        "p90_absolute_error": 9.60712968594447,
+        "p95_absolute_error": 11.62538819361829,
+        "max_absolute_error": 20.616146701851903,
+        "share_abs_error_gt_10": 0.08620689655172414
+      },
+      "population_skr_blend": {
+        "n": 290,
+        "rmse": 6.160367610109654,
+        "mae": 4.874678488493633,
+        "bias_prediction_minus_actual": -3.1895261068755856,
+        "median_absolute_error": 4.118837233675833,
+        "p90_absolute_error": 10.0745785651657,
+        "p95_absolute_error": 12.656880685689943,
+        "max_absolute_error": 19.252687088253438,
+        "share_abs_error_gt_10": 0.10344827586206896
+      },
+      "skr_vs_population_rmse_pct": 9.59101779848417,
+      "skr_vs_population_p95_pct": 8.872757407257037
+    },
+    {
+      "year": 2022,
+      "core4": {
+        "n": 290,
+        "rmse": 5.225892897089181,
+        "mae": 3.8452640065495127,
+        "bias_prediction_minus_actual": 1.3618324980432042,
+        "median_absolute_error": 2.841767293475531,
+        "p90_absolute_error": 8.763378246223521,
+        "p95_absolute_error": 11.158016126704938,
+        "max_absolute_error": 20.769609283777,
+        "share_abs_error_gt_10": 0.07241379310344828
+      },
+      "population_blend": {
+        "n": 290,
+        "rmse": 5.358641558637015,
+        "mae": 3.9048495746772294,
+        "bias_prediction_minus_actual": 1.3411401769821507,
+        "median_absolute_error": 2.8892387826535995,
+        "p90_absolute_error": 9.037790552654352,
+        "p95_absolute_error": 11.248843370837676,
+        "max_absolute_error": 21.855383665655737,
+        "share_abs_error_gt_10": 0.06551724137931035
+      },
+      "population_skr_blend": {
+        "n": 290,
+        "rmse": 5.501643747687077,
+        "mae": 3.9949632554666614,
+        "bias_prediction_minus_actual": 0.41297825531373283,
+        "median_absolute_error": 2.760305974128741,
+        "p90_absolute_error": 8.94884887052917,
+        "p95_absolute_error": 11.595953068987876,
+        "max_absolute_error": 23.01195020679927,
+        "share_abs_error_gt_10": 0.07241379310344828
+      },
+      "skr_vs_population_rmse_pct": 2.668627626708342,
+      "skr_vs_population_p95_pct": 3.085736788282367
+    },
+    {
+      "year": 2023,
+      "core4": {
+        "n": 290,
+        "rmse": 6.5566075657912934,
+        "mae": 5.349687935040338,
+        "bias_prediction_minus_actual": 4.314850260955703,
+        "median_absolute_error": 4.790291685694839,
+        "p90_absolute_error": 10.487060364113072,
+        "p95_absolute_error": 11.985640517852534,
+        "max_absolute_error": 25.209714250147094,
+        "share_abs_error_gt_10": 0.10689655172413794
+      },
+      "population_blend": {
+        "n": 290,
+        "rmse": 6.683514284719295,
+        "mae": 5.406298666102761,
+        "bias_prediction_minus_actual": 4.319407661609359,
+        "median_absolute_error": 4.888703565577011,
+        "p90_absolute_error": 10.758264168508516,
+        "p95_absolute_error": 12.385448137854874,
+        "max_absolute_error": 25.888401729955483,
+        "share_abs_error_gt_10": 0.1206896551724138
+      },
+      "population_skr_blend": {
+        "n": 290,
+        "rmse": 6.076015217454903,
+        "mae": 4.778904525116416,
+        "bias_prediction_minus_actual": 3.29459531596448,
+        "median_absolute_error": 4.175298614797251,
+        "p90_absolute_error": 9.852429992668817,
+        "p95_absolute_error": 11.832666360314512,
+        "max_absolute_error": 25.022669321363843,
+        "share_abs_error_gt_10": 0.0896551724137931
+      },
+      "skr_vs_population_rmse_pct": -9.089515506136259,
+      "skr_vs_population_p95_pct": -4.463155239824069
+    },
+    {
+      "year": 2024,
+      "core4": {
+        "n": 290,
+        "rmse": 5.276255508500383,
+        "mae": 3.998598706684602,
+        "bias_prediction_minus_actual": -2.038476205550719,
+        "median_absolute_error": 3.166215267912939,
+        "p90_absolute_error": 8.971325769411663,
+        "p95_absolute_error": 11.118285841995878,
+        "max_absolute_error": 18.200059593145596,
+        "share_abs_error_gt_10": 0.07586206896551724
+      },
+      "population_blend": {
+        "n": 290,
+        "rmse": 5.1925889308417155,
+        "mae": 3.95895064345601,
+        "bias_prediction_minus_actual": -1.7182237395486712,
+        "median_absolute_error": 3.140748696233082,
+        "p90_absolute_error": 8.105164296688683,
+        "p95_absolute_error": 10.29296562335132,
+        "max_absolute_error": 18.740607687117617,
+        "share_abs_error_gt_10": 0.06551724137931035
+      },
+      "population_skr_blend": {
+        "n": 290,
+        "rmse": 5.928702526557833,
+        "mae": 4.645425001908047,
+        "bias_prediction_minus_actual": -3.313395237668453,
+        "median_absolute_error": 3.916964056262671,
+        "p90_absolute_error": 9.529867155767455,
+        "p95_absolute_error": 11.73092145757019,
+        "max_absolute_error": 20.98348182434559,
+        "share_abs_error_gt_10": 0.0896551724137931
+      },
+      "skr_vs_population_rmse_pct": 14.17623473608558,
+      "skr_vs_population_p95_pct": 13.970277244068763
+    }
+  ],
+  "by_skr_group": [
+    {
+      "skr_group": "A1",
+      "skr_group_name": "Storstäder",
+      "core4": {
+        "n": 15,
+        "rmse": 2.780039469491194,
+        "mae": 2.519062792285191,
+        "bias_prediction_minus_actual": -0.3571054849620647,
+        "median_absolute_error": 2.8142274725969685,
+        "p90_absolute_error": 3.982728602442137,
+        "p95_absolute_error": 4.065581651191664,
+        "max_absolute_error": 4.188970760220556,
+        "share_abs_error_gt_10": 0.0
+      },
+      "population_blend": {
+        "n": 15,
+        "rmse": 2.768245502282586,
+        "mae": 2.5032497861912595,
+        "bias_prediction_minus_actual": -0.3402975102336962,
+        "median_absolute_error": 2.814801508877366,
+        "p90_absolute_error": 3.98060972247647,
+        "p95_absolute_error": 4.064095588741209,
+        "max_absolute_error": 4.179222099391168,
+        "share_abs_error_gt_10": 0.0
+      },
+      "population_skr_blend": {
+        "n": 15,
+        "rmse": 2.8576567849381576,
+        "mae": 2.583516501449252,
+        "bias_prediction_minus_actual": -0.5476776750644987,
+        "median_absolute_error": 2.6694033732673574,
+        "p90_absolute_error": 4.16748864688235,
+        "p95_absolute_error": 4.341964511529913,
+        "max_absolute_error": 4.368669512950127,
+        "share_abs_error_gt_10": 0.0
+      }
+    },
+    {
+      "skr_group": "A2",
+      "skr_group_name": "Pendlingskommun nära storstad",
+      "core4": {
+        "n": 215,
+        "rmse": 6.750758144351437,
+        "mae": 5.403587408958567,
+        "bias_prediction_minus_actual": -0.36383631548608064,
+        "median_absolute_error": 4.528001453080151,
+        "p90_absolute_error": 11.22924546394168,
+        "p95_absolute_error": 12.775359597032109,
+        "max_absolute_error": 20.769609283777,
+        "share_abs_error_gt_10": 0.15813953488372093
+      },
+      "population_blend": {
+        "n": 215,
+        "rmse": 6.803700171507691,
+        "mae": 5.457087523457399,
+        "bias_prediction_minus_actual": -0.12938799917187496,
+        "median_absolute_error": 4.518577707412419,
+        "p90_absolute_error": 11.898747879607692,
+        "p95_absolute_error": 12.814590919907204,
+        "max_absolute_error": 21.855383665655737,
+        "share_abs_error_gt_10": 0.15348837209302327
+      },
+      "population_skr_blend": {
+        "n": 215,
+        "rmse": 7.109443056194047,
+        "mae": 5.731233664752676,
+        "bias_prediction_minus_actual": -0.2653449648973282,
+        "median_absolute_error": 5.061100886830246,
+        "p90_absolute_error": 11.888937537812973,
+        "p95_absolute_error": 13.7822096703805,
+        "max_absolute_error": 23.01195020679927,
+        "share_abs_error_gt_10": 0.15813953488372093
+      }
+    },
+    {
+      "skr_group": "B3",
+      "skr_group_name": "Större stad",
+      "core4": {
+        "n": 115,
+        "rmse": 2.7283267212187443,
+        "mae": 2.147564543544102,
+        "bias_prediction_minus_actual": 0.30379802243778764,
+        "median_absolute_error": 1.8745456182890194,
+        "p90_absolute_error": 4.180576673708017,
+        "p95_absolute_error": 4.801870879445616,
+        "max_absolute_error": 11.339292146743333,
+        "share_abs_error_gt_10": 0.008695652173913044
+      },
+      "population_blend": {
+        "n": 115,
+        "rmse": 2.699822261654345,
+        "mae": 2.1269664857896418,
+        "bias_prediction_minus_actual": 0.29268260445659144,
+        "median_absolute_error": 1.8101205932391977,
+        "p90_absolute_error": 4.068163879304223,
+        "p95_absolute_error": 4.7445511834217005,
+        "max_absolute_error": 11.225102050388756,
+        "share_abs_error_gt_10": 0.008695652173913044
+      },
+      "population_skr_blend": {
+        "n": 115,
+        "rmse": 2.795982578060154,
+        "mae": 2.2245614468909145,
+        "bias_prediction_minus_actual": -0.5024574443637104,
+        "median_absolute_error": 2.020564259136407,
+        "p90_absolute_error": 4.33184606791156,
+        "p95_absolute_error": 4.683168561817516,
+        "max_absolute_error": 11.705529974878743,
+        "share_abs_error_gt_10": 0.008695652173913044
+      }
+    },
+    {
+      "skr_group": "B4",
+      "skr_group_name": "Pendlingskommun nära större stad",
+      "core4": {
+        "n": 315,
+        "rmse": 5.816267608442629,
+        "mae": 4.499473528633916,
+        "bias_prediction_minus_actual": 0.6608160249478013,
+        "median_absolute_error": 3.6139896838722976,
+        "p90_absolute_error": 9.818090336306764,
+        "p95_absolute_error": 11.244130857706613,
+        "max_absolute_error": 25.209714250147094,
+        "share_abs_error_gt_10": 0.07936507936507936
+      },
+      "population_blend": {
+        "n": 315,
+        "rmse": 5.959344590769961,
+        "mae": 4.61609461345317,
+        "bias_prediction_minus_actual": 0.7106808768854631,
+        "median_absolute_error": 3.6600312219432567,
+        "p90_absolute_error": 9.29170029353671,
+        "p95_absolute_error": 12.022529810610347,
+        "max_absolute_error": 25.888401729955483,
+        "share_abs_error_gt_10": 0.09523809523809523
+      },
+      "population_skr_blend": {
+        "n": 315,
+        "rmse": 6.182761554937211,
+        "mae": 4.907978756486226,
+        "bias_prediction_minus_actual": -0.7113111797750389,
+        "median_absolute_error": 4.245606058708162,
+        "p90_absolute_error": 9.873129877157048,
+        "p95_absolute_error": 11.828637021907465,
+        "max_absolute_error": 25.022669321363843,
+        "share_abs_error_gt_10": 0.09206349206349207
+      }
+    },
+    {
+      "skr_group": "B5",
+      "skr_group_name": "Lågpendlingskommun nära större stad",
+      "core4": {
+        "n": 120,
+        "rmse": 4.9633503064315665,
+        "mae": 3.691711710503074,
+        "bias_prediction_minus_actual": 1.0861538111508966,
+        "median_absolute_error": 2.716695918081843,
+        "p90_absolute_error": 7.443292583626717,
+        "p95_absolute_error": 8.716768804088868,
+        "max_absolute_error": 17.731172249737348,
+        "share_abs_error_gt_10": 0.03333333333333333
+      },
+      "population_blend": {
+        "n": 120,
+        "rmse": 5.058106134137019,
+        "mae": 3.6674999179058023,
+        "bias_prediction_minus_actual": 0.9033528996980683,
+        "median_absolute_error": 2.50717874303367,
+        "p90_absolute_error": 7.571315734885141,
+        "p95_absolute_error": 9.804493170305282,
+        "max_absolute_error": 18.334181879710087,
+        "share_abs_error_gt_10": 0.05
+      },
+      "population_skr_blend": {
+        "n": 120,
+        "rmse": 5.173521930459187,
+        "mae": 3.908099962465534,
+        "bias_prediction_minus_actual": -0.8484586380605601,
+        "median_absolute_error": 3.214216062901123,
+        "p90_absolute_error": 7.224135510849649,
+        "p95_absolute_error": 9.931062751551543,
+        "max_absolute_error": 19.893433177917693,
+        "share_abs_error_gt_10": 0.041666666666666664
+      }
+    },
+    {
+      "skr_group": "C6",
+      "skr_group_name": "Mindre stad/tätort",
+      "core4": {
+        "n": 135,
+        "rmse": 4.154516053571251,
+        "mae": 3.1719893225807616,
+        "bias_prediction_minus_actual": 0.6354617865815937,
+        "median_absolute_error": 2.5068161002000693,
+        "p90_absolute_error": 6.367220849528334,
+        "p95_absolute_error": 8.94435773050114,
+        "max_absolute_error": 17.700512044747803,
+        "share_abs_error_gt_10": 0.007407407407407408
+      },
+      "population_blend": {
+        "n": 135,
+        "rmse": 4.029072258362682,
+        "mae": 3.048290193259475,
+        "bias_prediction_minus_actual": 0.4700462233586059,
+        "median_absolute_error": 2.260542255396217,
+        "p90_absolute_error": 6.151037168459709,
+        "p95_absolute_error": 8.722516357119892,
+        "max_absolute_error": 17.758180140867744,
+        "share_abs_error_gt_10": 0.007407407407407408
+      },
+      "population_skr_blend": {
+        "n": 135,
+        "rmse": 4.232971057339214,
+        "mae": 3.1713748115403937,
+        "bias_prediction_minus_actual": -1.208482813620511,
+        "median_absolute_error": 2.590179174654704,
+        "p90_absolute_error": 6.617339701735503,
+        "p95_absolute_error": 7.962206298993425,
+        "max_absolute_error": 19.08376106688901,
+        "share_abs_error_gt_10": 0.02962962962962963
+      }
+    },
+    {
+      "skr_group": "C7",
+      "skr_group_name": "Pendlingskommun nära mindre stad/tätort",
+      "core4": {
+        "n": 255,
+        "rmse": 6.057417354320784,
+        "mae": 4.81853933700774,
+        "bias_prediction_minus_actual": 1.6321521968510198,
+        "median_absolute_error": 4.000050418261161,
+        "p90_absolute_error": 10.133943706082762,
+        "p95_absolute_error": 11.94935748132707,
+        "max_absolute_error": 21.220378717069387,
+        "share_abs_error_gt_10": 0.10980392156862745
+      },
+      "population_blend": {
+        "n": 255,
+        "rmse": 6.078947572940328,
+        "mae": 4.794096203218664,
+        "bias_prediction_minus_actual": 1.4037278919105876,
+        "median_absolute_error": 3.891087813635437,
+        "p90_absolute_error": 9.887626293221999,
+        "p95_absolute_error": 11.573449254430667,
+        "max_absolute_error": 20.645179499403504,
+        "share_abs_error_gt_10": 0.09803921568627451
+      },
+      "population_skr_blend": {
+        "n": 255,
+        "rmse": 6.313334417327756,
+        "mae": 4.939933357371464,
+        "bias_prediction_minus_actual": -1.3925025069341326,
+        "median_absolute_error": 4.288871435679383,
+        "p90_absolute_error": 10.050960271632317,
+        "p95_absolute_error": 12.326892115406357,
+        "max_absolute_error": 20.264525673650326,
+        "share_abs_error_gt_10": 0.10196078431372549
+      }
+    },
+    {
+      "skr_group": "C8",
+      "skr_group_name": "Landsbygdskommun",
+      "core4": {
+        "n": 175,
+        "rmse": 5.641955841255252,
+        "mae": 4.2415353425744335,
+        "bias_prediction_minus_actual": 1.1517426094228946,
+        "median_absolute_error": 3.6134560488422025,
+        "p90_absolute_error": 9.61666284703122,
+        "p95_absolute_error": 10.84799178833498,
+        "max_absolute_error": 18.70430689918993,
+        "share_abs_error_gt_10": 0.08571428571428572
+      },
+      "population_blend": {
+        "n": 175,
+        "rmse": 5.447602155408658,
+        "mae": 4.1532686614746295,
+        "bias_prediction_minus_actual": 0.6121300093191232,
+        "median_absolute_error": 3.4193634695113317,
+        "p90_absolute_error": 8.758981212323958,
+        "p95_absolute_error": 10.668139721511428,
+        "max_absolute_error": 18.740607687117617,
+        "share_abs_error_gt_10": 0.06857142857142857
+      },
+      "population_skr_blend": {
+        "n": 175,
+        "rmse": 5.81003612460405,
+        "mae": 4.573783318896027,
+        "bias_prediction_minus_actual": -2.0313212625682397,
+        "median_absolute_error": 3.6126402853652593,
+        "p90_absolute_error": 9.288453644885298,
+        "p95_absolute_error": 10.360357022734377,
+        "max_absolute_error": 20.98348182434559,
+        "share_abs_error_gt_10": 0.06857142857142857
+      }
+    },
+    {
+      "skr_group": "C9",
+      "skr_group_name": "Landsbygdskommun med besöksnäring",
+      "core4": {
+        "n": 105,
+        "rmse": 5.957993757582342,
+        "mae": 4.64149129700191,
+        "bias_prediction_minus_actual": 0.22207755346126873,
+        "median_absolute_error": 4.067039834128288,
+        "p90_absolute_error": 9.973904793373887,
+        "p95_absolute_error": 11.622343887696546,
+        "max_absolute_error": 15.615305947713672,
+        "share_abs_error_gt_10": 0.10476190476190476
+      },
+      "population_blend": {
+        "n": 105,
+        "rmse": 5.813169796671065,
+        "mae": 4.567953884226919,
+        "bias_prediction_minus_actual": -0.028390071960786096,
+        "median_absolute_error": 3.710660438678538,
+        "p90_absolute_error": 9.177851615616133,
+        "p95_absolute_error": 11.653553840452014,
+        "max_absolute_error": 15.881373245187774,
+        "share_abs_error_gt_10": 0.0761904761904762
+      },
+      "population_skr_blend": {
+        "n": 105,
+        "rmse": 6.038210749243084,
+        "mae": 4.702125854640141,
+        "bias_prediction_minus_actual": -0.9938593603972424,
+        "median_absolute_error": 3.95288206155508,
+        "p90_absolute_error": 9.956860910166487,
+        "p95_absolute_error": 10.967208881480136,
+        "max_absolute_error": 15.397806718515213,
+        "share_abs_error_gt_10": 0.10476190476190476
+      }
+    }
+  ],
+  "lulea": {
+    "core4_mae": 1.9900948432671683,
+    "population_blend_mae": 1.9365535472908093,
+    "population_skr_blend_mae": 2.2571037252704116,
+    "annual": [
+      {
+        "year": 2020,
+        "actual": 51.12732179913175,
+        "core4": 51.240323815301466,
+        "population_blend": 51.00763201279616,
+        "population_skr_blend": 50.12178941370548,
+        "skr_prior_mean_residual": 2.0412894674698303,
+        "skr_shrink": 0.4339622641509434
+      },
+      {
+        "year": 2021,
+        "actual": 51.27619917075583,
+        "core4": 51.3082893189349,
+        "population_blend": 51.28785232700917,
+        "population_skr_blend": 50.1556688365951,
+        "skr_prior_mean_residual": 1.8705640276406381,
+        "skr_shrink": 0.6052631578947368
+      },
+      {
+        "year": 2022,
+        "actual": 50.72939276159709,
+        "core4": 52.855694777229765,
+        "population_blend": 52.677957753759415,
+        "population_skr_blend": 51.98356415740099,
+        "skr_prior_mean_residual": 0.9963038556446983,
+        "skr_shrink": 0.696969696969697
+      },
+      {
+        "year": 2023,
+        "actual": 47.73666700272205,
+        "core4": 50.834629640865614,
+        "population_blend": 50.82283760114658,
+        "population_skr_blend": 50.342409676656594,
+        "skr_prior_mean_residual": 0.637089204214982,
+        "skr_shrink": 0.7540983606557377
+      },
+      {
+        "year": 2024,
+        "actual": 51.74210559357147,
+        "core4": 47.16098819536065,
+        "population_blend": 47.22541639029321,
+        "population_skr_blend": 46.442563756544864,
+        "skr_prior_mean_residual": 0.9870750599435671,
+        "skr_shrink": 0.7931034482758621
+      }
+    ]
+  },
+  "decision_rule": "Research challenger only. Promising only if it improves on population blend overall RMSE and upper-tail errors without unstable year/group deterioration.",
+  "guardrail": "K=30 is fixed for this test and must not be tuned on these same retrospective results."
+}
