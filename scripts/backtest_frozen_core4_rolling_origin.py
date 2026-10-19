@@ -47,8 +47,16 @@ for year in sorted(int(x) for x in panel["year"].dropna().unique()):
     q=panel.loc[panel.year==year,need]
     nmun=int(q.kommun_kod.nunique())
     counts={c:int(q[c].notna().sum()) for c in [target]+features}
-    complete=(nmun==290 and all(v==290 for v in counts.values()))
-    coverage.append({"year":year,"municipalities":nmun,"counts":counts,"complete":complete})
+    complete_rows=q[[target]+features].notna().all(axis=1)
+    complete_codes=int(q.loc[complete_rows,"kommun_kod"].nunique())
+    complete=(complete_codes==290)
+    coverage.append({
+      "year":year,
+      "municipalities_in_panel":nmun,
+      "complete_municipalities":complete_codes,
+      "counts":counts,
+      "complete":complete
+    })
     if complete:
         eligible_years.append(year)
 
@@ -70,6 +78,18 @@ for window in WINDOWS:
             continue
         tr=panel[panel.year.isin(train_years)][need].dropna().copy()
         te=panel[panel.year==forecast_year][need].dropna().copy()
+        # Historical panel contains three extra/non-canonical municipality codes
+        # in some years. Keep exactly the 290 codes with complete data in every
+        # training year and the forecast year.
+        sets=[]
+        for yy in train_years+[forecast_year]:
+            qq=panel[panel.year==yy][need].dropna()
+            sets.append(set(qq["kommun_kod"]))
+        common=set.intersection(*sets)
+        if len(common)!=290:
+            continue
+        tr=tr[tr.kommun_kod.isin(common)].copy()
+        te=te[te.kommun_kod.isin(common)].copy()
         if len(tr)!=290*window or len(te)!=290:
             continue
 
