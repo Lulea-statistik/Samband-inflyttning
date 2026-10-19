@@ -1,0 +1,136 @@
+{
+  "status": "initial_publication_calendar_registry",
+  "generated_date": "2026-10-19",
+  "source_priority": [
+    "SCB publiceringskalender",
+    "SCB subject/statistics pages and Statistikdatabasen update dates",
+    "statistikportalen.scb.se title/update dates",
+    "inferred annual pattern from adjacent years",
+    "conservative fallback"
+  ],
+  "quality_levels": {
+    "observed": "Exact publication/update date observed in an authoritative SCB source.",
+    "inferred_annual_pattern": "Publication period inferred from repeated annual releases; must not be presented as an exact historical date.",
+    "conservative_fallback": "Safety rule used where exact/inferred timing is insufficient."
+  },
+  "annual_population_final": {
+    "source": "SCB Befolkningsstatistik",
+    "observed": [
+      {
+        "reference_year": 2023,
+        "published": "2024-02-22",
+        "quality": "observed"
+      },
+      {
+        "reference_year": 2024,
+        "published": "2025-02-21",
+        "quality": "observed"
+      },
+      {
+        "reference_year": 2025,
+        "published": "2026-02-24",
+        "quality": "observed"
+      }
+    ],
+    "asof_rule": "At an April Y forecast origin, final population and migration statistics for Y-1 are available.",
+    "conservative_fallback": "Treat final Y-1 population/migration as unavailable before March 1 Y unless an observed earlier SCB publication date is registered."
+  },
+  "national_population_projection": {
+    "source": "SCB Befolkningsframskrivningar",
+    "observed": [
+      {
+        "projection": "2014-2060",
+        "published": "2014-04-15"
+      },
+      {
+        "projection": "2015-2060",
+        "published": "2015-05-19"
+      },
+      {
+        "projection": "2016-2060",
+        "published": "2016-04-13"
+      },
+      {
+        "projection": "2017-2060",
+        "published": "2017-04-06"
+      },
+      {
+        "projection": "2018-2070",
+        "published": "2018-04-26"
+      },
+      {
+        "projection": "2019-2070",
+        "published": "2019-04-12"
+      },
+      {
+        "projection": "2020-2070",
+        "published": "2020-04-08"
+      },
+      {
+        "projection": "2021-2070",
+        "published": "2021-04-28"
+      },
+      {
+        "projection": "2022-2070",
+        "published": "2022-04-13"
+      },
+      {
+        "projection": "2023-2070",
+        "published": "2023-04-18"
+      },
+      {
+        "projection": "2024-2070",
+        "published": "2024-04-25"
+      },
+      {
+        "projection": "2025-2070",
+        "published": "2025-04-11"
+      },
+      {
+        "projection": "2026-2070",
+        "published": "2026-04-16"
+      }
+    ],
+    "forecast_origin_rule": {
+      "earliest_days_after_release": 7,
+      "latest_days_after_release": 14,
+      "default_sensitivity_day": 10
+    }
+  },
+  "housing_stock": {
+    "source": "SCB Bostadsbestånd",
+    "observed": [
+      {
+        "reference_year": 2025,
+        "published": "2026-04-17",
+        "quality": "observed"
+      }
+    ],
+    "inferred_rule": "When historical exact dates are missing, infer a mid-April release window from adjacent-year SCB releases, mark inferred_annual_pattern, and test a conservative end-of-April cutoff.",
+    "conservative_fallback": "Unavailable at the April forecast origin unless publication before that origin is documented."
+  },
+  "bas_monthly": {
+    "source": "SCB Befolkningens arbetsmarknadsstatus",
+    "observed": [
+      {
+        "reference_period": "2026M05",
+        "published": "2026-07-28"
+      },
+      {
+        "reference_period": "2026M06",
+        "published": "2026-08-28"
+      },
+      {
+        "reference_period": "2026M10",
+        "published": "2026-12-22"
+      }
+    ],
+    "operational_rule": "Use exact observed publication dates when available. Otherwise use inferred annual/monthly pattern and a conservative two-month lag for pseudo-realtime tests.",
+    "validated_candidate": "rates_25_29"
+  },
+  "inference_policy": {
+    "annual_series": "If the current SCB source title/page gives a publication date for reference year Y, the same seasonal publication window may be used as an estimate for Y+1 only when no exact calendar entry exists.",
+    "requirement": "All inferred dates must carry quality=inferred_annual_pattern and a source/evidence note.",
+    "no_leakage": "If an inferred release could fall after forecast origin, treat the variable as unavailable."
+  }
+}
