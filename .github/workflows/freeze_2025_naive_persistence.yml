@@ -1,0 +1,33 @@
+name: Freeze 2025 naive persistence benchmark
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/freeze_2025_naive_persistence.py
+      - .github/workflows/freeze_2025_naive_persistence.yml
+permissions:
+  contents: write
+jobs:
+  freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas
+      - run: python scripts/freeze_2025_naive_persistence.py
+      - name: Commit frozen naive benchmark
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/preoutcome_2025_core4_temporal/naive_persistence_2025.csv
+          git add docs/data/preoutcome_2025_core4_temporal/naive_persistence_manifest.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Freeze 2025 naive persistence benchmark"
+          git pull --rebase origin main
+          git push origin HEAD:main
