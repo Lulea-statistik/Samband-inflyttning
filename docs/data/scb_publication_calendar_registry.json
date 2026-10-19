@@ -101,13 +101,29 @@
     "source": "SCB Bostadsbestånd",
     "observed": [
       {
+        "reference_year": 2022,
+        "published": "2023-04-19",
+        "quality": "observed"
+      },
+      {
+        "reference_year": 2023,
+        "published": "2024-04-18",
+        "quality": "observed"
+      },
+      {
+        "reference_year": 2024,
+        "published": "2025-04-24",
+        "quality": "observed"
+      },
+      {
         "reference_year": 2025,
         "published": "2026-04-17",
         "quality": "observed"
       }
     ],
     "inferred_rule": "When historical exact dates are missing, infer a mid-April release window from adjacent-year SCB releases, mark inferred_annual_pattern, and test a conservative end-of-April cutoff.",
-    "conservative_fallback": "Unavailable at the April forecast origin unless publication before that origin is documented."
+    "conservative_fallback": "Unavailable at the April forecast origin unless publication before that origin is documented.",
+    "source_note": "SCB states Bostadsbestånd is published annually in April; exact observed dates registered for 2022-2025."
   },
   "bas_monthly": {
     "source": "SCB Befolkningens arbetsmarknadsstatus",
@@ -132,5 +148,16 @@
     "annual_series": "If the current SCB source title/page gives a publication date for reference year Y, the same seasonal publication window may be used as an estimate for Y+1 only when no exact calendar entry exists.",
     "requirement": "All inferred dates must carry quality=inferred_annual_pattern and a source/evidence note.",
     "no_leakage": "If an inferred release could fall after forecast origin, treat the variable as unavailable."
+  },
+  "kolada_unemployment": {
+    "kpi": "N03937",
+    "source": "Kolada/RKA",
+    "metadata_fields": [
+      "publication_date",
+      "prel_publication_date",
+      "publication_period"
+    ],
+    "operational_rule": "Use Kolada KPI metadata directly. If publication_date for the relevant publication_period is after forecast origin, treat predictor as unavailable. Historical vintages remain uncertified unless archived metadata or source publication evidence is available.",
+    "audit_output": "docs/data/kolada_n03937_publication_metadata.json"
   }
 }
