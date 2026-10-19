@@ -1,0 +1,131 @@
+{
+  "status": "preoutcome_2025_core4_temporal_predictions_frozen",
+  "production_changed": false,
+  "source_snapshot": "20261016T203726Z",
+  "training_boundary_note": "2019 training row requires 2018 N03937/housing values, reconstructed and frozen at this commit; 2020-2024 training structural predictors and all 2025 forecast predictors use the immutable snapshot where available.",
+  "forecast_year": 2025,
+  "training_years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "municipalities": 290,
+  "baseline": "core4",
+  "challenger": "core4_plus_trend3y",
+  "trend_definition": "(inflow[t-1] - inflow[t-3]) / 2",
+  "models": {
+    "core4": {
+      "features": [
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_kolada_arbetslosa_18_65_pct",
+        "lag1_bostadsbestandsforandring_pct"
+      ],
+      "training_years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "n_train": 1740,
+      "scaler_mean": {
+        "lag1_inflyttning_per_1000": 59.28065647756516,
+        "lag1_utflyttning_per_1000": 56.13531604422229,
+        "lag1_kolada_arbetslosa_18_65_pct": 2.72879439770115,
+        "lag1_bostadsbestandsforandring_pct": 0.7879467349260206
+      },
+      "scaler_scale": {
+        "lag1_inflyttning_per_1000": 17.14491310027745,
+        "lag1_utflyttning_per_1000": 15.763333033634535,
+        "lag1_kolada_arbetslosa_18_65_pct": 0.88133137317692,
+        "lag1_bostadsbestandsforandring_pct": 1.0870760808358726
+      },
+      "standardized_intercept": 58.19695035498048,
+      "standardized_coefficients": {
+        "lag1_inflyttning_per_1000": 12.363105122903512,
+        "lag1_utflyttning_per_1000": 3.42706898778617,
+        "lag1_kolada_arbetslosa_18_65_pct": 0.36597128797690626,
+        "lag1_bostadsbestandsforandring_pct": 1.0506897978664775
+      },
+      "raw_coefficients": {
+        "lag1_inflyttning_per_1000": 0.7210946506753333,
+        "lag1_utflyttning_per_1000": 0.21740763710782265,
+        "lag1_kolada_arbetslosa_18_65_pct": 0.41524822457833976,
+        "lag1_bostadsbestandsforandring_pct": 0.9665283013665272
+      },
+      "raw_intercept": 1.3510398128509067
+    },
+    "core4_plus_trend3y": {
+      "features": [
+        "lag1_inflyttning_per_1000",
+        "lag1_utflyttning_per_1000",
+        "lag1_kolada_arbetslosa_18_65_pct",
+        "lag1_bostadsbestandsforandring_pct",
+        "trend_3y_slope"
+      ],
+      "training_years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "n_train": 1740,
+      "scaler_mean": {
+        "lag1_inflyttning_per_1000": 59.28065647756516,
+        "lag1_utflyttning_per_1000": 56.13531604422229,
+        "lag1_kolada_arbetslosa_18_65_pct": 2.72879439770115,
+        "lag1_bostadsbestandsforandring_pct": 0.7879467349260206,
+        "trend_3y_slope": -1.7464344538393854
+      },
+      "scaler_scale": {
+        "lag1_inflyttning_per_1000": 17.14491310027745,
+        "lag1_utflyttning_per_1000": 15.763333033634535,
+        "lag1_kolada_arbetslosa_18_65_pct": 0.88133137317692,
+        "lag1_bostadsbestandsforandring_pct": 1.0870760808358726,
+        "trend_3y_slope": 4.164782102779453
+      },
+      "standardized_intercept": 58.19695035498048,
+      "standardized_coefficients": {
+        "lag1_inflyttning_per_1000": 13.2197297467038,
+        "lag1_utflyttning_per_1000": 2.638082455420919,
+        "lag1_kolada_arbetslosa_18_65_pct": 0.3161907411267181,
+        "lag1_bostadsbestandsforandring_pct": 1.049262554887696,
+        "trend_3y_slope": -0.8874907860540496
+      },
+      "raw_coefficients": {
+        "lag1_inflyttning_per_1000": 0.7710584281987333,
+        "lag1_utflyttning_per_1000": 0.1673556252216451,
+        "lag1_kolada_arbetslosa_18_65_pct": 0.3587648763562685,
+        "lag1_bostadsbestandsforandring_pct": 0.965215382239759,
+        "trend_3y_slope": -0.21309417015160634
+      },
+      "raw_intercept": 0.9818507409103745
+    }
+  },
+  "files_sha256": {
+    "training_matrix_2019_2024.csv": "804f86292c68680a3d66d7503e796f81bbc0d8619661f4680cdbe60ce36df564",
+    "predictor_matrix_2025.csv": "65496eef98813658ac23a775f22f7dff36924f357dd0dba5686c539ba6598363",
+    "predictions_2025.csv": "d98371fc24a33c3530d2392a25d83968b69eba5abf3be5465167f8bf03bbf50c"
+  },
+  "future_scoring_rules": {
+    "use_frozen_predictions_only": true,
+    "no_refit_before_score": true,
+    "no_reselection": true,
+    "no_temporal_redefinition": true,
+    "primary_metric": "RMSE",
+    "secondary_metrics": [
+      "MAE",
+      "bias",
+      "median_absolute_error",
+      "Lulea_absolute_error"
+    ],
+    "promotion_rule": "challenger must beat baseline RMSE on untouched 2025 and show no material residual pathology; one future year is supportive, not sufficient for automatic production promotion"
+  }
+}
