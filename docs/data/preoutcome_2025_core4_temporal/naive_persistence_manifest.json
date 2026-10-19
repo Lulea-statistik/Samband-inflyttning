@@ -1,0 +1,12 @@
+{
+  "status": "preoutcome_2025_naive_persistence_frozen",
+  "forecast_year": 2025,
+  "municipalities": 290,
+  "definition": "prediction_2025 = observed inflow_per_1000 in 2024",
+  "source": "docs/data/preoutcome_2025_core4_temporal/predictor_matrix_2025.csv",
+  "source_sha256": "65496eef98813658ac23a775f22f7dff36924f357dd0dba5686c539ba6598363",
+  "prediction_file": "docs/data/preoutcome_2025_core4_temporal/naive_persistence_2025.csv",
+  "prediction_sha256": "52c360ed958dcc77c2bb515fb405bc6639474cbe00a15a3a07c15d5f08c80a69",
+  "production_changed": false,
+  "model_selection_changed": false
+}
