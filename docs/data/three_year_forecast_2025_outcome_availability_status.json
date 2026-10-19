@@ -1,0 +1,13 @@
+{
+  "status": "waiting_for_scb_2025_outcome",
+  "validation_ready": true,
+  "forecast_year": 2025,
+  "checked_at_utc": "2026-10-19T09:33:26Z",
+  "blocking_source": "SCB BE0101J / Flyttningar97",
+  "blocking_reason": "2025 is not yet available in the migration table metadata",
+  "population_check_not_reached": true,
+  "frozen_predictions_changed": false,
+  "model_refit": false,
+  "production_changed": false,
+  "next_action": "Run the manual Build SCB 2025 untouched outcome workflow again only after SCB publishes 2025 migration data."
+}
