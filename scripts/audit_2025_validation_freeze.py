@@ -77,6 +77,7 @@ else:
 scorer=Path("scripts/score_2025_core4_temporal_untouched.py")
 checks["untouched_scorer_exists"]=scorer.exists()
 
+checks={k:bool(v) for k,v in checks.items()}
 validation_ready=all(checks.values())
 result={
  "status":"2025_validation_readiness_audit",
