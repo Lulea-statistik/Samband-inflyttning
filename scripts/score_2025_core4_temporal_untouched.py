@@ -22,6 +22,8 @@ D=Path("docs/data")
 FREEZE=D/"preoutcome_2025_core4_temporal"
 MANIFEST=FREEZE/"manifest.json"
 PRED=FREEZE/"predictions_2025.csv"
+NAIVE=FREEZE/"naive_persistence_2025.csv"
+NAIVE_MANIFEST=FREEZE/"naive_persistence_manifest.json"
 OUT=D/"three_year_forecast_2025_untouched_temporal_score.json"
 
 def sha256(path):
@@ -56,10 +58,27 @@ actual=sha256(PRED)
 if actual!=expected:
     raise SystemExit(f"Frozen prediction hash mismatch: expected={expected}, actual={actual}")
 
+naive_manifest=json.loads(NAIVE_MANIFEST.read_text(encoding="utf-8"))
+if naive_manifest.get("status")!="preoutcome_2025_naive_persistence_frozen":
+    raise SystemExit("Naive persistence manifest status invalid")
+naive_expected=naive_manifest["prediction_sha256"]
+naive_actual=sha256(NAIVE)
+if naive_actual!=naive_expected:
+    raise SystemExit(f"Frozen naive prediction hash mismatch: expected={naive_expected}, actual={naive_actual}")
+
 pred=pd.read_csv(PRED,dtype={"kommun_kod":str})
 pred["kommun_kod"]=pred["kommun_kod"].astype(str).str.zfill(4)
 if len(pred)!=290 or pred["kommun_kod"].nunique()!=290:
     raise SystemExit(f"Frozen prediction row mismatch: rows={len(pred)}, unique={pred['kommun_kod'].nunique()}")
+
+naive=pd.read_csv(NAIVE,dtype={"kommun_kod":str})
+naive["kommun_kod"]=naive["kommun_kod"].astype(str).str.zfill(4)
+if len(naive)!=290 or naive["kommun_kod"].nunique()!=290:
+    raise SystemExit(f"Frozen naive row mismatch: rows={len(naive)}, unique={naive['kommun_kod'].nunique()}")
+pred=pred.merge(naive[["kommun_kod","naive_persistence_prediction_per_1000"]],
+                on="kommun_kod",how="inner")
+if len(pred)!=290:
+    raise SystemExit("Frozen model and naive benchmark municipality sets differ")
 
 outcome=pd.read_csv(args.outcome_csv,dtype={"kommun_kod":str})
 required={"kommun_kod","inflyttning_per_1000"}
@@ -88,6 +107,7 @@ if len(m)!=290:
     )
 
 models={
+ "naive_persistence":"naive_persistence_prediction_per_1000",
  "core4":"core4_prediction_per_1000",
  "core4_plus_trend3y":"core4_plus_trend3y_prediction_per_1000"
 }
@@ -101,10 +121,13 @@ for name,col in models.items():
     residual_table[name+"_residual_prediction_minus_actual"]=e
     residual_table[name+"_absolute_error"]=np.abs(e)
 
+naive_rmse=res["naive_persistence"]["rmse"]
 base=res["core4"]["rmse"]
 chal=res["core4_plus_trend3y"]["rmse"]
 delta=chal-base
 delta_pct=100*(chal/base-1) if base else None
+core4_vs_naive=100*(base/naive_rmse-1) if naive_rmse else None
+trend_vs_naive=100*(chal/naive_rmse-1) if naive_rmse else None
 
 lulea=residual_table[residual_table.kommun_kod=="2580"]
 if len(lulea)!=1:
@@ -115,6 +138,10 @@ comparison={
  "rmse_challenger_minus_core4":float(delta),
  "rmse_change_vs_core4_pct":float(delta_pct),
  "challenger_beats_core4_rmse":bool(chal<base),
+ "core4_rmse_change_vs_naive_pct":float(core4_vs_naive),
+ "trend3y_rmse_change_vs_naive_pct":float(trend_vs_naive),
+ "core4_beats_naive_rmse":bool(base<naive_rmse),
+ "trend3y_beats_naive_rmse":bool(chal<naive_rmse),
  "within_1pct":bool(chal<=base*1.01),
  "within_2pct":bool(chal<=base*1.02),
  "within_5pct":bool(chal<=base*1.05)
@@ -124,6 +151,7 @@ result={
  "status":"untouched_2025_temporal_score_recorded",
  "forecast_year":2025,
  "frozen_prediction_sha256":actual,
+ "frozen_naive_prediction_sha256":naive_actual,
  "source_freeze_manifest":"docs/data/preoutcome_2025_core4_temporal/manifest.json",
  "n_municipalities":290,
  "primary_metric":"RMSE",
@@ -132,6 +160,8 @@ result={
  "lulea":{
    "kommun_kod":"2580",
    "actual_per_1000":float(lr["inflyttning_per_1000"]),
+   "naive_persistence_prediction_per_1000":float(lr["naive_persistence_prediction_per_1000"]),
+   "naive_persistence_absolute_error":float(lr["naive_persistence_absolute_error"]),
    "core4_prediction_per_1000":float(lr["core4_prediction_per_1000"]),
    "core4_absolute_error":float(lr["core4_absolute_error"]),
    "core4_plus_trend3y_prediction_per_1000":float(lr["core4_plus_trend3y_prediction_per_1000"]),
