@@ -1,0 +1,37 @@
+{
+  "status": "short_term_candidate_family_1_not_promoted",
+  "date": "2026-10-19",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "benchmark": "seasonal_naive_same_calendar_months_previous_year",
+  "conclusions": {
+    "bas_yoy_3m": "diagnostic_only_small_robust_gain",
+    "bas_6_9_12m": "not_promoted",
+    "gdp": "not_promoted",
+    "asylum": "not_promoted",
+    "local_momentum": "rejected"
+  },
+  "bas_yoy_delta_rmse_pct": {
+    "3m": {
+      "alpha_3": -0.3674620350216262,
+      "alpha_10": -0.49569030479962306,
+      "alpha_30": -0.23821865289431754
+    },
+    "6m": {
+      "alpha_3": 4.325209808421793,
+      "alpha_10": 4.480990839283039,
+      "alpha_30": 4.941597942190645
+    },
+    "9m": {
+      "alpha_3": 6.524178603685238,
+      "alpha_10": 6.991636982429639,
+      "alpha_30": 8.031370148486939
+    },
+    "12m": {
+      "alpha_3": 6.26040777617678,
+      "alpha_10": 7.054214251345625,
+      "alpha_30": 8.716739043398224
+    }
+  },
+  "next_gate": "Add new leading monthly/quarterly candidate families and require improvement versus the same seasonal benchmark in strict rolling-origin evaluation."
+}
