@@ -1,0 +1,16 @@
+{
+  "status": "weak_years_explained_as_broad_level_shift",
+  "production_changed": false,
+  "selection_phase_closed": true,
+  "primary_diagnosis": "broad temporal level/momentum shift rather than outlier concentration",
+  "evidence": {
+    "2018_share_overpredicted": 0.8068965517241379,
+    "2019_share_overpredicted": 0.8655172413793103,
+    "2018_top10_abs_error_share": 0.13753932123824264,
+    "2019_top10_abs_error_share": 0.09992805812396395,
+    "lag1_inflow_raw_coefficient_range": [0.6505142608670197, 0.8102811626062503]
+  },
+  "next_research_step": "test a pre-specified temporal level/momentum adjustment separately from the frozen core4 structural model",
+  "core4_variables_unchanged": true,
+  "temporal_module_still_separate": true
+}
