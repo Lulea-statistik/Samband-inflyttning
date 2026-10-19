@@ -1,0 +1,147 @@
+{
+  "status": "core4_history_extension_source_audit",
+  "production_changed": false,
+  "kolada_N03937_coverage": {
+    "2010": {
+      "municipality_regions": 290,
+      "rows_with_numeric_value": 0
+    },
+    "2011": {
+      "municipality_regions": 290,
+      "rows_with_numeric_value": 0
+    },
+    "2012": {
+      "municipality_regions": 290,
+      "rows_with_numeric_value": 0
+    },
+    "2013": {
+      "municipality_regions": 290,
+      "rows_with_numeric_value": 0
+    },
+    "2014": {
+      "municipality_regions": 290,
+      "rows_with_numeric_value": 0
+    },
+    "2015": {
+      "municipality_regions": 290,
+      "rows_with_numeric_value": 0
+    },
+    "2016": {
+      "municipality_regions": 290,
+      "rows_with_numeric_value": 0
+    },
+    "2017": {
+      "municipality_regions": 290,
+      "rows_with_numeric_value": 0
+    },
+    "2018": {
+      "municipality_regions": 290,
+      "rows_with_numeric_value": 0
+    },
+    "2019": {
+      "municipality_regions": 290,
+      "rows_with_numeric_value": 0
+    },
+    "2020": {
+      "municipality_regions": 290,
+      "rows_with_numeric_value": 0
+    },
+    "2021": {
+      "municipality_regions": 290,
+      "rows_with_numeric_value": 0
+    },
+    "2022": {
+      "municipality_regions": 290,
+      "rows_with_numeric_value": 0
+    },
+    "2023": {
+      "municipality_regions": 290,
+      "rows_with_numeric_value": 0
+    },
+    "2024": {
+      "municipality_regions": 290,
+      "rows_with_numeric_value": 0
+    },
+    "2025": {
+      "municipality_regions": 290,
+      "rows_with_numeric_value": 0
+    },
+    "2026": {
+      "municipality_regions": 0,
+      "rows_with_numeric_value": 0
+    }
+  },
+  "housing": {
+    "available_years": [
+      "1990",
+      "1991",
+      "1992",
+      "1993",
+      "1994",
+      "1995",
+      "1996",
+      "1997",
+      "1998",
+      "1999",
+      "2000",
+      "2001",
+      "2002",
+      "2003",
+      "2004",
+      "2005",
+      "2006",
+      "2007",
+      "2008",
+      "2009",
+      "2010",
+      "2011",
+      "2012",
+      "2013",
+      "2014",
+      "2015",
+      "2016",
+      "2017",
+      "2018",
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "first_year": 1990,
+    "last_year": 2025,
+    "municipality_codes_in_metadata": 290,
+    "derivation_requirement": "To create lag1_bostadsbestandsforandring_pct for target year Y, housing totals are needed for Y-2 and Y-1."
+  },
+  "interpretation": {
+    "six_year_backtest_target_example_2021": {
+      "training_target_years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "n03937_source_years_needed": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "housing_years_needed_for_training": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ]
+    }
+  }
+}
