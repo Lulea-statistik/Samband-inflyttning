@@ -1,0 +1,41 @@
+{
+  "status": "population_skr_rolling_challenger_rejected",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "variable_selection_reopened": false,
+  "decision": "reject_skr_point_correction",
+  "rationale": {
+    "population_blend_vs_core4_2020_2024": {
+      "rmse_change_pct": 0.16743321553129853,
+      "p95_change_pct": 2.2411189693583022
+    },
+    "population_skr_vs_population_blend": {
+      "rmse_change_pct": 4.239417101671195,
+      "p95_change_pct": 2.2587159081702834
+    },
+    "instability": {
+      "years_improved_rmse": [
+        2023
+      ],
+      "years_worsened_rmse": [
+        2020,
+        2021,
+        2022,
+        2024
+      ],
+      "worst_year_rmse_change_pct_vs_population_blend": 14.17623473608558
+    },
+    "lulea": {
+      "core4_mae": 1.9900948432671683,
+      "population_blend_mae": 1.9365535472908093,
+      "population_skr_blend_mae": 2.2571037252704116
+    }
+  },
+  "interpretation": [
+    "SKR group differences are descriptively real but not temporally stable enough for a rolling point correction.",
+    "The correction overreacts to prior group residuals and often flips the sign of bias.",
+    "C7 and C8 descriptive overprediction should therefore be treated as an error-profile/uncertainty signal, not a deterministic forecast adjustment.",
+    "Population/reliability remains the stronger complementary hypothesis."
+  ],
+  "next_recommended_step": "Use SKR and demographic structure for uncertainty calibration and reporting, not point correction; retain core4 as baseline and population blend as research challenger only."
+}
