@@ -579,7 +579,7 @@ function renderGeographyContext(){
   if(lead){
     lead.innerHTML=selectedGeography==='lulea'
       ? 'Luleå-vyn använder <strong>Sverigemodellen som referens</strong> och bryter ned varför Luleå avviker från genomsnittet bland svenska kommuner, samt hur den modellberäknade avvikelsen förändras över tid.'
-      : 'Rapporten skiljer nu på tre modellspår. <strong>Prognosmodellen</strong> maximerar träffsäkerheten, <strong>den demografiskt blinda strukturmodellen</strong> söker strukturella samband utan historisk demografi som genväg och <strong>den geografiskt robusta prognosmodellen</strong> försöker minska stora prognosfel som koncentreras till vissa kommuner.';
+      : 'Rapporten skiljer nu på tre analysuppgifter. <strong>Core-4-prognosen</strong> är fryst huvudmodell, <strong>den demografiskt blinda strukturmodellen</strong> används för strukturella samband och <strong>robusthetsspåret</strong> beskriver felrisk, osäkerhet och challengers utan att automatiskt korrigera punktprognosen.';
   }
 
   const technicalNote=document.getElementById('windowDescription');
@@ -833,8 +833,8 @@ function renderPublicPage(){
   const title=document.getElementById('publicHeroTitle');
   const txt=document.getElementById('publicHeroText');
   if(eyebrow) eyebrow.textContent='Inflyttning till svenska kommuner';
-  if(title) title.textContent='Tre frågor kräver tre olika modeller';
-  if(txt) txt.innerHTML='En modell försöker <strong>förutsäga nästa års inflyttning så träffsäkert som möjligt</strong>. En andra försöker förstå <strong>vilka strukturella egenskaper som hänger ihop med inflyttning</strong>. Modell 3 frågar om prognosen fungerar <strong>jämnt mellan olika kommuner</strong> och försöker minska svansen av stora geografiska prognosfel.';
+  if(title) title.textContent='En fryst prognosmodell – och separata spår för förståelse och osäkerhet';
+  if(txt) txt.innerHTML='Huvudprognosen bygger nu på en <strong>fryst core-4-modell</strong>. Strukturspåret används för att förstå <strong>vilka kommunegenskaper som hänger ihop med inflyttning</strong>. Robusthetsspåret används för att beskriva <strong>var prognosen är mer eller mindre osäker</strong> och för att pröva challengers – inte som en automatisk geografisk korrigering.';
   const e1=document.getElementById('publicChart1Eyebrow'), t1=document.getElementById('publicChart1Title'), p1=document.getElementById('publicChart1Text');
   const e2=document.getElementById('publicChart2Eyebrow'), t2=document.getElementById('publicChart2Title'), p2=document.getElementById('publicChart2Text');
   const e3=document.getElementById('publicChart3Eyebrow'), t3=document.getElementById('publicChart3Title'), p3=document.getElementById('publicChart3Text');
@@ -1011,7 +1011,7 @@ function renderThreeModelComparison(){
   const bw=rootModel.model_variants?.demographic_blind?.windows?.['5'];
   const gw=geographicRobustModel();
   if(!fw||!bw||!gw||gw.status!=='tested'){
-    root.innerHTML='<p class="note">Modell 3 byggs i den senaste analyskörningen. Diagrammet visas när resultatet finns i model.json.</p>';
+    root.innerHTML='<p class="note">Det tidigare geografiska robusthetstestet saknas i den laddade modellfilen. Core-4 är fortsatt huvudmodell.</p>';
     return;
   }
   const fr=fw.validation?.models?.ridge||{};
@@ -1019,7 +1019,7 @@ function renderThreeModelComparison(){
   const gr=gw.robust_metrics||{};
   Plotly.react(root,[
     {
-      x:['Prognosmodell','Demografiskt blind','Geografiskt robust'],
+      x:['Prognosmodell','Demografiskt blind','Tidigare robusthetstest'],
       y:[fr.r2,br.r2,gr.r2],
       type:'bar',
       text:[fr.r2,br.r2,gr.r2].map(v=>fmt(v,3)),
@@ -1044,7 +1044,7 @@ function renderGeographicRobustness(){
   if(!cards||!chart||!tail||!table||!selection) return;
 
   if(!g||g.status!=='tested'){
-    cards.innerHTML=metricCard('Status','Byggs','Modell 3 finns efter nästa slutförda analyskörning');
+    cards.innerHTML=metricCard('Status','Historiskt test saknas','Core-4 är fortsatt huvudmodell');
     chart.innerHTML='<p class="note">Resultat saknas ännu.</p>';
     tail.innerHTML='';
     table.innerHTML='';
@@ -1071,8 +1071,8 @@ function renderGeographicRobustness(){
     verdict.classList.toggle('geo-verdict-pass',pass);
     verdict.classList.toggle('geo-verdict-fail',!pass);
     verdict.innerHTML=pass
-      ? '<h3>Resultat: Modell 3 klarar holdout-testet</h3><p>Den geografiska felprofilen förbättras på samtliga huvudmått utan att baslinjen tappar oproportionerligt mycket.</p>'
-      : '<h3>Resultat: Modell 3 underkänns i 2024-holdout</h3><p>Den interna kommunblockerade korsvalideringen såg lovande ut, men det separata teståret blev sämre. '+improved+' kommuner förbättrades och '+worsened+' försämrades. Modellen behålls därför som diagnostiskt metodspår, inte som produktionsmodell.</p>';
+      ? '<h3>Historiskt resultat: robusthetsvarianten klarade holdout-testet</h3><p>Detta äldre test redovisas som diagnostik. Nuvarande huvudmodell är fortfarande core-4.</p>'
+      : '<h3>Historiskt resultat: den geografiska robusthetsvarianten underkändes</h3><p>Den interna kommunblockerade korsvalideringen såg lovande ut, men det separata teståret blev sämre. '+improved+' kommuner förbättrades och '+worsened+' försämrades. Resultatet är därför diagnostik; den nya inriktningen är felprofilering och osäkerhet, inte en separat geografisk huvudmodell.</p>';
   }
 
   const metrics=[
@@ -1085,8 +1085,8 @@ function renderGeographicRobustness(){
   Plotly.react(chart,[
     {x:metrics.map(x=>x.label),y:metrics.map(x=>x.b),type:'bar',name:'Vanlig prognosmodell',
       hovertemplate:'%{x}<br>%{y:.2f}<extra>Vanlig prognosmodell</extra>'},
-    {x:metrics.map(x=>x.label),y:metrics.map(x=>x.r),type:'bar',name:'Modell 3',
-      hovertemplate:'%{x}<br>%{y:.2f}<extra>Modell 3</extra>'}
+    {x:metrics.map(x=>x.label),y:metrics.map(x=>x.r),type:'bar',name:'Tidigare robusthetstest',
+      hovertemplate:'%{x}<br>%{y:.2f}<extra>Tidigare robusthetstest</extra>'}
   ],{
     barmode:'group',margin:{t:30,b:80,l:65,r:30},
     yaxis:{title:'Fel, inflyttade per 1 000'},
@@ -1102,7 +1102,7 @@ function renderGeographicRobustness(){
       customdata:rows.map(x=>x.kommun),
       hovertemplate:'%{customdata}<br>Rang %{x}<br>Absolutfel=%{y:.2f}<extra></extra>'},
     {x:rows.map((_,i)=>i+1),y:rows.map(x=>x.robust_abs_error),
-      mode:'lines',name:'Modell 3',
+      mode:'lines',name:'Tidigare robusthetstest',
       customdata:rows.map(x=>x.kommun),
       hovertemplate:'%{customdata}<br>Rang %{x}<br>Absolutfel=%{y:.2f}<extra></extra>'}
   ],{
@@ -1115,7 +1115,7 @@ function renderGeographicRobustness(){
   const worst=(g.municipality_errors||[]).slice(0,20);
   table.innerHTML='<table class="metric-table"><thead><tr>'+
     '<th>Kommun</th><th>Observerat</th><th>Vanlig prognos</th><th>Modell 3</th>'+
-    '<th>Absolutfel bas</th><th>Absolutfel Modell 3</th><th>Förbättring</th>'+
+    '<th>Absolutfel bas</th><th>Absolutfel robusthetstest</th><th>Förbättring</th>'+
     '</tr></thead><tbody>'+
     worst.map(x=>'<tr>'+
       '<td>'+x.kommun+'</td>'+
