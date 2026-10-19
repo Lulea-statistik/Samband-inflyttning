@@ -167,6 +167,20 @@ hh=(hh.groupby(["Region","Tid"],as_index=False)["value"].sum()
 hh=hh.sort_values(["kommun_kod","source_year"])
 hh["housing_change_pct"]=100*hh.groupby("kommun_kod")["bostader_totalt"].pct_change(fill_method=None)
 h18=hh[hh.source_year==2018][["kommun_kod","housing_change_pct"]]
+hstock18=hh[hh.source_year==2018][["kommun_kod","bostader_totalt"]].rename(
+    columns={"bostader_totalt":"bostader_2018"})
+
+# Bridge the immutable housing snapshot boundary:
+# snapshot starts in 2019, so its internal pct_change cannot derive the 2019 change.
+# Combine the reconstructed 2018 stock with frozen snapshot 2019 stock.
+hstock19=ht[ht.source_year==2019][["kommun_kod","bostader_totalt"]].rename(
+    columns={"bostader_totalt":"bostader_2019"})
+h19_bridge=hstock18.merge(hstock19,on="kommun_kod",how="inner")
+h19_bridge["housing_change_2019_pct"]=100*(
+    h19_bridge["bostader_2019"]/h19_bridge["bostader_2018"]-1.0)
+h19_map=dict(zip(h19_bridge["kommun_kod"],h19_bridge["housing_change_2019_pct"]))
+mask19=ht["source_year"].eq(2019)
+ht.loc[mask19,"housing_change_pct"]=ht.loc[mask19,"kommun_kod"].map(h19_map)
 
 # Historical migration predictors and target outcomes for 2019-2024 from the existing panel.
 panel=pd.read_csv(D/"panel.csv",dtype={"kommun_kod":str},low_memory=False)
@@ -221,6 +235,20 @@ for lag in (1,3):
 x["trend_3y_slope"]=(x["lag1_trend_inflow"]-x["lag3_trend_inflow"])/2.0
 
 need=FEATURES+["trend_3y_slope"]
+
+# Coverage diagnostics: make future failures identify the exact year/field.
+coverage={}
+for y in TRAIN_YEARS+[FORECAST_YEAR]:
+    q=x[x.year==y].copy()
+    fields=([TARGET]+need) if y in TRAIN_YEARS else need
+    coverage[str(y)]={
+      "rows_before_complete_filter":int(len(q)),
+      "unique_municipalities":int(q["kommun_kod"].nunique()) if len(q) else 0,
+      "non_null_by_field":{col:int(q[col].notna().sum()) for col in fields},
+      "complete_rows":int(q.dropna(subset=fields).shape[0])
+    }
+print(json.dumps({"coverage_before_common_intersection":coverage},ensure_ascii=False,indent=2))
+
 train=x[x.year.isin(TRAIN_YEARS)].dropna(subset=[TARGET]+need).copy()
 forecast=x[x.year==FORECAST_YEAR].dropna(subset=need).copy()
 
