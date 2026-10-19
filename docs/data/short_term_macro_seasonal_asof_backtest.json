@@ -1,0 +1,307 @@
+{
+  "status": "short_term_macro_seasonal_asof_backtest_v1",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "annual_model": {
+    "window_years": 6,
+    "method": "frozen core4 historical reconstructed predictions"
+  },
+  "origin_offsets_days": [
+    7,
+    10,
+    14
+  ],
+  "horizons_months": [
+    3,
+    6,
+    9,
+    12
+  ],
+  "method": {
+    "forecast_months": "full months after the historical forecast-origin calendar month",
+    "seasonality": "mean calendar-month share from complete years strictly before forecast year",
+    "annual_scale": "frozen core4 predicted inflow per 1000 multiplied by latest observed population before origin",
+    "cross_year_rule": "core4 anchor applies only to months remaining in forecast year Y; months in Y+1 use seasonal-naive values so no Y+1 annual forecast is leaked"
+  },
+  "limitations": [
+    "Historical annual core4 predictions are reconstructed, not exact archived source vintages.",
+    "Kolada historical publication dates use a conservative inferred annual pattern.",
+    "This v1 tests whether an as-of-compatible annual macro anchor improves the monthly baseline; it does not yet add rates_25_29."
+  ],
+  "summary": {
+    "7": {
+      "3": {
+        "n_origins": 4,
+        "forecast_years": [
+          2018,
+          2021,
+          2023,
+          2024
+        ],
+        "seasonal_naive": {
+          "rmse": 130.82430966758434,
+          "mae": 98.5,
+          "bias": -5.5
+        },
+        "macro_seasonal": {
+          "rmse": 146.17864147349147,
+          "mae": 131.10653240797652,
+          "bias": -41.77085877479087
+        },
+        "delta_rmse_pct_macro_vs_seasonal": 11.73660449263705,
+        "delta_mae_pct_macro_vs_seasonal": 33.10307858677819
+      },
+      "6": {
+        "n_origins": 4,
+        "forecast_years": [
+          2018,
+          2021,
+          2023,
+          2024
+        ],
+        "seasonal_naive": {
+          "rmse": 213.64222429098606,
+          "mae": 173.5,
+          "bias": 9.0
+        },
+        "macro_seasonal": {
+          "rmse": 230.40488444470543,
+          "mae": 205.64148168722852,
+          "bias": 25.245538244965587
+        },
+        "delta_rmse_pct_macro_vs_seasonal": 7.846136319423547,
+        "delta_mae_pct_macro_vs_seasonal": 18.525349675636036
+      },
+      "9": {
+        "n_origins": 4,
+        "forecast_years": [
+          2018,
+          2021,
+          2023,
+          2024
+        ],
+        "seasonal_naive": {
+          "rmse": 260.05576325088435,
+          "mae": 229.5,
+          "bias": -11.5
+        },
+        "macro_seasonal": {
+          "rmse": 284.743144456908,
+          "mae": 262.23820199236377,
+          "bias": -10.362614546469445
+        },
+        "delta_rmse_pct_macro_vs_seasonal": 9.493110591902898,
+        "delta_mae_pct_macro_vs_seasonal": 14.265011761378554
+      },
+      "12": {
+        "n_origins": 4,
+        "forecast_years": [
+          2018,
+          2021,
+          2023,
+          2024
+        ],
+        "seasonal_naive": {
+          "rmse": 308.5368697578946,
+          "mae": 259.5,
+          "bias": 1.5
+        },
+        "macro_seasonal": {
+          "rmse": 336.514651783409,
+          "mae": 292.2382019923639,
+          "bias": 2.637385453530669
+        },
+        "delta_rmse_pct_macro_vs_seasonal": 9.067889373308379,
+        "delta_mae_pct_macro_vs_seasonal": 12.615877453704783
+      }
+    },
+    "10": {
+      "3": {
+        "n_origins": 5,
+        "forecast_years": [
+          2018,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "seasonal_naive": {
+          "rmse": 118.05507189443408,
+          "mae": 85.8,
+          "bias": -11.4
+        },
+        "macro_seasonal": {
+          "rmse": 131.76999548088713,
+          "mae": 112.21701330197477,
+          "bias": -40.74847439542625
+        },
+        "delta_rmse_pct_macro_vs_seasonal": 11.617394633173461,
+        "delta_mae_pct_macro_vs_seasonal": 30.789059792511388
+      },
+      "6": {
+        "n_origins": 5,
+        "forecast_years": [
+          2018,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "seasonal_naive": {
+          "rmse": 191.4142105487469,
+          "mae": 143.8,
+          "bias": 12.2
+        },
+        "macro_seasonal": {
+          "rmse": 207.59791514213325,
+          "mae": 175.71823555563105,
+          "bias": 31.401480801820707
+        },
+        "delta_rmse_pct_macro_vs_seasonal": 8.4548083169953,
+        "delta_mae_pct_macro_vs_seasonal": 22.19626951017457
+      },
+      "9": {
+        "n_origins": 5,
+        "forecast_years": [
+          2018,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "seasonal_naive": {
+          "rmse": 232.6357668115546,
+          "mae": 185.4,
+          "bias": -7.4
+        },
+        "macro_seasonal": {
+          "rmse": 255.71999118411625,
+          "mae": 220.0841250103026,
+          "bias": 2.0034717792360426
+        },
+        "delta_rmse_pct_macro_vs_seasonal": 9.922904241659847,
+        "delta_mae_pct_macro_vs_seasonal": 18.707726542773795
+      },
+      "12": {
+        "n_origins": 5,
+        "forecast_years": [
+          2018,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "seasonal_naive": {
+          "rmse": 275.96412810363597,
+          "mae": 207.8,
+          "bias": 1.4
+        },
+        "macro_seasonal": {
+          "rmse": 301.614951413724,
+          "mae": 242.4841250103027,
+          "bias": 10.803471779236133
+        },
+        "delta_rmse_pct_macro_vs_seasonal": 9.294984636718828,
+        "delta_mae_pct_macro_vs_seasonal": 16.691109244611503
+      }
+    },
+    "14": {
+      "3": {
+        "n_origins": 7,
+        "forecast_years": [
+          2017,
+          2018,
+          2019,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "seasonal_naive": {
+          "rmse": 101.1046134315485,
+          "mae": 73.85714285714286,
+          "bias": -28.428571428571427
+        },
+        "macro_seasonal": {
+          "rmse": 116.17748984133058,
+          "mae": 94.88786695312012,
+          "bias": -14.373195687880607
+        },
+        "delta_rmse_pct_macro_vs_seasonal": 14.908198447330957,
+        "delta_mae_pct_macro_vs_seasonal": 28.474868215056247
+      },
+      "6": {
+        "n_origins": 7,
+        "forecast_years": [
+          2017,
+          2018,
+          2019,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "seasonal_naive": {
+          "rmse": 162.07185355355728,
+          "mae": 125.0,
+          "bias": 10.714285714285714
+        },
+        "macro_seasonal": {
+          "rmse": 218.58504943990977,
+          "mae": 183.67480057441338,
+          "bias": 80.5914043216917
+        },
+        "delta_rmse_pct_macro_vs_seasonal": 34.86922290777497,
+        "delta_mae_pct_macro_vs_seasonal": 46.9398404595307
+      },
+      "9": {
+        "n_origins": 7,
+        "forecast_years": [
+          2017,
+          2018,
+          2019,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "seasonal_naive": {
+          "rmse": 218.87994099832122,
+          "mae": 185.28571428571428,
+          "bias": -10.714285714285714
+        },
+        "macro_seasonal": {
+          "rmse": 283.89840869024914,
+          "mae": 227.73620568594137,
+          "bias": 66.62731324661756
+        },
+        "delta_rmse_pct_macro_vs_seasonal": 29.705082793505788,
+        "delta_mae_pct_macro_vs_seasonal": 22.910828049467202
+      },
+      "12": {
+        "n_origins": 7,
+        "forecast_years": [
+          2017,
+          2018,
+          2019,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "seasonal_naive": {
+          "rmse": 255.62193064870516,
+          "mae": 204.85714285714286,
+          "bias": -12.285714285714286
+        },
+        "macro_seasonal": {
+          "rmse": 313.19616374248193,
+          "mae": 247.30763425737015,
+          "bias": 65.05588467518906
+        },
+        "delta_rmse_pct_macro_vs_seasonal": 22.523197813140538,
+        "delta_mae_pct_macro_vs_seasonal": 20.721997196763663
+      }
+    }
+  }
+}
