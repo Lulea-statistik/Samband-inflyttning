@@ -7,7 +7,7 @@ SOURCES=[
  {
   "id":"scb_bas_labour_status_monthly",
   "label":"SCB BAS arbetsmarknadsstatus månadsvis",
-  "url":"https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/ArbStatusM",
+  "url":"https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210A/ArbStatusM",
   "role":"local_labour_status"
  },
  {
