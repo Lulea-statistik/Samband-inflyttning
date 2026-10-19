@@ -49,7 +49,7 @@ result={
   "endpoint_attempts":attempts,
   "publication_date":rec.get("publication_date"),
   "prel_publication_date":rec.get("prel_publication_date"),
-  "publication_period":rec.get("publication_period"),
+  "publication_period":rec.get("publ_period") or rec.get("publication_period"),
   "title":rec.get("title") or rec.get("name"),
   "raw":payload
 }
