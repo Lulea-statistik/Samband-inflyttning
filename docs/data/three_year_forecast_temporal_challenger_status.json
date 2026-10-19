@@ -1,0 +1,22 @@
+{
+  "status": "temporal_challenger_screen_complete",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "primary_core4_mean_rmse": 6.76987244045531,
+  "challengers": {
+    "momentum_1y": {
+      "decision": "reject_as_preferred_challenger",
+      "mean_rmse": 6.805330093969244,
+      "rmse_change_vs_core4_pct": 0.5237565969787861
+    },
+    "trend_3y": {
+      "decision": "retain_provisional_research_challenger",
+      "mean_rmse": 6.710882925590538,
+      "rmse_change_vs_core4_pct": -0.8713534174183635,
+      "mean_mae": 5.070966436373743,
+      "mean_abs_bias": 2.9281609998346263
+    }
+  },
+  "future_gate": "untouched temporal comparison before any production promotion",
+  "variable_selection_reopened": false
+}
