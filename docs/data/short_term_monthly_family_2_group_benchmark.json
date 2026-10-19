@@ -1,0 +1,699 @@
+{
+  "status": "short_term_monthly_family_2_group_benchmark",
+  "generated_at_utc": "2026-10-19T21:28:24.552106+00:00",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "target": "sum of Lulea all_inmigrations over t+1..t+h",
+  "baseline": "same future calendar months previous year",
+  "model": "fixed Ridge correction to seasonal baseline",
+  "ridge_alpha": 10.0,
+  "min_train_origins": 24,
+  "groups": {
+    "students_young": [
+      "bas2_age20_24_antal_studerande_yoy_pct",
+      "bas2_age25_29_antal_studerande_yoy_pct",
+      "bas2_age20_24_antal_studerande_change_3m_pct",
+      "bas2_age25_29_antal_studerande_change_3m_pct"
+    ],
+    "unemployment": [
+      "bas2_age20_24_arbetsloshet_yoy_pct",
+      "bas2_age25_29_arbetsloshet_yoy_pct",
+      "bas2_age20_66_antal_arbetslosa_change_3m_pct"
+    ],
+    "labour_rates": [
+      "bas2_age20_66_sysselsattningsgrad_yoy_pct",
+      "bas2_age20_66_arbetskraftsdeltagande_change_3m_pct",
+      "bas2_age20_66_arbetsloshet_change_3m_pct"
+    ],
+    "broad_status": [
+      "bas2_all_15_74_antal_studerande_yoy_pct",
+      "bas2_all_15_74_antal_ovriga_yoy_pct",
+      "bas2_all_15_74_antal_sysselsatta_yoy_pct",
+      "bas2_all_15_74_sysselsattningsgrad_yoy_pct"
+    ],
+    "birth_region": [
+      "bas2_foreign_born_15_74_antal_studerande_yoy_pct",
+      "bas2_foreign_born_15_74_antal_sysselsatta_yoy_pct",
+      "bas2_native_15_74_antal_studerande_yoy_pct",
+      "bas2_native_15_74_antal_sysselsatta_yoy_pct"
+    ],
+    "cars": [
+      "cars_new_total_yoy_pct",
+      "cars_new_total_change_3m_pct",
+      "cars_new_total_change_6m_pct"
+    ]
+  },
+  "income_excluded_reason": "Monthly income starts 2025M01 and is too short for formal rolling backtest.",
+  "horizons_months": [
+    3,
+    6,
+    9,
+    12
+  ],
+  "summaries": {
+    "3": {
+      "students_young": {
+        "features": [
+          "bas2_age20_24_antal_studerande_yoy_pct",
+          "bas2_age25_29_antal_studerande_yoy_pct",
+          "bas2_age20_24_antal_studerande_change_3m_pct",
+          "bas2_age25_29_antal_studerande_change_3m_pct"
+        ],
+        "n_origins": 39,
+        "first_origin": "2023M03",
+        "last_origin": "2026M05",
+        "seasonal": {
+          "rmse": 100.98502046825736,
+          "mae": 80.17948717948718,
+          "bias": -28.435897435897434
+        },
+        "model": {
+          "rmse": 104.58816667144082,
+          "mae": 81.14594586173202,
+          "bias": -26.598099840686384
+        },
+        "delta_pct": {
+          "rmse": 3.5680006663127095,
+          "mae": 1.2053689992820082
+        },
+        "pre_2025_rmse": 127.50218151146868,
+        "post_2025_rmse": 76.7303012512959
+      },
+      "unemployment": {
+        "features": [
+          "bas2_age20_24_arbetsloshet_yoy_pct",
+          "bas2_age25_29_arbetsloshet_yoy_pct",
+          "bas2_age20_66_antal_arbetslosa_change_3m_pct"
+        ],
+        "n_origins": 0,
+        "first_origin": null,
+        "last_origin": null,
+        "seasonal": {
+          "rmse": null,
+          "mae": null,
+          "bias": null
+        },
+        "model": {
+          "rmse": null,
+          "mae": null,
+          "bias": null
+        },
+        "delta_pct": {
+          "rmse": null,
+          "mae": null
+        },
+        "pre_2025_rmse": null,
+        "post_2025_rmse": null
+      },
+      "labour_rates": {
+        "features": [
+          "bas2_age20_66_sysselsattningsgrad_yoy_pct",
+          "bas2_age20_66_arbetskraftsdeltagande_change_3m_pct",
+          "bas2_age20_66_arbetsloshet_change_3m_pct"
+        ],
+        "n_origins": 0,
+        "first_origin": null,
+        "last_origin": null,
+        "seasonal": {
+          "rmse": null,
+          "mae": null,
+          "bias": null
+        },
+        "model": {
+          "rmse": null,
+          "mae": null,
+          "bias": null
+        },
+        "delta_pct": {
+          "rmse": null,
+          "mae": null
+        },
+        "pre_2025_rmse": null,
+        "post_2025_rmse": null
+      },
+      "broad_status": {
+        "features": [
+          "bas2_all_15_74_antal_studerande_yoy_pct",
+          "bas2_all_15_74_antal_ovriga_yoy_pct",
+          "bas2_all_15_74_antal_sysselsatta_yoy_pct",
+          "bas2_all_15_74_sysselsattningsgrad_yoy_pct"
+        ],
+        "n_origins": 39,
+        "first_origin": "2023M03",
+        "last_origin": "2026M05",
+        "seasonal": {
+          "rmse": 100.98502046825736,
+          "mae": 80.17948717948718,
+          "bias": -28.435897435897434
+        },
+        "model": {
+          "rmse": 104.31432930291888,
+          "mae": 81.98001166141097,
+          "bias": -21.379921479343793
+        },
+        "delta_pct": {
+          "rmse": 3.296834341592292,
+          "mae": 2.245617358331553
+        },
+        "pre_2025_rmse": 125.89603805615175,
+        "post_2025_rmse": 78.40272598419718
+      },
+      "birth_region": {
+        "features": [
+          "bas2_foreign_born_15_74_antal_studerande_yoy_pct",
+          "bas2_foreign_born_15_74_antal_sysselsatta_yoy_pct",
+          "bas2_native_15_74_antal_studerande_yoy_pct",
+          "bas2_native_15_74_antal_sysselsatta_yoy_pct"
+        ],
+        "n_origins": 39,
+        "first_origin": "2023M03",
+        "last_origin": "2026M05",
+        "seasonal": {
+          "rmse": 100.98502046825736,
+          "mae": 80.17948717948718,
+          "bias": -28.435897435897434
+        },
+        "model": {
+          "rmse": 107.65389321945757,
+          "mae": 84.81551058272771,
+          "bias": -18.739843036084977
+        },
+        "delta_pct": {
+          "rmse": 6.603823735715775,
+          "mae": 5.7820566909619675
+        },
+        "pre_2025_rmse": 131.6303101537518,
+        "post_2025_rmse": 78.66310399506679
+      },
+      "cars": {
+        "features": [
+          "cars_new_total_yoy_pct",
+          "cars_new_total_change_3m_pct",
+          "cars_new_total_change_6m_pct"
+        ],
+        "n_origins": 207,
+        "first_origin": "2009M03",
+        "last_origin": "2026M05",
+        "seasonal": {
+          "rmse": 78.56459848599559,
+          "mae": 61.04347826086956,
+          "bias": -13.11111111111111
+        },
+        "model": {
+          "rmse": 81.48736716346801,
+          "mae": 63.93987830352912,
+          "bias": -9.236505859681467
+        },
+        "delta_pct": {
+          "rmse": 3.7202107995160327,
+          "mae": 4.7448148846987115
+        },
+        "pre_2025_rmse": 81.63303378960873,
+        "post_2025_rmse": 78.22972664177956
+      }
+    },
+    "6": {
+      "students_young": {
+        "features": [
+          "bas2_age20_24_antal_studerande_yoy_pct",
+          "bas2_age25_29_antal_studerande_yoy_pct",
+          "bas2_age20_24_antal_studerande_change_3m_pct",
+          "bas2_age25_29_antal_studerande_change_3m_pct"
+        ],
+        "n_origins": 33,
+        "first_origin": "2023M06",
+        "last_origin": "2026M02",
+        "seasonal": {
+          "rmse": 162.7056274752696,
+          "mae": 127.96969696969697,
+          "bias": -100.81818181818181
+        },
+        "model": {
+          "rmse": 178.13530638239882,
+          "mae": 133.0464566560195,
+          "bias": -100.83559981845413
+        },
+        "delta_pct": {
+          "rmse": 9.483186996389815,
+          "mae": 3.9671576994706026
+        },
+        "pre_2025_rmse": 230.80860356505235,
+        "post_2025_rmse": 85.38288705890956
+      },
+      "unemployment": {
+        "features": [
+          "bas2_age20_24_arbetsloshet_yoy_pct",
+          "bas2_age25_29_arbetsloshet_yoy_pct",
+          "bas2_age20_66_antal_arbetslosa_change_3m_pct"
+        ],
+        "n_origins": 0,
+        "first_origin": null,
+        "last_origin": null,
+        "seasonal": {
+          "rmse": null,
+          "mae": null,
+          "bias": null
+        },
+        "model": {
+          "rmse": null,
+          "mae": null,
+          "bias": null
+        },
+        "delta_pct": {
+          "rmse": null,
+          "mae": null
+        },
+        "pre_2025_rmse": null,
+        "post_2025_rmse": null
+      },
+      "labour_rates": {
+        "features": [
+          "bas2_age20_66_sysselsattningsgrad_yoy_pct",
+          "bas2_age20_66_arbetskraftsdeltagande_change_3m_pct",
+          "bas2_age20_66_arbetsloshet_change_3m_pct"
+        ],
+        "n_origins": 0,
+        "first_origin": null,
+        "last_origin": null,
+        "seasonal": {
+          "rmse": null,
+          "mae": null,
+          "bias": null
+        },
+        "model": {
+          "rmse": null,
+          "mae": null,
+          "bias": null
+        },
+        "delta_pct": {
+          "rmse": null,
+          "mae": null
+        },
+        "pre_2025_rmse": null,
+        "post_2025_rmse": null
+      },
+      "broad_status": {
+        "features": [
+          "bas2_all_15_74_antal_studerande_yoy_pct",
+          "bas2_all_15_74_antal_ovriga_yoy_pct",
+          "bas2_all_15_74_antal_sysselsatta_yoy_pct",
+          "bas2_all_15_74_sysselsattningsgrad_yoy_pct"
+        ],
+        "n_origins": 33,
+        "first_origin": "2023M06",
+        "last_origin": "2026M02",
+        "seasonal": {
+          "rmse": 162.7056274752696,
+          "mae": 127.96969696969697,
+          "bias": -100.81818181818181
+        },
+        "model": {
+          "rmse": 175.34402785176567,
+          "mae": 136.32635955679007,
+          "bias": -110.82837253233083
+        },
+        "delta_pct": {
+          "rmse": 7.767647974202396,
+          "mae": 6.530188618850863
+        },
+        "pre_2025_rmse": 222.88269049846488,
+        "post_2025_rmse": 90.24766398648613
+      },
+      "birth_region": {
+        "features": [
+          "bas2_foreign_born_15_74_antal_studerande_yoy_pct",
+          "bas2_foreign_born_15_74_antal_sysselsatta_yoy_pct",
+          "bas2_native_15_74_antal_studerande_yoy_pct",
+          "bas2_native_15_74_antal_sysselsatta_yoy_pct"
+        ],
+        "n_origins": 33,
+        "first_origin": "2023M06",
+        "last_origin": "2026M02",
+        "seasonal": {
+          "rmse": 162.7056274752696,
+          "mae": 127.96969696969697,
+          "bias": -100.81818181818181
+        },
+        "model": {
+          "rmse": 181.2921785425276,
+          "mae": 143.4589117549519,
+          "bias": -111.75555974875103
+        },
+        "delta_pct": {
+          "rmse": 11.423422382906235,
+          "mae": 12.10381453737659
+        },
+        "pre_2025_rmse": 234.67587351860254,
+        "post_2025_rmse": 105.50332264735543
+      },
+      "cars": {
+        "features": [
+          "cars_new_total_yoy_pct",
+          "cars_new_total_change_3m_pct",
+          "cars_new_total_change_6m_pct"
+        ],
+        "n_origins": 201,
+        "first_origin": "2009M06",
+        "last_origin": "2026M02",
+        "seasonal": {
+          "rmse": 116.41480988344655,
+          "mae": 91.09452736318408,
+          "bias": -25.8407960199005
+        },
+        "model": {
+          "rmse": 120.73342695026332,
+          "mae": 94.74313510385356,
+          "bias": -15.69646168531696
+        },
+        "delta_pct": {
+          "rmse": 3.7096801267300306,
+          "mae": 4.005298502864907
+        },
+        "pre_2025_rmse": 119.91357167591924,
+        "post_2025_rmse": 89.03025611879038
+      }
+    },
+    "9": {
+      "students_young": {
+        "features": [
+          "bas2_age20_24_antal_studerande_yoy_pct",
+          "bas2_age25_29_antal_studerande_yoy_pct",
+          "bas2_age20_24_antal_studerande_change_3m_pct",
+          "bas2_age25_29_antal_studerande_change_3m_pct"
+        ],
+        "n_origins": 27,
+        "first_origin": "2023M09",
+        "last_origin": "2025M11",
+        "seasonal": {
+          "rmse": 236.3823017753076,
+          "mae": 199.77777777777777,
+          "bias": -199.77777777777777
+        },
+        "model": {
+          "rmse": 269.2770242931812,
+          "mae": 210.80758676467917,
+          "bias": -209.25736977882184
+        },
+        "delta_pct": {
+          "rmse": 13.915899063010894,
+          "mae": 5.521038981207593
+        },
+        "pre_2025_rmse": 312.73308832330343,
+        "post_2025_rmse": 104.34924345781056
+      },
+      "unemployment": {
+        "features": [
+          "bas2_age20_24_arbetsloshet_yoy_pct",
+          "bas2_age25_29_arbetsloshet_yoy_pct",
+          "bas2_age20_66_antal_arbetslosa_change_3m_pct"
+        ],
+        "n_origins": 0,
+        "first_origin": null,
+        "last_origin": null,
+        "seasonal": {
+          "rmse": null,
+          "mae": null,
+          "bias": null
+        },
+        "model": {
+          "rmse": null,
+          "mae": null,
+          "bias": null
+        },
+        "delta_pct": {
+          "rmse": null,
+          "mae": null
+        },
+        "pre_2025_rmse": null,
+        "post_2025_rmse": null
+      },
+      "labour_rates": {
+        "features": [
+          "bas2_age20_66_sysselsattningsgrad_yoy_pct",
+          "bas2_age20_66_arbetskraftsdeltagande_change_3m_pct",
+          "bas2_age20_66_arbetsloshet_change_3m_pct"
+        ],
+        "n_origins": 0,
+        "first_origin": null,
+        "last_origin": null,
+        "seasonal": {
+          "rmse": null,
+          "mae": null,
+          "bias": null
+        },
+        "model": {
+          "rmse": null,
+          "mae": null,
+          "bias": null
+        },
+        "delta_pct": {
+          "rmse": null,
+          "mae": null
+        },
+        "pre_2025_rmse": null,
+        "post_2025_rmse": null
+      },
+      "broad_status": {
+        "features": [
+          "bas2_all_15_74_antal_studerande_yoy_pct",
+          "bas2_all_15_74_antal_ovriga_yoy_pct",
+          "bas2_all_15_74_antal_sysselsatta_yoy_pct",
+          "bas2_all_15_74_sysselsattningsgrad_yoy_pct"
+        ],
+        "n_origins": 27,
+        "first_origin": "2023M09",
+        "last_origin": "2025M11",
+        "seasonal": {
+          "rmse": 236.3823017753076,
+          "mae": 199.77777777777777,
+          "bias": -199.77777777777777
+        },
+        "model": {
+          "rmse": 265.10793466962315,
+          "mae": 224.72600796821564,
+          "bias": -224.72600796821564
+        },
+        "delta_pct": {
+          "rmse": 12.152192731256406,
+          "mae": 12.487990640374914
+        },
+        "pre_2025_rmse": 300.6700762719721,
+        "post_2025_rmse": 133.69032631114317
+      },
+      "birth_region": {
+        "features": [
+          "bas2_foreign_born_15_74_antal_studerande_yoy_pct",
+          "bas2_foreign_born_15_74_antal_sysselsatta_yoy_pct",
+          "bas2_native_15_74_antal_studerande_yoy_pct",
+          "bas2_native_15_74_antal_sysselsatta_yoy_pct"
+        ],
+        "n_origins": 27,
+        "first_origin": "2023M09",
+        "last_origin": "2025M11",
+        "seasonal": {
+          "rmse": 236.3823017753076,
+          "mae": 199.77777777777777,
+          "bias": -199.77777777777777
+        },
+        "model": {
+          "rmse": 270.3065384437073,
+          "mae": 226.05215320347511,
+          "bias": -226.05215320347511
+        },
+        "delta_pct": {
+          "rmse": 14.351428348745966,
+          "mae": 13.151800824876304
+        },
+        "pre_2025_rmse": 306.36880197580024,
+        "post_2025_rmse": 152.4033957334563
+      },
+      "cars": {
+        "features": [
+          "cars_new_total_yoy_pct",
+          "cars_new_total_change_3m_pct",
+          "cars_new_total_change_6m_pct"
+        ],
+        "n_origins": 195,
+        "first_origin": "2009M09",
+        "last_origin": "2025M11",
+        "seasonal": {
+          "rmse": 153.1710121868984,
+          "mae": 122.34358974358975,
+          "bias": -37.16410256410256
+        },
+        "model": {
+          "rmse": 158.993558945906,
+          "mae": 126.52887939459934,
+          "bias": -19.38352253110176
+        },
+        "delta_pct": {
+          "rmse": 3.8013372608016516,
+          "mae": 3.4209308879862066
+        },
+        "pre_2025_rmse": 151.98010049566378,
+        "post_2025_rmse": 104.59670557941902
+      }
+    },
+    "12": {
+      "students_young": {
+        "features": [
+          "bas2_age20_24_antal_studerande_yoy_pct",
+          "bas2_age25_29_antal_studerande_yoy_pct",
+          "bas2_age20_24_antal_studerande_change_3m_pct",
+          "bas2_age25_29_antal_studerande_change_3m_pct"
+        ],
+        "n_origins": 21,
+        "first_origin": "2023M12",
+        "last_origin": "2025M08",
+        "seasonal": {
+          "rmse": 303.337781233742,
+          "mae": 264.85714285714283,
+          "bias": -264.85714285714283
+        },
+        "model": {
+          "rmse": 336.1037215319857,
+          "mae": 280.38406324783426,
+          "bias": -276.5979063874935
+        },
+        "delta_pct": {
+          "rmse": 10.801799948881175,
+          "mae": 5.862375552040988
+        },
+        "pre_2025_rmse": 368.5064440167116,
+        "post_2025_rmse": 129.13915693539988
+      },
+      "unemployment": {
+        "features": [
+          "bas2_age20_24_arbetsloshet_yoy_pct",
+          "bas2_age25_29_arbetsloshet_yoy_pct",
+          "bas2_age20_66_antal_arbetslosa_change_3m_pct"
+        ],
+        "n_origins": 0,
+        "first_origin": null,
+        "last_origin": null,
+        "seasonal": {
+          "rmse": null,
+          "mae": null,
+          "bias": null
+        },
+        "model": {
+          "rmse": null,
+          "mae": null,
+          "bias": null
+        },
+        "delta_pct": {
+          "rmse": null,
+          "mae": null
+        },
+        "pre_2025_rmse": null,
+        "post_2025_rmse": null
+      },
+      "labour_rates": {
+        "features": [
+          "bas2_age20_66_sysselsattningsgrad_yoy_pct",
+          "bas2_age20_66_arbetskraftsdeltagande_change_3m_pct",
+          "bas2_age20_66_arbetsloshet_change_3m_pct"
+        ],
+        "n_origins": 0,
+        "first_origin": null,
+        "last_origin": null,
+        "seasonal": {
+          "rmse": null,
+          "mae": null,
+          "bias": null
+        },
+        "model": {
+          "rmse": null,
+          "mae": null,
+          "bias": null
+        },
+        "delta_pct": {
+          "rmse": null,
+          "mae": null
+        },
+        "pre_2025_rmse": null,
+        "post_2025_rmse": null
+      },
+      "broad_status": {
+        "features": [
+          "bas2_all_15_74_antal_studerande_yoy_pct",
+          "bas2_all_15_74_antal_ovriga_yoy_pct",
+          "bas2_all_15_74_antal_sysselsatta_yoy_pct",
+          "bas2_all_15_74_sysselsattningsgrad_yoy_pct"
+        ],
+        "n_origins": 21,
+        "first_origin": "2023M12",
+        "last_origin": "2025M08",
+        "seasonal": {
+          "rmse": 303.337781233742,
+          "mae": 264.85714285714283,
+          "bias": -264.85714285714283
+        },
+        "model": {
+          "rmse": 340.1973410020997,
+          "mae": 285.28377471610906,
+          "bias": -285.15477652027187
+        },
+        "delta_pct": {
+          "rmse": 12.151325040501604,
+          "mae": 7.712320550850249
+        },
+        "pre_2025_rmse": 380.6444830026844,
+        "post_2025_rmse": 131.53705804365822
+      },
+      "birth_region": {
+        "features": [
+          "bas2_foreign_born_15_74_antal_studerande_yoy_pct",
+          "bas2_foreign_born_15_74_antal_sysselsatta_yoy_pct",
+          "bas2_native_15_74_antal_studerande_yoy_pct",
+          "bas2_native_15_74_antal_sysselsatta_yoy_pct"
+        ],
+        "n_origins": 21,
+        "first_origin": "2023M12",
+        "last_origin": "2025M08",
+        "seasonal": {
+          "rmse": 303.337781233742,
+          "mae": 264.85714285714283,
+          "bias": -264.85714285714283
+        },
+        "model": {
+          "rmse": 334.0807371873329,
+          "mae": 284.7746471735658,
+          "bias": -284.7746471735658
+        },
+        "delta_pct": {
+          "rmse": 10.134891812207659,
+          "mae": 7.5200933233527945
+        },
+        "pre_2025_rmse": 359.80976536419166,
+        "post_2025_rmse": 153.86941126632212
+      },
+      "cars": {
+        "features": [
+          "cars_new_total_yoy_pct",
+          "cars_new_total_change_3m_pct",
+          "cars_new_total_change_6m_pct"
+        ],
+        "n_origins": 189,
+        "first_origin": "2009M12",
+        "last_origin": "2025M08",
+        "seasonal": {
+          "rmse": 189.02131679008642,
+          "mae": 151.36507936507937,
+          "bias": -51.31216931216931
+        },
+        "model": {
+          "rmse": 195.3835862553541,
+          "mae": 158.35400635089127,
+          "bias": -25.091615001316775
+        },
+        "delta_pct": {
+          "rmse": 3.36590050969392,
+          "mae": 4.617265101784285
+        },
+        "pre_2025_rmse": 182.2302425289178,
+        "post_2025_rmse": 118.40865150443487
+      }
+    }
+  }
+}
