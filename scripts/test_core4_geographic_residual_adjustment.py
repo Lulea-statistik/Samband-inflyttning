@@ -61,13 +61,27 @@ if missing:
 geo=panel[["kommun_kod","year"]+GEO].copy()
 for c in GEO:
     geo[c]=pd.to_numeric(geo[c],errors="coerce")
+
+# Regional-centre distance is a time-invariant geographic attribute.
+# Historical panel vintages have gaps for some years, so recover one fixed
+# municipality value from any available panel year and use it across years.
+dist_static=(geo.dropna(subset=["lag1_regional_centre_distance_km"])
+               .groupby("kommun_kod")["lag1_regional_centre_distance_km"]
+               .median())
+geo["lag1_regional_centre_distance_km"]=geo.apply(
+    lambda r: dist_static.get(r["kommun_kod"],r["lag1_regional_centre_distance_km"])
+    if pd.isna(r["lag1_regional_centre_distance_km"]) else r["lag1_regional_centre_distance_km"],
+    axis=1
+)
+
 pred=pred.merge(geo,on=["kommun_kod","year"],how="left",validate="one_to_one")
 
 if pred.groupby("year")["kommun_kod"].nunique().min()!=290:
     raise SystemExit("Historical six-year prediction panel is not complete 290 municipalities/year")
 for c in GEO:
     if pred.loc[pred["year"].isin(range(2017,2025)),c].isna().any():
-        raise SystemExit(f"Missing geographic control {c} in 2017-2024 prediction panel")
+        miss=int(pred.loc[pred["year"].isin(range(2017,2025)),c].isna().sum())
+        raise SystemExit(f"Missing geographic control {c} in 2017-2024 prediction panel: {miss} rows")
 
 def met(actual,forecast):
     e=np.asarray(forecast)-np.asarray(actual)
