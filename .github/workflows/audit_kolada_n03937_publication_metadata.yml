@@ -24,12 +24,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git checkout -B main origin/main
+          python scripts/audit_kolada_n03937_publication_metadata.py
           git add docs/data/kolada_n03937_publication_metadata.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Audit Kolada N03937 publication metadata"
-          for i in 1 2 3; do
-            git pull --rebase origin main
-            if git push origin HEAD:main; then exit 0; fi
-            sleep $((i * 2))
-          done
-          exit 1
+          git push origin HEAD:main
