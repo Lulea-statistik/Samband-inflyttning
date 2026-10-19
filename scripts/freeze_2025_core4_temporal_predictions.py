@@ -129,7 +129,7 @@ r.raise_for_status()
 kol18=[]
 for rec in r.json().get("values",[]):
     code=str(rec.get("municipality","")).zfill(4)
-    if not re.fullmatch(r"\\d{4}",code): continue
+    if not re.fullmatch(r"\d{4}",code): continue
     total=next((x.get("value") for x in rec.get("values",[])
                 if x.get("gender")=="T" and x.get("value") is not None),None)
     if total is not None:
@@ -140,7 +140,7 @@ kol18=pd.DataFrame(kol18)
 h_url="https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0104/BO0104D/BO0104T04"
 hmeta=s.get(h_url,timeout=90); hmeta.raise_for_status(); hmeta=hmeta.json()
 hv={v["code"]:v for v in hmeta["variables"]}
-regions18=[x for x in hv["Region"]["values"] if re.fullmatch(r"\\d{4}",str(x))]
+regions18=[x for x in hv["Region"]["values"] if re.fullmatch(r"\d{4}",str(x))]
 parts18=[]
 for yy in ["2017","2018"]:
     q={"query":[
@@ -158,6 +158,8 @@ for yy in ["2017","2018"]:
             parts18.append(js2long(r2.json()))
     else:
         rr.raise_for_status(); parts18.append(js2long(rr.json()))
+if not parts18 or all(p.empty for p in parts18):
+    raise SystemExit(f"2017-2018 housing reconstruction empty: region_count={len(regions18)}")
 hh=pd.concat(parts18,ignore_index=True)
 hh["Region"]=hh["Region"].astype(str).str.zfill(4); hh["Tid"]=hh["Tid"].astype(int)
 hh=(hh.groupby(["Region","Tid"],as_index=False)["value"].sum()
