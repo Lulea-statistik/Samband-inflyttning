@@ -126,19 +126,34 @@ skr.to_csv(SRC/"skr_kommungrupp_2023.csv",index=False)
 z=requests.get(SCB_ZIP,timeout=120)
 z.raise_for_status()
 (SRC/"scb_shape_svenska_260225.zip").write_bytes(z.content)
+extract_dir=SRC/"scb_shape"
+extract_dir.mkdir(parents=True,exist_ok=True)
+
+# SCB's download may contain nested ZIP archives. Extract recursively and then
+# locate every shapefile below the extraction root.
 with zipfile.ZipFile(io.BytesIO(z.content)) as zz:
-    names=zz.namelist()
-    shp_candidates=[n for n in names if n.lower().endswith(".shp") and ("kommun" in n.lower() or "kn" in n.lower())]
-    if not shp_candidates:
-        shp_candidates=[n for n in names if n.lower().endswith(".shp")]
-    if not shp_candidates: raise SystemExit("No shapefile found in SCB zip")
-    extract_dir=SRC/"scb_shape"
     zz.extractall(extract_dir)
+
+for nested in list(extract_dir.rglob("*.zip")) + list(extract_dir.rglob("*.ZIP")):
+    nested_dir=nested.with_suffix("")
+    nested_dir.mkdir(parents=True,exist_ok=True)
+    try:
+        with zipfile.ZipFile(nested) as nz:
+            nz.extractall(nested_dir)
+    except zipfile.BadZipFile:
+        pass
+
+all_shp=list(extract_dir.rglob("*.shp")) + list(extract_dir.rglob("*.SHP"))
+shp_candidates=[p for p in all_shp if ("kommun" in p.name.lower() or "kn" in p.name.lower())]
+if not shp_candidates:
+    shp_candidates=all_shp
+if not shp_candidates:
+    inventory=[str(p.relative_to(extract_dir)) for p in extract_dir.rglob("*") if p.is_file()]
+    raise SystemExit("No shapefile found in SCB zip. Files: "+", ".join(inventory[:200]))
 
 # Try candidate shapefiles until one has 290-ish municipality records and a 4-digit code field.
 gdf=None; codecol=None; chosen=None
-for rel in shp_candidates:
-    path=extract_dir/rel
+for path in shp_candidates:
     try:
         g=gpd.read_file(path)
     except Exception:
@@ -148,7 +163,7 @@ for rel in shp_candidates:
         s=g[col].astype(str).str.extract(r"(\d{4})",expand=False)
         n=s.dropna().nunique()
         if 285 <= n <= 295:
-            gdf=g.copy(); codecol=col; chosen=rel; break
+            gdf=g.copy(); codecol=col; chosen=str(path.relative_to(extract_dir)); break
     if gdf is not None: break
 if gdf is None:
     raise SystemExit("Could not identify municipality shapefile/code field")
