@@ -1,0 +1,395 @@
+{
+  "status": "core4_rolling_origin_weak_year_diagnostic",
+  "production_changed": false,
+  "selection_phase_closed": true,
+  "weak_years": [
+    2017,
+    2018,
+    2019
+  ],
+  "year_summary": [
+    {
+      "year": 2011,
+      "n": 290,
+      "target_mean": 52.4327254204807,
+      "target_median": 50.57600467760621,
+      "lag1_inflyttning_per_1000_mean": 51.89557569372279,
+      "lag1_utflyttning_per_1000_mean": 50.19750432252859,
+      "lag1_kolada_arbetslosa_18_65_pct_mean": 3.9254262103448267,
+      "lag1_bostadsbestandsforandring_pct_mean": 0.1607019048988991
+    },
+    {
+      "year": 2012,
+      "n": 290,
+      "target_mean": 53.422971478585254,
+      "target_median": 50.4492949857421,
+      "lag1_inflyttning_per_1000_mean": 52.4327254204807,
+      "lag1_utflyttning_per_1000_mean": 51.01783176795537,
+      "lag1_kolada_arbetslosa_18_65_pct_mean": 3.4027901241379315,
+      "lag1_bostadsbestandsforandring_pct_mean": 0.1620066795752459
+    },
+    {
+      "year": 2013,
+      "n": 290,
+      "target_mean": 57.392376400517165,
+      "target_median": 54.97231870548755,
+      "lag1_inflyttning_per_1000_mean": 53.422971478585254,
+      "lag1_utflyttning_per_1000_mean": 51.15422911777542,
+      "lag1_kolada_arbetslosa_18_65_pct_mean": 3.513423327586207,
+      "lag1_bostadsbestandsforandring_pct_mean": 0.2407765358940325
+    },
+    {
+      "year": 2014,
+      "n": 290,
+      "target_mean": 62.01546395153062,
+      "target_median": 58.98577281300281,
+      "lag1_inflyttning_per_1000_mean": 57.392376400517165,
+      "lag1_utflyttning_per_1000_mean": 52.548081555267636,
+      "lag1_kolada_arbetslosa_18_65_pct_mean": 3.5412310000000002,
+      "lag1_bostadsbestandsforandring_pct_mean": 0.4659202261956169
+    },
+    {
+      "year": 2015,
+      "n": 290,
+      "target_mean": 64.28560047228459,
+      "target_median": 61.16946479011017,
+      "lag1_inflyttning_per_1000_mean": 62.01546395153062,
+      "lag1_utflyttning_per_1000_mean": 54.88246629643171,
+      "lag1_kolada_arbetslosa_18_65_pct_mean": 3.3308864413793104,
+      "lag1_bostadsbestandsforandring_pct_mean": 0.547130083184523
+    },
+    {
+      "year": 2016,
+      "n": 290,
+      "target_mean": 68.71966627085915,
+      "target_median": 64.9359045155604,
+      "lag1_inflyttning_per_1000_mean": 64.28560047228459,
+      "lag1_utflyttning_per_1000_mean": 55.90964900679578,
+      "lag1_kolada_arbetslosa_18_65_pct_mean": 3.241649048275862,
+      "lag1_bostadsbestandsforandring_pct_mean": 0.630585303917564
+    },
+    {
+      "year": 2017,
+      "n": 290,
+      "target_mean": 66.44840673162263,
+      "target_median": 63.688488310006974,
+      "lag1_inflyttning_per_1000_mean": 68.71966627085915,
+      "lag1_utflyttning_per_1000_mean": 55.53847207323582,
+      "lag1_kolada_arbetslosa_18_65_pct_mean": 3.132712065517241,
+      "lag1_bostadsbestandsforandring_pct_mean": 1.559688324698206
+    },
+    {
+      "year": 2018,
+      "n": 290,
+      "target_mean": 62.45719729989489,
+      "target_median": 59.54720222737457,
+      "lag1_inflyttning_per_1000_mean": 66.44840673162263,
+      "lag1_utflyttning_per_1000_mean": 58.68188062060206,
+      "lag1_kolada_arbetslosa_18_65_pct_mean": 3.1128773931034486,
+      "lag1_bostadsbestandsforandring_pct_mean": 1.013839499459667
+    },
+    {
+      "year": 2019,
+      "n": 290,
+      "target_mean": 58.98628321723277,
+      "target_median": 56.053260508828274,
+      "lag1_inflyttning_per_1000_mean": 62.45719729989489,
+      "lag1_utflyttning_per_1000_mean": 56.38035565764103,
+      "lag1_kolada_arbetslosa_18_65_pct_mean": 2.819567572413793,
+      "lag1_bostadsbestandsforandring_pct_mean": 0.9853219047960898
+    },
+    {
+      "year": 2020,
+      "n": 290,
+      "target_mean": 59.292790780551165,
+      "target_median": 56.85343856134061,
+      "lag1_inflyttning_per_1000_mean": 58.98628321723277,
+      "lag1_utflyttning_per_1000_mean": 55.58288984089692,
+      "lag1_kolada_arbetslosa_18_65_pct_mean": 2.7456203724137933,
+      "lag1_bostadsbestandsforandring_pct_mean": 0.6680525089106428
+    },
+    {
+      "year": 2021,
+      "n": 290,
+      "target_mean": 60.736808011302955,
+      "target_median": 57.43474836114714,
+      "lag1_inflyttning_per_1000_mean": 59.292790780551165,
+      "lag1_utflyttning_per_1000_mean": 56.568289177472664,
+      "lag1_kolada_arbetslosa_18_65_pct_mean": 3.5722698206896557,
+      "lag1_bostadsbestandsforandring_pct_mean": 1.03221559027092
+    },
+    {
+      "year": 2022,
+      "n": 290,
+      "target_mean": 59.3448875288961,
+      "target_median": 56.36958588459788,
+      "lag1_inflyttning_per_1000_mean": 60.736808011302955,
+      "lag1_utflyttning_per_1000_mean": 55.91945051880599,
+      "lag1_kolada_arbetslosa_18_65_pct_mean": 2.813632824137931,
+      "lag1_bostadsbestandsforandring_pct_mean": 0.7758474791683202
+    },
+    {
+      "year": 2023,
+      "n": 290,
+      "target_mean": 54.86597202751305,
+      "target_median": 51.35014326576855,
+      "lag1_inflyttning_per_1000_mean": 59.3448875288961,
+      "lag1_utflyttning_per_1000_mean": 56.49070312181709,
+      "lag1_kolada_arbetslosa_18_65_pct_mean": 2.2231364586206896,
+      "lag1_bostadsbestandsforandring_pct_mean": 0.7468726642979436
+    },
+    {
+      "year": 2024,
+      "n": 290,
+      "target_mean": 55.95496056438685,
+      "target_median": 52.94196389235326,
+      "lag1_inflyttning_per_1000_mean": 54.86597202751305,
+      "lag1_utflyttning_per_1000_mean": 55.870207948700035,
+      "lag1_kolada_arbetslosa_18_65_pct_mean": 2.198539337931034,
+      "lag1_bostadsbestandsforandring_pct_mean": 0.5193702621122074
+    }
+  ],
+  "six_year_raw_coefficient_drift": [
+    {
+      "forecast_year": 2017,
+      "training_years": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016
+      ],
+      "intercept_raw": 1.3173745370848309,
+      "lag1_inflyttning_per_1000": 0.788565535383905,
+      "lag1_utflyttning_per_1000": 0.25806623695716885,
+      "lag1_kolada_arbetslosa_18_65_pct": -0.03598731016672135,
+      "lag1_bostadsbestandsforandring_pct": 0.1781152972817365
+    },
+    {
+      "forecast_year": 2018,
+      "training_years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "intercept_raw": 3.476763050932817,
+      "lag1_inflyttning_per_1000": 0.6505142608670197,
+      "lag1_utflyttning_per_1000": 0.38237202009320154,
+      "lag1_kolada_arbetslosa_18_65_pct": -0.2442379298493194,
+      "lag1_bostadsbestandsforandring_pct": 0.14658988169926848
+    },
+    {
+      "forecast_year": 2019,
+      "training_years": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "intercept_raw": 6.981611474876644,
+      "lag1_inflyttning_per_1000": 0.6866494709630843,
+      "lag1_utflyttning_per_1000": 0.28598402357779035,
+      "lag1_kolada_arbetslosa_18_65_pct": -0.4698204660328357,
+      "lag1_bostadsbestandsforandring_pct": -0.19525592611796044
+    },
+    {
+      "forecast_year": 2020,
+      "training_years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "intercept_raw": 5.369472522376199,
+      "lag1_inflyttning_per_1000": 0.7628117585059244,
+      "lag1_utflyttning_per_1000": 0.1938690117542033,
+      "lag1_kolada_arbetslosa_18_65_pct": -0.23364158239718816,
+      "lag1_bostadsbestandsforandring_pct": -0.08426991814137051
+    },
+    {
+      "forecast_year": 2021,
+      "training_years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "intercept_raw": 4.87553353570452,
+      "lag1_inflyttning_per_1000": 0.8102811626062503,
+      "lag1_utflyttning_per_1000": 0.15320858614658017,
+      "lag1_kolada_arbetslosa_18_65_pct": -0.6355822937643757,
+      "lag1_bostadsbestandsforandring_pct": 0.1344031918653829
+    },
+    {
+      "forecast_year": 2022,
+      "training_years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "intercept_raw": 4.646800277830373,
+      "lag1_inflyttning_per_1000": 0.7644649927116667,
+      "lag1_utflyttning_per_1000": 0.19498743360473603,
+      "lag1_kolada_arbetslosa_18_65_pct": -0.6441337219826899,
+      "lag1_bostadsbestandsforandring_pct": 0.6928190242367556
+    },
+    {
+      "forecast_year": 2023,
+      "training_years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "intercept_raw": 4.51883098017192,
+      "lag1_inflyttning_per_1000": 0.6912382157815901,
+      "lag1_utflyttning_per_1000": 0.2564586440547941,
+      "lag1_kolada_arbetslosa_18_65_pct": -0.8865488016665103,
+      "lag1_bostadsbestandsforandring_pct": 1.5048441719690102
+    },
+    {
+      "forecast_year": 2024,
+      "training_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "intercept_raw": 1.8276319479816152,
+      "lag1_inflyttning_per_1000": 0.7383716551053653,
+      "lag1_utflyttning_per_1000": 0.19091141312795437,
+      "lag1_kolada_arbetslosa_18_65_pct": 0.09545856279616169,
+      "lag1_bostadsbestandsforandring_pct": 1.3501814223911284
+    }
+  ],
+  "residual_diagnostics": [
+    {
+      "forecast_year": 2017,
+      "n": 290,
+      "mean_error": 3.5565991928919836,
+      "median_error": 2.6276143667077925,
+      "share_overpredicted": 0.6586206896551724,
+      "p10_error": -4.570986871597912,
+      "p90_error": 13.597081051420503,
+      "share_abs_error_gt_10": 0.18620689655172415,
+      "top_10_abs_error_share": 0.15466521935798777
+    },
+    {
+      "forecast_year": 2018,
+      "n": 290,
+      "mean_error": 6.071847059539721,
+      "median_error": 5.168098522889366,
+      "share_overpredicted": 0.8068965517241379,
+      "p10_error": -2.5298840504634095,
+      "p90_error": 15.86073277563536,
+      "share_abs_error_gt_10": 0.2413793103448276,
+      "top_10_abs_error_share": 0.13753932123824264
+    },
+    {
+      "forecast_year": 2019,
+      "n": 290,
+      "mean_error": 5.488330211244898,
+      "median_error": 5.178122715793602,
+      "share_overpredicted": 0.8655172413793103,
+      "p10_error": -0.8127670330363003,
+      "p90_error": 12.94142833089875,
+      "share_abs_error_gt_10": 0.20344827586206896,
+      "top_10_abs_error_share": 0.09992805812396395
+    },
+    {
+      "forecast_year": 2020,
+      "n": 290,
+      "mean_error": 1.1501242756755439,
+      "median_error": 1.35968077337823,
+      "share_overpredicted": 0.603448275862069,
+      "p10_error": -4.749427328935587,
+      "p90_error": 7.541678975855565,
+      "share_abs_error_gt_10": 0.06896551724137931,
+      "top_10_abs_error_share": 0.12713905737195103
+    },
+    {
+      "forecast_year": 2021,
+      "n": 290,
+      "mean_error": -1.2824337987063632,
+      "median_error": -0.9892310480587058,
+      "share_overpredicted": 0.36551724137931035,
+      "p10_error": -8.643909197044318,
+      "p90_error": 4.789964400797698,
+      "share_abs_error_gt_10": 0.08620689655172414,
+      "top_10_abs_error_share": 0.12766134187051156
+    },
+    {
+      "forecast_year": 2022,
+      "n": 290,
+      "mean_error": 1.3618324980432035,
+      "median_error": 1.0211843889641052,
+      "share_overpredicted": 0.6241379310344828,
+      "p10_error": -3.866035045815678,
+      "p90_error": 7.3749952738946085,
+      "share_abs_error_gt_10": 0.07241379310344828,
+      "top_10_abs_error_share": 0.13525249905740958
+    },
+    {
+      "forecast_year": 2023,
+      "n": 290,
+      "mean_error": 4.314850260955703,
+      "median_error": 4.51651678578294,
+      "share_overpredicted": 0.8517241379310345,
+      "p10_error": -1.4961915187489911,
+      "p90_error": 9.874068076472874,
+      "share_abs_error_gt_10": 0.10689655172413794,
+      "top_10_abs_error_share": 0.10710390504832575
+    },
+    {
+      "forecast_year": 2024,
+      "n": 290,
+      "mean_error": -2.0384762055507193,
+      "median_error": -1.9508774708141523,
+      "share_overpredicted": 0.28620689655172415,
+      "p10_error": -7.823138443708834,
+      "p90_error": 3.543823566961783,
+      "share_abs_error_gt_10": 0.07586206896551724,
+      "top_10_abs_error_share": 0.1249121887965508
+    }
+  ],
+  "era_comparison": {
+    "weak_2017_2019": {
+      "target_mean": 62.630629082916755,
+      "target_median": 59.762983682069944,
+      "lag1_inflyttning_per_1000_mean": 65.87509010079222,
+      "lag1_utflyttning_per_1000_mean": 56.866902783826305,
+      "lag1_kolada_arbetslosa_18_65_pct_mean": 3.0217190103448277,
+      "lag1_bostadsbestandsforandring_pct_mean": 1.1862832429846544
+    },
+    "strong_2020_2022_2024": {
+      "target_mean": 58.832361721284265,
+      "target_median": 55.89993417485972,
+      "lag1_inflyttning_per_1000_mean": 58.470463509149994,
+      "lag1_utflyttning_per_1000_mean": 55.985209371468905,
+      "lag1_kolada_arbetslosa_18_65_pct_mean": 2.8325155887931035,
+      "lag1_bostadsbestandsforandring_pct_mean": 0.7488714601155226
+    }
+  },
+  "interpretation_rules": [
+    "No variable additions/removals are evaluated.",
+    "Diagnostics are descriptive and do not authorize retuning.",
+    "Historical source values remain reconstructed current-history values, not exact archived vintages."
+  ]
+}
