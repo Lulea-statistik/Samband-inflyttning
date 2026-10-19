@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import csv, json, re, unicodedata, urllib.request
+import csv, json, re, unicodedata, urllib.request, time, random
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -11,14 +11,36 @@ BAS="https://api.scb.se/OV0104/v1/doris/sv/ssd/START/AM/AM0210/AM0210A/ArbStatus
 CARS="https://api.scb.se/OV0104/v1/doris/sv/ssd/START/TK/TK1001/TK1001A/PersBilarDrivMedel"
 INC="https://api.scb.se/OV0104/v1/doris/sv/ssd/START/HE/HE0110/HE0110M/MistTab5"
 
+def _request_json(req, timeout, attempts=6):
+    last=None
+    for attempt in range(attempts):
+        try:
+            with urllib.request.urlopen(req,timeout=timeout) as r:
+                data=json.load(r)
+            time.sleep(0.20)
+            return data
+        except Exception as e:
+            last=e
+            if attempt == attempts-1:
+                raise
+            # SCB may transiently close/reset connections during many sequential PXWeb requests.
+            delay=min(12.0, 0.8*(2**attempt)) + random.uniform(0.0,0.35)
+            print(f"Transient SCB request failure ({type(e).__name__}); retry {attempt+1}/{attempts-1} in {delay:.2f}s")
+            time.sleep(delay)
+    raise last
+
 def get(url):
     req=urllib.request.Request(url,headers={"User-Agent":"Lulea-statistik-short-term-family2/1.0"})
-    with urllib.request.urlopen(req,timeout=60) as r: return json.load(r)
+    return _request_json(req,60)
 
 def post(url,q):
     body=json.dumps({"query":q,"response":{"format":"json"}}).encode()
-    req=urllib.request.Request(url,data=body,headers={"Content-Type":"application/json","User-Agent":"Lulea-statistik-short-term-family2/1.0"})
-    with urllib.request.urlopen(req,timeout=120) as r: return json.load(r)
+    req=urllib.request.Request(url,data=body,headers={
+      "Content-Type":"application/json",
+      "User-Agent":"Lulea-statistik-short-term-family2/1.0",
+      "Connection":"close"
+    })
+    return _request_json(req,120)
 
 def item(c,v): return {"code":c,"selection":{"filter":"item","values":v}}
 def allq(c): return {"code":c,"selection":{"filter":"all","values":["*"]}}
