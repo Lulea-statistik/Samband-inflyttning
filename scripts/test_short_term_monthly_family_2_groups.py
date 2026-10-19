@@ -24,14 +24,16 @@ GROUPS={
   "bas2_age25_29_antal_studerande_change_3m_pct"
  ],
  "unemployment":[
-  "bas2_age20_24_arbetsloshet_yoy_pct",
-  "bas2_age25_29_arbetsloshet_yoy_pct",
-  "bas2_age20_66_antal_arbetslosa_change_3m_pct"
+  "bas2_age20_24_arbetsloshet_yoy_pp",
+  "bas2_age25_29_arbetsloshet_yoy_pp",
+  "bas2_age20_24_antal_arbetslosa_yoy_pct",
+  "bas2_age25_29_antal_arbetslosa_yoy_pct"
  ],
  "labour_rates":[
-  "bas2_age20_66_sysselsattningsgrad_yoy_pct",
-  "bas2_age20_66_arbetskraftsdeltagande_change_3m_pct",
-  "bas2_age20_66_arbetsloshet_change_3m_pct"
+  "bas2_age20_24_sysselsattningsgrad_yoy_pp",
+  "bas2_age25_29_sysselsattningsgrad_yoy_pp",
+  "bas2_age20_24_arbetskraftsdeltagande_yoy_pp",
+  "bas2_age25_29_arbetskraftsdeltagande_yoy_pp"
  ],
  "broad_status":[
   "bas2_all_15_74_antal_studerande_yoy_pct",
