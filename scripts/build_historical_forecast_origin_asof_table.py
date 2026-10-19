@@ -42,11 +42,14 @@ for p in proj:
         housing_source="SCB housing fallback"
     housing_available=housing_pub <= origin
 
-    # Kolada unemployment annual lag variable: until source-specific calendar is populated,
-    # force conservative unavailability unless a pre-origin value can be separately certified.
-    kolada_available=False
-    kolada_quality="conservative_fallback"
-    kolada_note="Source-specific publication timing not yet certified for this historical origin."
+    # Kolada N03937 is an annual mean for year T. Current KPI metadata shows
+    # publication in January of T+1 (2026 period -> 2027-01-19).
+    # For historical years without archived exact publication dates, use this only
+    # as an inferred annual pattern and conservatively place availability at March 1 Y.
+    kolada_pub=f"{year}-03-01"
+    kolada_available=kolada_pub <= origin
+    kolada_quality="inferred_annual_pattern"
+    kolada_note="Current Kolada metadata shows annual N03937 period T published in January T+1; historical exact dates are not archived here, so March 1 Y is used as a conservative inferred cutoff for Y-1."
 
     rows.append({
       "forecast_year":year,
@@ -61,11 +64,19 @@ for p in proj:
       "housing_published":housing_pub,
       "housing_quality":housing_quality,
       "housing_available":housing_available,
+      "kolada_unemployment_reference_year":prev,
+      "kolada_unemployment_published_assumed":kolada_pub,
       "kolada_unemployment_available":kolada_available,
       "kolada_unemployment_quality":kolada_quality,
       "kolada_unemployment_note":kolada_note,
       "rates_25_29_realtime_policy":"use latest BAS month available with 1-2 month conservative lag",
-      "macro_core4_fully_certified": bool(pop_available and housing_available and kolada_available)
+      "macro_core4_operationally_available": bool(pop_available and housing_available and kolada_available),
+      "macro_core4_fully_certified": bool(
+          pop_available and housing_available and kolada_available
+          and pop_quality=="observed"
+          and housing_quality=="observed"
+          and kolada_quality=="observed"
+      )
     })
 
 result={
