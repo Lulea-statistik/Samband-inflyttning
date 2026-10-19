@@ -1,0 +1,36 @@
+name: Score untouched 2025 temporal forecast
+on:
+  workflow_dispatch:
+    inputs:
+      outcome_path:
+        description: "Repository path to CSV with kommun_kod, inflyttning_per_1000 for 2025"
+        required: true
+        default: "docs/data/outcomes/inflyttning_2025.csv"
+permissions:
+  contents: write
+jobs:
+  score:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy pandas
+      - name: Verify outcome file exists
+        run: test -f "${{ inputs.outcome_path }}"
+      - name: Score frozen 2025 predictions
+        run: python scripts/score_2025_core4_temporal_untouched.py --outcome-csv "${{ inputs.outcome_path }}"
+      - name: Commit untouched score
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/three_year_forecast_2025_untouched_temporal_score.json
+          git add docs/data/three_year_forecast_2025_untouched_temporal_residuals.csv
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record untouched 2025 temporal forecast score"
+          git pull --rebase origin main
+          git push origin HEAD:main
