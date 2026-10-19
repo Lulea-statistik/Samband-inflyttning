@@ -1,0 +1,319 @@
+{
+  "status": "retrospective_core4_rolling_origin_backtest",
+  "production_changed": false,
+  "selection_phase_closed": true,
+  "features": [
+    "lag1_inflyttning_per_1000",
+    "lag1_utflyttning_per_1000",
+    "lag1_kolada_arbetslosa_18_65_pct",
+    "lag1_bostadsbestandsforandring_pct"
+  ],
+  "method": "StandardScaler + OLS refit within each historical training window",
+  "forecast_horizon_years": 1,
+  "primary_window_years": 6,
+  "sensitivity_windows_years": [
+    3,
+    4,
+    5
+  ],
+  "eligible_complete_years": [],
+  "coverage": [
+    {
+      "year": 2002,
+      "municipalities": 293,
+      "counts": {
+        "inflyttning_per_1000": 290,
+        "lag1_inflyttning_per_1000": 0,
+        "lag1_utflyttning_per_1000": 0,
+        "lag1_kolada_arbetslosa_18_65_pct": 0,
+        "lag1_bostadsbestandsforandring_pct": 0
+      },
+      "complete": false
+    },
+    {
+      "year": 2003,
+      "municipalities": 293,
+      "counts": {
+        "inflyttning_per_1000": 290,
+        "lag1_inflyttning_per_1000": 290,
+        "lag1_utflyttning_per_1000": 290,
+        "lag1_kolada_arbetslosa_18_65_pct": 0,
+        "lag1_bostadsbestandsforandring_pct": 0
+      },
+      "complete": false
+    },
+    {
+      "year": 2004,
+      "municipalities": 293,
+      "counts": {
+        "inflyttning_per_1000": 290,
+        "lag1_inflyttning_per_1000": 290,
+        "lag1_utflyttning_per_1000": 290,
+        "lag1_kolada_arbetslosa_18_65_pct": 0,
+        "lag1_bostadsbestandsforandring_pct": 0
+      },
+      "complete": false
+    },
+    {
+      "year": 2005,
+      "municipalities": 293,
+      "counts": {
+        "inflyttning_per_1000": 290,
+        "lag1_inflyttning_per_1000": 290,
+        "lag1_utflyttning_per_1000": 290,
+        "lag1_kolada_arbetslosa_18_65_pct": 0,
+        "lag1_bostadsbestandsforandring_pct": 0
+      },
+      "complete": false
+    },
+    {
+      "year": 2006,
+      "municipalities": 293,
+      "counts": {
+        "inflyttning_per_1000": 290,
+        "lag1_inflyttning_per_1000": 290,
+        "lag1_utflyttning_per_1000": 290,
+        "lag1_kolada_arbetslosa_18_65_pct": 0,
+        "lag1_bostadsbestandsforandring_pct": 0
+      },
+      "complete": false
+    },
+    {
+      "year": 2007,
+      "municipalities": 293,
+      "counts": {
+        "inflyttning_per_1000": 290,
+        "lag1_inflyttning_per_1000": 290,
+        "lag1_utflyttning_per_1000": 290,
+        "lag1_kolada_arbetslosa_18_65_pct": 0,
+        "lag1_bostadsbestandsforandring_pct": 0
+      },
+      "complete": false
+    },
+    {
+      "year": 2008,
+      "municipalities": 293,
+      "counts": {
+        "inflyttning_per_1000": 290,
+        "lag1_inflyttning_per_1000": 290,
+        "lag1_utflyttning_per_1000": 290,
+        "lag1_kolada_arbetslosa_18_65_pct": 0,
+        "lag1_bostadsbestandsforandring_pct": 0
+      },
+      "complete": false
+    },
+    {
+      "year": 2009,
+      "municipalities": 293,
+      "counts": {
+        "inflyttning_per_1000": 290,
+        "lag1_inflyttning_per_1000": 290,
+        "lag1_utflyttning_per_1000": 290,
+        "lag1_kolada_arbetslosa_18_65_pct": 0,
+        "lag1_bostadsbestandsforandring_pct": 0
+      },
+      "complete": false
+    },
+    {
+      "year": 2010,
+      "municipalities": 293,
+      "counts": {
+        "inflyttning_per_1000": 290,
+        "lag1_inflyttning_per_1000": 290,
+        "lag1_utflyttning_per_1000": 290,
+        "lag1_kolada_arbetslosa_18_65_pct": 0,
+        "lag1_bostadsbestandsforandring_pct": 0
+      },
+      "complete": false
+    },
+    {
+      "year": 2011,
+      "municipalities": 293,
+      "counts": {
+        "inflyttning_per_1000": 290,
+        "lag1_inflyttning_per_1000": 290,
+        "lag1_utflyttning_per_1000": 290,
+        "lag1_kolada_arbetslosa_18_65_pct": 0,
+        "lag1_bostadsbestandsforandring_pct": 0
+      },
+      "complete": false
+    },
+    {
+      "year": 2012,
+      "municipalities": 293,
+      "counts": {
+        "inflyttning_per_1000": 290,
+        "lag1_inflyttning_per_1000": 290,
+        "lag1_utflyttning_per_1000": 290,
+        "lag1_kolada_arbetslosa_18_65_pct": 0,
+        "lag1_bostadsbestandsforandring_pct": 0
+      },
+      "complete": false
+    },
+    {
+      "year": 2013,
+      "municipalities": 293,
+      "counts": {
+        "inflyttning_per_1000": 290,
+        "lag1_inflyttning_per_1000": 290,
+        "lag1_utflyttning_per_1000": 290,
+        "lag1_kolada_arbetslosa_18_65_pct": 0,
+        "lag1_bostadsbestandsforandring_pct": 0
+      },
+      "complete": false
+    },
+    {
+      "year": 2014,
+      "municipalities": 293,
+      "counts": {
+        "inflyttning_per_1000": 290,
+        "lag1_inflyttning_per_1000": 290,
+        "lag1_utflyttning_per_1000": 290,
+        "lag1_kolada_arbetslosa_18_65_pct": 0,
+        "lag1_bostadsbestandsforandring_pct": 0
+      },
+      "complete": false
+    },
+    {
+      "year": 2015,
+      "municipalities": 293,
+      "counts": {
+        "inflyttning_per_1000": 290,
+        "lag1_inflyttning_per_1000": 290,
+        "lag1_utflyttning_per_1000": 290,
+        "lag1_kolada_arbetslosa_18_65_pct": 0,
+        "lag1_bostadsbestandsforandring_pct": 0
+      },
+      "complete": false
+    },
+    {
+      "year": 2016,
+      "municipalities": 293,
+      "counts": {
+        "inflyttning_per_1000": 290,
+        "lag1_inflyttning_per_1000": 290,
+        "lag1_utflyttning_per_1000": 290,
+        "lag1_kolada_arbetslosa_18_65_pct": 0,
+        "lag1_bostadsbestandsforandring_pct": 0
+      },
+      "complete": false
+    },
+    {
+      "year": 2017,
+      "municipalities": 293,
+      "counts": {
+        "inflyttning_per_1000": 290,
+        "lag1_inflyttning_per_1000": 290,
+        "lag1_utflyttning_per_1000": 290,
+        "lag1_kolada_arbetslosa_18_65_pct": 0,
+        "lag1_bostadsbestandsforandring_pct": 0
+      },
+      "complete": false
+    },
+    {
+      "year": 2018,
+      "municipalities": 293,
+      "counts": {
+        "inflyttning_per_1000": 290,
+        "lag1_inflyttning_per_1000": 290,
+        "lag1_utflyttning_per_1000": 290,
+        "lag1_kolada_arbetslosa_18_65_pct": 0,
+        "lag1_bostadsbestandsforandring_pct": 0
+      },
+      "complete": false
+    },
+    {
+      "year": 2019,
+      "municipalities": 293,
+      "counts": {
+        "inflyttning_per_1000": 290,
+        "lag1_inflyttning_per_1000": 290,
+        "lag1_utflyttning_per_1000": 290,
+        "lag1_kolada_arbetslosa_18_65_pct": 290,
+        "lag1_bostadsbestandsforandring_pct": 0
+      },
+      "complete": false
+    },
+    {
+      "year": 2020,
+      "municipalities": 293,
+      "counts": {
+        "inflyttning_per_1000": 290,
+        "lag1_inflyttning_per_1000": 290,
+        "lag1_utflyttning_per_1000": 290,
+        "lag1_kolada_arbetslosa_18_65_pct": 290,
+        "lag1_bostadsbestandsforandring_pct": 290
+      },
+      "complete": false
+    },
+    {
+      "year": 2021,
+      "municipalities": 293,
+      "counts": {
+        "inflyttning_per_1000": 290,
+        "lag1_inflyttning_per_1000": 290,
+        "lag1_utflyttning_per_1000": 290,
+        "lag1_kolada_arbetslosa_18_65_pct": 290,
+        "lag1_bostadsbestandsforandring_pct": 290
+      },
+      "complete": false
+    },
+    {
+      "year": 2022,
+      "municipalities": 293,
+      "counts": {
+        "inflyttning_per_1000": 290,
+        "lag1_inflyttning_per_1000": 290,
+        "lag1_utflyttning_per_1000": 290,
+        "lag1_kolada_arbetslosa_18_65_pct": 290,
+        "lag1_bostadsbestandsforandring_pct": 290
+      },
+      "complete": false
+    },
+    {
+      "year": 2023,
+      "municipalities": 293,
+      "counts": {
+        "inflyttning_per_1000": 290,
+        "lag1_inflyttning_per_1000": 290,
+        "lag1_utflyttning_per_1000": 290,
+        "lag1_kolada_arbetslosa_18_65_pct": 290,
+        "lag1_bostadsbestandsforandring_pct": 290
+      },
+      "complete": false
+    },
+    {
+      "year": 2024,
+      "municipalities": 293,
+      "counts": {
+        "inflyttning_per_1000": 290,
+        "lag1_inflyttning_per_1000": 290,
+        "lag1_utflyttning_per_1000": 290,
+        "lag1_kolada_arbetslosa_18_65_pct": 290,
+        "lag1_bostadsbestandsforandring_pct": 290
+      },
+      "complete": false
+    }
+  ],
+  "summary_by_window": {
+    "3": {
+      "forecast_count": 0
+    },
+    "4": {
+      "forecast_count": 0
+    },
+    "5": {
+      "forecast_count": 0
+    },
+    "6": {
+      "forecast_count": 0
+    }
+  },
+  "yearly_results": [],
+  "limitations": [
+    "Historical values use the current reconstructed panel and are not exact archived as-of source vintages.",
+    "N03937 has a documented age-definition break: 18-64 through 2022, 18-65 from 2023.",
+    "This test evaluates temporal robustness of the frozen variable set, not untouched future validity.",
+    "Sensitivity windows are descriptive and must not be used for post-hoc variable selection."
+  ]
+}
