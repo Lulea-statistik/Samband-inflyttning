@@ -1,6 +1,6 @@
 {
   "status": "short_term_monthly_family_2_group_benchmark",
-  "generated_at_utc": "2026-10-19T21:30:06.506934+00:00",
+  "generated_at_utc": "2026-10-19T21:34:41.772143+00:00",
   "production_changed": false,
   "structural_core4_changed": false,
   "target": "sum of Lulea all_inmigrations over t+1..t+h",
@@ -88,25 +88,25 @@
           "bas2_age20_24_antal_arbetslosa_yoy_pct",
           "bas2_age25_29_antal_arbetslosa_yoy_pct"
         ],
-        "n_origins": 0,
-        "first_origin": null,
-        "last_origin": null,
+        "n_origins": 39,
+        "first_origin": "2023M03",
+        "last_origin": "2026M05",
         "seasonal": {
-          "rmse": null,
-          "mae": null,
-          "bias": null
+          "rmse": 100.98502046825736,
+          "mae": 80.17948717948718,
+          "bias": -28.435897435897434
         },
         "model": {
-          "rmse": null,
-          "mae": null,
-          "bias": null
+          "rmse": 106.00232461943632,
+          "mae": 83.68321392237232,
+          "bias": -24.570561767662227
         },
         "delta_pct": {
-          "rmse": null,
-          "mae": null
+          "rmse": 4.968364741537146,
+          "mae": 4.369854268388873
         },
-        "pre_2025_rmse": null,
-        "post_2025_rmse": null
+        "pre_2025_rmse": 128.17423997508666,
+        "post_2025_rmse": 77.73597517355874
       },
       "labour_rates": {
         "features": [
@@ -115,25 +115,25 @@
           "bas2_age20_24_arbetskraftsdeltagande_yoy_pp",
           "bas2_age25_29_arbetskraftsdeltagande_yoy_pp"
         ],
-        "n_origins": 0,
-        "first_origin": null,
-        "last_origin": null,
+        "n_origins": 39,
+        "first_origin": "2023M03",
+        "last_origin": "2026M05",
         "seasonal": {
-          "rmse": null,
-          "mae": null,
-          "bias": null
+          "rmse": 100.98502046825736,
+          "mae": 80.17948717948718,
+          "bias": -28.435897435897434
         },
         "model": {
-          "rmse": null,
-          "mae": null,
-          "bias": null
+          "rmse": 101.19036502102189,
+          "mae": 78.52023012630855,
+          "bias": -22.762472058445855
         },
         "delta_pct": {
-          "rmse": null,
-          "mae": null
+          "rmse": 0.20334159641932636,
+          "mae": -2.069428368211279
         },
-        "pre_2025_rmse": null,
-        "post_2025_rmse": null
+        "pre_2025_rmse": 118.50621487536367,
+        "post_2025_rmse": 81.8134958568759
       },
       "broad_status": {
         "features": [
@@ -251,25 +251,25 @@
           "bas2_age20_24_antal_arbetslosa_yoy_pct",
           "bas2_age25_29_antal_arbetslosa_yoy_pct"
         ],
-        "n_origins": 0,
-        "first_origin": null,
-        "last_origin": null,
+        "n_origins": 33,
+        "first_origin": "2023M06",
+        "last_origin": "2026M02",
         "seasonal": {
-          "rmse": null,
-          "mae": null,
-          "bias": null
+          "rmse": 162.7056274752696,
+          "mae": 127.96969696969697,
+          "bias": -100.81818181818181
         },
         "model": {
-          "rmse": null,
-          "mae": null,
-          "bias": null
+          "rmse": 190.54580635134798,
+          "mae": 148.29853494122693,
+          "bias": -112.04300814956109
         },
         "delta_pct": {
-          "rmse": null,
-          "mae": null
+          "rmse": 17.11076580944315,
+          "mae": 15.88566547621333
         },
-        "pre_2025_rmse": null,
-        "post_2025_rmse": null
+        "pre_2025_rmse": 251.76936231357178,
+        "post_2025_rmse": 74.94792482396609
       },
       "labour_rates": {
         "features": [
@@ -278,25 +278,25 @@
           "bas2_age20_24_arbetskraftsdeltagande_yoy_pp",
           "bas2_age25_29_arbetskraftsdeltagande_yoy_pp"
         ],
-        "n_origins": 0,
-        "first_origin": null,
-        "last_origin": null,
+        "n_origins": 33,
+        "first_origin": "2023M06",
+        "last_origin": "2026M02",
         "seasonal": {
-          "rmse": null,
-          "mae": null,
-          "bias": null
+          "rmse": 162.7056274752696,
+          "mae": 127.96969696969697,
+          "bias": -100.81818181818181
         },
         "model": {
-          "rmse": null,
-          "mae": null,
-          "bias": null
+          "rmse": 160.7885959659286,
+          "mae": 123.99285255841428,
+          "bias": -87.58649500200792
         },
         "delta_pct": {
-          "rmse": null,
-          "mae": null
+          "rmse": -1.1782207776632525,
+          "mae": -3.107645407822135
         },
-        "pre_2025_rmse": null,
-        "post_2025_rmse": null
+        "pre_2025_rmse": 206.62095698029697,
+        "post_2025_rmse": 87.74479997441314
       },
       "broad_status": {
         "features": [
@@ -414,25 +414,25 @@
           "bas2_age20_24_antal_arbetslosa_yoy_pct",
           "bas2_age25_29_antal_arbetslosa_yoy_pct"
         ],
-        "n_origins": 0,
-        "first_origin": null,
-        "last_origin": null,
+        "n_origins": 27,
+        "first_origin": "2023M09",
+        "last_origin": "2025M11",
         "seasonal": {
-          "rmse": null,
-          "mae": null,
-          "bias": null
+          "rmse": 236.3823017753076,
+          "mae": 199.77777777777777,
+          "bias": -199.77777777777777
         },
         "model": {
-          "rmse": null,
-          "mae": null,
-          "bias": null
+          "rmse": 282.10999041236215,
+          "mae": 213.0444429010215,
+          "bias": -205.24343726610493
         },
         "delta_pct": {
-          "rmse": null,
-          "mae": null
+          "rmse": 19.34480216734704,
+          "mae": 6.640711129543586
         },
-        "pre_2025_rmse": null,
-        "post_2025_rmse": null
+        "pre_2025_rmse": 335.7752202048922,
+        "post_2025_rmse": 63.66487785257711
       },
       "labour_rates": {
         "features": [
@@ -441,25 +441,25 @@
           "bas2_age20_24_arbetskraftsdeltagande_yoy_pp",
           "bas2_age25_29_arbetskraftsdeltagande_yoy_pp"
         ],
-        "n_origins": 0,
-        "first_origin": null,
-        "last_origin": null,
+        "n_origins": 27,
+        "first_origin": "2023M09",
+        "last_origin": "2025M11",
         "seasonal": {
-          "rmse": null,
-          "mae": null,
-          "bias": null
+          "rmse": 236.3823017753076,
+          "mae": 199.77777777777777,
+          "bias": -199.77777777777777
         },
         "model": {
-          "rmse": null,
-          "mae": null,
-          "bias": null
+          "rmse": 224.21424712653962,
+          "mae": 180.63964727073486,
+          "bias": -175.23585248062693
         },
         "delta_pct": {
-          "rmse": null,
-          "mae": null
+          "rmse": -5.147616618241702,
+          "mae": -9.579709375049294
         },
-        "pre_2025_rmse": null,
-        "post_2025_rmse": null
+        "pre_2025_rmse": 241.0973142934104,
+        "post_2025_rmse": 123.13918378921174
       },
       "broad_status": {
         "features": [
@@ -577,25 +577,25 @@
           "bas2_age20_24_antal_arbetslosa_yoy_pct",
           "bas2_age25_29_antal_arbetslosa_yoy_pct"
         ],
-        "n_origins": 0,
-        "first_origin": null,
-        "last_origin": null,
+        "n_origins": 21,
+        "first_origin": "2023M12",
+        "last_origin": "2025M08",
         "seasonal": {
-          "rmse": null,
-          "mae": null,
-          "bias": null
+          "rmse": 303.337781233742,
+          "mae": 264.85714285714283,
+          "bias": -264.85714285714283
         },
         "model": {
-          "rmse": null,
-          "mae": null,
-          "bias": null
+          "rmse": 346.8456196178888,
+          "mae": 276.5748638106702,
+          "bias": -264.0444651323527
         },
         "delta_pct": {
-          "rmse": null,
-          "mae": null
+          "rmse": 14.343033105599567,
+          "mae": 4.424166487308057
         },
-        "pre_2025_rmse": null,
-        "post_2025_rmse": null
+        "pre_2025_rmse": 328.017643951036,
+        "post_2025_rmse": 84.62364747902322
       },
       "labour_rates": {
         "features": [
@@ -604,25 +604,25 @@
           "bas2_age20_24_arbetskraftsdeltagande_yoy_pp",
           "bas2_age25_29_arbetskraftsdeltagande_yoy_pp"
         ],
-        "n_origins": 0,
-        "first_origin": null,
-        "last_origin": null,
+        "n_origins": 21,
+        "first_origin": "2023M12",
+        "last_origin": "2025M08",
         "seasonal": {
-          "rmse": null,
-          "mae": null,
-          "bias": null
+          "rmse": 303.337781233742,
+          "mae": 264.85714285714283,
+          "bias": -264.85714285714283
         },
         "model": {
-          "rmse": null,
-          "mae": null,
-          "bias": null
+          "rmse": 280.9253515245057,
+          "mae": 221.7825382794361,
+          "bias": -210.01917461205863
         },
         "delta_pct": {
-          "rmse": null,
-          "mae": null
+          "rmse": -7.388604748831485,
+          "mae": -16.26333506170158
         },
-        "pre_2025_rmse": null,
-        "post_2025_rmse": null
+        "pre_2025_rmse": 286.63761608760615,
+        "post_2025_rmse": 136.68757301581883
       },
       "broad_status": {
         "features": [
