@@ -16,7 +16,17 @@ df=pd.read_csv(IN,dtype={"kommun_kod":str})
 df["kommun_kod"]=df["kommun_kod"].astype(str).str.zfill(4)
 if "residual" not in df.columns:
     df["residual"]=df["prediction"]-df["actual"]
-df["population"]=np.exp(pd.to_numeric(df["lag1_log_folkmangd"],errors="coerce"))
+
+# Population was not retained in the enriched bias-row export. Rejoin it from
+# the canonical panel on municipality + forecast year.
+panel=pd.read_csv(D/"panel.csv",dtype={"kommun_kod":str},low_memory=False)
+panel["kommun_kod"]=panel["kommun_kod"].astype(str).str.zfill(4)
+panel["lag1_log_folkmangd"]=pd.to_numeric(panel["lag1_log_folkmangd"],errors="coerce")
+pop=panel[["kommun_kod","year","lag1_log_folkmangd"]].copy()
+df=df.merge(pop,on=["kommun_kod","year"],how="left",validate="many_to_one")
+if df["lag1_log_folkmangd"].isna().any():
+    raise SystemExit(f"Missing lag1_log_folkmangd after panel join: {int(df['lag1_log_folkmangd'].isna().sum())}")
+df["population"]=np.exp(df["lag1_log_folkmangd"])
 
 df["population_decile"]=0
 for y,g in df.groupby("year"):
