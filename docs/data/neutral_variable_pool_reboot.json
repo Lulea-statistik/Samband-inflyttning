@@ -4022,7 +4022,7 @@
       "eligible_original_pool": true,
       "blind_model_eligible_subject_to_audit": false,
       "asof_verified": false,
-      "method_definition_verified": false,
+      "method_definition_verified": true,
       "historical_year_coverage": {
         "2002": 0,
         "2003": 290,
@@ -4105,7 +4105,17 @@
         ]
       },
       "new_employment_growth_not_new_information_if_constant_factor": false,
-      "notes": "Historical coverage != as-of eligibility. Previously chosen and new candidates evaluated equally."
+      "notes": "Historical coverage != as-of eligibility. Previously chosen and new candidates evaluated equally.",
+      "method_definition_audit": {
+        "source_script": "scripts/build_analysis.py",
+        "migration_table": "BE0101J/Flyttningar97",
+        "population_table": "BE0101A/BefolkningNy",
+        "formula": "utflyttning_per_1000 = 1000 * utflyttade / folkmangd",
+        "lag_formula": "lag1_utflyttning_per_1000 = municipality_group(utflyttning_per_1000).shift(1)",
+        "verified_scope": "construction_method_only",
+        "asof_verified": false,
+        "note": "This certifies how the feature is built, not that historical source values were available unchanged at each forecast origin."
+      }
     },
     {
       "feature": "lag1_valdeltagande_gap_pp",

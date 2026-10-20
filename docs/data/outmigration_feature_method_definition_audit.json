@@ -1,0 +1,15 @@
+{
+  "status": "lag1_utflyttning_per_1000_method_definition_certified",
+  "production_changed": false,
+  "feature": "lag1_utflyttning_per_1000",
+  "method_definition_verified": true,
+  "asof_verified": false,
+  "evidence": {
+    "source_script": "scripts/build_analysis.py",
+    "migration_source": "SCB BE0101J/Flyttningar97, content Utflyttningar",
+    "population_source": "SCB BE0101A/BefolkningNy, content Folkmängd",
+    "rate_formula": "1000 * utflyttade / folkmangd",
+    "lagging": "one-year shift within kommun_kod after sorting by kommun_kod and year"
+  },
+  "remaining_blocker": "Exact historical value-vintage/revision evidence for Flyttningar97 and BefolkningNy."
+}
