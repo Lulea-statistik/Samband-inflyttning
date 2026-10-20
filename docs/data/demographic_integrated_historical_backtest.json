@@ -5,9 +5,9 @@
   "birth_core": {
     "window_years": 3,
     "features": [
-      "lag1_fodelsetal_per_100",
-      "lag1_andel_20_34"
-    ]
+      "lag1_fodelsetal_per_100"
+    ],
+    "lulea_bias_rule": "rolling mean of previous 3 raw Lulea birth-rate forecast errors"
   },
   "death_core": {
     "window_years": 3,
@@ -19,88 +19,88 @@
   "residual_rule": "rolling mean of previous 3 observed residuals",
   "all_municipalities": {
     "n_rows": 2320,
-    "rmse_persons": 101.68482221371,
-    "mae_persons": 39.37667945604617,
-    "bias_actual_minus_prediction": -4.445234385200279
+    "rmse_persons": 126.81318126694215,
+    "mae_persons": 40.76834107644743,
+    "bias_actual_minus_prediction": 9.727608861863164
   },
   "lulea": {
     "n_rows": 8,
-    "rmse_persons": 134.22462065491538,
-    "mae_persons": 121.5124845084338,
-    "bias_actual_minus_prediction": -105.81403366735886
+    "rmse_persons": 81.95253958427007,
+    "mae_persons": 69.08190154054665,
+    "bias_actual_minus_prediction": -13.410750840709294
   },
   "lulea_years": [
     {
       "year": 2017,
-      "births_pred": 878.1963838687582,
+      "births_pred": 819.1774976241214,
       "deaths_pred": 690.5272530825184,
       "residual_pred": 0.6666666666666666,
-      "pred_change": 848.3357974529068,
+      "pred_change": 789.3169112082693,
       "actual_change": 700.0,
-      "error_actual_minus_prediction": -148.33579745290683
+      "error_actual_minus_prediction": -89.31691120826929
     },
     {
       "year": 2018,
-      "births_pred": 857.9630341480134,
-      "deaths_pred": 749.8607723216892,
+      "births_pred": 777.6852617551494,
+      "deaths_pred": 749.8607723216891,
       "residual_pred": 1.3333333333333333,
-      "pred_change": 393.43559515965745,
+      "pred_change": 313.1578227667936,
       "actual_change": 362.0,
-      "error_actual_minus_prediction": -31.435595159657453
+      "error_actual_minus_prediction": 48.84217723320643
     },
     {
       "year": 2019,
-      "births_pred": 850.6965581328799,
+      "births_pred": 776.7505472367911,
       "deaths_pred": 708.6127395063123,
       "residual_pred": 6.333333333333333,
-      "pred_change": 329.41715195990065,
+      "pred_change": 255.47114106381227,
       "actual_change": 273.0,
-      "error_actual_minus_prediction": -56.41715195990065
+      "error_actual_minus_prediction": 17.52885893618773
     },
     {
       "year": 2020,
-      "births_pred": 848.6708878706578,
+      "births_pred": 736.2356526120492,
       "deaths_pred": 700.4257785039298,
       "residual_pred": 13.0,
-      "pred_change": 598.2451093667278,
+      "pred_change": 485.8098741081194,
       "actual_change": 444.0,
-      "error_actual_minus_prediction": -154.24510936672777
+      "error_actual_minus_prediction": -41.8098741081194
     },
     {
       "year": 2021,
-      "births_pred": 836.9537356587521,
-      "deaths_pred": 797.4142056897184,
+      "births_pred": 743.4339723930966,
+      "deaths_pred": 797.4142056897183,
       "residual_pred": 17.666666666666668,
-      "pred_change": 255.2061966357002,
+      "pred_change": 161.68643337004474,
       "actual_change": 318.0,
-      "error_actual_minus_prediction": 62.793803364299805
+      "error_actual_minus_prediction": 156.31356662995526
     },
     {
       "year": 2022,
-      "births_pred": 848.1726222028108,
+      "births_pred": 776.1428179837726,
       "deaths_pred": 745.29145404532,
       "residual_pred": 36.0,
-      "pred_change": 562.8811681574907,
+      "pred_change": 490.8513639384528,
       "actual_change": 377.0,
-      "error_actual_minus_prediction": -185.88116815749072
+      "error_actual_minus_prediction": -113.85136393845278
     },
     {
       "year": 2023,
-      "births_pred": 760.6108848293977,
+      "births_pred": 634.956731763127,
       "deaths_pred": 778.4444579046515,
       "residual_pred": 47.666666666666664,
-      "pred_change": 263.83309359141293,
+      "pred_change": 138.17894052514217,
       "actual_change": 108.0,
-      "error_actual_minus_prediction": -155.83309359141293
+      "error_actual_minus_prediction": -30.178940525142167
     },
     {
       "year": 2024,
-      "births_pred": 736.42956909799,
+      "births_pred": 614.0849318279558,
       "deaths_pred": 765.2714120829156,
       "residual_pred": 44.0,
-      "pred_change": 470.15815701507427,
+      "pred_change": 347.81351974504014,
       "actual_change": 293.0,
-      "error_actual_minus_prediction": -177.15815701507427
+      "error_actual_minus_prediction": -54.81351974504014
     }
   ]
 }
