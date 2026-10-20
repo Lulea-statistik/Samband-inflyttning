@@ -1,0 +1,63 @@
+{
+  "status": "outmigration_monthly_12m_backward_window_comparison",
+  "generated_at_utc": "2026-10-20T11:45:59.200804+00:00",
+  "production_changed": false,
+  "annual_outmigration_blend_changed": false,
+  "target": "all_outmigrations",
+  "horizon_months": 12,
+  "lag_months": 1,
+  "alpha": 30.0,
+  "n_origins": 20,
+  "first_origin": "2024M01",
+  "last_origin": "2025M08",
+  "windows_months": {
+    "w12": 12,
+    "w9": 9,
+    "w6": 6,
+    "w3": 3
+  },
+  "common_origin_rule": "All 12/9/6/3-month feature windows, target and seasonal baseline must be available.",
+  "stats": {
+    "seasonal": {
+      "rmse": 86.72658185354707,
+      "mae": 78.1,
+      "bias": 41.3
+    },
+    "w12": {
+      "rmse": 83.02983531753306,
+      "mae": 71.12767188253679,
+      "bias": 13.757851701165873,
+      "delta_rmse_pct_vs_seasonal": -4.262529961409777,
+      "delta_mae_pct_vs_seasonal": -8.927436770119346
+    },
+    "w9": {
+      "rmse": 91.10940491058243,
+      "mae": 68.88242918023472,
+      "bias": -16.629609902955757,
+      "delta_rmse_pct_vs_seasonal": 5.0536098199240875,
+      "delta_mae_pct_vs_seasonal": -11.802267374859499
+    },
+    "w6": {
+      "rmse": 88.87415977860235,
+      "mae": 69.30131302898148,
+      "bias": -18.689482331975434,
+      "delta_rmse_pct_vs_seasonal": 2.4762626165548918,
+      "delta_mae_pct_vs_seasonal": -11.265924418717688
+    },
+    "w3": {
+      "rmse": 91.09381883743218,
+      "mae": 68.03944061508253,
+      "bias": -22.80128278273644,
+      "delta_rmse_pct_vs_seasonal": 5.03563831359104,
+      "delta_mae_pct_vs_seasonal": -12.881638136898166
+    }
+  },
+  "ranked_by_rmse": [
+    "w12",
+    "w6",
+    "w3",
+    "w9"
+  ],
+  "best_window": "w12",
+  "decision_note": "Window comparison only; no annual/monthly integration is performed here."
+}
