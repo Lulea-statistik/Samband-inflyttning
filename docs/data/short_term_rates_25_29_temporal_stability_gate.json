@@ -1,0 +1,22 @@
+{
+  "status": "rates_25_29_temporal_stability_gate_passed",
+  "date": "2026-10-20",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "backward_window_months": 12,
+  "feature_family": "rates_25_29",
+  "temporal_stability": "passed",
+  "preferred_alpha_candidates": [
+    3,
+    10
+  ],
+  "diagnostic_alpha": [
+    30
+  ],
+  "lag_candidates": [
+    1,
+    2
+  ],
+  "warning": "alpha 30 lag 2 is fragile at the 12-month horizon; 2024 is slightly worse than seasonal naive and leave-one-origin-out can erase the aggregate RMSE gain.",
+  "next_step": "select alpha and lag without feature reselection"
+}
