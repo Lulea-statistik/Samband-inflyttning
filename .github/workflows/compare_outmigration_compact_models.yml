@@ -1,0 +1,32 @@
+name: Compare compact neutral outmigration models
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/compare_outmigration_compact_models.py
+      - .github/workflows/compare_outmigration_compact_models.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy pandas scikit-learn
+      - run: python scripts/compare_outmigration_compact_models.py
+      - name: Commit result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/outmigration_compact_model_size_study.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Compare compact neutral outmigration models"
+          git pull --rebase origin main
+          git push origin HEAD:main
