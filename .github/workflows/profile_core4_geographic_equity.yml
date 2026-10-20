@@ -1,0 +1,32 @@
+name: Profile core4 geographic equity
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/profile_core4_geographic_equity.py
+      - .github/workflows/profile_core4_geographic_equity.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  profile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/profile_core4_geographic_equity.py
+      - name: Commit geographic equity profile
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/core4_geographic_equity_profile.json
+          git add docs/data/core4_geographic_equity_by_municipality.csv
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Profile core4 geographic equity"
+          git pull --rebase origin main
+          git push origin HEAD:main
