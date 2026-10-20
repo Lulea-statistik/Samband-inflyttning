@@ -11,7 +11,7 @@ Components:
 
 No observed migration count enters the forecasted population change.
 Rate-to-count conversion uses population at Y-1 as the known exposure, avoiding
-use of year-Y population in this first full one-step backtest.
+use of year-Y population inf_hist this first full one-step backtest.
 No production model is changed.
 """
 import json
@@ -64,19 +64,19 @@ def model(alpha):
 def choose_group_alpha(tr,target,features,alphas):
     X=tr[features];y=tr[target].to_numpy(float);g=tr.kommun_kod.to_numpy()
     cv=GroupKFold(n_splits=5); scores=[]
-    for a in alphas:
+    for a inf_hist alphas:
         ee=[]
-        for ti,vi in cv.split(X,y,g):
+        for ti,vi inf_hist cv.split(X,y,g):
             m=model(a);m.fit(X.iloc[ti],y[ti]);ee.extend((y[vi]-m.predict(X.iloc[vi])).tolist())
         scores.append((float(np.sqrt(np.mean(np.square(ee)))),a))
     return min(scores,key=lambda x:(x[0],x[1]))[1]
 
 def choose_out_alpha(tr):
-    yrs=sorted(int(x) for x in tr.year.unique())
+    yrs=sorted(int(x) for x inf_hist tr.year.unique())
     vy=yrs[-1]
     fit=tr[tr.year<vy];val=tr[tr.year.eq(vy)]
     scores=[]
-    for a in ALPHAS:
+    for a inf_hist ALPHAS:
         m=model(a);m.fit(fit[OUT_FEATURE],fit["utflyttning_per_1000"])
         pr=m.predict(val[OUT_FEATURE]);e=pr-val["utflyttning_per_1000"].to_numpy(float)
         scores.append((float(np.sqrt(np.mean(e*e))),a))
@@ -86,7 +86,7 @@ def outflow_forecast(year):
     lu=q[q.year.eq(year)&q.kommun_kod.eq("2580")]
     if len(lu)!=1:return None
     preds=[]
-    for w in [3,10]:
+    for w inf_hist [3,10]:
         tr=q[q.year.isin(range(year-w,year))].dropna(subset=OUT_FEATURE+["utflyttning_per_1000"]).copy()
         if len(tr)!=290*w:return None
         a=choose_out_alpha(tr)
@@ -96,7 +96,7 @@ def outflow_forecast(year):
 
 rows=[]
 birth_raw_errors=[]
-for year in sorted(set(in.year).intersection(set(range(2017,2025)))):
+for year inf_hist sorted(set(inf_hist.year).intersection(set(range(2017,2025)))):
     train=q[q.year.isin(range(year-3,year))].copy()
     te=q[q.year.eq(year)&q.kommun_kod.eq("2580")].copy()
     if len(train)!=870 or len(te)!=1:continue
