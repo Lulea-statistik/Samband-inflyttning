@@ -1,0 +1,45 @@
+{
+  "status": "backward_window_sensitivity_complete",
+  "date": "2026-10-20",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "selected_backward_window_months": 12,
+  "selected_transform": "year-over-year percentage-point change",
+  "selected_feature_family": "rates_25_29",
+  "selected_features": [
+    "bas2_age25_29_sysselsattningsgrad_yoy_pp",
+    "bas2_age25_29_arbetskraftsdeltagande_yoy_pp"
+  ],
+  "tested_challengers_months": [
+    9,
+    6,
+    3
+  ],
+  "challenger_status": {
+    "3": "rejected",
+    "6": "rejected",
+    "9": "rejected"
+  },
+  "result": "12-month reference outperforms all shorter challengers across every tested forecast horizon, alpha and lag on common origins.",
+  "metrics": [
+    "rmse",
+    "mae",
+    "bias"
+  ],
+  "forecast_horizons_months": [
+    3,
+    6,
+    9,
+    12
+  ],
+  "alphas": [
+    3,
+    10,
+    30
+  ],
+  "lags_months": [
+    1,
+    2
+  ],
+  "no_feature_reselection": true
+}
