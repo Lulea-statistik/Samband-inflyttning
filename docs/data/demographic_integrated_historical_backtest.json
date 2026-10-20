@@ -1,0 +1,106 @@
+{
+  "status": "demographic_integrated_historical_backtest",
+  "production_changed": false,
+  "migration_mode": "observed counts; frozen migration forecasts not yet substituted",
+  "birth_core": {
+    "window_years": 3,
+    "features": [
+      "lag1_fodelsetal_per_100",
+      "lag1_andel_20_34"
+    ]
+  },
+  "death_core": {
+    "window_years": 3,
+    "features": [
+      "lag1_dodstal_per_1000",
+      "lag1_bas_pensionarer_andel_pct"
+    ]
+  },
+  "residual_rule": "rolling mean of previous 3 observed residuals",
+  "all_municipalities": {
+    "n_rows": 2320,
+    "rmse_persons": 101.68482221371005,
+    "mae_persons": 39.37667945604619,
+    "bias_actual_minus_prediction": -4.445234385200295
+  },
+  "lulea": {
+    "n_rows": 8,
+    "rmse_persons": 134.22462065491536,
+    "mae_persons": 121.5124845084338,
+    "bias_actual_minus_prediction": -105.81403366735886
+  },
+  "lulea_years": [
+    {
+      "year": 2017,
+      "births_pred": 878.196383868758,
+      "deaths_pred": 690.5272530825184,
+      "residual_pred": 0.6666666666666666,
+      "pred_change": 848.3357974529059,
+      "actual_change": 700.0,
+      "error_actual_minus_prediction": -148.33579745290592
+    },
+    {
+      "year": 2018,
+      "births_pred": 857.9630341480134,
+      "deaths_pred": 749.8607723216891,
+      "residual_pred": 1.3333333333333333,
+      "pred_change": 393.43559515965745,
+      "actual_change": 362.0,
+      "error_actual_minus_prediction": -31.435595159657453
+    },
+    {
+      "year": 2019,
+      "births_pred": 850.69655813288,
+      "deaths_pred": 708.6127395063123,
+      "residual_pred": 6.333333333333333,
+      "pred_change": 329.4171519599011,
+      "actual_change": 273.0,
+      "error_actual_minus_prediction": -56.417151959901105
+    },
+    {
+      "year": 2020,
+      "births_pred": 848.6708878706578,
+      "deaths_pred": 700.4257785039298,
+      "residual_pred": 13.0,
+      "pred_change": 598.2451093667278,
+      "actual_change": 444.0,
+      "error_actual_minus_prediction": -154.24510936672777
+    },
+    {
+      "year": 2021,
+      "births_pred": 836.9537356587521,
+      "deaths_pred": 797.4142056897183,
+      "residual_pred": 17.666666666666668,
+      "pred_change": 255.2061966357002,
+      "actual_change": 318.0,
+      "error_actual_minus_prediction": 62.793803364299805
+    },
+    {
+      "year": 2022,
+      "births_pred": 848.1726222028105,
+      "deaths_pred": 745.29145404532,
+      "residual_pred": 36.0,
+      "pred_change": 562.8811681574907,
+      "actual_change": 377.0,
+      "error_actual_minus_prediction": -185.88116815749072
+    },
+    {
+      "year": 2023,
+      "births_pred": 760.6108848293978,
+      "deaths_pred": 778.4444579046514,
+      "residual_pred": 47.666666666666664,
+      "pred_change": 263.8330935914134,
+      "actual_change": 108.0,
+      "error_actual_minus_prediction": -155.8330935914134
+    },
+    {
+      "year": 2024,
+      "births_pred": 736.4295690979899,
+      "deaths_pred": 765.2714120829157,
+      "residual_pred": 44.0,
+      "pred_change": 470.15815701507427,
+      "actual_change": 293.0,
+      "error_actual_minus_prediction": -177.15815701507427
+    }
+  ]
+}
