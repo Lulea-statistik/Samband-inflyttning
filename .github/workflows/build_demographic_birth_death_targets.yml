@@ -5,6 +5,7 @@ on:
     paths:
       - scripts/build_demographic_birth_death_targets.py
       - scripts/run_demographic_birth_death_neutral_from_zero.py
+      - scripts/build_demographic_scb_candidate_features.py
       - .github/workflows/build_demographic_birth_death_targets.yml
   workflow_dispatch:
 permissions:
@@ -23,6 +24,8 @@ jobs:
       - run: pip install pandas requests numpy scikit-learn
       - name: Build SCB birth and death targets
         run: python scripts/build_demographic_birth_death_targets.py
+      - name: Build SCB demographic candidate features
+        run: python scripts/build_demographic_scb_candidate_features.py
       - name: Run neutral birth and death selection
         run: python scripts/run_demographic_birth_death_neutral_from_zero.py
       - name: Commit targets and neutral model results
@@ -33,6 +36,8 @@ jobs:
           git add docs/data/demographic_birth_death_targets_manifest.json
           git add docs/data/demographic_birth_query.json
           git add docs/data/demographic_death_query.json
+          git add docs/data/demographic_scb_candidate_features.csv
+          git add docs/data/demographic_scb_candidate_features_manifest.json
           git add docs/data/demographic_birth_death_neutral_from_zero_nested_cv.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Build SCB birth-death targets and neutral models"
