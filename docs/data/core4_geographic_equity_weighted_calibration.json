@@ -1,0 +1,115 @@
+{
+  "status": "core4_geographic_equity_weighted_calibration",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "variable_selection_reopened": false,
+  "evaluation_years": [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "n_municipalities": 290,
+  "base_predictions": "frozen 6-year rolling-origin core4",
+  "method": {
+    "calibration": "weighted linear regression actual ~ frozen core4 prediction",
+    "difficulty": "municipality mean absolute forecast error over prior forecast years only",
+    "weight_formula": "1 + lambda * (relative_difficulty - 1)",
+    "lambda_grid": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0,
+      1.5,
+      2.0
+    ],
+    "weight_cap": 3.0,
+    "selection": "within 1% of best historical pooled RMSE, minimize historical p90 municipality RMSE",
+    "out_of_time_rule": "forecast-year outcome never used in weights or calibration fit"
+  },
+  "selection_history": [
+    {
+      "year": 2020,
+      "selected_lambda": 0.0,
+      "historical_best_pooled_rmse": 7.137525149273344,
+      "historical_selected_pooled_rmse": 7.137525149273344,
+      "historical_selected_p90_municipality_rmse": 10.900493530481599,
+      "calibration_intercept": -0.46655420737960185,
+      "calibration_slope": 0.9324308943732131
+    },
+    {
+      "year": 2021,
+      "selected_lambda": 0.0,
+      "historical_best_pooled_rmse": 6.9024904625197365,
+      "historical_selected_pooled_rmse": 6.9024904625197365,
+      "historical_selected_p90_municipality_rmse": 10.258569313711604,
+      "calibration_intercept": -0.3368839284659373,
+      "calibration_slope": 0.9433696123772722
+    },
+    {
+      "year": 2022,
+      "selected_lambda": 0.0,
+      "historical_best_pooled_rmse": 6.961105576637864,
+      "historical_selected_pooled_rmse": 6.961105576637864,
+      "historical_selected_p90_municipality_rmse": 9.906284609766303,
+      "calibration_intercept": 0.42794651491607993,
+      "calibration_slope": 0.9469684613828704
+    },
+    {
+      "year": 2023,
+      "selected_lambda": 0.0,
+      "historical_best_pooled_rmse": 6.691536039174517,
+      "historical_selected_pooled_rmse": 6.691536039174517,
+      "historical_selected_p90_municipality_rmse": 9.782636230279314,
+      "calibration_intercept": 0.8259413603589394,
+      "calibration_slope": 0.944470167177225
+    },
+    {
+      "year": 2024,
+      "selected_lambda": 0.0,
+      "historical_best_pooled_rmse": 6.502347675950385,
+      "historical_selected_pooled_rmse": 6.502347675950385,
+      "historical_selected_p90_municipality_rmse": 9.347628572938788,
+      "calibration_intercept": 0.07726677398830617,
+      "calibration_slope": 0.9521175958030772
+    }
+  ],
+  "summary": {
+    "core4": {
+      "n": 1450,
+      "pooled_rmse": 5.593521161667208,
+      "pooled_mae": 4.271336610151102,
+      "mean_municipality_rmse": 5.054122885641516,
+      "median_municipality_rmse": 4.532366106132704,
+      "sd_municipality_rmse": 2.4006653088997583,
+      "p90_municipality_rmse": 8.581200058450033,
+      "p95_municipality_rmse": 9.65932724408494,
+      "worst_decile_mean_rmse": 10.019097576059135,
+      "max_municipality_rmse": 13.733092538646902,
+      "share_municipalities_rmse_gt_10": 0.034482758620689655
+    },
+    "challenger": {
+      "n": 1450,
+      "pooled_rmse": 6.257359373697499,
+      "pooled_mae": 4.787458716344468,
+      "mean_municipality_rmse": 5.660440462816631,
+      "median_municipality_rmse": 5.018687290395336,
+      "sd_municipality_rmse": 2.6718113476433496,
+      "p90_municipality_rmse": 9.538256077132301,
+      "p95_municipality_rmse": 10.926174908638458,
+      "worst_decile_mean_rmse": 11.313873196476008,
+      "max_municipality_rmse": 15.092343912184749,
+      "share_municipalities_rmse_gt_10": 0.08275862068965517
+    }
+  },
+  "delta_vs_core4_pct": {
+    "pooled_rmse": 11.867984277589239,
+    "p90_municipality_rmse": 11.15293912463724,
+    "worst_decile_mean_rmse": 12.923076260987498,
+    "sd_municipality_rmse": 11.294620609478434
+  },
+  "promising": false,
+  "decision_rule": "Promising only if p90 and worst-decile municipality RMSE improve while pooled RMSE deteriorates by no more than 1%."
+}
