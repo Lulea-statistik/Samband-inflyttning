@@ -20,6 +20,8 @@ import requests
 OUT=Path("docs/data"); OUT.mkdir(parents=True,exist_ok=True)
 BIRTH_ZIP="https://www.statistikdatabasen.scb.se/Resources/PX/bulk/ssd/sv/TAB4644_sv.zip"
 DEATH_ZIP="https://www.statistikdatabasen.scb.se/Resources/PX/bulk/ssd/sv/TAB4667_sv.zip"
+BIRTH_META="https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101H/FodelstalHVD"
+DEATH_META="https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101I/DodstalHVD"
 YEARS=set(range(2013,2026))
 S=requests.Session();S.headers.update({"User-Agent":"Lulea-statistik-Samband-inflyttning-demographic-targets/1.1"})
 
@@ -48,15 +50,58 @@ def pick_col(df,needles):
         if all(x in n for x in needles):return c
     raise KeyError(f"Column with {needles} not found. Columns={list(df.columns)}")
 
-def region_code(series):
-    # Bulk region labels may be e.g. "2580 Luleå" or just "2580".
-    return series.astype(str).str.extract(r"(?<!\d)(\d{4})(?!\d)",expand=False)
+def region_lookup(meta_url):
+    """Build normalized SCB region label -> official four-digit municipality code."""
+    r=S.get(meta_url,timeout=90); r.raise_for_status(); meta=r.json()
+    candidates=[]
+    for v in meta.get("variables",[]):
+        vals=v.get("values",[])
+        texts=v.get("valueTexts",vals)
+        pairs=list(zip(vals,texts))
+        mapped=[]
+        for code,label in pairs:
+            m=re.search(r"(?<!\d)(\d{4})(?!\d)",str(code))
+            if not m:
+                m=re.search(r"(?<!\d)(\d{4})(?!\d)",str(label))
+            if m:
+                mapped.append((norm(label),m.group(1)))
+        if len(mapped)>=250:
+            candidates.append((len(mapped),mapped,v.get("code"),v.get("text")))
+    if not candidates:
+        # Some SCB region codes can carry prefixes. Use the highest-cardinality
+        # non-time dimension and extract the final four digits from its codes.
+        for v in meta.get("variables",[]):
+            if v.get("time"): continue
+            vals=v.get("values",[])
+            texts=v.get("valueTexts",vals)
+            mapped=[]
+            for code,label in zip(vals,texts):
+                digs=re.findall(r"\d{4}",str(code))
+                if digs:
+                    mapped.append((norm(label),digs[-1]))
+            if len(mapped)>=250:
+                candidates.append((len(mapped),mapped,v.get("code"),v.get("text")))
+    if not candidates:
+        raise RuntimeError("Could not construct municipality lookup from SCB metadata")
+    _,mapped,code,text=max(candidates,key=lambda x:x[0])
+    out={}
+    for label,kod in mapped:
+        if kod and len(kod)==4:
+            out[label]=kod
+    return out,{"dimension_code":code,"dimension_text":text,"mapped_labels":len(out)}
+
+def region_code(series, lookup):
+    raw=series.astype(str)
+    embedded=raw.str.extract(r"(?<!\d)(\d{4})(?!\d)",expand=False)
+    by_name=raw.map(lambda x: lookup.get(norm(x)))
+    return embedded.fillna(by_name)
 
 def numeric(series):
     return pd.to_numeric(series.astype(str).str.replace(",",".",regex=False),errors="coerce")
 
 def build_birth():
     df,name,enc=load_bulk(BIRTH_ZIP)
+    lookup,lookup_meta=region_lookup(BIRTH_META)
     region=pick_col(df,["region"])
     year=pick_col(df,["ar"])
     value_candidates=[c for c in df.columns if c not in (region,year)]
@@ -66,7 +111,7 @@ def build_birth():
         if value is None: raise RuntimeError(f"Birth value column ambiguous: {value_candidates}")
     else:value=value_candidates[0]
     out=pd.DataFrame({
-      "kommun_kod":region_code(df[region]),
+      "kommun_kod":region_code(df[region],lookup),
       "year":pd.to_numeric(df[year],errors="coerce"),
       "fodelsetal_per_1000_scb":numeric(df[value])
     })
@@ -74,7 +119,7 @@ def build_birth():
     out["year"]=out["year"].astype(int)
     out["fodelsetal_per_100"]=out["fodelsetal_per_1000_scb"]/10.0
     out=out.groupby(["kommun_kod","year"],as_index=False)[["fodelsetal_per_1000_scb","fodelsetal_per_100"]].mean()
-    return out,{"zip":BIRTH_ZIP,"member":name,"encoding":enc,"columns":list(df.columns)}
+    return out,{"zip":BIRTH_ZIP,"member":name,"encoding":enc,"columns":list(df.columns),"region_lookup":lookup_meta}
 
 def find_total_value(series,terms):
     vals=series.dropna().astype(str).unique().tolist()
@@ -85,6 +130,7 @@ def find_total_value(series,terms):
 
 def build_death():
     df,name,enc=load_bulk(DEATH_ZIP)
+    lookup,lookup_meta=region_lookup(DEATH_META)
     region=pick_col(df,["region"])
     year=pick_col(df,["ar"])
     sex=pick_col(df,["kon"])
@@ -98,17 +144,23 @@ def build_death():
         raise RuntimeError(f"Could not identify total sex/age. sex={df[sex].drop_duplicates().tolist()[:10]} age={df[age].drop_duplicates().tolist()[:10]}")
     q=df[(df[sex].astype(str)==str(sex_total)) & (df[age].astype(str)==str(age_total))].copy()
     out=pd.DataFrame({
-      "kommun_kod":region_code(q[region]),
+      "kommun_kod":region_code(q[region],lookup),
       "year":pd.to_numeric(q[year],errors="coerce"),
       "dodstal_per_1000":numeric(q[value])
     })
     out=out[out.kommun_kod.notna() & out.year.isin(YEARS)].copy()
     out["year"]=out["year"].astype(int)
     out=out.groupby(["kommun_kod","year"],as_index=False)["dodstal_per_1000"].mean()
-    return out,{"zip":DEATH_ZIP,"member":name,"encoding":enc,"columns":list(df.columns),"sex_total":str(sex_total),"age_total":str(age_total)}
+    return out,{"zip":DEATH_ZIP,"member":name,"encoding":enc,"columns":list(df.columns),"sex_total":str(sex_total),"age_total":str(age_total),"region_lookup":lookup_meta}
 
 b,bmeta=build_birth()
 d,dmeta=build_death()
+if b.empty:
+    raise RuntimeError(f"Birth target extraction returned 0 rows; source={bmeta}")
+if d.empty:
+    raise RuntimeError(f"Death target extraction returned 0 rows; source={dmeta}")
+print(f"Birth extraction: rows={len(b)}, municipalities={b.kommun_kod.nunique()}, years={sorted(b.year.unique())}")
+print(f"Death extraction: rows={len(d)}, municipalities={d.kommun_kod.nunique()}, years={sorted(d.year.unique())}")
 panel=b.merge(d,on=["kommun_kod","year"],how="inner",validate="one_to_one").sort_values(["kommun_kod","year"])
 
 counts=panel.groupby("year").kommun_kod.nunique().to_dict()
