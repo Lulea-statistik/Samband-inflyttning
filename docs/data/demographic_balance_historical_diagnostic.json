@@ -1,0 +1,152 @@
+{
+  "status": "demographic_balance_historical_diagnostic",
+  "production_changed": false,
+  "birth_core": {
+    "window_years": 3,
+    "features": [
+      "lag1_fodelsetal_per_100",
+      "lag1_andel_20_34"
+    ]
+  },
+  "death_core": {
+    "window_years": 3,
+    "features": [
+      "lag1_dodstal_per_1000",
+      "lag1_bas_pensionarer_andel_pct"
+    ]
+  },
+  "migration_observed_method": "direct_counts:inflyttade,utflyttade",
+  "rate_to_count_method": {
+    "births": "fodelsetal_per_100 * mean_population / 100",
+    "deaths": "dodstal_per_1000 * mean_population / 1000"
+  },
+  "all_municipalities": {
+    "n_rows": 3190,
+    "mae_persons": 11.115987460815049,
+    "rmse_persons": 41.580778354026116,
+    "bias_persons": 9.75360501567398,
+    "median_abs_persons": 3.9999999999999964,
+    "p95_abs_persons": 38.0
+  },
+  "lulea": {
+    "n_rows": 11,
+    "mae_persons": 19.09090909090906,
+    "rmse_persons": 27.928480087537867,
+    "bias_persons": 17.81818181818181,
+    "median_abs_persons": 12.999999999999773,
+    "p95_abs_persons": 59.5
+  },
+  "lulea_years": [
+    {
+      "year": 2014,
+      "delta_population": 583.0,
+      "births": 823.0,
+      "deaths": 713.0,
+      "inflow": 3855.0,
+      "outflow": 3390.0,
+      "component_change": 575.0,
+      "accounting_residual": 8.0
+    },
+    {
+      "year": 2015,
+      "delta_population": 122.0,
+      "births": 737.0000000000001,
+      "deaths": 661.0,
+      "inflow": 3713.0,
+      "outflow": 3665.0,
+      "component_change": 124.00000000000011,
+      "accounting_residual": -2.0000000000001137
+    },
+    {
+      "year": 2016,
+      "delta_population": 682.0,
+      "births": 806.0,
+      "deaths": 664.0,
+      "inflow": 4041.0,
+      "outflow": 3497.0,
+      "component_change": 686.0,
+      "accounting_residual": -4.0
+    },
+    {
+      "year": 2017,
+      "delta_population": 700.0,
+      "births": 756.9999999999999,
+      "deaths": 727.0,
+      "inflow": 4187.0,
+      "outflow": 3527.0,
+      "component_change": 689.9999999999999,
+      "accounting_residual": 10.000000000000114
+    },
+    {
+      "year": 2018,
+      "delta_population": 362.0,
+      "births": 755.0,
+      "deaths": 690.0,
+      "inflow": 4078.0,
+      "outflow": 3794.0,
+      "component_change": 349.0,
+      "accounting_residual": 13.0
+    },
+    {
+      "year": 2019,
+      "delta_population": 273.0,
+      "births": 761.9999999999999,
+      "deaths": 685.9999999999999,
+      "inflow": 3842.0,
+      "outflow": 3661.0,
+      "component_change": 257.0,
+      "accounting_residual": 16.0
+    },
+    {
+      "year": 2020,
+      "delta_population": 444.0,
+      "births": 757.0,
+      "deaths": 773.9999999999999,
+      "inflow": 4016.0,
+      "outflow": 3579.0,
+      "component_change": 420.0000000000001,
+      "accounting_residual": 23.999999999999886
+    },
+    {
+      "year": 2021,
+      "delta_population": 318.0,
+      "births": 785.0,
+      "deaths": 733.0,
+      "inflow": 4044.0,
+      "outflow": 3846.0,
+      "component_change": 250.0,
+      "accounting_residual": 68.0
+    },
+    {
+      "year": 2022,
+      "delta_population": 377.0,
+      "births": 660.0,
+      "deaths": 758.0,
+      "inflow": 4020.0,
+      "outflow": 3596.0,
+      "component_change": 326.0,
+      "accounting_residual": 51.0
+    },
+    {
+      "year": 2023,
+      "delta_population": 108.0,
+      "births": 655.0000000000001,
+      "deaths": 793.9999999999999,
+      "inflow": 3788.0,
+      "outflow": 3554.0,
+      "component_change": 95.00000000000023,
+      "accounting_residual": 12.999999999999773
+    },
+    {
+      "year": 2024,
+      "delta_population": 293.0,
+      "births": 613.0,
+      "deaths": 774.0000000000002,
+      "inflow": 4121.0,
+      "outflow": 3666.0,
+      "component_change": 293.9999999999998,
+      "accounting_residual": -0.9999999999997726
+    }
+  ],
+  "interpretation_note": "Residual captures SCB revisions, late registrations, boundary/correction effects and any denominator/count mismatch. It must be quantified before forecast integration."
+}
