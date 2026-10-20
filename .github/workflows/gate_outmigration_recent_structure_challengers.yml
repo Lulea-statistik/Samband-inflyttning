@@ -1,0 +1,33 @@
+name: Gate recent outmigration structure challengers
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/gate_outmigration_recent_structure_challengers.py
+      - .github/workflows/gate_outmigration_recent_structure_challengers.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy pandas scikit-learn
+      - run: python scripts/gate_outmigration_recent_structure_challengers.py
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/outmigration_recent_structure_challenger_gate.json
+          git add docs/data/outmigration_recent_structure_challenger_predictions.csv
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Gate recent outmigration structure challengers"
+          git pull --rebase origin main
+          git push origin HEAD:main
