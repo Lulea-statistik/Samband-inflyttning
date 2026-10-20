@@ -143,13 +143,13 @@ for m in ordered:
         v=rowsout[m].get(col)
         if v is None: continue
         is_rate=any(col.endswith(marker) for marker in rate_markers)
-        for lag,suf in [(3,"change_3m_pct"),(6,"change_6m_pct"),(12,"yoy_pct")]:
+        for lag,suf in [(3,"change_3m_pct"),(6,"change_6m_pct"),(9,"change_9m_pct"),(12,"yoy_pct")]:
             pm=byk.get(k-lag)
             pv=rowsout[pm].get(col) if pm else None
             if pv not in (None,0):
                 rowsout[m][col+"_"+suf]=100*(v/pv-1)
         if is_rate:
-            for lag,suf in [(3,"change_3m_pp"),(6,"change_6m_pp"),(12,"yoy_pp")]:
+            for lag,suf in [(3,"change_3m_pp"),(6,"change_6m_pp"),(9,"change_9m_pp"),(12,"yoy_pp")]:
                 pm=byk.get(k-lag)
                 pv=rowsout[pm].get(col) if pm else None
                 if pv is not None:
