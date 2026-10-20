@@ -1,0 +1,42 @@
+{
+  "status": "outmigration_promoted_blend_asof_source_vintage_gate",
+  "candidate": "0.25 * lag1-only 3y + 0.75 * lag1-only 10y",
+  "feature": "lag1_utflyttning_per_1000",
+  "source_definition": {
+    "migration_table": "BE0101J/Flyttningar97",
+    "population_table": "BE0101A/BefolkningNy",
+    "migration_url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101J/Flyttningar97",
+    "population_url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101A/BefolkningNy"
+  },
+  "checks": {
+    "blend_statistical_gate_passed": true,
+    "feature_asof_verified_in_registry": false,
+    "feature_method_definition_verified": false,
+    "migration_exact_historical_table_vintage_certified": false,
+    "population_exact_historical_table_vintage_certified": false,
+    "migration_wayback_metadata_capture_exists": false,
+    "population_wayback_metadata_capture_exists": true
+  },
+  "strict_required_checks": [
+    "blend_statistical_gate_passed",
+    "feature_asof_verified_in_registry",
+    "feature_method_definition_verified",
+    "migration_exact_historical_table_vintage_certified",
+    "population_exact_historical_table_vintage_certified"
+  ],
+  "passes_production_asof_gate": false,
+  "production_status": "blocked_pending_exact_historical_value_vintage",
+  "statistical_specification_status": "promoted_and_frozen",
+  "production_changed": false,
+  "inflow_model_changed": false,
+  "evidence_interpretation": {
+    "wayback_metadata_capture_is_sufficient_for_table_existence": true,
+    "wayback_metadata_capture_is_sufficient_for_exact_cell_values": false,
+    "current_blocker": "Exact historical value snapshots or equivalent version-specific evidence are still required for migration and population denominator."
+  },
+  "next_required_evidence": [
+    "Exact/version-specific evidence showing municipal Flyttningar97 values available at each relevant historical forecast origin.",
+    "Exact/version-specific evidence showing BefolkningNy denominator values and revision state at each relevant historical forecast origin.",
+    "After evidence is obtained, update neutral_variable_pool_reboot.json flags for lag1_utflyttning_per_1000 only through a documented audit."
+  ]
+}
