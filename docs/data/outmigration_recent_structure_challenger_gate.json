@@ -1,0 +1,343 @@
+{
+  "status": "outmigration_recent_structure_challenger_gate",
+  "production_changed": false,
+  "inflow_model_changed": false,
+  "locked_reference": "core_3y",
+  "sensitivity_reference": "reference_10y",
+  "forecast_years": [
+    2022,
+    2023,
+    2024
+  ],
+  "models": {
+    "age_fritid": {
+      "overall": {
+        "n": 870,
+        "rmse": 4.976145518653845,
+        "mae": 3.7315593141424683,
+        "bias": 0.3213680351621832
+      },
+      "yearly": [
+        {
+          "n": 290,
+          "rmse": 5.638481000715003,
+          "mae": 4.2137102985126935,
+          "bias": -0.726859276168095,
+          "year": 2022
+        },
+        {
+          "n": 290,
+          "rmse": 4.842308783034521,
+          "mae": 3.6528180003900363,
+          "bias": 0.8190099527330744,
+          "year": 2023
+        },
+        {
+          "n": 290,
+          "rmse": 4.364132253126491,
+          "mae": 3.328149643524675,
+          "bias": 0.8719534289215699,
+          "year": 2024
+        }
+      ],
+      "delta_rmse_pct_vs_core3": 1.911168908555827,
+      "delta_mae_pct_vs_core3": 2.3074713046935313,
+      "delta_rmse_pct_vs_ref10": 1.7489746618725377,
+      "stability": {
+        "wins_vs_core3": 2,
+        "wins_vs_ref10": 2,
+        "worst_year_delta_rmse_pct_vs_core3": 7.245842899460775,
+        "worst_year_delta_rmse_pct_vs_ref10": 10.023457715567364,
+        "median_year_delta_rmse_pct_vs_core3": -0.0825277218101994
+      },
+      "passes_gate": false
+    },
+    "age_structure": {
+      "overall": {
+        "n": 870,
+        "rmse": 5.0000462638389225,
+        "mae": 3.7347980249602846,
+        "bias": 0.2800786563201535
+      },
+      "yearly": [
+        {
+          "n": 290,
+          "rmse": 5.677603856656985,
+          "mae": 4.241753437286641,
+          "bias": -0.7271844710658956,
+          "year": 2022
+        },
+        {
+          "n": 290,
+          "rmse": 4.82852334144389,
+          "mae": 3.611782828823221,
+          "bias": 0.7691804730042353,
+          "year": 2023
+        },
+        {
+          "n": 290,
+          "rmse": 4.4103928067229985,
+          "mae": 3.3508578087709906,
+          "bias": 0.7982399670221206,
+          "year": 2024
+        }
+      ],
+      "delta_rmse_pct_vs_core3": 2.4006547707489556,
+      "delta_mae_pct_vs_core3": 2.3962664399610256,
+      "delta_rmse_pct_vs_ref10": 2.2376814947254076,
+      "stability": {
+        "wins_vs_core3": 2,
+        "wins_vs_ref10": 2,
+        "worst_year_delta_rmse_pct_vs_core3": 7.989973040468623,
+        "worst_year_delta_rmse_pct_vs_ref10": 10.786860462849667,
+        "median_year_delta_rmse_pct_vs_core3": -0.36698014723179906
+      },
+      "passes_gate": false
+    },
+    "brott": {
+      "overall": {
+        "n": 870,
+        "rmse": 4.887490002736829,
+        "mae": 3.664270259594523,
+        "bias": 0.3672213130269694
+      },
+      "yearly": [
+        {
+          "n": 290,
+          "rmse": 5.319610204142566,
+          "mae": 3.983400332916361,
+          "bias": -0.7812511470361716,
+          "year": 2022
+        },
+        {
+          "n": 290,
+          "rmse": 4.787860978698247,
+          "mae": 3.5856326219856784,
+          "bias": 0.8693789876667538,
+          "year": 2023
+        },
+        {
+          "n": 290,
+          "rmse": 4.521151413655408,
+          "mae": 3.423777823881529,
+          "bias": 1.0135360984503257,
+          "year": 2024
+        }
+      ],
+      "delta_rmse_pct_vs_core3": 0.0955091326459101,
+      "delta_mae_pct_vs_core3": 0.46261974593815314,
+      "delta_rmse_pct_vs_ref10": -0.06379544480150656,
+      "stability": {
+        "wins_vs_core3": 1,
+        "wins_vs_ref10": 2,
+        "worst_year_delta_rmse_pct_vs_core3": 1.1808109608771433,
+        "worst_year_delta_rmse_pct_vs_ref10": 3.801344419633934,
+        "median_year_delta_rmse_pct_vs_core3": 0.10569208852895251
+      },
+      "passes_gate": false
+    },
+    "core_3y": {
+      "overall": {
+        "n": 870,
+        "rmse": 4.882826457538629,
+        "mae": 3.647396682329374,
+        "bias": 0.37705975526670105
+      },
+      "yearly": [
+        {
+          "n": 290,
+          "rmse": 5.257528728643479,
+          "mae": 3.9485698573566226,
+          "bias": -0.7180809239725983,
+          "year": 2022
+        },
+        {
+          "n": 290,
+          "rmse": 4.846308330891904,
+          "mae": 3.582629810434664,
+          "bias": 0.8957205591835998,
+          "year": 2023
+        },
+        {
+          "n": 290,
+          "rmse": 4.516377959464189,
+          "mae": 3.410990379196835,
+          "bias": 0.9535396305891017,
+          "year": 2024
+        }
+      ],
+      "delta_rmse_pct_vs_core3": 0.0,
+      "delta_mae_pct_vs_core3": 0.0,
+      "delta_rmse_pct_vs_ref10": -0.15915257220611156
+    },
+    "fardigstallda": {
+      "overall": {
+        "n": 870,
+        "rmse": 4.967616395520952,
+        "mae": 3.720252329005746,
+        "bias": 0.3763384602626087
+      },
+      "yearly": [
+        {
+          "n": 290,
+          "rmse": 5.451312282102372,
+          "mae": 4.080754493606227,
+          "bias": -0.8264940416823416,
+          "year": 2022
+        },
+        {
+          "n": 290,
+          "rmse": 4.94004750970165,
+          "mae": 3.704543180065034,
+          "bias": 0.9418696877940337,
+          "year": 2023
+        },
+        {
+          "n": 290,
+          "rmse": 4.462147797197677,
+          "mae": 3.3754593133459783,
+          "bias": 1.0136397346761339,
+          "year": 2024
+        }
+      ],
+      "delta_rmse_pct_vs_core3": 1.736492966106029,
+      "delta_mae_pct_vs_core3": 1.9974697852124912,
+      "delta_rmse_pct_vs_ref10": 1.574576720678178,
+      "stability": {
+        "wins_vs_core3": 1,
+        "wins_vs_ref10": 1,
+        "worst_year_delta_rmse_pct_vs_core3": 3.6858296637190646,
+        "worst_year_delta_rmse_pct_vs_ref10": 6.37124188024889,
+        "median_year_delta_rmse_pct_vs_core3": 1.9342388558363677
+      },
+      "passes_gate": false
+    },
+    "fritid_only": {
+      "overall": {
+        "n": 870,
+        "rmse": 4.995021556073195,
+        "mae": 3.72633717401492,
+        "bias": 0.378954356741076
+      },
+      "yearly": [
+        {
+          "n": 290,
+          "rmse": 5.655534442106875,
+          "mae": 4.211548374215788,
+          "bias": -0.699384312407192,
+          "year": 2022
+        },
+        {
+          "n": 290,
+          "rmse": 4.849168542585909,
+          "mae": 3.6364610253081318,
+          "bias": 0.8822137327115043,
+          "year": 2023
+        },
+        {
+          "n": 290,
+          "rmse": 4.399001665906228,
+          "mae": 3.33100212252084,
+          "bias": 0.9540336499189158,
+          "year": 2024
+        }
+      ],
+      "delta_rmse_pct_vs_core3": 2.2977490498632624,
+      "delta_mae_pct_vs_core3": 2.1642968550141806,
+      "delta_rmse_pct_vs_ref10": 2.1349395509414615,
+      "stability": {
+        "wins_vs_core3": 1,
+        "wins_vs_ref10": 2,
+        "worst_year_delta_rmse_pct_vs_core3": 7.570205204871749,
+        "worst_year_delta_rmse_pct_vs_ref10": 10.356220845858232,
+        "median_year_delta_rmse_pct_vs_core3": 0.05901835992920823
+      },
+      "passes_gate": false
+    },
+    "reference_10y": {
+      "overall": {
+        "n": 870,
+        "rmse": 4.890609989132903,
+        "mae": 3.6487683586447868,
+        "bias": 0.8096114791963644
+      },
+      "yearly": [
+        {
+          "n": 290,
+          "rmse": 5.124798945413626,
+          "mae": 3.837561293655721,
+          "bias": -0.13083797615379364,
+          "year": 2022
+        },
+        {
+          "n": 290,
+          "rmse": 4.881536201549617,
+          "mae": 3.611514323671296,
+          "bias": 1.0833205276176467,
+          "year": 2023
+        },
+        {
+          "n": 290,
+          "rmse": 4.654163542406684,
+          "mae": 3.4972294586073427,
+          "bias": 1.4763518861252403,
+          "year": 2024
+        }
+      ],
+      "delta_rmse_pct_vs_core3": 0.1594062713872857,
+      "delta_mae_pct_vs_core3": 0.03760699575283688,
+      "delta_rmse_pct_vs_ref10": 0.0
+    },
+    "structure": {
+      "overall": {
+        "n": 870,
+        "rmse": 5.0243071790683835,
+        "mae": 3.741719730641559,
+        "bias": 0.3775726932302441
+      },
+      "yearly": [
+        {
+          "n": 290,
+          "rmse": 5.707886293404636,
+          "mae": 4.253277462485562,
+          "bias": -0.7001860623176945,
+          "year": 2022
+        },
+        {
+          "n": 290,
+          "rmse": 4.846257704742464,
+          "mae": 3.622461995674795,
+          "bias": 0.8790529299981306,
+          "year": 2023
+        },
+        {
+          "n": 290,
+          "rmse": 4.434502024996954,
+          "mae": 3.3494197337643223,
+          "bias": 0.9538512120102967,
+          "year": 2024
+        }
+      ],
+      "delta_rmse_pct_vs_core3": 2.8975168943659924,
+      "delta_mae_pct_vs_core3": 2.586037563974175,
+      "delta_rmse_pct_vs_ref10": 2.733752849492399,
+      "stability": {
+        "wins_vs_core3": 2,
+        "wins_vs_ref10": 2,
+        "worst_year_delta_rmse_pct_vs_core3": 8.565955375718048,
+        "worst_year_delta_rmse_pct_vs_ref10": 11.377760458541243,
+        "median_year_delta_rmse_pct_vs_core3": -0.0010446332751268272
+      },
+      "passes_gate": false
+    }
+  },
+  "passing_challengers": [],
+  "ranking": [
+    "brott",
+    "fardigstallda",
+    "age_fritid",
+    "fritid_only",
+    "age_structure",
+    "structure"
+  ]
+}
