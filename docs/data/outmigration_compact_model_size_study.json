@@ -1,0 +1,1529 @@
+{
+  "status": "outmigration_compact_model_size_study",
+  "production_changed": false,
+  "inflow_model_changed": false,
+  "target": "utflyttning_per_1000",
+  "excluded_from_compact_due_to_ablation_improvement": [
+    "lag1_inflyttning_per_1000",
+    "lag1_andel_studerande",
+    "lag1_bebyggd_anlagd_andel_land_pct"
+  ],
+  "models": {
+    "lag1_only": [
+      "lag1_utflyttning_per_1000"
+    ],
+    "lag1_plus__lag1_brott_per_100000": [
+      "lag1_utflyttning_per_1000",
+      "lag1_brott_per_100000"
+    ],
+    "lag1_plus__lag1_kolada_langtidsarbetslosa_pct": [
+      "lag1_utflyttning_per_1000",
+      "lag1_kolada_langtidsarbetslosa_pct"
+    ],
+    "lag1_plus__lag1_log_folkmangd": [
+      "lag1_utflyttning_per_1000",
+      "lag1_log_folkmangd"
+    ],
+    "lag1_plus__lag1_arbetsloshet": [
+      "lag1_utflyttning_per_1000",
+      "lag1_arbetsloshet"
+    ],
+    "lag1_plus__lag1_bas_ovriga_andel_pct": [
+      "lag1_utflyttning_per_1000",
+      "lag1_bas_ovriga_andel_pct"
+    ],
+    "lag1_plus__lag1_andel_20_34": [
+      "lag1_utflyttning_per_1000",
+      "lag1_andel_20_34"
+    ],
+    "lag1_plus__lag1_log_fritidshus_per_1000_inv": [
+      "lag1_utflyttning_per_1000",
+      "lag1_log_fritidshus_per_1000_inv"
+    ],
+    "lag1_plus__lag1_fardigstallda_bostader_per_1000": [
+      "lag1_utflyttning_per_1000",
+      "lag1_fardigstallda_bostader_per_1000"
+    ],
+    "lag1_plus_labor": [
+      "lag1_utflyttning_per_1000",
+      "lag1_kolada_langtidsarbetslosa_pct",
+      "lag1_arbetsloshet"
+    ],
+    "lag1_plus_structure": [
+      "lag1_utflyttning_per_1000",
+      "lag1_log_folkmangd",
+      "lag1_log_fritidshus_per_1000_inv"
+    ],
+    "lag1_plus_crime_labor": [
+      "lag1_utflyttning_per_1000",
+      "lag1_brott_per_100000",
+      "lag1_kolada_langtidsarbetslosa_pct"
+    ],
+    "lag1_plus_top3": [
+      "lag1_utflyttning_per_1000",
+      "lag1_brott_per_100000",
+      "lag1_kolada_langtidsarbetslosa_pct",
+      "lag1_log_folkmangd"
+    ],
+    "lag1_plus_top5": [
+      "lag1_utflyttning_per_1000",
+      "lag1_brott_per_100000",
+      "lag1_kolada_langtidsarbetslosa_pct",
+      "lag1_log_folkmangd",
+      "lag1_arbetsloshet",
+      "lag1_bas_ovriga_andel_pct"
+    ]
+  },
+  "windows": {
+    "five": {
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "results": {
+        "lag1_only": {
+          "features": [
+            "lag1_utflyttning_per_1000"
+          ],
+          "n": 1450,
+          "rmse": 5.306756223655579,
+          "mae": 3.924205689458567,
+          "bias_actual_minus_prediction": 0.0038905599032853376,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.681685492830005,
+              "mae": 4.1007706531673795,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.255536897023148,
+              "mae": 3.9775840375654314,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 5.295649813413091,
+              "mae": 3.834433002881213,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.4097857759863714,
+              "mae": 4.014239456104123,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.85761267319276,
+              "mae": 3.694001297574685,
+              "alpha": 0.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": 0.0,
+          "delta_mae_pct_vs_lag1_only": 0.0
+        },
+        "lag1_plus__lag1_brott_per_100000": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_brott_per_100000"
+          ],
+          "n": 1450,
+          "rmse": 5.283148407260834,
+          "mae": 3.9064235217520618,
+          "bias_actual_minus_prediction": 0.005397519378784132,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.6539204367449996,
+              "mae": 4.084797489831819,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.256908348174817,
+              "mae": 3.9602424446161106,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 5.254321794001075,
+              "mae": 3.803307108527083,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.371938112407503,
+              "mae": 4.00704964661777,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.846727471305727,
+              "mae": 3.676720919167527,
+              "alpha": 0.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.4448634043054511,
+          "delta_mae_pct_vs_lag1_only": -0.45314056177718776
+        },
+        "lag1_plus__lag1_kolada_langtidsarbetslosa_pct": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_kolada_langtidsarbetslosa_pct"
+          ],
+          "n": 1450,
+          "rmse": 5.3096161925501,
+          "mae": 3.9247572073161106,
+          "bias_actual_minus_prediction": 0.004058235418796537,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.678910926373294,
+              "mae": 4.096222887646982,
+              "alpha": 0.1
+            },
+            {
+              "fold": 2,
+              "rmse": 5.258516280138447,
+              "mae": 3.9759032116700195,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 5.294211537766456,
+              "mae": 3.8335820818550816,
+              "alpha": 0.1
+            },
+            {
+              "fold": 4,
+              "rmse": 5.409830039973024,
+              "mae": 4.0172263592871555,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.874747266758973,
+              "mae": 3.7008514961213153,
+              "alpha": 0.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": 0.05389297668831894,
+          "delta_mae_pct_vs_lag1_only": 0.01405425457245979
+        },
+        "lag1_plus__lag1_log_folkmangd": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_log_folkmangd"
+          ],
+          "n": 1450,
+          "rmse": 5.293455629235573,
+          "mae": 3.9224500823369586,
+          "bias_actual_minus_prediction": 0.008046529340295875,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.6482527909646825,
+              "mae": 4.086262826445736,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.242242231425278,
+              "mae": 3.9549328651554645,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 5.332291810144454,
+              "mae": 3.8873834947470947,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.374753715384302,
+              "mae": 3.994208609942836,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.837167129661619,
+              "mae": 3.6894626153936607,
+              "alpha": 0.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.25063511228794466,
+          "delta_mae_pct_vs_lag1_only": -0.044737897565472196
+        },
+        "lag1_plus__lag1_arbetsloshet": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_arbetsloshet"
+          ],
+          "n": 870,
+          "rmse": 5.117855920501148,
+          "mae": 3.7665622581060476,
+          "bias_actual_minus_prediction": 0.0040531616525210125,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.617552875500709,
+              "mae": 4.019580168863084,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.3292841077959885,
+              "mae": 3.9818189652000675,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.853093336643765,
+              "mae": 3.5509978516860814,
+              "alpha": 0.1
+            },
+            {
+              "fold": 4,
+              "rmse": 5.466343046591324,
+              "mae": 4.0632568082814835,
+              "alpha": 1.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.191736569394201,
+              "mae": 3.2171574964995195,
+              "alpha": 0.1
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -3.5596190062845423,
+          "delta_mae_pct_vs_lag1_only": -4.01720612596812
+        },
+        "lag1_plus__lag1_bas_ovriga_andel_pct": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_bas_ovriga_andel_pct"
+          ],
+          "n": 870,
+          "rmse": 5.096954434995084,
+          "mae": 3.746504798549104,
+          "bias_actual_minus_prediction": 0.005473502781840668,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.611311352427857,
+              "mae": 3.9699670368417834,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.319063303893895,
+              "mae": 3.996387280779615,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.824847878927452,
+              "mae": 3.5353545615168396,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.4416508343871115,
+              "mae": 4.030643704950242,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.150271338019626,
+              "mae": 3.2001714086570394,
+              "alpha": 0.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -3.9534845735946234,
+          "delta_mae_pct_vs_lag1_only": -4.528327640592678
+        },
+        "lag1_plus__lag1_andel_20_34": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_andel_20_34"
+          ],
+          "n": 1450,
+          "rmse": 5.273276142216989,
+          "mae": 3.922184405575139,
+          "bias_actual_minus_prediction": 0.0054061189893421565,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.620581578822731,
+              "mae": 4.07841427072726,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.242731963001106,
+              "mae": 4.004647629158754,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 5.284613890024428,
+              "mae": 3.828422840161329,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.375324531817695,
+              "mae": 4.0215325938572635,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.8102778351462545,
+              "mae": 3.6779046939710907,
+              "alpha": 0.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.6308954100689212,
+          "delta_mae_pct_vs_lag1_only": -0.0515081023621522
+        },
+        "lag1_plus__lag1_log_fritidshus_per_1000_inv": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_log_fritidshus_per_1000_inv"
+          ],
+          "n": 1450,
+          "rmse": 5.2418878566723235,
+          "mae": 3.8843685991167276,
+          "bias_actual_minus_prediction": 0.007325848109768276,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.543600234555553,
+              "mae": 4.028803282876621,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.2081423423776245,
+              "mae": 3.928682899773589,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 5.372542461087498,
+              "mae": 3.8997070989320246,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.314207373329625,
+              "mae": 3.952806245690208,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.735575866531299,
+              "mae": 3.6118434683111946,
+              "alpha": 0.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -1.222373221029005,
+          "delta_mae_pct_vs_lag1_only": -1.0151631564281116
+        },
+        "lag1_plus__lag1_fardigstallda_bostader_per_1000": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_fardigstallda_bostader_per_1000"
+          ],
+          "n": 1450,
+          "rmse": 5.282307833676036,
+          "mae": 3.922970763318677,
+          "bias_actual_minus_prediction": 0.0012905071381505671,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.644821851576478,
+              "mae": 4.080494722891079,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.238423012797835,
+              "mae": 3.9823639449254955,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 5.298256607276709,
+              "mae": 3.8698802929881557,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.372195395772407,
+              "mae": 3.9915234916200366,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.824601994426202,
+              "mae": 3.6905913641686188,
+              "alpha": 0.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.46070309147726585,
+          "delta_mae_pct_vs_lag1_only": -0.03146945490668518
+        },
+        "lag1_plus_labor": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_kolada_langtidsarbetslosa_pct",
+            "lag1_arbetsloshet"
+          ],
+          "n": 870,
+          "rmse": 5.133085483192419,
+          "mae": 3.775219055569594,
+          "bias_actual_minus_prediction": 0.008681445519037937,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.623731682413779,
+              "mae": 4.0151355914998845,
+              "alpha": 1.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.335360951492321,
+              "mae": 3.988772863784775,
+              "alpha": 1.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.8556708935741915,
+              "mae": 3.56607802294413,
+              "alpha": 10.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.466308279831441,
+              "mae": 4.06311830181577,
+              "alpha": 1.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.265247042488023,
+              "mae": 3.242990497803412,
+              "alpha": 10.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -3.272634602829505,
+          "delta_mae_pct_vs_lag1_only": -3.79660613329188
+        },
+        "lag1_plus_structure": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_log_folkmangd",
+            "lag1_log_fritidshus_per_1000_inv"
+          ],
+          "n": 1450,
+          "rmse": 5.237100969088061,
+          "mae": 3.8786649960160178,
+          "bias_actual_minus_prediction": 0.007305643542367751,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.534607334472961,
+              "mae": 4.022117907318579,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.214528788232925,
+              "mae": 3.935759144999907,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 5.366648406445499,
+              "mae": 3.8901144150631275,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.313023277796358,
+              "mae": 3.944056878849934,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.720573323569261,
+              "mae": 3.601276633848542,
+              "alpha": 0.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -1.3125768667688331,
+          "delta_mae_pct_vs_lag1_only": -1.1605072987097231
+        },
+        "lag1_plus_crime_labor": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_brott_per_100000",
+            "lag1_kolada_langtidsarbetslosa_pct"
+          ],
+          "n": 1450,
+          "rmse": 5.285733426464918,
+          "mae": 3.908686848358202,
+          "bias_actual_minus_prediction": 0.006688173224739974,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.6541393117471035,
+              "mae": 4.0842022446544775,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.255212897704081,
+              "mae": 3.9592412674201594,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 5.271427293013148,
+              "mae": 3.8196852331463966,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.370274811802497,
+              "mae": 4.00439173992441,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.845672095963491,
+              "mae": 3.675913756645562,
+              "alpha": 0.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.3961515529382953,
+          "delta_mae_pct_vs_lag1_only": -0.3954645176233451
+        },
+        "lag1_plus_top3": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_brott_per_100000",
+            "lag1_kolada_langtidsarbetslosa_pct",
+            "lag1_log_folkmangd"
+          ],
+          "n": 1450,
+          "rmse": 5.286764666963662,
+          "mae": 3.91654592634303,
+          "bias_actual_minus_prediction": 0.007923943458840812,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.645379961163761,
+              "mae": 4.084489264693281,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.247682228623817,
+              "mae": 3.9544981507574866,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 5.305911526298765,
+              "mae": 3.8613983495743534,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.36455148372537,
+              "mae": 4.00201684428374,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.838368505426522,
+              "mae": 3.68032702240629,
+              "alpha": 0.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.37671895691764323,
+          "delta_mae_pct_vs_lag1_only": -0.19519270195527127
+        },
+        "lag1_plus_top5": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_brott_per_100000",
+            "lag1_kolada_langtidsarbetslosa_pct",
+            "lag1_log_folkmangd",
+            "lag1_arbetsloshet",
+            "lag1_bas_ovriga_andel_pct"
+          ],
+          "n": 870,
+          "rmse": 5.110301116823196,
+          "mae": 3.7412898497966722,
+          "bias_actual_minus_prediction": 0.016817569789102562,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.629351421985407,
+              "mae": 3.9505695391314877,
+              "alpha": 1.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.317787221246972,
+              "mae": 3.977416045407134,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.806089038055763,
+              "mae": 3.5254346466412474,
+              "alpha": 1.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.443431717417393,
+              "mae": 4.0576047501439145,
+              "alpha": 1.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.228237038820068,
+              "mae": 3.195424267659577,
+              "alpha": 10.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -3.7019809946546633,
+          "delta_mae_pct_vs_lag1_only": -4.661219470560729
+        }
+      },
+      "ranking": [
+        "lag1_plus__lag1_bas_ovriga_andel_pct",
+        "lag1_plus_top5",
+        "lag1_plus__lag1_arbetsloshet",
+        "lag1_plus_labor",
+        "lag1_plus_structure",
+        "lag1_plus__lag1_log_fritidshus_per_1000_inv",
+        "lag1_plus__lag1_andel_20_34",
+        "lag1_plus__lag1_fardigstallda_bostader_per_1000",
+        "lag1_plus__lag1_brott_per_100000",
+        "lag1_plus_crime_labor",
+        "lag1_plus_top3",
+        "lag1_plus__lag1_log_folkmangd",
+        "lag1_only",
+        "lag1_plus__lag1_kolada_langtidsarbetslosa_pct"
+      ]
+    },
+    "three": {
+      "years": [
+        2021,
+        2022,
+        2023
+      ],
+      "results": {
+        "lag1_only": {
+          "features": [
+            "lag1_utflyttning_per_1000"
+          ],
+          "n": 870,
+          "rmse": 5.120046992144294,
+          "mae": 3.7710197460167145,
+          "bias_actual_minus_prediction": 0.0052470732713164915,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.616673390019551,
+              "mae": 4.016627425183902,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.3421031963507035,
+              "mae": 3.9930920753136294,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.867273839450084,
+              "mae": 3.570706367000939,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.477195564178056,
+              "mae": 4.064494050529922,
+              "alpha": 0.1
+            },
+            {
+              "fold": 5,
+              "rmse": 4.159241950376068,
+              "mae": 3.2101788120551804,
+              "alpha": 0.1
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": 0.0,
+          "delta_mae_pct_vs_lag1_only": 0.0
+        },
+        "lag1_plus__lag1_brott_per_100000": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_brott_per_100000"
+          ],
+          "n": 870,
+          "rmse": 5.106235161027777,
+          "mae": 3.7615520286165696,
+          "bias_actual_minus_prediction": 0.003940923821768878,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.611858151119788,
+              "mae": 4.003739319282624,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.332008442644907,
+              "mae": 3.965271124852807,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.834056663076769,
+              "mae": 3.5477097133422477,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.456032086416465,
+              "mae": 4.082109503318406,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.16035235382927,
+              "mae": 3.2089304822867653,
+              "alpha": 1.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.26975985059725094,
+          "delta_mae_pct_vs_lag1_only": -0.25106517700274056
+        },
+        "lag1_plus__lag1_kolada_langtidsarbetslosa_pct": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_kolada_langtidsarbetslosa_pct"
+          ],
+          "n": 870,
+          "rmse": 5.118880053729061,
+          "mae": 3.7672734663372256,
+          "bias_actual_minus_prediction": 0.004556146484309395,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.624025365246354,
+              "mae": 4.0166361173989475,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.32783016341839,
+              "mae": 3.9816190864654035,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.85373754837776,
+              "mae": 3.5574458589753455,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.467728633690431,
+              "mae": 4.067227219588573,
+              "alpha": 0.1
+            },
+            {
+              "fold": 5,
+              "rmse": 4.188604166419953,
+              "mae": 3.213439049257857,
+              "alpha": 0.1
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.022791556738122054,
+          "delta_mae_pct_vs_lag1_only": -0.09934394227041343
+        },
+        "lag1_plus__lag1_log_folkmangd": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_log_folkmangd"
+          ],
+          "n": 870,
+          "rmse": 5.1212109314430725,
+          "mae": 3.774491569083949,
+          "bias_actual_minus_prediction": 0.010795900820543757,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.615747684790975,
+              "mae": 4.011956791309849,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.344289609845204,
+              "mae": 3.989871216733616,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.87192259429958,
+              "mae": 3.5855341250497825,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.473845654787225,
+              "mae": 4.062434267230094,
+              "alpha": 0.1
+            },
+            {
+              "fold": 5,
+              "rmse": 4.163812857375533,
+              "mae": 3.2226614450964033,
+              "alpha": 1.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": 0.02273298078248054,
+          "delta_mae_pct_vs_lag1_only": 0.09206589466685955
+        },
+        "lag1_plus__lag1_arbetsloshet": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_arbetsloshet"
+          ],
+          "n": 870,
+          "rmse": 5.117855920501148,
+          "mae": 3.7665622581060476,
+          "bias_actual_minus_prediction": 0.0040531616525210125,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.617552875500709,
+              "mae": 4.019580168863084,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.3292841077959885,
+              "mae": 3.9818189652000675,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.853093336643765,
+              "mae": 3.5509978516860814,
+              "alpha": 0.1
+            },
+            {
+              "fold": 4,
+              "rmse": 5.466343046591324,
+              "mae": 4.0632568082814835,
+              "alpha": 1.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.191736569394201,
+              "mae": 3.2171574964995195,
+              "alpha": 0.1
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.042793975260546624,
+          "delta_mae_pct_vs_lag1_only": -0.11820378069818949
+        },
+        "lag1_plus__lag1_bas_ovriga_andel_pct": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_bas_ovriga_andel_pct"
+          ],
+          "n": 870,
+          "rmse": 5.096954434995084,
+          "mae": 3.746504798549104,
+          "bias_actual_minus_prediction": 0.005473502781840668,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.611311352427857,
+              "mae": 3.9699670368417834,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.319063303893895,
+              "mae": 3.996387280779615,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.824847878927452,
+              "mae": 3.5353545615168396,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.4416508343871115,
+              "mae": 4.030643704950242,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.150271338019626,
+              "mae": 3.2001714086570394,
+              "alpha": 0.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.45102236726813905,
+          "delta_mae_pct_vs_lag1_only": -0.6500880164710177
+        },
+        "lag1_plus__lag1_andel_20_34": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_andel_20_34"
+          ],
+          "n": 870,
+          "rmse": 5.089482027984683,
+          "mae": 3.7712651929566414,
+          "bias_actual_minus_prediction": 0.004202977062505645,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.578484839837033,
+              "mae": 3.9915549309547225,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.328436954227644,
+              "mae": 4.018312024232794,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.815970035412297,
+              "mae": 3.539554493030083,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.451664593930369,
+              "mae": 4.073101454968436,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.1337862614946514,
+              "mae": 3.2338030615971713,
+              "alpha": 0.1
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.5969664771926286,
+          "delta_mae_pct_vs_lag1_only": 0.006508768355995009
+        },
+        "lag1_plus__lag1_log_fritidshus_per_1000_inv": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_log_fritidshus_per_1000_inv"
+          ],
+          "n": 870,
+          "rmse": 5.101815251863997,
+          "mae": 3.7682424784705897,
+          "bias_actual_minus_prediction": 0.007449667844128257,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.575277986554147,
+              "mae": 3.98404585311381,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.338988344860307,
+              "mae": 3.989382552784606,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.87261390382745,
+              "mae": 3.6029463570810383,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.441481422115488,
+              "mae": 4.033453914700802,
+              "alpha": 0.1
+            },
+            {
+              "fold": 5,
+              "rmse": 4.147527796633855,
+              "mae": 3.2313837146726923,
+              "alpha": 1.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.35608540914311426,
+          "delta_mae_pct_vs_lag1_only": -0.07364765323911726
+        },
+        "lag1_plus__lag1_fardigstallda_bostader_per_1000": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_fardigstallda_bostader_per_1000"
+          ],
+          "n": 870,
+          "rmse": 5.119712584138276,
+          "mae": 3.7795827018612873,
+          "bias_actual_minus_prediction": 0.0013523772514302131,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.608181884919906,
+              "mae": 4.001303705337532,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.335907577941122,
+              "mae": 3.9900582199688346,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.864193559650789,
+              "mae": 3.589356869031395,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.471386077227558,
+              "mae": 4.07086932850879,
+              "alpha": 1.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.18774717412812,
+              "mae": 3.246325386459884,
+              "alpha": 1.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.006531346421834172,
+          "delta_mae_pct_vs_lag1_only": 0.22707268646942058
+        },
+        "lag1_plus_labor": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_kolada_langtidsarbetslosa_pct",
+            "lag1_arbetsloshet"
+          ],
+          "n": 870,
+          "rmse": 5.133085483192419,
+          "mae": 3.775219055569594,
+          "bias_actual_minus_prediction": 0.008681445519037937,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.623731682413779,
+              "mae": 4.0151355914998845,
+              "alpha": 1.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.335360951492321,
+              "mae": 3.988772863784775,
+              "alpha": 1.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.8556708935741915,
+              "mae": 3.56607802294413,
+              "alpha": 10.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.466308279831441,
+              "mae": 4.06311830181577,
+              "alpha": 1.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.265247042488023,
+              "mae": 3.242990497803412,
+              "alpha": 10.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": 0.25465569101474905,
+          "delta_mae_pct_vs_lag1_only": 0.11135740027123919
+        },
+        "lag1_plus_structure": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_log_folkmangd",
+            "lag1_log_fritidshus_per_1000_inv"
+          ],
+          "n": 870,
+          "rmse": 5.098638626205026,
+          "mae": 3.7610802609109513,
+          "bias_actual_minus_prediction": 0.009539495922225224,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.560320862787302,
+              "mae": 3.9719370909628595,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.337741745919031,
+              "mae": 3.99668379448083,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.865913022406897,
+              "mae": 3.593200231821042,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.453417233467016,
+              "mae": 4.025418732339971,
+              "alpha": 0.1
+            },
+            {
+              "fold": 5,
+              "rmse": 4.141866136896605,
+              "mae": 3.2181614549500557,
+              "alpha": 1.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.4181283096056587,
+          "delta_mae_pct_vs_lag1_only": -0.2635755253273975
+        },
+        "lag1_plus_crime_labor": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_brott_per_100000",
+            "lag1_kolada_langtidsarbetslosa_pct"
+          ],
+          "n": 870,
+          "rmse": 5.1090846988353595,
+          "mae": 3.7627834306322967,
+          "bias_actual_minus_prediction": 0.0053289734042101635,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.615943585658716,
+              "mae": 4.00911522891532,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.333295284910261,
+              "mae": 3.9660517636972488,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.83287166690821,
+              "mae": 3.5463754366085567,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.455090547175715,
+              "mae": 4.082028888434609,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.1732732859627975,
+              "mae": 3.2103458355057506,
+              "alpha": 1.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.21410532609864585,
+          "delta_mae_pct_vs_lag1_only": -0.21841082622592323
+        },
+        "lag1_plus_top3": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_brott_per_100000",
+            "lag1_kolada_langtidsarbetslosa_pct",
+            "lag1_log_folkmangd"
+          ],
+          "n": 870,
+          "rmse": 5.110458987392514,
+          "mae": 3.761748804339574,
+          "bias_actual_minus_prediction": 0.008898366870358412,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.614868197448386,
+              "mae": 4.006935941766923,
+              "alpha": 0.1
+            },
+            {
+              "fold": 2,
+              "rmse": 5.332718654267918,
+              "mae": 3.9641242352606803,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.83281251487734,
+              "mae": 3.546253461771335,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.463061804147109,
+              "mae": 4.086169260957021,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.173511843630514,
+              "mae": 3.2052611219419096,
+              "alpha": 1.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.1872639990705416,
+          "delta_mae_pct_vs_lag1_only": -0.24584707324678545
+        },
+        "lag1_plus_top5": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_brott_per_100000",
+            "lag1_kolada_langtidsarbetslosa_pct",
+            "lag1_log_folkmangd",
+            "lag1_arbetsloshet",
+            "lag1_bas_ovriga_andel_pct"
+          ],
+          "n": 870,
+          "rmse": 5.110301116823196,
+          "mae": 3.7412898497966722,
+          "bias_actual_minus_prediction": 0.016817569789102562,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.629351421985407,
+              "mae": 3.9505695391314877,
+              "alpha": 1.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.317787221246972,
+              "mae": 3.977416045407134,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.806089038055763,
+              "mae": 3.5254346466412474,
+              "alpha": 1.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.443431717417393,
+              "mae": 4.0576047501439145,
+              "alpha": 1.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.228237038820068,
+              "mae": 3.195424267659577,
+              "alpha": 10.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.1903473803277822,
+          "delta_mae_pct_vs_lag1_only": -0.7883781635311116
+        }
+      },
+      "ranking": [
+        "lag1_plus__lag1_andel_20_34",
+        "lag1_plus__lag1_bas_ovriga_andel_pct",
+        "lag1_plus_structure",
+        "lag1_plus__lag1_log_fritidshus_per_1000_inv",
+        "lag1_plus__lag1_brott_per_100000",
+        "lag1_plus_crime_labor",
+        "lag1_plus_top5",
+        "lag1_plus_top3",
+        "lag1_plus__lag1_arbetsloshet",
+        "lag1_plus__lag1_kolada_langtidsarbetslosa_pct",
+        "lag1_plus__lag1_fardigstallda_bostader_per_1000",
+        "lag1_only",
+        "lag1_plus__lag1_log_folkmangd",
+        "lag1_plus_labor"
+      ]
+    }
+  },
+  "cross_window_ranking": [
+    {
+      "model": "lag1_plus__lag1_bas_ovriga_andel_pct",
+      "n_features": 2,
+      "mean_delta_rmse_pct_vs_lag1_only": -2.202253470431381,
+      "worst_window_delta_rmse_pct_vs_lag1_only": -0.45102236726813905,
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_bas_ovriga_andel_pct"
+      ]
+    },
+    {
+      "model": "lag1_plus_top5",
+      "n_features": 6,
+      "mean_delta_rmse_pct_vs_lag1_only": -1.9461641874912228,
+      "worst_window_delta_rmse_pct_vs_lag1_only": -0.1903473803277822,
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_brott_per_100000",
+        "lag1_kolada_langtidsarbetslosa_pct",
+        "lag1_log_folkmangd",
+        "lag1_arbetsloshet",
+        "lag1_bas_ovriga_andel_pct"
+      ]
+    },
+    {
+      "model": "lag1_plus__lag1_arbetsloshet",
+      "n_features": 2,
+      "mean_delta_rmse_pct_vs_lag1_only": -1.8012064907725445,
+      "worst_window_delta_rmse_pct_vs_lag1_only": -0.042793975260546624,
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_arbetsloshet"
+      ]
+    },
+    {
+      "model": "lag1_plus_labor",
+      "n_features": 3,
+      "mean_delta_rmse_pct_vs_lag1_only": -1.508989455907378,
+      "worst_window_delta_rmse_pct_vs_lag1_only": 0.25465569101474905,
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_kolada_langtidsarbetslosa_pct",
+        "lag1_arbetsloshet"
+      ]
+    },
+    {
+      "model": "lag1_plus_structure",
+      "n_features": 3,
+      "mean_delta_rmse_pct_vs_lag1_only": -0.8653525881872459,
+      "worst_window_delta_rmse_pct_vs_lag1_only": -0.4181283096056587,
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_log_folkmangd",
+        "lag1_log_fritidshus_per_1000_inv"
+      ]
+    },
+    {
+      "model": "lag1_plus__lag1_log_fritidshus_per_1000_inv",
+      "n_features": 2,
+      "mean_delta_rmse_pct_vs_lag1_only": -0.7892293150860596,
+      "worst_window_delta_rmse_pct_vs_lag1_only": -0.35608540914311426,
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_log_fritidshus_per_1000_inv"
+      ]
+    },
+    {
+      "model": "lag1_plus__lag1_andel_20_34",
+      "n_features": 2,
+      "mean_delta_rmse_pct_vs_lag1_only": -0.6139309436307749,
+      "worst_window_delta_rmse_pct_vs_lag1_only": -0.5969664771926286,
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_andel_20_34"
+      ]
+    },
+    {
+      "model": "lag1_plus__lag1_brott_per_100000",
+      "n_features": 2,
+      "mean_delta_rmse_pct_vs_lag1_only": -0.35731162745135103,
+      "worst_window_delta_rmse_pct_vs_lag1_only": -0.26975985059725094,
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_brott_per_100000"
+      ]
+    },
+    {
+      "model": "lag1_plus_crime_labor",
+      "n_features": 3,
+      "mean_delta_rmse_pct_vs_lag1_only": -0.3051284395184706,
+      "worst_window_delta_rmse_pct_vs_lag1_only": -0.21410532609864585,
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_brott_per_100000",
+        "lag1_kolada_langtidsarbetslosa_pct"
+      ]
+    },
+    {
+      "model": "lag1_plus_top3",
+      "n_features": 4,
+      "mean_delta_rmse_pct_vs_lag1_only": -0.2819914779940924,
+      "worst_window_delta_rmse_pct_vs_lag1_only": -0.1872639990705416,
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_brott_per_100000",
+        "lag1_kolada_langtidsarbetslosa_pct",
+        "lag1_log_folkmangd"
+      ]
+    },
+    {
+      "model": "lag1_plus__lag1_fardigstallda_bostader_per_1000",
+      "n_features": 2,
+      "mean_delta_rmse_pct_vs_lag1_only": -0.23361721894955,
+      "worst_window_delta_rmse_pct_vs_lag1_only": -0.006531346421834172,
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_fardigstallda_bostader_per_1000"
+      ]
+    },
+    {
+      "model": "lag1_plus__lag1_log_folkmangd",
+      "n_features": 2,
+      "mean_delta_rmse_pct_vs_lag1_only": -0.11395106575273206,
+      "worst_window_delta_rmse_pct_vs_lag1_only": 0.02273298078248054,
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_log_folkmangd"
+      ]
+    },
+    {
+      "model": "lag1_only",
+      "n_features": 1,
+      "mean_delta_rmse_pct_vs_lag1_only": 0.0,
+      "worst_window_delta_rmse_pct_vs_lag1_only": 0.0,
+      "features": [
+        "lag1_utflyttning_per_1000"
+      ]
+    },
+    {
+      "model": "lag1_plus__lag1_kolada_langtidsarbetslosa_pct",
+      "n_features": 2,
+      "mean_delta_rmse_pct_vs_lag1_only": 0.015550709975098442,
+      "worst_window_delta_rmse_pct_vs_lag1_only": 0.05389297668831894,
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_kolada_langtidsarbetslosa_pct"
+      ]
+    }
+  ]
+}
