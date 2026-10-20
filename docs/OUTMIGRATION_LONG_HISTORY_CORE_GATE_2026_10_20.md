@@ -72,3 +72,8 @@ Känslighetsreferens:
 samma modell med 10 års träningsfönster.
 
 Nästa challenger måste slå 3-årskärnan utan att förlora robusthet mot 10-årsreferensen.
+
+
+## Senare promotion
+
+Se `docs/OUTMIGRATION_FINAL_BLEND_GATE_2026_10_20.md`. Den tidigare 3-årskärnan ersätts som huvudspecifikation av en 25/75-blend av 3- och 10-årsmodellerna efter godkänd promotion-gate. 3-årsmodellen kvarstår som komponentreferens.
