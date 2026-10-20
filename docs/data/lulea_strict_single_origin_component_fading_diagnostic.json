@@ -380,9 +380,9 @@
       "fade_migration": 0.5,
       "fade_residual": 0.5,
       "n": 16,
-      "rmse": 336.29400211599204,
-      "mae": 268.1269917117661,
-      "bias": -261.3562614236853,
+      "rmse": 336.2940021159913,
+      "mae": 268.12699171176337,
+      "bias": -261.35626142368255,
       "max_abs": 655.5621651960682,
       "by_horizon": {
         "2": {
@@ -393,21 +393,21 @@
         },
         "3": {
           "n": 4,
-          "rmse": 243.21944001893004,
-          "mae": 198.82281906035496,
-          "bias": -191.52878982191032
+          "rmse": 243.21944001892808,
+          "mae": 198.82281906035132,
+          "bias": -191.52878982190668
         },
         "4": {
           "n": 4,
-          "rmse": 339.25594519207647,
-          "mae": 297.35168962008174,
-          "bias": -297.35168962008174
+          "rmse": 339.2559451920759,
+          "mae": 297.3516896200781,
+          "bias": -297.3516896200781
         },
         "5": {
           "n": 4,
-          "rmse": 487.9036753433234,
-          "mae": 437.66068537228784,
-          "bias": -437.66068537228784
+          "rmse": 487.9036753433227,
+          "mae": 437.6606853722842,
+          "bias": -437.6606853722842
         }
       }
     },
@@ -921,9 +921,9 @@
       "fade_migration": 0.5,
       "fade_residual": 0.5,
       "n": 16,
-      "rmse": 336.29400211599204,
-      "mae": 268.1269917117661,
-      "bias": -261.3562614236853,
+      "rmse": 336.2940021159913,
+      "mae": 268.12699171176337,
+      "bias": -261.35626142368255,
       "max_abs": 655.5621651960682
     },
     {
@@ -6383,10 +6383,10 @@
       "origin_year": 2016,
       "horizon_years": 3,
       "target_year": 2019,
-      "predicted_population": 78236.34424234187,
+      "predicted_population": 78236.34424234186,
       "actual_population": 78105.0,
-      "error_actual_minus_prediction": -131.34424234187463,
-      "absolute_error": 131.34424234187463,
+      "error_actual_minus_prediction": -131.34424234186008,
+      "absolute_error": 131.34424234186008,
       "path": [
         {
           "year": 2017,
@@ -6400,7 +6400,7 @@
         },
         {
           "year": 2019,
-          "predicted_population": 78236.34424234187,
+          "predicted_population": 78236.34424234186,
           "actual_population": 78105.0
         }
       ]
@@ -6414,10 +6414,10 @@
       "origin_year": 2016,
       "horizon_years": 4,
       "target_year": 2020,
-      "predicted_population": 78607.07293581251,
+      "predicted_population": 78607.0729358125,
       "actual_population": 78549.0,
-      "error_actual_minus_prediction": -58.07293581250997,
-      "absolute_error": 58.07293581250997,
+      "error_actual_minus_prediction": -58.072935812495416,
+      "absolute_error": 58.072935812495416,
       "path": [
         {
           "year": 2017,
@@ -6431,12 +6431,12 @@
         },
         {
           "year": 2019,
-          "predicted_population": 78236.34424234187,
+          "predicted_population": 78236.34424234186,
           "actual_population": 78105.0
         },
         {
           "year": 2020,
-          "predicted_population": 78607.07293581251,
+          "predicted_population": 78607.0729358125,
           "actual_population": 78549.0
         }
       ]
@@ -6450,10 +6450,10 @@
       "origin_year": 2016,
       "horizon_years": 5,
       "target_year": 2021,
-      "predicted_population": 78962.07090570006,
+      "predicted_population": 78962.07090570005,
       "actual_population": 78867.0,
-      "error_actual_minus_prediction": -95.07090570006403,
-      "absolute_error": 95.07090570006403,
+      "error_actual_minus_prediction": -95.07090570004948,
+      "absolute_error": 95.07090570004948,
       "path": [
         {
           "year": 2017,
@@ -6467,17 +6467,17 @@
         },
         {
           "year": 2019,
-          "predicted_population": 78236.34424234187,
+          "predicted_population": 78236.34424234186,
           "actual_population": 78105.0
         },
         {
           "year": 2020,
-          "predicted_population": 78607.07293581251,
+          "predicted_population": 78607.0729358125,
           "actual_population": 78549.0
         },
         {
           "year": 2021,
-          "predicted_population": 78962.07090570006,
+          "predicted_population": 78962.07090570005,
           "actual_population": 78867.0
         }
       ]
