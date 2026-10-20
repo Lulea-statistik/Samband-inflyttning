@@ -1,0 +1,574 @@
+{
+  "status": "short_term_forecast_with_without_monthly_module",
+  "generated_at_utc": "2026-10-20T07:07:38.625739+00:00",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "current_origin": "2026M08",
+  "latest_observed_target_month": "2026M08",
+  "without_monthly_module_definition": "seasonal naive: same future calendar months one year earlier",
+  "with_monthly_module_definition": "same seasonal-naive baseline plus rates_25_29 residual correction",
+  "monthly_module": {
+    "backward_window_months": 12,
+    "features": [
+      "bas2_age25_29_sysselsattningsgrad_yoy_pp",
+      "bas2_age25_29_arbetskraftsdeltagande_yoy_pp"
+    ],
+    "alphas": [
+      3.0,
+      10.0
+    ],
+    "lags_months": [
+      1,
+      2
+    ]
+  },
+  "core4_note": "Frozen long-term core-4 is unchanged. The previously tested direct annual-core4-times-seasonal-share monthly bridge was rejected, so it is not reused here.",
+  "current_forecasts": {
+    "3": {
+      "alpha3_lag1": {
+        "origin": "2026M08",
+        "horizon_months": 3,
+        "alpha": 3.0,
+        "lag_months": 1,
+        "feature_month": "2026M07",
+        "target_start": "2026M09",
+        "target_end": "2026M11",
+        "seasonal_source_start": "2025M09",
+        "seasonal_source_end": "2025M11",
+        "without_monthly_module": 1227.0,
+        "monthly_module_correction": -7.8433090190047,
+        "with_monthly_module": 1219.1566909809953,
+        "difference_count": -7.8433090190047,
+        "difference_pct_vs_without": -0.6392264889164384,
+        "n_train": 63
+      },
+      "alpha3_lag2": {
+        "origin": "2026M08",
+        "horizon_months": 3,
+        "alpha": 3.0,
+        "lag_months": 2,
+        "feature_month": "2026M06",
+        "target_start": "2026M09",
+        "target_end": "2026M11",
+        "seasonal_source_start": "2025M09",
+        "seasonal_source_end": "2025M11",
+        "without_monthly_module": 1227.0,
+        "monthly_module_correction": -55.68761665881374,
+        "with_monthly_module": 1171.3123833411862,
+        "difference_count": -55.68761665881374,
+        "difference_pct_vs_without": -4.538518065102994,
+        "n_train": 63
+      },
+      "alpha10_lag1": {
+        "origin": "2026M08",
+        "horizon_months": 3,
+        "alpha": 10.0,
+        "lag_months": 1,
+        "feature_month": "2026M07",
+        "target_start": "2026M09",
+        "target_end": "2026M11",
+        "seasonal_source_start": "2025M09",
+        "seasonal_source_end": "2025M11",
+        "without_monthly_module": 1227.0,
+        "monthly_module_correction": -6.558671075014278,
+        "with_monthly_module": 1220.4413289249858,
+        "difference_count": -6.558671075014278,
+        "difference_pct_vs_without": -0.5345290199685638,
+        "n_train": 63
+      },
+      "alpha10_lag2": {
+        "origin": "2026M08",
+        "horizon_months": 3,
+        "alpha": 10.0,
+        "lag_months": 2,
+        "feature_month": "2026M06",
+        "target_start": "2026M09",
+        "target_end": "2026M11",
+        "seasonal_source_start": "2025M09",
+        "seasonal_source_end": "2025M11",
+        "without_monthly_module": 1227.0,
+        "monthly_module_correction": -51.40308749045559,
+        "with_monthly_module": 1175.5969125095444,
+        "difference_count": -51.40308749045559,
+        "difference_pct_vs_without": -4.189330683818712,
+        "n_train": 63
+      }
+    },
+    "6": {
+      "alpha3_lag1": {
+        "origin": "2026M08",
+        "horizon_months": 6,
+        "alpha": 3.0,
+        "lag_months": 1,
+        "feature_month": "2026M07",
+        "target_start": "2026M09",
+        "target_end": "2027M02",
+        "seasonal_source_start": "2025M09",
+        "seasonal_source_end": "2026M02",
+        "without_monthly_module": 2157.0,
+        "monthly_module_correction": -59.70453479612583,
+        "with_monthly_module": 2097.2954652038743,
+        "difference_count": -59.70453479612583,
+        "difference_pct_vs_without": -2.767943198707734,
+        "n_train": 60
+      },
+      "alpha3_lag2": {
+        "origin": "2026M08",
+        "horizon_months": 6,
+        "alpha": 3.0,
+        "lag_months": 2,
+        "feature_month": "2026M06",
+        "target_start": "2026M09",
+        "target_end": "2027M02",
+        "seasonal_source_start": "2025M09",
+        "seasonal_source_end": "2026M02",
+        "without_monthly_module": 2157.0,
+        "monthly_module_correction": -168.76584146783105,
+        "with_monthly_module": 1988.234158532169,
+        "difference_count": -168.76584146783105,
+        "difference_pct_vs_without": -7.824100207131713,
+        "n_train": 60
+      },
+      "alpha10_lag1": {
+        "origin": "2026M08",
+        "horizon_months": 6,
+        "alpha": 10.0,
+        "lag_months": 1,
+        "feature_month": "2026M07",
+        "target_start": "2026M09",
+        "target_end": "2027M02",
+        "seasonal_source_start": "2025M09",
+        "seasonal_source_end": "2026M02",
+        "without_monthly_module": 2157.0,
+        "monthly_module_correction": -48.674898102239766,
+        "with_monthly_module": 2108.3251018977603,
+        "difference_count": -48.674898102239766,
+        "difference_pct_vs_without": -2.2566016737246066,
+        "n_train": 60
+      },
+      "alpha10_lag2": {
+        "origin": "2026M08",
+        "horizon_months": 6,
+        "alpha": 10.0,
+        "lag_months": 2,
+        "feature_month": "2026M06",
+        "target_start": "2026M09",
+        "target_end": "2027M02",
+        "seasonal_source_start": "2025M09",
+        "seasonal_source_end": "2026M02",
+        "without_monthly_module": 2157.0,
+        "monthly_module_correction": -152.30568652482302,
+        "with_monthly_module": 2004.694313475177,
+        "difference_count": -152.30568652482302,
+        "difference_pct_vs_without": -7.060996130033519,
+        "n_train": 60
+      }
+    },
+    "9": {
+      "alpha3_lag1": {
+        "origin": "2026M08",
+        "horizon_months": 9,
+        "alpha": 3.0,
+        "lag_months": 1,
+        "feature_month": "2026M07",
+        "target_start": "2026M09",
+        "target_end": "2027M05",
+        "seasonal_source_start": "2025M09",
+        "seasonal_source_end": "2026M05",
+        "without_monthly_module": 2928.0,
+        "monthly_module_correction": -48.44716691012864,
+        "with_monthly_module": 2879.5528330898715,
+        "difference_count": -48.44716691012864,
+        "difference_pct_vs_without": -1.6546163562202403,
+        "n_train": 57
+      },
+      "alpha3_lag2": {
+        "origin": "2026M08",
+        "horizon_months": 9,
+        "alpha": 3.0,
+        "lag_months": 2,
+        "feature_month": "2026M06",
+        "target_start": "2026M09",
+        "target_end": "2027M05",
+        "seasonal_source_start": "2025M09",
+        "seasonal_source_end": "2026M05",
+        "without_monthly_module": 2928.0,
+        "monthly_module_correction": -211.71767038896957,
+        "with_monthly_module": 2716.2823296110305,
+        "difference_count": -211.71767038896957,
+        "difference_pct_vs_without": -7.230794753721638,
+        "n_train": 57
+      },
+      "alpha10_lag1": {
+        "origin": "2026M08",
+        "horizon_months": 9,
+        "alpha": 10.0,
+        "lag_months": 1,
+        "feature_month": "2026M07",
+        "target_start": "2026M09",
+        "target_end": "2027M05",
+        "seasonal_source_start": "2025M09",
+        "seasonal_source_end": "2026M05",
+        "without_monthly_module": 2928.0,
+        "monthly_module_correction": -42.75430438099057,
+        "with_monthly_module": 2885.2456956190094,
+        "difference_count": -42.75430438099057,
+        "difference_pct_vs_without": -1.4601879911540496,
+        "n_train": 57
+      },
+      "alpha10_lag2": {
+        "origin": "2026M08",
+        "horizon_months": 9,
+        "alpha": 10.0,
+        "lag_months": 2,
+        "feature_month": "2026M06",
+        "target_start": "2026M09",
+        "target_end": "2027M05",
+        "seasonal_source_start": "2025M09",
+        "seasonal_source_end": "2026M05",
+        "without_monthly_module": 2928.0,
+        "monthly_module_correction": -195.8832019132626,
+        "with_monthly_module": 2732.1167980867376,
+        "difference_count": -195.8832019132626,
+        "difference_pct_vs_without": -6.690000065343668,
+        "n_train": 57
+      }
+    },
+    "12": {
+      "alpha3_lag1": {
+        "origin": "2026M08",
+        "horizon_months": 12,
+        "alpha": 3.0,
+        "lag_months": 1,
+        "feature_month": "2026M07",
+        "target_start": "2026M09",
+        "target_end": "2027M08",
+        "seasonal_source_start": "2025M09",
+        "seasonal_source_end": "2026M08",
+        "without_monthly_module": 4353.0,
+        "monthly_module_correction": -47.20026537975748,
+        "with_monthly_module": 4305.799734620243,
+        "difference_count": -47.20026537975748,
+        "difference_pct_vs_without": -1.084315767970537,
+        "n_train": 54
+      },
+      "alpha3_lag2": {
+        "origin": "2026M08",
+        "horizon_months": 12,
+        "alpha": 3.0,
+        "lag_months": 2,
+        "feature_month": "2026M06",
+        "target_start": "2026M09",
+        "target_end": "2027M08",
+        "seasonal_source_start": "2025M09",
+        "seasonal_source_end": "2026M08",
+        "without_monthly_module": 4353.0,
+        "monthly_module_correction": -229.68881243637657,
+        "with_monthly_module": 4123.311187563623,
+        "difference_count": -229.68881243637657,
+        "difference_pct_vs_without": -5.276563575381957,
+        "n_train": 54
+      },
+      "alpha10_lag1": {
+        "origin": "2026M08",
+        "horizon_months": 12,
+        "alpha": 10.0,
+        "lag_months": 1,
+        "feature_month": "2026M07",
+        "target_start": "2026M09",
+        "target_end": "2027M08",
+        "seasonal_source_start": "2025M09",
+        "seasonal_source_end": "2026M08",
+        "without_monthly_module": 4353.0,
+        "monthly_module_correction": -43.232445225022644,
+        "with_monthly_module": 4309.767554774978,
+        "difference_count": -43.232445225022644,
+        "difference_pct_vs_without": -0.9931643745697829,
+        "n_train": 54
+      },
+      "alpha10_lag2": {
+        "origin": "2026M08",
+        "horizon_months": 12,
+        "alpha": 10.0,
+        "lag_months": 2,
+        "feature_month": "2026M06",
+        "target_start": "2026M09",
+        "target_end": "2027M08",
+        "seasonal_source_start": "2025M09",
+        "seasonal_source_end": "2026M08",
+        "without_monthly_module": 4353.0,
+        "monthly_module_correction": -215.0385173167865,
+        "with_monthly_module": 4137.961482683213,
+        "difference_count": -215.0385173167865,
+        "difference_pct_vs_without": -4.940007289611453,
+        "n_train": 54
+      }
+    }
+  },
+  "historical_common_origin_performance": {
+    "3": {
+      "3.0": {
+        "lag1": {
+          "n_origins": 37,
+          "without_monthly_module": {
+            "rmse": 99.47388629210208,
+            "mae": 78.51351351351352,
+            "bias": -35.972972972972975
+          },
+          "with_monthly_module": {
+            "rmse": 95.43309112421666,
+            "mae": 71.5913677996075,
+            "bias": -19.52829421105762
+          },
+          "delta_rmse_pct": -4.062166784174637,
+          "delta_mae_pct": -8.816502286214211
+        },
+        "lag2": {
+          "n_origins": 37,
+          "without_monthly_module": {
+            "rmse": 99.47388629210208,
+            "mae": 78.51351351351352,
+            "bias": -35.972972972972975
+          },
+          "with_monthly_module": {
+            "rmse": 93.80571008095028,
+            "mae": 70.86489378052708,
+            "bias": -19.617771680182393
+          },
+          "delta_rmse_pct": -5.6981549856284675,
+          "delta_mae_pct": -9.741787611721097
+        }
+      },
+      "10.0": {
+        "lag1": {
+          "n_origins": 37,
+          "without_monthly_module": {
+            "rmse": 99.47388629210208,
+            "mae": 78.51351351351352,
+            "bias": -35.972972972972975
+          },
+          "with_monthly_module": {
+            "rmse": 95.48170979843168,
+            "mae": 71.35166026425455,
+            "bias": -20.87963607710065
+          },
+          "delta_rmse_pct": -4.013290967588712,
+          "delta_mae_pct": -9.121809646216239
+        },
+        "lag2": {
+          "n_origins": 37,
+          "without_monthly_module": {
+            "rmse": 99.47388629210208,
+            "mae": 78.51351351351352,
+            "bias": -35.972972972972975
+          },
+          "with_monthly_module": {
+            "rmse": 94.13943407707919,
+            "mae": 71.13026496620212,
+            "bias": -21.0256737838282
+          },
+          "delta_rmse_pct": -5.36266593561896,
+          "delta_mae_pct": -9.403793330482667
+        }
+      }
+    },
+    "6": {
+      "3.0": {
+        "lag1": {
+          "n_origins": 31,
+          "without_monthly_module": {
+            "rmse": 164.53933738892684,
+            "mae": 128.09677419354838,
+            "bias": -115.45161290322581
+          },
+          "with_monthly_module": {
+            "rmse": 145.28510054759627,
+            "mae": 113.01197011604954,
+            "bias": -83.06959961513897
+          },
+          "delta_rmse_pct": -11.701904934635,
+          "delta_mae_pct": -11.776099884222212
+        },
+        "lag2": {
+          "n_origins": 31,
+          "without_monthly_module": {
+            "rmse": 164.53933738892684,
+            "mae": 128.09677419354838,
+            "bias": -115.45161290322581
+          },
+          "with_monthly_module": {
+            "rmse": 141.04240553286087,
+            "mae": 112.1857938123489,
+            "bias": -77.21255837191904
+          },
+          "delta_rmse_pct": -14.280434228640127,
+          "delta_mae_pct": -12.421062498544044
+        }
+      },
+      "10.0": {
+        "lag1": {
+          "n_origins": 31,
+          "without_monthly_module": {
+            "rmse": 164.53933738892684,
+            "mae": 128.09677419354838,
+            "bias": -115.45161290322581
+          },
+          "with_monthly_module": {
+            "rmse": 147.65237198467383,
+            "mae": 114.42398320694647,
+            "bias": -84.99698888034428
+          },
+          "delta_rmse_pct": -10.26317819934861,
+          "delta_mae_pct": -10.673798050482475
+        },
+        "lag2": {
+          "n_origins": 31,
+          "without_monthly_module": {
+            "rmse": 164.53933738892684,
+            "mae": 128.09677419354838,
+            "bias": -115.45161290322581
+          },
+          "with_monthly_module": {
+            "rmse": 144.20807854436572,
+            "mae": 114.53224866780836,
+            "bias": -80.7912298080715
+          },
+          "delta_rmse_pct": -12.356473027786341,
+          "delta_mae_pct": -10.589279559253107
+        }
+      }
+    },
+    "9": {
+      "3.0": {
+        "lag1": {
+          "n_origins": 25,
+          "without_monthly_module": {
+            "rmse": 243.0316851770567,
+            "mae": 207.6,
+            "bias": -207.6
+          },
+          "with_monthly_module": {
+            "rmse": 200.61130714188155,
+            "mae": 166.4189299670165,
+            "bias": -135.64472574726017
+          },
+          "delta_rmse_pct": -17.454669749860173,
+          "delta_mae_pct": -19.83673893688993
+        },
+        "lag2": {
+          "n_origins": 25,
+          "without_monthly_module": {
+            "rmse": 243.0316851770567,
+            "mae": 207.6,
+            "bias": -207.6
+          },
+          "with_monthly_module": {
+            "rmse": 201.65520803786848,
+            "mae": 170.62400531075866,
+            "bias": -126.65908508353372
+          },
+          "delta_rmse_pct": -17.02513691128137,
+          "delta_mae_pct": -17.81117277901798
+        }
+      },
+      "10.0": {
+        "lag1": {
+          "n_origins": 25,
+          "without_monthly_module": {
+            "rmse": 243.0316851770567,
+            "mae": 207.6,
+            "bias": -207.6
+          },
+          "with_monthly_module": {
+            "rmse": 207.84750389366675,
+            "mae": 170.52671869034327,
+            "bias": -144.36433287183803
+          },
+          "delta_rmse_pct": -14.477199241636773,
+          "delta_mae_pct": -17.85803531293676
+        },
+        "lag2": {
+          "n_origins": 25,
+          "without_monthly_module": {
+            "rmse": 243.0316851770567,
+            "mae": 207.6,
+            "bias": -207.6
+          },
+          "with_monthly_module": {
+            "rmse": 208.99086920978127,
+            "mae": 174.6945121906022,
+            "bias": -136.6524833226906
+          },
+          "delta_rmse_pct": -14.006739879401142,
+          "delta_mae_pct": -15.850427653852496
+        }
+      }
+    },
+    "12": {
+      "3.0": {
+        "lag1": {
+          "n_origins": 19,
+          "without_monthly_module": {
+            "rmse": 295.3477878526834,
+            "mae": 253.89473684210526,
+            "bias": -253.89473684210526
+          },
+          "with_monthly_module": {
+            "rmse": 264.1883521419831,
+            "mae": 210.19072700617645,
+            "bias": -172.91693255224078
+          },
+          "delta_rmse_pct": -10.550082645698467,
+          "delta_mae_pct": -17.213436709839293
+        },
+        "lag2": {
+          "n_origins": 19,
+          "without_monthly_module": {
+            "rmse": 295.3477878526834,
+            "mae": 253.89473684210526,
+            "bias": -253.89473684210526
+          },
+          "with_monthly_module": {
+            "rmse": 264.593938955153,
+            "mae": 208.22267959390265,
+            "bias": -177.94081017851823
+          },
+          "delta_rmse_pct": -10.412757488764424,
+          "delta_mae_pct": -17.988579761937185
+        }
+      },
+      "10.0": {
+        "lag1": {
+          "n_origins": 19,
+          "without_monthly_module": {
+            "rmse": 295.3477878526834,
+            "mae": 253.89473684210526,
+            "bias": -253.89473684210526
+          },
+          "with_monthly_module": {
+            "rmse": 272.80400745724205,
+            "mae": 217.85613691973614,
+            "bias": -186.02607802860564
+          },
+          "delta_rmse_pct": -7.632960639165498,
+          "delta_mae_pct": -14.19430759794803
+        },
+        "lag2": {
+          "n_origins": 19,
+          "without_monthly_module": {
+            "rmse": 295.3477878526834,
+            "mae": 253.89473684210526,
+            "bias": -253.89473684210526
+          },
+          "with_monthly_module": {
+            "rmse": 274.0441213358392,
+            "mae": 217.53995870913414,
+            "bias": -191.0389005963465
+          },
+          "delta_rmse_pct": -7.213078070342704,
+          "delta_mae_pct": -14.318838816883318
+        }
+      }
+    }
+  }
+}
