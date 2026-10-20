@@ -1,0 +1,39 @@
+{
+  "status": "rates_25_29_alpha_lag_gate_complete",
+  "date": "2026-10-20",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "selected": {
+    "backward_window_months": 12,
+    "features": [
+      "bas2_age25_29_sysselsattningsgrad_yoy_pp",
+      "bas2_age25_29_arbetskraftsdeltagande_yoy_pp"
+    ],
+    "ridge_alpha": 3,
+    "lag_months": 1
+  },
+  "diagnostic_challenger": {
+    "ridge_alpha": 3,
+    "lag_months": 2
+  },
+  "robustness_reference": {
+    "ridge_alpha": 10,
+    "lags_months": [
+      1,
+      2
+    ]
+  },
+  "rationale": [
+    "alpha 3 is stronger than alpha 10 on the primary 9- and 12-month horizons",
+    "lag 1 is slightly stronger than lag 2 on 9- and 12-month horizons",
+    "lag 1 produces a substantially less sensitive current forecast correction",
+    "lag 2's larger current downward adjustment is not matched by superior long-horizon backtest performance"
+  ],
+  "preferred_module_rmse_improvement_pct_vs_without": {
+    "3": -4.062166784174637,
+    "6": -11.701904934635,
+    "9": -17.454669749860173,
+    "12": -10.550082645698467
+  },
+  "next_step": "validate operational integration and reporting of preferred monthly module without changing frozen core-4"
+}
