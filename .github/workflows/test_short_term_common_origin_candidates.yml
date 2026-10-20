@@ -1,0 +1,33 @@
+name: Compare monthly candidates on common origins
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/test_short_term_common_origin_candidates.py
+      - .github/workflows/test_short_term_common_origin_candidates.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy scikit-learn
+      - run: python scripts/test_short_term_common_origin_candidates.py
+      - name: Commit comparison results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/short_term_monthly_common_origin_candidate_comparison.json
+          git add docs/data/short_term_monthly_common_origin_candidate_comparison_predictions.csv
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Compare monthly candidates on common origins"
+          git pull --rebase origin main
+          git push origin HEAD:main
