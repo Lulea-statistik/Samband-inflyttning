@@ -1,0 +1,23 @@
+{
+  "status": "rates_25_29_feature_count_gate_complete",
+  "date": "2026-10-20",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "backward_window_months": 12,
+  "selected_feature_count": 2,
+  "selected_features": [
+    "bas2_age25_29_sysselsattningsgrad_yoy_pp",
+    "bas2_age25_29_arbetskraftsdeltagande_yoy_pp"
+  ],
+  "rejected_simplification": "single_variable",
+  "evidence": "two-variable specification improves RMSE materially on 9- and 12-month horizons versus the best single-variable arm",
+  "preferred_alpha_candidates": [
+    3,
+    10
+  ],
+  "lag_candidates": [
+    1,
+    2
+  ],
+  "next_step": "select alpha and lag with feature set fixed"
+}
