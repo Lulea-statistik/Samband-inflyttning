@@ -1,0 +1,157 @@
+{
+  "status": "outmigration_monthly_12m_stability_gate",
+  "generated_at_utc": "2026-10-20T11:34:03.345871+00:00",
+  "production_changed": false,
+  "annual_outmigration_blend_changed": false,
+  "horizon_months": 12,
+  "gate": {
+    "rmse_improvement_pct_at_least": 5,
+    "mae_improvement_pct_at_least": 5,
+    "year_rmse_wins": "all but at most one origin-year",
+    "leave_one_origin_out": "must remain better than seasonal for every omitted origin"
+  },
+  "candidates": {
+    "rates_25_29_lag1_alpha30": {
+      "arm": "rates_25_29_lag1",
+      "alpha": 30.0,
+      "overall": {
+        "n_origins": 19,
+        "first_origin": "2024M02",
+        "last_origin": "2025M08",
+        "rmse": 77.54283855681977,
+        "seasonal_rmse": 86.32679647405945,
+        "delta_rmse_pct_vs_seasonal": -10.175239063665698,
+        "mae": 63.352779707517634,
+        "seasonal_mae": 77.26315789473684,
+        "delta_mae_pct_vs_seasonal": -18.003895473921318,
+        "year_rmse_wins": 2,
+        "year_count": 2,
+        "loo_worst_delta_rmse_pct": -3.2448819209627056,
+        "loo_all_still_better": true
+      },
+      "by_origin_year": {
+        "2024": {
+          "n_origins": 11,
+          "delta_rmse_pct_vs_seasonal": -14.786582294307859,
+          "delta_mae_pct_vs_seasonal": -21.698665023790586,
+          "rmse_win": true
+        },
+        "2025": {
+          "n_origins": 8,
+          "delta_rmse_pct_vs_seasonal": -3.4868815284450627,
+          "delta_mae_pct_vs_seasonal": -12.82154276649421,
+          "rmse_win": true
+        }
+      },
+      "passes_gate": true
+    },
+    "rates_25_29_lag1_alpha10": {
+      "arm": "rates_25_29_lag1",
+      "alpha": 10.0,
+      "overall": {
+        "n_origins": 19,
+        "first_origin": "2024M02",
+        "last_origin": "2025M08",
+        "rmse": 79.61101898944115,
+        "seasonal_rmse": 86.32679647405945,
+        "delta_rmse_pct_vs_seasonal": -7.779481874595384,
+        "mae": 66.54992052758836,
+        "seasonal_mae": 77.26315789473684,
+        "delta_mae_pct_vs_seasonal": -13.865906674102257,
+        "year_rmse_wins": 1,
+        "year_count": 2,
+        "loo_worst_delta_rmse_pct": -0.07386616443376681,
+        "loo_all_still_better": true
+      },
+      "by_origin_year": {
+        "2024": {
+          "n_origins": 11,
+          "delta_rmse_pct_vs_seasonal": -16.573184360636052,
+          "delta_mae_pct_vs_seasonal": -22.784951879961024,
+          "rmse_win": true
+        },
+        "2025": {
+          "n_origins": 8,
+          "delta_rmse_pct_vs_seasonal": 4.352975363304434,
+          "delta_mae_pct_vs_seasonal": -1.3558874573740276,
+          "rmse_win": false
+        }
+      },
+      "passes_gate": true
+    },
+    "family1_bas_yoy_lag2_alpha30": {
+      "arm": "family1_bas_yoy_lag2",
+      "alpha": 30.0,
+      "overall": {
+        "n_origins": 19,
+        "first_origin": "2024M02",
+        "last_origin": "2025M08",
+        "rmse": 80.55114880555755,
+        "seasonal_rmse": 86.32679647405945,
+        "delta_rmse_pct_vs_seasonal": -6.690445961628432,
+        "mae": 66.54337321872408,
+        "seasonal_mae": 77.26315789473684,
+        "delta_mae_pct_vs_seasonal": -13.874380711460644,
+        "year_rmse_wins": 2,
+        "year_count": 2,
+        "loo_worst_delta_rmse_pct": -1.7829153086990734,
+        "loo_all_still_better": true
+      },
+      "by_origin_year": {
+        "2024": {
+          "n_origins": 11,
+          "delta_rmse_pct_vs_seasonal": -6.846802218038539,
+          "delta_mae_pct_vs_seasonal": -16.029350433859612,
+          "rmse_win": true
+        },
+        "2025": {
+          "n_origins": 8,
+          "delta_rmse_pct_vs_seasonal": -6.4495378817671645,
+          "delta_mae_pct_vs_seasonal": -10.851779971532793,
+          "rmse_win": true
+        }
+      },
+      "passes_gate": true
+    },
+    "family1_bas_yoy_lag2_alpha10": {
+      "arm": "family1_bas_yoy_lag2",
+      "alpha": 10.0,
+      "overall": {
+        "n_origins": 19,
+        "first_origin": "2024M02",
+        "last_origin": "2025M08",
+        "rmse": 82.23767123232376,
+        "seasonal_rmse": 86.32679647405945,
+        "delta_rmse_pct_vs_seasonal": -4.736797157721984,
+        "mae": 69.72989202060003,
+        "seasonal_mae": 77.26315789473684,
+        "delta_mae_pct_vs_seasonal": -9.75013975535417,
+        "year_rmse_wins": 2,
+        "year_count": 2,
+        "loo_worst_delta_rmse_pct": -0.05425319556847663,
+        "loo_all_still_better": true
+      },
+      "by_origin_year": {
+        "2024": {
+          "n_origins": 11,
+          "delta_rmse_pct_vs_seasonal": -4.054914758263473,
+          "delta_mae_pct_vs_seasonal": -12.638060659964145,
+          "rmse_win": true
+        },
+        "2025": {
+          "n_origins": 8,
+          "delta_rmse_pct_vs_seasonal": -5.799349230244766,
+          "delta_mae_pct_vs_seasonal": -5.699488011899589,
+          "rmse_win": true
+        }
+      },
+      "passes_gate": false
+    }
+  },
+  "passing_candidates": [
+    "rates_25_29_lag1_alpha30",
+    "rates_25_29_lag1_alpha10",
+    "family1_bas_yoy_lag2_alpha30"
+  ],
+  "promotion_status": "eligible_for_next_gate"
+}
