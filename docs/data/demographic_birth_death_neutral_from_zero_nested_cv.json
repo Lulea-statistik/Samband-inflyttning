@@ -81,7 +81,7 @@
       "n_candidates": 75,
       "rmse": 0.10216642386194667,
       "mae": 0.07798274150122185,
-      "bias_actual_minus_prediction": 0.00031663672270838334,
+      "bias_actual_minus_prediction": 0.00031663672270838345,
       "eligible_demographic_candidates": [
         "lag1_fodda_total",
         "lag1_fodda_share_mor_15_24_pct",
@@ -265,8 +265,8 @@
         },
         {
           "fold": 3,
-          "rmse": 0.10330057354355401,
-          "mae": 0.07793657356862507,
+          "rmse": 0.10330057354355403,
+          "mae": 0.07793657356862509,
           "alpha": 0.03,
           "l1_ratio": 0.3,
           "nonzero_features": 11
@@ -299,8 +299,8 @@
       "n_municipalities": 290,
       "n_candidates": 97,
       "rmse": 0.09821418383172209,
-      "mae": 0.07536500285872692,
-      "bias_actual_minus_prediction": 0.0004913625610033734,
+      "mae": 0.07536500285872691,
+      "bias_actual_minus_prediction": 0.0004913625610033741,
       "eligible_demographic_candidates": [
         "lag1_fodda_total",
         "lag1_fodda_share_mor_15_24_pct",
@@ -442,7 +442,7 @@
         {
           "fold": 1,
           "rmse": 0.10379887047837864,
-          "mae": 0.07642698098133953,
+          "mae": 0.07642698098133956,
           "alpha": 0.03,
           "l1_ratio": 0.3,
           "nonzero_features": 16
@@ -465,7 +465,7 @@
         },
         {
           "fold": 4,
-          "rmse": 0.09065753721920042,
+          "rmse": 0.09065753721920043,
           "mae": 0.07235605742755014,
           "alpha": 0.03,
           "l1_ratio": 0.3,
@@ -494,7 +494,7 @@
       "n_candidates": 75,
       "rmse": 1.289682091817564,
       "mae": 0.9187472826406422,
-      "bias_actual_minus_prediction": 0.003375727396560405,
+      "bias_actual_minus_prediction": 0.003375727396560486,
       "eligible_demographic_candidates": [
         "lag1_fodda_total",
         "lag1_fodda_share_mor_15_24_pct",
@@ -692,14 +692,14 @@
         {
           "fold": 1,
           "rmse": 1.387007862627777,
-          "mae": 0.9458915014868651,
+          "mae": 0.9458915014868653,
           "alpha": 0.03,
           "l1_ratio": 1.0,
           "nonzero_features": 25
         },
         {
           "fold": 2,
-          "rmse": 1.2195918466658986,
+          "rmse": 1.2195918466658984,
           "mae": 0.904581326814353,
           "alpha": 0.03,
           "l1_ratio": 1.0,
@@ -723,8 +723,8 @@
         },
         {
           "fold": 5,
-          "rmse": 1.1391777031808845,
-          "mae": 0.8492308277422456,
+          "rmse": 1.1391777031808847,
+          "mae": 0.8492308277422459,
           "alpha": 0.03,
           "l1_ratio": 1.0,
           "nonzero_features": 30
@@ -741,8 +741,8 @@
       "n_municipalities": 290,
       "n_candidates": 97,
       "rmse": 1.2913586924649054,
-      "mae": 0.8890954595514294,
-      "bias_actual_minus_prediction": -0.006974223716938717,
+      "mae": 0.8890954595514295,
+      "bias_actual_minus_prediction": -0.00697422371693872,
       "eligible_demographic_candidates": [
         "lag1_fodda_total",
         "lag1_fodda_share_mor_15_24_pct",
@@ -923,8 +923,8 @@
         },
         {
           "fold": 2,
-          "rmse": 1.1431209660087218,
-          "mae": 0.870555830336678,
+          "rmse": 1.143120966008722,
+          "mae": 0.8705558303366783,
           "alpha": 0.03,
           "l1_ratio": 1.0,
           "nonzero_features": 36
@@ -940,7 +940,7 @@
         {
           "fold": 4,
           "rmse": 1.0723420678182798,
-          "mae": 0.7754814906242489,
+          "mae": 0.7754814906242492,
           "alpha": 0.03,
           "l1_ratio": 1.0,
           "nonzero_features": 34
@@ -948,7 +948,7 @@
         {
           "fold": 5,
           "rmse": 1.1329865154558443,
-          "mae": 0.834614929576936,
+          "mae": 0.8346149295769357,
           "alpha": 0.03,
           "l1_ratio": 1.0,
           "nonzero_features": 36

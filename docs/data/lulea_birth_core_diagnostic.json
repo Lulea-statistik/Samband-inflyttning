@@ -1,0 +1,310 @@
+{
+  "status": "lulea_birth_core_diagnostic",
+  "production_changed": false,
+  "window_years": 3,
+  "specs": {
+    "lag1_only": {
+      "features": [
+        "lag1_fodelsetal_per_100"
+      ],
+      "raw": {
+        "rmse_rate": 0.0656825678705255,
+        "mae_rate": 0.051520209427212284,
+        "bias_rate": -0.028335202568758447
+      },
+      "corrected": {
+        "rmse_rate": 0.06536068040606992,
+        "mae_rate": 0.04915554196463856,
+        "bias_rate": -0.00968169226226344
+      },
+      "recent_2019_2024": {
+        "raw_rmse_rate": 0.06600472876176444,
+        "corrected_rmse_rate": 0.0655236785485326
+      },
+      "years": [
+        {
+          "year": 2016,
+          "alpha": 0.0,
+          "actual_rate": 1.0545735257559303,
+          "raw_rate": 0.9815373269496588,
+          "raw_error_actual_minus_prediction": 0.07303619880627155,
+          "bias_correction": 0.0,
+          "corrected_rate": 0.9815373269496588,
+          "corrected_error_actual_minus_prediction": 0.07303619880627155,
+          "actual_births": 806.0,
+          "raw_births": 750.1791636143548,
+          "corrected_births": 750.1791636143548
+        },
+        {
+          "year": 2017,
+          "alpha": 0.0,
+          "actual_rate": 0.9815871369294604,
+          "raw_rate": 1.0622114855084563,
+          "raw_error_actual_minus_prediction": -0.08062434857899592,
+          "bias_correction": 0.0,
+          "corrected_rate": 1.0622114855084563,
+          "corrected_error_actual_minus_prediction": -0.08062434857899592,
+          "actual_births": 756.9999999999999,
+          "raw_births": 819.1774976241214,
+          "corrected_births": 819.1774976241214
+        },
+        {
+          "year": 2018,
+          "alpha": 0.0,
+          "actual_rate": 0.9722991333015673,
+          "raw_rate": 1.0015135178621646,
+          "raw_error_actual_minus_prediction": -0.02921438456059733,
+          "bias_correction": 0.0,
+          "corrected_rate": 1.0015135178621646,
+          "corrected_error_actual_minus_prediction": -0.02921438456059733,
+          "actual_births": 755.0,
+          "raw_births": 777.6852617551494,
+          "corrected_births": 777.6852617551494
+        },
+        {
+          "year": 2019,
+          "alpha": 0.0,
+          "actual_rate": 0.9773177629427268,
+          "raw_rate": 0.9962363611417318,
+          "raw_error_actual_minus_prediction": -0.018918598199004988,
+          "bias_correction": -0.012267511444440568,
+          "corrected_rate": 0.9839688496972911,
+          "corrected_error_actual_minus_prediction": -0.006651086754564384,
+          "actual_births": 761.9999999999999,
+          "raw_births": 776.7505472367911,
+          "corrected_births": 767.1857525762325
+        },
+        {
+          "year": 2020,
+          "alpha": 0.0,
+          "actual_rate": 0.9664611181329554,
+          "raw_rate": 0.9828704077154031,
+          "raw_error_actual_minus_prediction": -0.016409289582447695,
+          "bias_correction": -0.042919110446199414,
+          "corrected_rate": 0.9399512972692037,
+          "corrected_error_actual_minus_prediction": 0.026509820863751754,
+          "actual_births": 757.0,
+          "raw_births": 769.8529042512438,
+          "corrected_births": 736.2356526120492
+        },
+        {
+          "year": 2021,
+          "alpha": 0.0,
+          "actual_rate": 0.997357320729786,
+          "raw_rate": 0.9660609886730153,
+          "raw_error_actual_minus_prediction": 0.03129633205677074,
+          "bias_correction": -0.021514090780683337,
+          "corrected_rate": 0.9445468978923319,
+          "corrected_error_actual_minus_prediction": 0.052810422837454074,
+          "actual_births": 785.0,
+          "raw_births": 760.3672829647569,
+          "corrected_births": 743.4339723930966
+        },
+        {
+          "year": 2022,
+          "alpha": 0.0,
+          "actual_rate": 0.8348565248464687,
+          "raw_rate": 0.9831133910089509,
+          "raw_error_actual_minus_prediction": -0.14825686616248224,
+          "bias_correction": -0.0013438519082273153,
+          "corrected_rate": 0.9817695391007236,
+          "corrected_error_actual_minus_prediction": -0.14691301425425496,
+          "actual_births": 660.0,
+          "raw_births": 777.2052068290811,
+          "corrected_births": 776.1428179837726
+        },
+        {
+          "year": 2023,
+          "alpha": 0.0,
+          "actual_rate": 0.8259981336225378,
+          "raw_rate": 0.8451788603653803,
+          "raw_error_actual_minus_prediction": -0.019180726742842436,
+          "bias_correction": -0.04445660789605307,
+          "corrected_rate": 0.8007222524693272,
+          "corrected_error_actual_minus_prediction": 0.025275881153210666,
+          "actual_births": 655.0000000000001,
+          "raw_births": 670.2099326925393,
+          "corrected_births": 634.956731763127
+        },
+        {
+          "year": 2024,
+          "alpha": 0.0,
+          "actual_rate": 0.7710837311395813,
+          "raw_rate": 0.817828871295079,
+          "raw_error_actual_minus_prediction": -0.04674514015549769,
+          "bias_correction": -0.04538042028285131,
+          "corrected_rate": 0.7724484510122277,
+          "corrected_error_actual_minus_prediction": -0.0013647198726464138,
+          "actual_births": 613.0,
+          "raw_births": 650.1616852465183,
+          "corrected_births": 614.0849318279558
+        }
+      ]
+    },
+    "lag1_plus_age20_34": {
+      "features": [
+        "lag1_fodelsetal_per_100",
+        "lag1_andel_20_34"
+      ],
+      "raw": {
+        "rmse_rate": 0.1425743932201489,
+        "mae_rate": 0.13541369793883407,
+        "bias_rate": -0.13541369793883407
+      },
+      "corrected": {
+        "rmse_rate": 0.09226168182523094,
+        "mae_rate": 0.07132062054149188,
+        "bias_rate": -0.04958244012952952
+      },
+      "recent_2019_2024": {
+        "raw_rmse_rate": 0.14691005453425673,
+        "corrected_rmse_rate": 0.062126521067480095
+      },
+      "years": [
+        {
+          "year": 2016,
+          "alpha": 3.0,
+          "actual_rate": 1.0545735257559303,
+          "raw_rate": 1.1602743337349768,
+          "raw_error_actual_minus_prediction": -0.10570080797904646,
+          "bias_correction": 0.0,
+          "corrected_rate": 1.1602743337349768,
+          "corrected_error_actual_minus_prediction": -0.10570080797904646,
+          "actual_births": 806.0,
+          "raw_births": 886.7860705303054,
+          "corrected_births": 886.7860705303054
+        },
+        {
+          "year": 2017,
+          "alpha": 0.0,
+          "actual_rate": 0.9815871369294604,
+          "raw_rate": 1.138740124311149,
+          "raw_error_actual_minus_prediction": -0.1571529873816886,
+          "bias_correction": 0.0,
+          "corrected_rate": 1.138740124311149,
+          "corrected_error_actual_minus_prediction": -0.1571529873816886,
+          "actual_births": 756.9999999999999,
+          "raw_births": 878.1963838687582,
+          "corrected_births": 878.1963838687582
+        },
+        {
+          "year": 2018,
+          "alpha": 0.0,
+          "actual_rate": 0.9722991333015673,
+          "raw_rate": 1.1048963106051608,
+          "raw_error_actual_minus_prediction": -0.13259717730359355,
+          "bias_correction": 0.0,
+          "corrected_rate": 1.1048963106051608,
+          "corrected_error_actual_minus_prediction": -0.13259717730359355,
+          "actual_births": 755.0,
+          "raw_births": 857.9630341480134,
+          "corrected_births": 857.9630341480134
+        },
+        {
+          "year": 2019,
+          "alpha": 0.0,
+          "actual_rate": 0.9773177629427268,
+          "raw_rate": 1.0910772403379312,
+          "raw_error_actual_minus_prediction": -0.11375947739520442,
+          "bias_correction": -0.13181699088810953,
+          "corrected_rate": 0.9592602494498217,
+          "corrected_error_actual_minus_prediction": 0.018057513492905075,
+          "actual_births": 761.9999999999999,
+          "raw_births": 850.6965581328799,
+          "corrected_births": 747.9208275922842
+        },
+        {
+          "year": 2020,
+          "alpha": 3.0,
+          "actual_rate": 0.9664611181329554,
+          "raw_rate": 1.0834972459951968,
+          "raw_error_actual_minus_prediction": -0.11703612786224138,
+          "bias_correction": -0.13450321402682885,
+          "corrected_rate": 0.948994031968368,
+          "corrected_error_actual_minus_prediction": 0.017467086164587475,
+          "actual_births": 757.0,
+          "raw_births": 848.6708878706578,
+          "corrected_births": 743.3185554198635
+        },
+        {
+          "year": 2021,
+          "alpha": 0.3,
+          "actual_rate": 0.997357320729786,
+          "raw_rate": 1.063365522766113,
+          "raw_error_actual_minus_prediction": -0.06600820203632696,
+          "bias_correction": -0.12113092752034645,
+          "corrected_rate": 0.9422345952457665,
+          "corrected_error_actual_minus_prediction": 0.05512272548401953,
+          "actual_births": 785.0,
+          "raw_births": 836.9537356587521,
+          "corrected_births": 741.6140052260379
+        },
+        {
+          "year": 2022,
+          "alpha": 0.0,
+          "actual_rate": 0.8348565248464687,
+          "raw_rate": 1.0728824967305384,
+          "raw_error_actual_minus_prediction": -0.2380259718840697,
+          "bias_correction": -0.09893460243125758,
+          "corrected_rate": 0.9739478942992807,
+          "corrected_error_actual_minus_prediction": -0.13909136945281209,
+          "actual_births": 660.0,
+          "raw_births": 848.1726222028108,
+          "corrected_births": 769.9593775777679
+        },
+        {
+          "year": 2023,
+          "alpha": 0.0,
+          "actual_rate": 0.8259981336225378,
+          "raw_rate": 0.9591804141710986,
+          "raw_error_actual_minus_prediction": -0.13318228054856074,
+          "bias_correction": -0.14035676726087934,
+          "corrected_rate": 0.8188236469102192,
+          "corrected_error_actual_minus_prediction": 0.007174486712318573,
+          "actual_births": 655.0000000000001,
+          "raw_births": 760.6108848293977,
+          "corrected_births": 649.3107755268657
+        },
+        {
+          "year": 2024,
+          "alpha": 0.0,
+          "actual_rate": 0.7710837311395813,
+          "raw_rate": 0.9263439801983561,
+          "raw_error_actual_minus_prediction": -0.15526024905877478,
+          "bias_correction": -0.14573881815631914,
+          "corrected_rate": 0.7806051620420369,
+          "corrected_error_actual_minus_prediction": -0.009521430902455608,
+          "actual_births": 613.0,
+          "raw_births": 736.42956909799,
+          "corrected_births": 620.5693947459887
+        }
+      ]
+    }
+  },
+  "ranking": [
+    {
+      "spec": "lag1_plus_age20_34",
+      "mode": "local_bias3",
+      "recent_rmse": 0.062126521067480095,
+      "full_rmse": 0.09226168182523094
+    },
+    {
+      "spec": "lag1_only",
+      "mode": "local_bias3",
+      "recent_rmse": 0.0655236785485326,
+      "full_rmse": 0.06536068040606992
+    },
+    {
+      "spec": "lag1_only",
+      "mode": "raw",
+      "recent_rmse": 0.06600472876176444,
+      "full_rmse": 0.0656825678705255
+    },
+    {
+      "spec": "lag1_plus_age20_34",
+      "mode": "raw",
+      "recent_rmse": 0.14691005453425673,
+      "full_rmse": 0.1425743932201489
+    }
+  ]
+}
