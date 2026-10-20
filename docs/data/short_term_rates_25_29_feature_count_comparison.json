@@ -1,0 +1,802 @@
+{
+  "status": "short_term_rates_25_29_feature_count_comparison",
+  "generated_at_utc": "2026-10-20T07:01:07.367296+00:00",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "backward_window_months": 12,
+  "alphas": [
+    3.0,
+    10.0
+  ],
+  "lags_months": [
+    1,
+    2
+  ],
+  "horizons_months": [
+    3,
+    6,
+    9,
+    12
+  ],
+  "arms": {
+    "employment_only_lag1": {
+      "lag": 1,
+      "features": [
+        "bas2_age25_29_sysselsattningsgrad_yoy_pp"
+      ]
+    },
+    "labour_force_only_lag1": {
+      "lag": 1,
+      "features": [
+        "bas2_age25_29_arbetskraftsdeltagande_yoy_pp"
+      ]
+    },
+    "both_rates_lag1": {
+      "lag": 1,
+      "features": [
+        "bas2_age25_29_sysselsattningsgrad_yoy_pp",
+        "bas2_age25_29_arbetskraftsdeltagande_yoy_pp"
+      ]
+    },
+    "employment_only_lag2": {
+      "lag": 2,
+      "features": [
+        "bas2_age25_29_sysselsattningsgrad_yoy_pp"
+      ]
+    },
+    "labour_force_only_lag2": {
+      "lag": 2,
+      "features": [
+        "bas2_age25_29_arbetskraftsdeltagande_yoy_pp"
+      ]
+    },
+    "both_rates_lag2": {
+      "lag": 2,
+      "features": [
+        "bas2_age25_29_sysselsattningsgrad_yoy_pp",
+        "bas2_age25_29_arbetskraftsdeltagande_yoy_pp"
+      ]
+    }
+  },
+  "common_origin_rule": "All one-feature and two-feature arms must be available on the same forecast origin.",
+  "training_rule": "Only historical rows whose full target window ended by the current forecast origin may enter training.",
+  "decision_question": "Does the second 25-29 labour-market rate add enough stable forecast value to justify keeping two variables?",
+  "summaries": {
+    "3": {
+      "3.0": {
+        "n_origins": 37,
+        "first_origin": "2023M05",
+        "last_origin": "2026M05",
+        "ranked_by_rmse": [
+          "both_rates_lag2",
+          "employment_only_lag2",
+          "labour_force_only_lag2",
+          "both_rates_lag1",
+          "employment_only_lag1",
+          "labour_force_only_lag1",
+          "seasonal"
+        ],
+        "stats": {
+          "seasonal": {
+            "rmse": 99.47388629210208,
+            "mae": 78.51351351351352,
+            "bias": -35.972972972972975
+          },
+          "employment_only_lag1": {
+            "rmse": 95.716130390861,
+            "mae": 72.06603849343401,
+            "bias": -17.330164311281266,
+            "delta_rmse_pct_vs_seasonal": -3.777630533310572,
+            "delta_mae_pct_vs_seasonal": -8.211930318173554
+          },
+          "labour_force_only_lag1": {
+            "rmse": 96.01729454139162,
+            "mae": 71.74982756838044,
+            "bias": -25.79724316118641,
+            "delta_rmse_pct_vs_seasonal": -3.4748735367192585,
+            "delta_mae_pct_vs_seasonal": -8.614677451632492
+          },
+          "both_rates_lag1": {
+            "rmse": 95.43309112421666,
+            "mae": 71.5913677996075,
+            "bias": -19.52829421105762,
+            "delta_rmse_pct_vs_seasonal": -4.062166784174637,
+            "delta_mae_pct_vs_seasonal": -8.816502286214211
+          },
+          "employment_only_lag2": {
+            "rmse": 94.43060436272117,
+            "mae": 70.80422880565663,
+            "bias": -19.398659176337432,
+            "delta_rmse_pct_vs_seasonal": -5.069955661098291,
+            "delta_mae_pct_vs_seasonal": -9.819054533242843
+          },
+          "labour_force_only_lag2": {
+            "rmse": 94.98693372148513,
+            "mae": 71.84199688074946,
+            "bias": -25.021108903092045,
+            "delta_rmse_pct_vs_seasonal": -4.510683896918577,
+            "delta_mae_pct_vs_seasonal": -8.497284523658177
+          },
+          "both_rates_lag2": {
+            "rmse": 93.80571008095028,
+            "mae": 70.86489378052708,
+            "bias": -19.617771680182393,
+            "delta_rmse_pct_vs_seasonal": -5.6981549856284675,
+            "delta_mae_pct_vs_seasonal": -9.741787611721097
+          }
+        },
+        "comparisons": {
+          "lag1": {
+            "employment_only_vs_both": {
+              "delta_rmse_pct": 0.29658398707417266,
+              "delta_mae_pct": 0.6630278320078675,
+              "bias_change": 2.1981298997763545
+            },
+            "labour_force_only_vs_both": {
+              "delta_rmse_pct": 0.6121602164332662,
+              "delta_mae_pct": 0.22133921119720235,
+              "bias_change": -6.268948950128792
+            },
+            "best_single_by_rmse": "employment_only"
+          },
+          "lag2": {
+            "employment_only_vs_both": {
+              "delta_rmse_pct": 0.6661580422254065,
+              "delta_mae_pct": -0.08560652762471532,
+              "bias_change": 0.21911250384496128
+            },
+            "labour_force_only_vs_both": {
+              "delta_rmse_pct": 1.2592236011171432,
+              "delta_mae_pct": 1.3788253225194058,
+              "bias_change": -5.403337222909652
+            },
+            "best_single_by_rmse": "employment_only"
+          }
+        }
+      },
+      "10.0": {
+        "n_origins": 37,
+        "first_origin": "2023M05",
+        "last_origin": "2026M05",
+        "ranked_by_rmse": [
+          "both_rates_lag2",
+          "employment_only_lag2",
+          "both_rates_lag1",
+          "labour_force_only_lag2",
+          "employment_only_lag1",
+          "labour_force_only_lag1",
+          "seasonal"
+        ],
+        "stats": {
+          "seasonal": {
+            "rmse": 99.47388629210208,
+            "mae": 78.51351351351352,
+            "bias": -35.972972972972975
+          },
+          "employment_only_lag1": {
+            "rmse": 96.25969822662472,
+            "mae": 72.34336295217332,
+            "bias": -19.796407810799543,
+            "delta_rmse_pct_vs_seasonal": -3.2311877873545503,
+            "delta_mae_pct_vs_seasonal": -7.858711558333464
+          },
+          "labour_force_only_lag1": {
+            "rmse": 96.36808563069465,
+            "mae": 71.61676093970723,
+            "bias": -27.338683893278613,
+            "delta_rmse_pct_vs_seasonal": -3.1222271263106616,
+            "delta_mae_pct_vs_seasonal": -8.784159904675814
+          },
+          "both_rates_lag1": {
+            "rmse": 95.48170979843168,
+            "mae": 71.35166026425455,
+            "bias": -20.87963607710065,
+            "delta_rmse_pct_vs_seasonal": -4.013290967588712,
+            "delta_mae_pct_vs_seasonal": -9.121809646216239
+          },
+          "employment_only_lag2": {
+            "rmse": 95.32598469447075,
+            "mae": 71.60003514193862,
+            "bias": -21.42195806053391,
+            "delta_rmse_pct_vs_seasonal": -4.169839695868671,
+            "delta_mae_pct_vs_seasonal": -8.80546298617112
+          },
+          "labour_force_only_lag2": {
+            "rmse": 95.64423627334675,
+            "mae": 72.54835777037125,
+            "bias": -26.508123188075206,
+            "delta_rmse_pct_vs_seasonal": -3.849904896155032,
+            "delta_mae_pct_vs_seasonal": -7.597616609165703
+          },
+          "both_rates_lag2": {
+            "rmse": 94.13943407707919,
+            "mae": 71.13026496620212,
+            "bias": -21.0256737838282,
+            "delta_rmse_pct_vs_seasonal": -5.36266593561896,
+            "delta_mae_pct_vs_seasonal": -9.403793330482667
+          }
+        },
+        "comparisons": {
+          "lag1": {
+            "employment_only_vs_both": {
+              "delta_rmse_pct": 0.8148036203325493,
+              "delta_mae_pct": 1.3898803254835945,
+              "bias_change": 1.0832282663011057
+            },
+            "labour_force_only_vs_both": {
+              "delta_rmse_pct": 0.928320024991347,
+              "delta_mae_pct": 0.37154100475149665,
+              "bias_change": -6.459047816177964
+            },
+            "best_single_by_rmse": "employment_only"
+          },
+          "lag2": {
+            "employment_only_vs_both": {
+              "delta_rmse_pct": 1.2604182604497582,
+              "delta_mae_pct": 0.6604364203615987,
+              "bias_change": -0.3962842767057104
+            },
+            "labour_force_only_vs_both": {
+              "delta_rmse_pct": 1.5984823055505748,
+              "delta_mae_pct": 1.9936560124483638,
+              "bias_change": -5.482449404247006
+            },
+            "best_single_by_rmse": "employment_only"
+          }
+        }
+      }
+    },
+    "6": {
+      "3.0": {
+        "n_origins": 31,
+        "first_origin": "2023M08",
+        "last_origin": "2026M02",
+        "ranked_by_rmse": [
+          "both_rates_lag2",
+          "labour_force_only_lag2",
+          "both_rates_lag1",
+          "labour_force_only_lag1",
+          "employment_only_lag2",
+          "employment_only_lag1",
+          "seasonal"
+        ],
+        "stats": {
+          "seasonal": {
+            "rmse": 164.53933738892684,
+            "mae": 128.09677419354838,
+            "bias": -115.45161290322581
+          },
+          "employment_only_lag1": {
+            "rmse": 155.68028632478047,
+            "mae": 121.42720365417439,
+            "bias": -80.23033546339093,
+            "delta_rmse_pct_vs_seasonal": -5.384153847177564,
+            "delta_mae_pct_vs_seasonal": -5.206665492837914
+          },
+          "labour_force_only_lag1": {
+            "rmse": 145.69311523227165,
+            "mae": 112.81814259480292,
+            "bias": -87.93499052354039,
+            "delta_rmse_pct_vs_seasonal": -11.453930990440163,
+            "delta_mae_pct_vs_seasonal": -11.927413234981344
+          },
+          "both_rates_lag1": {
+            "rmse": 145.28510054759627,
+            "mae": 113.01197011604954,
+            "bias": -83.06959961513897,
+            "delta_rmse_pct_vs_seasonal": -11.701904934635,
+            "delta_mae_pct_vs_seasonal": -11.776099884222212
+          },
+          "employment_only_lag2": {
+            "rmse": 152.25205040077927,
+            "mae": 120.38565850126206,
+            "bias": -79.63414575115566,
+            "delta_rmse_pct_vs_seasonal": -7.4676896012433325,
+            "delta_mae_pct_vs_seasonal": -6.0197579063428925
+          },
+          "labour_force_only_lag2": {
+            "rmse": 144.94156150831975,
+            "mae": 115.38822981441724,
+            "bias": -86.19335619885054,
+            "delta_rmse_pct_vs_seasonal": -11.910693328175503,
+            "delta_mae_pct_vs_seasonal": -9.921049502721369
+          },
+          "both_rates_lag2": {
+            "rmse": 141.04240553286087,
+            "mae": 112.1857938123489,
+            "bias": -77.21255837191904,
+            "delta_rmse_pct_vs_seasonal": -14.280434228640127,
+            "delta_mae_pct_vs_seasonal": -12.421062498544044
+          }
+        },
+        "comparisons": {
+          "lag1": {
+            "employment_only_vs_both": {
+              "delta_rmse_pct": 7.155025352223698,
+              "delta_mae_pct": 7.446320535323325,
+              "bias_change": 2.83926415174804
+            },
+            "labour_force_only_vs_both": {
+              "delta_rmse_pct": 0.280837252503896,
+              "delta_mae_pct": -0.17151061170562754,
+              "bias_change": -4.865390908401423
+            },
+            "best_single_by_rmse": "labour_force_only"
+          },
+          "lag2": {
+            "employment_only_vs_both": {
+              "delta_rmse_pct": 7.9477124809153255,
+              "delta_mae_pct": 7.3091827496705175,
+              "bias_change": -2.4215873792366125
+            },
+            "labour_force_only_vs_both": {
+              "delta_rmse_pct": 2.764527420478835,
+              "delta_mae_pct": 2.8545824682802534,
+              "bias_change": -8.980797826931493
+            },
+            "best_single_by_rmse": "labour_force_only"
+          }
+        }
+      },
+      "10.0": {
+        "n_origins": 31,
+        "first_origin": "2023M08",
+        "last_origin": "2026M02",
+        "ranked_by_rmse": [
+          "both_rates_lag2",
+          "both_rates_lag1",
+          "labour_force_only_lag2",
+          "labour_force_only_lag1",
+          "employment_only_lag2",
+          "employment_only_lag1",
+          "seasonal"
+        ],
+        "stats": {
+          "seasonal": {
+            "rmse": 164.53933738892684,
+            "mae": 128.09677419354838,
+            "bias": -115.45161290322581
+          },
+          "employment_only_lag1": {
+            "rmse": 159.0256800114876,
+            "mae": 123.91056584331734,
+            "bias": -86.17660135161503,
+            "delta_rmse_pct_vs_seasonal": -3.3509660759155957,
+            "delta_mae_pct_vs_seasonal": -3.268004504083666
+          },
+          "labour_force_only_lag1": {
+            "rmse": 150.13263357637467,
+            "mae": 115.6694282120191,
+            "bias": -93.49831424867008,
+            "delta_rmse_pct_vs_seasonal": -8.755780861386707,
+            "delta_mae_pct_vs_seasonal": -9.701529222548677
+          },
+          "both_rates_lag1": {
+            "rmse": 147.65237198467383,
+            "mae": 114.42398320694647,
+            "bias": -84.99698888034428,
+            "delta_rmse_pct_vs_seasonal": -10.26317819934861,
+            "delta_mae_pct_vs_seasonal": -10.673798050482475
+          },
+          "employment_only_lag2": {
+            "rmse": 156.16916092397784,
+            "mae": 122.87930543499407,
+            "bias": -85.5612918187787,
+            "delta_rmse_pct_vs_seasonal": -5.087036691514168,
+            "delta_mae_pct_vs_seasonal": -4.073068031105109
+          },
+          "labour_force_only_lag2": {
+            "rmse": 149.51803931138832,
+            "mae": 118.59446205779356,
+            "bias": -91.81580090657097,
+            "delta_rmse_pct_vs_seasonal": -9.129305074343531,
+            "delta_mae_pct_vs_seasonal": -7.418072933981346
+          },
+          "both_rates_lag2": {
+            "rmse": 144.20807854436572,
+            "mae": 114.53224866780836,
+            "bias": -80.7912298080715,
+            "delta_rmse_pct_vs_seasonal": -12.356473027786341,
+            "delta_mae_pct_vs_seasonal": -10.589279559253107
+          }
+        },
+        "comparisons": {
+          "lag1": {
+            "employment_only_vs_both": {
+              "delta_rmse_pct": 7.7027601209104235,
+              "delta_mae_pct": 8.290729242674155,
+              "bias_change": -1.179612471270758
+            },
+            "labour_force_only_vs_both": {
+              "delta_rmse_pct": 1.6797980001014068,
+              "delta_mae_pct": 1.0884475178775332,
+              "bias_change": -8.501325368325809
+            },
+            "best_single_by_rmse": "labour_force_only"
+          },
+          "lag2": {
+            "employment_only_vs_both": {
+              "delta_rmse_pct": 8.29432199662261,
+              "delta_mae_pct": 7.287953274536396,
+              "bias_change": -4.770062010707193
+            },
+            "labour_force_only_vs_both": {
+              "delta_rmse_pct": 3.6821520823391296,
+              "delta_mae_pct": 3.546785675855646,
+              "bias_change": -11.024571098499464
+            },
+            "best_single_by_rmse": "labour_force_only"
+          }
+        }
+      }
+    },
+    "9": {
+      "3.0": {
+        "n_origins": 25,
+        "first_origin": "2023M11",
+        "last_origin": "2025M11",
+        "ranked_by_rmse": [
+          "both_rates_lag1",
+          "both_rates_lag2",
+          "employment_only_lag1",
+          "labour_force_only_lag1",
+          "employment_only_lag2",
+          "labour_force_only_lag2",
+          "seasonal"
+        ],
+        "stats": {
+          "seasonal": {
+            "rmse": 243.0316851770567,
+            "mae": 207.6,
+            "bias": -207.6
+          },
+          "employment_only_lag1": {
+            "rmse": 214.78992713338303,
+            "mae": 173.0878040584659,
+            "bias": -137.10511349295314,
+            "delta_rmse_pct_vs_seasonal": -11.620607421249861,
+            "delta_mae_pct_vs_seasonal": -16.624371840816032
+          },
+          "labour_force_only_lag1": {
+            "rmse": 215.67971011855406,
+            "mae": 176.7833147680559,
+            "bias": -162.76936930293496,
+            "delta_rmse_pct_vs_seasonal": -11.254489322483119,
+            "delta_mae_pct_vs_seasonal": -14.844260709028944
+          },
+          "both_rates_lag1": {
+            "rmse": 200.61130714188155,
+            "mae": 166.4189299670165,
+            "bias": -135.64472574726017,
+            "delta_rmse_pct_vs_seasonal": -17.454669749860173,
+            "delta_mae_pct_vs_seasonal": -19.83673893688993
+          },
+          "employment_only_lag2": {
+            "rmse": 217.3106300086605,
+            "mae": 173.86378024873414,
+            "bias": -137.6705853706518,
+            "delta_rmse_pct_vs_seasonal": -10.583416376205246,
+            "delta_mae_pct_vs_seasonal": -16.250587548779315
+          },
+          "labour_force_only_lag2": {
+            "rmse": 217.72496150277104,
+            "mae": 184.70512210250297,
+            "bias": -152.77735165579358,
+            "delta_rmse_pct_vs_seasonal": -10.412931818272531,
+            "delta_mae_pct_vs_seasonal": -11.028361222301076
+          },
+          "both_rates_lag2": {
+            "rmse": 201.65520803786848,
+            "mae": 170.62400531075866,
+            "bias": -126.65908508353372,
+            "delta_rmse_pct_vs_seasonal": -17.02513691128137,
+            "delta_mae_pct_vs_seasonal": -17.81117277901798
+          }
+        },
+        "comparisons": {
+          "lag1": {
+            "employment_only_vs_both": {
+              "delta_rmse_pct": 7.067707296016823,
+              "delta_mae_pct": 4.007280958224602,
+              "bias_change": -1.4603877456929695
+            },
+            "labour_force_only_vs_both": {
+              "delta_rmse_pct": 7.51124310556206,
+              "delta_mae_pct": 6.227888139344229,
+              "bias_change": -27.124643555674794
+            },
+            "best_single_by_rmse": "employment_only"
+          },
+          "lag2": {
+            "employment_only_vs_both": {
+              "delta_rmse_pct": 7.763460276142298,
+              "delta_mae_pct": 1.898780263700206,
+              "bias_change": -11.011500287118068
+            },
+            "labour_force_only_vs_both": {
+              "delta_rmse_pct": 7.9689255840518,
+              "delta_mae_pct": 8.252717292680046,
+              "bias_change": -26.118266572259856
+            },
+            "best_single_by_rmse": "employment_only"
+          }
+        }
+      },
+      "10.0": {
+        "n_origins": 25,
+        "first_origin": "2023M11",
+        "last_origin": "2025M11",
+        "ranked_by_rmse": [
+          "both_rates_lag1",
+          "both_rates_lag2",
+          "employment_only_lag1",
+          "labour_force_only_lag1",
+          "labour_force_only_lag2",
+          "employment_only_lag2",
+          "seasonal"
+        ],
+        "stats": {
+          "seasonal": {
+            "rmse": 243.0316851770567,
+            "mae": 207.6,
+            "bias": -207.6
+          },
+          "employment_only_lag1": {
+            "rmse": 224.2000223339221,
+            "mae": 178.21960324826225,
+            "bias": -150.23284386532288,
+            "delta_rmse_pct_vs_seasonal": -7.748645132183107,
+            "delta_mae_pct_vs_seasonal": -14.15240691316847
+          },
+          "labour_force_only_lag1": {
+            "rmse": 224.61913896215287,
+            "mae": 182.76914909613413,
+            "bias": -172.8022719221025,
+            "delta_rmse_pct_vs_seasonal": -7.5761916399870515,
+            "delta_mae_pct_vs_seasonal": -11.960910840012462
+          },
+          "both_rates_lag1": {
+            "rmse": 207.84750389366675,
+            "mae": 170.52671869034327,
+            "bias": -144.36433287183803,
+            "delta_rmse_pct_vs_seasonal": -14.477199241636773,
+            "delta_mae_pct_vs_seasonal": -17.85803531293676
+          },
+          "employment_only_lag2": {
+            "rmse": 226.27870481939033,
+            "mae": 179.8770327911516,
+            "bias": -150.5850755989316,
+            "delta_rmse_pct_vs_seasonal": -6.893331766786403,
+            "delta_mae_pct_vs_seasonal": -13.354030447422149
+          },
+          "labour_force_only_lag2": {
+            "rmse": 226.04911657782336,
+            "mae": 188.91876087670155,
+            "bias": -164.01182572341676,
+            "delta_rmse_pct_vs_seasonal": -6.987800206734763,
+            "delta_mae_pct_vs_seasonal": -8.998670097927953
+          },
+          "both_rates_lag2": {
+            "rmse": 208.99086920978127,
+            "mae": 174.6945121906022,
+            "bias": -136.6524833226906,
+            "delta_rmse_pct_vs_seasonal": -14.006739879401142,
+            "delta_mae_pct_vs_seasonal": -15.850427653852496
+          }
+        },
+        "comparisons": {
+          "lag1": {
+            "employment_only_vs_both": {
+              "delta_rmse_pct": 7.867555844510488,
+              "delta_mae_pct": 4.511248804293455,
+              "bias_change": -5.868510993484847
+            },
+            "labour_force_only_vs_both": {
+              "delta_rmse_pct": 8.069202061270065,
+              "delta_mae_pct": 7.179186053548414,
+              "bias_change": -28.437939050264475
+            },
+            "best_single_by_rmse": "employment_only"
+          },
+          "lag2": {
+            "employment_only_vs_both": {
+              "delta_rmse_pct": 8.272053068622753,
+              "delta_mae_pct": 2.966619005693172,
+              "bias_change": -13.932592276240996
+            },
+            "labour_force_only_vs_both": {
+              "delta_rmse_pct": 8.16219743596518,
+              "delta_mae_pct": 8.142355765921149,
+              "bias_change": -27.35934240072615
+            },
+            "best_single_by_rmse": "labour_force_only"
+          }
+        }
+      }
+    },
+    "12": {
+      "3.0": {
+        "n_origins": 19,
+        "first_origin": "2024M02",
+        "last_origin": "2025M08",
+        "ranked_by_rmse": [
+          "both_rates_lag1",
+          "both_rates_lag2",
+          "employment_only_lag1",
+          "labour_force_only_lag1",
+          "employment_only_lag2",
+          "labour_force_only_lag2",
+          "seasonal"
+        ],
+        "stats": {
+          "seasonal": {
+            "rmse": 295.3477878526834,
+            "mae": 253.89473684210526,
+            "bias": -253.89473684210526
+          },
+          "employment_only_lag1": {
+            "rmse": 280.31564874018545,
+            "mae": 226.67595822690936,
+            "bias": -183.40222131051988,
+            "delta_rmse_pct_vs_seasonal": -5.089639987415717,
+            "delta_mae_pct_vs_seasonal": -10.720497381607007
+          },
+          "labour_force_only_lag1": {
+            "rmse": 281.2891541809968,
+            "mae": 224.08991152710715,
+            "bias": -206.86941203467623,
+            "delta_rmse_pct_vs_seasonal": -4.7600267379347745,
+            "delta_mae_pct_vs_seasonal": -11.739048113286987
+          },
+          "both_rates_lag1": {
+            "rmse": 264.1883521419831,
+            "mae": 210.19072700617645,
+            "bias": -172.91693255224078,
+            "delta_rmse_pct_vs_seasonal": -10.550082645698467,
+            "delta_mae_pct_vs_seasonal": -17.213436709839293
+          },
+          "employment_only_lag2": {
+            "rmse": 283.2845670886198,
+            "mae": 225.0488299177477,
+            "bias": -194.30616540091395,
+            "delta_rmse_pct_vs_seasonal": -4.08441209320336,
+            "delta_mae_pct_vs_seasonal": -11.361364667553763
+          },
+          "labour_force_only_lag2": {
+            "rmse": 283.9964014273907,
+            "mae": 229.864971485899,
+            "bias": -210.90925080679105,
+            "delta_rmse_pct_vs_seasonal": -3.8433964607700544,
+            "delta_mae_pct_vs_seasonal": -9.464459821059679
+          },
+          "both_rates_lag2": {
+            "rmse": 264.593938955153,
+            "mae": 208.22267959390265,
+            "bias": -177.94081017851823,
+            "delta_rmse_pct_vs_seasonal": -10.412757488764424,
+            "delta_mae_pct_vs_seasonal": -17.988579761937185
+          }
+        },
+        "comparisons": {
+          "lag1": {
+            "employment_only_vs_both": {
+              "delta_rmse_pct": 6.104469204431484,
+              "delta_mae_pct": 7.842986917424044,
+              "bias_change": -10.485288758279097
+            },
+            "labour_force_only_vs_both": {
+              "delta_rmse_pct": 6.472958364880199,
+              "delta_mae_pct": 6.612653526110246,
+              "bias_change": -33.95247948243545
+            },
+            "best_single_by_rmse": "employment_only"
+          },
+          "lag2": {
+            "employment_only_vs_both": {
+              "delta_rmse_pct": 7.063891261936539,
+              "delta_mae_pct": 8.080844198461534,
+              "bias_change": -16.36535522239572
+            },
+            "labour_force_only_vs_both": {
+              "delta_rmse_pct": 7.332920228201556,
+              "delta_mae_pct": 10.393820660749054,
+              "bias_change": -32.968440628272816
+            },
+            "best_single_by_rmse": "employment_only"
+          }
+        }
+      },
+      "10.0": {
+        "n_origins": 19,
+        "first_origin": "2024M02",
+        "last_origin": "2025M08",
+        "ranked_by_rmse": [
+          "both_rates_lag1",
+          "both_rates_lag2",
+          "employment_only_lag1",
+          "labour_force_only_lag1",
+          "employment_only_lag2",
+          "labour_force_only_lag2",
+          "seasonal"
+        ],
+        "stats": {
+          "seasonal": {
+            "rmse": 295.3477878526834,
+            "mae": 253.89473684210526,
+            "bias": -253.89473684210526
+          },
+          "employment_only_lag1": {
+            "rmse": 291.1881293705275,
+            "mae": 234.454160988471,
+            "bias": -200.89859615861428,
+            "delta_rmse_pct_vs_seasonal": -1.4083933089184542,
+            "delta_mae_pct_vs_seasonal": -7.656943225933899
+          },
+          "labour_force_only_lag1": {
+            "rmse": 291.98197870771577,
+            "mae": 233.8441568631296,
+            "bias": -221.4017681187463,
+            "delta_rmse_pct_vs_seasonal": -1.139608720091867,
+            "delta_mae_pct_vs_seasonal": -7.897201898850281
+          },
+          "both_rates_lag1": {
+            "rmse": 272.80400745724205,
+            "mae": 217.85613691973614,
+            "bias": -186.02607802860564,
+            "delta_rmse_pct_vs_seasonal": -7.632960639165498,
+            "delta_mae_pct_vs_seasonal": -14.19430759794803
+          },
+          "employment_only_lag2": {
+            "rmse": 293.9790209419459,
+            "mae": 233.77710698086509,
+            "bias": -210.03972607425922,
+            "delta_rmse_pct_vs_seasonal": -0.4634424116357949,
+            "delta_mae_pct_vs_seasonal": -7.9236104345680625
+          },
+          "labour_force_only_lag2": {
+            "rmse": 294.41628933673974,
+            "mae": 239.8749266051081,
+            "bias": -224.5340060017975,
+            "delta_rmse_pct_vs_seasonal": -0.3153903818667758,
+            "delta_mae_pct_vs_seasonal": -5.521898725185448
+          },
+          "both_rates_lag2": {
+            "rmse": 274.0441213358392,
+            "mae": 217.53995870913414,
+            "bias": -191.0389005963465,
+            "delta_rmse_pct_vs_seasonal": -7.213078070342704,
+            "delta_mae_pct_vs_seasonal": -14.318838816883318
+          }
+        },
+        "comparisons": {
+          "lag1": {
+            "employment_only_vs_both": {
+              "delta_rmse_pct": 6.738948626393215,
+              "delta_mae_pct": 7.618800325487274,
+              "bias_change": -14.872518130008643
+            },
+            "labour_force_only_vs_both": {
+              "delta_rmse_pct": 7.029944841803526,
+              "delta_mae_pct": 7.3387971389963,
+              "bias_change": -35.375690090140665
+            },
+            "best_single_by_rmse": "employment_only"
+          },
+          "lag2": {
+            "employment_only_vs_both": {
+              "delta_rmse_pct": 7.274339441741451,
+              "delta_mae_pct": 7.463984257458245,
+              "bias_change": -19.000825477912713
+            },
+            "labour_force_only_vs_both": {
+              "delta_rmse_pct": 7.433900753497502,
+              "delta_mae_pct": 10.26706451012862,
+              "bias_change": -33.495105405451
+            },
+            "best_single_by_rmse": "employment_only"
+          }
+        }
+      }
+    }
+  }
+}
