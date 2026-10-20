@@ -1,0 +1,474 @@
+{
+  "status": "outmigration_regime_stability_audit",
+  "production_changed": false,
+  "models": [
+    "lag1_only",
+    "lag1_plus_age20_34"
+  ],
+  "windows": [
+    3,
+    5,
+    6,
+    10
+  ],
+  "regimes": {
+    "early": [
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014
+    ],
+    "late": [
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "pre2020": [
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019
+    ],
+    "2020plus": [
+      2020,
+      2021,
+      2022,
+      2023,
+      2024
+    ]
+  },
+  "results": {
+    "3": {
+      "early": {
+        "lag1_only": {
+          "n": 2610,
+          "rmse": 4.732246506587332,
+          "mae": 3.4337612160661615,
+          "bias_prediction_minus_actual": -0.2637443453303175
+        },
+        "lag1_plus_age20_34": {
+          "n": 2610,
+          "rmse": 4.736185709557705,
+          "mae": 3.439123927595694,
+          "bias_prediction_minus_actual": -0.2675579918129274
+        },
+        "delta_age20_34_vs_lag1_only_pct": {
+          "rmse": 0.08324171120184243,
+          "mae": 0.15617601784425617
+        }
+      },
+      "late": {
+        "lag1_only": {
+          "n": 2900,
+          "rmse": 5.735713495699264,
+          "mae": 4.125008910961447,
+          "bias_prediction_minus_actual": 0.46957369384012926
+        },
+        "lag1_plus_age20_34": {
+          "n": 2900,
+          "rmse": 5.719221314711059,
+          "mae": 4.1228392874346,
+          "bias_prediction_minus_actual": 0.42818315757819525
+        },
+        "delta_age20_34_vs_lag1_only_pct": {
+          "rmse": -0.28753495097988413,
+          "mae": -0.05259682036278246
+        }
+      },
+      "pre2020": {
+        "lag1_only": {
+          "n": 4060,
+          "rmse": 5.338232550494626,
+          "mae": 3.788528946665211,
+          "bias_prediction_minus_actual": 0.14889653658144797
+        },
+        "lag1_plus_age20_34": {
+          "n": 4060,
+          "rmse": 5.3438778652922405,
+          "mae": 3.7952970466115263,
+          "bias_prediction_minus_actual": 0.14621887745171627
+        },
+        "delta_age20_34_vs_lag1_only_pct": {
+          "rmse": 0.10575250786126755,
+          "mae": 0.17864717523863316
+        }
+      },
+      "2020plus": {
+        "lag1_only": {
+          "n": 1450,
+          "rmse": 5.129860258431875,
+          "mae": 3.8229069601793952,
+          "bias_prediction_minus_actual": 0.047497263657632675
+        },
+        "lag1_plus_age20_34": {
+          "n": 1450,
+          "rmse": 5.082904508191661,
+          "mae": 3.8092699140291746,
+          "bias_prediction_minus_actual": -0.03465092697168437
+        },
+        "delta_age20_34_vs_lag1_only_pct": {
+          "rmse": -0.9153417027887523,
+          "mae": -0.35671927913152324
+        }
+      },
+      "year_stability": {
+        "forecast_years": [
+          2006,
+          2007,
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "wins": 10,
+        "losses": 9,
+        "share_better": 0.5263157894736842,
+        "median_delta_rmse_pct": -0.013464864706280721,
+        "p75_delta_rmse_pct": 0.10798205209153755,
+        "worst_delta_rmse_pct": 3.7243569140280153,
+        "best_delta_rmse_pct": -4.147021793622474
+      }
+    },
+    "5": {
+      "early": {
+        "lag1_only": {
+          "n": 2030,
+          "rmse": 4.706787974260107,
+          "mae": 3.3994489316912304,
+          "bias_prediction_minus_actual": -0.25506680379881114
+        },
+        "lag1_plus_age20_34": {
+          "n": 2030,
+          "rmse": 4.703029003514449,
+          "mae": 3.4007845299904105,
+          "bias_prediction_minus_actual": -0.2462636220336217
+        },
+        "delta_age20_34_vs_lag1_only_pct": {
+          "rmse": -0.07986275919404928,
+          "mae": 0.03928867078215603
+        }
+      },
+      "late": {
+        "lag1_only": {
+          "n": 2900,
+          "rmse": 5.728012724543562,
+          "mae": 4.100881625539395,
+          "bias_prediction_minus_actual": 0.5241491272572584
+        },
+        "lag1_plus_age20_34": {
+          "n": 2900,
+          "rmse": 5.720423157174232,
+          "mae": 4.104825323339601,
+          "bias_prediction_minus_actual": 0.4830610429355516
+        },
+        "delta_age20_34_vs_lag1_only_pct": {
+          "rmse": -0.13249913598846197,
+          "mae": 0.09616707235942101
+        }
+      },
+      "pre2020": {
+        "lag1_only": {
+          "n": 3480,
+          "rmse": 5.432778745900833,
+          "mae": 3.824216677002068,
+          "bias_prediction_minus_actual": 0.22369535616578978
+        },
+        "lag1_plus_age20_34": {
+          "n": 3480,
+          "rmse": 5.433586025458327,
+          "mae": 3.827638180605652,
+          "bias_prediction_minus_actual": 0.23026588431503453
+        },
+        "delta_age20_34_vs_lag1_only_pct": {
+          "rmse": 0.01485942268681928,
+          "mae": 0.08946939707052959
+        }
+      },
+      "2020plus": {
+        "lag1_only": {
+          "n": 1450,
+          "rmse": 5.079315901671495,
+          "mae": 3.7828717306415482,
+          "bias_prediction_minus_actual": 0.1543358743982857
+        },
+        "lag1_plus_age20_34": {
+          "n": 1450,
+          "rmse": 5.055205207980514,
+          "mae": 3.784417355212212,
+          "bias_prediction_minus_actual": 0.06871489266794968
+        },
+        "delta_age20_34_vs_lag1_only_pct": {
+          "rmse": -0.47468387786330224,
+          "mae": 0.04085849800679053
+        }
+      },
+      "year_stability": {
+        "forecast_years": [
+          2008,
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "wins": 10,
+        "losses": 7,
+        "share_better": 0.5882352941176471,
+        "median_delta_rmse_pct": -0.013850996032283014,
+        "p75_delta_rmse_pct": 0.043173758413650454,
+        "worst_delta_rmse_pct": 3.3021101467056058,
+        "best_delta_rmse_pct": -2.6441514448417025
+      }
+    },
+    "6": {
+      "early": {
+        "lag1_only": {
+          "n": 1740,
+          "rmse": 4.816506387471765,
+          "mae": 3.458876917686741,
+          "bias_prediction_minus_actual": -0.43661462057269107
+        },
+        "lag1_plus_age20_34": {
+          "n": 1740,
+          "rmse": 4.810825891392194,
+          "mae": 3.4575997635321807,
+          "bias_prediction_minus_actual": -0.42395024023285205
+        },
+        "delta_age20_34_vs_lag1_only_pct": {
+          "rmse": -0.11793809916553766,
+          "mae": -0.03692395494125922
+        }
+      },
+      "late": {
+        "lag1_only": {
+          "n": 2900,
+          "rmse": 5.720456703697023,
+          "mae": 4.096810542700945,
+          "bias_prediction_minus_actual": 0.5292073955296794
+        },
+        "lag1_plus_age20_34": {
+          "n": 2900,
+          "rmse": 5.705806051777955,
+          "mae": 4.097870982304098,
+          "bias_prediction_minus_actual": 0.49278387890678177
+        },
+        "delta_age20_34_vs_lag1_only_pct": {
+          "rmse": -0.2561098296504749,
+          "mae": 0.02588451655500812
+        }
+      },
+      "pre2020": {
+        "lag1_only": {
+          "n": 3190,
+          "rmse": 5.543247083194736,
+          "mae": 3.893738603841257,
+          "bias_prediction_minus_actual": 0.11491346795885812
+        },
+        "lag1_plus_age20_34": {
+          "n": 3190,
+          "rmse": 5.542073996002123,
+          "mae": 3.896118545180514,
+          "bias_prediction_minus_actual": 0.12649331249992724
+        },
+        "delta_age20_34_vs_lag1_only_pct": {
+          "rmse": -0.02116245541659012,
+          "mae": 0.06112226786125774
+        }
+      },
+      "2020plus": {
+        "lag1_only": {
+          "n": 1450,
+          "rmse": 5.068040670579579,
+          "mae": 3.7780484581752156,
+          "bias_prediction_minus_actual": 0.2816676168626418
+        },
+        "lag1_plus_age20_34": {
+          "n": 1450,
+          "rmse": 5.031224018069639,
+          "mae": 3.77340088144968,
+          "bias_prediction_minus_actual": 0.19854218203430127
+        },
+        "delta_age20_34_vs_lag1_only_pct": {
+          "rmse": -0.7264474557922229,
+          "mae": -0.12301527566378478
+        }
+      },
+      "year_stability": {
+        "forecast_years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "wins": 9,
+        "losses": 7,
+        "share_better": 0.5625,
+        "median_delta_rmse_pct": -0.03378195055080413,
+        "p75_delta_rmse_pct": 0.06765204778145795,
+        "worst_delta_rmse_pct": 2.1787617596280784,
+        "best_delta_rmse_pct": -2.8409935995657665
+      }
+    },
+    "10": {
+      "early": {
+        "lag1_only": {
+          "n": 580,
+          "rmse": 5.628159214324365,
+          "mae": 3.852553599897032,
+          "bias_prediction_minus_actual": -1.4272324884855205
+        },
+        "lag1_plus_age20_34": {
+          "n": 580,
+          "rmse": 5.626960511321996,
+          "mae": 3.841965397011122,
+          "bias_prediction_minus_actual": -1.3912183267235345
+        },
+        "delta_age20_34_vs_lag1_only_pct": {
+          "rmse": -0.021298313653206336,
+          "mae": -0.2748359655837862
+        }
+      },
+      "late": {
+        "lag1_only": {
+          "n": 2900,
+          "rmse": 5.700474022112314,
+          "mae": 4.081156111678108,
+          "bias_prediction_minus_actual": 0.5278796418412235
+        },
+        "lag1_plus_age20_34": {
+          "n": 2900,
+          "rmse": 5.685257040593183,
+          "mae": 4.079924204441447,
+          "bias_prediction_minus_actual": 0.5283276174664352
+        },
+        "delta_age20_34_vs_lag1_only_pct": {
+          "rmse": -0.2669423886523026,
+          "mae": -0.03018525150595419
+        }
+      },
+      "pre2020": {
+        "lag1_only": {
+          "n": 2030,
+          "rmse": 6.061533612768318,
+          "mae": 4.200375665742397,
+          "bias_prediction_minus_actual": -0.10691609483225993
+        },
+        "lag1_plus_age20_34": {
+          "n": 2030,
+          "rmse": 6.059593679972741,
+          "mae": 4.206287157271827,
+          "bias_prediction_minus_actual": -0.07334956825503802
+        },
+        "delta_age20_34_vs_lag1_only_pct": {
+          "rmse": -0.032003993040485845,
+          "mae": 0.14073721018914576
+        }
+      },
+      "2020plus": {
+        "lag1_only": {
+          "n": 1450,
+          "rmse": 5.120762929101501,
+          "mae": 3.8228077312756703,
+          "bias_prediction_minus_actual": 0.6345488210534026
+        },
+        "lag1_plus_age20_34": {
+          "n": 1450,
+          "rmse": 5.089520928408464,
+          "mae": 3.8078325475067842,
+          "bias_prediction_minus_actual": 0.6028572998005102
+        },
+        "delta_age20_34_vs_lag1_only_pct": {
+          "rmse": -0.6101044146270995,
+          "mae": -0.39173259084858136
+        }
+      },
+      "year_stability": {
+        "forecast_years": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "wins": 8,
+        "losses": 4,
+        "share_better": 0.6666666666666666,
+        "median_delta_rmse_pct": -0.07157632097384847,
+        "p75_delta_rmse_pct": 0.0682863068925954,
+        "worst_delta_rmse_pct": 0.9537381808295775,
+        "best_delta_rmse_pct": -2.1284511830706565
+      }
+    }
+  },
+  "gate": {
+    "regime_rmse_improves_where_available": true,
+    "share_years_better_6y_and_10y_ge_60pct": false,
+    "passes": false,
+    "decision": "Promote age20_34 only if both conditions pass; otherwise keep lag1-only as long-history core."
+  }
+}
