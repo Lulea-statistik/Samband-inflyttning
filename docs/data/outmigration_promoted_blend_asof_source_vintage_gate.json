@@ -32,11 +32,27 @@
   "evidence_interpretation": {
     "wayback_metadata_capture_is_sufficient_for_table_existence": true,
     "wayback_metadata_capture_is_sufficient_for_exact_cell_values": false,
-    "current_blocker": "Exact historical value snapshots or equivalent version-specific evidence are still required for migration and population denominator."
+    "current_blocker": "Exact historical value snapshots or equivalent version-specific evidence are still required for migration and population denominator.",
+    "publication_anchor_can_support_availability_window": true,
+    "publication_anchor_is_sufficient_for_exact_cell_values": false
   },
   "next_required_evidence": [
     "Exact/version-specific evidence showing municipal Flyttningar97 values available at each relevant historical forecast origin.",
     "Exact/version-specific evidence showing BefolkningNy denominator values and revision state at each relevant historical forecast origin.",
     "After evidence is obtained, update neutral_variable_pool_reboot.json flags for lag1_utflyttning_per_1000 only through a documented audit."
-  ]
+  ],
+  "publication_anchors": {
+    "reference_year_2023": {
+      "population": {
+        "source": "SCB Befolkningsstatistik helåret 2023",
+        "published": "2024-02-22",
+        "evidence_scope": "official publication anchor, not exact historical cell-value snapshot"
+      },
+      "migration": {
+        "source": "SCB Befolkningsstatistik helåret 2023 – flyttningar",
+        "published": "2024-03-22",
+        "evidence_scope": "official publication anchor, not exact historical cell-value snapshot"
+      }
+    }
+  }
 }
