@@ -70,11 +70,12 @@ def total_value(v):
         x=find_value(v,terms)
         if x is not None:return x
     return None
-def query(meta, all_dimensions=None, selectors=None):
+def query(meta, all_dimensions=None, selectors=None, region_values=None):
     all_dimensions=set(all_dimensions or [])
     selectors=selectors or {}
     rv=region_var(meta);tv=time_var(meta)
-    q=[{"code":rv["code"],"selection":{"filter":"item","values":municipalities(rv)}}]
+    regs=list(region_values) if region_values is not None else municipalities(rv)
+    q=[{"code":rv["code"],"selection":{"filter":"item","values":regs}}]
     for v in meta["variables"]:
         if v["code"] in (rv["code"],tv["code"]):continue
         if v["code"] in selectors:
@@ -113,11 +114,19 @@ def response_col(df,preferred,kind):
         if any(n in str(c).lower() for n in needles):return c
     raise RuntimeError(f"{kind} response column not found: {list(df.columns)}")
 
-def fetch(name, all_dims=None, selectors_fn=None):
+def fetch(name, all_dims=None, selectors_fn=None, chunk_regions=False):
     url=f"{BASE}/{URLS[name]}";meta=getmeta(url)
     selectors=selectors_fn(meta) if selectors_fn else {}
-    q,rv,tv=query(meta,all_dims,selectors)
-    df=jsdf(post(url,q))
+    rv=region_var(meta); regs=municipalities(rv)
+    chunks=[regs]
+    if chunk_regions:
+        chunks=[regs[i:i+60] for i in range(0,len(regs),60)]
+    frames=[]
+    tv=None
+    for reg_chunk in chunks:
+        q,rv,tv=query(meta,all_dims,selectors,region_values=reg_chunk)
+        frames.append(jsdf(post(url,q)))
+    df=pd.concat(frames,ignore_index=True) if frames else pd.DataFrame()
     rc=response_col(df,rv["code"],"region");tc=response_col(df,tv["code"],"time")
     df["kommun_kod"]=df[rc].astype(str).str.zfill(4)
     df["period"]=df[tc].astype(str)
@@ -152,7 +161,7 @@ features=[]; manifest={"status":"demographic_scb_feature_pool","sources":{},"sam
 
 # Births by mother's age -> shares.
 try:
-    df,meta,lab,url=fetch("fodda",all_dims=[next(v["code"] for v in getmeta(f"{BASE}/{URLS['fodda']}")["variables"] if "moderns ålder" in v.get("text","").lower())])
+    df,meta,lab,url=fetch("fodda",all_dims=[next(v["code"] for v in getmeta(f"{BASE}/{URLS['fodda']}")["variables"] if "moderns ålder" in v.get("text","").lower())],chunk_regions=True)
     av=next(v for v in meta["variables"] if "moderns ålder" in v.get("text","").lower());ac=av["code"]
     d=df.copy();d["alabel"]=d[ac].map(lab[ac]);d["age0"]=d.alabel.map(age_num);d=d[d.age0.notna()]
     # sum child sex if sex dimension remained expanded
@@ -216,7 +225,7 @@ for nm,pref in [("doda_fodelsear","doda_fodelsear"),("doda_handelse","doda_hande
     try:
         meta0=getmeta(f"{BASE}/{URLS[nm]}")
         av=next(v for v in meta0["variables"] if "ålder" in v.get("text","").lower())
-        df,meta,lab,url=fetch(nm,all_dims=[av["code"]])
+        df,meta,lab,url=fetch(nm,all_dims=[av["code"]],chunk_regions=True)
         out=annual_age_summary(df,meta,lab,pref);features.append(out)
         manifest["sources"][URLS[nm].split("/")[-1]]={"ok":True,"url":url,"features":[c for c in out if c not in ("kommun_kod","year")]}
     except Exception as e:manifest["sources"][URLS[nm].split("/")[-1]]={"ok":False,"error":str(e)}
