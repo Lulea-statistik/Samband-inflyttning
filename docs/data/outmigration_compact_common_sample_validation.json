@@ -1,0 +1,945 @@
+{
+  "status": "outmigration_compact_common_sample_validation",
+  "production_changed": false,
+  "inflow_model_changed": false,
+  "target": "utflyttning_per_1000",
+  "correction_note": "Prior compact ranking mixed 1450-row and 870-row evaluations; this file restricts primary arms to exact common balanced samples.",
+  "cv": {
+    "five": {
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "results": {
+        "lag1_only": {
+          "features": [
+            "lag1_utflyttning_per_1000"
+          ],
+          "n": 1450,
+          "rmse": 5.306756223655579,
+          "mae": 3.924205689458567,
+          "bias_actual_minus_prediction": 0.0038905599032853376,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.681685492830005,
+              "mae": 4.1007706531673795,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.255536897023148,
+              "mae": 3.9775840375654314,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 5.295649813413091,
+              "mae": 3.834433002881213,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.4097857759863714,
+              "mae": 4.014239456104123,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.85761267319276,
+              "mae": 3.694001297574685,
+              "alpha": 0.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": 0.0,
+          "delta_mae_pct_vs_lag1_only": 0.0
+        },
+        "lag1_plus_age20_34": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_andel_20_34"
+          ],
+          "n": 1450,
+          "rmse": 5.273276142216989,
+          "mae": 3.922184405575139,
+          "bias_actual_minus_prediction": 0.0054061189893421565,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.620581578822731,
+              "mae": 4.07841427072726,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.242731963001106,
+              "mae": 4.004647629158754,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 5.284613890024428,
+              "mae": 3.828422840161329,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.375324531817695,
+              "mae": 4.0215325938572635,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.8102778351462545,
+              "mae": 3.6779046939710907,
+              "alpha": 0.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.6308954100689212,
+          "delta_mae_pct_vs_lag1_only": -0.0515081023621522
+        },
+        "lag1_plus_log_fritidshus": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_log_fritidshus_per_1000_inv"
+          ],
+          "n": 1450,
+          "rmse": 5.2418878566723235,
+          "mae": 3.8843685991167276,
+          "bias_actual_minus_prediction": 0.007325848109768276,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.543600234555553,
+              "mae": 4.028803282876621,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.2081423423776245,
+              "mae": 3.928682899773589,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 5.372542461087498,
+              "mae": 3.8997070989320246,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.314207373329625,
+              "mae": 3.952806245690208,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.735575866531299,
+              "mae": 3.6118434683111946,
+              "alpha": 0.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -1.222373221029005,
+          "delta_mae_pct_vs_lag1_only": -1.0151631564281116
+        },
+        "lag1_plus_structure": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_log_folkmangd",
+            "lag1_log_fritidshus_per_1000_inv"
+          ],
+          "n": 1450,
+          "rmse": 5.237100969088061,
+          "mae": 3.8786649960160178,
+          "bias_actual_minus_prediction": 0.007305643542367751,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.534607334472961,
+              "mae": 4.022117907318579,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.214528788232925,
+              "mae": 3.935759144999907,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 5.366648406445499,
+              "mae": 3.8901144150631275,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.313023277796358,
+              "mae": 3.944056878849934,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.720573323569261,
+              "mae": 3.601276633848542,
+              "alpha": 0.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -1.3125768667688331,
+          "delta_mae_pct_vs_lag1_only": -1.1605072987097231
+        },
+        "lag1_plus_brott": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_brott_per_100000"
+          ],
+          "n": 1450,
+          "rmse": 5.283148407260834,
+          "mae": 3.9064235217520618,
+          "bias_actual_minus_prediction": 0.005397519378784132,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.6539204367449996,
+              "mae": 4.084797489831819,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.256908348174817,
+              "mae": 3.9602424446161106,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 5.254321794001075,
+              "mae": 3.803307108527083,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.371938112407503,
+              "mae": 4.00704964661777,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.846727471305727,
+              "mae": 3.676720919167527,
+              "alpha": 0.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.4448634043054511,
+          "delta_mae_pct_vs_lag1_only": -0.45314056177718776
+        },
+        "lag1_plus_fardigstallda_bostader": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_fardigstallda_bostader_per_1000"
+          ],
+          "n": 1450,
+          "rmse": 5.282307833676036,
+          "mae": 3.922970763318677,
+          "bias_actual_minus_prediction": 0.0012905071381505671,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.644821851576478,
+              "mae": 4.080494722891079,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.238423012797835,
+              "mae": 3.9823639449254955,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 5.298256607276709,
+              "mae": 3.8698802929881557,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.372195395772407,
+              "mae": 3.9915234916200366,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.824601994426202,
+              "mae": 3.6905913641686188,
+              "alpha": 0.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.46070309147726585,
+          "delta_mae_pct_vs_lag1_only": -0.03146945490668518
+        },
+        "lag1_plus_age_fritid": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_andel_20_34",
+            "lag1_log_fritidshus_per_1000_inv"
+          ],
+          "n": 1450,
+          "rmse": 5.239479623172547,
+          "mae": 3.8876877005795953,
+          "bias_actual_minus_prediction": 0.005946614887689957,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.539964064365345,
+              "mae": 4.030334897439415,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.204017385249411,
+              "mae": 3.933921601575714,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 5.365163617041848,
+              "mae": 3.8948263441747084,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.315538731838057,
+              "mae": 3.9620754118481556,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.737911162154063,
+              "mae": 3.6172802478599824,
+              "alpha": 0.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -1.267753739716515,
+          "delta_mae_pct_vs_lag1_only": -0.9305829451567327
+        },
+        "lag1_plus_age_structure": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_andel_20_34",
+            "lag1_log_folkmangd",
+            "lag1_log_fritidshus_per_1000_inv"
+          ],
+          "n": 1450,
+          "rmse": 5.2260293364814725,
+          "mae": 3.879340398884776,
+          "bias_actual_minus_prediction": 0.009885259473046727,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.516447496742372,
+              "mae": 4.018335007147667,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.2164158805764425,
+              "mae": 3.959513458852369,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 5.339670288019447,
+              "mae": 3.8678216005074835,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.311283699909977,
+              "mae": 3.951439929791322,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.71093538267004,
+              "mae": 3.5995919981250375,
+              "alpha": 0.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -1.5212096386537644,
+          "delta_mae_pct_vs_lag1_only": -1.1432960992414531
+        }
+      },
+      "ranking": [
+        "lag1_plus_age_structure",
+        "lag1_plus_structure",
+        "lag1_plus_age_fritid",
+        "lag1_plus_log_fritidshus",
+        "lag1_plus_age20_34",
+        "lag1_plus_fardigstallda_bostader",
+        "lag1_plus_brott",
+        "lag1_only"
+      ]
+    },
+    "three": {
+      "years": [
+        2021,
+        2022,
+        2023
+      ],
+      "results": {
+        "lag1_only": {
+          "features": [
+            "lag1_utflyttning_per_1000"
+          ],
+          "n": 870,
+          "rmse": 5.120046992144294,
+          "mae": 3.7710197460167145,
+          "bias_actual_minus_prediction": 0.0052470732713164915,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.616673390019551,
+              "mae": 4.016627425183902,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.3421031963507035,
+              "mae": 3.9930920753136294,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.867273839450084,
+              "mae": 3.570706367000939,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.477195564178056,
+              "mae": 4.064494050529922,
+              "alpha": 0.1
+            },
+            {
+              "fold": 5,
+              "rmse": 4.159241950376068,
+              "mae": 3.2101788120551804,
+              "alpha": 0.1
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": 0.0,
+          "delta_mae_pct_vs_lag1_only": 0.0
+        },
+        "lag1_plus_age20_34": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_andel_20_34"
+          ],
+          "n": 870,
+          "rmse": 5.089482027984683,
+          "mae": 3.7712651929566414,
+          "bias_actual_minus_prediction": 0.004202977062505645,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.578484839837033,
+              "mae": 3.9915549309547225,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.328436954227644,
+              "mae": 4.018312024232794,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.815970035412297,
+              "mae": 3.539554493030083,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.451664593930369,
+              "mae": 4.073101454968436,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.1337862614946514,
+              "mae": 3.2338030615971713,
+              "alpha": 0.1
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.5969664771926286,
+          "delta_mae_pct_vs_lag1_only": 0.006508768355995009
+        },
+        "lag1_plus_log_fritidshus": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_log_fritidshus_per_1000_inv"
+          ],
+          "n": 870,
+          "rmse": 5.101815251863997,
+          "mae": 3.7682424784705897,
+          "bias_actual_minus_prediction": 0.007449667844128257,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.575277986554147,
+              "mae": 3.98404585311381,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.338988344860307,
+              "mae": 3.989382552784606,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.87261390382745,
+              "mae": 3.6029463570810383,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.441481422115488,
+              "mae": 4.033453914700802,
+              "alpha": 0.1
+            },
+            {
+              "fold": 5,
+              "rmse": 4.147527796633855,
+              "mae": 3.2313837146726923,
+              "alpha": 1.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.35608540914311426,
+          "delta_mae_pct_vs_lag1_only": -0.07364765323911726
+        },
+        "lag1_plus_structure": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_log_folkmangd",
+            "lag1_log_fritidshus_per_1000_inv"
+          ],
+          "n": 870,
+          "rmse": 5.098638626205026,
+          "mae": 3.7610802609109513,
+          "bias_actual_minus_prediction": 0.009539495922225224,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.560320862787302,
+              "mae": 3.9719370909628595,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.337741745919031,
+              "mae": 3.99668379448083,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.865913022406897,
+              "mae": 3.593200231821042,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.453417233467016,
+              "mae": 4.025418732339971,
+              "alpha": 0.1
+            },
+            {
+              "fold": 5,
+              "rmse": 4.141866136896605,
+              "mae": 3.2181614549500557,
+              "alpha": 1.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.4181283096056587,
+          "delta_mae_pct_vs_lag1_only": -0.2635755253273975
+        },
+        "lag1_plus_brott": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_brott_per_100000"
+          ],
+          "n": 870,
+          "rmse": 5.106235161027777,
+          "mae": 3.7615520286165696,
+          "bias_actual_minus_prediction": 0.003940923821768878,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.611858151119788,
+              "mae": 4.003739319282624,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.332008442644907,
+              "mae": 3.965271124852807,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.834056663076769,
+              "mae": 3.5477097133422477,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.456032086416465,
+              "mae": 4.082109503318406,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.16035235382927,
+              "mae": 3.2089304822867653,
+              "alpha": 1.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.26975985059725094,
+          "delta_mae_pct_vs_lag1_only": -0.25106517700274056
+        },
+        "lag1_plus_fardigstallda_bostader": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_fardigstallda_bostader_per_1000"
+          ],
+          "n": 870,
+          "rmse": 5.119712584138276,
+          "mae": 3.7795827018612873,
+          "bias_actual_minus_prediction": 0.0013523772514302131,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.608181884919906,
+              "mae": 4.001303705337532,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.335907577941122,
+              "mae": 3.9900582199688346,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.864193559650789,
+              "mae": 3.589356869031395,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.471386077227558,
+              "mae": 4.07086932850879,
+              "alpha": 1.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.18774717412812,
+              "mae": 3.246325386459884,
+              "alpha": 1.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.006531346421834172,
+          "delta_mae_pct_vs_lag1_only": 0.22707268646942058
+        },
+        "lag1_plus_age_fritid": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_andel_20_34",
+            "lag1_log_fritidshus_per_1000_inv"
+          ],
+          "n": 870,
+          "rmse": 5.089007613896687,
+          "mae": 3.7745599539520143,
+          "bias_actual_minus_prediction": 0.005292932698316596,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.567012469421194,
+              "mae": 3.984644641861567,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.326040732656293,
+              "mae": 4.007764781262207,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.837634429048426,
+              "mae": 3.5769917135831237,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.440829594472402,
+              "mae": 4.0593939102998915,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.138395970141789,
+              "mae": 3.244004722753282,
+              "alpha": 1.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.6062322923057417,
+          "delta_mae_pct_vs_lag1_only": 0.09387932638218466
+        },
+        "lag1_plus_age_structure": {
+          "features": [
+            "lag1_utflyttning_per_1000",
+            "lag1_andel_20_34",
+            "lag1_log_folkmangd",
+            "lag1_log_fritidshus_per_1000_inv"
+          ],
+          "n": 870,
+          "rmse": 5.068918536101233,
+          "mae": 3.7523671769502336,
+          "bias_actual_minus_prediction": 0.012521411861894162,
+          "folds": [
+            {
+              "fold": 1,
+              "rmse": 5.513675748201911,
+              "mae": 3.9571198207593485,
+              "alpha": 0.0
+            },
+            {
+              "fold": 2,
+              "rmse": 5.327344969253412,
+              "mae": 4.02076520249838,
+              "alpha": 0.0
+            },
+            {
+              "fold": 3,
+              "rmse": 4.789807842517811,
+              "mae": 3.543811205562696,
+              "alpha": 0.0
+            },
+            {
+              "fold": 4,
+              "rmse": 5.457170553570344,
+              "mae": 4.033073884986151,
+              "alpha": 0.0
+            },
+            {
+              "fold": 5,
+              "rmse": 4.118917495096667,
+              "mae": 3.2070657709445913,
+              "alpha": 1.0
+            }
+          ],
+          "delta_rmse_pct_vs_lag1_only": -0.9985934918470107,
+          "delta_mae_pct_vs_lag1_only": -0.4946293130971613
+        }
+      },
+      "ranking": [
+        "lag1_plus_age_structure",
+        "lag1_plus_age_fritid",
+        "lag1_plus_age20_34",
+        "lag1_plus_structure",
+        "lag1_plus_log_fritidshus",
+        "lag1_plus_brott",
+        "lag1_plus_fardigstallda_bostader",
+        "lag1_only"
+      ]
+    }
+  },
+  "holdout_2024": {
+    "lag1_only": {
+      "features": [
+        "lag1_utflyttning_per_1000"
+      ],
+      "alpha": 0.1,
+      "n": 290,
+      "rmse": 4.543946303517002,
+      "mae": 3.400210808202997,
+      "bias_actual_minus_prediction": -1.062545802115189,
+      "delta_rmse_pct_vs_lag1_only": 0.0,
+      "delta_mae_pct_vs_lag1_only": 0.0
+    },
+    "lag1_plus_age20_34": {
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_andel_20_34"
+      ],
+      "alpha": 1.0,
+      "n": 290,
+      "rmse": 4.426344040352606,
+      "mae": 3.337916242337303,
+      "bias_actual_minus_prediction": -0.9178551874178803,
+      "delta_rmse_pct_vs_lag1_only": -2.5881085582673324,
+      "delta_mae_pct_vs_lag1_only": -1.8320795203464635
+    },
+    "lag1_plus_log_fritidshus": {
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_log_fritidshus_per_1000_inv"
+      ],
+      "alpha": 0.0,
+      "n": 290,
+      "rmse": 4.394634472457735,
+      "mae": 3.302069206356462,
+      "bias_actual_minus_prediction": -1.0608495546976162,
+      "delta_rmse_pct_vs_lag1_only": -3.2859506051755027,
+      "delta_mae_pct_vs_lag1_only": -2.886338741402994
+    },
+    "lag1_plus_structure": {
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_log_folkmangd",
+        "lag1_log_fritidshus_per_1000_inv"
+      ],
+      "alpha": 0.0,
+      "n": 290,
+      "rmse": 4.424879478871991,
+      "mae": 3.3089194504117523,
+      "bias_actual_minus_prediction": -1.059641153814497,
+      "delta_rmse_pct_vs_lag1_only": -2.6203396055286543,
+      "delta_mae_pct_vs_lag1_only": -2.6848734664040363
+    },
+    "lag1_plus_brott": {
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_brott_per_100000"
+      ],
+      "alpha": 0.0,
+      "n": 290,
+      "rmse": 4.554148999320315,
+      "mae": 3.417428535674616,
+      "bias_actual_minus_prediction": -1.1286038903833728,
+      "delta_rmse_pct_vs_lag1_only": 0.2245338109611028,
+      "delta_mae_pct_vs_lag1_only": 0.5063723528576869
+    },
+    "lag1_plus_fardigstallda_bostader": {
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_fardigstallda_bostader_per_1000"
+      ],
+      "alpha": 0.1,
+      "n": 290,
+      "rmse": 4.452603981694083,
+      "mae": 3.341094649502117,
+      "bias_actual_minus_prediction": -1.1895771425243158,
+      "delta_rmse_pct_vs_lag1_only": -2.010198090418014,
+      "delta_mae_pct_vs_lag1_only": -1.738602752460594
+    },
+    "lag1_plus_age_fritid": {
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_andel_20_34",
+        "lag1_log_fritidshus_per_1000_inv"
+      ],
+      "alpha": 0.0,
+      "n": 290,
+      "rmse": 4.372850247620224,
+      "mae": 3.2933929665755084,
+      "bias_actual_minus_prediction": -1.0140138761775512,
+      "delta_rmse_pct_vs_lag1_only": -3.765362626850377,
+      "delta_mae_pct_vs_lag1_only": -3.1415064433590656
+    },
+    "lag1_plus_age_structure": {
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_andel_20_34",
+        "lag1_log_folkmangd",
+        "lag1_log_fritidshus_per_1000_inv"
+      ],
+      "alpha": 0.0,
+      "n": 290,
+      "rmse": 4.3963133909937415,
+      "mae": 3.282170364987105,
+      "bias_actual_minus_prediction": -0.9431186490452123,
+      "delta_rmse_pct_vs_lag1_only": -3.2490021373930533,
+      "delta_mae_pct_vs_lag1_only": -3.4715624963934544
+    }
+  },
+  "cross_window_ranking": [
+    {
+      "model": "lag1_plus_age_structure",
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_andel_20_34",
+        "lag1_log_folkmangd",
+        "lag1_log_fritidshus_per_1000_inv"
+      ],
+      "mean_delta_rmse_pct": -1.2599015652503875,
+      "worst_window_delta_rmse_pct": -0.9985934918470107
+    },
+    {
+      "model": "lag1_plus_age_fritid",
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_andel_20_34",
+        "lag1_log_fritidshus_per_1000_inv"
+      ],
+      "mean_delta_rmse_pct": -0.9369930160111284,
+      "worst_window_delta_rmse_pct": -0.6062322923057417
+    },
+    {
+      "model": "lag1_plus_structure",
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_log_folkmangd",
+        "lag1_log_fritidshus_per_1000_inv"
+      ],
+      "mean_delta_rmse_pct": -0.8653525881872459,
+      "worst_window_delta_rmse_pct": -0.4181283096056587
+    },
+    {
+      "model": "lag1_plus_log_fritidshus",
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_log_fritidshus_per_1000_inv"
+      ],
+      "mean_delta_rmse_pct": -0.7892293150860596,
+      "worst_window_delta_rmse_pct": -0.35608540914311426
+    },
+    {
+      "model": "lag1_plus_age20_34",
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_andel_20_34"
+      ],
+      "mean_delta_rmse_pct": -0.6139309436307749,
+      "worst_window_delta_rmse_pct": -0.5969664771926286
+    },
+    {
+      "model": "lag1_plus_brott",
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_brott_per_100000"
+      ],
+      "mean_delta_rmse_pct": -0.35731162745135103,
+      "worst_window_delta_rmse_pct": -0.26975985059725094
+    },
+    {
+      "model": "lag1_plus_fardigstallda_bostader",
+      "features": [
+        "lag1_utflyttning_per_1000",
+        "lag1_fardigstallda_bostader_per_1000"
+      ],
+      "mean_delta_rmse_pct": -0.23361721894955,
+      "worst_window_delta_rmse_pct": -0.006531346421834172
+    },
+    {
+      "model": "lag1_only",
+      "features": [
+        "lag1_utflyttning_per_1000"
+      ],
+      "mean_delta_rmse_pct": 0.0,
+      "worst_window_delta_rmse_pct": 0.0
+    }
+  ]
+}
