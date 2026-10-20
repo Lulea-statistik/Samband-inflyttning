@@ -1,0 +1,338 @@
+{
+  "status": "core4_geographic_equity_postprocess_challenger",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "variable_selection_reopened": false,
+  "evaluation_years": [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "n_municipalities": 290,
+  "base_predictions": "frozen 6-year rolling-origin core4",
+  "method": {
+    "challenger": "shrink each municipality prediction toward forecast-year cross-sectional median prediction",
+    "lambda_grid": [
+      0.0,
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.3
+    ],
+    "gamma_grid": [
+      0.0,
+      0.25,
+      0.5,
+      1.0
+    ],
+    "selection_objective": "historical pooled RMSE + gamma * historical p90 municipality RMSE",
+    "out_of_time_rule": "forecast year uses only earlier forecast years to select lambda",
+    "no_feature_refit": true,
+    "no_contemporaneous_outcome_use": true
+  },
+  "selection_history": [
+    {
+      "gamma": 0.0,
+      "year": 2020,
+      "selected_lambda": 0.15,
+      "historical_objective": 8.549992669989724,
+      "historical_pooled_rmse": 8.549992669989724,
+      "historical_p90_municipality_rmse": 12.44518838002333
+    },
+    {
+      "gamma": 0.25,
+      "year": 2020,
+      "selected_lambda": 0.15,
+      "historical_objective": 11.661289764995557,
+      "historical_pooled_rmse": 8.549992669989724,
+      "historical_p90_municipality_rmse": 12.44518838002333
+    },
+    {
+      "gamma": 0.5,
+      "year": 2020,
+      "selected_lambda": 0.15,
+      "historical_objective": 14.77258686000139,
+      "historical_pooled_rmse": 8.549992669989724,
+      "historical_p90_municipality_rmse": 12.44518838002333
+    },
+    {
+      "gamma": 1.0,
+      "year": 2020,
+      "selected_lambda": 0.15,
+      "historical_objective": 20.995181050013052,
+      "historical_pooled_rmse": 8.549992669989724,
+      "historical_p90_municipality_rmse": 12.44518838002333
+    },
+    {
+      "gamma": 0.0,
+      "year": 2021,
+      "selected_lambda": 0.1,
+      "historical_objective": 7.933661240954702,
+      "historical_pooled_rmse": 7.933661240954702,
+      "historical_p90_municipality_rmse": 11.220070938968433
+    },
+    {
+      "gamma": 0.25,
+      "year": 2021,
+      "selected_lambda": 0.1,
+      "historical_objective": 10.73867897569681,
+      "historical_pooled_rmse": 7.933661240954702,
+      "historical_p90_municipality_rmse": 11.220070938968433
+    },
+    {
+      "gamma": 0.5,
+      "year": 2021,
+      "selected_lambda": 0.1,
+      "historical_objective": 13.543696710438919,
+      "historical_pooled_rmse": 7.933661240954702,
+      "historical_p90_municipality_rmse": 11.220070938968433
+    },
+    {
+      "gamma": 1.0,
+      "year": 2021,
+      "selected_lambda": 0.1,
+      "historical_objective": 19.153732179923136,
+      "historical_pooled_rmse": 7.933661240954702,
+      "historical_p90_municipality_rmse": 11.220070938968433
+    },
+    {
+      "gamma": 0.0,
+      "year": 2022,
+      "selected_lambda": 0.05,
+      "historical_objective": 7.572122274692246,
+      "historical_pooled_rmse": 7.572122274692246,
+      "historical_p90_municipality_rmse": 10.72560365053552
+    },
+    {
+      "gamma": 0.25,
+      "year": 2022,
+      "selected_lambda": 0.1,
+      "historical_objective": 10.232594547382826,
+      "historical_pooled_rmse": 7.604125881943101,
+      "historical_p90_municipality_rmse": 10.5138746617589
+    },
+    {
+      "gamma": 0.5,
+      "year": 2022,
+      "selected_lambda": 0.1,
+      "historical_objective": 12.86106321282255,
+      "historical_pooled_rmse": 7.604125881943101,
+      "historical_p90_municipality_rmse": 10.5138746617589
+    },
+    {
+      "gamma": 1.0,
+      "year": 2022,
+      "selected_lambda": 0.1,
+      "historical_objective": 18.118000543702,
+      "historical_pooled_rmse": 7.604125881943101,
+      "historical_p90_municipality_rmse": 10.5138746617589
+    },
+    {
+      "gamma": 0.0,
+      "year": 2023,
+      "selected_lambda": 0.05,
+      "historical_objective": 7.220999322599824,
+      "historical_pooled_rmse": 7.220999322599824,
+      "historical_p90_municipality_rmse": 10.106039282167563
+    },
+    {
+      "gamma": 0.25,
+      "year": 2023,
+      "selected_lambda": 0.05,
+      "historical_objective": 9.747509143141714,
+      "historical_pooled_rmse": 7.220999322599824,
+      "historical_p90_municipality_rmse": 10.106039282167563
+    },
+    {
+      "gamma": 0.5,
+      "year": 2023,
+      "selected_lambda": 0.1,
+      "historical_objective": 12.246230740000538,
+      "historical_pooled_rmse": 7.2527471914933255,
+      "historical_p90_municipality_rmse": 9.986967097014425
+    },
+    {
+      "gamma": 1.0,
+      "year": 2023,
+      "selected_lambda": 0.1,
+      "historical_objective": 17.23971428850775,
+      "historical_pooled_rmse": 7.2527471914933255,
+      "historical_p90_municipality_rmse": 9.986967097014425
+    },
+    {
+      "gamma": 0.0,
+      "year": 2024,
+      "selected_lambda": 0.05,
+      "historical_objective": 7.11881281771163,
+      "historical_pooled_rmse": 7.11881281771163,
+      "historical_p90_municipality_rmse": 9.827919289604663
+    },
+    {
+      "gamma": 0.25,
+      "year": 2024,
+      "selected_lambda": 0.1,
+      "historical_objective": 9.53926866894818,
+      "historical_pooled_rmse": 7.148033310544126,
+      "historical_p90_municipality_rmse": 9.564941433616218
+    },
+    {
+      "gamma": 0.5,
+      "year": 2024,
+      "selected_lambda": 0.1,
+      "historical_objective": 11.930504027352235,
+      "historical_pooled_rmse": 7.148033310544126,
+      "historical_p90_municipality_rmse": 9.564941433616218
+    },
+    {
+      "gamma": 1.0,
+      "year": 2024,
+      "selected_lambda": 0.1,
+      "historical_objective": 16.712974744160345,
+      "historical_pooled_rmse": 7.148033310544126,
+      "historical_p90_municipality_rmse": 9.564941433616218
+    }
+  ],
+  "summary": {
+    "0.0": {
+      "core4": {
+        "n": 1450,
+        "pooled_rmse": 5.593521161667208,
+        "pooled_mae": 4.271336610151102,
+        "mean_municipality_rmse": 5.054122885641516,
+        "median_municipality_rmse": 4.532366106132704,
+        "sd_municipality_rmse": 2.4006653088997583,
+        "p90_municipality_rmse": 8.581200058450033,
+        "p95_municipality_rmse": 9.65932724408494,
+        "worst_decile_mean_rmse": 10.019097576059135,
+        "max_municipality_rmse": 13.733092538646902,
+        "share_municipalities_rmse_gt_10": 0.034482758620689655
+      },
+      "challenger": {
+        "n": 1450,
+        "pooled_rmse": 5.829245023665877,
+        "pooled_mae": 4.437179586051597,
+        "mean_municipality_rmse": 5.280233059605494,
+        "median_municipality_rmse": 4.728229661244454,
+        "sd_municipality_rmse": 2.4739322962325363,
+        "p90_municipality_rmse": 8.694647578053614,
+        "p95_municipality_rmse": 10.014002823932008,
+        "worst_decile_mean_rmse": 10.579960887781166,
+        "max_municipality_rmse": 14.608567095727492,
+        "share_municipalities_rmse_gt_10": 0.05172413793103448,
+        "delta_vs_core4_pct": {
+          "pooled_rmse": 4.214230270801522,
+          "p90_municipality_rmse": 1.322047252492009,
+          "worst_decile_mean_rmse": 5.5979424041365355,
+          "sd_municipality_rmse": 3.051945102933029
+        }
+      }
+    },
+    "0.25": {
+      "core4": {
+        "n": 1450,
+        "pooled_rmse": 5.593521161667208,
+        "pooled_mae": 4.271336610151102,
+        "mean_municipality_rmse": 5.054122885641516,
+        "median_municipality_rmse": 4.532366106132704,
+        "sd_municipality_rmse": 2.4006653088997583,
+        "p90_municipality_rmse": 8.581200058450033,
+        "p95_municipality_rmse": 9.65932724408494,
+        "worst_decile_mean_rmse": 10.019097576059135,
+        "max_municipality_rmse": 13.733092538646902,
+        "share_municipalities_rmse_gt_10": 0.034482758620689655
+      },
+      "challenger": {
+        "n": 1450,
+        "pooled_rmse": 5.856452573036591,
+        "pooled_mae": 4.453450149311832,
+        "mean_municipality_rmse": 5.305075999808265,
+        "median_municipality_rmse": 4.782974294948593,
+        "sd_municipality_rmse": 2.4850553725777567,
+        "p90_municipality_rmse": 8.698639574399833,
+        "p95_municipality_rmse": 10.079288383792933,
+        "worst_decile_mean_rmse": 10.647614830345557,
+        "max_municipality_rmse": 15.364574326767515,
+        "share_municipalities_rmse_gt_10": 0.05517241379310345,
+        "delta_vs_core4_pct": {
+          "pooled_rmse": 4.700642113795328,
+          "p90_municipality_rmse": 1.3685675097873329,
+          "worst_decile_mean_rmse": 6.273192266220451,
+          "sd_municipality_rmse": 3.5152781758101437
+        }
+      }
+    },
+    "0.5": {
+      "core4": {
+        "n": 1450,
+        "pooled_rmse": 5.593521161667208,
+        "pooled_mae": 4.271336610151102,
+        "mean_municipality_rmse": 5.054122885641516,
+        "median_municipality_rmse": 4.532366106132704,
+        "sd_municipality_rmse": 2.4006653088997583,
+        "p90_municipality_rmse": 8.581200058450033,
+        "p95_municipality_rmse": 9.65932724408494,
+        "worst_decile_mean_rmse": 10.019097576059135,
+        "max_municipality_rmse": 13.733092538646902,
+        "share_municipalities_rmse_gt_10": 0.034482758620689655
+      },
+      "challenger": {
+        "n": 1450,
+        "pooled_rmse": 5.859203187908786,
+        "pooled_mae": 4.456812575125618,
+        "mean_municipality_rmse": 5.316787635224808,
+        "median_municipality_rmse": 4.792660604099859,
+        "sd_municipality_rmse": 2.466375301076794,
+        "p90_municipality_rmse": 8.75154966551089,
+        "p95_municipality_rmse": 10.10978581113893,
+        "worst_decile_mean_rmse": 10.630180590499045,
+        "max_municipality_rmse": 15.156780688975617,
+        "share_municipalities_rmse_gt_10": 0.05172413793103448,
+        "delta_vs_core4_pct": {
+          "pooled_rmse": 4.749817128829625,
+          "p90_municipality_rmse": 1.9851489989807458,
+          "worst_decile_mean_rmse": 6.099182184831764,
+          "sd_municipality_rmse": 2.737157567672388
+        }
+      }
+    },
+    "1.0": {
+      "core4": {
+        "n": 1450,
+        "pooled_rmse": 5.593521161667208,
+        "pooled_mae": 4.271336610151102,
+        "mean_municipality_rmse": 5.054122885641516,
+        "median_municipality_rmse": 4.532366106132704,
+        "sd_municipality_rmse": 2.4006653088997583,
+        "p90_municipality_rmse": 8.581200058450033,
+        "p95_municipality_rmse": 9.65932724408494,
+        "worst_decile_mean_rmse": 10.019097576059135,
+        "max_municipality_rmse": 13.733092538646902,
+        "share_municipalities_rmse_gt_10": 0.034482758620689655
+      },
+      "challenger": {
+        "n": 1450,
+        "pooled_rmse": 5.859203187908786,
+        "pooled_mae": 4.456812575125618,
+        "mean_municipality_rmse": 5.316787635224808,
+        "median_municipality_rmse": 4.792660604099859,
+        "sd_municipality_rmse": 2.466375301076794,
+        "p90_municipality_rmse": 8.75154966551089,
+        "p95_municipality_rmse": 10.10978581113893,
+        "worst_decile_mean_rmse": 10.630180590499045,
+        "max_municipality_rmse": 15.156780688975617,
+        "share_municipalities_rmse_gt_10": 0.05172413793103448,
+        "delta_vs_core4_pct": {
+          "pooled_rmse": 4.749817128829625,
+          "p90_municipality_rmse": 1.9851489989807458,
+          "worst_decile_mean_rmse": 6.099182184831764,
+          "sd_municipality_rmse": 2.737157567672388
+        }
+      }
+    }
+  },
+  "promising_gammas": [],
+  "decision_rule": "Promising only if p90 and worst-decile municipality RMSE improve and pooled RMSE deteriorates by no more than 1%."
+}
