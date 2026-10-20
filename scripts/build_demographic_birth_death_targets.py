@@ -1,213 +1,165 @@
 #!/usr/bin/env python3
-"""Build annual municipal birth/death rate targets from SCB bulk CSV.
+"""Build annual municipal birth/death targets from SCB municipal event tables.
 
-Targets:
-- fodelsetal_per_100 = SCB births per 1,000 of mean population / 10
-- dodstal_per_1000 = SCB deaths per 1,000 of mean population
+Municipal targets:
+- fodelsetal_per_100 = live births / mean population * 100
+- dodstal_per_1000 = deaths / mean population * 1000
 
-Official SCB bulk tables:
-- FodelstalHVD: TAB4644_sv.zip
-- DodstalHVD: TAB4667_sv.zip
+Counts:
+- FoddaK
+- DodaHandelseK
 
-Bulk CSV is preferred over PxWeb API dimension handling because it preserves
-SCB's published table directly and is more robust to internal dimension-code changes.
+Population:
+- existing verified project panel.csv, folkmangd
+Mean population is approximated as average of year-end population in Y-1 and Y,
+matching the usual crude-rate denominator much better than a single year-end stock.
+
+Regional HVD tables are not used as municipal targets because FodelstalHVD exposes
+only 31 regional aggregates in the current SCB publication.
 """
-import io,json,re,zipfile,unicodedata
+import json,re
 from pathlib import Path
+import numpy as np
 import pandas as pd
 import requests
 
-OUT=Path("docs/data"); OUT.mkdir(parents=True,exist_ok=True)
-BIRTH_ZIP="https://www.statistikdatabasen.scb.se/Resources/PX/bulk/ssd/sv/TAB4644_sv.zip"
-DEATH_ZIP="https://www.statistikdatabasen.scb.se/Resources/PX/bulk/ssd/sv/TAB4667_sv.zip"
-BIRTH_META="https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101H/FodelstalHVD"
-DEATH_META="https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101I/DodstalHVD"
-YEARS=set(range(2013,2026))
-S=requests.Session();S.headers.update({"User-Agent":"Lulea-statistik-Samband-inflyttning-demographic-targets/1.1"})
+D=Path("docs/data")
+BIRTH_URL="https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101H/FoddaK"
+DEATH_URL="https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101I/DodaHandelseK"
+YEARS=list(range(2013,2025))
+S=requests.Session();S.headers.update({"User-Agent":"Samband-inflyttning-demographic-targets/2.0"})
 
-def norm(s):
-    s=unicodedata.normalize("NFKD",str(s)).encode("ascii","ignore").decode().lower()
-    return re.sub(r"[^a-z0-9]+","_",s).strip("_")
+def meta(url):
+    r=S.get(url,timeout=90);r.raise_for_status();return r.json()
 
-def load_bulk(url):
-    r=S.get(url,timeout=180); r.raise_for_status()
-    z=zipfile.ZipFile(io.BytesIO(r.content))
-    names=[n for n in z.namelist() if n.lower().endswith((".csv",".txt"))]
-    if not names: raise RuntimeError(f"No CSV/TXT in {url}: {z.namelist()}")
-    raw=z.read(names[0])
-    last=None
-    for enc in ("utf-8-sig","utf-8","cp1252","latin1"):
-        try:
-            txt=raw.decode(enc)
-            df=pd.read_csv(io.StringIO(txt),sep=None,engine="python")
-            if len(df.columns)>=2:return df,names[0],enc
-        except Exception as e:last=e
-    raise RuntimeError(f"Could not parse bulk file {url}: {last}")
-
-def pick_col(df,needles):
-    nmap={norm(c):c for c in df.columns}
-    for n,c in nmap.items():
-        if all(x in n for x in needles):return c
-    raise KeyError(f"Column with {needles} not found. Columns={list(df.columns)}")
-
-def region_lookup(meta_url):
-    """Build normalized SCB region label -> official four-digit municipality code."""
-    r=S.get(meta_url,timeout=90); r.raise_for_status(); meta=r.json()
-    print("SCB metadata dimensions:")
-    for v in meta.get("variables",[]):
+def municipality_var(m):
+    cand=[]
+    for v in m["variables"]:
         vals=v.get("values",[])
-        txts=v.get("valueTexts",vals)
-        print({
-          "code":v.get("code"),
-          "text":v.get("text"),
-          "n_values":len(vals),
-          "sample_values":[str(x) for x in vals[:8]],
-          "sample_texts":[str(x) for x in txts[:8]],
-          "time":bool(v.get("time"))
-        })
-    candidates=[]
-    for v in meta.get("variables",[]):
-        vals=v.get("values",[])
-        texts=v.get("valueTexts",vals)
-        pairs=list(zip(vals,texts))
-        mapped=[]
-        for code,label in pairs:
-            m=re.search(r"(?<!\d)(\d{4})(?!\d)",str(code))
-            if not m:
-                m=re.search(r"(?<!\d)(\d{4})(?!\d)",str(label))
-            if m:
-                mapped.append((norm(label),m.group(1)))
-        if len(mapped)>=250:
-            candidates.append((len(mapped),mapped,v.get("code"),v.get("text")))
-    if not candidates:
-        # Some SCB region codes can carry prefixes. Use the highest-cardinality
-        # non-time dimension and extract the final four digits from its codes.
-        for v in meta.get("variables",[]):
-            if v.get("time"): continue
-            vals=v.get("values",[])
-            texts=v.get("valueTexts",vals)
-            mapped=[]
-            for code,label in zip(vals,texts):
-                digs=re.findall(r"\d{4}",str(code))
-                if digs:
-                    mapped.append((norm(label),digs[-1]))
-            if len(mapped)>=250:
-                candidates.append((len(mapped),mapped,v.get("code"),v.get("text")))
-    if not candidates:
-        raise RuntimeError("Could not construct municipality lookup from SCB metadata")
-    _,mapped,code,text=max(candidates,key=lambda x:x[0])
-    out={}
-    for label,kod in mapped:
-        if kod and len(kod)==4:
-            out[label]=kod
-    return out,{"dimension_code":code,"dimension_text":text,"mapped_labels":len(out)}
+        n=sum(bool(re.fullmatch(r"\d{4}",str(x))) for x in vals)
+        if n>=250:cand.append((n,v))
+    if not cand:
+        raise RuntimeError("No municipality dimension with >=250 four-digit codes")
+    return max(cand,key=lambda x:x[0])[1]
 
-def region_code(series, lookup):
-    raw=series.astype(str)
-    embedded=raw.str.extract(r"(?<!\d)(\d{4})(?!\d)",expand=False)
-    by_name=raw.map(lambda x: lookup.get(norm(x)))
-    return embedded.fillna(by_name)
+def time_var(m):
+    x=[v for v in m["variables"] if v.get("time")]
+    if x:return x[0]
+    for v in m["variables"]:
+        if "tid" in v.get("code","").lower() or "år" in v.get("text","").lower():
+            return v
+    raise RuntimeError("No time dimension")
 
-def numeric(series):
-    return pd.to_numeric(series.astype(str).str.replace(",",".",regex=False),errors="coerce")
+def pairs(v):
+    return list(zip(v["values"],v.get("valueTexts",v["values"])))
 
-def build_birth():
-    df,name,enc=load_bulk(BIRTH_ZIP)
-    print("Birth bulk columns:", list(df.columns))
-    region=pick_col(df,["region"])
-    print("Birth bulk region sample:", df[region].astype(str).drop_duplicates().head(30).tolist())
-    lookup,lookup_meta=region_lookup(BIRTH_META)
-    year=pick_col(df,["ar"])
-    value_candidates=[c for c in df.columns if c not in (region,year)]
-    if len(value_candidates)!=1:
-        # Prefer the published rate content column.
-        value=next((c for c in value_candidates if "1000" in norm(c) or "fodd" in norm(c)),None)
-        if value is None: raise RuntimeError(f"Birth value column ambiguous: {value_candidates}")
-    else:value=value_candidates[0]
-    out=pd.DataFrame({
-      "kommun_kod":region_code(df[region],lookup),
-      "year":pd.to_numeric(df[year],errors="coerce"),
-      "fodelsetal_per_1000_scb":numeric(df[value])
-    })
-    out=out[out.kommun_kod.notna() & out.year.isin(YEARS)].copy()
-    out["year"]=out["year"].astype(int)
-    out["fodelsetal_per_100"]=out["fodelsetal_per_1000_scb"]/10.0
-    out=out.groupby(["kommun_kod","year"],as_index=False)[["fodelsetal_per_1000_scb","fodelsetal_per_100"]].mean()
-    return out,{"zip":BIRTH_ZIP,"member":name,"encoding":enc,"columns":list(df.columns),"region_lookup":lookup_meta}
-
-def find_total_value(series,terms):
-    vals=series.dropna().astype(str).unique().tolist()
-    for v in vals:
-        nv=norm(v)
-        if all(t in nv for t in terms):return v
+def total_code(v):
+    pref=[
+      ("totalt",),("samtliga",),("båda","könen"),("bada","konen"),
+      ("alla",),("samtliga","åldrar"),("samtliga","aldrar")
+    ]
+    for terms in pref:
+        for code,txt in pairs(v):
+            t=str(txt).lower()
+            if all(term in t for term in terms):
+                return code
     return None
 
-def build_death():
-    df,name,enc=load_bulk(DEATH_ZIP)
-    print("Death bulk columns:", list(df.columns))
-    region=pick_col(df,["region"])
-    print("Death bulk region sample:", df[region].astype(str).drop_duplicates().head(30).tolist())
-    lookup,lookup_meta=region_lookup(DEATH_META)
-    year=pick_col(df,["ar"])
-    sex=pick_col(df,["kon"])
-    age=pick_col(df,["alder"])
-    other=[c for c in df.columns if c not in (region,year,sex,age)]
-    if not other:raise RuntimeError(f"Death value column absent: {list(df.columns)}")
-    value=next((c for c in other if "antal" in norm(c) or "1000" in norm(c) or "dod" in norm(c)),other[0])
-    sex_total=find_total_value(df[sex],["totalt"]) or find_total_value(df[sex],["bada"])
-    age_total=find_total_value(df[age],["samtliga"]) or find_total_value(df[age],["totalt"])
-    if sex_total is None or age_total is None:
-        raise RuntimeError(f"Could not identify total sex/age. sex={df[sex].drop_duplicates().tolist()[:10]} age={df[age].drop_duplicates().tolist()[:10]}")
-    q=df[(df[sex].astype(str)==str(sex_total)) & (df[age].astype(str)==str(age_total))].copy()
-    out=pd.DataFrame({
-      "kommun_kod":region_code(q[region],lookup),
-      "year":pd.to_numeric(q[year],errors="coerce"),
-      "dodstal_per_1000":numeric(q[value])
-    })
-    out=out[out.kommun_kod.notna() & out.year.isin(YEARS)].copy()
-    out["year"]=out["year"].astype(int)
-    out=out.groupby(["kommun_kod","year"],as_index=False)["dodstal_per_1000"].mean()
-    return out,{"zip":DEATH_ZIP,"member":name,"encoding":enc,"columns":list(df.columns),"sex_total":str(sex_total),"age_total":str(age_total),"region_lookup":lookup_meta}
+def jsonstat2_df(js):
+    ids=js["id"];sizes=js["size"];vals=js["value"];cats=[]
+    for d in ids:
+        idx=js["dimension"][d]["category"]["index"]
+        cats.append(sorted(idx,key=idx.get) if isinstance(idx,dict) else list(idx))
+    rows=[]
+    for flat,val in enumerate(vals):
+        if val is None:continue
+        rem=flat;pos=[]
+        for sz in reversed(sizes):
+            pos.append(rem%sz);rem//=sz
+        pos=list(reversed(pos))
+        row={d:cats[i][pos[i]] for i,d in enumerate(ids)}
+        row["value"]=float(val);rows.append(row)
+    return pd.DataFrame(rows)
 
-b,bmeta=build_birth()
-d,dmeta=build_death()
-if b.empty:
-    raise RuntimeError(f"Birth target extraction returned 0 rows; source={bmeta}")
-if d.empty:
-    raise RuntimeError(f"Death target extraction returned 0 rows; source={dmeta}")
-print(f"Birth extraction: rows={len(b)}, municipalities={b.kommun_kod.nunique()}, years={sorted(b.year.unique())}")
-print(f"Death extraction: rows={len(d)}, municipalities={d.kommun_kod.nunique()}, years={sorted(d.year.unique())}")
-panel=b.merge(d,on=["kommun_kod","year"],how="inner",validate="one_to_one").sort_values(["kommun_kod","year"])
+def fetch_counts(url,label):
+    m=meta(url);rv=municipality_var(m);tv=time_var(m)
+    regions=[str(x) for x in rv["values"] if re.fullmatch(r"\d{4}",str(x))]
+    years=[str(y) for y in YEARS if str(y) in set(map(str,tv["values"]))]
+    q=[{"code":rv["code"],"selection":{"filter":"item","values":regions}}]
+    expanded=[]
+    for v in m["variables"]:
+        if v["code"] in (rv["code"],tv["code"]):continue
+        tc=total_code(v)
+        if tc is not None:
+            vals=[tc]
+        else:
+            vals=list(v["values"])
+            expanded.append(v["code"])
+        q.append({"code":v["code"],"selection":{"filter":"item","values":vals}})
+    q.append({"code":tv["code"],"selection":{"filter":"item","values":years}})
+    r=S.post(url,json={"query":q,"response":{"format":"json-stat2"}},timeout=180)
+    r.raise_for_status();df=jsonstat2_df(r.json())
+    # SCB response IDs should match query codes; resolve case-insensitively as fallback.
+    cmap={str(c).lower():c for c in df.columns}
+    rc=rv["code"] if rv["code"] in df else cmap.get(rv["code"].lower())
+    tc=tv["code"] if tv["code"] in df else cmap.get(tv["code"].lower())
+    if rc is None or tc is None:
+        raise RuntimeError(f"{label}: response dimensions missing. columns={list(df.columns)}")
+    df["kommun_kod"]=df[rc].astype(str).str.zfill(4)
+    df["year"]=pd.to_numeric(df[tc],errors="raise").astype(int)
+    out=df.groupby(["kommun_kod","year"],as_index=False)["value"].sum().rename(columns={"value":f"{label}_count"})
+    if out.kommun_kod.nunique()!=290:
+        raise RuntimeError(f"{label}: expected 290 municipalities, got {out.kommun_kod.nunique()}")
+    return out,{
+      "url":url,"municipality_dimension":rv["code"],"time_dimension":tv["code"],
+      "expanded_non_total_dimensions":expanded,"years":years,"municipalities":len(regions)
+    }
 
-counts=panel.groupby("year").kommun_kod.nunique().to_dict()
-bad={int(y):int(n) for y,n in counts.items() if n!=290}
-if bad:
-    raise RuntimeError(f"Expected 290 municipalities per year, got deviations: {bad}")
-if panel.kommun_kod.nunique()!=290:
-    raise RuntimeError(f"Expected 290 municipalities total, got {panel.kommun_kod.nunique()}")
+birth,bq=fetch_counts(BIRTH_URL,"birth")
+death,dq=fetch_counts(DEATH_URL,"death")
 
-panel.to_csv(OUT/"demographic_birth_death_targets.csv",index=False)
+p=pd.read_csv(D/"panel.csv",dtype={"kommun_kod":str},low_memory=False)
+p["kommun_kod"]=p["kommun_kod"].astype(str).str.zfill(4)
+if "folkmangd" not in p.columns:
+    raise RuntimeError("panel.csv lacks folkmangd")
+pop=p[["kommun_kod","year","folkmangd"]].copy()
+pop["folkmangd"]=pd.to_numeric(pop["folkmangd"],errors="coerce")
+pop=pop.sort_values(["kommun_kod","year"])
+pop["folkmangd_prev"]=pop.groupby("kommun_kod")["folkmangd"].shift(1)
+pop["mean_population"]=(pop["folkmangd"]+pop["folkmangd_prev"])/2.0
+pop=pop[pop.year.isin(YEARS)]
+
+out=(birth.merge(death,on=["kommun_kod","year"],how="inner",validate="one_to_one")
+          .merge(pop,on=["kommun_kod","year"],how="inner",validate="one_to_one"))
+if out.mean_population.isna().any():
+    raise RuntimeError("Missing mean population denominator")
+out["fodelsetal_per_100"]=100.0*out["birth_count"]/out["mean_population"]
+out["dodstal_per_1000"]=1000.0*out["death_count"]/out["mean_population"]
+out=out.sort_values(["kommun_kod","year"])
+
+counts=out.groupby("year").kommun_kod.nunique()
+if not (counts==290).all():
+    raise RuntimeError(f"Unbalanced targets: {counts.to_dict()}")
+
+cols=["kommun_kod","year","birth_count","death_count","mean_population","fodelsetal_per_100","dodstal_per_1000"]
+out[cols].to_csv(D/"demographic_birth_death_targets.csv",index=False)
 manifest={
  "status":"demographic_birth_death_targets_built",
  "production_changed":False,
  "municipalities":290,
- "first_year":int(panel.year.min()),
- "last_year":int(panel.year.max()),
- "rows":int(len(panel)),
- "rows_per_year":{str(k):int(v) for k,v in counts.items()},
+ "first_year":int(out.year.min()),"last_year":int(out.year.max()),"rows":int(len(out)),
  "birth_target":"fodelsetal_per_100",
- "birth_definition":"SCB FodelstalHVD births per 1,000 of mean population divided by 10",
+ "birth_definition":"live births from SCB FoddaK divided by average of Y-1 and Y year-end municipal population, times 100",
  "death_target":"dodstal_per_1000",
- "death_definition":"SCB DodstalHVD deaths per 1,000 of mean population, both sexes and all ages",
- "birth_source":bmeta,
- "death_source":dmeta,
- "scb_birth_rate_original_unit":"per 1,000 of mean population",
- "project_birth_rate_unit":"per 100 of mean population",
- "method":"official SCB full-table bulk CSV ZIP",
- "model_code_imported":False
+ "death_definition":"deaths from SCB DodaHandelseK divided by average of Y-1 and Y year-end municipal population, times 1000",
+ "birth_source":bq,"death_source":dq,
+ "population_source":"docs/data/panel.csv folkmangd",
+ "regional_hvd_tables_used_as_targets":False,
+ "regional_hvd_reason":"FodelstalHVD current publication contains 31 regional aggregates, not 290 municipalities",
+ "same_year_target_leakage":False
 }
-(OUT/"demographic_birth_death_targets_manifest.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-# Keep query audit filenames for workflow compatibility, now documenting bulk retrieval.
-(OUT/"demographic_birth_query.json").write_text(json.dumps({"method":"bulk_csv","source":bmeta},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-(OUT/"demographic_death_query.json").write_text(json.dumps({"method":"bulk_csv","source":dmeta},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+(D/"demographic_birth_death_targets_manifest.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+(D/"demographic_birth_query.json").write_text(json.dumps(bq,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+(D/"demographic_death_query.json").write_text(json.dumps(dq,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 print(json.dumps(manifest,ensure_ascii=False,indent=2))
+print(out[out.kommun_kod.eq("2580")][cols].tail(5).to_string(index=False))
