@@ -94,7 +94,7 @@ summary={}
 for window in WINDOWS:
     q=o[o.window.eq(window)]
     if q.empty: continue
-    years=sorted(q.forecast_year.unique())
+    years=[int(x) for x in sorted(q.forecast_year.unique())]
     models={}
     base=None
     for name in MODELS:
