@@ -8,6 +8,7 @@ on:
       - scripts/build_demographic_scb_candidate_features.py
       - scripts/test_demographic_compact_core_ablation.py
       - scripts/test_demographic_compact_core_windows.py
+      - scripts/test_demographic_window_common_origins.py
       - .github/workflows/build_demographic_birth_death_targets.yml
   workflow_dispatch:
 permissions:
@@ -34,6 +35,8 @@ jobs:
         run: python scripts/test_demographic_compact_core_ablation.py
       - name: Compare compact core windows
         run: python scripts/test_demographic_compact_core_windows.py
+      - name: Compare demographic windows on common origins
+        run: python scripts/test_demographic_window_common_origins.py
       - name: Commit targets and neutral model results
         run: |
           git config user.name "github-actions[bot]"
@@ -47,6 +50,7 @@ jobs:
           git add docs/data/demographic_birth_death_neutral_from_zero_nested_cv.json
           git add docs/data/demographic_compact_core_ablation.json
           git add docs/data/demographic_compact_core_window_comparison.json
+          git add docs/data/demographic_window_common_origin_comparison.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Build SCB birth-death targets and neutral models"
           git pull --rebase origin main
