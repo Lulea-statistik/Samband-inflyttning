@@ -1,0 +1,41 @@
+{
+  "status": "outmigration_blend_promotion_gate",
+  "production_changed": false,
+  "inflow_model_changed": false,
+  "candidate": "blend_25_75",
+  "candidate_formula": "0.25 * forecast_3y + 0.75 * forecast_10y",
+  "checks": {
+    "national_rmse_better_than_3y": true,
+    "national_rmse_better_than_10y": true,
+    "bootstrap_prob_better_than_3y_gt_90pct": true,
+    "bootstrap_prob_better_than_10y_gt_90pct": true,
+    "lulea_within_0_5pct_of_best_reference": true
+  },
+  "passes": true,
+  "national": {
+    "candidate_rmse": 5.6832023517821275,
+    "core3_rmse": 5.702496684713274,
+    "ref10_rmse": 5.688485394866706
+  },
+  "lulea": {
+    "candidate_rmse": 2.384577080457792,
+    "core3_rmse": 2.4233989480565663,
+    "ref10_rmse": 2.3828027694651235,
+    "delta_vs_best_reference_pct": 0.07446319164161608
+  },
+  "bootstrap": {
+    "vs3": {
+      "median_delta_rmse_pct": -0.33548252820020386,
+      "p025": -0.7268555548959462,
+      "p975": 0.014285560616596344,
+      "probability_blend_better": 0.97
+    },
+    "vs10": {
+      "median_delta_rmse_pct": -0.093992502805329,
+      "p025": -0.20344497990348265,
+      "p975": 0.02186345513509478,
+      "probability_blend_better": 0.948
+    }
+  },
+  "decision": "Promote blend only if all checks pass; otherwise keep 3y core locked and 10y sensitivity reference."
+}
