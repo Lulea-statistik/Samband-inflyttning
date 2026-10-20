@@ -10,9 +10,9 @@
       "years_largest_component": 1
     },
     "death": {
-      "rmse_contribution": 44.19760032234139,
-      "mae_contribution": 37.270565278287165,
-      "mean_contribution": -1.6984688664778673,
+      "rmse_contribution": 44.19760032234144,
+      "mae_contribution": 37.27056527828721,
+      "mean_contribution": -1.6984688664778247,
       "years_largest_component": 0
     },
     "inflow": {
@@ -22,7 +22,7 @@
       "years_largest_component": 4
     },
     "outflow": {
-      "rmse_contribution": 175.61808905217475,
+      "rmse_contribution": 175.61808905217472,
       "mae_contribution": 156.37767752094055,
       "mean_contribution": 54.75325920738578,
       "years_largest_component": 3
@@ -51,11 +51,11 @@
       "year": 2018,
       "total_error_actual_minus_prediction": -356.63962537262057,
       "birth_contribution": -20.87252228782222,
-      "death_contribution": 58.11289013356236,
+      "death_contribution": 58.11289013356247,
       "inflow_contribution": -231.82679437294337,
       "outflow_contribution": -173.7198655120842,
       "residual_contribution": 11.666666666666666,
-      "reconstructed_error": -356.63962537262074,
+      "reconstructed_error": -356.6396253726206,
       "largest_abs_component": "inflow",
       "largest_abs_component_persons": 231.82679437294337
     },
@@ -85,15 +85,15 @@
     },
     {
       "year": 2021,
-      "total_error_actual_minus_prediction": -29.822503286765993,
+      "total_error_actual_minus_prediction": -29.822503286765084,
       "birth_contribution": 43.06785717455216,
-      "death_contribution": 62.80332930225222,
+      "death_contribution": 62.80332930225245,
       "inflow_contribution": 13.785182286982945,
-      "outflow_contribution": -199.81220538388652,
+      "outflow_contribution": -199.81220538388607,
       "residual_contribution": 50.33333333333333,
-      "reconstructed_error": -29.822503286765865,
+      "reconstructed_error": -29.822503286765183,
       "largest_abs_component": "outflow",
-      "largest_abs_component_persons": 199.81220538388652
+      "largest_abs_component_persons": 199.81220538388607
     },
     {
       "year": 2022,
@@ -109,25 +109,25 @@
     },
     {
       "year": 2023,
-      "total_error_actual_minus_prediction": -142.91944267367913,
+      "total_error_actual_minus_prediction": -142.91944267367867,
       "birth_contribution": 20.475658253199185,
-      "death_contribution": -16.08564374642242,
+      "death_contribution": -16.085643746422193,
       "inflow_contribution": -240.33939126075484,
       "outflow_contribution": 127.69660074696594,
       "residual_contribution": -34.666666666666664,
-      "reconstructed_error": -142.9194426736788,
+      "reconstructed_error": -142.91944267367856,
       "largest_abs_component": "inflow",
       "largest_abs_component_persons": 240.33939126075484
     },
     {
       "year": 2024,
-      "total_error_actual_minus_prediction": 290.6235358603685,
+      "total_error_actual_minus_prediction": 290.6235358603676,
       "birth_contribution": 0.04670515277382492,
-      "death_contribution": -10.138831655898912,
+      "death_contribution": -10.13883165589914,
       "inflow_contribution": 378.6812647217416,
-      "outflow_contribution": -32.96560235824836,
+      "outflow_contribution": -32.965602358248816,
       "residual_contribution": -45.0,
-      "reconstructed_error": 290.6235358603682,
+      "reconstructed_error": 290.6235358603675,
       "largest_abs_component": "inflow",
       "largest_abs_component_persons": 378.6812647217416
     }
