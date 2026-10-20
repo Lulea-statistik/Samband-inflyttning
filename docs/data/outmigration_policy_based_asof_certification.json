@@ -1,0 +1,112 @@
+{
+  "status": "outmigration_policy_based_asof_certification",
+  "production_changed": false,
+  "feature": "lag1_utflyttning_per_1000",
+  "certification_type": "policy_based_final_annual_equivalence",
+  "scb_policy_evidence": {
+    "statement": "After December/full-year publication, annual population statistics become final and no further revisions are made.",
+    "documentation": "SCB Befolkningsstatistik quality declaration / statistics production documentation"
+  },
+  "origin_rule": "Use only Y-1 final annual migration and population values at forecast origins on/after April 1 Y.",
+  "rows": [
+    {
+      "forecast_year": 2014,
+      "forecast_origin": "2014-04-25",
+      "reference_year": 2013,
+      "origin_on_or_after_april_1": true,
+      "policy_asof_eligible": true
+    },
+    {
+      "forecast_year": 2015,
+      "forecast_origin": "2015-05-29",
+      "reference_year": 2014,
+      "origin_on_or_after_april_1": true,
+      "policy_asof_eligible": true
+    },
+    {
+      "forecast_year": 2016,
+      "forecast_origin": "2016-04-23",
+      "reference_year": 2015,
+      "origin_on_or_after_april_1": true,
+      "policy_asof_eligible": true
+    },
+    {
+      "forecast_year": 2017,
+      "forecast_origin": "2017-04-16",
+      "reference_year": 2016,
+      "origin_on_or_after_april_1": true,
+      "policy_asof_eligible": true
+    },
+    {
+      "forecast_year": 2018,
+      "forecast_origin": "2018-05-06",
+      "reference_year": 2017,
+      "origin_on_or_after_april_1": true,
+      "policy_asof_eligible": true
+    },
+    {
+      "forecast_year": 2019,
+      "forecast_origin": "2019-04-22",
+      "reference_year": 2018,
+      "origin_on_or_after_april_1": true,
+      "policy_asof_eligible": true
+    },
+    {
+      "forecast_year": 2020,
+      "forecast_origin": "2020-04-18",
+      "reference_year": 2019,
+      "origin_on_or_after_april_1": true,
+      "policy_asof_eligible": true
+    },
+    {
+      "forecast_year": 2021,
+      "forecast_origin": "2021-05-08",
+      "reference_year": 2020,
+      "origin_on_or_after_april_1": true,
+      "policy_asof_eligible": true
+    },
+    {
+      "forecast_year": 2022,
+      "forecast_origin": "2022-04-23",
+      "reference_year": 2021,
+      "origin_on_or_after_april_1": true,
+      "policy_asof_eligible": true
+    },
+    {
+      "forecast_year": 2023,
+      "forecast_origin": "2023-04-28",
+      "reference_year": 2022,
+      "origin_on_or_after_april_1": true,
+      "policy_asof_eligible": true
+    },
+    {
+      "forecast_year": 2024,
+      "forecast_origin": "2024-05-05",
+      "reference_year": 2023,
+      "origin_on_or_after_april_1": true,
+      "policy_asof_eligible": true
+    },
+    {
+      "forecast_year": 2025,
+      "forecast_origin": "2025-04-21",
+      "reference_year": 2024,
+      "origin_on_or_after_april_1": true,
+      "policy_asof_eligible": true
+    },
+    {
+      "forecast_year": 2026,
+      "forecast_origin": "2026-04-26",
+      "reference_year": 2025,
+      "origin_on_or_after_april_1": true,
+      "policy_asof_eligible": true
+    }
+  ],
+  "validation_period_certified_2014_2024": true,
+  "year_2013_status": "research_only_not_used_to_establish_production_asof_certification",
+  "asof_verified": true,
+  "remaining_limitations": [
+    "No archived exact PxWeb cell snapshot has been recovered.",
+    "Certification does not cover forecast origins before April 1.",
+    "Any future SCB methodological break or historical revision notice requires re-audit."
+  ]
+}

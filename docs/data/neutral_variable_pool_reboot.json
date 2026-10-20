@@ -4021,7 +4021,7 @@
       "in_73_pool": false,
       "eligible_original_pool": true,
       "blind_model_eligible_subject_to_audit": false,
-      "asof_verified": false,
+      "asof_verified": true,
       "method_definition_verified": true,
       "historical_year_coverage": {
         "2002": 0,
@@ -4115,6 +4115,35 @@
         "verified_scope": "construction_method_only",
         "asof_verified": false,
         "note": "This certifies how the feature is built, not that historical source values were available unchanged at each forecast origin."
+      },
+      "asof_verification_scope": {
+        "type": "policy_based_final_annual_equivalence",
+        "forecast_origin_rule": "origin must be on or after April 1 of forecast year Y",
+        "input_reference_year": "Y-1",
+        "sources": [
+          "SCB BE0101J/Flyttningar97",
+          "SCB BE0101A/BefolkningNy"
+        ],
+        "revision_policy": "SCB annual/full-year population statistics become final when full-year statistics are published and are not revised afterwards.",
+        "archived_cell_snapshot_required": false,
+        "archived_cell_snapshot_available": false,
+        "important_limit": "Certification does not apply to forecast origins before April 1 or to preliminary monthly/quarterly values.",
+        "verified_forecast_years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "research_only_years_not_covered": [
+          2013
+        ]
       }
     },
     {
