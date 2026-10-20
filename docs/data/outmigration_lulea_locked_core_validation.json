@@ -1,0 +1,390 @@
+{
+  "status": "outmigration_lulea_locked_core_validation",
+  "production_changed": false,
+  "inflow_model_changed": false,
+  "municipality": "Luleå",
+  "kommunkod": "2580",
+  "target": "utflyttning_per_1000",
+  "feature": "lag1_utflyttning_per_1000",
+  "population_column_for_counts": "folkmangd",
+  "core_3y": {
+    "window_years": 3,
+    "n_years": 19,
+    "rmse_per_1000": 3.036786461463077,
+    "mae_per_1000": 2.553506526228353,
+    "bias_prediction_minus_actual": 0.9267203755943484,
+    "years_better_than_zero_error_within_1_per_1000": 3,
+    "rows": [
+      {
+        "year": 2006,
+        "actual_per_1000": 45.394404812243394,
+        "prediction_per_1000": 47.465971560860204,
+        "error_prediction_minus_actual": 2.07156674861681,
+        "alpha": 10.0,
+        "population": 73313.0,
+        "actual_count": 3328.0,
+        "prediction_count": 3479.8727730413443,
+        "error_count_prediction_minus_actual": 151.87277304134432
+      },
+      {
+        "year": 2007,
+        "actual_per_1000": 52.142290760943865,
+        "prediction_per_1000": 46.65127836246322,
+        "error_prediction_minus_actual": -5.491012398480642,
+        "alpha": 0.0,
+        "population": 73146.0,
+        "actual_count": 3814.0,
+        "prediction_count": 3412.354407100735,
+        "error_count_prediction_minus_actual": -401.645592899265
+      },
+      {
+        "year": 2008,
+        "actual_per_1000": 46.05890526659946,
+        "prediction_per_1000": 52.96201053766011,
+        "error_prediction_minus_actual": 6.903105271060653,
+        "alpha": 0.0,
+        "population": 73406.0,
+        "actual_count": 3381.0,
+        "prediction_count": 3887.7293455274785,
+        "error_count_prediction_minus_actual": 506.7293455274785
+      },
+      {
+        "year": 2009,
+        "actual_per_1000": 44.20554428668019,
+        "prediction_per_1000": 47.040371799058576,
+        "error_prediction_minus_actual": 2.8348275123783893,
+        "alpha": 10.0,
+        "population": 73950.0,
+        "actual_count": 3269.0,
+        "prediction_count": 3478.635494540382,
+        "error_count_prediction_minus_actual": 209.63549454038184
+      },
+      {
+        "year": 2010,
+        "actual_per_1000": 47.0220280945833,
+        "prediction_per_1000": 44.62062012290753,
+        "error_prediction_minus_actual": -2.4014079716757664,
+        "alpha": 10.0,
+        "population": 74178.0,
+        "actual_count": 3488.0,
+        "prediction_count": 3309.8683594770346,
+        "error_count_prediction_minus_actual": -178.13164052296543
+      },
+      {
+        "year": 2011,
+        "actual_per_1000": 47.17437454652944,
+        "prediction_per_1000": 47.299392735878236,
+        "error_prediction_minus_actual": 0.12501818934879338,
+        "alpha": 0.0,
+        "population": 74426.0,
+        "actual_count": 3511.0000000000005,
+        "prediction_count": 3520.3046037604736,
+        "error_count_prediction_minus_actual": 9.304603760473128
+      },
+      {
+        "year": 2012,
+        "actual_per_1000": 44.84346839329818,
+        "prediction_per_1000": 47.81515369697041,
+        "error_prediction_minus_actual": 2.9716853036722313,
+        "alpha": 10.0,
+        "population": 74905.0,
+        "actual_count": 3359.0000000000005,
+        "prediction_count": 3581.5940876715686,
+        "error_count_prediction_minus_actual": 222.5940876715681
+      },
+      {
+        "year": 2013,
+        "actual_per_1000": 46.11119217860791,
+        "prediction_per_1000": 45.936928000482396,
+        "error_prediction_minus_actual": -0.17426417812551165,
+        "alpha": 0.0,
+        "population": 75383.0,
+        "actual_count": 3476.0,
+        "prediction_count": 3462.8634434603646,
+        "error_count_prediction_minus_actual": -13.136556539635421
+      },
+      {
+        "year": 2014,
+        "actual_per_1000": 44.62522707527052,
+        "prediction_per_1000": 47.098672640829676,
+        "error_prediction_minus_actual": 2.473445565559153,
+        "alpha": 0.0,
+        "population": 75966.0,
+        "actual_count": 3390.0000000000005,
+        "prediction_count": 3577.897765833267,
+        "error_count_prediction_minus_actual": 187.89776583326648
+      },
+      {
+        "year": 2015,
+        "actual_per_1000": 48.16791084007991,
+        "prediction_per_1000": 45.89645054466782,
+        "error_prediction_minus_actual": -2.2714602954120906,
+        "alpha": 0.0,
+        "population": 76088.0,
+        "actual_count": 3665.0000000000005,
+        "prediction_count": 3492.169129042685,
+        "error_count_prediction_minus_actual": -172.83087095731526
+      },
+      {
+        "year": 2016,
+        "actual_per_1000": 45.55164777908037,
+        "prediction_per_1000": 49.79215499462231,
+        "error_prediction_minus_actual": 4.240507215541939,
+        "alpha": 10.0,
+        "population": 76770.0,
+        "actual_count": 3497.0,
+        "prediction_count": 3822.5437389371546,
+        "error_count_prediction_minus_actual": 325.54373893715456
+      },
+      {
+        "year": 2017,
+        "actual_per_1000": 45.52730089066736,
+        "prediction_per_1000": 46.986092389515704,
+        "error_prediction_minus_actual": 1.458791498848342,
+        "alpha": 10.0,
+        "population": 77470.0,
+        "actual_count": 3527.0000000000005,
+        "prediction_count": 3640.0125774157814,
+        "error_count_prediction_minus_actual": 113.01257741578092
+      },
+      {
+        "year": 2018,
+        "actual_per_1000": 48.74601706239079,
+        "prediction_per_1000": 47.09583624090851,
+        "error_prediction_minus_actual": -1.6501808214822802,
+        "alpha": 0.0,
+        "population": 77832.0,
+        "actual_count": 3794.0,
+        "prediction_count": 3665.563126302391,
+        "error_count_prediction_minus_actual": -128.43687369760892
+      },
+      {
+        "year": 2019,
+        "actual_per_1000": 46.87279943665578,
+        "prediction_per_1000": 49.74404213192797,
+        "error_prediction_minus_actual": 2.871242695272187,
+        "alpha": 10.0,
+        "population": 78105.0,
+        "actual_count": 3661.0,
+        "prediction_count": 3885.2584107142343,
+        "error_count_prediction_minus_actual": 224.2584107142343
+      },
+      {
+        "year": 2020,
+        "actual_per_1000": 45.56391551770233,
+        "prediction_per_1000": 47.729447519894364,
+        "error_prediction_minus_actual": 2.1655320021920375,
+        "alpha": 0.0,
+        "population": 78549.0,
+        "actual_count": 3579.0,
+        "prediction_count": 3749.1003732401828,
+        "error_count_prediction_minus_actual": 170.10037324018276
+      },
+      {
+        "year": 2021,
+        "actual_per_1000": 48.76564342500666,
+        "prediction_per_1000": 45.74174556959911,
+        "error_prediction_minus_actual": -3.0238978554075473,
+        "alpha": 0.0,
+        "population": 78867.0,
+        "actual_count": 3846.0,
+        "prediction_count": 3607.5142478375733,
+        "error_count_prediction_minus_actual": -238.4857521624267
+      },
+      {
+        "year": 2022,
+        "actual_per_1000": 45.37882994296098,
+        "prediction_per_1000": 48.807750940679526,
+        "error_prediction_minus_actual": 3.4289209977185493,
+        "alpha": 0.0,
+        "population": 79244.0,
+        "actual_count": 3595.9999999999995,
+        "prediction_count": 3867.7214155432084,
+        "error_count_prediction_minus_actual": 271.7214155432089
+      },
+      {
+        "year": 2023,
+        "actual_per_1000": 44.787781026313134,
+        "prediction_per_1000": 46.30529359341971,
+        "error_prediction_minus_actual": 1.5175125671065786,
+        "alpha": 10.0,
+        "population": 79352.0,
+        "actual_count": 3554.0,
+        "prediction_count": 3674.4176572250412,
+        "error_count_prediction_minus_actual": 120.41765722504124
+      },
+      {
+        "year": 2024,
+        "actual_per_1000": 46.029254818256014,
+        "prediction_per_1000": 45.58700990781681,
+        "error_prediction_minus_actual": -0.4422449104392072,
+        "alpha": 10.0,
+        "population": 79645.0,
+        "actual_count": 3666.0,
+        "prediction_count": 3630.7774041080693,
+        "error_count_prediction_minus_actual": -35.22259589193072
+      }
+    ]
+  },
+  "sensitivity_10y": {
+    "window_years": 10,
+    "n_years": 12,
+    "rmse_per_1000": 2.382802769465123,
+    "mae_per_1000": 2.106148396818302,
+    "bias_prediction_minus_actual": 0.8882414021496174,
+    "years_better_than_zero_error_within_1_per_1000": 3,
+    "rows": [
+      {
+        "year": 2013,
+        "actual_per_1000": 46.11119217860791,
+        "prediction_per_1000": 45.66766407492963,
+        "error_prediction_minus_actual": -0.44352810367827544,
+        "alpha": 0.0,
+        "population": 75383.0,
+        "actual_count": 3476.0,
+        "prediction_count": 3442.56552096042,
+        "error_count_prediction_minus_actual": -33.434479039579855
+      },
+      {
+        "year": 2014,
+        "actual_per_1000": 44.62522707527052,
+        "prediction_per_1000": 47.00428480169795,
+        "error_prediction_minus_actual": 2.379057726427426,
+        "alpha": 0.0,
+        "population": 75966.0,
+        "actual_count": 3390.0000000000005,
+        "prediction_count": 3570.7274992457865,
+        "error_count_prediction_minus_actual": 180.72749924578602
+      },
+      {
+        "year": 2015,
+        "actual_per_1000": 48.16791084007991,
+        "prediction_per_1000": 45.7405264907695,
+        "error_prediction_minus_actual": -2.4273843493104152,
+        "alpha": 0.0,
+        "population": 76088.0,
+        "actual_count": 3665.0000000000005,
+        "prediction_count": 3480.3051796296695,
+        "error_count_prediction_minus_actual": -184.69482037033094
+      },
+      {
+        "year": 2016,
+        "actual_per_1000": 45.55164777908037,
+        "prediction_per_1000": 49.0997937445598,
+        "error_prediction_minus_actual": 3.548145965479428,
+        "alpha": 0.0,
+        "population": 76770.0,
+        "actual_count": 3497.0,
+        "prediction_count": 3769.3911657698554,
+        "error_count_prediction_minus_actual": 272.39116576985543
+      },
+      {
+        "year": 2017,
+        "actual_per_1000": 45.52730089066736,
+        "prediction_per_1000": 46.498232004513476,
+        "error_prediction_minus_actual": 0.9709311138461132,
+        "alpha": 10.0,
+        "population": 77470.0,
+        "actual_count": 3527.0000000000005,
+        "prediction_count": 3602.218033389659,
+        "error_count_prediction_minus_actual": 75.21803338965856
+      },
+      {
+        "year": 2018,
+        "actual_per_1000": 48.74601706239079,
+        "prediction_per_1000": 46.60989675301614,
+        "error_prediction_minus_actual": -2.136120309374654,
+        "alpha": 0.0,
+        "population": 77832.0,
+        "actual_count": 3794.0,
+        "prediction_count": 3627.741484080752,
+        "error_count_prediction_minus_actual": -166.2585159192481
+      },
+      {
+        "year": 2019,
+        "actual_per_1000": 46.87279943665578,
+        "prediction_per_1000": 49.65150667894319,
+        "error_prediction_minus_actual": 2.7787072422874104,
+        "alpha": 10.0,
+        "population": 78105.0,
+        "actual_count": 3661.0,
+        "prediction_count": 3878.030929158858,
+        "error_count_prediction_minus_actual": 217.03092915885782
+      },
+      {
+        "year": 2020,
+        "actual_per_1000": 45.56391551770233,
+        "prediction_per_1000": 47.97646322495318,
+        "error_prediction_minus_actual": 2.4125477072508517,
+        "alpha": 10.0,
+        "population": 78549.0,
+        "actual_count": 3579.0,
+        "prediction_count": 3768.503209856847,
+        "error_count_prediction_minus_actual": 189.5032098568472
+      },
+      {
+        "year": 2021,
+        "actual_per_1000": 48.76564342500666,
+        "prediction_per_1000": 46.64512090422544,
+        "error_prediction_minus_actual": -2.120522520781215,
+        "alpha": 0.0,
+        "population": 78867.0,
+        "actual_count": 3846.0,
+        "prediction_count": 3678.7607503535482,
+        "error_count_prediction_minus_actual": -167.23924964645175
+      },
+      {
+        "year": 2022,
+        "actual_per_1000": 45.37882994296098,
+        "prediction_per_1000": 49.53164862240302,
+        "error_prediction_minus_actual": 4.152818679442042,
+        "alpha": 0.0,
+        "population": 79244.0,
+        "actual_count": 3595.9999999999995,
+        "prediction_count": 3925.085963433705,
+        "error_count_prediction_minus_actual": 329.0859634337053
+      },
+      {
+        "year": 2023,
+        "actual_per_1000": 44.787781026313134,
+        "prediction_per_1000": 46.51191138538738,
+        "error_prediction_minus_actual": 1.7241303590742447,
+        "alpha": 10.0,
+        "population": 79352.0,
+        "actual_count": 3554.0,
+        "prediction_count": 3690.8131922532593,
+        "error_count_prediction_minus_actual": 136.81319225325933
+      },
+      {
+        "year": 2024,
+        "actual_per_1000": 46.029254818256014,
+        "prediction_per_1000": 45.84936813338847,
+        "error_prediction_minus_actual": -0.17988668486754733,
+        "alpha": 10.0,
+        "population": 79645.0,
+        "actual_count": 3666.0,
+        "prediction_count": 3651.6729249837244,
+        "error_count_prediction_minus_actual": -14.327075016275558
+      }
+    ]
+  },
+  "common_year_comparison": {
+    "years": [
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "3y_abs_error_wins": 6,
+    "10y_abs_error_wins": 6,
+    "ties": 0
+  }
+}
