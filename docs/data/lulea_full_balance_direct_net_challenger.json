@@ -13,40 +13,40 @@
   },
   "baseline": {
     "n": 8,
-    "rmse_persons": 198.90185087715824,
-    "mae_persons": 161.73040177176236,
-    "bias_actual_minus_prediction": -46.740457967816184
+    "rmse_persons": 198.90185087715847,
+    "mae_persons": 161.73040177176264,
+    "bias_actual_minus_prediction": -46.74045796781624
   },
   "direct_net": {
     "n": 8,
-    "rmse_persons": 134.0778230148173,
-    "mae_persons": 120.83452430425397,
-    "bias_actual_minus_prediction": -42.24419402669574
+    "rmse_persons": 134.07782301481765,
+    "mae_persons": 120.83452430425427,
+    "bias_actual_minus_prediction": -42.24419402669569
   },
-  "rmse_improvement_pct": 32.590962616218306,
-  "mae_improvement_pct": 25.28645017850236,
+  "rmse_improvement_pct": 32.590962616218214,
+  "mae_improvement_pct": 25.286450178502307,
   "years": [
     {
       "year": 2017,
       "actual_change": 700.0,
       "baseline_pred_change": 758.3055431205713,
       "baseline_error_actual_minus_prediction": -58.305543120571315,
-      "direct_net_rate_pred": 6.074608998527066,
-      "direct_net_persons_pred": 466.3477328169228,
+      "direct_net_rate_pred": 6.074608998527051,
+      "direct_net_persons_pred": 466.3477328169217,
       "direct_net_alpha": 0.0,
-      "direct_pred_change": 595.0807801041636,
-      "direct_error_actual_minus_prediction": 104.91921989583636
+      "direct_pred_change": 595.0807801041625,
+      "direct_error_actual_minus_prediction": 104.9192198958375
     },
     {
       "year": 2018,
       "actual_change": 362.0,
       "baseline_pred_change": 718.6396253726206,
       "baseline_error_actual_minus_prediction": -356.63962537262057,
-      "direct_net_rate_pred": 6.35987359845028,
-      "direct_net_persons_pred": 492.69940767194316,
+      "direct_net_rate_pred": 6.359873598450283,
+      "direct_net_persons_pred": 492.6994076719435,
       "direct_net_alpha": 10.0,
-      "direct_pred_change": 521.7923731595363,
-      "direct_error_actual_minus_prediction": -159.79237315953628
+      "direct_pred_change": 521.7923731595367,
+      "direct_error_actual_minus_prediction": -159.79237315953674
     },
     {
       "year": 2019,
@@ -64,55 +64,55 @@
       "actual_change": 444.0,
       "baseline_pred_change": 308.4555010151439,
       "baseline_error_actual_minus_prediction": 135.5444989848561,
-      "direct_net_rate_pred": 3.745312528851255,
-      "direct_net_persons_pred": 292.5276350659273,
+      "direct_net_rate_pred": 3.7453125288512545,
+      "direct_net_persons_pred": 292.52763506592726,
       "direct_net_alpha": 0.0,
-      "direct_pred_change": 341.2360142610136,
-      "direct_error_actual_minus_prediction": 102.76398573898638
+      "direct_pred_change": 341.23601426101357,
+      "direct_error_actual_minus_prediction": 102.76398573898643
     },
     {
       "year": 2021,
       "actual_change": 318.0,
-      "baseline_pred_change": 347.8225032867651,
-      "baseline_error_actual_minus_prediction": -29.822503286765084,
-      "direct_net_rate_pred": 5.37017656693487,
-      "direct_net_persons_pred": 421.8219991561671,
+      "baseline_pred_change": 347.822503286766,
+      "baseline_error_actual_minus_prediction": -29.822503286765993,
+      "direct_net_rate_pred": 5.370176566934869,
+      "direct_net_persons_pred": 421.82199915616695,
       "direct_net_alpha": 0.0,
-      "direct_pred_change": 385.6174793460292,
-      "direct_error_actual_minus_prediction": -67.6174793460292
+      "direct_pred_change": 385.61747934602926,
+      "direct_error_actual_minus_prediction": -67.61747934602926
     },
     {
       "year": 2022,
       "actual_change": 377.0,
       "baseline_pred_change": 343.208259629439,
       "baseline_error_actual_minus_prediction": 33.791740370561,
-      "direct_net_rate_pred": 4.380998103385494,
-      "direct_net_persons_pred": 345.51617741970375,
+      "direct_net_rate_pred": 4.380998103385496,
+      "direct_net_persons_pred": 345.51617741970387,
       "direct_net_alpha": 0.0,
-      "direct_pred_change": 412.2939793402997,
-      "direct_error_actual_minus_prediction": -35.2939793402997
+      "direct_pred_change": 412.2939793402998,
+      "direct_error_actual_minus_prediction": -35.29397934029981
     },
     {
       "year": 2023,
       "actual_change": 108.0,
-      "baseline_pred_change": 250.91944267367867,
-      "baseline_error_actual_minus_prediction": -142.91944267367867,
-      "direct_net_rate_pred": 5.565745928791701,
-      "direct_net_persons_pred": 441.05197038116955,
+      "baseline_pred_change": 250.91944267367913,
+      "baseline_error_actual_minus_prediction": -142.91944267367913,
+      "direct_net_rate_pred": 5.565745928791703,
+      "direct_net_persons_pred": 441.0519703811697,
       "direct_net_alpha": 0.0,
-      "direct_pred_change": 345.3286225410595,
-      "direct_error_actual_minus_prediction": -237.32862254105947
+      "direct_pred_change": 345.3286225410599,
+      "direct_error_actual_minus_prediction": -237.32862254105987
     },
     {
       "year": 2024,
       "actual_change": 293.0,
-      "baseline_pred_change": 2.3764641396323896,
-      "baseline_error_actual_minus_prediction": 290.6235358603676,
+      "baseline_pred_change": 2.37646413963148,
+      "baseline_error_actual_minus_prediction": 290.6235358603685,
       "direct_net_rate_pred": 3.6953039371592986,
       "direct_net_persons_pred": 293.2297580214647,
       "direct_net_alpha": 0.0,
-      "direct_pred_change": 186.3218845245898,
-      "direct_error_actual_minus_prediction": 106.67811547541021
+      "direct_pred_change": 186.32188452458956,
+      "direct_error_actual_minus_prediction": 106.67811547541044
     }
   ]
 }

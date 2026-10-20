@@ -1,0 +1,3665 @@
+{
+  "status": "lulea_strict_single_origin_fading_diagnostic",
+  "production_changed": false,
+  "strict_single_origin_multiyear_forecast": true,
+  "future_observed_components_used": false,
+  "method": "Fade initial one-year-ahead component forecasts toward pre-origin 10y Lulea historical means; residual fades toward zero.",
+  "summary": {
+    "0.0": {
+      "n": 16,
+      "rmse": 487.2730135687801,
+      "mae": 403.3456766664549,
+      "bias": -379.7109605325677,
+      "max_abs": 924.8379044570029,
+      "by_horizon": {
+        "2": {
+          "n": 4,
+          "rmse": 230.2178310999226,
+          "mae": 189.70183701470523,
+          "bias": -150.65487290841702
+        },
+        "3": {
+          "n": 4,
+          "rmse": 366.06090873269306,
+          "mae": 329.9322230347243,
+          "bias": -274.44032260546373
+        },
+        "4": {
+          "n": 4,
+          "rmse": 502.36994513309173,
+          "mae": 442.473770957924,
+          "bias": -442.473770957924
+        },
+        "5": {
+          "n": 4,
+          "rmse": 714.3973394253502,
+          "mae": 651.274875658466,
+          "bias": -651.274875658466
+        }
+      }
+    },
+    "0.1": {
+      "n": 16,
+      "rmse": 428.5115572648009,
+      "mae": 365.7225248809018,
+      "bias": -345.8032436708936,
+      "max_abs": 776.2463161778869,
+      "by_horizon": {
+        "2": {
+          "n": 4,
+          "rmse": 221.56179915822497,
+          "mae": 178.72079230943928,
+          "bias": -143.47076597739942
+        },
+        "3": {
+          "n": 4,
+          "rmse": 330.6603348456619,
+          "mae": 297.8700798848331,
+          "bias": -253.44298137684018
+        },
+        "4": {
+          "n": 4,
+          "rmse": 440.7012684673126,
+          "mae": 401.54299039976104,
+          "bias": -401.54299039976104
+        },
+        "5": {
+          "n": 4,
+          "rmse": 617.9361802992651,
+          "mae": 584.7562369295738,
+          "bias": -584.7562369295738
+        }
+      }
+    },
+    "0.2": {
+      "n": 16,
+      "rmse": 385.9976492354895,
+      "mae": 333.19652065103037,
+      "bias": -316.8022221246065,
+      "max_abs": 700.1031970804179,
+      "by_horizon": {
+        "2": {
+          "n": 4,
+          "rmse": 213.58385068068236,
+          "mae": 167.73974760417696,
+          "bias": -136.28665904638547
+        },
+        "3": {
+          "n": 4,
+          "rmse": 299.5768405323012,
+          "mae": 268.0277211706707,
+          "bias": -233.90361562276667
+        },
+        "4": {
+          "n": 4,
+          "rmse": 394.07282764617594,
+          "mae": 366.05722524676094,
+          "bias": -366.05722524676094
+        },
+        "5": {
+          "n": 4,
+          "rmse": 552.5567868711229,
+          "mae": 530.9613885825129,
+          "bias": -530.9613885825129
+        }
+      }
+    },
+    "0.3": {
+      "n": 16,
+      "rmse": 356.79505603416186,
+      "mae": 305.15205088041694,
+      "bias": -292.0922182253689,
+      "max_abs": 643.613165254108,
+      "by_horizon": {
+        "2": {
+          "n": 4,
+          "rmse": 206.3626444694459,
+          "mae": 156.75870289891463,
+          "bias": -129.1025521153715
+        },
+        "3": {
+          "n": 4,
+          "rmse": 272.95578152848435,
+          "mae": 240.4036922786945,
+          "bias": -215.82051244204558
+        },
+        "4": {
+          "n": 4,
+          "rmse": 361.08407936134563,
+          "mae": 335.56187233913806,
+          "bias": -335.56187233913806
+        },
+        "5": {
+          "n": 4,
+          "rmse": 511.6040812691038,
+          "mae": 487.88393600492054,
+          "bias": -487.88393600492054
+        }
+      }
+    }
+  },
+  "ranking": [
+    {
+      "fade_per_year": 0.3,
+      "n": 16,
+      "rmse": 356.79505603416186,
+      "mae": 305.15205088041694,
+      "bias": -292.0922182253689,
+      "max_abs": 643.613165254108
+    },
+    {
+      "fade_per_year": 0.2,
+      "n": 16,
+      "rmse": 385.9976492354895,
+      "mae": 333.19652065103037,
+      "bias": -316.8022221246065,
+      "max_abs": 700.1031970804179
+    },
+    {
+      "fade_per_year": 0.1,
+      "n": 16,
+      "rmse": 428.5115572648009,
+      "mae": 365.7225248809018,
+      "bias": -345.8032436708936,
+      "max_abs": 776.2463161778869
+    },
+    {
+      "fade_per_year": 0.0,
+      "n": 16,
+      "rmse": 487.2730135687801,
+      "mae": 403.3456766664549,
+      "bias": -379.7109605325677,
+      "max_abs": 924.8379044570029
+    }
+  ],
+  "rows": [
+    {
+      "origin_year": 2016,
+      "horizon_years": 2,
+      "target_year": 2018,
+      "fade_per_year": 0.0,
+      "historical_mean_birth_rate": 1.0323909853879853,
+      "historical_mean_death_rate": 8.810286885290743,
+      "historical_mean_net_rate": 2.778471300692215,
+      "predicted_population": 77964.76914669172,
+      "actual_population": 77832.0,
+      "error_actual_minus_prediction": -132.76914669171674,
+      "absolute_error": 132.76914669171674,
+      "relative_error_pct": -0.17058426700035556,
+      "path": [
+        {
+          "year": 2017,
+          "step": 1,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 77365.08078010417,
+          "actual_population": 77470.0,
+          "error_actual_minus_prediction": 104.91921989583352
+        },
+        {
+          "year": 2018,
+          "step": 2,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 77964.76914669172,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -132.76914669171674
+        }
+      ]
+    },
+    {
+      "origin_year": 2016,
+      "horizon_years": 3,
+      "target_year": 2019,
+      "fade_per_year": 0.0,
+      "historical_mean_birth_rate": 1.0323909853879853,
+      "historical_mean_death_rate": 8.810286885290743,
+      "historical_mean_net_rate": 2.778471300692215,
+      "predicted_population": 78569.1007753447,
+      "actual_population": 78105.0,
+      "error_actual_minus_prediction": -464.10077534470474,
+      "absolute_error": 464.10077534470474,
+      "relative_error_pct": -0.5942011079248508,
+      "path": [
+        {
+          "year": 2017,
+          "step": 1,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 77365.08078010417,
+          "actual_population": 77470.0,
+          "error_actual_minus_prediction": 104.91921989583352
+        },
+        {
+          "year": 2018,
+          "step": 2,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 77964.76914669172,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -132.76914669171674
+        },
+        {
+          "year": 2019,
+          "step": 3,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 78569.1007753447,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -464.10077534470474
+        }
+      ]
+    },
+    {
+      "origin_year": 2016,
+      "horizon_years": 4,
+      "target_year": 2020,
+      "fade_per_year": 0.0,
+      "historical_mean_birth_rate": 1.0323909853879853,
+      "historical_mean_death_rate": 8.810286885290743,
+      "historical_mean_net_rate": 2.778471300692215,
+      "predicted_population": 79178.11161787379,
+      "actual_population": 78549.0,
+      "error_actual_minus_prediction": -629.1116178737866,
+      "absolute_error": 629.1116178737866,
+      "relative_error_pct": -0.8009161388098978,
+      "path": [
+        {
+          "year": 2017,
+          "step": 1,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 77365.08078010417,
+          "actual_population": 77470.0,
+          "error_actual_minus_prediction": 104.91921989583352
+        },
+        {
+          "year": 2018,
+          "step": 2,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 77964.76914669172,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -132.76914669171674
+        },
+        {
+          "year": 2019,
+          "step": 3,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 78569.1007753447,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -464.10077534470474
+        },
+        {
+          "year": 2020,
+          "step": 4,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 79178.11161787379,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -629.1116178737866
+        }
+      ]
+    },
+    {
+      "origin_year": 2016,
+      "horizon_years": 5,
+      "target_year": 2021,
+      "fade_per_year": 0.0,
+      "historical_mean_birth_rate": 1.0323909853879853,
+      "historical_mean_death_rate": 8.810286885290743,
+      "historical_mean_net_rate": 2.778471300692215,
+      "predicted_population": 79791.837904457,
+      "actual_population": 78867.0,
+      "error_actual_minus_prediction": -924.8379044570029,
+      "absolute_error": 924.8379044570029,
+      "relative_error_pct": -1.1726551085460368,
+      "path": [
+        {
+          "year": 2017,
+          "step": 1,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 77365.08078010417,
+          "actual_population": 77470.0,
+          "error_actual_minus_prediction": 104.91921989583352
+        },
+        {
+          "year": 2018,
+          "step": 2,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 77964.76914669172,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -132.76914669171674
+        },
+        {
+          "year": 2019,
+          "step": 3,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 78569.1007753447,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -464.10077534470474
+        },
+        {
+          "year": 2020,
+          "step": 4,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 79178.11161787379,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -629.1116178737866
+        },
+        {
+          "year": 2021,
+          "step": 5,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 79791.837904457,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": -924.8379044570029
+        }
+      ]
+    },
+    {
+      "origin_year": 2016,
+      "horizon_years": 2,
+      "target_year": 2018,
+      "fade_per_year": 0.1,
+      "historical_mean_birth_rate": 1.0323909853879853,
+      "historical_mean_death_rate": 8.810286885290743,
+      "historical_mean_net_rate": 2.778471300692215,
+      "predicted_population": 77938.00613201884,
+      "actual_population": 77832.0,
+      "error_actual_minus_prediction": -106.00613201883971,
+      "absolute_error": 106.00613201883971,
+      "relative_error_pct": -0.13619864839505563,
+      "path": [
+        {
+          "year": 2017,
+          "step": 1,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 77365.08078010417,
+          "actual_population": 77470.0,
+          "error_actual_minus_prediction": 104.91921989583352
+        },
+        {
+          "year": 2018,
+          "step": 2,
+          "birth_rate": 1.0592294354964065,
+          "death_rate": 8.939567689751412,
+          "net_rate": 5.7449952287435675,
+          "residual": 0.6,
+          "predicted_population": 77938.00613201884,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -106.00613201883971
+        }
+      ]
+    },
+    {
+      "origin_year": 2016,
+      "horizon_years": 3,
+      "target_year": 2019,
+      "fade_per_year": 0.1,
+      "historical_mean_birth_rate": 1.0323909853879853,
+      "historical_mean_death_rate": 8.810286885290743,
+      "historical_mean_net_rate": 2.778471300692215,
+      "predicted_population": 78490.9051838674,
+      "actual_population": 78105.0,
+      "error_actual_minus_prediction": -385.90518386740587,
+      "absolute_error": 385.90518386740587,
+      "relative_error_pct": -0.49408512114129166,
+      "path": [
+        {
+          "year": 2017,
+          "step": 1,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 77365.08078010417,
+          "actual_population": 77470.0,
+          "error_actual_minus_prediction": 104.91921989583352
+        },
+        {
+          "year": 2018,
+          "step": 2,
+          "birth_rate": 1.0592294354964065,
+          "death_rate": 8.939567689751412,
+          "net_rate": 5.7449952287435675,
+          "residual": 0.6,
+          "predicted_population": 77938.00613201884,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -106.00613201883971
+        },
+        {
+          "year": 2019,
+          "step": 3,
+          "birth_rate": 1.0565455904855643,
+          "death_rate": 8.926639609305344,
+          "net_rate": 5.4483428359384325,
+          "residual": 0.54,
+          "predicted_population": 78490.9051838674,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -385.90518386740587
+        }
+      ]
+    },
+    {
+      "origin_year": 2016,
+      "horizon_years": 4,
+      "target_year": 2020,
+      "fade_per_year": 0.1,
+      "historical_mean_birth_rate": 1.0323909853879853,
+      "historical_mean_death_rate": 8.810286885290743,
+      "historical_mean_net_rate": 2.778471300692215,
+      "predicted_population": 79025.73000217184,
+      "actual_population": 78549.0,
+      "error_actual_minus_prediction": -476.73000217184017,
+      "absolute_error": 476.73000217184017,
+      "relative_error_pct": -0.6069205237136567,
+      "path": [
+        {
+          "year": 2017,
+          "step": 1,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 77365.08078010417,
+          "actual_population": 77470.0,
+          "error_actual_minus_prediction": 104.91921989583352
+        },
+        {
+          "year": 2018,
+          "step": 2,
+          "birth_rate": 1.0592294354964065,
+          "death_rate": 8.939567689751412,
+          "net_rate": 5.7449952287435675,
+          "residual": 0.6,
+          "predicted_population": 77938.00613201884,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -106.00613201883971
+        },
+        {
+          "year": 2019,
+          "step": 3,
+          "birth_rate": 1.0565455904855643,
+          "death_rate": 8.926639609305344,
+          "net_rate": 5.4483428359384325,
+          "residual": 0.54,
+          "predicted_population": 78490.9051838674,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -385.90518386740587
+        },
+        {
+          "year": 2020,
+          "step": 4,
+          "birth_rate": 1.0541301299758064,
+          "death_rate": 8.915004336903884,
+          "net_rate": 5.181355682413811,
+          "residual": 0.48600000000000004,
+          "predicted_population": 79025.73000217184,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -476.73000217184017
+        }
+      ]
+    },
+    {
+      "origin_year": 2016,
+      "horizon_years": 5,
+      "target_year": 2021,
+      "fade_per_year": 0.1,
+      "historical_mean_birth_rate": 1.0323909853879853,
+      "historical_mean_death_rate": 8.810286885290743,
+      "historical_mean_net_rate": 2.778471300692215,
+      "predicted_population": 79544.26773836282,
+      "actual_population": 78867.0,
+      "error_actual_minus_prediction": -677.2677383628179,
+      "absolute_error": 677.2677383628179,
+      "relative_error_pct": -0.8587466727057171,
+      "path": [
+        {
+          "year": 2017,
+          "step": 1,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 77365.08078010417,
+          "actual_population": 77470.0,
+          "error_actual_minus_prediction": 104.91921989583352
+        },
+        {
+          "year": 2018,
+          "step": 2,
+          "birth_rate": 1.0592294354964065,
+          "death_rate": 8.939567689751412,
+          "net_rate": 5.7449952287435675,
+          "residual": 0.6,
+          "predicted_population": 77938.00613201884,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -106.00613201883971
+        },
+        {
+          "year": 2019,
+          "step": 3,
+          "birth_rate": 1.0565455904855643,
+          "death_rate": 8.926639609305344,
+          "net_rate": 5.4483428359384325,
+          "residual": 0.54,
+          "predicted_population": 78490.9051838674,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -385.90518386740587
+        },
+        {
+          "year": 2020,
+          "step": 4,
+          "birth_rate": 1.0541301299758064,
+          "death_rate": 8.915004336903884,
+          "net_rate": 5.181355682413811,
+          "residual": 0.48600000000000004,
+          "predicted_population": 79025.73000217184,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -476.73000217184017
+        },
+        {
+          "year": 2021,
+          "step": 5,
+          "birth_rate": 1.0519562155170243,
+          "death_rate": 8.90453259174257,
+          "net_rate": 4.941067244241651,
+          "residual": 0.4374,
+          "predicted_population": 79544.26773836282,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": -677.2677383628179
+        }
+      ]
+    },
+    {
+      "origin_year": 2016,
+      "horizon_years": 2,
+      "target_year": 2018,
+      "fade_per_year": 0.2,
+      "historical_mean_birth_rate": 1.0323909853879853,
+      "historical_mean_death_rate": 8.810286885290743,
+      "historical_mean_net_rate": 2.778471300692215,
+      "predicted_population": 77911.24311734596,
+      "actual_population": 77832.0,
+      "error_actual_minus_prediction": -79.24311734596267,
+      "absolute_error": 79.24311734596267,
+      "relative_error_pct": -0.10181302978975572,
+      "path": [
+        {
+          "year": 2017,
+          "step": 1,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 77365.08078010417,
+          "actual_population": 77470.0,
+          "error_actual_minus_prediction": 104.91921989583352
+        },
+        {
+          "year": 2018,
+          "step": 2,
+          "birth_rate": 1.0562473854843597,
+          "death_rate": 8.925203155922448,
+          "net_rate": 5.415381458960084,
+          "residual": 0.5333333333333333,
+          "predicted_population": 77911.24311734596,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -79.24311734596267
+        }
+      ]
+    },
+    {
+      "origin_year": 2016,
+      "horizon_years": 3,
+      "target_year": 2019,
+      "fade_per_year": 0.2,
+      "historical_mean_birth_rate": 1.0323909853879853,
+      "historical_mean_death_rate": 8.810286885290743,
+      "historical_mean_net_rate": 2.778471300692215,
+      "predicted_population": 78418.13498154774,
+      "actual_population": 78105.0,
+      "error_actual_minus_prediction": -313.13498154774425,
+      "absolute_error": 313.13498154774425,
+      "relative_error_pct": -0.4009154107262586,
+      "path": [
+        {
+          "year": 2017,
+          "step": 1,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 77365.08078010417,
+          "actual_population": 77470.0,
+          "error_actual_minus_prediction": 104.91921989583352
+        },
+        {
+          "year": 2018,
+          "step": 2,
+          "birth_rate": 1.0562473854843597,
+          "death_rate": 8.925203155922448,
+          "net_rate": 5.415381458960084,
+          "residual": 0.5333333333333333,
+          "predicted_population": 77911.24311734596,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -79.24311734596267
+        },
+        {
+          "year": 2019,
+          "step": 3,
+          "birth_rate": 1.0514761054650847,
+          "death_rate": 8.902219901796107,
+          "net_rate": 4.887999427306511,
+          "residual": 0.42666666666666675,
+          "predicted_population": 78418.13498154774,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -313.13498154774425
+        }
+      ]
+    },
+    {
+      "origin_year": 2016,
+      "horizon_years": 4,
+      "target_year": 2020,
+      "fade_per_year": 0.2,
+      "historical_mean_birth_rate": 1.0323909853879853,
+      "historical_mean_death_rate": 8.810286885290743,
+      "historical_mean_net_rate": 2.778471300692215,
+      "predicted_population": 78893.60013536797,
+      "actual_population": 78549.0,
+      "error_actual_minus_prediction": -344.6001353679749,
+      "absolute_error": 344.6001353679749,
+      "relative_error_pct": -0.4387072214388151,
+      "path": [
+        {
+          "year": 2017,
+          "step": 1,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 77365.08078010417,
+          "actual_population": 77470.0,
+          "error_actual_minus_prediction": 104.91921989583352
+        },
+        {
+          "year": 2018,
+          "step": 2,
+          "birth_rate": 1.0562473854843597,
+          "death_rate": 8.925203155922448,
+          "net_rate": 5.415381458960084,
+          "residual": 0.5333333333333333,
+          "predicted_population": 77911.24311734596,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -79.24311734596267
+        },
+        {
+          "year": 2019,
+          "step": 3,
+          "birth_rate": 1.0514761054650847,
+          "death_rate": 8.902219901796107,
+          "net_rate": 4.887999427306511,
+          "residual": 0.42666666666666675,
+          "predicted_population": 78418.13498154774,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -313.13498154774425
+        },
+        {
+          "year": 2020,
+          "step": 4,
+          "birth_rate": 1.047659081449665,
+          "death_rate": 8.883833298495034,
+          "net_rate": 4.466093801983652,
+          "residual": 0.3413333333333334,
+          "predicted_population": 78893.60013536797,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -344.6001353679749
+        }
+      ]
+    },
+    {
+      "origin_year": 2016,
+      "horizon_years": 5,
+      "target_year": 2021,
+      "fade_per_year": 0.2,
+      "historical_mean_birth_rate": 1.0323909853879853,
+      "historical_mean_death_rate": 8.810286885290743,
+      "historical_mean_net_rate": 2.778471300692215,
+      "predicted_population": 79344.00063036806,
+      "actual_population": 78867.0,
+      "error_actual_minus_prediction": -477.0006303680566,
+      "absolute_error": 477.0006303680566,
+      "relative_error_pct": -0.6048165016648999,
+      "path": [
+        {
+          "year": 2017,
+          "step": 1,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 77365.08078010417,
+          "actual_population": 77470.0,
+          "error_actual_minus_prediction": 104.91921989583352
+        },
+        {
+          "year": 2018,
+          "step": 2,
+          "birth_rate": 1.0562473854843597,
+          "death_rate": 8.925203155922448,
+          "net_rate": 5.415381458960084,
+          "residual": 0.5333333333333333,
+          "predicted_population": 77911.24311734596,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -79.24311734596267
+        },
+        {
+          "year": 2019,
+          "step": 3,
+          "birth_rate": 1.0514761054650847,
+          "death_rate": 8.902219901796107,
+          "net_rate": 4.887999427306511,
+          "residual": 0.42666666666666675,
+          "predicted_population": 78418.13498154774,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -313.13498154774425
+        },
+        {
+          "year": 2020,
+          "step": 4,
+          "birth_rate": 1.047659081449665,
+          "death_rate": 8.883833298495034,
+          "net_rate": 4.466093801983652,
+          "residual": 0.3413333333333334,
+          "predicted_population": 78893.60013536797,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -344.6001353679749
+        },
+        {
+          "year": 2021,
+          "step": 5,
+          "birth_rate": 1.044605462237329,
+          "death_rate": 8.869124015854176,
+          "net_rate": 4.1285693017253635,
+          "residual": 0.2730666666666667,
+          "predicted_population": 79344.00063036806,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": -477.0006303680566
+        }
+      ]
+    },
+    {
+      "origin_year": 2016,
+      "horizon_years": 2,
+      "target_year": 2018,
+      "fade_per_year": 0.3,
+      "historical_mean_birth_rate": 1.0323909853879853,
+      "historical_mean_death_rate": 8.810286885290743,
+      "historical_mean_net_rate": 2.778471300692215,
+      "predicted_population": 77884.48010267309,
+      "actual_population": 77832.0,
+      "error_actual_minus_prediction": -52.48010267308564,
+      "absolute_error": 52.48010267308564,
+      "relative_error_pct": -0.0674274111844558,
+      "path": [
+        {
+          "year": 2017,
+          "step": 1,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 77365.08078010417,
+          "actual_population": 77470.0,
+          "error_actual_minus_prediction": 104.91921989583352
+        },
+        {
+          "year": 2018,
+          "step": 2,
+          "birth_rate": 1.053265335472313,
+          "death_rate": 8.910838622093484,
+          "net_rate": 5.0857676891766,
+          "residual": 0.4666666666666666,
+          "predicted_population": 77884.48010267309,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -52.48010267308564
+        }
+      ]
+    },
+    {
+      "origin_year": 2016,
+      "horizon_years": 3,
+      "target_year": 2019,
+      "fade_per_year": 0.3,
+      "historical_mean_birth_rate": 1.0323909853879853,
+      "historical_mean_death_rate": 8.810286885290743,
+      "historical_mean_net_rate": 2.778471300692215,
+      "predicted_population": 78350.78462732189,
+      "actual_population": 78105.0,
+      "error_actual_minus_prediction": -245.78462732188927,
+      "absolute_error": 245.78462732188927,
+      "relative_error_pct": -0.31468488230188757,
+      "path": [
+        {
+          "year": 2017,
+          "step": 1,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 77365.08078010417,
+          "actual_population": 77470.0,
+          "error_actual_minus_prediction": 104.91921989583352
+        },
+        {
+          "year": 2018,
+          "step": 2,
+          "birth_rate": 1.053265335472313,
+          "death_rate": 8.910838622093484,
+          "net_rate": 5.0857676891766,
+          "residual": 0.4666666666666666,
+          "predicted_population": 77884.48010267309,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -52.48010267308564
+        },
+        {
+          "year": 2019,
+          "step": 3,
+          "birth_rate": 1.0470030304470146,
+          "death_rate": 8.880673101052661,
+          "net_rate": 4.393578772631284,
+          "residual": 0.3266666666666666,
+          "predicted_population": 78350.78462732189,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -245.78462732188927
+        }
+      ]
+    },
+    {
+      "origin_year": 2016,
+      "horizon_years": 4,
+      "target_year": 2020,
+      "fade_per_year": 0.3,
+      "historical_mean_birth_rate": 1.0323909853879853,
+      "historical_mean_death_rate": 8.810286885290743,
+      "historical_mean_net_rate": 2.778471300692215,
+      "predicted_population": 78780.03738976526,
+      "actual_population": 78549.0,
+      "error_actual_minus_prediction": -231.03738976526074,
+      "absolute_error": 231.03738976526074,
+      "relative_error_pct": -0.29413154816135245,
+      "path": [
+        {
+          "year": 2017,
+          "step": 1,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 77365.08078010417,
+          "actual_population": 77470.0,
+          "error_actual_minus_prediction": 104.91921989583352
+        },
+        {
+          "year": 2018,
+          "step": 2,
+          "birth_rate": 1.053265335472313,
+          "death_rate": 8.910838622093484,
+          "net_rate": 5.0857676891766,
+          "residual": 0.4666666666666666,
+          "predicted_population": 77884.48010267309,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -52.48010267308564
+        },
+        {
+          "year": 2019,
+          "step": 3,
+          "birth_rate": 1.0470030304470146,
+          "death_rate": 8.880673101052661,
+          "net_rate": 4.393578772631284,
+          "residual": 0.3266666666666666,
+          "predicted_population": 78350.78462732189,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -245.78462732188927
+        },
+        {
+          "year": 2020,
+          "step": 4,
+          "birth_rate": 1.0426194169293057,
+          "death_rate": 8.859557236324086,
+          "net_rate": 3.9090465310495635,
+          "residual": 0.2286666666666666,
+          "predicted_population": 78780.03738976526,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -231.03738976526074
+        }
+      ]
+    },
+    {
+      "origin_year": 2016,
+      "horizon_years": 5,
+      "target_year": 2021,
+      "fade_per_year": 0.3,
+      "historical_mean_birth_rate": 1.0323909853879853,
+      "historical_mean_death_rate": 8.810286885290743,
+      "historical_mean_net_rate": 2.778471300692215,
+      "predicted_population": 79183.59904415718,
+      "actual_population": 78867.0,
+      "error_actual_minus_prediction": -316.59904415717756,
+      "absolute_error": 316.59904415717756,
+      "relative_error_pct": -0.4014341158623728,
+      "path": [
+        {
+          "year": 2017,
+          "step": 1,
+          "birth_rate": 1.0622114855084532,
+          "death_rate": 8.953932223580374,
+          "net_rate": 6.074608998527051,
+          "residual": 0.6666666666666666,
+          "predicted_population": 77365.08078010417,
+          "actual_population": 77470.0,
+          "error_actual_minus_prediction": 104.91921989583352
+        },
+        {
+          "year": 2018,
+          "step": 2,
+          "birth_rate": 1.053265335472313,
+          "death_rate": 8.910838622093484,
+          "net_rate": 5.0857676891766,
+          "residual": 0.4666666666666666,
+          "predicted_population": 77884.48010267309,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -52.48010267308564
+        },
+        {
+          "year": 2019,
+          "step": 3,
+          "birth_rate": 1.0470030304470146,
+          "death_rate": 8.880673101052661,
+          "net_rate": 4.393578772631284,
+          "residual": 0.3266666666666666,
+          "predicted_population": 78350.78462732189,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -245.78462732188927
+        },
+        {
+          "year": 2020,
+          "step": 4,
+          "birth_rate": 1.0426194169293057,
+          "death_rate": 8.859557236324086,
+          "net_rate": 3.9090465310495635,
+          "residual": 0.2286666666666666,
+          "predicted_population": 78780.03738976526,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -231.03738976526074
+        },
+        {
+          "year": 2021,
+          "step": 5,
+          "birth_rate": 1.0395508874669097,
+          "death_rate": 8.844776131014083,
+          "net_rate": 3.569873961942359,
+          "residual": 0.16006666666666663,
+          "predicted_population": 79183.59904415718,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": -316.59904415717756
+        }
+      ]
+    },
+    {
+      "origin_year": 2017,
+      "horizon_years": 2,
+      "target_year": 2019,
+      "fade_per_year": 0.0,
+      "historical_mean_birth_rate": 1.0222302156962804,
+      "historical_mean_death_rate": 8.933602952215997,
+      "historical_mean_net_rate": 4.1403530142416205,
+      "predicted_population": 78517.09025241851,
+      "actual_population": 78105.0,
+      "error_actual_minus_prediction": -412.0902524185076,
+      "absolute_error": 412.0902524185076,
+      "relative_error_pct": -0.5276105914070899,
+      "path": [
+        {
+          "year": 2018,
+          "step": 1,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 77991.79237315954,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -159.7923731595365
+        },
+        {
+          "year": 2019,
+          "step": 2,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 78517.09025241851,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -412.0902524185076
+        }
+      ]
+    },
+    {
+      "origin_year": 2017,
+      "horizon_years": 3,
+      "target_year": 2020,
+      "fade_per_year": 0.0,
+      "historical_mean_birth_rate": 1.0222302156962804,
+      "historical_mean_death_rate": 8.933602952215997,
+      "historical_mean_net_rate": 4.1403530142416205,
+      "predicted_population": 79045.91718847188,
+      "actual_population": 78549.0,
+      "error_actual_minus_prediction": -496.9171884718817,
+      "absolute_error": 496.9171884718817,
+      "relative_error_pct": -0.6326206424930702,
+      "path": [
+        {
+          "year": 2018,
+          "step": 1,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 77991.79237315954,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -159.7923731595365
+        },
+        {
+          "year": 2019,
+          "step": 2,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 78517.09025241851,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -412.0902524185076
+        },
+        {
+          "year": 2020,
+          "step": 3,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 79045.91718847188,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -496.9171884718817
+        }
+      ]
+    },
+    {
+      "origin_year": 2017,
+      "horizon_years": 4,
+      "target_year": 2021,
+      "fade_per_year": 0.0,
+      "historical_mean_birth_rate": 1.0222302156962804,
+      "historical_mean_death_rate": 8.933602952215997,
+      "historical_mean_net_rate": 4.1403530142416205,
+      "predicted_population": 79578.29689023292,
+      "actual_population": 78867.0,
+      "error_actual_minus_prediction": -711.2968902329158,
+      "absolute_error": 711.2968902329158,
+      "relative_error_pct": -0.9018941892463461,
+      "path": [
+        {
+          "year": 2018,
+          "step": 1,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 77991.79237315954,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -159.7923731595365
+        },
+        {
+          "year": 2019,
+          "step": 2,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 78517.09025241851,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -412.0902524185076
+        },
+        {
+          "year": 2020,
+          "step": 3,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 79045.91718847188,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -496.9171884718817
+        },
+        {
+          "year": 2021,
+          "step": 4,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 79578.29689023292,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": -711.2968902329158
+        }
+      ]
+    },
+    {
+      "origin_year": 2017,
+      "horizon_years": 5,
+      "target_year": 2022,
+      "fade_per_year": 0.0,
+      "historical_mean_birth_rate": 1.0222302156962804,
+      "historical_mean_death_rate": 8.933602952215997,
+      "historical_mean_net_rate": 4.1403530142416205,
+      "predicted_population": 80114.25322589611,
+      "actual_population": 79244.0,
+      "error_actual_minus_prediction": -870.2532258961146,
+      "absolute_error": 870.2532258961146,
+      "relative_error_pct": -1.0981944701127084,
+      "path": [
+        {
+          "year": 2018,
+          "step": 1,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 77991.79237315954,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -159.7923731595365
+        },
+        {
+          "year": 2019,
+          "step": 2,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 78517.09025241851,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -412.0902524185076
+        },
+        {
+          "year": 2020,
+          "step": 3,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 79045.91718847188,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -496.9171884718817
+        },
+        {
+          "year": 2021,
+          "step": 4,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 79578.29689023292,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": -711.2968902329158
+        },
+        {
+          "year": 2022,
+          "step": 5,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 80114.25322589611,
+          "actual_population": 79244.0,
+          "error_actual_minus_prediction": -870.2532258961146
+        }
+      ]
+    },
+    {
+      "origin_year": 2017,
+      "horizon_years": 2,
+      "target_year": 2019,
+      "fade_per_year": 0.1,
+      "historical_mean_birth_rate": 1.0222302156962804,
+      "historical_mean_death_rate": 8.933602952215997,
+      "historical_mean_net_rate": 4.1403530142416205,
+      "predicted_population": 78506.90261583724,
+      "actual_population": 78105.0,
+      "error_actual_minus_prediction": -401.9026158372435,
+      "absolute_error": 401.9026158372435,
+      "relative_error_pct": -0.5145670774434972,
+      "path": [
+        {
+          "year": 2018,
+          "step": 1,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 77991.79237315954,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -159.7923731595365
+        },
+        {
+          "year": 2019,
+          "step": 2,
+          "birth_rate": 1.00358518764558,
+          "death_rate": 9.584487197509015,
+          "net_rate": 6.137921540029417,
+          "residual": 1.2,
+          "predicted_population": 78506.90261583724,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -401.9026158372435
+        }
+      ]
+    },
+    {
+      "origin_year": 2017,
+      "horizon_years": 3,
+      "target_year": 2020,
+      "fade_per_year": 0.1,
+      "historical_mean_birth_rate": 1.0222302156962804,
+      "historical_mean_death_rate": 8.933602952215997,
+      "historical_mean_net_rate": 4.1403530142416205,
+      "predicted_population": 79016.17842957343,
+      "actual_population": 78549.0,
+      "error_actual_minus_prediction": -467.1784295734251,
+      "absolute_error": 467.1784295734251,
+      "relative_error_pct": -0.5947605056377867,
+      "path": [
+        {
+          "year": 2018,
+          "step": 1,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 77991.79237315954,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -159.7923731595365
+        },
+        {
+          "year": 2019,
+          "step": 2,
+          "birth_rate": 1.00358518764558,
+          "death_rate": 9.584487197509015,
+          "net_rate": 6.137921540029417,
+          "residual": 1.2,
+          "predicted_population": 78506.90261583724,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -401.9026158372435
+        },
+        {
+          "year": 2020,
+          "step": 3,
+          "birth_rate": 1.00544969045065,
+          "death_rate": 9.519398772979713,
+          "net_rate": 5.938164687450637,
+          "residual": 1.08,
+          "predicted_population": 79016.17842957343,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -467.1784295734251
+        }
+      ]
+    },
+    {
+      "origin_year": 2017,
+      "horizon_years": 4,
+      "target_year": 2021,
+      "fade_per_year": 0.1,
+      "historical_mean_birth_rate": 1.0222302156962804,
+      "historical_mean_death_rate": 8.933602952215997,
+      "historical_mean_net_rate": 4.1403530142416205,
+      "predicted_population": 79520.39196639058,
+      "actual_population": 78867.0,
+      "error_actual_minus_prediction": -653.3919663905835,
+      "absolute_error": 653.3919663905835,
+      "relative_error_pct": -0.8284732098223383,
+      "path": [
+        {
+          "year": 2018,
+          "step": 1,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 77991.79237315954,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -159.7923731595365
+        },
+        {
+          "year": 2019,
+          "step": 2,
+          "birth_rate": 1.00358518764558,
+          "death_rate": 9.584487197509015,
+          "net_rate": 6.137921540029417,
+          "residual": 1.2,
+          "predicted_population": 78506.90261583724,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -401.9026158372435
+        },
+        {
+          "year": 2020,
+          "step": 3,
+          "birth_rate": 1.00544969045065,
+          "death_rate": 9.519398772979713,
+          "net_rate": 5.938164687450637,
+          "residual": 1.08,
+          "predicted_population": 79016.17842957343,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -467.1784295734251
+        },
+        {
+          "year": 2021,
+          "step": 4,
+          "birth_rate": 1.007127742975213,
+          "death_rate": 9.460819190903342,
+          "net_rate": 5.758383520129736,
+          "residual": 0.9720000000000001,
+          "predicted_population": 79520.39196639058,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": -653.3919663905835
+        }
+      ]
+    },
+    {
+      "origin_year": 2017,
+      "horizon_years": 5,
+      "target_year": 2022,
+      "fade_per_year": 0.1,
+      "historical_mean_birth_rate": 1.0222302156962804,
+      "historical_mean_death_rate": 8.933602952215997,
+      "historical_mean_net_rate": 4.1403530142416205,
+      "predicted_population": 80020.24631617789,
+      "actual_population": 79244.0,
+      "error_actual_minus_prediction": -776.2463161778869,
+      "absolute_error": 776.2463161778869,
+      "relative_error_pct": -0.9795647824161916,
+      "path": [
+        {
+          "year": 2018,
+          "step": 1,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 77991.79237315954,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -159.7923731595365
+        },
+        {
+          "year": 2019,
+          "step": 2,
+          "birth_rate": 1.00358518764558,
+          "death_rate": 9.584487197509015,
+          "net_rate": 6.137921540029417,
+          "residual": 1.2,
+          "predicted_population": 78506.90261583724,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -401.9026158372435
+        },
+        {
+          "year": 2020,
+          "step": 3,
+          "birth_rate": 1.00544969045065,
+          "death_rate": 9.519398772979713,
+          "net_rate": 5.938164687450637,
+          "residual": 1.08,
+          "predicted_population": 79016.17842957343,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -467.1784295734251
+        },
+        {
+          "year": 2021,
+          "step": 4,
+          "birth_rate": 1.007127742975213,
+          "death_rate": 9.460819190903342,
+          "net_rate": 5.758383520129736,
+          "residual": 0.9720000000000001,
+          "predicted_population": 79520.39196639058,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": -653.3919663905835
+        },
+        {
+          "year": 2022,
+          "step": 5,
+          "birth_rate": 1.00863799024732,
+          "death_rate": 9.408097567034607,
+          "net_rate": 5.596580469540925,
+          "residual": 0.8748,
+          "predicted_population": 80020.24631617789,
+          "actual_population": 79244.0,
+          "error_actual_minus_prediction": -776.2463161778869
+        }
+      ]
+    },
+    {
+      "origin_year": 2017,
+      "horizon_years": 2,
+      "target_year": 2019,
+      "fade_per_year": 0.2,
+      "historical_mean_birth_rate": 1.0222302156962804,
+      "historical_mean_death_rate": 8.933602952215997,
+      "historical_mean_net_rate": 4.1403530142416205,
+      "predicted_population": 78496.714979256,
+      "actual_population": 78105.0,
+      "error_actual_minus_prediction": -391.71497925599397,
+      "absolute_error": 391.71497925599397,
+      "relative_error_pct": -0.5015235634799231,
+      "path": [
+        {
+          "year": 2018,
+          "step": 1,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 77991.79237315954,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -159.7923731595365
+        },
+        {
+          "year": 2019,
+          "step": 2,
+          "birth_rate": 1.005656857428991,
+          "death_rate": 9.512166725809792,
+          "net_rate": 5.915969481608551,
+          "residual": 1.0666666666666667,
+          "predicted_population": 78496.714979256,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -391.71497925599397
+        }
+      ]
+    },
+    {
+      "origin_year": 2017,
+      "horizon_years": 3,
+      "target_year": 2020,
+      "fade_per_year": 0.2,
+      "historical_mean_birth_rate": 1.0222302156962804,
+      "historical_mean_death_rate": 8.933602952215997,
+      "historical_mean_net_rate": 4.1403530142416205,
+      "predicted_population": 78988.49520708411,
+      "actual_population": 78549.0,
+      "error_actual_minus_prediction": -439.49520708411,
+      "absolute_error": 439.49520708411,
+      "relative_error_pct": -0.5595172530320055,
+      "path": [
+        {
+          "year": 2018,
+          "step": 1,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 77991.79237315954,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -159.7923731595365
+        },
+        {
+          "year": 2019,
+          "step": 2,
+          "birth_rate": 1.005656857428991,
+          "death_rate": 9.512166725809792,
+          "net_rate": 5.915969481608551,
+          "residual": 1.0666666666666667,
+          "predicted_population": 78496.714979256,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -391.71497925599397
+        },
+        {
+          "year": 2020,
+          "step": 3,
+          "birth_rate": 1.008971529082449,
+          "death_rate": 9.396453971091033,
+          "net_rate": 5.560846188135165,
+          "residual": 0.8533333333333335,
+          "predicted_population": 78988.49520708411,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -439.49520708411
+        }
+      ]
+    },
+    {
+      "origin_year": 2017,
+      "horizon_years": 4,
+      "target_year": 2021,
+      "fade_per_year": 0.2,
+      "historical_mean_birth_rate": 1.0222302156962804,
+      "historical_mean_death_rate": 8.933602952215997,
+      "historical_mean_net_rate": 4.1403530142416205,
+      "predicted_population": 79470.14643951438,
+      "actual_population": 78867.0,
+      "error_actual_minus_prediction": -603.1464395143848,
+      "absolute_error": 603.1464395143848,
+      "relative_error_pct": -0.7647640198237347,
+      "path": [
+        {
+          "year": 2018,
+          "step": 1,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 77991.79237315954,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -159.7923731595365
+        },
+        {
+          "year": 2019,
+          "step": 2,
+          "birth_rate": 1.005656857428991,
+          "death_rate": 9.512166725809792,
+          "net_rate": 5.915969481608551,
+          "residual": 1.0666666666666667,
+          "predicted_population": 78496.714979256,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -391.71497925599397
+        },
+        {
+          "year": 2020,
+          "step": 3,
+          "birth_rate": 1.008971529082449,
+          "death_rate": 9.396453971091033,
+          "net_rate": 5.560846188135165,
+          "residual": 0.8533333333333335,
+          "predicted_population": 78988.49520708411,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -439.49520708411
+        },
+        {
+          "year": 2021,
+          "step": 4,
+          "birth_rate": 1.0116232664052154,
+          "death_rate": 9.303883767316027,
+          "net_rate": 5.276747553356456,
+          "residual": 0.6826666666666668,
+          "predicted_population": 79470.14643951438,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": -603.1464395143848
+        }
+      ]
+    },
+    {
+      "origin_year": 2017,
+      "horizon_years": 5,
+      "target_year": 2022,
+      "fade_per_year": 0.2,
+      "historical_mean_birth_rate": 1.0222302156962804,
+      "historical_mean_death_rate": 8.933602952215997,
+      "historical_mean_net_rate": 4.1403530142416205,
+      "predicted_population": 79944.10319708042,
+      "actual_population": 79244.0,
+      "error_actual_minus_prediction": -700.1031970804179,
+      "absolute_error": 700.1031970804179,
+      "relative_error_pct": -0.8834778621478192,
+      "path": [
+        {
+          "year": 2018,
+          "step": 1,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 77991.79237315954,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -159.7923731595365
+        },
+        {
+          "year": 2019,
+          "step": 2,
+          "birth_rate": 1.005656857428991,
+          "death_rate": 9.512166725809792,
+          "net_rate": 5.915969481608551,
+          "residual": 1.0666666666666667,
+          "predicted_population": 78496.714979256,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -391.71497925599397
+        },
+        {
+          "year": 2020,
+          "step": 3,
+          "birth_rate": 1.008971529082449,
+          "death_rate": 9.396453971091033,
+          "net_rate": 5.560846188135165,
+          "residual": 0.8533333333333335,
+          "predicted_population": 78988.49520708411,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -439.49520708411
+        },
+        {
+          "year": 2021,
+          "step": 4,
+          "birth_rate": 1.0116232664052154,
+          "death_rate": 9.303883767316027,
+          "net_rate": 5.276747553356456,
+          "residual": 0.6826666666666668,
+          "predicted_population": 79470.14643951438,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": -603.1464395143848
+        },
+        {
+          "year": 2022,
+          "step": 5,
+          "birth_rate": 1.0137446562634282,
+          "death_rate": 9.22982760429602,
+          "net_rate": 5.049468645533489,
+          "residual": 0.5461333333333334,
+          "predicted_population": 79944.10319708042,
+          "actual_population": 79244.0,
+          "error_actual_minus_prediction": -700.1031970804179
+        }
+      ]
+    },
+    {
+      "origin_year": 2017,
+      "horizon_years": 2,
+      "target_year": 2019,
+      "fade_per_year": 0.3,
+      "historical_mean_birth_rate": 1.0222302156962804,
+      "historical_mean_death_rate": 8.933602952215997,
+      "historical_mean_net_rate": 4.1403530142416205,
+      "predicted_population": 78486.52734267473,
+      "actual_population": 78105.0,
+      "error_actual_minus_prediction": -381.5273426747299,
+      "absolute_error": 381.5273426747299,
+      "relative_error_pct": -0.48848004951633045,
+      "path": [
+        {
+          "year": 2018,
+          "step": 1,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 77991.79237315954,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -159.7923731595365
+        },
+        {
+          "year": 2019,
+          "step": 2,
+          "birth_rate": 1.0077285272124024,
+          "death_rate": 9.439846254110567,
+          "net_rate": 5.694017423187685,
+          "residual": 0.9333333333333332,
+          "predicted_population": 78486.52734267473,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -381.5273426747299
+        }
+      ]
+    },
+    {
+      "origin_year": 2017,
+      "horizon_years": 3,
+      "target_year": 2020,
+      "fade_per_year": 0.3,
+      "historical_mean_birth_rate": 1.0222302156962804,
+      "historical_mean_death_rate": 8.933602952215997,
+      "historical_mean_net_rate": 4.1403530142416205,
+      "predicted_population": 78962.8667330011,
+      "actual_population": 78549.0,
+      "error_actual_minus_prediction": -413.86673300109396,
+      "absolute_error": 413.86673300109396,
+      "relative_error_pct": -0.5268898814766502,
+      "path": [
+        {
+          "year": 2018,
+          "step": 1,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 77991.79237315954,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -159.7923731595365
+        },
+        {
+          "year": 2019,
+          "step": 2,
+          "birth_rate": 1.0077285272124024,
+          "death_rate": 9.439846254110567,
+          "net_rate": 5.694017423187685,
+          "residual": 0.9333333333333332,
+          "predicted_population": 78486.52734267473,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -381.5273426747299
+        },
+        {
+          "year": 2020,
+          "step": 3,
+          "birth_rate": 1.0120790337575656,
+          "death_rate": 9.287973263542195,
+          "net_rate": 5.227918100503865,
+          "residual": 0.6533333333333332,
+          "predicted_population": 78962.8667330011,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -413.86673300109396
+        }
+      ]
+    },
+    {
+      "origin_year": 2017,
+      "horizon_years": 4,
+      "target_year": 2021,
+      "fade_per_year": 0.3,
+      "historical_mean_birth_rate": 1.0222302156962804,
+      "historical_mean_death_rate": 8.933602952215997,
+      "historical_mean_net_rate": 4.1403530142416205,
+      "predicted_population": 79426.93324111447,
+      "actual_population": 78867.0,
+      "error_actual_minus_prediction": -559.9332411144715,
+      "absolute_error": 559.9332411144715,
+      "relative_error_pct": -0.7099715230888349,
+      "path": [
+        {
+          "year": 2018,
+          "step": 1,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 77991.79237315954,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -159.7923731595365
+        },
+        {
+          "year": 2019,
+          "step": 2,
+          "birth_rate": 1.0077285272124024,
+          "death_rate": 9.439846254110567,
+          "net_rate": 5.694017423187685,
+          "residual": 0.9333333333333332,
+          "predicted_population": 78486.52734267473,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -381.5273426747299
+        },
+        {
+          "year": 2020,
+          "step": 3,
+          "birth_rate": 1.0120790337575656,
+          "death_rate": 9.287973263542195,
+          "net_rate": 5.227918100503865,
+          "residual": 0.6533333333333332,
+          "predicted_population": 78962.8667330011,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -413.86673300109396
+        },
+        {
+          "year": 2021,
+          "step": 4,
+          "birth_rate": 1.01512438833918,
+          "death_rate": 9.181662170144335,
+          "net_rate": 4.901648574625192,
+          "residual": 0.4573333333333332,
+          "predicted_population": 79426.93324111447,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": -559.9332411144715
+        }
+      ]
+    },
+    {
+      "origin_year": 2017,
+      "horizon_years": 5,
+      "target_year": 2022,
+      "fade_per_year": 0.3,
+      "historical_mean_birth_rate": 1.0222302156962804,
+      "historical_mean_death_rate": 8.933602952215997,
+      "historical_mean_net_rate": 4.1403530142416205,
+      "predicted_population": 79883.0509361785,
+      "actual_population": 79244.0,
+      "error_actual_minus_prediction": -639.0509361784934,
+      "absolute_error": 639.0509361784934,
+      "relative_error_pct": -0.8064344760215202,
+      "path": [
+        {
+          "year": 2018,
+          "step": 1,
+          "birth_rate": 1.0015135178621688,
+          "death_rate": 9.65680766920824,
+          "net_rate": 6.359873598450283,
+          "residual": 1.3333333333333333,
+          "predicted_population": 77991.79237315954,
+          "actual_population": 77832.0,
+          "error_actual_minus_prediction": -159.7923731595365
+        },
+        {
+          "year": 2019,
+          "step": 2,
+          "birth_rate": 1.0077285272124024,
+          "death_rate": 9.439846254110567,
+          "net_rate": 5.694017423187685,
+          "residual": 0.9333333333333332,
+          "predicted_population": 78486.52734267473,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -381.5273426747299
+        },
+        {
+          "year": 2020,
+          "step": 3,
+          "birth_rate": 1.0120790337575656,
+          "death_rate": 9.287973263542195,
+          "net_rate": 5.227918100503865,
+          "residual": 0.6533333333333332,
+          "predicted_population": 78962.8667330011,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -413.86673300109396
+        },
+        {
+          "year": 2021,
+          "step": 4,
+          "birth_rate": 1.01512438833918,
+          "death_rate": 9.181662170144335,
+          "net_rate": 4.901648574625192,
+          "residual": 0.4573333333333332,
+          "predicted_population": 79426.93324111447,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": -559.9332411144715
+        },
+        {
+          "year": 2022,
+          "step": 5,
+          "birth_rate": 1.0172561365463102,
+          "death_rate": 9.107244404765835,
+          "net_rate": 4.67325990651012,
+          "residual": 0.32013333333333327,
+          "predicted_population": 79883.0509361785,
+          "actual_population": 79244.0,
+          "error_actual_minus_prediction": -639.0509361784934
+        }
+      ]
+    },
+    {
+      "origin_year": 2018,
+      "horizon_years": 2,
+      "target_year": 2020,
+      "fade_per_year": 0.0,
+      "historical_mean_birth_rate": 1.013908368630495,
+      "historical_mean_death_rate": 8.925654561676867,
+      "historical_mean_net_rate": 4.329506538442532,
+      "predicted_population": 78684.85402073602,
+      "actual_population": 78549.0,
+      "error_actual_minus_prediction": -135.85402073602017,
+      "absolute_error": 135.85402073602017,
+      "relative_error_pct": -0.17295448794513002,
+      "path": [
+        {
+          "year": 2019,
+          "step": 1,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 78257.28241893687,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -152.28241893686936
+        },
+        {
+          "year": 2020,
+          "step": 2,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 78684.85402073602,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -135.85402073602017
+        }
+      ]
+    },
+    {
+      "origin_year": 2018,
+      "horizon_years": 3,
+      "target_year": 2021,
+      "fade_per_year": 0.0,
+      "historical_mean_birth_rate": 1.013908368630495,
+      "historical_mean_death_rate": 8.925654561676867,
+      "historical_mean_net_rate": 4.329506538442532,
+      "predicted_population": 79114.72712746379,
+      "actual_population": 78867.0,
+      "error_actual_minus_prediction": -247.72712746378966,
+      "absolute_error": 247.72712746378966,
+      "relative_error_pct": -0.31410745617785596,
+      "path": [
+        {
+          "year": 2019,
+          "step": 1,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 78257.28241893687,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -152.28241893686936
+        },
+        {
+          "year": 2020,
+          "step": 2,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 78684.85402073602,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -135.85402073602017
+        },
+        {
+          "year": 2021,
+          "step": 3,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 79114.72712746379,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": -247.72712746378966
+        }
+      ]
+    },
+    {
+      "origin_year": 2018,
+      "horizon_years": 4,
+      "target_year": 2022,
+      "fade_per_year": 0.0,
+      "historical_mean_birth_rate": 1.013908368630495,
+      "historical_mean_death_rate": 8.925654561676867,
+      "historical_mean_net_rate": 4.329506538442532,
+      "predicted_population": 79546.91412751292,
+      "actual_population": 79244.0,
+      "error_actual_minus_prediction": -302.9141275129223,
+      "absolute_error": 302.9141275129223,
+      "relative_error_pct": -0.3822549688467547,
+      "path": [
+        {
+          "year": 2019,
+          "step": 1,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 78257.28241893687,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -152.28241893686936
+        },
+        {
+          "year": 2020,
+          "step": 2,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 78684.85402073602,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -135.85402073602017
+        },
+        {
+          "year": 2021,
+          "step": 3,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 79114.72712746379,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": -247.72712746378966
+        },
+        {
+          "year": 2022,
+          "step": 4,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 79546.91412751292,
+          "actual_population": 79244.0,
+          "error_actual_minus_prediction": -302.9141275129223
+        }
+      ]
+    },
+    {
+      "origin_year": 2018,
+      "horizon_years": 5,
+      "target_year": 2023,
+      "fade_per_year": 0.0,
+      "historical_mean_birth_rate": 1.013908368630495,
+      "historical_mean_death_rate": 8.925654561676867,
+      "historical_mean_net_rate": 4.329506538442532,
+      "predicted_population": 79981.42747595964,
+      "actual_population": 79352.0,
+      "error_actual_minus_prediction": -629.4274759596447,
+      "absolute_error": 629.4274759596447,
+      "relative_error_pct": -0.7932093406084846,
+      "path": [
+        {
+          "year": 2019,
+          "step": 1,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 78257.28241893687,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -152.28241893686936
+        },
+        {
+          "year": 2020,
+          "step": 2,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 78684.85402073602,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -135.85402073602017
+        },
+        {
+          "year": 2021,
+          "step": 3,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 79114.72712746379,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": -247.72712746378966
+        },
+        {
+          "year": 2022,
+          "step": 4,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 79546.91412751292,
+          "actual_population": 79244.0,
+          "error_actual_minus_prediction": -302.9141275129223
+        },
+        {
+          "year": 2023,
+          "step": 5,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 79981.42747595964,
+          "actual_population": 79352.0,
+          "error_actual_minus_prediction": -629.4274759596447
+        }
+      ]
+    },
+    {
+      "origin_year": 2018,
+      "horizon_years": 2,
+      "target_year": 2020,
+      "fade_per_year": 0.1,
+      "historical_mean_birth_rate": 1.013908368630495,
+      "historical_mean_death_rate": 8.925654561676867,
+      "historical_mean_net_rate": 4.329506538442532,
+      "predicted_population": 78685.4743687176,
+      "actual_population": 78549.0,
+      "error_actual_minus_prediction": -136.4743687175942,
+      "absolute_error": 136.4743687175942,
+      "relative_error_pct": -0.17374424718022405,
+      "path": [
+        {
+          "year": 2019,
+          "step": 1,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 78257.28241893687,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -152.28241893686936
+        },
+        {
+          "year": 2020,
+          "step": 2,
+          "birth_rate": 0.9980035618906127,
+          "death_rate": 9.072169598297918,
+          "net_rate": 4.490889682650067,
+          "residual": 5.7,
+          "predicted_population": 78685.4743687176,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -136.4743687175942
+        }
+      ]
+    },
+    {
+      "origin_year": 2018,
+      "horizon_years": 3,
+      "target_year": 2021,
+      "fade_per_year": 0.1,
+      "historical_mean_birth_rate": 1.013908368630495,
+      "historical_mean_death_rate": 8.925654561676867,
+      "historical_mean_net_rate": 4.329506538442532,
+      "predicted_population": 79116.54250908252,
+      "actual_population": 78867.0,
+      "error_actual_minus_prediction": -249.5425090825156,
+      "absolute_error": 249.5425090825156,
+      "relative_error_pct": -0.3164092828210983,
+      "path": [
+        {
+          "year": 2019,
+          "step": 1,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 78257.28241893687,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -152.28241893686936
+        },
+        {
+          "year": 2020,
+          "step": 2,
+          "birth_rate": 0.9980035618906127,
+          "death_rate": 9.072169598297918,
+          "net_rate": 4.490889682650067,
+          "residual": 5.7,
+          "predicted_population": 78685.4743687176,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -136.4743687175942
+        },
+        {
+          "year": 2021,
+          "step": 3,
+          "birth_rate": 0.9995940425646009,
+          "death_rate": 9.057518094635814,
+          "net_rate": 4.474751368229313,
+          "residual": 5.13,
+          "predicted_population": 79116.54250908252,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": -249.5425090825156
+        }
+      ]
+    },
+    {
+      "origin_year": 2018,
+      "horizon_years": 4,
+      "target_year": 2022,
+      "fade_per_year": 0.1,
+      "historical_mean_birth_rate": 1.013908368630495,
+      "historical_mean_death_rate": 8.925654561676867,
+      "historical_mean_net_rate": 4.329506538442532,
+      "predicted_population": 79550.4577279602,
+      "actual_population": 79244.0,
+      "error_actual_minus_prediction": -306.45772796019446,
+      "absolute_error": 306.45772796019446,
+      "relative_error_pct": -0.3867267275253577,
+      "path": [
+        {
+          "year": 2019,
+          "step": 1,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 78257.28241893687,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -152.28241893686936
+        },
+        {
+          "year": 2020,
+          "step": 2,
+          "birth_rate": 0.9980035618906127,
+          "death_rate": 9.072169598297918,
+          "net_rate": 4.490889682650067,
+          "residual": 5.7,
+          "predicted_population": 78685.4743687176,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -136.4743687175942
+        },
+        {
+          "year": 2021,
+          "step": 3,
+          "birth_rate": 0.9995940425646009,
+          "death_rate": 9.057518094635814,
+          "net_rate": 4.474751368229313,
+          "residual": 5.13,
+          "predicted_population": 79116.54250908252,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": -249.5425090825156
+        },
+        {
+          "year": 2022,
+          "step": 4,
+          "birth_rate": 1.0010254751711902,
+          "death_rate": 9.044331741339919,
+          "net_rate": 4.460226885250636,
+          "residual": 4.617,
+          "predicted_population": 79550.4577279602,
+          "actual_population": 79244.0,
+          "error_actual_minus_prediction": -306.45772796019446
+        }
+      ]
+    },
+    {
+      "origin_year": 2018,
+      "horizon_years": 5,
+      "target_year": 2023,
+      "fade_per_year": 0.1,
+      "historical_mean_birth_rate": 1.013908368630495,
+      "historical_mean_death_rate": 8.925654561676867,
+      "historical_mean_net_rate": 4.329506538442532,
+      "predicted_population": 79987.19477198315,
+      "actual_population": 79352.0,
+      "error_actual_minus_prediction": -635.1947719831514,
+      "absolute_error": 635.1947719831514,
+      "relative_error_pct": -0.8004773313629794,
+      "path": [
+        {
+          "year": 2019,
+          "step": 1,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 78257.28241893687,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -152.28241893686936
+        },
+        {
+          "year": 2020,
+          "step": 2,
+          "birth_rate": 0.9980035618906127,
+          "death_rate": 9.072169598297918,
+          "net_rate": 4.490889682650067,
+          "residual": 5.7,
+          "predicted_population": 78685.4743687176,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -136.4743687175942
+        },
+        {
+          "year": 2021,
+          "step": 3,
+          "birth_rate": 0.9995940425646009,
+          "death_rate": 9.057518094635814,
+          "net_rate": 4.474751368229313,
+          "residual": 5.13,
+          "predicted_population": 79116.54250908252,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": -249.5425090825156
+        },
+        {
+          "year": 2022,
+          "step": 4,
+          "birth_rate": 1.0010254751711902,
+          "death_rate": 9.044331741339919,
+          "net_rate": 4.460226885250636,
+          "residual": 4.617,
+          "predicted_population": 79550.4577279602,
+          "actual_population": 79244.0,
+          "error_actual_minus_prediction": -306.45772796019446
+        },
+        {
+          "year": 2023,
+          "step": 5,
+          "birth_rate": 1.0023137645171207,
+          "death_rate": 9.032464023373613,
+          "net_rate": 4.4471548505698255,
+          "residual": 4.1552999999999995,
+          "predicted_population": 79987.19477198315,
+          "actual_population": 79352.0,
+          "error_actual_minus_prediction": -635.1947719831514
+        }
+      ]
+    },
+    {
+      "origin_year": 2018,
+      "horizon_years": 2,
+      "target_year": 2020,
+      "fade_per_year": 0.2,
+      "historical_mean_birth_rate": 1.013908368630495,
+      "historical_mean_death_rate": 8.925654561676867,
+      "historical_mean_net_rate": 4.329506538442532,
+      "predicted_population": 78686.09471669917,
+      "actual_population": 78549.0,
+      "error_actual_minus_prediction": -137.0947166991682,
+      "absolute_error": 137.0947166991682,
+      "relative_error_pct": -0.17453400641531808,
+      "path": [
+        {
+          "year": 2019,
+          "step": 1,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 78257.28241893687,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -152.28241893686936
+        },
+        {
+          "year": 2020,
+          "step": 2,
+          "birth_rate": 0.9997707626394885,
+          "death_rate": 9.055890149784469,
+          "net_rate": 4.472958222182563,
+          "residual": 5.066666666666666,
+          "predicted_population": 78686.09471669917,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -137.0947166991682
+        }
+      ]
+    },
+    {
+      "origin_year": 2018,
+      "horizon_years": 3,
+      "target_year": 2021,
+      "fade_per_year": 0.2,
+      "historical_mean_birth_rate": 1.013908368630495,
+      "historical_mean_death_rate": 8.925654561676867,
+      "historical_mean_net_rate": 4.329506538442532,
+      "predicted_population": 79118.23248495502,
+      "actual_population": 78867.0,
+      "error_actual_minus_prediction": -251.23248495502048,
+      "absolute_error": 251.23248495502048,
+      "relative_error_pct": -0.3185521003144794,
+      "path": [
+        {
+          "year": 2019,
+          "step": 1,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 78257.28241893687,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -152.28241893686936
+        },
+        {
+          "year": 2020,
+          "step": 2,
+          "birth_rate": 0.9997707626394885,
+          "death_rate": 9.055890149784469,
+          "net_rate": 4.472958222182563,
+          "residual": 5.066666666666666,
+          "predicted_population": 78686.09471669917,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -137.0947166991682
+        },
+        {
+          "year": 2021,
+          "step": 3,
+          "birth_rate": 1.0025982838376897,
+          "death_rate": 9.029843032162947,
+          "net_rate": 4.444267885434558,
+          "residual": 4.053333333333334,
+          "predicted_population": 79118.23248495502,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": -251.23248495502048
+        }
+      ]
+    },
+    {
+      "origin_year": 2018,
+      "horizon_years": 4,
+      "target_year": 2022,
+      "fade_per_year": 0.2,
+      "historical_mean_birth_rate": 1.013908368630495,
+      "historical_mean_death_rate": 8.925654561676867,
+      "historical_mean_net_rate": 4.329506538442532,
+      "predicted_population": 79553.53295855831,
+      "actual_population": 79244.0,
+      "error_actual_minus_prediction": -309.5329585583095,
+      "absolute_error": 309.5329585583095,
+      "relative_error_pct": -0.39060743849163276,
+      "path": [
+        {
+          "year": 2019,
+          "step": 1,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 78257.28241893687,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -152.28241893686936
+        },
+        {
+          "year": 2020,
+          "step": 2,
+          "birth_rate": 0.9997707626394885,
+          "death_rate": 9.055890149784469,
+          "net_rate": 4.472958222182563,
+          "residual": 5.066666666666666,
+          "predicted_population": 78686.09471669917,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -137.0947166991682
+        },
+        {
+          "year": 2021,
+          "step": 3,
+          "birth_rate": 1.0025982838376897,
+          "death_rate": 9.029843032162947,
+          "net_rate": 4.444267885434558,
+          "residual": 4.053333333333334,
+          "predicted_population": 79118.23248495502,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": -251.23248495502048
+        },
+        {
+          "year": 2022,
+          "step": 4,
+          "birth_rate": 1.0048603007962509,
+          "death_rate": 9.009005338065734,
+          "net_rate": 4.421315616036152,
+          "residual": 3.2426666666666675,
+          "predicted_population": 79553.53295855831,
+          "actual_population": 79244.0,
+          "error_actual_minus_prediction": -309.5329585583095
+        }
+      ]
+    },
+    {
+      "origin_year": 2018,
+      "horizon_years": 5,
+      "target_year": 2023,
+      "fade_per_year": 0.2,
+      "historical_mean_birth_rate": 1.013908368630495,
+      "historical_mean_death_rate": 8.925654561676867,
+      "historical_mean_net_rate": 4.329506538442532,
+      "predicted_population": 79991.86707094453,
+      "actual_population": 79352.0,
+      "error_actual_minus_prediction": -639.8670709445287,
+      "absolute_error": 639.8670709445287,
+      "relative_error_pct": -0.8063653984077638,
+      "path": [
+        {
+          "year": 2019,
+          "step": 1,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 78257.28241893687,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -152.28241893686936
+        },
+        {
+          "year": 2020,
+          "step": 2,
+          "birth_rate": 0.9997707626394885,
+          "death_rate": 9.055890149784469,
+          "net_rate": 4.472958222182563,
+          "residual": 5.066666666666666,
+          "predicted_population": 78686.09471669917,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -137.0947166991682
+        },
+        {
+          "year": 2021,
+          "step": 3,
+          "birth_rate": 1.0025982838376897,
+          "death_rate": 9.029843032162947,
+          "net_rate": 4.444267885434558,
+          "residual": 4.053333333333334,
+          "predicted_population": 79118.23248495502,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": -251.23248495502048
+        },
+        {
+          "year": 2022,
+          "step": 4,
+          "birth_rate": 1.0048603007962509,
+          "death_rate": 9.009005338065734,
+          "net_rate": 4.421315616036152,
+          "residual": 3.2426666666666675,
+          "predicted_population": 79553.53295855831,
+          "actual_population": 79244.0,
+          "error_actual_minus_prediction": -309.5329585583095
+        },
+        {
+          "year": 2023,
+          "step": 5,
+          "birth_rate": 1.0066699143630997,
+          "death_rate": 8.992335182787958,
+          "net_rate": 4.4029538005174285,
+          "residual": 2.5941333333333336,
+          "predicted_population": 79991.86707094453,
+          "actual_population": 79352.0,
+          "error_actual_minus_prediction": -639.8670709445287
+        }
+      ]
+    },
+    {
+      "origin_year": 2018,
+      "horizon_years": 2,
+      "target_year": 2020,
+      "fade_per_year": 0.3,
+      "historical_mean_birth_rate": 1.013908368630495,
+      "historical_mean_death_rate": 8.925654561676867,
+      "historical_mean_net_rate": 4.329506538442532,
+      "predicted_population": 78686.71506468076,
+      "actual_population": 78549.0,
+      "error_actual_minus_prediction": -137.71506468075677,
+      "absolute_error": 137.71506468075677,
+      "relative_error_pct": -0.17532376565043065,
+      "path": [
+        {
+          "year": 2019,
+          "step": 1,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 78257.28241893687,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -152.28241893686936
+        },
+        {
+          "year": 2020,
+          "step": 2,
+          "birth_rate": 1.0015379633883643,
+          "death_rate": 9.03961070127102,
+          "net_rate": 4.455026761715059,
+          "residual": 4.433333333333333,
+          "predicted_population": 78686.71506468076,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -137.71506468075677
+        }
+      ]
+    },
+    {
+      "origin_year": 2018,
+      "horizon_years": 3,
+      "target_year": 2021,
+      "fade_per_year": 0.3,
+      "historical_mean_birth_rate": 1.013908368630495,
+      "historical_mean_death_rate": 8.925654561676867,
+      "historical_mean_net_rate": 4.329506538442532,
+      "predicted_population": 79119.7970491185,
+      "actual_population": 78867.0,
+      "error_actual_minus_prediction": -252.79704911849694,
+      "absolute_error": 252.79704911849694,
+      "relative_error_pct": -0.3205359010974133,
+      "path": [
+        {
+          "year": 2019,
+          "step": 1,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 78257.28241893687,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -152.28241893686936
+        },
+        {
+          "year": 2020,
+          "step": 2,
+          "birth_rate": 1.0015379633883643,
+          "death_rate": 9.03961070127102,
+          "net_rate": 4.455026761715059,
+          "residual": 4.433333333333333,
+          "predicted_population": 78686.71506468076,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -137.71506468075677
+        },
+        {
+          "year": 2021,
+          "step": 3,
+          "birth_rate": 1.0052490849610036,
+          "death_rate": 9.005423859392772,
+          "net_rate": 4.417370694733301,
+          "residual": 3.1033333333333326,
+          "predicted_population": 79119.7970491185,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": -252.79704911849694
+        }
+      ]
+    },
+    {
+      "origin_year": 2018,
+      "horizon_years": 4,
+      "target_year": 2022,
+      "fade_per_year": 0.3,
+      "historical_mean_birth_rate": 1.013908368630495,
+      "historical_mean_death_rate": 8.925654561676867,
+      "historical_mean_net_rate": 4.329506538442532,
+      "predicted_population": 79556.17780630196,
+      "actual_population": 79244.0,
+      "error_actual_minus_prediction": -312.1778063019592,
+      "absolute_error": 312.1778063019592,
+      "relative_error_pct": -0.3939450384911908,
+      "path": [
+        {
+          "year": 2019,
+          "step": 1,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 78257.28241893687,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -152.28241893686936
+        },
+        {
+          "year": 2020,
+          "step": 2,
+          "birth_rate": 1.0015379633883643,
+          "death_rate": 9.03961070127102,
+          "net_rate": 4.455026761715059,
+          "residual": 4.433333333333333,
+          "predicted_population": 78686.71506468076,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -137.71506468075677
+        },
+        {
+          "year": 2021,
+          "step": 3,
+          "birth_rate": 1.0052490849610036,
+          "death_rate": 9.005423859392772,
+          "net_rate": 4.417370694733301,
+          "residual": 3.1033333333333326,
+          "predicted_population": 79119.7970491185,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": -252.79704911849694
+        },
+        {
+          "year": 2022,
+          "step": 4,
+          "birth_rate": 1.007846870061851,
+          "death_rate": 8.981493070078,
+          "net_rate": 4.39101144784607,
+          "residual": 2.1723333333333326,
+          "predicted_population": 79556.17780630196,
+          "actual_population": 79244.0,
+          "error_actual_minus_prediction": -312.1778063019592
+        }
+      ]
+    },
+    {
+      "origin_year": 2018,
+      "horizon_years": 5,
+      "target_year": 2023,
+      "fade_per_year": 0.3,
+      "historical_mean_birth_rate": 1.013908368630495,
+      "historical_mean_death_rate": 8.925654561676867,
+      "historical_mean_net_rate": 4.329506538442532,
+      "predicted_population": 79995.61316525411,
+      "actual_population": 79352.0,
+      "error_actual_minus_prediction": -643.613165254108,
+      "absolute_error": 643.613165254108,
+      "relative_error_pct": -0.8110862552350389,
+      "path": [
+        {
+          "year": 2019,
+          "step": 1,
+          "birth_rate": 0.9962363611417369,
+          "death_rate": 9.08844904681137,
+          "net_rate": 4.508821143117571,
+          "residual": 6.333333333333333,
+          "predicted_population": 78257.28241893687,
+          "actual_population": 78105.0,
+          "error_actual_minus_prediction": -152.28241893686936
+        },
+        {
+          "year": 2020,
+          "step": 2,
+          "birth_rate": 1.0015379633883643,
+          "death_rate": 9.03961070127102,
+          "net_rate": 4.455026761715059,
+          "residual": 4.433333333333333,
+          "predicted_population": 78686.71506468076,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": -137.71506468075677
+        },
+        {
+          "year": 2021,
+          "step": 3,
+          "birth_rate": 1.0052490849610036,
+          "death_rate": 9.005423859392772,
+          "net_rate": 4.417370694733301,
+          "residual": 3.1033333333333326,
+          "predicted_population": 79119.7970491185,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": -252.79704911849694
+        },
+        {
+          "year": 2022,
+          "step": 4,
+          "birth_rate": 1.007846870061851,
+          "death_rate": 8.981493070078,
+          "net_rate": 4.39101144784607,
+          "residual": 2.1723333333333326,
+          "predicted_population": 79556.17780630196,
+          "actual_population": 79244.0,
+          "error_actual_minus_prediction": -312.1778063019592
+        },
+        {
+          "year": 2023,
+          "step": 5,
+          "birth_rate": 1.009665319632444,
+          "death_rate": 8.96474151755766,
+          "net_rate": 4.372559975025008,
+          "residual": 1.520633333333333,
+          "predicted_population": 79995.61316525411,
+          "actual_population": 79352.0,
+          "error_actual_minus_prediction": -643.613165254108
+        }
+      ]
+    },
+    {
+      "origin_year": 2019,
+      "horizon_years": 2,
+      "target_year": 2021,
+      "fade_per_year": 0.0,
+      "historical_mean_birth_rate": 1.008681139246528,
+      "historical_mean_death_rate": 8.907478910718737,
+      "historical_mean_net_rate": 4.156918615569165,
+      "predicted_population": 78788.90607178742,
+      "actual_population": 78867.0,
+      "error_actual_minus_prediction": 78.09392821257643,
+      "absolute_error": 78.09392821257643,
+      "relative_error_pct": 0.0990197778698016,
+      "path": [
+        {
+          "year": 2020,
+          "step": 1,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 78446.23601426101,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": 102.76398573898769
+        },
+        {
+          "year": 2021,
+          "step": 2,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 78788.90607178742,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": 78.09392821257643
+        }
+      ]
+    },
+    {
+      "origin_year": 2019,
+      "horizon_years": 3,
+      "target_year": 2022,
+      "fade_per_year": 0.0,
+      "historical_mean_birth_rate": 1.008681139246528,
+      "historical_mean_death_rate": 8.907478910718737,
+      "historical_mean_net_rate": 4.156918615569165,
+      "predicted_population": 79133.01619914148,
+      "actual_population": 79244.0,
+      "error_actual_minus_prediction": 110.98380085852114,
+      "absolute_error": 110.98380085852114,
+      "relative_error_pct": 0.1400532543265372,
+      "path": [
+        {
+          "year": 2020,
+          "step": 1,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 78446.23601426101,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": 102.76398573898769
+        },
+        {
+          "year": 2021,
+          "step": 2,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 78788.90607178742,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": 78.09392821257643
+        },
+        {
+          "year": 2022,
+          "step": 3,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 79133.01619914148,
+          "actual_population": 79244.0,
+          "error_actual_minus_prediction": 110.98380085852114
+        }
+      ]
+    },
+    {
+      "origin_year": 2019,
+      "horizon_years": 4,
+      "target_year": 2023,
+      "fade_per_year": 0.0,
+      "historical_mean_birth_rate": 1.008681139246528,
+      "historical_mean_death_rate": 8.907478910718737,
+      "historical_mean_net_rate": 4.156918615569165,
+      "predicted_population": 79478.57244821207,
+      "actual_population": 79352.0,
+      "error_actual_minus_prediction": -126.57244821207132,
+      "absolute_error": 126.57244821207132,
+      "relative_error_pct": -0.15950757159500872,
+      "path": [
+        {
+          "year": 2020,
+          "step": 1,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 78446.23601426101,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": 102.76398573898769
+        },
+        {
+          "year": 2021,
+          "step": 2,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 78788.90607178742,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": 78.09392821257643
+        },
+        {
+          "year": 2022,
+          "step": 3,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 79133.01619914148,
+          "actual_population": 79244.0,
+          "error_actual_minus_prediction": 110.98380085852114
+        },
+        {
+          "year": 2023,
+          "step": 4,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 79478.57244821207,
+          "actual_population": 79352.0,
+          "error_actual_minus_prediction": -126.57244821207132
+        }
+      ]
+    },
+    {
+      "origin_year": 2019,
+      "horizon_years": 5,
+      "target_year": 2024,
+      "fade_per_year": 0.0,
+      "historical_mean_birth_rate": 1.008681139246528,
+      "historical_mean_death_rate": 8.907478910718737,
+      "historical_mean_net_rate": 4.156918615569165,
+      "predicted_population": 79825.5808963211,
+      "actual_population": 79645.0,
+      "error_actual_minus_prediction": -180.58089632110205,
+      "absolute_error": 180.58089632110205,
+      "relative_error_pct": -0.22673224473739978,
+      "path": [
+        {
+          "year": 2020,
+          "step": 1,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 78446.23601426101,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": 102.76398573898769
+        },
+        {
+          "year": 2021,
+          "step": 2,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 78788.90607178742,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": 78.09392821257643
+        },
+        {
+          "year": 2022,
+          "step": 3,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 79133.01619914148,
+          "actual_population": 79244.0,
+          "error_actual_minus_prediction": 110.98380085852114
+        },
+        {
+          "year": 2023,
+          "step": 4,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 79478.57244821207,
+          "actual_population": 79352.0,
+          "error_actual_minus_prediction": -126.57244821207132
+        },
+        {
+          "year": 2024,
+          "step": 5,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 79825.5808963211,
+          "actual_population": 79645.0,
+          "error_actual_minus_prediction": -180.58089632110205
+        }
+      ]
+    },
+    {
+      "origin_year": 2019,
+      "horizon_years": 2,
+      "target_year": 2021,
+      "fade_per_year": 0.1,
+      "historical_mean_birth_rate": 1.008681139246528,
+      "historical_mean_death_rate": 8.907478910718737,
+      "historical_mean_net_rate": 4.156918615569165,
+      "predicted_population": 78796.49994733592,
+      "actual_population": 78867.0,
+      "error_actual_minus_prediction": 70.5000526640797,
+      "absolute_error": 70.5000526640797,
+      "relative_error_pct": 0.0893910668138508,
+      "path": [
+        {
+          "year": 2020,
+          "step": 1,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 78446.23601426101,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": 102.76398573898769
+        },
+        {
+          "year": 2021,
+          "step": 2,
+          "birth_rate": 0.9468242814669386,
+          "death_rate": 8.938843702906258,
+          "net_rate": 3.7864731375230454,
+          "residual": 11.700000000000001,
+          "predicted_population": 78796.49994733592,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": 70.5000526640797
+        }
+      ]
+    },
+    {
+      "origin_year": 2019,
+      "horizon_years": 3,
+      "target_year": 2022,
+      "fade_per_year": 0.1,
+      "historical_mean_birth_rate": 1.008681139246528,
+      "historical_mean_death_rate": 8.907478910718737,
+      "historical_mean_net_rate": 4.156918615569165,
+      "predicted_population": 79155.14580298401,
+      "actual_population": 79244.0,
+      "error_actual_minus_prediction": 88.85419701598585,
+      "absolute_error": 88.85419701598585,
+      "relative_error_pct": 0.11212734972488245,
+      "path": [
+        {
+          "year": 2020,
+          "step": 1,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 78446.23601426101,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": 102.76398573898769
+        },
+        {
+          "year": 2021,
+          "step": 2,
+          "birth_rate": 0.9468242814669386,
+          "death_rate": 8.938843702906258,
+          "net_rate": 3.7864731375230454,
+          "residual": 11.700000000000001,
+          "predicted_population": 78796.49994733592,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": 70.5000526640797
+        },
+        {
+          "year": 2022,
+          "step": 3,
+          "birth_rate": 0.9530099672448976,
+          "death_rate": 8.935707223687507,
+          "net_rate": 3.8235176853276576,
+          "residual": 10.530000000000001,
+          "predicted_population": 79155.14580298401,
+          "actual_population": 79244.0,
+          "error_actual_minus_prediction": 88.85419701598585
+        }
+      ]
+    },
+    {
+      "origin_year": 2019,
+      "horizon_years": 4,
+      "target_year": 2023,
+      "fade_per_year": 0.1,
+      "historical_mean_birth_rate": 1.008681139246528,
+      "historical_mean_death_rate": 8.907478910718737,
+      "historical_mean_net_rate": 4.156918615569165,
+      "predicted_population": 79521.59226507643,
+      "actual_population": 79352.0,
+      "error_actual_minus_prediction": -169.59226507642597,
+      "absolute_error": 169.59226507642597,
+      "relative_error_pct": -0.2137214752954254,
+      "path": [
+        {
+          "year": 2020,
+          "step": 1,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 78446.23601426101,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": 102.76398573898769
+        },
+        {
+          "year": 2021,
+          "step": 2,
+          "birth_rate": 0.9468242814669386,
+          "death_rate": 8.938843702906258,
+          "net_rate": 3.7864731375230454,
+          "residual": 11.700000000000001,
+          "predicted_population": 78796.49994733592,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": 70.5000526640797
+        },
+        {
+          "year": 2022,
+          "step": 3,
+          "birth_rate": 0.9530099672448976,
+          "death_rate": 8.935707223687507,
+          "net_rate": 3.8235176853276576,
+          "residual": 10.530000000000001,
+          "predicted_population": 79155.14580298401,
+          "actual_population": 79244.0,
+          "error_actual_minus_prediction": 88.85419701598585
+        },
+        {
+          "year": 2023,
+          "step": 4,
+          "birth_rate": 0.9585770844450605,
+          "death_rate": 8.93288439239063,
+          "net_rate": 3.856857778351808,
+          "residual": 9.477,
+          "predicted_population": 79521.59226507643,
+          "actual_population": 79352.0,
+          "error_actual_minus_prediction": -169.59226507642597
+        }
+      ]
+    },
+    {
+      "origin_year": 2019,
+      "horizon_years": 5,
+      "target_year": 2024,
+      "fade_per_year": 0.1,
+      "historical_mean_birth_rate": 1.008681139246528,
+      "historical_mean_death_rate": 8.907478910718737,
+      "historical_mean_net_rate": 4.156918615569165,
+      "predicted_population": 79895.31612119444,
+      "actual_population": 79645.0,
+      "error_actual_minus_prediction": -250.3161211944389,
+      "absolute_error": 250.3161211944389,
+      "relative_error_pct": -0.3142898125361779,
+      "path": [
+        {
+          "year": 2020,
+          "step": 1,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 78446.23601426101,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": 102.76398573898769
+        },
+        {
+          "year": 2021,
+          "step": 2,
+          "birth_rate": 0.9468242814669386,
+          "death_rate": 8.938843702906258,
+          "net_rate": 3.7864731375230454,
+          "residual": 11.700000000000001,
+          "predicted_population": 78796.49994733592,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": 70.5000526640797
+        },
+        {
+          "year": 2022,
+          "step": 3,
+          "birth_rate": 0.9530099672448976,
+          "death_rate": 8.935707223687507,
+          "net_rate": 3.8235176853276576,
+          "residual": 10.530000000000001,
+          "predicted_population": 79155.14580298401,
+          "actual_population": 79244.0,
+          "error_actual_minus_prediction": 88.85419701598585
+        },
+        {
+          "year": 2023,
+          "step": 4,
+          "birth_rate": 0.9585770844450605,
+          "death_rate": 8.93288439239063,
+          "net_rate": 3.856857778351808,
+          "residual": 9.477,
+          "predicted_population": 79521.59226507643,
+          "actual_population": 79352.0,
+          "error_actual_minus_prediction": -169.59226507642597
+        },
+        {
+          "year": 2024,
+          "step": 5,
+          "birth_rate": 0.9635874899252073,
+          "death_rate": 8.93034384422344,
+          "net_rate": 3.886863862073544,
+          "residual": 8.529300000000001,
+          "predicted_population": 79895.31612119444,
+          "actual_population": 79645.0,
+          "error_actual_minus_prediction": -250.3161211944389
+        }
+      ]
+    },
+    {
+      "origin_year": 2019,
+      "horizon_years": 2,
+      "target_year": 2021,
+      "fade_per_year": 0.2,
+      "historical_mean_birth_rate": 1.008681139246528,
+      "historical_mean_death_rate": 8.907478910718737,
+      "historical_mean_net_rate": 4.156918615569165,
+      "predicted_population": 78804.09382288442,
+      "actual_population": 78867.0,
+      "error_actual_minus_prediction": 62.90617711558298,
+      "absolute_error": 62.90617711558298,
+      "relative_error_pct": 0.07976235575789999,
+      "path": [
+        {
+          "year": 2020,
+          "step": 1,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 78446.23601426101,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": 102.76398573898769
+        },
+        {
+          "year": 2021,
+          "step": 2,
+          "birth_rate": 0.9536972656646707,
+          "death_rate": 8.935358725996533,
+          "net_rate": 3.827633746194836,
+          "residual": 10.4,
+          "predicted_population": 78804.09382288442,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": 62.90617711558298
+        }
+      ]
+    },
+    {
+      "origin_year": 2019,
+      "horizon_years": 3,
+      "target_year": 2022,
+      "fade_per_year": 0.2,
+      "historical_mean_birth_rate": 1.008681139246528,
+      "historical_mean_death_rate": 8.907478910718737,
+      "historical_mean_net_rate": 4.156918615569165,
+      "predicted_population": 79175.75178890419,
+      "actual_population": 79244.0,
+      "error_actual_minus_prediction": 68.24821109580807,
+      "absolute_error": 68.24821109580807,
+      "relative_error_pct": 0.08612413696407056,
+      "path": [
+        {
+          "year": 2020,
+          "step": 1,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 78446.23601426101,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": 102.76398573898769
+        },
+        {
+          "year": 2021,
+          "step": 2,
+          "birth_rate": 0.9536972656646707,
+          "death_rate": 8.935358725996533,
+          "net_rate": 3.827633746194836,
+          "residual": 10.4,
+          "predicted_population": 78804.09382288442,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": 62.90617711558298
+        },
+        {
+          "year": 2022,
+          "step": 3,
+          "birth_rate": 0.9646940403810422,
+          "death_rate": 8.929782762940974,
+          "net_rate": 3.893490720069702,
+          "residual": 8.320000000000002,
+          "predicted_population": 79175.75178890419,
+          "actual_population": 79244.0,
+          "error_actual_minus_prediction": 68.24821109580807
+        }
+      ]
+    },
+    {
+      "origin_year": 2019,
+      "horizon_years": 4,
+      "target_year": 2023,
+      "fade_per_year": 0.2,
+      "historical_mean_birth_rate": 1.008681139246528,
+      "historical_mean_death_rate": 8.907478910718737,
+      "historical_mean_net_rate": 4.156918615569165,
+      "predicted_population": 79558.94936754637,
+      "actual_population": 79352.0,
+      "error_actual_minus_prediction": -206.94936754637456,
+      "absolute_error": 206.94936754637456,
+      "relative_error_pct": -0.26079918281375963,
+      "path": [
+        {
+          "year": 2020,
+          "step": 1,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 78446.23601426101,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": 102.76398573898769
+        },
+        {
+          "year": 2021,
+          "step": 2,
+          "birth_rate": 0.9536972656646707,
+          "death_rate": 8.935358725996533,
+          "net_rate": 3.827633746194836,
+          "residual": 10.4,
+          "predicted_population": 78804.09382288442,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": 62.90617711558298
+        },
+        {
+          "year": 2022,
+          "step": 3,
+          "birth_rate": 0.9646940403810422,
+          "death_rate": 8.929782762940974,
+          "net_rate": 3.893490720069702,
+          "residual": 8.320000000000002,
+          "predicted_population": 79175.75178890419,
+          "actual_population": 79244.0,
+          "error_actual_minus_prediction": 68.24821109580807
+        },
+        {
+          "year": 2023,
+          "step": 4,
+          "birth_rate": 0.9734914601541393,
+          "death_rate": 8.925321992496528,
+          "net_rate": 3.9461762991695943,
+          "residual": 6.6560000000000015,
+          "predicted_population": 79558.94936754637,
+          "actual_population": 79352.0,
+          "error_actual_minus_prediction": -206.94936754637456
+        }
+      ]
+    },
+    {
+      "origin_year": 2019,
+      "horizon_years": 5,
+      "target_year": 2024,
+      "fade_per_year": 0.2,
+      "historical_mean_birth_rate": 1.008681139246528,
+      "historical_mean_death_rate": 8.907478910718737,
+      "historical_mean_net_rate": 4.156918615569165,
+      "predicted_population": 79951.87465593705,
+      "actual_population": 79645.0,
+      "error_actual_minus_prediction": -306.8746559370484,
+      "absolute_error": 306.8746559370484,
+      "relative_error_pct": -0.3853031024383808,
+      "path": [
+        {
+          "year": 2020,
+          "step": 1,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 78446.23601426101,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": 102.76398573898769
+        },
+        {
+          "year": 2021,
+          "step": 2,
+          "birth_rate": 0.9536972656646707,
+          "death_rate": 8.935358725996533,
+          "net_rate": 3.827633746194836,
+          "residual": 10.4,
+          "predicted_population": 78804.09382288442,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": 62.90617711558298
+        },
+        {
+          "year": 2022,
+          "step": 3,
+          "birth_rate": 0.9646940403810422,
+          "death_rate": 8.929782762940974,
+          "net_rate": 3.893490720069702,
+          "residual": 8.320000000000002,
+          "predicted_population": 79175.75178890419,
+          "actual_population": 79244.0,
+          "error_actual_minus_prediction": 68.24821109580807
+        },
+        {
+          "year": 2023,
+          "step": 4,
+          "birth_rate": 0.9734914601541393,
+          "death_rate": 8.925321992496528,
+          "net_rate": 3.9461762991695943,
+          "residual": 6.6560000000000015,
+          "predicted_population": 79558.94936754637,
+          "actual_population": 79352.0,
+          "error_actual_minus_prediction": -206.94936754637456
+        },
+        {
+          "year": 2024,
+          "step": 5,
+          "birth_rate": 0.9805293959726171,
+          "death_rate": 8.92175337614097,
+          "net_rate": 3.9883247624495084,
+          "residual": 5.324800000000001,
+          "predicted_population": 79951.87465593705,
+          "actual_population": 79645.0,
+          "error_actual_minus_prediction": -306.8746559370484
+        }
+      ]
+    },
+    {
+      "origin_year": 2019,
+      "horizon_years": 2,
+      "target_year": 2021,
+      "fade_per_year": 0.3,
+      "historical_mean_birth_rate": 1.008681139246528,
+      "historical_mean_death_rate": 8.907478910718737,
+      "historical_mean_net_rate": 4.156918615569165,
+      "predicted_population": 78811.68769843291,
+      "actual_population": 78867.0,
+      "error_actual_minus_prediction": 55.31230156708625,
+      "absolute_error": 55.31230156708625,
+      "relative_error_pct": 0.07013364470194917,
+      "path": [
+        {
+          "year": 2020,
+          "step": 1,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 78446.23601426101,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": 102.76398573898769
+        },
+        {
+          "year": 2021,
+          "step": 2,
+          "birth_rate": 0.9605702498624029,
+          "death_rate": 8.93187374908681,
+          "net_rate": 3.868794354866628,
+          "residual": 9.1,
+          "predicted_population": 78811.68769843291,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": 55.31230156708625
+        }
+      ]
+    },
+    {
+      "origin_year": 2019,
+      "horizon_years": 3,
+      "target_year": 2022,
+      "fade_per_year": 0.3,
+      "historical_mean_birth_rate": 1.008681139246528,
+      "historical_mean_death_rate": 8.907478910718737,
+      "historical_mean_net_rate": 4.156918615569165,
+      "predicted_population": 79194.8336403267,
+      "actual_population": 79244.0,
+      "error_actual_minus_prediction": 49.16635967329785,
+      "absolute_error": 49.16635967329785,
+      "relative_error_pct": 0.06204426792349938,
+      "path": [
+        {
+          "year": 2020,
+          "step": 1,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 78446.23601426101,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": 102.76398573898769
+        },
+        {
+          "year": 2021,
+          "step": 2,
+          "birth_rate": 0.9605702498624029,
+          "death_rate": 8.93187374908681,
+          "net_rate": 3.868794354866628,
+          "residual": 9.1,
+          "predicted_population": 78811.68769843291,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": 55.31230156708625
+        },
+        {
+          "year": 2022,
+          "step": 3,
+          "birth_rate": 0.9750035166776403,
+          "death_rate": 8.924555297576386,
+          "net_rate": 3.9552316330773882,
+          "residual": 6.369999999999999,
+          "predicted_population": 79194.8336403267,
+          "actual_population": 79244.0,
+          "error_actual_minus_prediction": 49.16635967329785
+        }
+      ]
+    },
+    {
+      "origin_year": 2019,
+      "horizon_years": 4,
+      "target_year": 2023,
+      "fade_per_year": 0.3,
+      "historical_mean_birth_rate": 1.008681139246528,
+      "historical_mean_death_rate": 8.907478910718737,
+      "historical_mean_net_rate": 4.156918615569165,
+      "predicted_population": 79591.09905217486,
+      "actual_population": 79352.0,
+      "error_actual_minus_prediction": -239.09905217486084,
+      "absolute_error": 239.09905217486084,
+      "relative_error_pct": -0.3013144623637222,
+      "path": [
+        {
+          "year": 2020,
+          "step": 1,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 78446.23601426101,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": 102.76398573898769
+        },
+        {
+          "year": 2021,
+          "step": 2,
+          "birth_rate": 0.9605702498624029,
+          "death_rate": 8.93187374908681,
+          "net_rate": 3.868794354866628,
+          "residual": 9.1,
+          "predicted_population": 78811.68769843291,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": 55.31230156708625
+        },
+        {
+          "year": 2022,
+          "step": 3,
+          "birth_rate": 0.9750035166776403,
+          "death_rate": 8.924555297576386,
+          "net_rate": 3.9552316330773882,
+          "residual": 6.369999999999999,
+          "predicted_population": 79194.8336403267,
+          "actual_population": 79244.0,
+          "error_actual_minus_prediction": 49.16635967329785
+        },
+        {
+          "year": 2023,
+          "step": 4,
+          "birth_rate": 0.9851068034483067,
+          "death_rate": 8.919432381519092,
+          "net_rate": 4.015737727824922,
+          "residual": 4.458999999999999,
+          "predicted_population": 79591.09905217486,
+          "actual_population": 79352.0,
+          "error_actual_minus_prediction": -239.09905217486084
+        }
+      ]
+    },
+    {
+      "origin_year": 2019,
+      "horizon_years": 5,
+      "target_year": 2024,
+      "fade_per_year": 0.3,
+      "historical_mean_birth_rate": 1.008681139246528,
+      "historical_mean_death_rate": 8.907478910718737,
+      "historical_mean_net_rate": 4.156918615569165,
+      "predicted_population": 79997.2725984299,
+      "actual_population": 79645.0,
+      "error_actual_minus_prediction": -352.27259842990316,
+      "absolute_error": 352.27259842990316,
+      "relative_error_pct": -0.44230346968410217,
+      "path": [
+        {
+          "year": 2020,
+          "step": 1,
+          "birth_rate": 0.9399512972692065,
+          "death_rate": 8.942328679815983,
+          "net_rate": 3.7453125288512545,
+          "residual": 13.0,
+          "predicted_population": 78446.23601426101,
+          "actual_population": 78549.0,
+          "error_actual_minus_prediction": 102.76398573898769
+        },
+        {
+          "year": 2021,
+          "step": 2,
+          "birth_rate": 0.9605702498624029,
+          "death_rate": 8.93187374908681,
+          "net_rate": 3.868794354866628,
+          "residual": 9.1,
+          "predicted_population": 78811.68769843291,
+          "actual_population": 78867.0,
+          "error_actual_minus_prediction": 55.31230156708625
+        },
+        {
+          "year": 2022,
+          "step": 3,
+          "birth_rate": 0.9750035166776403,
+          "death_rate": 8.924555297576386,
+          "net_rate": 3.9552316330773882,
+          "residual": 6.369999999999999,
+          "predicted_population": 79194.8336403267,
+          "actual_population": 79244.0,
+          "error_actual_minus_prediction": 49.16635967329785
+        },
+        {
+          "year": 2023,
+          "step": 4,
+          "birth_rate": 0.9851068034483067,
+          "death_rate": 8.919432381519092,
+          "net_rate": 4.015737727824922,
+          "residual": 4.458999999999999,
+          "predicted_population": 79591.09905217486,
+          "actual_population": 79352.0,
+          "error_actual_minus_prediction": -239.09905217486084
+        },
+        {
+          "year": 2024,
+          "step": 5,
+          "birth_rate": 0.9921791041877731,
+          "death_rate": 8.915846340278986,
+          "net_rate": 4.058091994148194,
+          "residual": 3.1212999999999993,
+          "predicted_population": 79997.2725984299,
+          "actual_population": 79645.0,
+          "error_actual_minus_prediction": -352.27259842990316
+        }
+      ]
+    }
+  ]
+}
