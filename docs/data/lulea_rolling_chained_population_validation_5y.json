@@ -1,0 +1,921 @@
+{
+  "status": "lulea_rolling_chained_population_validation_5y",
+  "production_changed": false,
+  "validation_type": "multiple chained rolling-origin population-level windows",
+  "strict_single_origin_multiyear_forecast": false,
+  "windows": [
+    {
+      "start_year": 2016,
+      "start_population_actual": 76770.0,
+      "forecast_years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "candidates": {
+        "baseline": {
+          "level_rmse_persons": 493.42121945161466,
+          "level_mae_persons": 446.60834475802255,
+          "max_abs_level_error_persons": 664.4191327414446,
+          "final_error_persons": -563.4440220483812,
+          "final_error_pct": -0.7144230439199933,
+          "rows": [
+            {
+              "year": 2017,
+              "predicted_population_start": 76770.0,
+              "predicted_change": 758.305543120572,
+              "predicted_population_end": 77528.30554312057,
+              "actual_population_end": 77470.0,
+              "level_error_actual_minus_prediction": -58.30554312057211,
+              "absolute_level_error": 58.30554312057211,
+              "relative_level_error_pct": -0.07526209257851053
+            },
+            {
+              "year": 2018,
+              "predicted_population_start": 77528.30554312057,
+              "predicted_change": 719.1794850982069,
+              "predicted_population_end": 78247.48502821878,
+              "actual_population_end": 77832.0,
+              "level_error_actual_minus_prediction": -415.48502821878355,
+              "absolute_level_error": 415.48502821878355,
+              "relative_level_error_pct": -0.5338228854697086
+            },
+            {
+              "year": 2019,
+              "predicted_population_start": 78247.48502821878,
+              "predicted_change": 521.9341045226553,
+              "predicted_population_end": 78769.41913274144,
+              "actual_population_end": 78105.0,
+              "level_error_actual_minus_prediction": -664.4191327414446,
+              "absolute_level_error": 664.4191327414446,
+              "relative_level_error_pct": -0.8506742625202544
+            },
+            {
+              "year": 2020,
+              "predicted_population_start": 78769.41913274144,
+              "predicted_change": 310.96886491948044,
+              "predicted_population_end": 79080.38799766093,
+              "actual_population_end": 78549.0,
+              "level_error_actual_minus_prediction": -531.3879976609314,
+              "absolute_level_error": 531.3879976609314,
+              "relative_level_error_pct": -0.6765051084812428
+            },
+            {
+              "year": 2021,
+              "predicted_population_start": 79080.38799766093,
+              "predicted_change": 350.0560243874491,
+              "predicted_population_end": 79430.44402204838,
+              "actual_population_end": 78867.0,
+              "level_error_actual_minus_prediction": -563.4440220483812,
+              "absolute_level_error": 563.4440220483812,
+              "relative_level_error_pct": -0.7144230439199933
+            }
+          ]
+        },
+        "direct_10y": {
+          "level_rmse_persons": 139.7077123728644,
+          "level_mae_persons": 128.72653050656373,
+          "max_abs_level_error_persons": 206.7422773422877,
+          "final_error_persons": -172.9557450835855,
+          "final_error_pct": -0.21930052504036607,
+          "rows": [
+            {
+              "year": 2017,
+              "predicted_population_start": 76770.0,
+              "predicted_change": 595.0807801041636,
+              "predicted_population_end": 77365.08078010417,
+              "actual_population_end": 77470.0,
+              "level_error_actual_minus_prediction": 104.91921989583352,
+              "absolute_level_error": 104.91921989583352,
+              "relative_level_error_pct": 0.1354320638903234
+            },
+            {
+              "year": 2018,
+              "predicted_population_start": 77365.08078010417,
+              "predicted_change": 521.0875047401958,
+              "predicted_population_end": 77886.16828484436,
+              "actual_population_end": 77832.0,
+              "level_error_actual_minus_prediction": -54.16828484435973,
+              "absolute_level_error": 54.16828484435973,
+              "relative_level_error_pct": -0.06959641901063796
+            },
+            {
+              "year": 2019,
+              "predicted_population_start": 77886.16828484436,
+              "predicted_change": 425.57399249793207,
+              "predicted_population_end": 78311.74227734229,
+              "actual_population_end": 78105.0,
+              "level_error_actual_minus_prediction": -206.7422773422877,
+              "absolute_level_error": 206.7422773422877,
+              "relative_level_error_pct": -0.2646978776548079
+            },
+            {
+              "year": 2020,
+              "predicted_population_start": 78311.74227734229,
+              "predicted_change": 342.10484802446126,
+              "predicted_population_end": 78653.84712536675,
+              "actual_population_end": 78549.0,
+              "level_error_actual_minus_prediction": -104.84712536675215,
+              "absolute_level_error": 104.84712536675215,
+              "relative_level_error_pct": -0.13347989836503604
+            },
+            {
+              "year": 2021,
+              "predicted_population_start": 78653.84712536675,
+              "predicted_change": 386.108619716827,
+              "predicted_population_end": 79039.95574508359,
+              "actual_population_end": 78867.0,
+              "level_error_actual_minus_prediction": -172.9557450835855,
+              "absolute_level_error": 172.9557450835855,
+              "relative_level_error_pct": -0.21930052504036607
+            }
+          ]
+        },
+        "blend_75pct_direct": {
+          "level_rmse_persons": 221.7417752921363,
+          "level_mae_persons": 202.27663261619455,
+          "max_abs_level_error_persons": 321.001539359655,
+          "final_error_persons": -270.49113637128903,
+          "final_error_pct": -0.3429712508036175,
+          "rows": [
+            {
+              "year": 2017,
+              "predicted_population_start": 76770.0,
+              "predicted_change": 635.8869708582657,
+              "predicted_population_end": 77405.88697085826,
+              "actual_population_end": 77470.0,
+              "level_error_actual_minus_prediction": 64.11302914173575,
+              "absolute_level_error": 64.11302914173575,
+              "relative_level_error_pct": 0.0827585247731196
+            },
+            {
+              "year": 2018,
+              "predicted_population_start": 77405.88697085826,
+              "predicted_change": 570.5327350189019,
+              "predicted_population_end": 77976.41970587717,
+              "actual_population_end": 77832.0,
+              "level_error_actual_minus_prediction": -144.41970587716787,
+              "absolute_level_error": 144.41970587716787,
+              "relative_level_error_pct": -0.1855531219513412
+            },
+            {
+              "year": 2019,
+              "predicted_population_start": 77976.41970587717,
+              "predicted_change": 449.5818334824809,
+              "predicted_population_end": 78426.00153935965,
+              "actual_population_end": 78105.0,
+              "level_error_actual_minus_prediction": -321.001539359655,
+              "absolute_level_error": 321.001539359655,
+              "relative_level_error_pct": -0.4109871830992318
+            },
+            {
+              "year": 2020,
+              "predicted_population_start": 78426.00153935965,
+              "predicted_change": 334.356212971476,
+              "predicted_population_end": 78760.35775233113,
+              "actual_population_end": 78549.0,
+              "level_error_actual_minus_prediction": -211.35775233112508,
+              "absolute_level_error": 211.35775233112508,
+              "relative_level_error_pct": -0.2690775851139099
+            },
+            {
+              "year": 2021,
+              "predicted_population_start": 78760.35775233113,
+              "predicted_change": 377.1333840401593,
+              "predicted_population_end": 79137.49113637129,
+              "actual_population_end": 78867.0,
+              "level_error_actual_minus_prediction": -270.49113637128903,
+              "absolute_level_error": 270.49113637128903,
+              "relative_level_error_pct": -0.3429712508036175
+            }
+          ]
+        }
+      },
+      "ranking_level_rmse": [
+        {
+          "candidate": "direct_10y",
+          "level_rmse_persons": 139.7077123728644,
+          "level_mae_persons": 128.72653050656373,
+          "max_abs_level_error_persons": 206.7422773422877,
+          "final_error_persons": -172.9557450835855
+        },
+        {
+          "candidate": "blend_75pct_direct",
+          "level_rmse_persons": 221.7417752921363,
+          "level_mae_persons": 202.27663261619455,
+          "max_abs_level_error_persons": 321.001539359655,
+          "final_error_persons": -270.49113637128903
+        },
+        {
+          "candidate": "baseline",
+          "level_rmse_persons": 493.42121945161466,
+          "level_mae_persons": 446.60834475802255,
+          "max_abs_level_error_persons": 664.4191327414446,
+          "final_error_persons": -563.4440220483812
+        }
+      ]
+    },
+    {
+      "start_year": 2017,
+      "start_population_actual": 77470.0,
+      "forecast_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "candidates": {
+        "baseline": {
+          "level_rmse_persons": 488.38671865666157,
+          "level_mae_persons": 481.8801209646772,
+          "max_abs_level_error_persons": 605.1859764093097,
+          "final_error_persons": -471.9073398252076,
+          "final_error_pct": -0.5955117609222246,
+          "rows": [
+            {
+              "year": 2018,
+              "predicted_population_start": 77470.0,
+              "predicted_change": 718.6396253726208,
+              "predicted_population_end": 78188.63962537263,
+              "actual_population_end": 77832.0,
+              "level_error_actual_minus_prediction": -356.63962537262705,
+              "absolute_level_error": 356.63962537262705,
+              "relative_level_error_pct": -0.4582172183325972
+            },
+            {
+              "year": 2019,
+              "predicted_population_start": 78188.63962537263,
+              "predicted_change": 521.5463510366807,
+              "predicted_population_end": 78710.18597640931,
+              "actual_population_end": 78105.0,
+              "level_error_actual_minus_prediction": -605.1859764093097,
+              "absolute_level_error": 605.1859764093097,
+              "relative_level_error_pct": -0.774836407924345
+            },
+            {
+              "year": 2020,
+              "predicted_population_start": 78710.18597640931,
+              "predicted_change": 310.74479780622494,
+              "predicted_population_end": 79020.93077421554,
+              "actual_population_end": 78549.0,
+              "level_error_actual_minus_prediction": -471.9307742155361,
+              "absolute_level_error": 471.9307742155361,
+              "relative_level_error_pct": -0.6008106713204956
+            },
+            {
+              "year": 2021,
+              "predicted_population_start": 79020.93077421554,
+              "predicted_change": 349.8061147851663,
+              "predicted_population_end": 79370.7368890007,
+              "actual_population_end": 78867.0,
+              "level_error_actual_minus_prediction": -503.73688900070556,
+              "absolute_level_error": 503.73688900070556,
+              "relative_level_error_pct": -0.6387169399123912
+            },
+            {
+              "year": 2022,
+              "predicted_population_start": 79370.7368890007,
+              "predicted_change": 345.1704508245023,
+              "predicted_population_end": 79715.90733982521,
+              "actual_population_end": 79244.0,
+              "level_error_actual_minus_prediction": -471.9073398252076,
+              "absolute_level_error": 471.9073398252076,
+              "relative_level_error_pct": -0.5955117609222246
+            }
+          ]
+        },
+        "direct_10y": {
+          "level_rmse_persons": 263.4218705025755,
+          "level_mae_persons": 256.20641471910346,
+          "max_abs_level_error_persons": 316.7245659131295,
+          "final_error_persons": -316.7245659131295,
+          "final_error_pct": -0.3996827089913804,
+          "rows": [
+            {
+              "year": 2018,
+              "predicted_population_start": 77470.0,
+              "predicted_change": 521.7923731595363,
+              "predicted_population_end": 77991.79237315954,
+              "actual_population_end": 77832.0,
+              "level_error_actual_minus_prediction": -159.7923731595365,
+              "absolute_level_error": 159.7923731595365,
+              "relative_level_error_pct": -0.205304210555474
+            },
+            {
+              "year": 2019,
+              "predicted_population_start": 77991.79237315954,
+              "predicted_change": 426.142539049702,
+              "predicted_population_end": 78417.93491220924,
+              "actual_population_end": 78105.0,
+              "level_error_actual_minus_prediction": -312.934912209239,
+              "absolute_level_error": 312.934912209239,
+              "relative_level_error_pct": -0.40065925639746364
+            },
+            {
+              "year": 2020,
+              "predicted_population_start": 78417.93491220924,
+              "predicted_change": 342.5511222349804,
+              "predicted_population_end": 78760.48603444421,
+              "actual_population_end": 78549.0,
+              "level_error_actual_minus_prediction": -211.48603444421315,
+              "absolute_level_error": 211.48603444421315,
+              "relative_level_error_pct": -0.26924089987678157
+            },
+            {
+              "year": 2021,
+              "predicted_population_start": 78760.48603444421,
+              "predicted_change": 386.608153425191,
+              "predicted_population_end": 79147.0941878694,
+              "actual_population_end": 78867.0,
+              "level_error_actual_minus_prediction": -280.0941878693993,
+              "absolute_level_error": 280.0941878693993,
+              "relative_level_error_pct": -0.35514751146791346
+            },
+            {
+              "year": 2022,
+              "predicted_population_start": 79147.0941878694,
+              "predicted_change": 413.63037804373033,
+              "predicted_population_end": 79560.72456591313,
+              "actual_population_end": 79244.0,
+              "level_error_actual_minus_prediction": -316.7245659131295,
+              "absolute_level_error": 316.7245659131295,
+              "relative_level_error_pct": -0.3996827089913804
+            }
+          ]
+        },
+        "blend_75pct_direct": {
+          "level_rmse_persons": 318.8915035324653,
+          "level_mae_persons": 312.61960975522817,
+          "max_abs_level_error_persons": 385.95314316864824,
+          "final_error_persons": -355.5586778057623,
+          "final_error_pct": -0.4486884531393699,
+          "rows": [
+            {
+              "year": 2018,
+              "predicted_population_start": 77470.0,
+              "predicted_change": 571.0041862128074,
+              "predicted_population_end": 78041.00418621281,
+              "actual_population_end": 77832.0,
+              "level_error_actual_minus_prediction": -209.00418621281278,
+              "absolute_level_error": 209.00418621281278,
+              "relative_level_error_pct": -0.2685324624997595
+            },
+            {
+              "year": 2019,
+              "predicted_population_start": 78041.00418621281,
+              "predicted_change": 449.9489569558294,
+              "predicted_population_end": 78490.95314316865,
+              "actual_population_end": 78105.0,
+              "level_error_actual_minus_prediction": -385.95314316864824,
+              "absolute_level_error": 385.95314316864824,
+              "relative_level_error_pct": -0.4941465247662099
+            },
+            {
+              "year": 2020,
+              "predicted_population_start": 78490.95314316865,
+              "predicted_change": 334.622356865297,
+              "predicted_population_end": 78825.57550003394,
+              "actual_population_end": 78549.0,
+              "level_error_actual_minus_prediction": -276.57550003394135,
+              "absolute_level_error": 276.57550003394135,
+              "relative_level_error_pct": -0.35210569203165076
+            },
+            {
+              "year": 2021,
+              "predicted_population_start": 78825.57550003394,
+              "predicted_change": 377.4310415210323,
+              "predicted_population_end": 79203.00654155498,
+              "actual_population_end": 78867.0,
+              "level_error_actual_minus_prediction": -336.00654155497614,
+              "absolute_level_error": 336.00654155497614,
+              "relative_level_error_pct": -0.42604199672229975
+            },
+            {
+              "year": 2022,
+              "predicted_population_start": 79203.00654155498,
+              "predicted_change": 396.55213625078505,
+              "predicted_population_end": 79599.55867780576,
+              "actual_population_end": 79244.0,
+              "level_error_actual_minus_prediction": -355.5586778057623,
+              "absolute_level_error": 355.5586778057623,
+              "relative_level_error_pct": -0.4486884531393699
+            }
+          ]
+        }
+      },
+      "ranking_level_rmse": [
+        {
+          "candidate": "direct_10y",
+          "level_rmse_persons": 263.4218705025755,
+          "level_mae_persons": 256.20641471910346,
+          "max_abs_level_error_persons": 316.7245659131295,
+          "final_error_persons": -316.7245659131295
+        },
+        {
+          "candidate": "blend_75pct_direct",
+          "level_rmse_persons": 318.8915035324653,
+          "level_mae_persons": 312.61960975522817,
+          "max_abs_level_error_persons": 385.95314316864824,
+          "final_error_persons": -355.5586778057623
+        },
+        {
+          "candidate": "baseline",
+          "level_rmse_persons": 488.38671865666157,
+          "level_mae_persons": 481.8801209646772,
+          "max_abs_level_error_persons": 605.1859764093097,
+          "final_error_persons": -471.9073398252076
+        }
+      ]
+    },
+    {
+      "start_year": 2018,
+      "start_population_actual": 77832.0,
+      "forecast_years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "candidates": {
+        "baseline": {
+          "level_rmse_persons": 183.52857967572652,
+          "level_mae_persons": 172.02465506111622,
+          "max_abs_level_error_persons": 251.83362577251683,
+          "final_error_persons": -251.83362577251683,
+          "final_error_pct": -0.3173626698413611,
+          "rows": [
+            {
+              "year": 2019,
+              "predicted_population_start": 77832.0,
+              "predicted_change": 519.196324504678,
+              "predicted_population_end": 78351.19632450468,
+              "actual_population_end": 78105.0,
+              "level_error_actual_minus_prediction": -246.19632450467907,
+              "absolute_level_error": 246.19632450467907,
+              "relative_level_error_pct": -0.31521198963533587
+            },
+            {
+              "year": 2020,
+              "predicted_population_start": 78351.19632450468,
+              "predicted_change": 309.3868121783812,
+              "predicted_population_end": 78660.58313668305,
+              "actual_population_end": 78549.0,
+              "level_error_actual_minus_prediction": -111.58313668305345,
+              "absolute_level_error": 111.58313668305345,
+              "relative_level_error_pct": -0.14205545160734503
+            },
+            {
+              "year": 2021,
+              "predicted_population_start": 78660.58313668305,
+              "predicted_change": 348.29150765148404,
+              "predicted_population_end": 79008.87464433454,
+              "actual_population_end": 78867.0,
+              "level_error_actual_minus_prediction": -141.87464433454443,
+              "absolute_level_error": 141.87464433454443,
+              "relative_level_error_pct": -0.17989101187384385
+            },
+            {
+              "year": 2022,
+              "predicted_population_start": 79008.87464433454,
+              "predicted_change": 343.7608996762465,
+              "predicted_population_end": 79352.63554401079,
+              "actual_population_end": 79244.0,
+              "level_error_actual_minus_prediction": -108.63554401078727,
+              "absolute_level_error": 108.63554401078727,
+              "relative_level_error_pct": -0.137089929850572
+            },
+            {
+              "year": 2023,
+              "predicted_population_start": 79352.63554401079,
+              "predicted_change": 251.19808176172583,
+              "predicted_population_end": 79603.83362577252,
+              "actual_population_end": 79352.0,
+              "level_error_actual_minus_prediction": -251.83362577251683,
+              "absolute_level_error": 251.83362577251683,
+              "relative_level_error_pct": -0.3173626698413611
+            }
+          ]
+        },
+        "direct_10y": {
+          "level_rmse_persons": 208.22819971778176,
+          "level_mae_persons": 173.21880039099196,
+          "max_abs_level_error_persons": 391.77446857751056,
+          "final_error_persons": -391.77446857751056,
+          "final_error_pct": -0.49371719500139954,
+          "rows": [
+            {
+              "year": 2019,
+              "predicted_population_start": 77832.0,
+              "predicted_change": 425.2824189368742,
+              "predicted_population_end": 78257.28241893687,
+              "actual_population_end": 78105.0,
+              "level_error_actual_minus_prediction": -152.28241893686936,
+              "absolute_level_error": 152.28241893686936,
+              "relative_level_error_pct": -0.19497140891987627
+            },
+            {
+              "year": 2020,
+              "predicted_population_start": 78257.28241893687,
+              "predicted_change": 341.8759806426008,
+              "predicted_population_end": 78599.15839957946,
+              "actual_population_end": 78549.0,
+              "level_error_actual_minus_prediction": -50.15839957946446,
+              "absolute_level_error": 50.15839957946446,
+              "relative_level_error_pct": -0.06385619114115323
+            },
+            {
+              "year": 2021,
+              "predicted_population_start": 78599.15839957946,
+              "predicted_change": 385.8524387202792,
+              "predicted_population_end": 78985.01083829974,
+              "actual_population_end": 78867.0,
+              "level_error_actual_minus_prediction": -118.01083829974232,
+              "absolute_level_error": 118.01083829974232,
+              "relative_level_error_pct": -0.14963272128994676
+            },
+            {
+              "year": 2022,
+              "predicted_population_start": 78985.01083829974,
+              "predicted_change": 412.85703826163683,
+              "predicted_population_end": 79397.86787656137,
+              "actual_population_end": 79244.0,
+              "level_error_actual_minus_prediction": -153.86787656137312,
+              "absolute_level_error": 153.86787656137312,
+              "relative_level_error_pct": -0.1941697498376825
+            },
+            {
+              "year": 2023,
+              "predicted_population_start": 79397.86787656137,
+              "predicted_change": 345.9065920161428,
+              "predicted_population_end": 79743.77446857751,
+              "actual_population_end": 79352.0,
+              "level_error_actual_minus_prediction": -391.77446857751056,
+              "absolute_level_error": 391.77446857751056,
+              "relative_level_error_pct": -0.49371719500139954
+            }
+          ]
+        },
+        "blend_75pct_direct": {
+          "level_rmse_persons": 199.09299560704227,
+          "level_mae_persons": 172.92910391940387,
+          "max_abs_level_error_persons": 356.79615668801125,
+          "final_error_persons": -356.79615668801125,
+          "final_error_pct": -0.4496372576469544,
+          "rows": [
+            {
+              "year": 2019,
+              "predicted_population_start": 77832.0,
+              "predicted_change": 448.7608953288251,
+              "predicted_population_end": 78280.76089532883,
+              "actual_population_end": 78105.0,
+              "level_error_actual_minus_prediction": -175.76089532882906,
+              "absolute_level_error": 175.76089532882906,
+              "relative_level_error_pct": -0.22503155409875047
+            },
+            {
+              "year": 2020,
+              "predicted_population_start": 78280.76089532883,
+              "predicted_change": 333.76107892894987,
+              "predicted_population_end": 78614.52197425778,
+              "actual_population_end": 78549.0,
+              "level_error_actual_minus_prediction": -65.52197425777558,
+              "absolute_level_error": 65.52197425777558,
+              "relative_level_error_pct": -0.08341541491015236
+            },
+            {
+              "year": 2021,
+              "predicted_population_start": 78614.52197425778,
+              "predicted_change": 376.4677813192513,
+              "predicted_population_end": 78990.98975557703,
+              "actual_population_end": 78867.0,
+              "level_error_actual_minus_prediction": -123.98975557702943,
+              "absolute_level_error": 123.98975557702943,
+              "relative_level_error_pct": -0.15721373397876098
+            },
+            {
+              "year": 2022,
+              "predicted_population_start": 78990.98975557703,
+              "predicted_change": 395.5869821683418,
+              "predicted_population_end": 79386.57673774537,
+              "actual_population_end": 79244.0,
+              "level_error_actual_minus_prediction": -142.57673774537398,
+              "absolute_level_error": 142.57673774537398,
+              "relative_level_error_pct": -0.17992117730727117
+            },
+            {
+              "year": 2023,
+              "predicted_population_start": 79386.57673774537,
+              "predicted_change": 322.21941894264353,
+              "predicted_population_end": 79708.79615668801,
+              "actual_population_end": 79352.0,
+              "level_error_actual_minus_prediction": -356.79615668801125,
+              "absolute_level_error": 356.79615668801125,
+              "relative_level_error_pct": -0.4496372576469544
+            }
+          ]
+        }
+      },
+      "ranking_level_rmse": [
+        {
+          "candidate": "baseline",
+          "level_rmse_persons": 183.52857967572652,
+          "level_mae_persons": 172.02465506111622,
+          "max_abs_level_error_persons": 251.83362577251683,
+          "final_error_persons": -251.83362577251683
+        },
+        {
+          "candidate": "blend_75pct_direct",
+          "level_rmse_persons": 199.09299560704227,
+          "level_mae_persons": 172.92910391940387,
+          "max_abs_level_error_persons": 356.79615668801125,
+          "final_error_persons": -356.79615668801125
+        },
+        {
+          "candidate": "direct_10y",
+          "level_rmse_persons": 208.22819971778176,
+          "level_mae_persons": 173.21880039099196,
+          "max_abs_level_error_persons": 391.77446857751056,
+          "final_error_persons": -391.77446857751056
+        }
+      ]
+    },
+    {
+      "start_year": 2019,
+      "start_population_actual": 78105.0,
+      "forecast_years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "candidates": {
+        "baseline": {
+          "level_rmse_persons": 162.9003708629842,
+          "level_mae_persons": 134.59166393024208,
+          "max_abs_level_error_persons": 288.5630256620352,
+          "final_error_persons": 288.5630256620352,
+          "final_error_pct": 0.3623115395342272,
+          "rows": [
+            {
+              "year": 2020,
+              "predicted_population_start": 78105.0,
+              "predicted_change": 308.4555010151442,
+              "predicted_population_end": 78413.45550101514,
+              "actual_population_end": 78549.0,
+              "level_error_actual_minus_prediction": 135.544498984862,
+              "absolute_level_error": 135.544498984862,
+              "relative_level_error_pct": 0.17256043868777707
+            },
+            {
+              "year": 2021,
+              "predicted_population_start": 78413.45550101514,
+              "predicted_change": 347.2527849267403,
+              "predicted_population_end": 78760.70828594187,
+              "actual_population_end": 78867.0,
+              "level_error_actual_minus_prediction": 106.29171405812667,
+              "absolute_level_error": 106.29171405812667,
+              "relative_level_error_pct": 0.13477337043139295
+            },
+            {
+              "year": 2022,
+              "predicted_population_start": 78760.70828594187,
+              "predicted_change": 342.79422470369275,
+              "predicted_population_end": 79103.50251064557,
+              "actual_population_end": 79244.0,
+              "level_error_actual_minus_prediction": 140.49748935442767,
+              "absolute_level_error": 140.49748935442767,
+              "relative_level_error_pct": 0.1772973213800763
+            },
+            {
+              "year": 2023,
+              "predicted_population_start": 79103.50251064557,
+              "predicted_change": 250.55908094618744,
+              "predicted_population_end": 79354.06159159176,
+              "actual_population_end": 79352.0,
+              "level_error_actual_minus_prediction": -2.06159159175877,
+              "absolute_level_error": 2.06159159175877,
+              "relative_level_error_pct": -0.002598033561546993
+            },
+            {
+              "year": 2024,
+              "predicted_population_start": 79354.06159159176,
+              "predicted_change": 2.3753827462014243,
+              "predicted_population_end": 79356.43697433796,
+              "actual_population_end": 79645.0,
+              "level_error_actual_minus_prediction": 288.5630256620352,
+              "absolute_level_error": 288.5630256620352,
+              "relative_level_error_pct": 0.3623115395342272
+            }
+          ]
+        },
+        "direct_10y": {
+          "level_rmse_persons": 130.356033050652,
+          "level_mae_persons": 101.25761471024889,
+          "max_abs_level_error_persons": 236.82283101143548,
+          "final_error_persons": -130.56946943773073,
+          "final_error_pct": -0.16393931751865243,
+          "rows": [
+            {
+              "year": 2020,
+              "predicted_population_start": 78105.0,
+              "predicted_change": 341.2360142610136,
+              "predicted_population_end": 78446.23601426101,
+              "actual_population_end": 78549.0,
+              "level_error_actual_minus_prediction": 102.76398573898769,
+              "absolute_level_error": 102.76398573898769,
+              "relative_level_error_pct": 0.13082787271510482
+            },
+            {
+              "year": 2021,
+              "predicted_population_start": 78446.23601426101,
+              "predicted_change": 385.1360971251627,
+              "predicted_population_end": 78831.37211138617,
+              "actual_population_end": 78867.0,
+              "level_error_actual_minus_prediction": 35.6278886138316,
+              "absolute_level_error": 35.6278886138316,
+              "relative_level_error_pct": 0.04517464670119518
+            },
+            {
+              "year": 2022,
+              "predicted_population_start": 78831.37211138617,
+              "predicted_change": 412.1239898645749,
+              "predicted_population_end": 79243.49610125074,
+              "actual_population_end": 79244.0,
+              "level_error_actual_minus_prediction": 0.5038987492589513,
+              "absolute_level_error": 0.5038987492589513,
+              "relative_level_error_pct": 0.0006358825264486287
+            },
+            {
+              "year": 2023,
+              "predicted_population_start": 79243.49610125074,
+              "predicted_change": 345.32672976069426,
+              "predicted_population_end": 79588.82283101144,
+              "actual_population_end": 79352.0,
+              "level_error_actual_minus_prediction": -236.82283101143548,
+              "absolute_level_error": 236.82283101143548,
+              "relative_level_error_pct": -0.2984459509671281
+            },
+            {
+              "year": 2024,
+              "predicted_population_start": 79588.82283101144,
+              "predicted_change": 186.7466384262935,
+              "predicted_population_end": 79775.56946943773,
+              "actual_population_end": 79645.0,
+              "level_error_actual_minus_prediction": -130.56946943773073,
+              "absolute_level_error": 130.56946943773073,
+              "relative_level_error_pct": -0.16393931751865243
+            }
+          ]
+        },
+        "blend_75pct_direct": {
+          "level_rmse_persons": 98.77863367328966,
+          "level_mae_persons": 80.69955290188663,
+          "max_abs_level_error_persons": 178.0866215263377,
+          "final_error_persons": -25.63835305380053,
+          "final_error_pct": -0.03219078793872877,
+          "rows": [
+            {
+              "year": 2020,
+              "predicted_population_start": 78105.0,
+              "predicted_change": 333.04088594954624,
+              "predicted_population_end": 78438.04088594955,
+              "actual_population_end": 78549.0,
+              "level_error_actual_minus_prediction": 110.95911405044899,
+              "absolute_level_error": 110.95911405044899,
+              "relative_level_error_pct": 0.14126101420826362
+            },
+            {
+              "year": 2021,
+              "predicted_population_start": 78438.04088594955,
+              "predicted_change": 375.6623116730601,
+              "predicted_population_end": 78813.70319762261,
+              "actual_population_end": 78867.0,
+              "level_error_actual_minus_prediction": 53.296802377386484,
+              "absolute_level_error": 53.296802377386484,
+              "relative_level_error_pct": 0.06757807749424535
+            },
+            {
+              "year": 2022,
+              "predicted_population_start": 78813.70319762261,
+              "predicted_change": 394.7799288759206,
+              "predicted_population_end": 79208.48312649854,
+              "actual_population_end": 79244.0,
+              "level_error_actual_minus_prediction": 35.516873501459486,
+              "absolute_level_error": 35.516873501459486,
+              "relative_level_error_pct": 0.04481963745073379
+            },
+            {
+              "year": 2023,
+              "predicted_population_start": 79208.48312649854,
+              "predicted_change": 321.60349502779667,
+              "predicted_population_end": 79530.08662152634,
+              "actual_population_end": 79352.0,
+              "level_error_actual_minus_prediction": -178.0866215263377,
+              "absolute_level_error": 178.0866215263377,
+              "relative_level_error_pct": -0.2244261285491704
+            },
+            {
+              "year": 2024,
+              "predicted_population_start": 79530.08662152634,
+              "predicted_change": 140.55173152746391,
+              "predicted_population_end": 79670.6383530538,
+              "actual_population_end": 79645.0,
+              "level_error_actual_minus_prediction": -25.63835305380053,
+              "absolute_level_error": 25.63835305380053,
+              "relative_level_error_pct": -0.03219078793872877
+            }
+          ]
+        }
+      },
+      "ranking_level_rmse": [
+        {
+          "candidate": "blend_75pct_direct",
+          "level_rmse_persons": 98.77863367328966,
+          "level_mae_persons": 80.69955290188663,
+          "max_abs_level_error_persons": 178.0866215263377,
+          "final_error_persons": -25.63835305380053
+        },
+        {
+          "candidate": "direct_10y",
+          "level_rmse_persons": 130.356033050652,
+          "level_mae_persons": 101.25761471024889,
+          "max_abs_level_error_persons": 236.82283101143548,
+          "final_error_persons": -130.56946943773073
+        },
+        {
+          "candidate": "baseline",
+          "level_rmse_persons": 162.9003708629842,
+          "level_mae_persons": 134.59166393024208,
+          "max_abs_level_error_persons": 288.5630256620352,
+          "final_error_persons": 288.5630256620352
+        }
+      ]
+    }
+  ],
+  "aggregate": {
+    "baseline": {
+      "windows": 4,
+      "mean_window_rmse": 332.05922216174673,
+      "median_window_rmse": 335.9576491661941,
+      "mean_window_mae": 308.7761961785145,
+      "mean_abs_final_error": 393.9370033270352,
+      "max_window_rmse": 493.42121945161466,
+      "window_wins": 1
+    },
+    "direct_10y": {
+      "windows": 4,
+      "mean_window_rmse": 185.42845391096841,
+      "median_window_rmse": 173.9679560453231,
+      "mean_window_mae": 164.852340081727,
+      "mean_abs_final_error": 253.00606225298907,
+      "max_window_rmse": 263.4218705025755,
+      "window_wins": 2
+    },
+    "blend_75pct_direct": {
+      "windows": 4,
+      "mean_window_rmse": 209.62622702623335,
+      "median_window_rmse": 210.4173854495893,
+      "mean_window_mae": 192.13122479817827,
+      "mean_abs_final_error": 252.12108097971577,
+      "max_window_rmse": 318.8915035324653,
+      "window_wins": 1
+    }
+  },
+  "aggregate_ranking": [
+    {
+      "candidate": "direct_10y",
+      "windows": 4,
+      "mean_window_rmse": 185.42845391096841,
+      "median_window_rmse": 173.9679560453231,
+      "mean_window_mae": 164.852340081727,
+      "mean_abs_final_error": 253.00606225298907,
+      "max_window_rmse": 263.4218705025755,
+      "window_wins": 2
+    },
+    {
+      "candidate": "blend_75pct_direct",
+      "windows": 4,
+      "mean_window_rmse": 209.62622702623335,
+      "median_window_rmse": 210.4173854495893,
+      "mean_window_mae": 192.13122479817827,
+      "mean_abs_final_error": 252.12108097971577,
+      "max_window_rmse": 318.8915035324653,
+      "window_wins": 1
+    },
+    {
+      "candidate": "baseline",
+      "windows": 4,
+      "mean_window_rmse": 332.05922216174673,
+      "median_window_rmse": 335.9576491661941,
+      "mean_window_mae": 308.7761961785145,
+      "mean_abs_final_error": 393.9370033270352,
+      "max_window_rmse": 493.42121945161466,
+      "window_wins": 1
+    }
+  ]
+}
