@@ -9,6 +9,7 @@ from sklearn.pipeline import make_pipeline
 
 F2=Path("docs/data/short_term_monthly_candidate_family_2.csv")
 TARGET=Path("docs/data/short_term_monthly_target_lulea.csv")
+# Retrigger note: run after Family2 rebuild has committed 9-month change columns.
 OUT=Path("docs/data/short_term_rates_25_29_backward_window_12_vs_9.json")
 PRED=Path("docs/data/short_term_rates_25_29_backward_window_12_vs_9_predictions.csv")
 
