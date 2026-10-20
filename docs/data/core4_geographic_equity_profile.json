@@ -1,0 +1,179 @@
+{
+  "status": "core4_geographic_equity_profile",
+  "generated_at_utc": "2026-10-20T07:17:06.654448+00:00",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "locked_reference_window_years": 6,
+  "common_evaluation_years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "n_municipalities": 290,
+  "interpretation": {
+    "pooled_rmse": "overall accuracy across all municipality-year predictions",
+    "p90_municipality_rmse": "error level below which 90% of municipalities fall; primary geographic-equity tail metric",
+    "worst_decile_mean_rmse": "mean municipality RMSE among the hardest 10% of municipalities",
+    "sd_municipality_rmse": "dispersion of municipality-specific RMSE",
+    "pareto_rule": "a window is retained if no other window has both lower pooled RMSE and lower p90 municipality RMSE"
+  },
+  "profiles": {
+    "3": {
+      "n_municipalities": 290,
+      "evaluation_years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "pooled_rmse": 7.197030231024797,
+      "pooled_mae": 5.405574158819799,
+      "mean_municipality_rmse": 6.669652704438282,
+      "median_municipality_rmse": 6.337812913218068,
+      "sd_municipality_rmse": 2.708926238746776,
+      "iqr_municipality_rmse": 3.337268513914335,
+      "p90_municipality_rmse": 10.181962521433803,
+      "p95_municipality_rmse": 11.316749552975686,
+      "worst_decile_mean_rmse": 12.327660126200241,
+      "max_municipality_rmse": 17.195215415722473,
+      "p90_minus_median_rmse": 3.8441496082157354,
+      "p90_to_median_ratio": 1.6065419823608902,
+      "mean_municipality_mae": 5.405574158819799,
+      "p90_municipality_mae": 8.319515718536874,
+      "mean_abs_municipality_bias": 1.993836278754425,
+      "p90_abs_municipality_bias": 3.986116897136097,
+      "share_municipalities_rmse_gt_10": 0.10689655172413794,
+      "delta_vs_locked_6y": {
+        "pooled_rmse_pct": 3.160917951647124,
+        "p90_municipality_rmse_pct": 5.328794686662697,
+        "worst_decile_mean_rmse_pct": 0.8057450888057538,
+        "sd_municipality_rmse_pct": -3.9009147819719314,
+        "mean_abs_municipality_bias_pct": -25.543115918072
+      }
+    },
+    "4": {
+      "n_municipalities": 290,
+      "evaluation_years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "pooled_rmse": 7.072358967480729,
+      "pooled_mae": 5.206175092486576,
+      "mean_municipality_rmse": 6.506112481501965,
+      "median_municipality_rmse": 6.088414880745797,
+      "sd_municipality_rmse": 2.777654848044073,
+      "iqr_municipality_rmse": 3.524043329473768,
+      "p90_municipality_rmse": 9.855110758418505,
+      "p95_municipality_rmse": 11.22066264902115,
+      "worst_decile_mean_rmse": 12.316578789330006,
+      "max_municipality_rmse": 17.801807578958115,
+      "p90_minus_median_rmse": 3.7666958776727073,
+      "p90_to_median_ratio": 1.618666098065135,
+      "mean_municipality_mae": 5.206175092486576,
+      "p90_municipality_mae": 8.116734471830892,
+      "mean_abs_municipality_bias": 2.232659221047139,
+      "p90_abs_municipality_bias": 4.3747942005130716,
+      "share_municipalities_rmse_gt_10": 0.09310344827586207,
+      "delta_vs_locked_6y": {
+        "pooled_rmse_pct": 1.373902811158212,
+        "p90_municipality_rmse_pct": 1.9476290059659895,
+        "worst_decile_mean_rmse_pct": 0.7151307785190797,
+        "sd_municipality_rmse_pct": -1.4627692218207589,
+        "mean_abs_municipality_bias_pct": -16.624624304757475
+      }
+    },
+    "5": {
+      "n_municipalities": 290,
+      "evaluation_years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "pooled_rmse": 7.04349858143959,
+      "pooled_mae": 5.158815358082221,
+      "mean_municipality_rmse": 6.447085403515098,
+      "median_municipality_rmse": 6.041201649287501,
+      "sd_municipality_rmse": 2.8414437819031733,
+      "iqr_municipality_rmse": 3.473158772475644,
+      "p90_municipality_rmse": 9.785964303221002,
+      "p95_municipality_rmse": 11.396275794059013,
+      "worst_decile_mean_rmse": 12.353721024749154,
+      "max_municipality_rmse": 18.13660673449151,
+      "p90_minus_median_rmse": 3.744762653933501,
+      "p90_to_median_ratio": 1.6198704945356621,
+      "mean_municipality_mae": 5.158815358082221,
+      "p90_municipality_mae": 7.998773564761239,
+      "mean_abs_municipality_bias": 2.466729014222648,
+      "p90_abs_municipality_bias": 4.81299247668767,
+      "share_municipalities_rmse_gt_10": 0.0896551724137931,
+      "delta_vs_locked_6y": {
+        "pooled_rmse_pct": 0.9602233043515707,
+        "p90_municipality_rmse_pct": 1.23233342640785,
+        "worst_decile_mean_rmse_pct": 1.0188502741380168,
+        "sd_municipality_rmse_pct": 0.8001414854596156,
+        "mean_abs_municipality_bias_pct": -7.8836320561676
+      }
+    },
+    "6": {
+      "n_municipalities": 290,
+      "evaluation_years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "pooled_rmse": 6.976508520792864,
+      "pooled_mae": 5.1309772039696995,
+      "mean_municipality_rmse": 6.383802799846131,
+      "median_municipality_rmse": 5.981802565103063,
+      "sd_municipality_rmse": 2.818888684112661,
+      "iqr_municipality_rmse": 3.393632422818678,
+      "p90_municipality_rmse": 9.666836643980982,
+      "p95_municipality_rmse": 11.323392455557528,
+      "worst_decile_mean_rmse": 12.22912455568884,
+      "max_municipality_rmse": 18.277673174623743,
+      "p90_minus_median_rmse": 3.6850340788779192,
+      "p90_to_median_ratio": 1.6160407400230583,
+      "mean_municipality_mae": 5.1309772039697,
+      "p90_municipality_mae": 7.912072134474331,
+      "mean_abs_municipality_bias": 2.6778400725989613,
+      "p90_abs_municipality_bias": 5.101748095396157,
+      "share_municipalities_rmse_gt_10": 0.08275862068965517,
+      "delta_vs_locked_6y": {
+        "pooled_rmse_pct": 0.0,
+        "p90_municipality_rmse_pct": 0.0,
+        "worst_decile_mean_rmse_pct": 0.0,
+        "sd_municipality_rmse_pct": 0.0,
+        "mean_abs_municipality_bias_pct": 0.0
+      }
+    }
+  },
+  "pareto_windows": [
+    6
+  ],
+  "next_step": "Use the locked 6-year model as reference and test dispersion-aware training objectives only if an existing window does not dominate on both accuracy and geographic equity."
+}
