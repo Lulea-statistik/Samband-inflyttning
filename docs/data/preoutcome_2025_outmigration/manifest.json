@@ -1,0 +1,48 @@
+{
+  "status": "outmigration_2025_predictions_frozen_pre_outcome",
+  "forecast_year": 2025,
+  "specification": "0.25 * lag1-only 3y + 0.75 * lag1-only 10y",
+  "target": "utflyttning_per_1000",
+  "feature": "lag1_utflyttning_per_1000",
+  "train_years_3y": [
+    2022,
+    2023,
+    2024
+  ],
+  "train_years_10y": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "alpha_3y": 0.0,
+  "alpha_10y": 10.0,
+  "prediction_rows": 290,
+  "lulea_prediction": [
+    {
+      "kommun_kod": "2580",
+      "lag1_utflyttning_per_1000": 46.029254818256014,
+      "forecast_year": 2025,
+      "forecast_3y_per_1000": 46.61191895931525,
+      "forecast_10y_per_1000": 46.723851334570625,
+      "forecast_blend_25_75_per_1000": 46.69586824075678,
+      "alpha_3y": 0.0,
+      "alpha_10y": 10.0
+    }
+  ],
+  "outcome_2025_read": false,
+  "outcome_2025_queried": false,
+  "refit_after_outcome": false,
+  "files_sha256": {
+    "docs/data/preoutcome_2025_outmigration/predictions_2025.csv": "9028f8d55567f7536ab51005eb9a7eefec9c403868f325594dc3082ddbc25392",
+    "docs/data/preoutcome_2025_outmigration/predictor_matrix_2025.csv": "e600bcceaf47f0deba3aaa6eb1fefab4aae502663c5d21da0c6c9d209dd63828",
+    "docs/data/preoutcome_2025_outmigration/training_3y_2022_2024.csv": "f9e0fb80dbf0d261690e9a2e24918c9228bf085e5b0ba7e4ad1fce7db2f01b9e",
+    "docs/data/preoutcome_2025_outmigration/training_10y_2015_2024.csv": "cc09fa813821576aab00f5d936bc7782b7370c354e35e881a33bdd812862e352"
+  }
+}
