@@ -1,0 +1,135 @@
+{
+  "status": "lulea_full_component_error_decomposition",
+  "production_changed": false,
+  "sign_convention": "positive contribution means actual population change was higher than predicted because of that component",
+  "summary": {
+    "birth": {
+      "rmse_contribution": 49.864170374165454,
+      "mae_contribution": 36.68205082093429,
+      "mean_contribution": -15.071735858831417,
+      "years_largest_component": 1
+    },
+    "death": {
+      "rmse_contribution": 44.19760032234144,
+      "mae_contribution": 37.27056527828721,
+      "mean_contribution": -1.6984688664778247,
+      "years_largest_component": 0
+    },
+    "inflow": {
+      "rmse_contribution": 249.4752410419165,
+      "mae_contribution": 189.72541797021034,
+      "mean_contribution": -88.14017911655941,
+      "years_largest_component": 4
+    },
+    "outflow": {
+      "rmse_contribution": 175.61808905217472,
+      "mae_contribution": 156.37767752094055,
+      "mean_contribution": 54.75325920738578,
+      "years_largest_component": 3
+    },
+    "residual": {
+      "rmse_contribution": 28.33480388340655,
+      "mae_contribution": 23.333333333333336,
+      "mean_contribution": 3.416666666666668,
+      "years_largest_component": 0
+    }
+  },
+  "years": [
+    {
+      "year": 2017,
+      "total_error_actual_minus_prediction": -58.305543120571315,
+      "birth_contribution": -58.45975742483961,
+      "death_contribution": -39.60662319573464,
+      "inflow_contribution": -21.6050272589855,
+      "outflow_contribution": 52.032531425654724,
+      "residual_contribution": 9.333333333333334,
+      "reconstructed_error": -58.30554312057169,
+      "largest_abs_component": "birth",
+      "largest_abs_component_persons": 58.45975742483961
+    },
+    {
+      "year": 2018,
+      "total_error_actual_minus_prediction": -356.63962537262057,
+      "birth_contribution": -20.87252228782222,
+      "death_contribution": 58.11289013356247,
+      "inflow_contribution": -231.82679437294337,
+      "outflow_contribution": -173.7198655120842,
+      "residual_contribution": 11.666666666666666,
+      "reconstructed_error": -356.6396253726206,
+      "largest_abs_component": "inflow",
+      "largest_abs_component_persons": 231.82679437294337
+    },
+    {
+      "year": 2019,
+      "total_error_actual_minus_prediction": -246.1963245046785,
+      "birth_contribution": -13.39068460383669,
+      "death_contribution": 21.37216621142261,
+      "inflow_contribution": -469.12109545861586,
+      "outflow_contribution": 205.2766226796848,
+      "residual_contribution": 9.666666666666668,
+      "reconstructed_error": -246.19632450467847,
+      "largest_abs_component": "inflow",
+      "largest_abs_component_persons": 469.12109545861586
+    },
+    {
+      "year": 2020,
+      "total_error_actual_minus_prediction": 135.5444989848561,
+      "birth_contribution": 22.851039267886335,
+      "death_contribution": -75.55941846297253,
+      "inflow_contribution": 13.874508405879169,
+      "outflow_contribution": 163.37836977406323,
+      "residual_contribution": 11.0,
+      "reconstructed_error": 135.5444989848562,
+      "largest_abs_component": "outflow",
+      "largest_abs_component_persons": 163.37836977406323
+    },
+    {
+      "year": 2021,
+      "total_error_actual_minus_prediction": -29.822503286765084,
+      "birth_contribution": 43.06785717455216,
+      "death_contribution": 62.80332930225245,
+      "inflow_contribution": 13.785182286982945,
+      "outflow_contribution": -199.81220538388607,
+      "residual_contribution": 50.33333333333333,
+      "reconstructed_error": -29.822503286765183,
+      "largest_abs_component": "outflow",
+      "largest_abs_component_persons": 199.81220538388607
+    },
+    {
+      "year": 2022,
+      "total_error_actual_minus_prediction": 33.791740370561,
+      "birth_contribution": -114.29218240256432,
+      "death_contribution": -14.485619518031626,
+      "inflow_contribution": -148.57007999577945,
+      "outflow_contribution": 296.1396222869366,
+      "residual_contribution": 15.0,
+      "reconstructed_error": 33.79174037056123,
+      "largest_abs_component": "outflow",
+      "largest_abs_component_persons": 296.1396222869366
+    },
+    {
+      "year": 2023,
+      "total_error_actual_minus_prediction": -142.91944267367867,
+      "birth_contribution": 20.475658253199185,
+      "death_contribution": -16.085643746422193,
+      "inflow_contribution": -240.33939126075484,
+      "outflow_contribution": 127.69660074696594,
+      "residual_contribution": -34.666666666666664,
+      "reconstructed_error": -142.91944267367856,
+      "largest_abs_component": "inflow",
+      "largest_abs_component_persons": 240.33939126075484
+    },
+    {
+      "year": 2024,
+      "total_error_actual_minus_prediction": 290.6235358603676,
+      "birth_contribution": 0.04670515277382492,
+      "death_contribution": -10.13883165589914,
+      "inflow_contribution": 378.6812647217416,
+      "outflow_contribution": -32.965602358248816,
+      "residual_contribution": -45.0,
+      "reconstructed_error": 290.6235358603675,
+      "largest_abs_component": "inflow",
+      "largest_abs_component_persons": 378.6812647217416
+    }
+  ]
+}
