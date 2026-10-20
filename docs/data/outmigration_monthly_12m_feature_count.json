@@ -1,0 +1,97 @@
+{
+  "status": "outmigration_monthly_12m_feature_count",
+  "generated_at_utc": "2026-10-20T11:37:09.938291+00:00",
+  "production_changed": false,
+  "annual_outmigration_blend_changed": false,
+  "target": "all_outmigrations",
+  "horizon_months": 12,
+  "decision_question": "Does the second age-25-29 labour-market rate add stable value for outmigration?",
+  "summaries": {
+    "10.0": {
+      "n_origins": 20,
+      "first_origin": "2024M01",
+      "last_origin": "2025M08",
+      "ranked_by_rmse": [
+        "both_rates_lag1",
+        "employment_only_lag1",
+        "seasonal",
+        "labour_force_only_lag1"
+      ],
+      "stats": {
+        "seasonal": {
+          "rmse": 86.72658185354707,
+          "mae": 78.1,
+          "bias": 41.3
+        },
+        "employment_only_lag1": {
+          "rmse": 85.59944345491215,
+          "mae": 76.95504418612411,
+          "bias": 31.509516976680356,
+          "delta_rmse_pct_vs_seasonal": -1.2996458231667618,
+          "delta_mae_pct_vs_seasonal": -1.466012565782182
+        },
+        "labour_force_only_lag1": {
+          "rmse": 111.82427406655857,
+          "mae": 83.54704530207184,
+          "bias": -61.548502247261126,
+          "delta_rmse_pct_vs_seasonal": 28.938869348492613,
+          "delta_mae_pct_vs_seasonal": 6.974449810591343
+        },
+        "both_rates_lag1": {
+          "rmse": 84.68936459008134,
+          "mae": 71.17799807492902,
+          "bias": -4.978271599669961,
+          "delta_rmse_pct_vs_seasonal": -2.3490113641350785,
+          "delta_mae_pct_vs_seasonal": -8.862998623650409
+        }
+      },
+      "single_vs_both": {
+        "employment_only_delta_rmse_pct": 1.0746082099397425,
+        "labour_force_only_delta_rmse_pct": 32.04051607638962
+      }
+    },
+    "30.0": {
+      "n_origins": 20,
+      "first_origin": "2024M01",
+      "last_origin": "2025M08",
+      "ranked_by_rmse": [
+        "employment_only_lag1",
+        "both_rates_lag1",
+        "seasonal",
+        "labour_force_only_lag1"
+      ],
+      "stats": {
+        "seasonal": {
+          "rmse": 86.72658185354707,
+          "mae": 78.1,
+          "bias": 41.3
+        },
+        "employment_only_lag1": {
+          "rmse": 83.02983531753306,
+          "mae": 71.12767188253679,
+          "bias": 13.757851701165873,
+          "delta_rmse_pct_vs_seasonal": -4.262529961409777,
+          "delta_mae_pct_vs_seasonal": -8.927436770119346
+        },
+        "labour_force_only_lag1": {
+          "rmse": 101.72445350022669,
+          "mae": 77.24353615987468,
+          "bias": -48.6735033150627,
+          "delta_rmse_pct_vs_seasonal": 17.293281167250573,
+          "delta_mae_pct_vs_seasonal": -1.0966246352436815
+        },
+        "both_rates_lag1": {
+          "rmse": 83.22034118938701,
+          "mae": 67.03419224386008,
+          "bias": -11.716272837013685,
+          "delta_rmse_pct_vs_seasonal": -4.042867353034807,
+          "delta_mae_pct_vs_seasonal": -14.168767933597849
+        }
+      },
+      "single_vs_both": {
+        "employment_only_delta_rmse_pct": -0.22891743668824738,
+        "labour_force_only_delta_rmse_pct": 22.23508345000571
+      }
+    }
+  }
+}
