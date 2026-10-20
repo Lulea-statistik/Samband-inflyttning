@@ -53,6 +53,18 @@ def pick_col(df,needles):
 def region_lookup(meta_url):
     """Build normalized SCB region label -> official four-digit municipality code."""
     r=S.get(meta_url,timeout=90); r.raise_for_status(); meta=r.json()
+    print("SCB metadata dimensions:")
+    for v in meta.get("variables",[]):
+        vals=v.get("values",[])
+        txts=v.get("valueTexts",vals)
+        print({
+          "code":v.get("code"),
+          "text":v.get("text"),
+          "n_values":len(vals),
+          "sample_values":[str(x) for x in vals[:8]],
+          "sample_texts":[str(x) for x in txts[:8]],
+          "time":bool(v.get("time"))
+        })
     candidates=[]
     for v in meta.get("variables",[]):
         vals=v.get("values",[])
@@ -101,8 +113,10 @@ def numeric(series):
 
 def build_birth():
     df,name,enc=load_bulk(BIRTH_ZIP)
-    lookup,lookup_meta=region_lookup(BIRTH_META)
+    print("Birth bulk columns:", list(df.columns))
     region=pick_col(df,["region"])
+    print("Birth bulk region sample:", df[region].astype(str).drop_duplicates().head(30).tolist())
+    lookup,lookup_meta=region_lookup(BIRTH_META)
     year=pick_col(df,["ar"])
     value_candidates=[c for c in df.columns if c not in (region,year)]
     if len(value_candidates)!=1:
@@ -130,8 +144,10 @@ def find_total_value(series,terms):
 
 def build_death():
     df,name,enc=load_bulk(DEATH_ZIP)
-    lookup,lookup_meta=region_lookup(DEATH_META)
+    print("Death bulk columns:", list(df.columns))
     region=pick_col(df,["region"])
+    print("Death bulk region sample:", df[region].astype(str).drop_duplicates().head(30).tolist())
+    lookup,lookup_meta=region_lookup(DEATH_META)
     year=pick_col(df,["ar"])
     sex=pick_col(df,["kon"])
     age=pick_col(df,["alder"])
