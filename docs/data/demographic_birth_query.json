@@ -1,0 +1,24 @@
+{
+  "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101H/FoddaK",
+  "municipality_dimension": "Region",
+  "time_dimension": "Tid",
+  "expanded_non_total_dimensions": [
+    "Kon",
+    "ContentsCode"
+  ],
+  "years": [
+    "2013",
+    "2014",
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024"
+  ],
+  "municipalities": 290
+}

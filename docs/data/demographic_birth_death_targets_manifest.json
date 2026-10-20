@@ -1,0 +1,64 @@
+{
+  "status": "demographic_birth_death_targets_built",
+  "production_changed": false,
+  "municipalities": 290,
+  "first_year": 2013,
+  "last_year": 2024,
+  "rows": 3480,
+  "birth_target": "fodelsetal_per_100",
+  "birth_definition": "live births from SCB FoddaK divided by average of Y-1 and Y year-end municipal population, times 100",
+  "death_target": "dodstal_per_1000",
+  "death_definition": "deaths from SCB DodaHandelseK divided by average of Y-1 and Y year-end municipal population, times 1000",
+  "birth_source": {
+    "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101H/FoddaK",
+    "municipality_dimension": "Region",
+    "time_dimension": "Tid",
+    "expanded_non_total_dimensions": [
+      "Kon",
+      "ContentsCode"
+    ],
+    "years": [
+      "2013",
+      "2014",
+      "2015",
+      "2016",
+      "2017",
+      "2018",
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024"
+    ],
+    "municipalities": 290
+  },
+  "death_source": {
+    "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101I/DodaHandelseK",
+    "municipality_dimension": "Region",
+    "time_dimension": "Tid",
+    "expanded_non_total_dimensions": [
+      "Kon",
+      "ContentsCode"
+    ],
+    "years": [
+      "2013",
+      "2014",
+      "2015",
+      "2016",
+      "2017",
+      "2018",
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024"
+    ],
+    "municipalities": 290
+  },
+  "population_source": "docs/data/panel.csv folkmangd",
+  "regional_hvd_tables_used_as_targets": false,
+  "regional_hvd_reason": "FodelstalHVD current publication contains 31 regional aggregates, not 290 municipalities",
+  "same_year_target_leakage": false
+}
