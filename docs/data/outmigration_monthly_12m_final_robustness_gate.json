@@ -1,0 +1,155 @@
+{
+  "status": "outmigration_monthly_12m_final_robustness_gate",
+  "generated_at_utc": "2026-10-20T11:44:18.949659+00:00",
+  "production_changed": false,
+  "annual_outmigration_blend_changed": false,
+  "horizon_months": 12,
+  "candidate": {
+    "name": "employment_only_lag1_alpha30",
+    "feature": "bas2_age25_29_sysselsattningsgrad_yoy_pp",
+    "lag_months": 1,
+    "alpha": 30.0,
+    "rmse": 83.02983531753306,
+    "mae": 71.12767188253679,
+    "delta_rmse_pct_vs_seasonal": -4.262529961409777,
+    "delta_mae_pct_vs_seasonal": -8.927436770119346,
+    "delta_rmse_pct_vs_reference": -0.22891743668824738,
+    "delta_mae_pct_vs_reference": 6.1065547322257
+  },
+  "two_feature_reference": {
+    "name": "both_rates_lag1_alpha30",
+    "features": [
+      "bas2_age25_29_sysselsattningsgrad_yoy_pp",
+      "bas2_age25_29_arbetskraftsdeltagande_yoy_pp"
+    ],
+    "lag_months": 1,
+    "alpha": 30.0,
+    "rmse": 83.22034118938701,
+    "mae": 67.03419224386008,
+    "delta_rmse_pct_vs_seasonal": -4.042867353034807,
+    "delta_mae_pct_vs_seasonal": -14.168767933597849
+  },
+  "origin_absolute_error_wins_vs_two_feature": 9,
+  "origin_absolute_error_ties_vs_two_feature": 0,
+  "n_origins": 20,
+  "by_origin_year": {
+    "2024": {
+      "n_origins": 12,
+      "candidate_delta_rmse_pct_vs_seasonal": -3.014846465187404,
+      "reference_delta_rmse_pct_vs_seasonal": -5.034262114060494,
+      "candidate_delta_rmse_pct_vs_reference": 2.126467601713955,
+      "candidate_beats_seasonal_rmse": true
+    },
+    "2025": {
+      "n_origins": 8,
+      "candidate_delta_rmse_pct_vs_seasonal": -6.4253659226823245,
+      "reference_delta_rmse_pct_vs_seasonal": -2.3778812852950693,
+      "candidate_delta_rmse_pct_vs_reference": -4.1460733393994476,
+      "candidate_beats_seasonal_rmse": true
+    }
+  },
+  "leave_one_origin_out": [
+    {
+      "omitted_origin": "2024M01",
+      "candidate_delta_rmse_pct_vs_seasonal": -10.314162400124527,
+      "candidate_delta_rmse_pct_vs_reference": 5.207139207634981
+    },
+    {
+      "omitted_origin": "2024M02",
+      "candidate_delta_rmse_pct_vs_seasonal": -8.857588985904352,
+      "candidate_delta_rmse_pct_vs_reference": 2.8626732265005117
+    },
+    {
+      "omitted_origin": "2024M03",
+      "candidate_delta_rmse_pct_vs_seasonal": -5.131708673234603,
+      "candidate_delta_rmse_pct_vs_reference": 2.4077354456973676
+    },
+    {
+      "omitted_origin": "2024M04",
+      "candidate_delta_rmse_pct_vs_seasonal": -2.475191405503152,
+      "candidate_delta_rmse_pct_vs_reference": -0.10691686711874482
+    },
+    {
+      "omitted_origin": "2024M05",
+      "candidate_delta_rmse_pct_vs_seasonal": -2.328354290384904,
+      "candidate_delta_rmse_pct_vs_reference": -0.3464621341408569
+    },
+    {
+      "omitted_origin": "2024M06",
+      "candidate_delta_rmse_pct_vs_seasonal": -3.8507345860851583,
+      "candidate_delta_rmse_pct_vs_reference": 0.6969241634264822
+    },
+    {
+      "omitted_origin": "2024M07",
+      "candidate_delta_rmse_pct_vs_seasonal": -1.1325859934031568,
+      "candidate_delta_rmse_pct_vs_reference": -2.8835956942669494
+    },
+    {
+      "omitted_origin": "2024M08",
+      "candidate_delta_rmse_pct_vs_seasonal": -2.2557274360427093,
+      "candidate_delta_rmse_pct_vs_reference": -4.659404095172659
+    },
+    {
+      "omitted_origin": "2024M09",
+      "candidate_delta_rmse_pct_vs_seasonal": -4.038275273670855,
+      "candidate_delta_rmse_pct_vs_reference": -1.0582967583595337
+    },
+    {
+      "omitted_origin": "2024M10",
+      "candidate_delta_rmse_pct_vs_seasonal": -4.289310457364293,
+      "candidate_delta_rmse_pct_vs_reference": -1.117897823539027
+    },
+    {
+      "omitted_origin": "2024M11",
+      "candidate_delta_rmse_pct_vs_seasonal": -4.4701306694752585,
+      "candidate_delta_rmse_pct_vs_reference": -3.029731042742201
+    },
+    {
+      "omitted_origin": "2024M12",
+      "candidate_delta_rmse_pct_vs_seasonal": -2.708580479778222,
+      "candidate_delta_rmse_pct_vs_reference": -0.7150403822380524
+    },
+    {
+      "omitted_origin": "2025M01",
+      "candidate_delta_rmse_pct_vs_seasonal": -3.26402990403043,
+      "candidate_delta_rmse_pct_vs_reference": -0.5358992474776891
+    },
+    {
+      "omitted_origin": "2025M02",
+      "candidate_delta_rmse_pct_vs_seasonal": -3.1399880473567676,
+      "candidate_delta_rmse_pct_vs_reference": 0.9795896878135091
+    },
+    {
+      "omitted_origin": "2025M03",
+      "candidate_delta_rmse_pct_vs_seasonal": -2.4528938195201744,
+      "candidate_delta_rmse_pct_vs_reference": 2.403286346050959
+    },
+    {
+      "omitted_origin": "2025M04",
+      "candidate_delta_rmse_pct_vs_seasonal": -4.03412128659294,
+      "candidate_delta_rmse_pct_vs_reference": -0.22828043050221458
+    },
+    {
+      "omitted_origin": "2025M05",
+      "candidate_delta_rmse_pct_vs_seasonal": -4.5543336873887785,
+      "candidate_delta_rmse_pct_vs_reference": -1.0062177427806573
+    },
+    {
+      "omitted_origin": "2025M06",
+      "candidate_delta_rmse_pct_vs_seasonal": -4.2592676673483325,
+      "candidate_delta_rmse_pct_vs_reference": -0.26325031140661537
+    },
+    {
+      "omitted_origin": "2025M07",
+      "candidate_delta_rmse_pct_vs_seasonal": -4.893179912651324,
+      "candidate_delta_rmse_pct_vs_reference": -0.21694366612790006
+    },
+    {
+      "omitted_origin": "2025M08",
+      "candidate_delta_rmse_pct_vs_seasonal": -6.830537629380029,
+      "candidate_delta_rmse_pct_vs_reference": -1.4035413006047048
+    }
+  ],
+  "passes_gate": true,
+  "decision": "promote_simple_12m_candidate_to_final_integration_test"
+}
