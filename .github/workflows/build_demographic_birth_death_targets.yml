@@ -14,6 +14,7 @@ on:
       - scripts/test_demographic_integrated_historical_backtest.py
       - scripts/test_lulea_birth_core_diagnostic.py
       - scripts/test_lulea_birth_blend_diagnostic.py
+      - scripts/test_lulea_full_component_historical_backtest.py
       - .github/workflows/build_demographic_birth_death_targets.yml
   workflow_dispatch:
 permissions:
@@ -52,6 +53,8 @@ jobs:
         run: python scripts/test_lulea_birth_core_diagnostic.py
       - name: Test Lulea birth blend
         run: python scripts/test_lulea_birth_blend_diagnostic.py
+      - name: Run full Lulea component backtest
+        run: python scripts/test_lulea_full_component_historical_backtest.py
       - name: Commit targets and neutral model results
         run: |
           git config user.name "github-actions[bot]"
@@ -71,6 +74,7 @@ jobs:
           git add docs/data/demographic_integrated_historical_backtest.json
           git add docs/data/lulea_birth_core_diagnostic.json
           git add docs/data/lulea_birth_blend_diagnostic.json
+          git add docs/data/lulea_full_component_historical_backtest.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Build SCB birth-death targets and neutral models"
           git pull --rebase origin main
