@@ -1,0 +1,29 @@
+name: Build SCB 2025 untouched outmigration outcome
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  outcome:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas requests
+      - run: python scripts/build_scb_2025_outmigration_outcome.py
+      - name: Commit status or outcome
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/outmigration_2025_outcome_availability_status.json
+          git add docs/data/outcomes/2025_scb_outmigration/ || true
+          git add docs/data/outcomes/utflyttning_2025.csv || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Build source-audited SCB 2025 outmigration outcome"
+          git pull --rebase origin main
+          git push origin HEAD:main
