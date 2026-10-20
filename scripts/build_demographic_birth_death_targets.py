@@ -85,14 +85,36 @@ def jsonstat2_df(js):
         row["value"]=float(value); rows.append(row)
     return pd.DataFrame(rows)
 
+def resolve_response_column(df, preferred, kind):
+    """Resolve JSON-stat response dimension IDs robustly across SCB schemas."""
+    cols=list(df.columns)
+    if preferred in cols:
+        return preferred
+    lower={str(x).lower():x for x in cols}
+    if str(preferred).lower() in lower:
+        return lower[str(preferred).lower()]
+    needles={
+      "region":["region","kommun"],
+      "time":["tid","år","ar","year"]
+    }[kind]
+    for col in cols:
+        s=str(col).lower()
+        if any(n in s for n in needles):
+            return col
+    raise KeyError(f"Could not resolve {kind} response column. preferred={preferred!r}, columns={cols}")
+
 def build(url,label):
     meta=get(url)
     q,region_code,time_code,regions,years=query_all_regions(meta)
     payload={"query":q,"response":{"format":"json-stat2"}}
     js=post(url,payload)
     df=jsonstat2_df(js)
-    df["kommun_kod"]=df[region_code].astype(str).str.zfill(4)
-    df["year"]=pd.to_numeric(df[time_code],errors="raise").astype(int)
+    if df.empty:
+        raise RuntimeError(f"{label}: SCB returned no observations")
+    response_region=resolve_response_column(df,region_code,"region")
+    response_time=resolve_response_column(df,time_code,"time")
+    df["kommun_kod"]=df[response_region].astype(str).str.zfill(4)
+    df["year"]=pd.to_numeric(df[response_time],errors="raise").astype(int)
     out=df.groupby(["kommun_kod","year"],as_index=False)["value"].sum()
     return meta,payload,out,regions,years
 
