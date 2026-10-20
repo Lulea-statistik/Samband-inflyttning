@@ -1,0 +1,1771 @@
+{
+  "status": "short_term_rates_25_29_temporal_stability",
+  "generated_at_utc": "2026-10-20T06:52:49.484118+00:00",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "backward_window_months": 12,
+  "feature_family": "rates_25_29",
+  "purpose": "Check whether aggregate gains are stable over forecast-origin years and not driven by one influential origin.",
+  "summary": {
+    "3": {
+      "3.0": {
+        "rates_25_29_lag1": {
+          "overall": {
+            "n_origins": 37,
+            "first_origin": "2023M05",
+            "last_origin": "2026M05",
+            "rmse": 95.43309112421666,
+            "seasonal_rmse": 99.47388629210208,
+            "delta_rmse_pct_vs_seasonal": -4.062166784174637,
+            "mae": 71.5913677996075,
+            "seasonal_mae": 78.51351351351352,
+            "delta_mae_pct_vs_seasonal": -8.816502286214211,
+            "bias": -19.52829421105762,
+            "seasonal_bias": -35.972972972972975,
+            "median_abs_error": 49.593358025692396,
+            "seasonal_median_abs_error": 79.0,
+            "origin_abs_error_win_rate": 0.5945945945945946,
+            "origin_abs_error_wins": 22,
+            "origin_abs_error_ties": 0,
+            "year_rmse_wins": 2,
+            "year_count": 4,
+            "loo_best_delta_rmse_pct": {
+              "origin": "2025M05",
+              "delta_rmse_pct_vs_seasonal_without_origin": -7.273212324543121
+            },
+            "loo_worst_delta_rmse_pct": {
+              "origin": "2025M09",
+              "delta_rmse_pct_vs_seasonal_without_origin": -2.9091966989076123
+            },
+            "loo_all_still_better_than_seasonal": true
+          },
+          "by_origin_year": {
+            "2023": {
+              "n_origins": 8,
+              "model_rmse": 85.64698784227609,
+              "seasonal_rmse": 83.22709895220426,
+              "delta_rmse_pct_vs_seasonal": 2.90757327906086,
+              "model_mae": 68.1301928211897,
+              "seasonal_mae": 59.5,
+              "delta_mae_pct_vs_seasonal": 14.504525749898644,
+              "model_bias": 68.1301928211897,
+              "seasonal_bias": 59.5,
+              "rmse_win": false
+            },
+            "2024": {
+              "n_origins": 12,
+              "model_rmse": 115.43151447635901,
+              "seasonal_rmse": 129.38250783368412,
+              "delta_rmse_pct_vs_seasonal": -10.78275076817844,
+              "model_mae": 85.44481358837022,
+              "seasonal_mae": 107.33333333333333,
+              "delta_mae_pct_vs_seasonal": -20.393030818288604,
+              "model_bias": -81.84258334106299,
+              "seasonal_bias": -107.33333333333333,
+              "rmse_win": true
+            },
+            "2025": {
+              "n_origins": 12,
+              "model_rmse": 98.90963167350952,
+              "seasonal_rmse": 92.40129869217208,
+              "delta_rmse_pct_vs_seasonal": 7.043551414812321,
+              "model_mae": 85.02830534402106,
+              "seasonal_mae": 81.0,
+              "delta_mae_pct_vs_seasonal": 4.973216474100073,
+              "model_bias": -22.26408580299534,
+              "seasonal_bias": -43.5,
+              "rmse_win": false
+            },
+            "2026": {
+              "n_origins": 5,
+              "model_rmse": 14.161363914328524,
+              "seasonal_rmse": 38.39010289124008,
+              "delta_rmse_pct_vs_seasonal": -63.11194071438686,
+              "model_mae": 11.632327765452919,
+              "seasonal_mae": 33.8,
+              "delta_mae_pct_vs_seasonal": -65.58482909629313,
+              "model_bias": -3.661679729989919,
+              "seasonal_bias": 0.6,
+              "rmse_win": true
+            }
+          }
+        },
+        "rates_25_29_lag2": {
+          "overall": {
+            "n_origins": 37,
+            "first_origin": "2023M05",
+            "last_origin": "2026M05",
+            "rmse": 93.80571008095028,
+            "seasonal_rmse": 99.47388629210208,
+            "delta_rmse_pct_vs_seasonal": -5.6981549856284675,
+            "mae": 70.86489378052708,
+            "seasonal_mae": 78.51351351351352,
+            "delta_mae_pct_vs_seasonal": -9.741787611721097,
+            "bias": -19.6177716801824,
+            "seasonal_bias": -35.972972972972975,
+            "median_abs_error": 65.642158809693,
+            "seasonal_median_abs_error": 79.0,
+            "origin_abs_error_win_rate": 0.5675675675675675,
+            "origin_abs_error_wins": 21,
+            "origin_abs_error_ties": 0,
+            "year_rmse_wins": 3,
+            "year_count": 4,
+            "loo_best_delta_rmse_pct": {
+              "origin": "2025M06",
+              "delta_rmse_pct_vs_seasonal_without_origin": -7.7542546767630505
+            },
+            "loo_worst_delta_rmse_pct": {
+              "origin": "2024M12",
+              "delta_rmse_pct_vs_seasonal_without_origin": -4.503975319144171
+            },
+            "loo_all_still_better_than_seasonal": true
+          },
+          "by_origin_year": {
+            "2023": {
+              "n_origins": 8,
+              "model_rmse": 82.27172646843746,
+              "seasonal_rmse": 83.22709895220426,
+              "delta_rmse_pct_vs_seasonal": -1.1479103510690036,
+              "model_mae": 58.871150872177594,
+              "seasonal_mae": 59.5,
+              "delta_mae_pct_vs_seasonal": -1.0568892904578298,
+              "model_bias": 58.871150872177594,
+              "seasonal_bias": 59.5,
+              "rmse_win": true
+            },
+            "2024": {
+              "n_origins": 12,
+              "model_rmse": 115.49725457170555,
+              "seasonal_rmse": 129.38250783368412,
+              "delta_rmse_pct_vs_seasonal": -10.7319401165322,
+              "model_mae": 84.15822866049565,
+              "seasonal_mae": 107.33333333333333,
+              "delta_mae_pct_vs_seasonal": -21.591712428109634,
+              "model_bias": -82.0943300294804,
+              "seasonal_bias": -107.33333333333333,
+              "rmse_win": true
+            },
+            "2025": {
+              "n_origins": 12,
+              "model_rmse": 94.60398898532111,
+              "seasonal_rmse": 92.40129869217208,
+              "delta_rmse_pct_vs_seasonal": 2.3838304486251127,
+              "model_mae": 84.87193786381086,
+              "seasonal_mae": 81.0,
+              "delta_mae_pct_vs_seasonal": 4.780170202235623,
+              "model_bias": -21.486122495126466,
+              "seasonal_bias": -43.5,
+              "rmse_win": false
+            },
+            "2026": {
+              "n_origins": 5,
+              "model_rmse": 28.136999360505595,
+              "seasonal_rmse": 38.39010289124008,
+              "delta_rmse_pct_vs_seasonal": -26.707674005932546,
+              "model_mae": 24.533972922080714,
+              "seasonal_mae": 33.8,
+              "delta_mae_pct_vs_seasonal": -27.41428129561918,
+              "model_bias": 9.227734230222563,
+              "seasonal_bias": 0.6,
+              "rmse_win": true
+            }
+          }
+        }
+      },
+      "10.0": {
+        "rates_25_29_lag1": {
+          "overall": {
+            "n_origins": 37,
+            "first_origin": "2023M05",
+            "last_origin": "2026M05",
+            "rmse": 95.48170979843168,
+            "seasonal_rmse": 99.47388629210208,
+            "delta_rmse_pct_vs_seasonal": -4.013290967588712,
+            "mae": 71.35166026425455,
+            "seasonal_mae": 78.51351351351352,
+            "delta_mae_pct_vs_seasonal": -9.121809646216239,
+            "bias": -20.87963607710065,
+            "seasonal_bias": -35.972972972972975,
+            "median_abs_error": 48.89682822195391,
+            "seasonal_median_abs_error": 79.0,
+            "origin_abs_error_win_rate": 0.6216216216216216,
+            "origin_abs_error_wins": 23,
+            "origin_abs_error_ties": 0,
+            "year_rmse_wins": 2,
+            "year_count": 4,
+            "loo_best_delta_rmse_pct": {
+              "origin": "2025M05",
+              "delta_rmse_pct_vs_seasonal_without_origin": -7.061412677966905
+            },
+            "loo_worst_delta_rmse_pct": {
+              "origin": "2025M09",
+              "delta_rmse_pct_vs_seasonal_without_origin": -2.902874840753489
+            },
+            "loo_all_still_better_than_seasonal": true
+          },
+          "by_origin_year": {
+            "2023": {
+              "n_origins": 8,
+              "model_rmse": 84.44418197877646,
+              "seasonal_rmse": 83.22709895220426,
+              "delta_rmse_pct_vs_seasonal": 1.4623638717374376,
+              "model_mae": 65.70529154554904,
+              "seasonal_mae": 59.5,
+              "delta_mae_pct_vs_seasonal": 10.429061421090836,
+              "model_bias": 65.70529154554904,
+              "seasonal_bias": 59.5,
+              "rmse_win": false
+            },
+            "2024": {
+              "n_origins": 12,
+              "model_rmse": 117.25171582009723,
+              "seasonal_rmse": 129.38250783368412,
+              "delta_rmse_pct_vs_seasonal": -9.375913496112254,
+              "model_mae": 87.2573790791666,
+              "seasonal_mae": 107.33333333333333,
+              "delta_mae_pct_vs_seasonal": -18.7043052057454,
+              "model_bias": -85.22779787643988,
+              "seasonal_bias": -107.33333333333333,
+              "rmse_win": true
+            },
+            "2025": {
+              "n_origins": 12,
+              "model_rmse": 97.53922270934387,
+              "seasonal_rmse": 92.40129869217208,
+              "delta_rmse_pct_vs_seasonal": 5.560445675431902,
+              "model_mae": 83.69458305177449,
+              "seasonal_mae": 81.0,
+              "delta_mae_pct_vs_seasonal": 3.3266457429314666,
+              "model_bias": -21.941158567331172,
+              "seasonal_bias": -43.5,
+              "rmse_win": false
+            },
+            "2026": {
+              "n_origins": 5,
+              "model_rmse": 15.040402977750494,
+              "seasonal_rmse": 38.39010289124008,
+              "delta_rmse_pct_vs_seasonal": -60.82218633182555,
+              "model_mae": 12.589110368346656,
+              "seasonal_mae": 33.8,
+              "delta_mae_pct_vs_seasonal": -62.75411133625249,
+              "model_bias": -2.4322779783727584,
+              "seasonal_bias": 0.6,
+              "rmse_win": true
+            }
+          }
+        },
+        "rates_25_29_lag2": {
+          "overall": {
+            "n_origins": 37,
+            "first_origin": "2023M05",
+            "last_origin": "2026M05",
+            "rmse": 94.13943407707919,
+            "seasonal_rmse": 99.47388629210208,
+            "delta_rmse_pct_vs_seasonal": -5.36266593561896,
+            "mae": 71.13026496620212,
+            "seasonal_mae": 78.51351351351352,
+            "delta_mae_pct_vs_seasonal": -9.403793330482667,
+            "bias": -21.0256737838282,
+            "seasonal_bias": -35.972972972972975,
+            "median_abs_error": 63.913512411824286,
+            "seasonal_median_abs_error": 79.0,
+            "origin_abs_error_win_rate": 0.6756756756756757,
+            "origin_abs_error_wins": 25,
+            "origin_abs_error_ties": 0,
+            "year_rmse_wins": 3,
+            "year_count": 4,
+            "loo_best_delta_rmse_pct": {
+              "origin": "2025M06",
+              "delta_rmse_pct_vs_seasonal_without_origin": -7.290359674782132
+            },
+            "loo_worst_delta_rmse_pct": {
+              "origin": "2024M12",
+              "delta_rmse_pct_vs_seasonal_without_origin": -4.236509859761295
+            },
+            "loo_all_still_better_than_seasonal": true
+          },
+          "by_origin_year": {
+            "2023": {
+              "n_origins": 8,
+              "model_rmse": 81.36759339892356,
+              "seasonal_rmse": 83.22709895220426,
+              "delta_rmse_pct_vs_seasonal": -2.234254920201628,
+              "model_mae": 57.53545509917086,
+              "seasonal_mae": 59.5,
+              "delta_mae_pct_vs_seasonal": -3.301756135847289,
+              "model_bias": 57.08392028299059,
+              "seasonal_bias": 59.5,
+              "rmse_win": true
+            },
+            "2024": {
+              "n_origins": 12,
+              "model_rmse": 117.35277257970644,
+              "seasonal_rmse": 129.38250783368412,
+              "delta_rmse_pct_vs_seasonal": -9.297806523770124,
+              "model_mae": 86.90468977407996,
+              "seasonal_mae": 107.33333333333333,
+              "delta_mae_pct_vs_seasonal": -19.032897726012465,
+              "model_bias": -85.46923832602431,
+              "seasonal_bias": -107.33333333333333,
+              "rmse_win": true
+            },
+            "2025": {
+              "n_origins": 12,
+              "model_rmse": 93.7826803234814,
+              "seasonal_rmse": 92.40129869217208,
+              "delta_rmse_pct_vs_seasonal": 1.4949807533672255,
+              "model_mae": 83.6247551077651,
+              "seasonal_mae": 81.0,
+              "delta_mae_pct_vs_seasonal": 3.2404384046482715,
+              "model_bias": -21.51168586449296,
+              "seasonal_bias": -43.5,
+              "rmse_win": false
+            },
+            "2026": {
+              "n_origins": 5,
+              "model_rmse": 28.75680237851084,
+              "seasonal_rmse": 38.39010289124008,
+              "delta_rmse_pct_vs_seasonal": -25.093187533309226,
+              "model_mae": 25.036564874794248,
+              "seasonal_mae": 33.8,
+              "delta_mae_pct_vs_seasonal": -25.927322855638312,
+              "model_bias": 9.829959604127861,
+              "seasonal_bias": 0.6,
+              "rmse_win": true
+            }
+          }
+        }
+      },
+      "30.0": {
+        "rates_25_29_lag1": {
+          "overall": {
+            "n_origins": 37,
+            "first_origin": "2023M05",
+            "last_origin": "2026M05",
+            "rmse": 96.07831691764248,
+            "seasonal_rmse": 99.47388629210208,
+            "delta_rmse_pct_vs_seasonal": -3.413528415375877,
+            "mae": 71.77174389526711,
+            "seasonal_mae": 78.51351351351352,
+            "delta_mae_pct_vs_seasonal": -8.586763369195083,
+            "bias": -23.77632597027809,
+            "seasonal_bias": -35.972972972972975,
+            "median_abs_error": 48.05923993798831,
+            "seasonal_median_abs_error": 79.0,
+            "origin_abs_error_win_rate": 0.7297297297297297,
+            "origin_abs_error_wins": 27,
+            "origin_abs_error_ties": 0,
+            "year_rmse_wins": 3,
+            "year_count": 4,
+            "loo_best_delta_rmse_pct": {
+              "origin": "2025M05",
+              "delta_rmse_pct_vs_seasonal_without_origin": -6.041308562514047
+            },
+            "loo_worst_delta_rmse_pct": {
+              "origin": "2025M09",
+              "delta_rmse_pct_vs_seasonal_without_origin": -2.3967693702615867
+            },
+            "loo_all_still_better_than_seasonal": true
+          },
+          "by_origin_year": {
+            "2023": {
+              "n_origins": 8,
+              "model_rmse": 82.88306559292062,
+              "seasonal_rmse": 83.22709895220426,
+              "delta_rmse_pct_vs_seasonal": -0.4133669965851072,
+              "model_mae": 61.11305221189497,
+              "seasonal_mae": 59.5,
+              "delta_mae_pct_vs_seasonal": 2.7110121208318683,
+              "model_bias": 61.11305221189497,
+              "seasonal_bias": 59.5,
+              "rmse_win": true
+            },
+            "2024": {
+              "n_origins": 12,
+              "model_rmse": 121.12980408721444,
+              "seasonal_rmse": 129.38250783368412,
+              "delta_rmse_pct_vs_seasonal": -6.3785312903952835,
+              "model_mae": 92.62538129300715,
+              "seasonal_mae": 107.33333333333333,
+              "delta_mae_pct_vs_seasonal": -13.703060907136189,
+              "model_bias": -91.92363825082994,
+              "seasonal_bias": -107.33333333333333,
+              "rmse_win": true
+            },
+            "2025": {
+              "n_origins": 12,
+              "model_rmse": 95.26050091169539,
+              "seasonal_rmse": 92.40129869217208,
+              "delta_rmse_pct_vs_seasonal": 3.094331205288059,
+              "model_mae": 81.47685751743869,
+              "seasonal_mae": 81.0,
+              "delta_mae_pct_vs_seasonal": 0.5887129844922123,
+              "model_bias": -22.42179915900139,
+              "seasonal_bias": -43.5,
+              "rmse_win": false
+            },
+            "2026": {
+              "n_origins": 5,
+              "model_rmse": 18.043614723248062,
+              "seasonal_rmse": 38.39010289124008,
+              "delta_rmse_pct_vs_seasonal": -52.99930616397154,
+              "model_mae": 15.48464814087465,
+              "seasonal_mae": 33.8,
+              "delta_mae_pct_vs_seasonal": -54.187431535873806,
+              "model_bias": 0.7033540645054017,
+              "seasonal_bias": 0.6,
+              "rmse_win": true
+            }
+          }
+        },
+        "rates_25_29_lag2": {
+          "overall": {
+            "n_origins": 37,
+            "first_origin": "2023M05",
+            "last_origin": "2026M05",
+            "rmse": 95.24637657859064,
+            "seasonal_rmse": 99.47388629210208,
+            "delta_rmse_pct_vs_seasonal": -4.249868856131234,
+            "mae": 72.12627549039405,
+            "seasonal_mae": 78.51351351351352,
+            "delta_mae_pct_vs_seasonal": -8.135208497604829,
+            "bias": -23.833770094980615,
+            "seasonal_bias": -35.972972972972975,
+            "median_abs_error": 60.68083375291849,
+            "seasonal_median_abs_error": 79.0,
+            "origin_abs_error_win_rate": 0.6756756756756757,
+            "origin_abs_error_wins": 25,
+            "origin_abs_error_ties": 0,
+            "year_rmse_wins": 4,
+            "year_count": 4,
+            "loo_best_delta_rmse_pct": {
+              "origin": "2024M06",
+              "delta_rmse_pct_vs_seasonal_without_origin": -5.914471405566246
+            },
+            "loo_worst_delta_rmse_pct": {
+              "origin": "2025M08",
+              "delta_rmse_pct_vs_seasonal_without_origin": -3.2140394349431833
+            },
+            "loo_all_still_better_than_seasonal": true
+          },
+          "by_origin_year": {
+            "2023": {
+              "n_origins": 8,
+              "model_rmse": 80.78451432318414,
+              "seasonal_rmse": 83.22709895220426,
+              "delta_rmse_pct_vs_seasonal": -2.934842929492054,
+              "model_mae": 56.51770414950647,
+              "seasonal_mae": 59.5,
+              "delta_mae_pct_vs_seasonal": -5.012261933602568,
+              "model_bias": 54.337588749957916,
+              "seasonal_bias": 59.5,
+              "rmse_win": true
+            },
+            "2024": {
+              "n_origins": 12,
+              "model_rmse": 121.28305256300081,
+              "seasonal_rmse": 129.38250783368412,
+              "delta_rmse_pct_vs_seasonal": -6.260085235861112,
+              "model_mae": 92.35035428258736,
+              "seasonal_mae": 107.33333333333333,
+              "delta_mae_pct_vs_seasonal": -13.959297252247794,
+              "model_bias": -92.15247548105658,
+              "seasonal_bias": -107.33333333333333,
+              "rmse_win": true
+            },
+            "2025": {
+              "n_origins": 12,
+              "model_rmse": 92.30765178591226,
+              "seasonal_rmse": 92.40129869217208,
+              "delta_rmse_pct_vs_seasonal": -0.10134804119128482,
+              "model_mae": 81.32143641048368,
+              "seasonal_mae": 81.0,
+              "delta_mae_pct_vs_seasonal": 0.39683507467120904,
+              "model_bias": -22.267026499719776,
+              "seasonal_bias": -43.5,
+              "rmse_win": true
+            },
+            "2026": {
+              "n_origins": 5,
+              "model_rmse": 30.616316753547533,
+              "seasonal_rmse": 38.39010289124008,
+              "delta_rmse_pct_vs_seasonal": -20.24945377123849,
+              "model_mae": 26.493814326335155,
+              "seasonal_mae": 33.8,
+              "delta_mae_pct_vs_seasonal": -21.615933945753973,
+              "model_bias": 11.296764051074046,
+              "seasonal_bias": 0.6,
+              "rmse_win": true
+            }
+          }
+        }
+      }
+    },
+    "6": {
+      "3.0": {
+        "rates_25_29_lag1": {
+          "overall": {
+            "n_origins": 31,
+            "first_origin": "2023M08",
+            "last_origin": "2026M02",
+            "rmse": 145.28510054759627,
+            "seasonal_rmse": 164.53933738892684,
+            "delta_rmse_pct_vs_seasonal": -11.701904934635,
+            "mae": 113.01197011604954,
+            "seasonal_mae": 128.09677419354838,
+            "delta_mae_pct_vs_seasonal": -11.776099884222212,
+            "bias": -83.06959961513898,
+            "seasonal_bias": -115.45161290322581,
+            "median_abs_error": 92.0116365443273,
+            "seasonal_median_abs_error": 117.0,
+            "origin_abs_error_win_rate": 0.6451612903225806,
+            "origin_abs_error_wins": 20,
+            "origin_abs_error_ties": 0,
+            "year_rmse_wins": 2,
+            "year_count": 4,
+            "loo_best_delta_rmse_pct": {
+              "origin": "2024M05",
+              "delta_rmse_pct_vs_seasonal_without_origin": -14.817263173614437
+            },
+            "loo_worst_delta_rmse_pct": {
+              "origin": "2024M10",
+              "delta_rmse_pct_vs_seasonal_without_origin": -9.794934288235668
+            },
+            "loo_all_still_better_than_seasonal": true
+          },
+          "by_origin_year": {
+            "2023": {
+              "n_origins": 5,
+              "model_rmse": 47.84455699139204,
+              "seasonal_rmse": 40.904767448306075,
+              "delta_rmse_pct_vs_seasonal": 16.96572300980861,
+              "model_mae": 29.335157219470965,
+              "seasonal_mae": 28.4,
+              "delta_mae_pct_vs_seasonal": 3.292807110813256,
+              "model_bias": 26.62899256185583,
+              "seasonal_bias": 11.6,
+              "rmse_win": false
+            },
+            "2024": {
+              "n_origins": 12,
+              "model_rmse": 210.26968993272413,
+              "seasonal_rmse": 240.47557048482076,
+              "delta_rmse_pct_vs_seasonal": -12.560893603952705,
+              "model_mae": 192.76225521919878,
+              "seasonal_mae": 234.0,
+              "delta_mae_pct_vs_seasonal": -17.62296785504326,
+              "model_bias": -192.76225521919878,
+              "seasonal_bias": -234.0,
+              "rmse_win": true
+            },
+            "2025": {
+              "n_origins": 12,
+              "model_rmse": 95.62480109108351,
+              "seasonal_rmse": 106.30929717887643,
+              "delta_rmse_pct_vs_seasonal": -10.050387286273887,
+              "model_mae": 81.94536429242861,
+              "seasonal_mae": 80.83333333333333,
+              "delta_mae_pct_vs_seasonal": 1.375708403004472,
+              "model_bias": -37.94661180073791,
+              "seasonal_bias": -69.83333333333333,
+              "rmse_win": true
+            },
+            "2026": {
+              "n_origins": 2,
+              "model_rmse": 36.095182843478106,
+              "seasonal_rmse": 25.894014752448104,
+              "delta_rmse_pct_vs_seasonal": 39.39585339915492,
+              "model_mae": 30.101926680326187,
+              "seasonal_mae": 25.5,
+              "delta_mae_pct_vs_seasonal": 18.046771295396802,
+              "model_bias": 30.101926680326187,
+              "seasonal_bias": 4.5,
+              "rmse_win": false
+            }
+          }
+        },
+        "rates_25_29_lag2": {
+          "overall": {
+            "n_origins": 31,
+            "first_origin": "2023M08",
+            "last_origin": "2026M02",
+            "rmse": 141.04240553286087,
+            "seasonal_rmse": 164.53933738892684,
+            "delta_rmse_pct_vs_seasonal": -14.280434228640127,
+            "mae": 112.1857938123489,
+            "seasonal_mae": 128.09677419354838,
+            "delta_mae_pct_vs_seasonal": -12.421062498544044,
+            "bias": -77.21255837191904,
+            "seasonal_bias": -115.45161290322581,
+            "median_abs_error": 91.08589756752099,
+            "seasonal_median_abs_error": 117.0,
+            "origin_abs_error_win_rate": 0.6129032258064516,
+            "origin_abs_error_wins": 19,
+            "origin_abs_error_ties": 0,
+            "year_rmse_wins": 3,
+            "year_count": 4,
+            "loo_best_delta_rmse_pct": {
+              "origin": "2024M06",
+              "delta_rmse_pct_vs_seasonal_without_origin": -16.90635107490357
+            },
+            "loo_worst_delta_rmse_pct": {
+              "origin": "2024M10",
+              "delta_rmse_pct_vs_seasonal_without_origin": -12.46617065333524
+            },
+            "loo_all_still_better_than_seasonal": true
+          },
+          "by_origin_year": {
+            "2023": {
+              "n_origins": 5,
+              "model_rmse": 36.17528227008695,
+              "seasonal_rmse": 40.904767448306075,
+              "delta_rmse_pct_vs_seasonal": -11.56218571391726,
+              "model_mae": 28.54112425884632,
+              "seasonal_mae": 28.4,
+              "delta_mae_pct_vs_seasonal": 0.49691640438844775,
+              "model_bias": 12.131836041125917,
+              "seasonal_bias": 11.6,
+              "rmse_win": true
+            },
+            "2024": {
+              "n_origins": 12,
+              "model_rmse": 201.77610228543023,
+              "seasonal_rmse": 240.47557048482076,
+              "delta_rmse_pct_vs_seasonal": -16.09288965252016,
+              "model_mae": 180.75095441843465,
+              "seasonal_mae": 234.0,
+              "delta_mae_pct_vs_seasonal": -22.756002385284336,
+              "model_bias": -180.75095441843465,
+              "seasonal_bias": -234.0,
+              "rmse_win": true
+            },
+            "2025": {
+              "n_origins": 12,
+              "model_rmse": 98.50088393439746,
+              "seasonal_rmse": 106.30929717887643,
+              "delta_rmse_pct_vs_seasonal": -7.34499564167046,
+              "model_mae": 90.60443211771049,
+              "seasonal_mae": 80.83333333333333,
+              "delta_mae_pct_vs_seasonal": 12.087957259023296,
+              "model_bias": -29.09578176751749,
+              "seasonal_bias": -69.83333333333333,
+              "rmse_win": true
+            },
+            "2026": {
+              "n_origins": 2,
+              "model_rmse": 50.726100798684186,
+              "seasonal_rmse": 25.894014752448104,
+              "delta_rmse_pct_vs_seasonal": 95.89894144896314,
+              "model_mae": 39.39467422742143,
+              "seasonal_mae": 25.5,
+              "delta_mae_pct_vs_seasonal": 54.48891853890758,
+              "model_bias": 31.95617224815271,
+              "seasonal_bias": 4.5,
+              "rmse_win": false
+            }
+          }
+        }
+      },
+      "10.0": {
+        "rates_25_29_lag1": {
+          "overall": {
+            "n_origins": 31,
+            "first_origin": "2023M08",
+            "last_origin": "2026M02",
+            "rmse": 147.65237198467383,
+            "seasonal_rmse": 164.53933738892684,
+            "delta_rmse_pct_vs_seasonal": -10.26317819934861,
+            "mae": 114.42398320694647,
+            "seasonal_mae": 128.09677419354838,
+            "delta_mae_pct_vs_seasonal": -10.673798050482475,
+            "bias": -84.99698888034428,
+            "seasonal_bias": -115.45161290322581,
+            "median_abs_error": 92.02217691121564,
+            "seasonal_median_abs_error": 117.0,
+            "origin_abs_error_win_rate": 0.6129032258064516,
+            "origin_abs_error_wins": 19,
+            "origin_abs_error_ties": 0,
+            "year_rmse_wins": 2,
+            "year_count": 4,
+            "loo_best_delta_rmse_pct": {
+              "origin": "2024M05",
+              "delta_rmse_pct_vs_seasonal_without_origin": -13.10195996717357
+            },
+            "loo_worst_delta_rmse_pct": {
+              "origin": "2024M10",
+              "delta_rmse_pct_vs_seasonal_without_origin": -8.525459670291758
+            },
+            "loo_all_still_better_than_seasonal": true
+          },
+          "by_origin_year": {
+            "2023": {
+              "n_origins": 5,
+              "model_rmse": 44.83386119021423,
+              "seasonal_rmse": 40.904767448306075,
+              "delta_rmse_pct_vs_seasonal": 9.605466518966521,
+              "model_mae": 25.044647205226056,
+              "seasonal_mae": 28.4,
+              "delta_mae_pct_vs_seasonal": -11.814622516809658,
+              "model_bias": 22.028771952654687,
+              "seasonal_bias": 11.6,
+              "rmse_win": false
+            },
+            "2024": {
+              "n_origins": 12,
+              "model_rmse": 216.29598352829555,
+              "seasonal_rmse": 240.47557048482076,
+              "delta_rmse_pct_vs_seasonal": -10.05490366766859,
+              "model_mae": 200.47476350982484,
+              "seasonal_mae": 234.0,
+              "delta_mae_pct_vs_seasonal": -14.327024141100498,
+              "model_bias": -200.47476350982484,
+              "seasonal_bias": -234.0,
+              "rmse_win": true
+            },
+            "2025": {
+              "n_origins": 12,
+              "model_rmse": 91.90038247295941,
+              "seasonal_rmse": 106.30929717887643,
+              "delta_rmse_pct_vs_seasonal": -13.553767251111193,
+              "model_mae": 79.12203190236237,
+              "seasonal_mae": 80.83333333333333,
+              "delta_mae_pct_vs_seasonal": -2.1170739352218138,
+              "model_bias": -33.84267094825096,
+              "seasonal_bias": -69.83333333333333,
+              "rmse_win": true
+            },
+            "2026": {
+              "n_origins": 2,
+              "model_rmse": 38.93547558340189,
+              "seasonal_rmse": 25.894014752448104,
+              "delta_rmse_pct_vs_seasonal": 50.36476944820154,
+              "model_mae": 33.3793492214819,
+              "seasonal_mae": 25.5,
+              "delta_mae_pct_vs_seasonal": 30.899408711693745,
+              "model_bias": 33.3793492214819,
+              "seasonal_bias": 4.5,
+              "rmse_win": false
+            }
+          }
+        },
+        "rates_25_29_lag2": {
+          "overall": {
+            "n_origins": 31,
+            "first_origin": "2023M08",
+            "last_origin": "2026M02",
+            "rmse": 144.20807854436572,
+            "seasonal_rmse": 164.53933738892684,
+            "delta_rmse_pct_vs_seasonal": -12.356473027786341,
+            "mae": 114.53224866780836,
+            "seasonal_mae": 128.09677419354838,
+            "delta_mae_pct_vs_seasonal": -10.589279559253107,
+            "bias": -80.7912298080715,
+            "seasonal_bias": -115.45161290322581,
+            "median_abs_error": 91.42919263417252,
+            "seasonal_median_abs_error": 117.0,
+            "origin_abs_error_win_rate": 0.5806451612903226,
+            "origin_abs_error_wins": 18,
+            "origin_abs_error_ties": 0,
+            "year_rmse_wins": 3,
+            "year_count": 4,
+            "loo_best_delta_rmse_pct": {
+              "origin": "2024M06",
+              "delta_rmse_pct_vs_seasonal_without_origin": -14.778673520902508
+            },
+            "loo_worst_delta_rmse_pct": {
+              "origin": "2024M10",
+              "delta_rmse_pct_vs_seasonal_without_origin": -10.691568394202777
+            },
+            "loo_all_still_better_than_seasonal": true
+          },
+          "by_origin_year": {
+            "2023": {
+              "n_origins": 5,
+              "model_rmse": 36.37311156075138,
+              "seasonal_rmse": 40.904767448306075,
+              "delta_rmse_pct_vs_seasonal": -11.078551890758526,
+              "model_mae": 29.45290723788594,
+              "seasonal_mae": 28.4,
+              "delta_mae_pct_vs_seasonal": 3.707419851711058,
+              "model_bias": 7.977950443932241,
+              "seasonal_bias": 11.6,
+              "rmse_win": true
+            },
+            "2024": {
+              "n_origins": 12,
+              "model_rmse": 208.98007773375616,
+              "seasonal_rmse": 240.47557048482076,
+              "delta_rmse_pct_vs_seasonal": -13.097169366338047,
+              "model_mae": 189.94890974814075,
+              "seasonal_mae": 234.0,
+              "delta_mae_pct_vs_seasonal": -18.825252244384295,
+              "model_bias": -189.94890974814075,
+              "seasonal_bias": -234.0,
+              "rmse_win": true
+            },
+            "2025": {
+              "n_origins": 12,
+              "model_rmse": 95.19457700904564,
+              "seasonal_rmse": 106.30929717887643,
+              "delta_rmse_pct_vs_seasonal": -10.455078214964697,
+              "model_mae": 87.37719971767045,
+              "seasonal_mae": 80.83333333333333,
+              "delta_mae_pct_vs_seasonal": 8.095504805365517,
+              "model_bias": -27.868064238844358,
+              "seasonal_bias": -69.83333333333333,
+              "rmse_win": true
+            },
+            "2026": {
+              "n_origins": 2,
+              "model_rmse": 51.20491499693975,
+              "seasonal_rmse": 25.894014752448104,
+              "delta_rmse_pct_vs_seasonal": 97.74807223394615,
+              "model_mae": 37.66092946144772,
+              "seasonal_mae": 25.5,
+              "delta_mae_pct_vs_seasonal": 47.68991945665773,
+              "model_bias": 34.69290578697155,
+              "seasonal_bias": 4.5,
+              "rmse_win": false
+            }
+          }
+        }
+      },
+      "30.0": {
+        "rates_25_29_lag1": {
+          "overall": {
+            "n_origins": 31,
+            "first_origin": "2023M08",
+            "last_origin": "2026M02",
+            "rmse": 153.71369780063893,
+            "seasonal_rmse": 164.53933738892684,
+            "delta_rmse_pct_vs_seasonal": -6.579362576803749,
+            "mae": 119.08375361991193,
+            "seasonal_mae": 128.09677419354838,
+            "delta_mae_pct_vs_seasonal": -7.036102689063961,
+            "bias": -91.54884708973152,
+            "seasonal_bias": -115.45161290322581,
+            "median_abs_error": 89.71243156339233,
+            "seasonal_median_abs_error": 117.0,
+            "origin_abs_error_win_rate": 0.5483870967741935,
+            "origin_abs_error_wins": 17,
+            "origin_abs_error_ties": 0,
+            "year_rmse_wins": 2,
+            "year_count": 4,
+            "loo_best_delta_rmse_pct": {
+              "origin": "2024M05",
+              "delta_rmse_pct_vs_seasonal_without_origin": -8.924327198858462
+            },
+            "loo_worst_delta_rmse_pct": {
+              "origin": "2025M09",
+              "delta_rmse_pct_vs_seasonal_without_origin": -5.102181624838343
+            },
+            "loo_all_still_better_than_seasonal": true
+          },
+          "by_origin_year": {
+            "2023": {
+              "n_origins": 5,
+              "model_rmse": 41.511472643111,
+              "seasonal_rmse": 40.904767448306075,
+              "delta_rmse_pct_vs_seasonal": 1.4832138957192598,
+              "model_mae": 28.304955819185487,
+              "seasonal_mae": 28.4,
+              "delta_mae_pct_vs_seasonal": -0.3346626085018012,
+              "model_bias": 11.325624895321472,
+              "seasonal_bias": 11.6,
+              "rmse_win": false
+            },
+            "2024": {
+              "n_origins": 12,
+              "model_rmse": 228.68314833128272,
+              "seasonal_rmse": 240.47557048482076,
+              "delta_rmse_pct_vs_seasonal": -4.9037921522603884,
+              "model_mae": 215.17839964859434,
+              "seasonal_mae": 234.0,
+              "delta_mae_pct_vs_seasonal": -8.043418953592163,
+              "model_bias": -215.17839964859434,
+              "seasonal_bias": -234.0,
+              "rmse_win": true
+            },
+            "2025": {
+              "n_origins": 12,
+              "model_rmse": 87.93303078797615,
+              "seasonal_rmse": 106.30929717887643,
+              "delta_rmse_pct_vs_seasonal": -17.285662570019923,
+              "model_mae": 74.61108709815007,
+              "seasonal_mae": 80.83333333333333,
+              "delta_mae_pct_vs_seasonal": -7.69762420847414,
+              "model_bias": -32.09161088629683,
+              "seasonal_bias": -69.83333333333333,
+              "rmse_win": true
+            },
+            "2026": {
+              "n_origins": 2,
+              "model_rmse": 41.895781540224114,
+              "seasonal_rmse": 25.894014752448104,
+              "delta_rmse_pct_vs_seasonal": 61.7971640966303,
+              "model_mae": 36.298871080204776,
+              "seasonal_mae": 25.5,
+              "delta_mae_pct_vs_seasonal": 42.348514040018735,
+              "model_bias": 36.298871080204776,
+              "seasonal_bias": 4.5,
+              "rmse_win": false
+            }
+          }
+        },
+        "rates_25_29_lag2": {
+          "overall": {
+            "n_origins": 31,
+            "first_origin": "2023M08",
+            "last_origin": "2026M02",
+            "rmse": 151.33965795637823,
+            "seasonal_rmse": 164.53933738892684,
+            "delta_rmse_pct_vs_seasonal": -8.022202861646456,
+            "mae": 119.51365168379205,
+            "seasonal_mae": 128.09677419354838,
+            "delta_mae_pct_vs_seasonal": -6.700498559618396,
+            "bias": -88.9899746800754,
+            "seasonal_bias": -115.45161290322581,
+            "median_abs_error": 87.16502269893726,
+            "seasonal_median_abs_error": 117.0,
+            "origin_abs_error_win_rate": 0.5806451612903226,
+            "origin_abs_error_wins": 18,
+            "origin_abs_error_ties": 0,
+            "year_rmse_wins": 3,
+            "year_count": 4,
+            "loo_best_delta_rmse_pct": {
+              "origin": "2024M06",
+              "delta_rmse_pct_vs_seasonal_without_origin": -10.043070525369957
+            },
+            "loo_worst_delta_rmse_pct": {
+              "origin": "2025M08",
+              "delta_rmse_pct_vs_seasonal_without_origin": -6.6308157810159525
+            },
+            "loo_all_still_better_than_seasonal": true
+          },
+          "by_origin_year": {
+            "2023": {
+              "n_origins": 5,
+              "model_rmse": 38.6982902054869,
+              "seasonal_rmse": 40.904767448306075,
+              "delta_rmse_pct_vs_seasonal": -5.394181119860031,
+              "model_mae": 32.87552438796738,
+              "seasonal_mae": 28.4,
+              "delta_mae_pct_vs_seasonal": 15.758888690025996,
+              "model_bias": 0.07578045137051959,
+              "seasonal_bias": 11.6,
+              "rmse_win": true
+            },
+            "2024": {
+              "n_origins": 12,
+              "model_rmse": 223.26979142785893,
+              "seasonal_rmse": 240.47557048482076,
+              "delta_rmse_pct_vs_seasonal": -7.154896866352534,
+              "model_mae": 207.3366813545293,
+              "seasonal_mae": 234.0,
+              "delta_mae_pct_vs_seasonal": -11.394580617722516,
+              "model_bias": -207.3366813545293,
+              "seasonal_bias": -234.0,
+              "rmse_win": true
+            },
+            "2025": {
+              "n_origins": 12,
+              "model_rmse": 90.8750439694853,
+              "seasonal_rmse": 106.30929717887643,
+              "delta_rmse_pct_vs_seasonal": -14.518253453807894,
+              "model_mae": 81.51441984606146,
+              "seasonal_mae": 80.83333333333333,
+              "delta_mae_pct_vs_seasonal": 0.8425812528595422,
+              "model_bias": -28.78002557795554,
+              "seasonal_bias": -69.83333333333333,
+              "rmse_win": true
+            },
+            "2026": {
+              "n_origins": 2,
+              "model_rmse": 51.15948244692056,
+              "seasonal_rmse": 25.894014752448104,
+              "delta_rmse_pct_vs_seasonal": 97.57261643671451,
+              "model_mae": 37.16618292531382,
+              "seasonal_mae": 25.5,
+              "delta_mae_pct_vs_seasonal": 45.749736962014985,
+              "model_bias": 37.16618292531382,
+              "seasonal_bias": 4.5,
+              "rmse_win": false
+            }
+          }
+        }
+      }
+    },
+    "9": {
+      "3.0": {
+        "rates_25_29_lag1": {
+          "overall": {
+            "n_origins": 25,
+            "first_origin": "2023M11",
+            "last_origin": "2025M11",
+            "rmse": 200.61130714188155,
+            "seasonal_rmse": 243.0316851770567,
+            "delta_rmse_pct_vs_seasonal": -17.454669749860173,
+            "mae": 166.4189299670165,
+            "seasonal_mae": 207.6,
+            "delta_mae_pct_vs_seasonal": -19.83673893688993,
+            "bias": -135.64472574726017,
+            "seasonal_bias": -207.6,
+            "median_abs_error": 118.6047276511963,
+            "seasonal_median_abs_error": 206.0,
+            "origin_abs_error_win_rate": 0.72,
+            "origin_abs_error_wins": 18,
+            "origin_abs_error_ties": 0,
+            "year_rmse_wins": 3,
+            "year_count": 3,
+            "loo_best_delta_rmse_pct": {
+              "origin": "2024M05",
+              "delta_rmse_pct_vs_seasonal_without_origin": -20.598651736963745
+            },
+            "loo_worst_delta_rmse_pct": {
+              "origin": "2024M10",
+              "delta_rmse_pct_vs_seasonal_without_origin": -16.14920945703473
+            },
+            "loo_all_still_better_than_seasonal": true
+          },
+          "by_origin_year": {
+            "2023": {
+              "n_origins": 2,
+              "model_rmse": 185.93735264672088,
+              "seasonal_rmse": 246.37065572019733,
+              "delta_rmse_pct_vs_seasonal": -24.529424130002898,
+              "model_mae": 185.38700797375668,
+              "seasonal_mae": 243.5,
+              "delta_mae_pct_vs_seasonal": -23.865705144247773,
+              "model_bias": -185.38700797375668,
+              "seasonal_bias": -243.5,
+              "rmse_win": true
+            },
+            "2024": {
+              "n_origins": 12,
+              "model_rmse": 263.5000527387942,
+              "seasonal_rmse": 313.59687498442963,
+              "delta_rmse_pct_vs_seasonal": -15.97491118115345,
+              "model_mae": 237.72601273040013,
+              "seasonal_mae": 291.3333333333333,
+              "delta_mae_pct_vs_seasonal": -18.400682129153267,
+              "model_bias": -220.97759652733535,
+              "seasonal_bias": -291.3333333333333,
+              "rmse_win": true
+            },
+            "2025": {
+              "n_origins": 11,
+              "model_rmse": 97.13611915556656,
+              "seasonal_rmse": 126.16619630831822,
+              "delta_rmse_pct_vs_seasonal": -23.009393959860304,
+              "model_mae": 85.18064367846343,
+              "seasonal_mae": 109.72727272727273,
+              "delta_mae_pct_vs_seasonal": -22.370581568923143,
+              "model_bias": -33.51026994599699,
+              "seasonal_bias": -109.72727272727273,
+              "rmse_win": true
+            }
+          }
+        },
+        "rates_25_29_lag2": {
+          "overall": {
+            "n_origins": 25,
+            "first_origin": "2023M11",
+            "last_origin": "2025M11",
+            "rmse": 201.65520803786848,
+            "seasonal_rmse": 243.0316851770567,
+            "delta_rmse_pct_vs_seasonal": -17.02513691128137,
+            "mae": 170.62400531075866,
+            "seasonal_mae": 207.6,
+            "delta_mae_pct_vs_seasonal": -17.81117277901798,
+            "bias": -126.65908508353372,
+            "seasonal_bias": -207.6,
+            "median_abs_error": 134.61538766214107,
+            "seasonal_median_abs_error": 206.0,
+            "origin_abs_error_win_rate": 0.76,
+            "origin_abs_error_wins": 19,
+            "origin_abs_error_ties": 0,
+            "year_rmse_wins": 3,
+            "year_count": 3,
+            "loo_best_delta_rmse_pct": {
+              "origin": "2024M06",
+              "delta_rmse_pct_vs_seasonal_without_origin": -19.940918624236293
+            },
+            "loo_worst_delta_rmse_pct": {
+              "origin": "2024M10",
+              "delta_rmse_pct_vs_seasonal_without_origin": -15.689229513827396
+            },
+            "loo_all_still_better_than_seasonal": true
+          },
+          "by_origin_year": {
+            "2023": {
+              "n_origins": 2,
+              "model_rmse": 222.708541285441,
+              "seasonal_rmse": 246.37065572019733,
+              "delta_rmse_pct_vs_seasonal": -9.604274650967104,
+              "model_mae": 221.17341627380847,
+              "seasonal_mae": 243.5,
+              "delta_mae_pct_vs_seasonal": -9.16902822430864,
+              "model_bias": -221.17341627380847,
+              "seasonal_bias": -243.5,
+              "rmse_win": true
+            },
+            "2024": {
+              "n_origins": 12,
+              "model_rmse": 259.95058314534276,
+              "seasonal_rmse": 313.59687498442963,
+              "delta_rmse_pct_vs_seasonal": -17.10676863146371,
+              "model_mae": 236.01308207526282,
+              "seasonal_mae": 291.3333333333333,
+              "delta_mae_pct_vs_seasonal": -18.98864459659171,
+              "model_bias": -204.43032642974154,
+              "seasonal_bias": -291.3333333333333,
+              "rmse_win": true
+            },
+            "2025": {
+              "n_origins": 11,
+              "model_rmse": 98.41041905559561,
+              "seasonal_rmse": 126.16619630831822,
+              "delta_rmse_pct_vs_seasonal": -21.999377063642722,
+              "model_mae": 90.09966502892688,
+              "seasonal_mae": 109.72727272727273,
+              "delta_mae_pct_vs_seasonal": -17.887629219702106,
+              "model_bias": -24.633307034893402,
+              "seasonal_bias": -109.72727272727273,
+              "rmse_win": true
+            }
+          }
+        }
+      },
+      "10.0": {
+        "rates_25_29_lag1": {
+          "overall": {
+            "n_origins": 25,
+            "first_origin": "2023M11",
+            "last_origin": "2025M11",
+            "rmse": 207.84750389366675,
+            "seasonal_rmse": 243.0316851770567,
+            "delta_rmse_pct_vs_seasonal": -14.477199241636773,
+            "mae": 170.52671869034327,
+            "seasonal_mae": 207.6,
+            "delta_mae_pct_vs_seasonal": -17.85803531293676,
+            "bias": -144.36433287183803,
+            "seasonal_bias": -207.6,
+            "median_abs_error": 137.0969187683486,
+            "seasonal_median_abs_error": 206.0,
+            "origin_abs_error_win_rate": 0.84,
+            "origin_abs_error_wins": 21,
+            "origin_abs_error_ties": 0,
+            "year_rmse_wins": 3,
+            "year_count": 3,
+            "loo_best_delta_rmse_pct": {
+              "origin": "2024M05",
+              "delta_rmse_pct_vs_seasonal_without_origin": -17.299035506550954
+            },
+            "loo_worst_delta_rmse_pct": {
+              "origin": "2024M10",
+              "delta_rmse_pct_vs_seasonal_without_origin": -13.249181376963826
+            },
+            "loo_all_still_better_than_seasonal": true
+          },
+          "by_origin_year": {
+            "2023": {
+              "n_origins": 2,
+              "model_rmse": 200.2516253714726,
+              "seasonal_rmse": 246.37065572019733,
+              "delta_rmse_pct_vs_seasonal": -18.71936826807086,
+              "model_mae": 199.48774573409264,
+              "seasonal_mae": 243.5,
+              "delta_mae_pct_vs_seasonal": -18.0748477478059,
+              "model_bias": -199.48774573409264,
+              "seasonal_bias": -243.5,
+              "rmse_win": true
+            },
+            "2024": {
+              "n_origins": 12,
+              "model_rmse": 274.3871861813309,
+              "seasonal_rmse": 313.59687498442963,
+              "delta_rmse_pct_vs_seasonal": -12.50321413599722,
+              "model_mae": 248.91192381905702,
+              "seasonal_mae": 291.3333333333333,
+              "delta_mae_pct_vs_seasonal": -14.561124547234428,
+              "model_bias": -234.5243917401195,
+              "seasonal_bias": -291.3333333333333,
+              "rmse_win": true
+            },
+            "2025": {
+              "n_origins": 11,
+              "model_rmse": 93.59159813532327,
+              "seasonal_rmse": 126.16619630831822,
+              "delta_rmse_pct_vs_seasonal": -25.818800222359794,
+              "model_mae": 79.74994454197378,
+              "seasonal_mae": 109.72727272727273,
+              "delta_mae_pct_vs_seasonal": -27.319851701598054,
+              "model_bias": -35.985466313302865,
+              "seasonal_bias": -109.72727272727273,
+              "rmse_win": true
+            }
+          }
+        },
+        "rates_25_29_lag2": {
+          "overall": {
+            "n_origins": 25,
+            "first_origin": "2023M11",
+            "last_origin": "2025M11",
+            "rmse": 208.99086920978127,
+            "seasonal_rmse": 243.0316851770567,
+            "delta_rmse_pct_vs_seasonal": -14.006739879401142,
+            "mae": 174.69451219060218,
+            "seasonal_mae": 207.6,
+            "delta_mae_pct_vs_seasonal": -15.850427653852506,
+            "bias": -136.6524833226906,
+            "seasonal_bias": -207.6,
+            "median_abs_error": 133.4423711936297,
+            "seasonal_median_abs_error": 206.0,
+            "origin_abs_error_win_rate": 0.8,
+            "origin_abs_error_wins": 20,
+            "origin_abs_error_ties": 0,
+            "year_rmse_wins": 3,
+            "year_count": 3,
+            "loo_best_delta_rmse_pct": {
+              "origin": "2024M06",
+              "delta_rmse_pct_vs_seasonal_without_origin": -16.64370920557454
+            },
+            "loo_worst_delta_rmse_pct": {
+              "origin": "2025M08",
+              "delta_rmse_pct_vs_seasonal_without_origin": -12.652475294038911
+            },
+            "loo_all_still_better_than_seasonal": true
+          },
+          "by_origin_year": {
+            "2023": {
+              "n_origins": 2,
+              "model_rmse": 232.6259898685741,
+              "seasonal_rmse": 246.37065572019733,
+              "delta_rmse_pct_vs_seasonal": -5.578856707364144,
+              "model_mae": 230.88603062530228,
+              "seasonal_mae": 243.5,
+              "delta_mae_pct_vs_seasonal": -5.180274897206449,
+              "model_bias": -230.88603062530228,
+              "seasonal_bias": -243.5,
+              "rmse_win": true
+            },
+            "2024": {
+              "n_origins": 12,
+              "model_rmse": 271.4503512598075,
+              "seasonal_rmse": 313.59687498442963,
+              "delta_rmse_pct_vs_seasonal": -13.43971419572173,
+              "model_mae": 246.00126183381022,
+              "seasonal_mae": 291.3333333333333,
+              "delta_mae_pct_vs_seasonal": -15.56020760853195,
+              "model_bias": -220.34765309905015,
+              "seasonal_bias": -291.3333333333333,
+              "rmse_win": true
+            },
+            "2025": {
+              "n_origins": 11,
+              "model_rmse": 95.09629789799904,
+              "seasonal_rmse": 126.16619630831822,
+              "delta_rmse_pct_vs_seasonal": -24.626167166355895,
+              "model_mae": 86.68869104624792,
+              "seasonal_mae": 109.72727272727273,
+              "delta_mae_pct_vs_seasonal": -20.99622191311291,
+              "model_bias": -28.215289511641707,
+              "seasonal_bias": -109.72727272727273,
+              "rmse_win": true
+            }
+          }
+        }
+      },
+      "30.0": {
+        "rates_25_29_lag1": {
+          "overall": {
+            "n_origins": 25,
+            "first_origin": "2023M11",
+            "last_origin": "2025M11",
+            "rmse": 222.8132994074286,
+            "seasonal_rmse": 243.0316851770567,
+            "delta_rmse_pct_vs_seasonal": -8.319238602529676,
+            "mae": 179.24112611349221,
+            "seasonal_mae": 207.6,
+            "delta_mae_pct_vs_seasonal": -13.66034387596714,
+            "bias": -161.89447828302085,
+            "seasonal_bias": -207.6,
+            "median_abs_error": 141.6499893965024,
+            "seasonal_median_abs_error": 206.0,
+            "origin_abs_error_win_rate": 0.88,
+            "origin_abs_error_wins": 22,
+            "origin_abs_error_ties": 0,
+            "year_rmse_wins": 3,
+            "year_count": 3,
+            "loo_best_delta_rmse_pct": {
+              "origin": "2024M05",
+              "delta_rmse_pct_vs_seasonal_without_origin": -10.5726117037092
+            },
+            "loo_worst_delta_rmse_pct": {
+              "origin": "2024M10",
+              "delta_rmse_pct_vs_seasonal_without_origin": -7.282788890464797
+            },
+            "loo_all_still_better_than_seasonal": true
+          },
+          "by_origin_year": {
+            "2023": {
+              "n_origins": 2,
+              "model_rmse": 226.39111507257135,
+              "seasonal_rmse": 246.37065572019733,
+              "delta_rmse_pct_vs_seasonal": -8.109545590655365,
+              "model_mae": 225.1494476013654,
+              "seasonal_mae": 243.5,
+              "delta_mae_pct_vs_seasonal": -7.536161149336584,
+              "model_bias": -225.1494476013654,
+              "seasonal_bias": -243.5,
+              "rmse_win": true
+            },
+            "2024": {
+              "n_origins": 12,
+              "model_rmse": 296.157736936775,
+              "seasonal_rmse": 313.59687498442963,
+              "delta_rmse_pct_vs_seasonal": -5.561005047808754,
+              "model_mae": 270.1904339417251,
+              "seasonal_mae": 291.3333333333333,
+              "delta_mae_pct_vs_seasonal": -7.257288120689331,
+              "model_bias": -260.5372237204567,
+              "seasonal_bias": -291.3333333333333,
+              "rmse_win": true
+            },
+            "2025": {
+              "n_origins": 11,
+              "model_rmse": 88.48493661371336,
+              "seasonal_rmse": 126.16619630831822,
+              "delta_rmse_pct_vs_seasonal": -29.86636737666356,
+              "model_mae": 71.67673184853393,
+              "seasonal_mae": 109.72727272727273,
+              "delta_mae_pct_vs_seasonal": -34.677377768527485,
+              "model_bias": -42.78330702066453,
+              "seasonal_bias": -109.72727272727273,
+              "rmse_win": true
+            }
+          }
+        },
+        "rates_25_29_lag2": {
+          "overall": {
+            "n_origins": 25,
+            "first_origin": "2023M11",
+            "last_origin": "2025M11",
+            "rmse": 223.7936021653952,
+            "seasonal_rmse": 243.0316851770567,
+            "delta_rmse_pct_vs_seasonal": -7.915874425034697,
+            "mae": 182.6833184180979,
+            "seasonal_mae": 207.6,
+            "delta_mae_pct_vs_seasonal": -12.002255097255343,
+            "bias": -156.17066531410578,
+            "seasonal_bias": -207.6,
+            "median_abs_error": 140.93990701657185,
+            "seasonal_median_abs_error": 206.0,
+            "origin_abs_error_win_rate": 0.76,
+            "origin_abs_error_wins": 19,
+            "origin_abs_error_ties": 0,
+            "year_rmse_wins": 2,
+            "year_count": 3,
+            "loo_best_delta_rmse_pct": {
+              "origin": "2024M06",
+              "delta_rmse_pct_vs_seasonal_without_origin": -10.022989757635026
+            },
+            "loo_worst_delta_rmse_pct": {
+              "origin": "2025M08",
+              "delta_rmse_pct_vs_seasonal_without_origin": -6.5303258542212195
+            },
+            "loo_all_still_better_than_seasonal": true
+          },
+          "by_origin_year": {
+            "2023": {
+              "n_origins": 2,
+              "model_rmse": 250.20484956105187,
+              "seasonal_rmse": 246.37065572019733,
+              "delta_rmse_pct_vs_seasonal": 1.5562705021205936,
+              "model_mae": 248.14070948010408,
+              "seasonal_mae": 243.5,
+              "delta_mae_pct_vs_seasonal": 1.905835515443144,
+              "model_bias": -248.14070948010408,
+              "seasonal_bias": -243.5,
+              "rmse_win": false
+            },
+            "2024": {
+              "n_origins": 12,
+              "model_rmse": 294.0479389043402,
+              "seasonal_rmse": 313.59687498442963,
+              "delta_rmse_pct_vs_seasonal": -6.233778981713412,
+              "model_mae": 265.95373992265337,
+              "seasonal_mae": 291.3333333333333,
+              "delta_mae_pct_vs_seasonal": -8.71153091899769,
+              "model_bias": -250.33976806966118,
+              "seasonal_bias": -291.3333333333333,
+              "rmse_win": true
+            },
+            "2025": {
+              "n_origins": 11,
+              "model_rmse": 90.10811247892237,
+              "seasonal_rmse": 126.16619630831822,
+              "delta_rmse_pct_vs_seasonal": -28.57982952999474,
+              "model_mae": 79.94151476549091,
+              "seasonal_mae": 109.72727272727273,
+              "delta_mae_pct_vs_seasonal": -27.145264091101907,
+              "model_bias": -36.71890882331838,
+              "seasonal_bias": -109.72727272727273,
+              "rmse_win": true
+            }
+          }
+        }
+      }
+    },
+    "12": {
+      "3.0": {
+        "rates_25_29_lag1": {
+          "overall": {
+            "n_origins": 19,
+            "first_origin": "2024M02",
+            "last_origin": "2025M08",
+            "rmse": 264.1883521419831,
+            "seasonal_rmse": 295.3477878526834,
+            "delta_rmse_pct_vs_seasonal": -10.550082645698467,
+            "mae": 210.19072700617645,
+            "seasonal_mae": 253.89473684210526,
+            "delta_mae_pct_vs_seasonal": -17.213436709839293,
+            "bias": -172.91693255224078,
+            "seasonal_bias": -253.89473684210526,
+            "median_abs_error": 141.7510573942527,
+            "seasonal_median_abs_error": 180.0,
+            "origin_abs_error_win_rate": 0.7368421052631579,
+            "origin_abs_error_wins": 14,
+            "origin_abs_error_ties": 0,
+            "year_rmse_wins": 2,
+            "year_count": 2,
+            "loo_best_delta_rmse_pct": {
+              "origin": "2024M05",
+              "delta_rmse_pct_vs_seasonal_without_origin": -13.606323063844805
+            },
+            "loo_worst_delta_rmse_pct": {
+              "origin": "2024M10",
+              "delta_rmse_pct_vs_seasonal_without_origin": -9.127457450896525
+            },
+            "loo_all_still_better_than_seasonal": true
+          },
+          "by_origin_year": {
+            "2024": {
+              "n_origins": 11,
+              "model_rmse": 326.0968243467229,
+              "seasonal_rmse": 367.9213107569211,
+              "delta_rmse_pct_vs_seasonal": -11.367780334374523,
+              "model_mae": 272.6976419974764,
+              "seasonal_mae": 339.0,
+              "delta_mae_pct_vs_seasonal": -19.55821769985947,
+              "model_bias": -272.6976419974764,
+              "seasonal_bias": -339.0,
+              "rmse_win": true
+            },
+            "2025": {
+              "n_origins": 8,
+              "model_rmse": 139.8140262112678,
+              "seasonal_rmse": 145.06420992098637,
+              "delta_rmse_pct_vs_seasonal": -3.619213665850629,
+              "model_mae": 124.24371889313898,
+              "seasonal_mae": 136.875,
+              "delta_mae_pct_vs_seasonal": -9.228333228756913,
+              "model_bias": -35.718457065041775,
+              "seasonal_bias": -136.875,
+              "rmse_win": true
+            }
+          }
+        },
+        "rates_25_29_lag2": {
+          "overall": {
+            "n_origins": 19,
+            "first_origin": "2024M02",
+            "last_origin": "2025M08",
+            "rmse": 264.593938955153,
+            "seasonal_rmse": 295.3477878526834,
+            "delta_rmse_pct_vs_seasonal": -10.412757488764424,
+            "mae": 208.22267959390265,
+            "seasonal_mae": 253.89473684210526,
+            "delta_mae_pct_vs_seasonal": -17.988579761937185,
+            "bias": -177.94081017851823,
+            "seasonal_bias": -253.89473684210526,
+            "median_abs_error": 146.68133025480802,
+            "seasonal_median_abs_error": 180.0,
+            "origin_abs_error_win_rate": 0.7894736842105263,
+            "origin_abs_error_wins": 15,
+            "origin_abs_error_ties": 0,
+            "year_rmse_wins": 2,
+            "year_count": 2,
+            "loo_best_delta_rmse_pct": {
+              "origin": "2024M06",
+              "delta_rmse_pct_vs_seasonal_without_origin": -13.643556754979958
+            },
+            "loo_worst_delta_rmse_pct": {
+              "origin": "2024M10",
+              "delta_rmse_pct_vs_seasonal_without_origin": -9.225087019276689
+            },
+            "loo_all_still_better_than_seasonal": true
+          },
+          "by_origin_year": {
+            "2024": {
+              "n_origins": 11,
+              "model_rmse": 330.65020721315716,
+              "seasonal_rmse": 367.9213107569211,
+              "delta_rmse_pct_vs_seasonal": -10.130183399022597,
+              "model_mae": 278.4541133839998,
+              "seasonal_mae": 339.0,
+              "delta_mae_pct_vs_seasonal": -17.86014354454283,
+              "model_bias": -278.4541133839998,
+              "seasonal_bias": -339.0,
+              "rmse_win": true
+            },
+            "2025": {
+              "n_origins": 8,
+              "model_rmse": 126.2754643988294,
+              "seasonal_rmse": 145.06420992098637,
+              "delta_rmse_pct_vs_seasonal": -12.95202002781446,
+              "model_mae": 111.65445813251904,
+              "seasonal_mae": 136.875,
+              "delta_mae_pct_vs_seasonal": -18.42596666117331,
+              "model_bias": -39.73501827098107,
+              "seasonal_bias": -136.875,
+              "rmse_win": true
+            }
+          }
+        }
+      },
+      "10.0": {
+        "rates_25_29_lag1": {
+          "overall": {
+            "n_origins": 19,
+            "first_origin": "2024M02",
+            "last_origin": "2025M08",
+            "rmse": 272.80400745724205,
+            "seasonal_rmse": 295.3477878526834,
+            "delta_rmse_pct_vs_seasonal": -7.632960639165498,
+            "mae": 217.85613691973614,
+            "seasonal_mae": 253.89473684210526,
+            "delta_mae_pct_vs_seasonal": -14.19430759794803,
+            "bias": -186.02607802860564,
+            "seasonal_bias": -253.89473684210526,
+            "median_abs_error": 147.95938501805358,
+            "seasonal_median_abs_error": 180.0,
+            "origin_abs_error_win_rate": 0.7894736842105263,
+            "origin_abs_error_wins": 15,
+            "origin_abs_error_ties": 0,
+            "year_rmse_wins": 2,
+            "year_count": 2,
+            "loo_best_delta_rmse_pct": {
+              "origin": "2024M05",
+              "delta_rmse_pct_vs_seasonal_without_origin": -10.375325928966085
+            },
+            "loo_worst_delta_rmse_pct": {
+              "origin": "2024M10",
+              "delta_rmse_pct_vs_seasonal_without_origin": -6.318368150075093
+            },
+            "loo_all_still_better_than_seasonal": true
+          },
+          "by_origin_year": {
+            "2024": {
+              "n_origins": 11,
+              "model_rmse": 339.4690952889573,
+              "seasonal_rmse": 367.9213107569211,
+              "delta_rmse_pct_vs_seasonal": -7.733233883470714,
+              "model_mae": 290.1315547418172,
+              "seasonal_mae": 339.0,
+              "delta_mae_pct_vs_seasonal": -14.415470577635048,
+              "model_bias": -290.1315547418172,
+              "seasonal_bias": -339.0,
+              "rmse_win": true
+            },
+            "2025": {
+              "n_origins": 8,
+              "model_rmse": 135.2712875994725,
+              "seasonal_rmse": 145.06420992098637,
+              "delta_rmse_pct_vs_seasonal": -6.750750117377602,
+              "model_mae": 118.47743741437466,
+              "seasonal_mae": 136.875,
+              "delta_mae_pct_vs_seasonal": -13.44114161506874,
+              "model_bias": -42.881047547939716,
+              "seasonal_bias": -136.875,
+              "rmse_win": true
+            }
+          }
+        },
+        "rates_25_29_lag2": {
+          "overall": {
+            "n_origins": 19,
+            "first_origin": "2024M02",
+            "last_origin": "2025M08",
+            "rmse": 274.0441213358392,
+            "seasonal_rmse": 295.3477878526834,
+            "delta_rmse_pct_vs_seasonal": -7.213078070342704,
+            "mae": 217.53995870913408,
+            "seasonal_mae": 253.89473684210526,
+            "delta_mae_pct_vs_seasonal": -14.31883881688334,
+            "bias": -191.03890059634648,
+            "seasonal_bias": -253.89473684210526,
+            "median_abs_error": 151.97116717464542,
+            "seasonal_median_abs_error": 180.0,
+            "origin_abs_error_win_rate": 0.7368421052631579,
+            "origin_abs_error_wins": 14,
+            "origin_abs_error_ties": 0,
+            "year_rmse_wins": 2,
+            "year_count": 2,
+            "loo_best_delta_rmse_pct": {
+              "origin": "2024M06",
+              "delta_rmse_pct_vs_seasonal_without_origin": -10.111635093465466
+            },
+            "loo_worst_delta_rmse_pct": {
+              "origin": "2025M08",
+              "delta_rmse_pct_vs_seasonal_without_origin": -6.077399216967139
+            },
+            "loo_all_still_better_than_seasonal": true
+          },
+          "by_origin_year": {
+            "2024": {
+              "n_origins": 11,
+              "model_rmse": 344.40790918837706,
+              "seasonal_rmse": 367.9213107569211,
+              "delta_rmse_pct_vs_seasonal": -6.390877853791654,
+              "model_mae": 295.4726204874897,
+              "seasonal_mae": 339.0,
+              "delta_mae_pct_vs_seasonal": -12.839934959442578,
+              "model_bias": -295.4726204874897,
+              "seasonal_bias": -339.0,
+              "rmse_win": true
+            },
+            "2025": {
+              "n_origins": 8,
+              "model_rmse": 123.55087075234817,
+              "seasonal_rmse": 145.06420992098637,
+              "delta_rmse_pct_vs_seasonal": -14.830218411802676,
+              "model_mae": 110.3825487638951,
+              "seasonal_mae": 136.875,
+              "delta_mae_pct_vs_seasonal": -19.355215514962488,
+              "model_bias": -47.44253574602453,
+              "seasonal_bias": -136.875,
+              "rmse_win": true
+            }
+          }
+        }
+      },
+      "30.0": {
+        "rates_25_29_lag1": {
+          "overall": {
+            "n_origins": 19,
+            "first_origin": "2024M02",
+            "last_origin": "2025M08",
+            "rmse": 290.2415121200905,
+            "seasonal_rmse": 295.3477878526834,
+            "delta_rmse_pct_vs_seasonal": -1.7289026505727056,
+            "mae": 232.92034318195434,
+            "seasonal_mae": 253.89473684210526,
+            "delta_mae_pct_vs_seasonal": -8.261058862828929,
+            "bias": -211.12060357248527,
+            "seasonal_bias": -253.89473684210526,
+            "median_abs_error": 164.27768091117196,
+            "seasonal_median_abs_error": 180.0,
+            "origin_abs_error_win_rate": 0.631578947368421,
+            "origin_abs_error_wins": 12,
+            "origin_abs_error_ties": 0,
+            "year_rmse_wins": 2,
+            "year_count": 2,
+            "loo_best_delta_rmse_pct": {
+              "origin": "2024M05",
+              "delta_rmse_pct_vs_seasonal_without_origin": -3.904193244219145
+            },
+            "loo_worst_delta_rmse_pct": {
+              "origin": "2024M10",
+              "delta_rmse_pct_vs_seasonal_without_origin": -0.6855619053704132
+            },
+            "loo_all_still_better_than_seasonal": true
+          },
+          "by_origin_year": {
+            "2024": {
+              "n_origins": 11,
+              "model_rmse": 365.43920096597947,
+              "seasonal_rmse": 367.9213107569211,
+              "delta_rmse_pct_vs_seasonal": -0.6746306121369394,
+              "model_mae": 322.4341013337266,
+              "seasonal_mae": 339.0,
+              "delta_mae_pct_vs_seasonal": -4.8866957717620725,
+              "model_bias": -322.4341013337266,
+              "seasonal_bias": -339.0,
+              "rmse_win": true
+            },
+            "2025": {
+              "n_origins": 8,
+              "model_rmse": 128.23740979536117,
+              "seasonal_rmse": 145.06420992098637,
+              "delta_rmse_pct_vs_seasonal": -11.5995531460106,
+              "model_mae": 109.83892572326761,
+              "seasonal_mae": 136.875,
+              "delta_mae_pct_vs_seasonal": -19.752383033229147,
+              "model_bias": -58.06454415077849,
+              "seasonal_bias": -136.875,
+              "rmse_win": true
+            }
+          }
+        },
+        "rates_25_29_lag2": {
+          "overall": {
+            "n_origins": 19,
+            "first_origin": "2024M02",
+            "last_origin": "2025M08",
+            "rmse": 292.0485224816505,
+            "seasonal_rmse": 295.3477878526834,
+            "delta_rmse_pct_vs_seasonal": -1.1170780709143346,
+            "mae": 235.2003581207116,
+            "seasonal_mae": 253.89473684210526,
+            "delta_mae_pct_vs_seasonal": -7.36304302874129,
+            "bias": -215.50994320922132,
+            "seasonal_bias": -253.89473684210526,
+            "median_abs_error": 155.58011996448022,
+            "seasonal_median_abs_error": 180.0,
+            "origin_abs_error_win_rate": 0.5789473684210527,
+            "origin_abs_error_wins": 11,
+            "origin_abs_error_ties": 0,
+            "year_rmse_wins": 1,
+            "year_count": 2,
+            "loo_best_delta_rmse_pct": {
+              "origin": "2024M06",
+              "delta_rmse_pct_vs_seasonal_without_origin": -3.3941175737780105
+            },
+            "loo_worst_delta_rmse_pct": {
+              "origin": "2025M08",
+              "delta_rmse_pct_vs_seasonal_without_origin": 0.03326175595621539
+            },
+            "loo_all_still_better_than_seasonal": false
+          },
+          "by_origin_year": {
+            "2024": {
+              "n_origins": 11,
+              "model_rmse": 369.9981601218936,
+              "seasonal_rmse": 367.9213107569211,
+              "delta_rmse_pct_vs_seasonal": 0.5644819433535453,
+              "model_mae": 326.78923711584554,
+              "seasonal_mae": 339.0,
+              "delta_mae_pct_vs_seasonal": -3.6019949510780136,
+              "model_bias": -326.78923711584554,
+              "seasonal_bias": -339.0,
+              "rmse_win": false
+            },
+            "2025": {
+              "n_origins": 8,
+              "model_rmse": 119.72334085357822,
+              "seasonal_rmse": 145.06420992098637,
+              "delta_rmse_pct_vs_seasonal": -17.468725801636964,
+              "model_mae": 109.26564950240243,
+              "seasonal_mae": 136.875,
+              "delta_mae_pct_vs_seasonal": -20.171214975413754,
+              "model_bias": -62.50091408761307,
+              "seasonal_bias": -136.875,
+              "rmse_win": true
+            }
+          }
+        }
+      }
+    }
+  }
+}
