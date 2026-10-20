@@ -1,0 +1,35 @@
+{
+  "status": "outmigration_calendar_year_integration_diagnostic",
+  "production_changed": false,
+  "annual_outmigration_blend_changed": false,
+  "monthly_module_promoted": false,
+  "promotion_allowed": false,
+  "reason": "Only one calendar-year-aligned monthly origin is available after the 24-month minimum training requirement.",
+  "aligned_origin_count": 1,
+  "annual_2025": {
+    "specification": "0.25 * lag1-only 3y + 0.75 * lag1-only 10y",
+    "forecast_rate_per_1000": 46.69586824075678,
+    "outcome_2025_read_in_annual_freeze": false,
+    "outcome_2025_queried_in_annual_freeze": false
+  },
+  "monthly_2025": {
+    "origin": "2024M12",
+    "target_start": "2025M01",
+    "target_end": "2025M12",
+    "forecast_count_w12": 3632.168471162562,
+    "actual_count_from_monthly_scb": 3576.0,
+    "error_count": 56.16847116256213,
+    "seasonal_count": 3666.0,
+    "seasonal_error": 90.0
+  },
+  "monthly_target_check": {
+    "months_available_2025": 12,
+    "sum_all_outmigrations_2025": 3576.0
+  },
+  "decision": "keep annual model and monthly rolling-12m module separate until more calendar-year-aligned origins exist",
+  "usage": {
+    "annual_model": "calendar-year forecast",
+    "monthly_module": "rolling next-12-month short-term signal/nowcast",
+    "do_not_add_directly": true
+  }
+}
