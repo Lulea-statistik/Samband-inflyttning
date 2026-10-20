@@ -83,11 +83,13 @@ def choose_out_alpha(tr):
     return min(scores,key=lambda x:(x[0],-x[1]))[1]
 
 def outflow_forecast(year):
-    lu=q[q.year.eq(year)&q.kommun_kod.eq("2580")]
+    # Use the full panel history for the promoted outflow model.
+    # Do not truncate its 10y training window to the shorter birth/death target history.
+    lu=p[p.year.eq(year)&p.kommun_kod.eq("2580")]
     if len(lu)!=1:return None
     preds=[]
     for w in [3,10]:
-        tr=q[q.year.isin(range(year-w,year))].dropna(subset=OUT_FEATURE+["utflyttning_per_1000"]).copy()
+        tr=p[p.year.isin(range(year-w,year))].dropna(subset=OUT_FEATURE+["utflyttning_per_1000"]).copy()
         if len(tr)!=290*w:return None
         a=choose_out_alpha(tr)
         m=model(a);m.fit(tr[OUT_FEATURE],tr["utflyttning_per_1000"])
@@ -160,6 +162,7 @@ out={
    "balance_residual":"rolling mean previous 3 observed accounting residuals"
  },
  "rate_to_count_exposure":"population at Y-1",
+ "outflow_training_source":"full panel.csv history; not truncated by demographic target join",
  "observed_migration_used_in_forecast":False,
  "first_year":int(r.year.min()),"last_year":int(r.year.max()),"n_years":int(len(r)),
  "rmse_persons":float(np.sqrt(np.mean(e*e))),
