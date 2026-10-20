@@ -1,0 +1,32 @@
+name: Build current rolling 12-month outmigration forecast
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/build_outmigration_monthly_12m_current_forecast.py
+      - .github/workflows/build_outmigration_monthly_12m_current_forecast.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  forecast:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy scikit-learn
+      - run: python scripts/build_outmigration_monthly_12m_current_forecast.py
+      - name: Commit forecast
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/outmigration_monthly_12m_current_forecast.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Build current rolling 12-month outmigration forecast"
+          git pull --rebase origin main
+          git push origin HEAD:main
