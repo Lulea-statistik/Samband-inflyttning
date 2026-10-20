@@ -13,6 +13,13 @@
   ],
   "demographic_candidate_source": "demographic_scb_candidate_features.csv",
   "demographic_raw_candidates": [
+    "fodda_total",
+    "fodda_share_mor_15_24_pct",
+    "fodda_share_mor_25_29_pct",
+    "fodda_share_mor_30_34_pct",
+    "fodda_share_mor_35_39_pct",
+    "fodda_share_mor_40_plus_pct",
+    "medelalder_mor_vid_fodsel",
     "summerad_fruktsamhet_kvinnor",
     "doda_fodelsear_total",
     "doda_fodelsear_share_0_64_pct",
@@ -26,6 +33,13 @@
     "dodfodda_mor_35plus_share_pct"
   ],
   "demographic_lagged_candidates": [
+    "lag1_fodda_total",
+    "lag1_fodda_share_mor_15_24_pct",
+    "lag1_fodda_share_mor_25_29_pct",
+    "lag1_fodda_share_mor_30_34_pct",
+    "lag1_fodda_share_mor_35_39_pct",
+    "lag1_fodda_share_mor_40_plus_pct",
+    "lag1_medelalder_mor_vid_fodsel",
     "lag1_summerad_fruktsamhet_kvinnor",
     "lag1_doda_fodelsear_total",
     "lag1_doda_fodelsear_share_0_64_pct",
@@ -64,11 +78,18 @@
       ],
       "n_rows": 1450,
       "n_municipalities": 290,
-      "n_candidates": 68,
-      "rmse": 0.1021853792630386,
-      "mae": 0.07800688129614151,
-      "bias_actual_minus_prediction": 0.0002821249482843562,
+      "n_candidates": 75,
+      "rmse": 0.10216642386194667,
+      "mae": 0.07798274150122185,
+      "bias_actual_minus_prediction": 0.00031663672270838334,
       "eligible_demographic_candidates": [
+        "lag1_fodda_total",
+        "lag1_fodda_share_mor_15_24_pct",
+        "lag1_fodda_share_mor_25_29_pct",
+        "lag1_fodda_share_mor_30_34_pct",
+        "lag1_fodda_share_mor_35_39_pct",
+        "lag1_fodda_share_mor_40_plus_pct",
+        "lag1_medelalder_mor_vid_fodsel",
         "lag1_summerad_fruktsamhet_kvinnor",
         "lag1_doda_fodelsear_total",
         "lag1_doda_fodelsear_share_0_64_pct",
@@ -81,6 +102,55 @@
         "lag1_dodfodda_total"
       ],
       "demographic_candidate_coverage_by_year": {
+        "lag1_fodda_total": {
+          "2019": 290,
+          "2020": 290,
+          "2021": 290,
+          "2022": 290,
+          "2023": 290
+        },
+        "lag1_fodda_share_mor_15_24_pct": {
+          "2019": 290,
+          "2020": 290,
+          "2021": 290,
+          "2022": 290,
+          "2023": 290
+        },
+        "lag1_fodda_share_mor_25_29_pct": {
+          "2019": 290,
+          "2020": 290,
+          "2021": 290,
+          "2022": 290,
+          "2023": 290
+        },
+        "lag1_fodda_share_mor_30_34_pct": {
+          "2019": 290,
+          "2020": 290,
+          "2021": 290,
+          "2022": 290,
+          "2023": 290
+        },
+        "lag1_fodda_share_mor_35_39_pct": {
+          "2019": 290,
+          "2020": 290,
+          "2021": 290,
+          "2022": 290,
+          "2023": 290
+        },
+        "lag1_fodda_share_mor_40_plus_pct": {
+          "2019": 290,
+          "2020": 290,
+          "2021": 290,
+          "2022": 290,
+          "2023": 290
+        },
+        "lag1_medelalder_mor_vid_fodsel": {
+          "2019": 283,
+          "2020": 284,
+          "2021": 282,
+          "2022": 283,
+          "2023": 279
+        },
         "lag1_summerad_fruktsamhet_kvinnor": {
           "2019": 283,
           "2020": 284,
@@ -171,48 +241,51 @@
         "lag1_strand_hav_bostader_tatort_per_1000": 4,
         "lag1_fardigstallda_bostader_per_1000": 4,
         "lag1_strand_hav_bostader_per_1000": 3,
+        "lag1_fodda_share_mor_25_29_pct": 2,
+        "lag1_fodda_share_mor_40_plus_pct": 2,
+        "lag1_dodstal_per_1000": 1,
         "lag1_log_fritidshus_per_1000_inv": 1
       },
       "folds": [
         {
           "fold": 1,
-          "rmse": 0.10886616121982233,
-          "mae": 0.08102738580965786,
+          "rmse": 0.10886648881478458,
+          "mae": 0.08102752583815644,
           "alpha": 0.03,
           "l1_ratio": 0.3,
           "nonzero_features": 10
         },
         {
           "fold": 2,
-          "rmse": 0.10505581347206233,
-          "mae": 0.07878171454692652,
+          "rmse": 0.10502839159626066,
+          "mae": 0.07877825481135962,
+          "alpha": 0.03,
+          "l1_ratio": 0.3,
+          "nonzero_features": 13
+        },
+        {
+          "fold": 3,
+          "rmse": 0.10330057354355401,
+          "mae": 0.07793657356862507,
           "alpha": 0.03,
           "l1_ratio": 0.3,
           "nonzero_features": 11
         },
         {
-          "fold": 3,
-          "rmse": 0.10330619711117092,
-          "mae": 0.07798460280649203,
-          "alpha": 0.03,
-          "l1_ratio": 0.3,
-          "nonzero_features": 10
-        },
-        {
           "fold": 4,
-          "rmse": 0.09513574160590141,
-          "mae": 0.07425588528608079,
+          "rmse": 0.09507916576833308,
+          "mae": 0.07421573757746958,
           "alpha": 0.03,
           "l1_ratio": 0.3,
-          "nonzero_features": 10
+          "nonzero_features": 11
         },
         {
           "fold": 5,
-          "rmse": 0.09796792322061931,
-          "mae": 0.07798481803155036,
+          "rmse": 0.09795896660290093,
+          "mae": 0.07795561571049853,
           "alpha": 0.03,
           "l1_ratio": 0.3,
-          "nonzero_features": 10
+          "nonzero_features": 11
         }
       ]
     },
@@ -224,11 +297,18 @@
       ],
       "n_rows": 870,
       "n_municipalities": 290,
-      "n_candidates": 90,
-      "rmse": 0.09821133413053948,
-      "mae": 0.07535760459025458,
-      "bias_actual_minus_prediction": 0.0004804119766201191,
+      "n_candidates": 97,
+      "rmse": 0.09821418383172209,
+      "mae": 0.07536500285872692,
+      "bias_actual_minus_prediction": 0.0004913625610033734,
       "eligible_demographic_candidates": [
+        "lag1_fodda_total",
+        "lag1_fodda_share_mor_15_24_pct",
+        "lag1_fodda_share_mor_25_29_pct",
+        "lag1_fodda_share_mor_30_34_pct",
+        "lag1_fodda_share_mor_35_39_pct",
+        "lag1_fodda_share_mor_40_plus_pct",
+        "lag1_medelalder_mor_vid_fodsel",
         "lag1_summerad_fruktsamhet_kvinnor",
         "lag1_doda_fodelsear_total",
         "lag1_doda_fodelsear_share_0_64_pct",
@@ -241,6 +321,41 @@
         "lag1_dodfodda_total"
       ],
       "demographic_candidate_coverage_by_year": {
+        "lag1_fodda_total": {
+          "2021": 290,
+          "2022": 290,
+          "2023": 290
+        },
+        "lag1_fodda_share_mor_15_24_pct": {
+          "2021": 290,
+          "2022": 290,
+          "2023": 290
+        },
+        "lag1_fodda_share_mor_25_29_pct": {
+          "2021": 290,
+          "2022": 290,
+          "2023": 290
+        },
+        "lag1_fodda_share_mor_30_34_pct": {
+          "2021": 290,
+          "2022": 290,
+          "2023": 290
+        },
+        "lag1_fodda_share_mor_35_39_pct": {
+          "2021": 290,
+          "2022": 290,
+          "2023": 290
+        },
+        "lag1_fodda_share_mor_40_plus_pct": {
+          "2021": 290,
+          "2022": 290,
+          "2023": 290
+        },
+        "lag1_medelalder_mor_vid_fodsel": {
+          "2021": 282,
+          "2022": 283,
+          "2023": 279
+        },
         "lag1_summerad_fruktsamhet_kvinnor": {
           "2021": 282,
           "2022": 283,
@@ -319,46 +434,47 @@
         "lag1_arbetskraftsdeltagande": 2,
         "lag1_kolada_arbetslosa_18_65_pct": 2,
         "lag1_utanf_arbetkraften_andel_pct": 2,
+        "lag1_fodda_share_mor_25_29_pct": 1,
         "lag1_log_fritidshus_per_1000_inv": 1,
         "lag1_inkomst_tkr": 1
       },
       "folds": [
         {
           "fold": 1,
-          "rmse": 0.10379892102936002,
-          "mae": 0.07642701210314862,
+          "rmse": 0.10379887047837864,
+          "mae": 0.07642698098133953,
           "alpha": 0.03,
           "l1_ratio": 0.3,
           "nonzero_features": 16
         },
         {
           "fold": 2,
-          "rmse": 0.09720500036782523,
-          "mae": 0.07436588520439848,
+          "rmse": 0.09721954779809475,
+          "mae": 0.07440290238016838,
           "alpha": 0.03,
           "l1_ratio": 0.3,
-          "nonzero_features": 20
+          "nonzero_features": 21
         },
         {
           "fold": 3,
-          "rmse": 0.10200152163998195,
-          "mae": 0.07702564383604249,
+          "rmse": 0.10200152301975061,
+          "mae": 0.07702564607911985,
           "alpha": 0.03,
           "l1_ratio": 0.3,
           "nonzero_features": 17
         },
         {
           "fold": 4,
-          "rmse": 0.0906576022636925,
-          "mae": 0.07235603443113735,
+          "rmse": 0.09065753721920042,
+          "mae": 0.07235605742755014,
           "alpha": 0.03,
           "l1_ratio": 0.3,
           "nonzero_features": 17
         },
         {
           "fold": 5,
-          "rmse": 0.09685655057899055,
-          "mae": 0.07661344737654593,
+          "rmse": 0.09685651134024917,
+          "mae": 0.07661342742545664,
           "alpha": 0.03,
           "l1_ratio": 0.3,
           "nonzero_features": 16
@@ -375,11 +491,18 @@
       ],
       "n_rows": 1450,
       "n_municipalities": 290,
-      "n_candidates": 68,
-      "rmse": 1.2855625969642666,
-      "mae": 0.9164155196699266,
-      "bias_actual_minus_prediction": -0.0010443327663548984,
+      "n_candidates": 75,
+      "rmse": 1.289682091817564,
+      "mae": 0.9187472826406422,
+      "bias_actual_minus_prediction": 0.003375727396560405,
       "eligible_demographic_candidates": [
+        "lag1_fodda_total",
+        "lag1_fodda_share_mor_15_24_pct",
+        "lag1_fodda_share_mor_25_29_pct",
+        "lag1_fodda_share_mor_30_34_pct",
+        "lag1_fodda_share_mor_35_39_pct",
+        "lag1_fodda_share_mor_40_plus_pct",
+        "lag1_medelalder_mor_vid_fodsel",
         "lag1_summerad_fruktsamhet_kvinnor",
         "lag1_doda_fodelsear_total",
         "lag1_doda_fodelsear_share_0_64_pct",
@@ -392,6 +515,55 @@
         "lag1_dodfodda_total"
       ],
       "demographic_candidate_coverage_by_year": {
+        "lag1_fodda_total": {
+          "2019": 290,
+          "2020": 290,
+          "2021": 290,
+          "2022": 290,
+          "2023": 290
+        },
+        "lag1_fodda_share_mor_15_24_pct": {
+          "2019": 290,
+          "2020": 290,
+          "2021": 290,
+          "2022": 290,
+          "2023": 290
+        },
+        "lag1_fodda_share_mor_25_29_pct": {
+          "2019": 290,
+          "2020": 290,
+          "2021": 290,
+          "2022": 290,
+          "2023": 290
+        },
+        "lag1_fodda_share_mor_30_34_pct": {
+          "2019": 290,
+          "2020": 290,
+          "2021": 290,
+          "2022": 290,
+          "2023": 290
+        },
+        "lag1_fodda_share_mor_35_39_pct": {
+          "2019": 290,
+          "2020": 290,
+          "2021": 290,
+          "2022": 290,
+          "2023": 290
+        },
+        "lag1_fodda_share_mor_40_plus_pct": {
+          "2019": 290,
+          "2020": 290,
+          "2021": 290,
+          "2022": 290,
+          "2023": 290
+        },
+        "lag1_medelalder_mor_vid_fodsel": {
+          "2019": 283,
+          "2020": 284,
+          "2021": 282,
+          "2022": 283,
+          "2023": 279
+        },
         "lag1_summerad_fruktsamhet_kvinnor": {
           "2019": 283,
           "2020": 284,
@@ -480,84 +652,82 @@
         "lag1_fodelsetal_per_100": 5,
         "lag1_gymnasium_yrkesprogram_pct": 5,
         "lag1_inflyttare_medelalder": 5,
-        "lag1_inflyttning_per_1000": 5,
         "lag1_kolada_arbetslosa_18_24_pct": 5,
         "lag1_kolada_langtidsarbetslosa_pct": 5,
         "lag1_log_smahuspris_medel": 5,
         "lag1_strand_hav_bostader_per_1000": 5,
         "lag1_valdeltagande_pct": 5,
-        "lag1_andel_bostader_111_plus": 4,
+        "lag1_inflyttning_per_1000": 4,
         "lag1_kolada_flickdominerade_idrottsforeningar_andel": 4,
         "lag1_kvinnors_lonesumma_dagbef_pct": 4,
         "lag1_kvinnors_mediannettoinkomst_andel_pct": 4,
-        "lag1_strand_hav_bostader_tatort_per_1000": 4,
+        "lag1_skogsmark_andel_land_pct": 4,
+        "lag1_strand_hav_bostader_skyddad_natur_per_1000": 4,
+        "lag1_fodda_share_mor_40_plus_pct": 4,
         "lag1_log_folkmangd": 4,
-        "lag1_inkomst_median_tkr": 3,
+        "lag1_medelalder_mor_vid_fodsel": 4,
+        "lag1_andel_bostader_111_plus": 3,
         "lag1_naturpraglad_mark_andel_land_pct": 3,
-        "lag1_strand_hav_bostader_skyddad_natur_per_1000": 3,
-        "lag1_andel_smahus": 3,
+        "lag1_smahusforsaljningar_per_1000_inv": 3,
         "lag1_utflyttning_per_1000": 3,
+        "lag1_valdeltagande_gap_pp": 3,
         "lag1_doda_handelse_share_0_64_pct": 3,
-        "lag1_skogsmark_andel_land_pct": 3,
+        "lag1_fodda_share_mor_35_39_pct": 2,
+        "lag1_strand_hav_bostader_tatort_per_1000": 2,
         "lag1_tatortsgrad_pct": 2,
         "lag1_andel_bostader_151_plus": 2,
         "lag1_andel_hyresratt": 2,
-        "lag1_doda_fodelsear_total": 2,
-        "lag1_doda_handelse_total": 2,
         "lag1_kolada_lok_foreningar_per_10000": 2,
-        "lag1_smahusforsaljningar_per_1000_inv": 2,
-        "lag1_andel_bostader_141_plus": 1,
-        "lag1_brott_per_100000": 1,
+        "lag1_andel_smahus": 2,
+        "lag1_fodda_share_mor_15_24_pct": 2,
         "lag1_doda_fodelsear_share_65_79_pct": 1,
-        "lag1_gymnasium_hogskoleforberedande_pct": 1,
-        "lag1_kolada_arbetslosa_18_65_pct": 1,
-        "lag1_snoskoterandel_alla_fordon_pct": 1,
-        "lag1_strand_inland_bostader_per_1000": 1,
-        "lag1_summerad_fruktsamhet_kvinnor": 1,
+        "lag1_fodda_share_mor_30_34_pct": 1,
         "lag1_andel_eftergymnasial": 1,
+        "lag1_inkomst_median_tkr": 1,
+        "lag1_smahusforsaljningar_per_1000_smahus": 1,
         "lag1_andel_flerbostad_70_max": 1,
         "lag1_kolada_utbetalt_lok_stod_kr_per_inv": 1
       },
       "folds": [
         {
           "fold": 1,
-          "rmse": 1.3860699788924207,
-          "mae": 0.9501741004957726,
+          "rmse": 1.387007862627777,
+          "mae": 0.9458915014868651,
+          "alpha": 0.03,
+          "l1_ratio": 1.0,
+          "nonzero_features": 25
+        },
+        {
+          "fold": 2,
+          "rmse": 1.2195918466658986,
+          "mae": 0.904581326814353,
+          "alpha": 0.03,
+          "l1_ratio": 1.0,
+          "nonzero_features": 32
+        },
+        {
+          "fold": 3,
+          "rmse": 1.5183259813815413,
+          "mae": 1.0422890619440044,
           "alpha": 0.03,
           "l1_ratio": 1.0,
           "nonzero_features": 24
         },
         {
-          "fold": 2,
-          "rmse": 1.2125542001837364,
-          "mae": 0.8989941363865755,
-          "alpha": 0.03,
-          "l1_ratio": 0.8,
-          "nonzero_features": 40
-        },
-        {
-          "fold": 3,
-          "rmse": 1.5086056379139803,
-          "mae": 1.0329934334668562,
-          "alpha": 0.03,
-          "l1_ratio": 0.8,
-          "nonzero_features": 25
-        },
-        {
           "fold": 4,
-          "rmse": 1.1370912724315811,
-          "mae": 0.8499041095445913,
+          "rmse": 1.1411243495635037,
+          "mae": 0.8517436952157429,
           "alpha": 0.03,
           "l1_ratio": 0.8,
-          "nonzero_features": 31
+          "nonzero_features": 36
         },
         {
           "fold": 5,
-          "rmse": 1.1414949610977565,
-          "mae": 0.8500118184558384,
+          "rmse": 1.1391777031808845,
+          "mae": 0.8492308277422456,
           "alpha": 0.03,
           "l1_ratio": 1.0,
-          "nonzero_features": 25
+          "nonzero_features": 30
         }
       ]
     },
@@ -569,11 +739,18 @@
       ],
       "n_rows": 870,
       "n_municipalities": 290,
-      "n_candidates": 90,
-      "rmse": 1.274973103628119,
-      "mae": 0.8823001066478205,
-      "bias_actual_minus_prediction": -0.006231856340086756,
+      "n_candidates": 97,
+      "rmse": 1.2913586924649054,
+      "mae": 0.8890954595514294,
+      "bias_actual_minus_prediction": -0.006974223716938717,
       "eligible_demographic_candidates": [
+        "lag1_fodda_total",
+        "lag1_fodda_share_mor_15_24_pct",
+        "lag1_fodda_share_mor_25_29_pct",
+        "lag1_fodda_share_mor_30_34_pct",
+        "lag1_fodda_share_mor_35_39_pct",
+        "lag1_fodda_share_mor_40_plus_pct",
+        "lag1_medelalder_mor_vid_fodsel",
         "lag1_summerad_fruktsamhet_kvinnor",
         "lag1_doda_fodelsear_total",
         "lag1_doda_fodelsear_share_0_64_pct",
@@ -586,6 +763,41 @@
         "lag1_dodfodda_total"
       ],
       "demographic_candidate_coverage_by_year": {
+        "lag1_fodda_total": {
+          "2021": 290,
+          "2022": 290,
+          "2023": 290
+        },
+        "lag1_fodda_share_mor_15_24_pct": {
+          "2021": 290,
+          "2022": 290,
+          "2023": 290
+        },
+        "lag1_fodda_share_mor_25_29_pct": {
+          "2021": 290,
+          "2022": 290,
+          "2023": 290
+        },
+        "lag1_fodda_share_mor_30_34_pct": {
+          "2021": 290,
+          "2022": 290,
+          "2023": 290
+        },
+        "lag1_fodda_share_mor_35_39_pct": {
+          "2021": 290,
+          "2022": 290,
+          "2023": 290
+        },
+        "lag1_fodda_share_mor_40_plus_pct": {
+          "2021": 290,
+          "2022": 290,
+          "2023": 290
+        },
+        "lag1_medelalder_mor_vid_fodsel": {
+          "2021": 282,
+          "2022": 283,
+          "2023": 279
+        },
         "lag1_summerad_fruktsamhet_kvinnor": {
           "2021": 282,
           "2022": 283,
@@ -644,6 +856,7 @@
       },
       "selection_frequency_outer_folds": {
         "lag1_andel_20_34": 5,
+        "lag1_andel_hotell_restaurang_i": 5,
         "lag1_andel_kultur_service_rstu": 5,
         "lag1_bas_pensionarer_andel_pct": 5,
         "lag1_bas_sjuka_andel_pct": 5,
@@ -663,28 +876,36 @@
         "lag1_sysselsatta_arbetsstalle_rams_bas_historisk_forandring_pct": 5,
         "lag1_utflyttning_per_1000": 5,
         "lag1_valdeltagande_pct": 5,
-        "lag1_andel_flerbostad_70_max": 4,
-        "lag1_andel_hotell_restaurang_i": 4,
-        "lag1_arbetskraftsdeltagande": 4,
+        "lag1_bebyggd_anlagd_andel_land_pct": 4,
+        "lag1_fodda_share_mor_30_34_pct": 4,
         "lag1_fodelsetal_per_100": 4,
         "lag1_strand_hav_bostader_per_1000": 4,
-        "lag1_utanf_arbetkraften_andel_pct": 4,
         "lag1_doda_handelse_share_0_64_pct": 4,
-        "lag1_gymnasium_yrkesprogram_pct": 3,
-        "lag1_bebyggd_anlagd_andel_land_pct": 3,
+        "lag1_fodda_share_mor_40_plus_pct": 4,
+        "lag1_medelalder_mor_vid_fodsel": 4,
+        "lag1_andel_flerbostad_70_max": 3,
         "lag1_brott_per_100000": 3,
         "lag1_kvinnors_mediannettoinkomst_andel_pct": 2,
-        "lag1_regional_centre_distance_km": 2,
         "lag1_tatortsgrad_pct": 2,
-        "lag1_andel_bostader_151_plus": 2,
+        "lag1_gymnasium_yrkesprogram_pct": 2,
         "lag1_naturpraglad_mark_andel_land_pct": 2,
-        "lag1_gymnasium_hogskoleforberedande_pct": 1,
+        "lag1_sysselsatta_bostad_sasongsvariation_pct": 2,
+        "lag1_fodda_share_mor_15_24_pct": 2,
+        "lag1_arbetskraftsdeltagande": 1,
+        "lag1_fodda_share_mor_25_29_pct": 1,
+        "lag1_fodda_share_mor_35_39_pct": 1,
+        "lag1_regional_centre_distance_km": 1,
+        "lag1_snoskoterandel_alla_fordon_pct": 1,
+        "lag1_snoskoterandel_exkl_dragfordon_pct": 1,
+        "lag1_utanf_arbetkraften_andel_pct": 1,
+        "lag1_valdeltagande_gap_pp": 1,
+        "lag1_andel_bostader_151_plus": 1,
         "lag1_kolada_lok_foreningar_per_10000": 1,
         "lag1_kolada_utbetalt_lok_stod_kr_per_inv": 1,
         "lag1_log_externa_fa_jobb_per_1000": 1,
-        "lag1_sysselsatta_bostad_sasongsvariation_pct": 1,
-        "lag1_fritidshusandel_bland_smahus": 1,
+        "lag1_fardigstallda_bostader_per_1000": 1,
         "lag1_strand_inland_bostader_per_1000": 1,
+        "lag1_sysselsatta_bostad_rams_bas_historisk_forandring_pct": 1,
         "lag1_strand_hav_bostader_tatort_per_1000": 1,
         "lag1_ekonomisk_standard_gap_pp": 1,
         "lag1_inflyttning_per_1000": 1,
@@ -694,43 +915,43 @@
       "folds": [
         {
           "fold": 1,
-          "rmse": 1.5341868465342752,
-          "mae": 0.9721487844153803,
+          "rmse": 1.5615728538050044,
+          "mae": 0.9841863206573793,
           "alpha": 0.03,
           "l1_ratio": 1.0,
-          "nonzero_features": 30
+          "nonzero_features": 35
         },
         {
           "fold": 2,
-          "rmse": 1.1173500717038989,
-          "mae": 0.8618982457025863,
+          "rmse": 1.1431209660087218,
+          "mae": 0.870555830336678,
           "alpha": 0.03,
           "l1_ratio": 1.0,
           "nonzero_features": 36
         },
         {
           "fold": 3,
-          "rmse": 1.4476712466963946,
-          "mae": 0.9665590045364575,
+          "rmse": 1.469430191515191,
+          "mae": 0.9806387265619054,
           "alpha": 0.03,
           "l1_ratio": 1.0,
-          "nonzero_features": 27
+          "nonzero_features": 30
         },
         {
           "fold": 4,
-          "rmse": 1.0602441562981122,
-          "mae": 0.7718109805672981,
-          "alpha": 0.03,
-          "l1_ratio": 1.0,
-          "nonzero_features": 32
-        },
-        {
-          "fold": 5,
-          "rmse": 1.142677514692711,
-          "mae": 0.8390835180173809,
+          "rmse": 1.0723420678182798,
+          "mae": 0.7754814906242489,
           "alpha": 0.03,
           "l1_ratio": 1.0,
           "nonzero_features": 34
+        },
+        {
+          "fold": 5,
+          "rmse": 1.1329865154558443,
+          "mae": 0.834614929576936,
+          "alpha": 0.03,
+          "l1_ratio": 1.0,
+          "nonzero_features": 36
         }
       ]
     }

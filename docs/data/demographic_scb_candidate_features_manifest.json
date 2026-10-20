@@ -2,12 +2,23 @@
   "status": "demographic_scb_feature_pool",
   "sources": {
     "FoddaK": {
-      "ok": false,
-      "error": "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+      "ok": true,
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101H/FoddaK",
+      "features": [
+        "fodda_total",
+        "fodda_share_mor_15_24_pct",
+        "fodda_share_mor_25_29_pct",
+        "fodda_share_mor_30_34_pct",
+        "fodda_share_mor_35_39_pct",
+        "fodda_share_mor_40_plus_pct"
+      ]
     },
     "MedelAlder1": {
-      "ok": false,
-      "error": "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+      "ok": true,
+      "url": "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101H/MedelAlder1",
+      "features": [
+        "medelalder_mor_vid_fodsel"
+      ]
     },
     "FruktsamhetHVD": {
       "ok": false,
@@ -59,6 +70,13 @@
   "first_year": 2017,
   "last_year": 2024,
   "feature_columns": [
+    "fodda_total",
+    "fodda_share_mor_15_24_pct",
+    "fodda_share_mor_25_29_pct",
+    "fodda_share_mor_30_34_pct",
+    "fodda_share_mor_35_39_pct",
+    "fodda_share_mor_40_plus_pct",
+    "medelalder_mor_vid_fodsel",
     "summerad_fruktsamhet_kvinnor",
     "doda_fodelsear_total",
     "doda_fodelsear_share_0_64_pct",

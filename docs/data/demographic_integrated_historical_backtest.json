@@ -19,9 +19,9 @@
   "residual_rule": "rolling mean of previous 3 observed residuals",
   "all_municipalities": {
     "n_rows": 2320,
-    "rmse_persons": 126.81318126694215,
+    "rmse_persons": 126.81318126694217,
     "mae_persons": 40.76834107644743,
-    "bias_actual_minus_prediction": 9.727608861863164
+    "bias_actual_minus_prediction": 9.727608861863155
   },
   "lulea": {
     "n_rows": 8,
@@ -87,7 +87,7 @@
     {
       "year": 2023,
       "births_pred": 634.956731763127,
-      "deaths_pred": 778.4444579046515,
+      "deaths_pred": 778.4444579046514,
       "residual_pred": 47.666666666666664,
       "pred_change": 138.17894052514217,
       "actual_change": 108.0,
@@ -96,7 +96,7 @@
     {
       "year": 2024,
       "births_pred": 614.0849318279558,
-      "deaths_pred": 765.2714120829156,
+      "deaths_pred": 765.2714120829157,
       "residual_pred": 44.0,
       "pred_change": 347.81351974504014,
       "actual_change": 293.0,
