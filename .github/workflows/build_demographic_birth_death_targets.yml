@@ -20,6 +20,7 @@ on:
       - scripts/test_lulea_full_balance_direct_net_challenger.py
       - scripts/test_lulea_direct_net_full_balance_robustness.py
       - scripts/test_lulea_chained_population_level_2020_2024.py
+      - scripts/test_lulea_rolling_chained_population_5y.py
       - .github/workflows/build_demographic_birth_death_targets.yml
   workflow_dispatch:
 permissions:
@@ -70,6 +71,8 @@ jobs:
         run: python scripts/test_lulea_direct_net_full_balance_robustness.py
       - name: Validate chained Lulea population level 2020-2024
         run: python scripts/test_lulea_chained_population_level_2020_2024.py
+      - name: Validate rolling five-year Lulea population windows
+        run: python scripts/test_lulea_rolling_chained_population_5y.py
       - name: Commit targets and neutral model results
         run: |
           git config user.name "github-actions[bot]"
@@ -95,6 +98,7 @@ jobs:
           git add docs/data/lulea_full_balance_direct_net_challenger.json
           git add docs/data/lulea_direct_net_full_balance_robustness.json
           git add docs/data/lulea_chained_population_level_validation_2020_2024.json
+          git add docs/data/lulea_rolling_chained_population_validation_5y.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Build SCB birth-death targets and neutral models"
           git pull --rebase origin main
