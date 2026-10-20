@@ -50,9 +50,26 @@ def total_code(v):
     return None
 
 def query_all_regions(meta, extra_totals=False):
-    region=var(meta,lambda v:"region" in (v.get("code","")+" "+v.get("text","")).lower())
-    time=var(meta,lambda v:v.get("time") or "år" in v.get("text","").lower() or v.get("code")=="Tid")
+    # Identify the municipal geography dimension from its values, not merely its label.
+    # SCB content dimensions can contain the word "region" in their descriptive text.
+    region_candidates=[]
+    for v in meta["variables"]:
+        municipal_codes=[x for x in v.get("values",[]) if re.fullmatch(r"\d{4}",str(x))]
+        if len(municipal_codes)>=250:
+            region_candidates.append((len(municipal_codes),v))
+    if not region_candidates:
+        raise KeyError("No SCB dimension with >=250 four-digit municipality codes found")
+    region=max(region_candidates,key=lambda z:z[0])[1]
+
+    time_candidates=[v for v in meta["variables"] if v.get("time")]
+    if time_candidates:
+        time=time_candidates[0]
+    else:
+        time=var(meta,lambda v:"tid" in v.get("code","").lower() or "år" in v.get("text","").lower())
+
     regions=[x for x in region["values"] if re.fullmatch(r"\d{4}",str(x))]
+    if len(regions)!=290:
+        raise RuntimeError(f"Expected 290 municipality codes in SCB region dimension, got {len(regions)}; code={region.get('code')}")
     q=[
       {"code":region["code"],"selection":{"filter":"item","values":regions}}
     ]
