@@ -22,15 +22,31 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 D=Path("docs/data")
 BIRTH_URL="https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101H/FoddaK"
 DEATH_URL="https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BE/BE0101/BE0101I/DodaHandelseK"
 YEARS=list(range(2013,2025))
-S=requests.Session();S.headers.update({"User-Agent":"Samband-inflyttning-demographic-targets/2.0"})
+S=requests.Session()
+S.headers.update({"User-Agent":"Samband-inflyttning-demographic-targets/2.1"})
+_retry=Retry(
+    total=6,
+    connect=6,
+    read=6,
+    status=6,
+    backoff_factor=2.0,
+    status_forcelist=[429,500,502,503,504],
+    allowed_methods=frozenset(["GET","POST"]),
+    raise_on_status=False,
+)
+S.mount("https://",HTTPAdapter(max_retries=_retry))
 
 def meta(url):
-    r=S.get(url,timeout=90);r.raise_for_status();return r.json()
+    r=S.get(url,timeout=(20,120))
+    r.raise_for_status()
+    return r.json()
 
 def municipality_var(m):
     cand=[]
@@ -97,7 +113,7 @@ def fetch_counts(url,label):
             expanded.append(v["code"])
         q.append({"code":v["code"],"selection":{"filter":"item","values":vals}})
     q.append({"code":tv["code"],"selection":{"filter":"item","values":years}})
-    r=S.post(url,json={"query":q,"response":{"format":"json-stat2"}},timeout=180)
+    r=S.post(url,json={"query":q,"response":{"format":"json-stat2"}},timeout=(20,240))
     r.raise_for_status();df=jsonstat2_df(r.json())
     # SCB response IDs should match query codes; resolve case-insensitively as fallback.
     cmap={str(c).lower():c for c in df.columns}
