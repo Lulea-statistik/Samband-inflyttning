@@ -1,0 +1,36 @@
+{
+  "status": "twelve_month_backward_track_complete",
+  "date": "2026-10-20",
+  "production_changed": false,
+  "structural_core4_changed": false,
+  "reference_specification": {
+    "backward_window_months": 12,
+    "features": [
+      "bas2_age25_29_sysselsattningsgrad_yoy_pp",
+      "bas2_age25_29_arbetskraftsdeltagande_yoy_pp"
+    ],
+    "feature_lags_months": [
+      1,
+      2
+    ],
+    "alphas": [
+      3,
+      10,
+      30
+    ],
+    "forecast_horizons_months": [
+      3,
+      6,
+      9,
+      12
+    ]
+  },
+  "conclusion": "rates_25_29 dominates seasonal naive and Family1 BAS YoY on common origins across all forecast horizons and all tested alphas.",
+  "family1_status": "diagnostic_only",
+  "next_challenger_backward_windows_months": [
+    9,
+    6,
+    3
+  ],
+  "no_feature_reselection": true
+}
