@@ -1,0 +1,126 @@
+{
+  "status": "outmigration_lag1_final_window_gate",
+  "production_changed": false,
+  "model": "lag1_utflyttning_per_1000 only",
+  "common_years": [
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "metrics": {
+    "3y": {
+      "rmse": 5.702496684713274,
+      "mae": 4.0674576720472055,
+      "bias": 0.20453693148766
+    },
+    "10y": {
+      "rmse": 5.688485394866706,
+      "mae": 4.043055693047927,
+      "bias": 0.2020276201200995
+    }
+  },
+  "delta_rmse_3y_vs_10y_pct": 0.2463096742625348,
+  "practical_equivalence_margin_pct": 0.5,
+  "practically_equivalent": true,
+  "yearly": [
+    {
+      "year": 2013,
+      "rmse_3y": 5.246539753464873,
+      "rmse_10y": 5.338053143885129,
+      "delta_3y_vs_10y_pct": -1.7143589236290557
+    },
+    {
+      "year": 2014,
+      "rmse_3y": 5.806147503968222,
+      "rmse_10y": 5.904027516587859,
+      "delta_3y_vs_10y_pct": -1.6578515656411663
+    },
+    {
+      "year": 2015,
+      "rmse_3y": 5.2768068768314365,
+      "rmse_10y": 5.3576644507606135,
+      "delta_3y_vs_10y_pct": -1.5091944385897116
+    },
+    {
+      "year": 2016,
+      "rmse_3y": 5.754624750892868,
+      "rmse_10y": 5.420445544179774,
+      "delta_3y_vs_10y_pct": 6.165161221330218
+    },
+    {
+      "year": 2017,
+      "rmse_3y": 6.908981716437748,
+      "rmse_10y": 7.079213277375002,
+      "delta_3y_vs_10y_pct": -2.404667782524794
+    },
+    {
+      "year": 2018,
+      "rmse_3y": 7.4614528280838694,
+      "rmse_10y": 7.237925438777703,
+      "delta_3y_vs_10y_pct": 3.08827980057107
+    },
+    {
+      "year": 2019,
+      "rmse_3y": 5.747961220251654,
+      "rmse_10y": 5.76665868066094,
+      "delta_3y_vs_10y_pct": -0.32423386651943
+    },
+    {
+      "year": 2020,
+      "rmse_3y": 5.51813194206166,
+      "rmse_10y": 5.383768701916026,
+      "delta_3y_vs_10y_pct": 2.49570974506792
+    },
+    {
+      "year": 2021,
+      "rmse_3y": 5.440732357125722,
+      "rmse_10y": 5.511070789524551,
+      "delta_3y_vs_10y_pct": -1.2763115388125357
+    },
+    {
+      "year": 2022,
+      "rmse_3y": 5.257528728643479,
+      "rmse_10y": 5.124798945413626,
+      "delta_3y_vs_10y_pct": 2.589951033076865
+    },
+    {
+      "year": 2023,
+      "rmse_3y": 4.846308330891904,
+      "rmse_10y": 4.881536201549616,
+      "delta_3y_vs_10y_pct": -0.7216554216381565
+    },
+    {
+      "year": 2024,
+      "rmse_3y": 4.516377959464189,
+      "rmse_10y": 4.6541635424066845,
+      "delta_3y_vs_10y_pct": -2.9604800451693114
+    }
+  ],
+  "year_wins": {
+    "3y": 8,
+    "10y": 4,
+    "ties": 0
+  },
+  "mean_positive_regret_pct": {
+    "3y": 1.1949251500038394,
+    "10y": 1.0473961318770135
+  },
+  "paired_municipality_bootstrap_delta_rmse_pct": {
+    "median": 0.2407989314522907,
+    "p025": -0.21806380833541555,
+    "p975": 0.7469995579496183,
+    "probability_3y_better": 0.1518
+  },
+  "selected_window_years": 3,
+  "decision_rule": "If pooled RMSE differs by <=0.5%, treat as practically equivalent and prefer the window with more year-by-year wins.",
+  "decision": "Use selected window as the long-history lag1-only outmigration core; keep the other as sensitivity reference."
+}
