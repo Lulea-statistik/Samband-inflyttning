@@ -2,7 +2,7 @@
 """Integrated historical backtest for demographic balance components.
 
 Birth core:
-  3-year Ridge on lag1_fodelsetal_per_100 + lag1_andel_20_34
+  3-year Ridge on lag1_fodelsetal_per_100, with Lulea-specific rolling 3-origin bias correction
 Death core:
   3-year Ridge on lag1_dodstal_per_1000 + lag1_bas_pensionarer_andel_pct
 Residual correction:
@@ -42,7 +42,7 @@ q["component_change_obs"]=q["births_obs"]-q["deaths_obs"]+q["inflyttade"]-q["utf
 q["residual_obs"]=q["delta_population"]-q["component_change_obs"]
 
 SPECS={
- "birth":{"target":"fodelsetal_per_100","features":["lag1_fodelsetal_per_100","lag1_andel_20_34"]},
+ "birth":{"target":"fodelsetal_per_100","features":["lag1_fodelsetal_per_100"]},
  "death":{"target":"dodstal_per_1000","features":["lag1_dodstal_per_1000","lag1_bas_pensionarer_andel_pct"]}
 }
 
@@ -70,6 +70,7 @@ def forecast_rate(target,features,year):
     return te.reset_index(drop=True),pr,a
 
 rows=[]
+lulea_birth_errors=[]
 for y in range(2017,2025):
     bte,bpr,ba=forecast_rate(SPECS["birth"]["target"],SPECS["birth"]["features"],y)
     dte,dpr,da=forecast_rate(SPECS["death"]["target"],SPECS["death"]["features"],y)
@@ -79,7 +80,12 @@ for y in range(2017,2025):
         raise RuntimeError("Birth/death prediction rows misaligned")
     for i,r in bte.iterrows():
         mean_pop=float(r.mean_population)
-        births_pred=float(bpr[i])*mean_pop/100.0
+        birth_rate_pred=float(bpr[i])
+        birth_bias_corr=0.0
+        if r.kommun_kod=="2580" and len(lulea_birth_errors)>=3:
+            birth_bias_corr=float(np.mean(lulea_birth_errors[-3:]))
+        birth_rate_used=birth_rate_pred+birth_bias_corr
+        births_pred=birth_rate_used*mean_pop/100.0
         deaths_pred=float(dpr[i])*mean_pop/1000.0
         residual_hist=q[(q.kommun_kod.eq(r.kommun_kod))&(q.year<y)].tail(3).residual_obs.dropna()
         residual_pred=float(residual_hist.mean()) if len(residual_hist)==3 else 0.0
@@ -87,7 +93,8 @@ for y in range(2017,2025):
         actual_change=float(r.delta_population)
         rows.append({
           "year":y,"kommun_kod":r.kommun_kod,
-          "birth_rate_pred":float(bpr[i]),"death_rate_pred":float(dpr[i]),
+          "birth_rate_pred_raw":birth_rate_pred,"birth_bias_correction":birth_bias_corr,
+          "birth_rate_pred":birth_rate_used,"death_rate_pred":float(dpr[i]),
           "births_pred":births_pred,"deaths_pred":deaths_pred,
           "inflow_obs":float(r.inflyttade),"outflow_obs":float(r.utflyttade),
           "residual_pred":residual_pred,
@@ -95,6 +102,9 @@ for y in range(2017,2025):
           "error_actual_minus_prediction":actual_change-pred_change,
           "birth_alpha":ba,"death_alpha":da
         })
+        if r.kommun_kod=="2580":
+            actual_birth_rate=float(r.fodelsetal_per_100)
+            lulea_birth_errors.append(actual_birth_rate-birth_rate_pred)
 
 r=pd.DataFrame(rows)
 
@@ -111,7 +121,8 @@ out={
  "status":"demographic_integrated_historical_backtest",
  "production_changed":False,
  "migration_mode":"observed counts; frozen migration forecasts not yet substituted",
- "birth_core":{"window_years":3,"features":SPECS["birth"]["features"]},
+ "birth_core":{"window_years":3,"features":SPECS["birth"]["features"],
+                 "lulea_bias_rule":"rolling mean of previous 3 raw Lulea birth-rate forecast errors"},
  "death_core":{"window_years":3,"features":SPECS["death"]["features"]},
  "residual_rule":"rolling mean of previous 3 observed residuals",
  "all_municipalities":metrics(r),
