@@ -1,0 +1,116 @@
+{
+  "status": "demographic_balance_residual_diagnostic",
+  "production_changed": false,
+  "identity": "delta_population = births - deaths + inflow - outflow + residual",
+  "principle": "Residual is modeled separately and is never folded into birth, death, inflow or outflow targets.",
+  "all_municipalities": {
+    "n": 3190,
+    "mean": 9.753605015673982,
+    "median": 3.0,
+    "mae_zero": 11.115987460815047,
+    "rmse_zero": 41.5807783540261,
+    "p95_abs": 38.0
+  },
+  "lulea": {
+    "overall": {
+      "n": 11,
+      "mean": 17.818181818181817,
+      "median": 13.0,
+      "mae_zero": 19.09090909090909,
+      "rmse_zero": 27.92848008753788,
+      "p95_abs": 59.5
+    },
+    "windows": {
+      "3": {
+        "n": 3,
+        "mean": 21.0,
+        "median": 13.0,
+        "mae_zero": 21.666666666666668,
+        "rmse_zero": 30.391884881768465,
+        "p95_abs": 47.199999999999996
+      },
+      "5": {
+        "n": 5,
+        "mean": 31.0,
+        "median": 24.0,
+        "mae_zero": 31.4,
+        "rmse_zero": 39.9274341775176,
+        "p95_abs": 64.6
+      },
+      "10": {
+        "n": 10,
+        "mean": 18.8,
+        "median": 13.0,
+        "mae_zero": 20.2,
+        "rmse_zero": 29.182186347153635,
+        "p95_abs": 60.34999999999998
+      }
+    },
+    "years": [
+      {
+        "year": 2014,
+        "residual": 8.0
+      },
+      {
+        "year": 2015,
+        "residual": -2.0
+      },
+      {
+        "year": 2016,
+        "residual": -4.0
+      },
+      {
+        "year": 2017,
+        "residual": 10.0
+      },
+      {
+        "year": 2018,
+        "residual": 13.0
+      },
+      {
+        "year": 2019,
+        "residual": 16.0
+      },
+      {
+        "year": 2020,
+        "residual": 24.0
+      },
+      {
+        "year": 2021,
+        "residual": 68.0
+      },
+      {
+        "year": 2022,
+        "residual": 51.0
+      },
+      {
+        "year": 2023,
+        "residual": 13.0
+      },
+      {
+        "year": 2024,
+        "residual": -1.0
+      }
+    ],
+    "rolling_correction_rules": {
+      "zero": {
+        "n_origins": 8,
+        "rmse": 32.58834147360065,
+        "mae": 24.5,
+        "bias_actual_minus_prediction": 24.25
+      },
+      "mean3": {
+        "n_origins": 8,
+        "rmse": 28.33480388340655,
+        "mae": 23.333333333333336,
+        "bias_actual_minus_prediction": 3.416666666666668
+      },
+      "median3": {
+        "n_origins": 8,
+        "rmse": 31.83355148267312,
+        "mae": 26.625,
+        "bias_actual_minus_prediction": 4.125
+      }
+    }
+  }
+}
